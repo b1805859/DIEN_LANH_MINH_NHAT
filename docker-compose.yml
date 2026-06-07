@@ -1,0 +1,90 @@
+name: minh-nhat
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: minh-nhat-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-minh_nhat}
+      POSTGRES_USER: ${POSTGRES_USER:-minh_nhat}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-minh_nhat_password}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    container_name: minh-nhat-api
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      DATABASE_URL: postgresql://${POSTGRES_USER:-minh_nhat}:${POSTGRES_PASSWORD:-minh_nhat_password}@postgres:5432/${POSTGRES_DB:-minh_nhat}?schema=public
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:3000}
+      JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET:-change-me-access-secret}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-change-me-refresh-secret}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "${API_PORT:-4000}:4000"
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+      args:
+        NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost}
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost/api}
+        NEXT_PUBLIC_BUSINESS_NAME: ${NEXT_PUBLIC_BUSINESS_NAME:-DIEN LANH MINH NHAT}
+        NEXT_PUBLIC_BUSINESS_PHONE: ${NEXT_PUBLIC_BUSINESS_PHONE:-}
+        NEXT_PUBLIC_BUSINESS_ADDRESS: ${NEXT_PUBLIC_BUSINESS_ADDRESS:-}
+        NEXT_PUBLIC_ZALO_OA_URL: ${NEXT_PUBLIC_ZALO_OA_URL:-}
+        NEXT_PUBLIC_FACEBOOK_MESSENGER_URL: ${NEXT_PUBLIC_FACEBOOK_MESSENGER_URL:-}
+        NEXT_PUBLIC_GOOGLE_MAPS_URL: ${NEXT_PUBLIC_GOOGLE_MAPS_URL:-https://maps.app.goo.gl/3njenMnrCdfP7zto6}
+        NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL: ${NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL:-https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1389.331828903653!2d105.74450004833437!3d9.965221921519792!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a08b19c3cdce8f%3A0xeebec6b5a636b94a!2zxJBJ4buGTiBM4bqgTkggTUlOSCBOSOG6rFQ!5e0!3m2!1svi!2s!4v1780322364353!5m2!1svi!2s}
+        NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: ${NEXT_PUBLIC_GOOGLE_ANALYTICS_ID:-}
+        NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE_VERIFICATION: ${NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE_VERIFICATION:-}
+    container_name: minh-nhat-web
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_SITE_URL: ${NEXT_PUBLIC_SITE_URL:-http://localhost}
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost/api}
+      NEXT_PUBLIC_BUSINESS_NAME: ${NEXT_PUBLIC_BUSINESS_NAME:-DIEN LANH MINH NHAT}
+      NEXT_PUBLIC_BUSINESS_PHONE: ${NEXT_PUBLIC_BUSINESS_PHONE:-}
+      NEXT_PUBLIC_BUSINESS_ADDRESS: ${NEXT_PUBLIC_BUSINESS_ADDRESS:-}
+      NEXT_PUBLIC_ZALO_OA_URL: ${NEXT_PUBLIC_ZALO_OA_URL:-}
+      NEXT_PUBLIC_FACEBOOK_MESSENGER_URL: ${NEXT_PUBLIC_FACEBOOK_MESSENGER_URL:-}
+      NEXT_PUBLIC_GOOGLE_MAPS_URL: ${NEXT_PUBLIC_GOOGLE_MAPS_URL:-https://maps.app.goo.gl/3njenMnrCdfP7zto6}
+      NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL: ${NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL:-https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1389.331828903653!2d105.74450004833437!3d9.965221921519792!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a08b19c3cdce8f%3A0xeebec6b5a636b94a!2zxJBJ4buGTiBM4bqgTkggTUlOSCBOSOG6rFQ!5e0!3m2!1svi!2s!4v1780322364353!5m2!1svi!2s}
+      NEXT_PUBLIC_GOOGLE_ANALYTICS_ID: ${NEXT_PUBLIC_GOOGLE_ANALYTICS_ID:-}
+      NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE_VERIFICATION: ${NEXT_PUBLIC_GOOGLE_SEARCH_CONSOLE_VERIFICATION:-}
+    depends_on:
+      - api
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: minh-nhat-nginx
+    restart: unless-stopped
+    depends_on:
+      - web
+      - api
+    ports:
+      - "${NGINX_PORT:-80}:80"
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+
+volumes:
+  postgres_data:

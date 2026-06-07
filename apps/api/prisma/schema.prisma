@@ -1,0 +1,288 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum BlogPostStatus {
+  DRAFT
+  PUBLISHED
+  ARCHIVED
+}
+
+enum MediaVisibility {
+  PUBLIC
+  PRIVATE
+}
+
+model User {
+  id           String         @id @default(cuid())
+  email        String         @unique
+  passwordHash String
+  name         String
+  isActive     Boolean        @default(true)
+  roleId       String
+  role         Role           @relation(fields: [roleId], references: [id])
+  refreshTokens RefreshToken[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  @@map("users")
+}
+
+model Role {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  users       User[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("roles")
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@map("refresh_tokens")
+}
+
+model Service {
+  id                       String                    @id @default(cuid())
+  name                     String
+  slug                     String                    @unique
+  summary                  String?
+  description              String?
+  isActive                 Boolean                   @default(true)
+  displayOrder             Int                       @default(0)
+  faqs                     FAQ[]
+  testimonials             Testimonial[]
+  bookings                 Booking[]
+  seoSettings              SEOSetting[]
+  serviceLocationOverrides ServiceLocationOverride[]
+  createdAt                DateTime                  @default(now())
+  updatedAt                DateTime                  @updatedAt
+
+  @@map("services")
+}
+
+model Location {
+  id                       String                    @id @default(cuid())
+  name                     String
+  slug                     String                    @unique
+  description              String?
+  isPriority               Boolean                   @default(false)
+  isActive                 Boolean                   @default(true)
+  faqs                     FAQ[]
+  testimonials             Testimonial[]
+  bookings                 Booking[]
+  seoSettings              SEOSetting[]
+  serviceLocationOverrides ServiceLocationOverride[]
+  createdAt                DateTime                  @default(now())
+  updatedAt                DateTime                  @updatedAt
+
+  @@map("locations")
+}
+
+model ServiceLocationOverride {
+  id              String   @id @default(cuid())
+  serviceId       String
+  locationId      String
+  service         Service  @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  location        Location @relation(fields: [locationId], references: [id], onDelete: Cascade)
+  title           String?
+  intro           String?
+  benefits        Json?
+  process         Json?
+  pricing         Json?
+  faqContent      Json?
+  seoTitle        String?
+  metaDescription String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([serviceId, locationId])
+  @@map("service_location_overrides")
+}
+
+model Booking {
+  id           String        @id @default(cuid())
+  serviceId    String
+  locationId   String
+  service      Service       @relation(fields: [serviceId], references: [id])
+  location     Location      @relation(fields: [locationId], references: [id])
+  scheduledAt  DateTime
+  address      String
+  customerName String
+  customerPhone String
+  customerEmail String?
+  notes        String?
+  status       BookingStatus @default(PENDING)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  @@index([status])
+  @@index([scheduledAt])
+  @@map("bookings")
+}
+
+model ContactRequest {
+  id            String   @id @default(cuid())
+  name          String
+  phone         String
+  email         String?
+  subject       String?
+  message       String?
+  source        String?
+  isResolved    Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("contact_requests")
+}
+
+model BlogPost {
+  id              String         @id @default(cuid())
+  title           String
+  slug            String         @unique
+  excerpt         String?
+  content         String
+  status          BlogPostStatus @default(DRAFT)
+  publishedAt     DateTime?
+  categoryId      String?
+  category        Category?      @relation(fields: [categoryId], references: [id])
+  tags            Tag[]
+  featuredImageId String?
+  featuredImage   MediaFile?     @relation(fields: [featuredImageId], references: [id])
+  faqs            FAQ[]
+  seoSettings     SEOSetting[]
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  @@index([status])
+  @@index([publishedAt])
+  @@map("blog_posts")
+}
+
+model Category {
+  id          String     @id @default(cuid())
+  name        String
+  slug        String     @unique
+  description String?
+  posts       BlogPost[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  @@map("categories")
+}
+
+model Tag {
+  id        String     @id @default(cuid())
+  name      String
+  slug      String     @unique
+  posts     BlogPost[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@map("tags")
+}
+
+model FAQ {
+  id         String    @id @default(cuid())
+  question   String
+  answer     String
+  serviceId  String?
+  service    Service?  @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  locationId String?
+  location   Location? @relation(fields: [locationId], references: [id], onDelete: SetNull)
+  blogPostId String?
+  blogPost   BlogPost? @relation(fields: [blogPostId], references: [id], onDelete: SetNull)
+  isActive   Boolean   @default(true)
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@map("faqs")
+}
+
+model Testimonial {
+  id           String    @id @default(cuid())
+  customerName String
+  content      String
+  rating       Int       @default(5)
+  serviceId    String?
+  service      Service?  @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  locationId   String?
+  location     Location? @relation(fields: [locationId], references: [id], onDelete: SetNull)
+  isActive     Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@map("testimonials")
+}
+
+model MediaFile {
+  id          String          @id @default(cuid())
+  fileName    String
+  originalName String
+  mimeType    String
+  size        Int
+  url         String
+  altText     String?
+  visibility  MediaVisibility @default(PUBLIC)
+  blogPosts   BlogPost[]
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  @@map("media_files")
+}
+
+model SEOSetting {
+  id              String    @id @default(cuid())
+  pageType        String
+  pageKey         String
+  title           String
+  description     String?
+  canonicalUrl    String?
+  openGraphImage  String?
+  noIndex         Boolean   @default(false)
+  serviceId       String?
+  service         Service?  @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  locationId      String?
+  location        Location? @relation(fields: [locationId], references: [id], onDelete: SetNull)
+  blogPostId      String?
+  blogPost        BlogPost? @relation(fields: [blogPostId], references: [id], onDelete: SetNull)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@unique([pageType, pageKey])
+  @@map("seo_settings")
+}
+
+model Setting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("settings")
+}
+
