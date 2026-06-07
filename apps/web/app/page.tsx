@@ -186,15 +186,16 @@ export default function HomePage() {
               href={`/services/${service.slug}`}
               className="group overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200"
             >
-              <div className="relative aspect-[4/3] overflow-hidden bg-slate-100">
+              <div className="relative aspect-[4/3] overflow-hidden border-b border-slate-200 bg-slate-100">
                 <Image
                   src={`/images/services/${service.slug}.jpg`}
                   alt={`${service.name} tại Cần Thơ`}
                   fill
-                  className="object-cover transition duration-700 group-hover:scale-105"
+                  className="scale-[1.08] object-cover transition duration-700 group-hover:scale-[1.12]"
                   sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                 />
                 <div className="absolute inset-0 bg-[linear-gradient(0deg,rgb(15_23_42_/_0.42)_0%,rgb(15_23_42_/_0)_55%)]" />
+                <div className="pointer-events-none absolute inset-0 border-[3px] border-white" />
               </div>
               <div className="p-5">
                 <h3 className="min-h-12 text-lg font-black leading-6">{service.name}</h3>

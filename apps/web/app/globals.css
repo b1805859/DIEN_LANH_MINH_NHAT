@@ -66,6 +66,15 @@
     animation: contact-action-float 3.2s ease-in-out infinite;
   }
 
+  .phone-ring-icon {
+    animation: phone-ring 1.45s ease-in-out infinite;
+    transform-origin: 50% 50%;
+  }
+
+  .phone-ring-halo {
+    animation: phone-ring-halo 1.45s ease-out infinite;
+  }
+
   .glass-panel {
     background: rgb(255 255 255 / 0.82);
     box-shadow: 0 24px 80px rgb(15 23 42 / 0.18);
@@ -104,5 +113,45 @@
 
   50% {
     transform: translateY(-4px);
+  }
+}
+
+@keyframes phone-ring {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  7%,
+  21%,
+  35% {
+    transform: rotate(-16deg);
+  }
+
+  14%,
+  28%,
+  42% {
+    transform: rotate(16deg);
+  }
+
+  50% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes phone-ring-halo {
+  0% {
+    opacity: 0.75;
+    transform: scale(0.78);
+  }
+
+  65% {
+    opacity: 0;
+    transform: scale(1.55);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.55);
   }
 }
