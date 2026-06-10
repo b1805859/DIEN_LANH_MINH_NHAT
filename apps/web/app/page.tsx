@@ -53,15 +53,125 @@ const processSteps = [
 
 export default function HomePage() {
   const phoneHref = `tel:${integrationSettings.phone.replace(/\s/g, '')}`;
+  const heroNameWords = APP_NAME.split(' ');
+  const heroNameTop = heroNameWords.slice(0, 2).join(' ');
+  const heroNameBottom = heroNameWords.slice(2).join(' ');
 
   return (
     <main className="bg-[#f7fbfd] text-slate-950">
+      <section className="bg-[#f7fbfd] text-white">
+        <div className="container">
+          <div className="relative overflow-hidden bg-sky-950">
+            <Image
+              src="/images/hvac-hero.png"
+              alt="Kỹ thuật viên điện lạnh đang bảo trì máy lạnh tại nhà"
+              fill
+              priority
+              className="object-cover object-[62%_center] md:object-center"
+              sizes="(min-width: 1280px) 1280px, calc(100vw - 2rem)"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(7_48_73_/_0.82)_0%,rgb(7_48_73_/_0.6)_30%,rgb(7_48_73_/_0.28)_52%,rgb(7_48_73_/_0.04)_76%)]" />
+            <div className="absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(0deg,rgb(247_251_253)_0%,rgb(247_251_253_/_0)_100%)]" />
+
+            <div className="relative z-20 flex min-h-[calc(100svh-4rem)] flex-col justify-center px-7 py-20 sm:px-10 lg:px-16 xl:px-20">
+              <div className="max-w-[20rem] animate-in-soft sm:max-w-[28rem]">
+                <div className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/15 px-4 py-2 text-sm font-semibold text-white shadow-2xl shadow-sky-950/20 backdrop-blur-md">
+                  <Sparkles className="h-4 w-4 text-amber-300" />
+                  Sửa chữa, vệ sinh, lắp đặt tại {TARGET_CITY}
+                </div>
+
+                <h1 className="mt-5 max-w-[28rem] text-4xl font-black leading-[1.04] tracking-normal sm:text-5xl">
+                  <span className="block">{heroNameTop}</span>
+                  <span className="block">{heroNameBottom}</span>
+                </h1>
+                <p className="mt-5 max-w-[27rem] text-base font-medium leading-7 text-slate-100 sm:text-lg sm:leading-8">
+                  Kỹ thuật viên điện lạnh tận nơi, xử lý máy lạnh, tủ lạnh, máy giặt và thiết bị gia đình.
+                  Báo giá rõ trước khi làm, thi công gọn và dễ đặt lịch.
+                </p>
+
+                <div className="mt-7 flex flex-wrap gap-3">
+                  <Link
+                    className="inline-flex h-12 items-center gap-2 rounded-md bg-amber-400 px-5 text-sm font-bold text-slate-950 shadow-lg shadow-amber-500/25 transition hover:-translate-y-0.5 hover:bg-amber-300"
+                    href="/booking"
+                  >
+                    Đặt lịch ngay
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <a
+                    className="inline-flex h-12 items-center gap-2 rounded-md border border-white/25 bg-white/15 px-5 text-sm font-bold text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/25"
+                    href={phoneHref}
+                  >
+                    <Phone className="h-4 w-4 text-cyan-100" />
+                    {integrationSettings.phone}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="container py-16 lg:py-20">
+        <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+          <div className="max-w-2xl">
+            <p className="text-sm font-bold uppercase tracking-wide text-primary">
+              Dịch vụ trọng tâm
+            </p>
+            <h2 className="mt-2 text-3xl font-black tracking-normal sm:text-4xl">
+              Nhìn là biết việc cần làm, bấm là đặt được lịch
+            </h2>
+            <p className="mt-3 text-slate-600">
+              Các nhóm dịch vụ được tách rõ để khách hàng chọn nhanh, mỗi dịch vụ có trang riêng cho
+              SEO địa phương.
+            </p>
+          </div>
+          <Link
+            className="inline-flex items-center gap-2 text-sm font-bold text-primary"
+            href="/services"
+          >
+            Xem tất cả dịch vụ
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {SERVICES.map((service) => (
+            <Link
+              key={service.slug}
+              href={`/services/${service.slug}`}
+              className="group overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200"
+            >
+              <div className="relative aspect-[4/3] overflow-hidden border-b border-slate-200 bg-slate-100">
+                <Image
+                  src={`/images/services/${service.slug}.jpg`}
+                  alt={`${service.name} tại Cần Thơ`}
+                  fill
+                  className="scale-[1.08] object-cover transition duration-700 group-hover:scale-[1.12]"
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(0deg,rgb(15_23_42_/_0.42)_0%,rgb(15_23_42_/_0)_55%)]" />
+                <div className="pointer-events-none absolute inset-0 border-[3px] border-white" />
+              </div>
+              <div className="p-5">
+                <h3 className="min-h-12 text-lg font-black leading-6">{service.name}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  Tư vấn đúng tình trạng, báo giá trước và hỗ trợ tận nơi tại Cần Thơ.
+                </p>
+                <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-primary">
+                  Xem chi tiết
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <section className="relative overflow-hidden bg-slate-950 text-white">
         <Image
-          src="/images/hvac-hero.png"
-          alt="Kỹ thuật viên điện lạnh đang bảo trì máy lạnh tại nhà"
+          src="/images/home-hero.jpg"
+          alt="Máy lạnh inverter làm mát không gian sống"
           fill
-          priority
           className="object-cover"
           sizes="100vw"
         />
@@ -75,9 +185,9 @@ export default function HomePage() {
               Điện lạnh Cần Thơ, ưu tiên xử lý trong ngày
             </div>
 
-            <h1 className="mt-6 max-w-4xl text-5xl font-black leading-[0.95] tracking-normal sm:text-6xl lg:text-7xl">
+            <h2 className="mt-6 max-w-4xl text-5xl font-black leading-[0.95] tracking-normal sm:text-6xl lg:text-7xl">
               {APP_NAME}
-            </h1>
+            </h2>
             <p className="mt-6 max-w-2xl text-lg font-medium leading-8 text-slate-200">
               Dịch vụ sửa chữa, vệ sinh và lắp đặt điện lạnh tại {TARGET_CITY}. Tập trung vào phản
               hồi nhanh, báo giá rõ và trải nghiệm đặt lịch gọn cho khách hàng.
@@ -152,62 +262,6 @@ export default function HomePage() {
                 </div>
               </div>
             </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="container py-16 lg:py-20">
-        <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
-          <div className="max-w-2xl">
-            <p className="text-sm font-bold uppercase tracking-wide text-primary">
-              Dịch vụ trọng tâm
-            </p>
-            <h2 className="mt-2 text-3xl font-black tracking-normal sm:text-4xl">
-              Nhìn là biết việc cần làm, bấm là đặt được lịch
-            </h2>
-            <p className="mt-3 text-slate-600">
-              Các nhóm dịch vụ được tách rõ để khách hàng chọn nhanh, mỗi dịch vụ có trang riêng cho
-              SEO địa phương.
-            </p>
-          </div>
-          <Link
-            className="inline-flex items-center gap-2 text-sm font-bold text-primary"
-            href="/services"
-          >
-            Xem tất cả dịch vụ
-            <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {SERVICES.map((service) => (
-            <Link
-              key={service.slug}
-              href={`/services/${service.slug}`}
-              className="group overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200"
-            >
-              <div className="relative aspect-[4/3] overflow-hidden border-b border-slate-200 bg-slate-100">
-                <Image
-                  src={`/images/services/${service.slug}.jpg`}
-                  alt={`${service.name} tại Cần Thơ`}
-                  fill
-                  className="scale-[1.08] object-cover transition duration-700 group-hover:scale-[1.12]"
-                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(0deg,rgb(15_23_42_/_0.42)_0%,rgb(15_23_42_/_0)_55%)]" />
-                <div className="pointer-events-none absolute inset-0 border-[3px] border-white" />
-              </div>
-              <div className="p-5">
-                <h3 className="min-h-12 text-lg font-black leading-6">{service.name}</h3>
-                <p className="mt-3 text-sm leading-6 text-slate-600">
-                  Tư vấn đúng tình trạng, báo giá trước và hỗ trợ tận nơi tại Cần Thơ.
-                </p>
-                <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-primary">
-                  Xem chi tiết
-                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                </span>
-              </div>
-            </Link>
           ))}
         </div>
       </section>

@@ -13,7 +13,7 @@ Website Local SEO + Lead Generation cho dịch vụ điện lạnh và sửa ch�
 Mở terminal tại thư mục project:
 
 ```powershell
-cd "d:\Develop\projects\ĐIỆN LẠNH MINH NHẬT"
+cd d:\Develop\projects\DIEN_LANH_MINH_NHAT
 ```
 
 Do đường dẫn project có ký tự tiếng Việt, trên Windows nên tắt Docker Compose Bake:
@@ -25,13 +25,27 @@ $env:COMPOSE_BAKE="false"
 Build và chạy toàn bộ stack:
 
 ```powershell
-docker compose up -d --build
+npm.cmd run deploy
 ```
 
 Kiểm tra container:
 
 ```powershell
-docker compose ps
+npm.cmd run docker:ps
+```
+
+Deploy lại riêng website sau khi sửa giao diện:
+
+```powershell
+npm.cmd run deploy:web
+```
+
+Lệnh này sẽ rebuild `web` và restart `nginx` để tránh lỗi 502 sau khi container web được tạo lại.
+
+Deploy lại riêng API:
+
+```powershell
+npm.cmd run deploy:api
 ```
 
 ## Đường Dẫn
@@ -93,6 +107,18 @@ Build:
 npm.cmd run build
 ```
 
+Build riêng website:
+
+```powershell
+npm.cmd run build:web
+```
+
+Build riêng API:
+
+```powershell
+npm.cmd run build:api
+```
+
 Test:
 
 ```powershell
@@ -104,6 +130,29 @@ Audit production dependencies:
 ```powershell
 npm.cmd audit --omit=dev
 ```
+
+## Lệnh NPM Nhanh
+
+Các script chính đã được khai báo trong `package.json`, chạy tại thư mục root project:
+
+```powershell
+npm.cmd run dev:web       # chạy web local
+npm.cmd run dev:api       # chạy API local
+npm.cmd run build         # build tất cả workspace
+npm.cmd run build:web     # build riêng web
+npm.cmd run build:api     # build riêng API
+npm.cmd run deploy        # rebuild toàn bộ Docker Compose và restart nginx
+npm.cmd run deploy:web    # rebuild service web và restart nginx
+npm.cmd run deploy:api    # rebuild service API và restart nginx
+npm.cmd run deploy:nginx  # chạy lại service nginx
+npm.cmd run docker:ps     # xem trạng thái container
+npm.cmd run logs:web      # xem log web
+npm.cmd run logs:api      # xem log API
+npm.cmd run lint          # lint tất cả workspace
+npm.cmd run test          # test tất cả workspace
+```
+
+Trên PowerShell Windows, nếu `npm` bị chặn bởi execution policy, dùng `npm.cmd` như các ví dụ trên.
 
 ## Dừng Project
 
@@ -128,13 +177,13 @@ docker compose logs -f
 API:
 
 ```powershell
-docker compose logs -f api
+npm.cmd run logs:api
 ```
 
 Web:
 
 ```powershell
-docker compose logs -f web
+npm.cmd run logs:web
 ```
 
 PostgreSQL:
