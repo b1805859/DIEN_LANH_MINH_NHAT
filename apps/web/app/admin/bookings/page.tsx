@@ -1,6 +1,5 @@
 import { AdminResourcePage } from '@/components/admin/admin-resource-page';
 
 export default function Page() {
-  return <AdminResourcePage title="Booking Management" resource="bookings" />;
+  return <AdminResourcePage title="Quản lý lịch hẹn" resource="bookings" />;
 }
-

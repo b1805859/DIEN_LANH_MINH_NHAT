@@ -80,6 +80,15 @@
     box-shadow: 0 24px 80px rgb(15 23 42 / 0.18);
     backdrop-filter: blur(18px);
   }
+
+  .hero-fade-image {
+    animation: hero-fade 42s ease-in-out infinite;
+    animation-fill-mode: both;
+    backface-visibility: hidden;
+    opacity: 0;
+    transform: scale(1.025);
+    will-change: opacity, transform;
+  }
 }
 
 @keyframes in-soft {
@@ -102,6 +111,41 @@
 
   50% {
     transform: translateY(-10px);
+  }
+}
+
+@keyframes hero-fade {
+  0% {
+    opacity: 0;
+    transform: scale(1.025);
+  }
+
+  2%,
+  14% {
+    opacity: 1;
+    transform: scale(1.01);
+  }
+
+  24%,
+  90% {
+    opacity: 0;
+    transform: scale(1.045);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.045);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade-image {
+    animation: none;
+    opacity: 0;
+  }
+
+  .hero-fade-image:first-child {
+    opacity: 1;
   }
 }
 

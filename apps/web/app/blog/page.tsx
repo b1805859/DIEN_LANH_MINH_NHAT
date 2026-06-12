@@ -3,7 +3,7 @@ import { BLOG_CATEGORIES, BLOG_POSTS } from '@minhnhat/shared';
 import { buildMetadata } from '@/lib/seo/metadata';
 
 export const metadata = buildMetadata({
-  title: 'Blog điện lạnh Cần Thơ',
+  title: 'Bài viết điện lạnh Cần Thơ',
   description: 'Kiến thức máy lạnh, máy giặt, tủ lạnh, điện nước và tiết kiệm điện.',
   path: '/blog',
 });
@@ -11,7 +11,7 @@ export const metadata = buildMetadata({
 export default function BlogPage() {
   return (
     <main className="container py-12">
-      <h1 className="text-4xl font-bold">Blog điện lạnh</h1>
+      <h1 className="text-4xl font-bold">Bài viết điện lạnh</h1>
       <div className="mt-6 flex flex-wrap gap-2">
         {BLOG_CATEGORIES.map((category) => (
           <Link
@@ -27,11 +27,10 @@ export default function BlogPage() {
         {BLOG_POSTS.map((post) => (
           <Link key={post.slug} href={`/blog/${post.slug}`} className="rounded-md border p-5">
             <h2 className="font-semibold">{post.title}</h2>
-            <p className="mt-2 text-sm text-slate-600">Có mục lục, bài liên quan và metadata SEO.</p>
+            <p className="mt-2 text-sm text-slate-600">Có mục lục, bài liên quan và dữ liệu tối ưu tìm kiếm.</p>
           </Link>
         ))}
       </div>
     </main>
   );
 }
-

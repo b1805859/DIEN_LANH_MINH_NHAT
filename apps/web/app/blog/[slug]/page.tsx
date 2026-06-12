@@ -81,11 +81,10 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
       <JsonLdScript
         data={breadcrumbJsonLd([
           { name: 'Trang chủ', path: '/' },
-          { name: 'Blog', path: '/blog' },
+          { name: 'Bài viết', path: '/blog' },
           { name: post.title, path: `/blog/${post.slug}` },
         ])}
       />
     </main>
   );
 }
-

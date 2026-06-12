@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const category = BLOG_CATEGORIES.find((item) => item.slug === slug);
   if (!category) return {};
   return buildMetadata({
-    title: `Blog ${category.name}`,
+    title: `Bài viết ${category.name}`,
     description: `Bài viết SEO về ${category.name} cho khách hàng tại Cần Thơ.`,
     path: `/blog/category/${slug}`,
   });
@@ -26,7 +26,7 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ s
 
   return (
     <main className="container py-12">
-      <h1 className="text-4xl font-bold">Blog {category.name}</h1>
+      <h1 className="text-4xl font-bold">Bài viết {category.name}</h1>
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {posts.map((post) => (
           <Link key={post.slug} href={`/blog/${post.slug}`} className="rounded-md border p-5">
@@ -37,4 +37,3 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ s
     </main>
   );
 }
-

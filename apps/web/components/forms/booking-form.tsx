@@ -70,11 +70,7 @@ function BookingFormContent({ compact = false }: { compact?: boolean }) {
         </select>
         <input className={fieldClass} type="date" {...form.register('date')} />
         <input className={fieldClass} type="time" {...form.register('time')} />
-        <input
-          className={fieldClass}
-          placeholder="Họ tên"
-          {...form.register('customerName')}
-        />
+        <input className={fieldClass} placeholder="Họ tên" {...form.register('customerName')} />
         <input
           className={fieldClass}
           placeholder="Số điện thoại"
@@ -95,7 +91,9 @@ function BookingFormContent({ compact = false }: { compact?: boolean }) {
         {mutation.isPending ? 'Đang gửi...' : 'Đặt lịch'}
       </Button>
       {mutation.isSuccess ? <p className="text-sm text-emerald-700">Đã gửi lịch hẹn.</p> : null}
-      {mutation.isError ? <p className="text-sm text-red-600">Không gửi được, vui lòng gọi hotline.</p> : null}
+      {mutation.isError ? (
+        <p className="text-sm text-red-600">Không gửi được, vui lòng gọi đường dây nóng.</p>
+      ) : null}
     </form>
   );
 }

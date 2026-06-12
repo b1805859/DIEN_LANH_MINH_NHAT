@@ -35,7 +35,7 @@ function ContactFormContent({ quotation = false }: { quotation?: boolean }) {
     <form className="grid gap-3" onSubmit={form.handleSubmit((values) => mutation.mutate(values))}>
       <input className={fieldClass} placeholder="Họ tên" {...form.register('name')} />
       <input className={fieldClass} placeholder="Số điện thoại" {...form.register('phone')} />
-      <input className={fieldClass} placeholder="Email" {...form.register('email')} />
+      <input className={fieldClass} placeholder="Thư điện tử" {...form.register('email')} />
       <input className={fieldClass} placeholder="Nhu cầu" {...form.register('subject')} />
       <textarea
         className="min-h-28 rounded-md border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
@@ -45,7 +45,9 @@ function ContactFormContent({ quotation = false }: { quotation?: boolean }) {
       <Button className="h-12 font-bold" type="submit" disabled={mutation.isPending}>
         {quotation ? 'Yêu cầu báo giá' : 'Gửi liên hệ'}
       </Button>
-      {mutation.isSuccess ? <p className="text-sm text-emerald-700">Thông tin đã được ghi nhận.</p> : null}
+      {mutation.isSuccess ? (
+        <p className="text-sm text-emerald-700">Thông tin đã được ghi nhận.</p>
+      ) : null}
     </form>
   );
 }

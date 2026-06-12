@@ -3,14 +3,15 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { ChevronRight, Menu, Wrench, X } from 'lucide-react';
+import { ChevronRight, Menu, Phone, Wrench, X } from 'lucide-react';
 import { APP_NAME } from '@minhnhat/shared';
 import { cn } from '@/lib/utils';
+import { integrationSettings } from '@/lib/integrations/settings';
 
 const navItems = [
   ['Dịch vụ', '/services'],
   ['Khu vực', '/areas/ninh-kieu/sua-may-lanh'],
-  ['Blog', '/blog'],
+  ['Bài viết', '/blog'],
   ['Đặt lịch', '/booking'],
   ['Liên hệ', '/contact'],
 ];
@@ -22,6 +23,7 @@ export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const drawerRef = useRef<HTMLElement>(null);
+  const phoneHref = `tel:${integrationSettings.phone.replace(/\s/g, '')}`;
 
   useEffect(() => {
     setMobileOpen(false);
@@ -68,27 +70,25 @@ export function SiteHeader() {
 
   return (
     <>
-      <header
-        className="fixed inset-x-0 top-0 z-40 border-b border-slate-200 bg-white/95 text-slate-950 shadow-sm backdrop-blur-xl"
-      >
+      <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-slate-950/88 text-white shadow-lg shadow-slate-950/20 backdrop-blur-xl">
         <div className="container">
           <div className="flex min-h-16 items-center justify-between gap-5">
             <Link href="/" className="group flex min-w-0 items-center gap-3">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary text-white shadow-lg shadow-primary/20 transition">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-cyan-400 text-slate-950 shadow-lg shadow-cyan-400/20 transition">
                 <Wrench className="h-5 w-5" />
               </span>
               <span className="min-w-0">
                 <span className="block max-w-[15rem] truncate text-sm font-black leading-tight sm:max-w-none sm:text-base">
                   {APP_NAME}
                 </span>
-                <span className="hidden text-xs font-semibold leading-tight text-slate-500 sm:block">
-                  Điện lạnh Cần Thơ
+                <span className="hidden text-xs font-semibold leading-tight text-cyan-100/75 sm:block">
+                  Điện lạnh tận nơi tại Cần Thơ
                 </span>
               </span>
             </Link>
 
             <nav
-              className="ml-auto hidden items-center justify-center gap-7 text-base font-bold text-slate-600 xl:flex"
+              className="ml-auto hidden items-center justify-center gap-7 text-sm font-bold text-slate-200 xl:flex"
               aria-label="Điều hướng chính"
             >
               {navItems.map(([label, href]) => {
@@ -99,8 +99,8 @@ export function SiteHeader() {
                     key={href}
                     href={href}
                     className={cn(
-                      'transition hover:text-primary',
-                      active ? 'text-primary' : 'text-slate-600',
+                      'transition hover:text-cyan-200',
+                      active ? 'text-cyan-200' : 'text-slate-200',
                     )}
                   >
                     {label}
@@ -110,12 +110,19 @@ export function SiteHeader() {
             </nav>
 
             <div className="flex items-center justify-end gap-2">
+              <a
+                href={phoneHref}
+                className="hidden h-10 items-center gap-2 rounded-md bg-amber-400 px-4 text-sm font-black text-slate-950 shadow-lg shadow-amber-500/20 transition hover:bg-amber-300 lg:inline-flex"
+              >
+                <Phone className="h-4 w-4" />
+                {integrationSettings.phone}
+              </a>
               <button
                 ref={menuButtonRef}
                 type="button"
                 className={cn(
                   'inline-flex h-10 w-10 items-center justify-center rounded-md border transition xl:hidden',
-                  'border-slate-200 bg-white text-slate-800 shadow-sm hover:border-primary/40 hover:text-primary',
+                  'border-white/15 bg-white/10 text-white shadow-sm hover:border-cyan-200/50 hover:text-cyan-100',
                 )}
                 aria-label={mobileOpen ? 'Đóng menu' : 'Mở menu'}
                 aria-expanded={mobileOpen}
@@ -135,7 +142,7 @@ export function SiteHeader() {
             <button
               type="button"
               className={cn(
-                'absolute inset-0 bg-slate-950/45 backdrop-blur-[2px] transition-opacity duration-300',
+                'absolute inset-0 bg-slate-950/55 backdrop-blur-[2px] transition-opacity duration-300',
                 mobileOpen ? 'opacity-100' : 'opacity-0',
               )}
               aria-label="Đóng menu"
@@ -186,11 +193,21 @@ export function SiteHeader() {
                   </Link>
                 ))}
               </nav>
+
+              <div className="border-t border-slate-200 p-4">
+                <a
+                  href={phoneHref}
+                  className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-md bg-amber-400 px-4 text-sm font-black text-slate-950 transition hover:bg-amber-300"
+                >
+                  <Phone className="h-4 w-4" />
+                  {integrationSettings.phone}
+                </a>
+              </div>
             </aside>
           </div>
         </div>
       </header>
-      <div className="h-16" aria-hidden="true" />
+      <div className="h-16 bg-slate-950" aria-hidden="true" />
     </>
   );
 }

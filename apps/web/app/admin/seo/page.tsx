@@ -1,6 +1,5 @@
 import { AdminResourcePage } from '@/components/admin/admin-resource-page';
 
 export default function Page() {
-  return <AdminResourcePage title="SEO Management" resource="seo" />;
+  return <AdminResourcePage title="Quản lý tối ưu tìm kiếm" resource="seo" />;
 }
-

@@ -4,7 +4,7 @@ import { faqJsonLd } from '@/lib/seo/json-ld';
 import { buildMetadata } from '@/lib/seo/metadata';
 
 export const metadata = buildMetadata({
-  title: 'FAQ dịch vụ điện lạnh Cần Thơ',
+  title: 'Hỏi đáp dịch vụ điện lạnh Cần Thơ',
   description: 'Câu hỏi thường gặp về dịch vụ điện lạnh, máy lạnh, máy giặt, tủ lạnh và điện nước.',
   path: '/faq',
 });
@@ -25,4 +25,3 @@ export default function FaqPage() {
     </main>
   );
 }
-

@@ -20,7 +20,7 @@ function AdminLoginPageContent() {
   const router = useRouter();
   const form = useForm<LoginInput>({
     resolver: zodResolver(loginSchema),
-    defaultValues: { email: 'admin@minhnhat.local', password: '' },
+    defaultValues: { email: '', password: '' },
   });
   const mutation = useMutation({
     mutationFn: (input: LoginInput) => apiClient.post('/auth/login', input),
@@ -34,8 +34,8 @@ function AdminLoginPageContent() {
   return (
     <main className="container flex min-h-[70vh] items-center justify-center py-12">
       <form className="w-full max-w-sm rounded-md border p-6" onSubmit={form.handleSubmit((values) => mutation.mutate(values))}>
-        <h1 className="text-2xl font-bold">Admin Login</h1>
-        <input className="mt-5 h-11 w-full rounded-md border px-3" placeholder="Email" {...form.register('email')} />
+        <h1 className="text-2xl font-bold">Đăng nhập quản trị</h1>
+        <input className="mt-5 h-11 w-full rounded-md border px-3" placeholder="Thư điện tử" {...form.register('email')} />
         <input className="mt-3 h-11 w-full rounded-md border px-3" type="password" placeholder="Mật khẩu" {...form.register('password')} />
         <Button className="mt-5 w-full" type="submit" disabled={mutation.isPending}>
           Đăng nhập

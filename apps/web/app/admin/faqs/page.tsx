@@ -1,6 +1,5 @@
 import { AdminResourcePage } from '@/components/admin/admin-resource-page';
 
 export default function Page() {
-  return <AdminResourcePage title="FAQ Management" resource="faqs" />;
+  return <AdminResourcePage title="Quản lý hỏi đáp" resource="faqs" />;
 }
-

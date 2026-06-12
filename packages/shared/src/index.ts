@@ -15,10 +15,34 @@ export const BUSINESS = {
 };
 
 export const PRIORITY_DISTRICTS = [
-  { name: 'Ninh Kiều', slug: 'ninh-kieu' },
-  { name: 'Cái Răng', slug: 'cai-rang' },
-  { name: 'Bình Thủy', slug: 'binh-thuy' },
-  { name: 'Ô Môn', slug: 'o-mon' },
+  {
+    name: 'Phường Ninh Kiều',
+    shortName: 'Ninh Kiều',
+    slug: 'ninh-kieu',
+    image: '/images/wards/ninh-kieu.jpg',
+    highlight: 'Bến Ninh Kiều & cầu đi bộ',
+  },
+  {
+    name: 'Phường Cái Răng',
+    shortName: 'Cái Răng',
+    slug: 'cai-rang',
+    image: '/images/wards/cai-rang.jpg',
+    highlight: 'Chợ nổi Cái Răng',
+  },
+  {
+    name: 'Phường Bình Thủy',
+    shortName: 'Bình Thủy',
+    slug: 'binh-thuy',
+    image: '/images/wards/binh-thuy.jpg',
+    highlight: 'Nhà cổ Bình Thủy',
+  },
+  {
+    name: 'Phường Ô Môn',
+    shortName: 'Ô Môn',
+    slug: 'o-mon',
+    image: '/images/wards/o-mon.jpg',
+    highlight: 'Đình Thới An',
+  },
 ] as const;
 
 export const SERVICES = [
@@ -91,7 +115,7 @@ export const FAQS = [
   },
   {
     question: 'Khu vực nào được hỗ trợ nhanh?',
-    answer: 'Ưu tiên Ninh Kiều, Cái Răng, Bình Thủy, Ô Môn và các khu vực lân cận tại Cần Thơ.',
+    answer: 'Ưu tiên các phường Ninh Kiều, Cái Răng, Bình Thủy, Ô Môn và các khu vực lân cận tại Cần Thơ.',
   },
 ] as const;
 

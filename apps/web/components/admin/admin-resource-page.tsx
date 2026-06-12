@@ -35,50 +35,50 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
             await refetch();
           }}
         >
-          <h2 className="font-semibold">Create JSON</h2>
+          <h2 className="font-semibold">Tạo dữ liệu</h2>
           <textarea
             className="mt-3 min-h-72 w-full rounded-md border p-3 font-mono text-xs"
             value={payload}
             onChange={(event) => setPayload(event.target.value)}
           />
           <Button className="mt-3" type="submit" disabled={!token}>
-            Create
+            Tạo mới
           </Button>
         </form>
         <div className="rounded-md border bg-white p-4">
-        {!token ? <p className="text-sm text-slate-600">Vui lòng đăng nhập để quản trị.</p> : null}
-        {isLoading ? <p className="text-sm text-slate-600">Đang tải...</p> : null}
-        {data ? (
-          <div>
-            <p className="text-sm text-slate-600">Tổng số: {data.total}</p>
-            <div className="mt-4 grid gap-3">
-              {data.items.map((item, index) => {
-                const record = item as { id?: string; name?: string; title?: string; email?: string };
-                return (
-                  <div key={record.id ?? index} className="flex items-center justify-between rounded-md border p-3 text-sm">
-                    <span>{record.name ?? record.title ?? record.email ?? record.id ?? `Item ${index + 1}`}</span>
-                    {record.id ? (
-                      <button
-                        className="text-red-600"
-                        onClick={async () => {
-                          await apiClient.delete(`/admin/${resource}/${record.id}`, {
-                            headers: token ? { Authorization: `Bearer ${token}` } : undefined,
-                          });
-                          await refetch();
-                        }}
-                      >
-                        Delete
-                      </button>
-                    ) : null}
-                  </div>
-                );
-              })}
+          {!token ? <p className="text-sm text-slate-600">Vui lòng đăng nhập để quản trị.</p> : null}
+          {isLoading ? <p className="text-sm text-slate-600">Đang tải...</p> : null}
+          {data ? (
+            <div>
+              <p className="text-sm text-slate-600">Tổng số: {data.total}</p>
+              <div className="mt-4 grid gap-3">
+                {data.items.map((item, index) => {
+                  const record = item as { id?: string; name?: string; title?: string; email?: string };
+                  return (
+                    <div
+                      key={record.id ?? index}
+                      className="flex items-center justify-between rounded-md border p-3 text-sm"
+                    >
+                      <span>{record.name ?? record.title ?? record.email ?? record.id ?? `Mục ${index + 1}`}</span>
+                      {record.id ? (
+                        <button
+                          className="text-red-600"
+                          onClick={async () => {
+                            await apiClient.delete(`/admin/${resource}/${record.id}`, {
+                              headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+                            });
+                            await refetch();
+                          }}
+                        >
+                          Xóa
+                        </button>
+                      ) : null}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-            <pre className="mt-4 max-h-96 overflow-auto rounded bg-slate-950 p-4 text-xs text-white">
-              {JSON.stringify(data.items, null, 2)}
-            </pre>
-          </div>
-        ) : null}
+          ) : null}
         </div>
       </div>
     </main>
