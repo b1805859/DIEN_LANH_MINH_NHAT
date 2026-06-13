@@ -3,10 +3,9 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { ChevronRight, Menu, Phone, Wrench, X } from 'lucide-react';
+import { ChevronRight, Menu, Wrench, X } from 'lucide-react';
 import { APP_NAME } from '@minhnhat/shared';
 import { cn } from '@/lib/utils';
-import { integrationSettings } from '@/lib/integrations/settings';
 
 const navItems = [
   ['Dịch vụ', '/services'],
@@ -23,7 +22,6 @@ export function SiteHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const drawerRef = useRef<HTMLElement>(null);
-  const phoneHref = `tel:${integrationSettings.phone.replace(/\s/g, '')}`;
 
   useEffect(() => {
     setMobileOpen(false);
@@ -70,7 +68,7 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-slate-950/88 text-white shadow-lg shadow-slate-950/20 backdrop-blur-xl">
+      <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-[#020617] text-white shadow-lg shadow-slate-950/20">
         <div className="container">
           <div className="flex min-h-16 items-center justify-between gap-5">
             <Link href="/" className="group flex min-w-0 items-center gap-3">
@@ -110,13 +108,6 @@ export function SiteHeader() {
             </nav>
 
             <div className="flex items-center justify-end gap-2">
-              <a
-                href={phoneHref}
-                className="hidden h-10 items-center gap-2 rounded-md bg-amber-400 px-4 text-sm font-black text-slate-950 shadow-lg shadow-amber-500/20 transition hover:bg-amber-300 lg:inline-flex"
-              >
-                <Phone className="h-4 w-4" />
-                {integrationSettings.phone}
-              </a>
               <button
                 ref={menuButtonRef}
                 type="button"
@@ -195,13 +186,12 @@ export function SiteHeader() {
               </nav>
 
               <div className="border-t border-slate-200 p-4">
-                <a
-                  href={phoneHref}
+                <Link
+                  href="/booking"
                   className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-md bg-amber-400 px-4 text-sm font-black text-slate-950 transition hover:bg-amber-300"
                 >
-                  <Phone className="h-4 w-4" />
-                  {integrationSettings.phone}
-                </a>
+                  Đặt lịch kiểm tra
+                </Link>
               </div>
             </aside>
           </div>

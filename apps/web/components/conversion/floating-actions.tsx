@@ -5,9 +5,9 @@ import { integrationSettings } from '@/lib/integrations/settings';
 export function FloatingActions() {
   return (
     <>
-      <div className="fixed bottom-6 left-4 z-50">
+      <div className="fixed bottom-10 left-4 z-50">
         <div
-          aria-label={`Đường dây nóng ${integrationSettings.phone}`}
+          aria-label={integrationSettings.phone}
           className="contact-action-float pointer-events-none relative inline-flex h-16 select-none items-center justify-center gap-3 overflow-hidden rounded-full border border-white/70 bg-[linear-gradient(135deg,#ffd84d_0%,#ffc21f_52%,#ffad1f_100%)] py-2 pl-2 pr-5 text-slate-950 shadow-[0_18px_38px_rgb(245_158_11_/_0.36)] ring-1 ring-amber-500/20"
         >
           <span className="pointer-events-none absolute inset-x-5 top-1 h-5 rounded-full bg-white/35 blur-md" />
@@ -15,17 +15,12 @@ export function FloatingActions() {
             <span className="phone-ring-halo absolute inset-0 rounded-full border border-cyan-100/70" />
             <Phone className="phone-ring-icon relative h-5 w-5" />
           </span>
-          <span className="relative flex flex-col leading-none">
-            <span className="text-[10px] font-black uppercase tracking-wide text-slate-700/80">
-              Đường dây nóng
-            </span>
-            <span className="mt-1 text-base font-black tracking-normal">
-              {integrationSettings.phone}
-            </span>
+          <span className="relative text-base font-black tracking-normal">
+            {integrationSettings.phone}
           </span>
         </div>
       </div>
-      <div className="fixed bottom-6 right-4 z-50 flex flex-col gap-3">
+      <div className="fixed bottom-10 right-4 z-50 flex flex-col gap-3">
         <a
           href={integrationSettings.zaloUrl}
           aria-label="Mở Zalo"

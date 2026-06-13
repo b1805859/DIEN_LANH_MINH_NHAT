@@ -70,7 +70,7 @@ export default async function ServiceWardPage({
               {service.name} tại {ward.name}
             </h1>
             <p className="mt-4 inline-flex rounded-md border border-white/15 bg-white/10 px-4 py-2 text-sm font-black text-cyan-100 backdrop-blur">
-              Ảnh đại diện: {ward.highlight}
+              Khu vực nhận lịch: {ward.highlight}
             </p>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-200">
               Minh Nhật tiếp nhận lịch {service.name.toLowerCase()} tại {ward.name}. Kỹ thuật viên

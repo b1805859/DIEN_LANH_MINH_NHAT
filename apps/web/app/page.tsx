@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import { APP_NAME, FAQS, PRIORITY_DISTRICTS, SERVICES, TARGET_CITY } from '@minhnhat/shared';
 import { BookingForm } from '@/components/forms/booking-form';
+import { ImageFadeCarousel } from '@/components/public/image-fade-carousel';
 import { ContactForm } from '@/components/forms/contact-form';
 import { JsonLdScript } from '@/components/seo/json-ld-script';
 import { integrationSettings } from '@/lib/integrations/settings';
@@ -128,11 +129,33 @@ const heroImages = [
     objectPosition: 'object-center',
   },
   {
-    src: '/images/wards/ninh-kieu.jpg',
-    alt: 'Khu vực phục vụ tại phường Ninh Kiều, Cần Thơ',
+    src: '/images/services/nap-gas-may-lanh.jpg',
+    alt: 'Kỹ thuật viên nạp gas và kiểm tra áp suất máy lạnh',
     objectPosition: 'object-center',
   },
 ];
+
+type AreaSlug = (typeof PRIORITY_DISTRICTS)[number]['slug'];
+
+const areaLocationCarouselImages: Record<AreaSlug, string[]> = {
+  'ninh-kieu': [
+    '/images/wards/ninh-kieu-dai-lo-hoa-binh.jpg',
+    '/images/wards/ninh-kieu-duong-30-4.jpg',
+    '/images/wards/ninh-kieu-ngo-duc-ke.jpg',
+  ],
+  'cai-rang': [
+    '/images/wards/cai-rang-cong-chao.jpg',
+    '/images/wards/cai-rang-cho-le-binh.jpg',
+  ],
+  'binh-thuy': [
+    '/images/wards/binh-thuy-stella-mega-city.jpg',
+    '/images/wards/binh-thuy-long-tuyen-road.jpg',
+  ],
+  'o-mon': [
+    '/images/wards/o-mon-do-thi.jpg',
+    '/images/wards/o-mon-tran-hung-dao.jpg',
+  ],
+};
 
 export default function HomePage() {
   const phoneHref = `tel:${integrationSettings.phone.replace(/\s/g, '')}`;
@@ -148,13 +171,13 @@ export default function HomePage() {
             alt={image.alt}
             fill
             priority
-            className={`hero-fade-image object-cover ${image.objectPosition}`}
+            className={`hero-fade-image object-cover brightness-[1.1] saturate-[1.16] contrast-[1.04] ${image.objectPosition}`}
             sizes="100vw"
-            style={{ animationDelay: `${index * 7}s` }}
+            style={{ animationDelay: `${index * 12}s` }}
           />
         ))}
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(2_6_23_/_0.96)_0%,rgb(2_6_23_/_0.86)_38%,rgb(2_6_23_/_0.52)_68%,rgb(2_6_23_/_0.18)_100%)]" />
-        <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(90deg,rgb(255_255_255_/_0.09)_1px,transparent_1px),linear-gradient(0deg,rgb(255_255_255_/_0.07)_1px,transparent_1px)] [background-size:44px_44px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(2_6_23_/_0.9)_0%,rgb(2_6_23_/_0.76)_38%,rgb(2_6_23_/_0.38)_68%,rgb(2_6_23_/_0.08)_100%)]" />
+        <div className="absolute inset-0 opacity-40 [background-image:linear-gradient(90deg,rgb(255_255_255_/_0.12)_1px,transparent_1px),linear-gradient(0deg,rgb(255_255_255_/_0.1)_1px,transparent_1px)] [background-size:44px_44px]" />
         <div className="absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(0deg,#f4f8fb_0%,rgb(244_248_251_/_0)_100%)]" />
 
         <div className="container relative grid min-h-[calc(100svh-4rem)] gap-10 pb-24 pt-16 lg:grid-cols-[minmax(0,1fr)_400px] lg:items-center lg:py-16">
@@ -183,10 +206,12 @@ export default function HomePage() {
               </Link>
               <a
                 className="inline-flex h-12 items-center gap-2 rounded-md border border-white/25 bg-white/[0.12] px-5 text-sm font-black text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/20"
-                href={phoneHref}
+                href={integrationSettings.zaloUrl}
+                target="_blank"
+                rel="noreferrer"
               >
-                <Phone className="h-4 w-4 text-cyan-200" />
-                {integrationSettings.phone}
+                <MessageCircle className="h-4 w-4 text-cyan-200" />
+                Nhắn Zalo
               </a>
             </div>
 
@@ -449,20 +474,19 @@ export default function HomePage() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            {PRIORITY_DISTRICTS.map((ward) => (
+            {PRIORITY_DISTRICTS.map((ward, index) => (
               <Link
                 key={ward.slug}
                 href={`/areas/${ward.slug}/sua-may-lanh`}
                 className="group relative min-h-[230px] overflow-hidden rounded-md border border-white/10 bg-white/[0.06] transition hover:-translate-y-0.5 hover:bg-white/[0.1]"
               >
-                <Image
-                  src={ward.image}
-                  alt={`Khu vực ${ward.name}, Cần Thơ`}
-                  fill
-                  className="object-cover transition duration-700 group-hover:scale-105"
+                <ImageFadeCarousel
+                  images={areaLocationCarouselImages[ward.slug]}
+                  alt={`Khu vực phục vụ ${ward.name}, Cần Thơ`}
                   sizes="(min-width: 1024px) 28vw, (min-width: 640px) 50vw, 100vw"
+                  startDelayMs={index * 1800}
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(0deg,rgb(2_6_23_/_0.86)_0%,rgb(2_6_23_/_0.36)_72%,rgb(2_6_23_/_0.18)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(0deg,rgb(2_6_23_/_0.68)_0%,rgb(2_6_23_/_0.22)_64%,rgb(2_6_23_/_0.06)_100%)]" />
                 <span className="absolute inset-x-0 bottom-0 p-5">
                   <span className="flex items-center justify-between gap-3">
                     <span className="inline-flex items-center gap-3 text-lg font-black">
@@ -471,10 +495,7 @@ export default function HomePage() {
                     </span>
                     <ArrowRight className="h-4 w-4 text-cyan-300 transition group-hover:translate-x-1" />
                   </span>
-                  <span className="mt-3 block text-sm leading-6 text-slate-200">
-                    Ưu tiên tiếp nhận lịch sửa máy lạnh, vệ sinh máy lạnh và kiểm tra thiết bị gia
-                    đình tại {ward.name}.
-                  </span>
+                  {/* removed non-essential overlay description per design request */}
                 </span>
               </Link>
             ))}
