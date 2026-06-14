@@ -9,7 +9,6 @@ export const integrationSettings = {
   phone: process.env.NEXT_PUBLIC_BUSINESS_PHONE || BUSINESS.phone,
   address: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS || BUSINESS.address,
   zaloUrl: configuredZaloUrl && !rootZaloUrls.has(configuredZaloUrl) ? configuredZaloUrl : fallbackZaloUrl,
-  messengerUrl: process.env.NEXT_PUBLIC_FACEBOOK_MESSENGER_URL || BUSINESS.messengerUrl,
   googleMapsUrl: process.env.NEXT_PUBLIC_GOOGLE_MAPS_URL || BUSINESS.googleMapsUrl,
   googleMapsEmbedUrl:
     process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL || BUSINESS.googleMapsEmbedUrl,

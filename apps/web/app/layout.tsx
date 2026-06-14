@@ -34,7 +34,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body className={beVietnamPro.variable}>
+      <body className={`${beVietnamPro.variable} pb-20 sm:pb-0`}>
         <SiteHeader />
         {children}
         <SiteFooter />

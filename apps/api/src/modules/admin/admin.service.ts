@@ -90,6 +90,7 @@ export class AdminService {
         skip: (page - 1) * pageSize,
         take: pageSize,
         orderBy: { createdAt: 'desc' },
+        include: this.getInclude(resource),
       }),
     ]);
 
@@ -97,7 +98,10 @@ export class AdminService {
   }
 
   async get(resource: string, id: string) {
-    const item = await this.getDelegate(resource).findUnique({ where: { id } });
+    const item = await this.getDelegate(resource).findUnique({
+      where: { id },
+      include: this.getInclude(resource),
+    });
     if (!item) {
       throw new NotFoundException(`${resource} item not found.`);
     }
@@ -142,6 +146,14 @@ export class AdminService {
         [field]: { contains: search, mode: 'insensitive' },
       })),
     };
+  }
+
+  private getInclude(resource: string) {
+    if (resource === 'blog') {
+      return { category: true, tags: true, featuredImage: true };
+    }
+
+    return undefined;
   }
 
   private async preparePayload(resource: string, payload: Record<string, unknown>, isUpdate = false) {

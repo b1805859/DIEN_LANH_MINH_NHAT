@@ -19,7 +19,7 @@ const contactSchema = z.object({
 type ContactInput = z.infer<typeof contactSchema>;
 
 const fieldClass =
-  'h-12 rounded-md border border-slate-200 bg-slate-50 px-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10';
+  'h-12 w-full min-w-0 rounded-md border border-slate-200 bg-slate-50 px-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10';
 
 function ContactFormContent({ quotation = false }: { quotation?: boolean }) {
   const form = useForm<ContactInput>({
@@ -32,17 +32,17 @@ function ContactFormContent({ quotation = false }: { quotation?: boolean }) {
   });
 
   return (
-    <form className="grid gap-3" onSubmit={form.handleSubmit((values) => mutation.mutate(values))}>
+    <form className="grid min-w-0 gap-3" onSubmit={form.handleSubmit((values) => mutation.mutate(values))}>
       <input className={fieldClass} placeholder="Họ tên" {...form.register('name')} />
       <input className={fieldClass} placeholder="Số điện thoại" {...form.register('phone')} />
       <input className={fieldClass} placeholder="Thư điện tử" {...form.register('email')} />
       <input className={fieldClass} placeholder="Nhu cầu" {...form.register('subject')} />
       <textarea
-        className="min-h-28 rounded-md border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
+        className="min-h-28 w-full min-w-0 rounded-md border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
         placeholder="Nội dung"
         {...form.register('message')}
       />
-      <Button className="h-12 font-bold" type="submit" disabled={mutation.isPending}>
+      <Button className="h-12 w-full font-bold" type="submit" disabled={mutation.isPending}>
         {quotation ? 'Yêu cầu báo giá' : 'Gửi liên hệ'}
       </Button>
       {mutation.isSuccess ? (

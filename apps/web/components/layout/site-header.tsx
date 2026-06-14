@@ -8,14 +8,14 @@ import { APP_NAME } from '@minhnhat/shared';
 import { cn } from '@/lib/utils';
 
 const navItems = [
+  ['Trang chủ', '/'],
   ['Dịch vụ', '/services'],
-  ['Khu vực', '/areas/ninh-kieu/sua-may-lanh'],
   ['Bài viết', '/blog'],
   ['Đặt lịch', '/booking'],
   ['Liên hệ', '/contact'],
 ];
 
-const mobileNavItems = [['Trang chủ', '/'], ...navItems];
+const mobileNavItems = navItems;
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -68,15 +68,15 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-[#020617] text-white shadow-lg shadow-slate-950/20">
+      <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-[#0b172a] text-white shadow-lg shadow-slate-950/20">
         <div className="container">
-          <div className="flex min-h-16 items-center justify-between gap-5">
-            <Link href="/" className="group flex min-w-0 items-center gap-3">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-cyan-400 text-slate-950 shadow-lg shadow-cyan-400/20 transition">
+          <div className="flex min-h-16 items-center justify-between gap-3 sm:gap-5">
+            <Link href="/" className="group flex min-w-0 items-center gap-2 sm:gap-3">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-cyan-400 text-slate-950 shadow-lg shadow-cyan-400/20 transition sm:h-10 sm:w-10">
                 <Wrench className="h-5 w-5" />
               </span>
               <span className="min-w-0">
-                <span className="block max-w-[15rem] truncate text-sm font-black leading-tight sm:max-w-none sm:text-base">
+                <span className="block max-w-[calc(100vw-10rem)] truncate text-sm font-black leading-tight sm:max-w-none sm:text-base">
                   {APP_NAME}
                 </span>
                 <span className="hidden text-xs font-semibold leading-tight text-cyan-100/75 sm:block">
@@ -133,7 +133,7 @@ export function SiteHeader() {
             <button
               type="button"
               className={cn(
-                'absolute inset-0 bg-slate-950/55 backdrop-blur-[2px] transition-opacity duration-300',
+                'absolute inset-0 bg-[#0b172a]/55 backdrop-blur-[2px] transition-opacity duration-300',
                 mobileOpen ? 'opacity-100' : 'opacity-0',
               )}
               aria-label="Đóng menu"
@@ -197,7 +197,7 @@ export function SiteHeader() {
           </div>
         </div>
       </header>
-      <div className="h-16 bg-slate-950" aria-hidden="true" />
+      <div className="h-16 bg-[#0b172a]" aria-hidden="true" />
     </>
   );
 }

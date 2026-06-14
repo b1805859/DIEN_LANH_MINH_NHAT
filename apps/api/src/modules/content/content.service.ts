@@ -121,7 +121,7 @@ export class ContentService {
       }),
       this.prisma.blogPost.findMany({
         where: { status: 'PUBLISHED' },
-        include: { category: true },
+        include: { category: true, featuredImage: true },
         take: 4,
         orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
       }),
@@ -143,4 +143,3 @@ export class ContentService {
     };
   }
 }
-

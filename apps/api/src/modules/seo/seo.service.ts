@@ -6,9 +6,8 @@ export class SeoService {
   constructor(private readonly prisma: PrismaService) {}
 
   async getSitemapEntries() {
-    const [services, locations, posts] = await Promise.all([
+    const [services, posts] = await Promise.all([
       this.prisma.service.findMany({ where: { isActive: true } }),
-      this.prisma.location.findMany({ where: { isActive: true } }),
       this.prisma.blogPost.findMany({ where: { status: 'PUBLISHED' } }),
     ]);
 
@@ -23,18 +22,6 @@ export class SeoService {
         changeFrequency: 'weekly',
         priority: 0.9,
       })),
-      ...locations.map((location) => ({
-        path: `/areas/${location.slug}`,
-        changeFrequency: 'weekly',
-        priority: 0.8,
-      })),
-      ...locations.flatMap((location) =>
-        services.map((service) => ({
-          path: `/areas/${location.slug}/${service.slug}`,
-          changeFrequency: 'weekly',
-          priority: 0.95,
-        })),
-      ),
       ...posts.map((post) => ({
         path: `/blog/${post.slug}`,
         changeFrequency: 'monthly',
@@ -43,4 +30,3 @@ export class SeoService {
     ];
   }
 }
-

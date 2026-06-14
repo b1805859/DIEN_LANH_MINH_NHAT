@@ -9,13 +9,14 @@ export const metadata = buildMetadata({
 
 export default function BookingPage() {
   return (
-    <main className="container max-w-3xl py-12">
-      <h1 className="text-4xl font-bold">Đặt lịch dịch vụ</h1>
-      <p className="mt-4 text-slate-700">Chọn dịch vụ, khu vực, thời gian và gửi thông tin hẹn lịch.</p>
-      <div className="mt-8 rounded-md border p-5">
+    <main className="container max-w-3xl py-10 sm:py-12">
+      <h1 className="text-3xl font-black tracking-normal sm:text-4xl">Đặt lịch dịch vụ</h1>
+      <p className="mt-4 max-w-2xl leading-7 text-slate-700">
+        Chọn dịch vụ, địa chỉ, thời gian và gửi thông tin hẹn lịch.
+      </p>
+      <div className="mt-8 rounded-md border bg-white p-4 sm:p-5">
         <BookingForm />
       </div>
     </main>
   );
 }
-

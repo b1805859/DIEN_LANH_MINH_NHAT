@@ -13,7 +13,6 @@ import {
   Headphones,
   LucideIcon,
   MapPin,
-  MessageCircle,
   Phone,
   ShieldCheck,
   Snowflake,
@@ -25,15 +24,15 @@ import {
 } from 'lucide-react';
 import { APP_NAME, FAQS, PRIORITY_DISTRICTS, SERVICES, TARGET_CITY } from '@minhnhat/shared';
 import { BookingForm } from '@/components/forms/booking-form';
-import { ImageFadeCarousel } from '@/components/public/image-fade-carousel';
 import { ContactForm } from '@/components/forms/contact-form';
+import { ImageFadeCarousel } from '@/components/public/image-fade-carousel';
 import { JsonLdScript } from '@/components/seo/json-ld-script';
 import { integrationSettings } from '@/lib/integrations/settings';
 import { faqJsonLd } from '@/lib/seo/json-ld';
 
 const stats = [
   { label: 'Phản hồi', value: '30p', desc: 'tiếp nhận nhanh trong giờ làm việc' },
-  { label: 'Phường ưu tiên', value: '4+', desc: 'phục vụ các phường trung tâm Cần Thơ' },
+  { label: 'Lịch trong ngày', value: 'Nhanh', desc: 'ưu tiên xử lý các yêu cầu cần kiểm tra sớm' },
   { label: 'Dịch vụ', value: `${SERVICES.length}+`, desc: 'máy lạnh, tủ lạnh, máy giặt, điện nước' },
 ];
 
@@ -46,7 +45,7 @@ const trustItems: Array<{ icon: LucideIcon; title: string; desc: string }> = [
   {
     icon: Clock,
     title: 'Ưu tiên lịch trong ngày',
-    desc: 'Tiếp nhận qua đường dây nóng, Zalo, hộp thư Facebook và biểu mẫu đặt lịch trên trang web.',
+    desc: 'Tiếp nhận qua đường dây nóng, Zalo và biểu mẫu đặt lịch trên trang web.',
   },
   {
     icon: BadgeCheck,
@@ -88,7 +87,7 @@ const featureItems: Array<{ icon: LucideIcon; title: string; desc: string }> = [
 ];
 
 const processSteps = [
-  ['01', 'Gửi nhu cầu', 'Chọn dịch vụ, khu vực, thời gian và mô tả nhanh tình trạng thiết bị.'],
+  ['01', 'Gửi nhu cầu', 'Chọn dịch vụ, địa chỉ, thời gian và mô tả nhanh tình trạng thiết bị.'],
   ['02', 'Xác nhận lịch', 'Minh Nhật gọi lại để hỏi thêm thông tin và hẹn khung giờ phù hợp.'],
   ['03', 'Kiểm tra tận nơi', 'Kỹ thuật viên đánh giá thực tế, báo nguyên nhân và chi phí trước khi làm.'],
   ['04', 'Thi công', 'Sửa chữa, vệ sinh hoặc lắp đặt theo phương án khách đã đồng ý.'],
@@ -102,36 +101,38 @@ const quickNeeds = [
   'Cần tháo lắp di dời',
 ];
 
+const imageVersion = 'real-services-20260614';
+
 const heroImages = [
   {
     src: '/images/hvac-hero.png',
     alt: 'Kỹ thuật viên Minh Nhật kiểm tra máy lạnh tại nhà',
-    objectPosition: 'object-[64%_center]',
+    objectClassName: 'object-[58%_center] sm:object-[64%_center]',
   },
   {
     src: '/images/home-animated-cooling-hero.png',
     alt: 'Không gian gia đình mát mẻ với máy lạnh hoạt động ổn định',
-    objectPosition: 'object-[62%_center]',
+    objectClassName: 'object-[55%_center] sm:object-[62%_center]',
   },
   {
     src: '/images/service-tools.png',
     alt: 'Dụng cụ sửa chữa điện lạnh và thiết bị gia đình',
-    objectPosition: 'object-center',
+    objectClassName: 'object-center',
   },
   {
-    src: '/images/services/ve-sinh-may-lanh.jpg',
+    src: `/images/services/ve-sinh-may-lanh.jpg?v=${imageVersion}`,
     alt: 'Kỹ thuật vệ sinh máy lạnh tận nơi',
-    objectPosition: 'object-center',
+    objectClassName: 'object-center',
   },
   {
-    src: '/images/services/sua-may-lanh.jpg',
+    src: `/images/services/sua-may-lanh.jpg?v=${imageVersion}`,
     alt: 'Dịch vụ sửa máy lạnh tận nơi',
-    objectPosition: 'object-center',
+    objectClassName: 'object-center',
   },
   {
-    src: '/images/services/nap-gas-may-lanh.jpg',
+    src: `/images/services/nap-gas-may-lanh.jpg?v=${imageVersion}`,
     alt: 'Kỹ thuật viên nạp gas và kiểm tra áp suất máy lạnh',
-    objectPosition: 'object-center',
+    objectClassName: 'object-center',
   },
 ];
 
@@ -143,18 +144,9 @@ const areaLocationCarouselImages: Record<AreaSlug, string[]> = {
     '/images/wards/ninh-kieu-duong-30-4.jpg',
     '/images/wards/ninh-kieu-ngo-duc-ke.jpg',
   ],
-  'cai-rang': [
-    '/images/wards/cai-rang-cong-chao.jpg',
-    '/images/wards/cai-rang-cho-le-binh.jpg',
-  ],
-  'binh-thuy': [
-    '/images/wards/binh-thuy-stella-mega-city.jpg',
-    '/images/wards/binh-thuy-long-tuyen-road.jpg',
-  ],
-  'o-mon': [
-    '/images/wards/o-mon-do-thi.jpg',
-    '/images/wards/o-mon-tran-hung-dao.jpg',
-  ],
+  'cai-rang': ['/images/wards/cai-rang-cong-chao.jpg', '/images/wards/cai-rang-cho-le-binh.jpg'],
+  'binh-thuy': ['/images/wards/binh-thuy-stella-mega-city.jpg', '/images/wards/binh-thuy-long-tuyen-road.jpg'],
+  'o-mon': ['/images/wards/o-mon-do-thi.jpg', '/images/wards/o-mon-tran-hung-dao.jpg'],
 };
 
 export default function HomePage() {
@@ -163,7 +155,7 @@ export default function HomePage() {
 
   return (
     <main className="bg-[#f4f8fb] text-slate-950">
-      <section className="relative min-h-[calc(100svh-4rem)] overflow-hidden bg-slate-950 text-white">
+      <section className="relative overflow-hidden bg-[#0b172a] text-white lg:min-h-[calc(100svh-4rem)]">
         {heroImages.map((image, index) => (
           <Image
             key={image.src}
@@ -171,23 +163,23 @@ export default function HomePage() {
             alt={image.alt}
             fill
             priority
-            className={`hero-fade-image object-cover brightness-[1.1] saturate-[1.16] contrast-[1.04] ${image.objectPosition}`}
+            className={`hero-fade-image object-cover brightness-[1.1] saturate-[1.16] contrast-[1.04] ${image.objectClassName}`}
             sizes="100vw"
             style={{ animationDelay: `${index * 12}s` }}
           />
         ))}
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(2_6_23_/_0.9)_0%,rgb(2_6_23_/_0.76)_38%,rgb(2_6_23_/_0.38)_68%,rgb(2_6_23_/_0.08)_100%)]" />
-        <div className="absolute inset-0 opacity-40 [background-image:linear-gradient(90deg,rgb(255_255_255_/_0.12)_1px,transparent_1px),linear-gradient(0deg,rgb(255_255_255_/_0.1)_1px,transparent_1px)] [background-size:44px_44px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(11_23_42_/_0.88)_0%,rgb(11_23_42_/_0.72)_36%,rgb(11_23_42_/_0.48)_66%,rgb(11_23_42_/_0.26)_100%)]" />
+        <div className="absolute inset-0 opacity-55 [background-image:linear-gradient(90deg,rgb(255_255_255_/_0.16)_1px,transparent_1px),linear-gradient(0deg,rgb(255_255_255_/_0.13)_1px,transparent_1px)] [background-size:44px_44px]" />
         <div className="absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(0deg,#f4f8fb_0%,rgb(244_248_251_/_0)_100%)]" />
 
-        <div className="container relative grid min-h-[calc(100svh-4rem)] gap-10 pb-24 pt-16 lg:grid-cols-[minmax(0,1fr)_400px] lg:items-center lg:py-16">
-          <div className="max-w-4xl animate-in-soft">
-            <div className="inline-flex items-center gap-2 rounded-md border border-cyan-200/20 bg-white/[0.1] px-4 py-2 text-sm font-black text-cyan-50 shadow-2xl shadow-slate-950/30 backdrop-blur-md">
+        <div className="container relative grid min-w-0 gap-6 pb-28 pt-10 sm:gap-8 sm:pb-24 sm:pt-16 lg:min-h-[calc(100svh-4rem)] lg:grid-cols-[minmax(0,1fr)_400px] lg:items-center lg:gap-10 lg:py-16">
+          <div className="min-w-0 max-w-4xl animate-in-soft">
+            <div className="inline-flex max-w-full items-center gap-2 rounded-md border border-cyan-200/20 bg-white/[0.1] px-3 py-2 text-xs font-black text-cyan-50 shadow-2xl shadow-slate-950/30 backdrop-blur-md sm:px-4 sm:text-sm">
               <Sparkles className="h-4 w-4 text-amber-300" />
-              Sửa chữa, vệ sinh, lắp đặt máy lạnh tại {TARGET_CITY}
+              <span className="min-w-0 break-words">Sửa chữa, vệ sinh, lắp đặt máy lạnh tại {TARGET_CITY}</span>
             </div>
 
-            <h1 className="mt-6 max-w-4xl text-4xl font-black leading-[1.03] tracking-normal sm:text-6xl lg:text-7xl">
+            <h1 className="mt-6 max-w-4xl text-3xl font-black leading-[1.08] tracking-normal sm:text-5xl lg:text-7xl">
               {APP_NAME}
             </h1>
             <p className="mt-6 max-w-2xl text-base font-medium leading-8 text-slate-100 sm:text-lg">
@@ -198,27 +190,27 @@ export default function HomePage() {
 
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
-                className="inline-flex h-12 items-center gap-2 rounded-md bg-amber-400 px-5 text-sm font-black text-slate-950 shadow-lg shadow-amber-500/25 transition hover:-translate-y-0.5 hover:bg-amber-300"
+                className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-md bg-amber-400 px-5 py-2 text-sm font-black text-slate-950 shadow-lg shadow-amber-500/25 transition hover:-translate-y-0.5 hover:bg-amber-300 sm:w-auto"
                 href="/booking"
               >
                 Đặt lịch kiểm tra
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <a
-                className="inline-flex h-12 items-center gap-2 rounded-md border border-white/25 bg-white/[0.12] px-5 text-sm font-black text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/20"
+                className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-md border border-white/25 bg-white/[0.12] px-4 py-2 text-sm font-black text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/20 sm:w-auto"
                 href={integrationSettings.zaloUrl}
                 target="_blank"
                 rel="noreferrer"
               >
-                <MessageCircle className="h-4 w-4 text-cyan-200" />
-                Nhắn Zalo
+                <Image src="/icons/zalo.svg" alt="" width={40} height={40} className="h-10 w-10 shrink-0" />
+                Liên hệ qua Zalo
               </a>
             </div>
 
             <div className="mt-10 grid max-w-3xl gap-3 sm:grid-cols-3">
               {stats.map((item) => (
-                <div key={item.label} className="rounded-md border border-white/15 bg-white/10 p-4 backdrop-blur-md">
-                  <p className="text-3xl font-black text-amber-300">{item.value}</p>
+                <div key={item.label} className="min-w-0 rounded-md border border-white/15 bg-white/10 p-4 backdrop-blur-md">
+                  <p className="break-words text-2xl font-black text-amber-300 sm:text-3xl">{item.value}</p>
                   <p className="mt-2 text-sm font-black text-white">{item.label}</p>
                   <p className="mt-1 text-xs leading-5 text-slate-300">{item.desc}</p>
                 </div>
@@ -226,7 +218,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <aside className="animate-in-soft rounded-md border border-white/20 bg-white/95 p-5 text-slate-950 shadow-2xl shadow-slate-950/35 backdrop-blur-xl">
+          <aside className="min-w-0 animate-in-soft rounded-md border border-white/20 bg-white/95 p-4 text-slate-950 shadow-2xl shadow-slate-950/35 backdrop-blur-xl sm:p-5">
             <p className="text-sm font-black uppercase text-primary">Chọn nhanh tình trạng</p>
             <h2 className="mt-1 text-2xl font-black">Cần kỹ thuật viên xử lý gì?</h2>
             <p className="mt-2 text-sm leading-6 text-slate-600">
@@ -248,7 +240,7 @@ export default function HomePage() {
                       <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-primary text-white">
                         <Wrench className="h-4 w-4" />
                       </span>
-                      <span className="truncate text-sm font-black">{need}</span>
+                      <span className="min-w-0 break-words text-sm font-black leading-5">{need}</span>
                     </span>
                     <ArrowRight className="h-4 w-4 shrink-0 text-primary transition group-hover:translate-x-1" />
                   </Link>
@@ -262,7 +254,7 @@ export default function HomePage() {
                 Gọi đường dây nóng để mô tả tình trạng trước, sau đó chốt lịch tận nơi.
               </p>
               <a
-                className="mt-3 inline-flex h-10 items-center gap-2 rounded-md bg-primary px-4 text-sm font-black text-white transition hover:bg-primary/90"
+                className="mt-3 inline-flex h-10 w-full items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-black text-white transition hover:bg-primary/90 sm:w-auto"
                 href={phoneHref}
               >
                 <Phone className="h-4 w-4" />
@@ -307,7 +299,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="container py-16 lg:py-20">
+      <section className="container py-12 sm:py-16 lg:py-20">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div className="relative overflow-hidden rounded-md border border-slate-200 bg-slate-100 shadow-xl shadow-slate-200">
             <div className="relative aspect-[4/3]">
@@ -315,7 +307,7 @@ export default function HomePage() {
                 src="/images/home-animated-cooling-hero.png"
                 alt="Không gian gia đình mát mẻ với máy lạnh hoạt động ổn định"
                 fill
-                className="object-cover"
+                className="object-contain sm:object-cover"
                 sizes="(min-width: 1024px) 45vw, 100vw"
               />
             </div>
@@ -337,21 +329,21 @@ export default function HomePage() {
 
           <div>
             <p className="text-sm font-black uppercase tracking-wide text-primary">Giới thiệu</p>
-            <h2 className="mt-2 text-3xl font-black tracking-normal sm:text-4xl">
-              Trải nghiệm đặt lịch điện lạnh rõ ràng hơn cho khách tại {TARGET_CITY}
+            <h2 className="mt-2 text-2xl font-black tracking-normal sm:text-4xl">
+              Điện Lạnh Minh Nhật phục vụ tận nơi tại {TARGET_CITY}
             </h2>
             <p className="mt-4 max-w-2xl leading-8 text-slate-700">
-              Giao diện mới lấy cảm hứng từ phong cách công nghệ của Innovate Tech: nền tối mạnh,
-              typo lớn, CTA rõ và các khối nội dung quét nhanh. Nội dung được chuyển sang ngành
-              điện lạnh để khách hiểu dịch vụ, chọn khu vực và gửi lịch hẹn ít thao tác hơn.
+              Điện Lạnh Minh Nhật hỗ trợ sửa chữa, vệ sinh và lắp đặt máy lạnh, tủ lạnh, máy giặt,
+              điện nước cho gia đình, cửa hàng và văn phòng tại Cần Thơ. Đội kỹ thuật tập trung kiểm tra đúng
+              tình trạng, tư vấn phương án phù hợp và báo giá rõ ràng trước khi thi công.
             </p>
 
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
               {[
-                'Đường dây nóng hiển thị nổi bật khi cần gấp',
-                'Dịch vụ có ảnh thực tế và mô tả ngắn',
-                'Khu vực phục vụ được đặt gần luồng đặt lịch',
-                'Biểu mẫu chỉ hỏi thông tin cần thiết để xác nhận',
+                'Tiếp nhận nhanh qua hotline, Zalo và biểu mẫu đặt lịch',
+                'Tư vấn đúng tình trạng trước khi hẹn kỹ thuật viên',
+                'Phục vụ các khu vực trọng điểm tại Cần Thơ',
+                'Báo giá rõ ràng trước khi sửa chữa hoặc vệ sinh',
               ].map((item) => (
                 <div key={item} className="flex items-center gap-3 rounded-md border border-slate-200 bg-white p-3 text-sm font-bold">
                   <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600" />
@@ -361,14 +353,60 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+
+        <div className="mt-10 border-t border-slate-200 pt-8">
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+            <div className="max-w-2xl">
+              <p className="text-sm font-black uppercase tracking-wide text-primary">Phạm vi hoạt động</p>
+              <h3 className="mt-2 text-2xl font-black tracking-normal sm:text-3xl">
+                Có mặt tại các khu vực cần thợ điện lạnh gần bạn
+              </h3>
+              <p className="mt-3 leading-7 text-slate-600">
+                Minh Nhật ưu tiên tiếp nhận lịch tại Ninh Kiều, Cái Răng, Bình Thủy, Ô Môn và các khu vực lân cận tại Cần Thơ. Khách chỉ cần gửi địa chỉ, tình trạng thiết bị và khung giờ mong muốn để được xác nhận lịch phù hợp.
+              </p>
+            </div>
+            <Link className="inline-flex items-center gap-2 text-sm font-black text-primary" href="/contact">
+              Xem liên hệ
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {PRIORITY_DISTRICTS.map((ward, index) => (
+              <Link
+                key={ward.slug}
+                href={`/areas/${ward.slug}/sua-may-lanh`}
+                className="group relative min-h-[220px] overflow-hidden rounded-md border border-slate-200 bg-slate-100 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-200"
+              >
+                <ImageFadeCarousel
+                  images={areaLocationCarouselImages[ward.slug]}
+                  alt={`Khu vực phục vụ ${ward.name}, Cần Thơ`}
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  startDelayMs={index * 1800}
+                />
+                <div className="absolute inset-0 bg-[linear-gradient(0deg,rgb(11_23_42_/_0.66)_0%,rgb(11_23_42_/_0.2)_64%,rgb(11_23_42_/_0.04)_100%)]" />
+                <span className="absolute inset-x-0 bottom-0 p-4 text-white">
+                  <span className="flex items-center justify-between gap-3">
+                    <span className="inline-flex min-w-0 items-center gap-2 text-lg font-black">
+                      <MapPin className="h-5 w-5 shrink-0 text-cyan-300" />
+                      <span className="min-w-0 break-words">{ward.name}</span>
+                    </span>
+                    <ArrowRight className="h-4 w-4 shrink-0 text-cyan-300 transition group-hover:translate-x-1" />
+                  </span>
+                  <span className="mt-2 block text-sm font-semibold leading-6 text-slate-200">{ward.highlight}</span>
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
       </section>
 
-      <section className="bg-white py-16 lg:py-20">
+      <section className="bg-white py-12 sm:py-16 lg:py-20">
         <div className="container">
           <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <div className="max-w-2xl">
               <p className="text-sm font-black uppercase tracking-wide text-primary">Dịch vụ</p>
-              <h2 className="mt-2 text-3xl font-black tracking-normal sm:text-4xl">
+              <h2 className="mt-2 text-2xl font-black tracking-normal sm:text-4xl">
                 Dịch vụ sửa chữa, vệ sinh và lắp đặt nổi bật
               </h2>
               <p className="mt-3 leading-7 text-slate-600">
@@ -389,19 +427,19 @@ export default function HomePage() {
                 href={`/services/${service.slug}`}
                 className="group overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200"
               >
-                <div className="relative aspect-[16/10] overflow-hidden border-b border-slate-200 bg-slate-100">
+                <div className="relative aspect-[4/3] overflow-hidden border-b border-slate-200 bg-slate-100 sm:aspect-[16/10]">
                   <Image
-                    src={`/images/services/${service.slug}.jpg`}
+                    src={`/images/services/${service.slug}.jpg?v=${imageVersion}`}
                     alt={`${service.name} tại ${TARGET_CITY}`}
                     fill
-                    className="scale-[1.04] object-cover transition duration-700 group-hover:scale-[1.1]"
+                    className="object-contain transition duration-700 sm:scale-[1.04] sm:object-cover sm:group-hover:scale-[1.1]"
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   />
                   <div className="absolute inset-0 bg-[linear-gradient(0deg,rgb(15_23_42_/_0.54)_0%,rgb(15_23_42_/_0)_62%)]" />
                 </div>
                 <div className="p-5">
                   <h3 className="text-lg font-black leading-6">{service.name}</h3>
-                  <p className="mt-3 min-h-[4.5rem] text-sm leading-6 text-slate-600">
+                  <p className="mt-3 text-sm leading-6 text-slate-600 sm:min-h-[4.5rem]">
                     {serviceDescriptions[service.slug] ?? 'Tư vấn đúng tình trạng, báo giá trước và hỗ trợ tận nơi.'}
                   </p>
                   <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-primary">
@@ -415,16 +453,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="container py-16 lg:py-20">
+      <section className="container py-12 sm:py-16 lg:py-20">
         <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
           <div>
             <p className="text-sm font-black uppercase tracking-wide text-primary">Điểm nổi bật</p>
-            <h2 className="mt-2 text-3xl font-black tracking-normal sm:text-4xl">
+            <h2 className="mt-2 text-2xl font-black tracking-normal sm:text-4xl">
               Tập trung vào điều khách cần biết trước khi đặt lịch
             </h2>
             <p className="mt-4 leading-8 text-slate-700">
               Trang chủ mới không chỉ giới thiệu dịch vụ, mà dẫn khách đi từ vấn đề đang gặp đến
-              lựa chọn dịch vụ, khu vực phục vụ và biểu mẫu xác nhận lịch.
+              lựa chọn dịch vụ và biểu mẫu xác nhận lịch.
             </p>
           </div>
 
@@ -442,72 +480,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-slate-950 py-16 text-white lg:py-20">
-        <div className="container grid gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
-          <div>
-            <p className="text-sm font-black uppercase tracking-wide text-cyan-300">Khu vực phục vụ</p>
-            <h2 className="mt-2 text-3xl font-black tracking-normal sm:text-4xl">
-              Phủ sóng các khu vực cần thợ điện lạnh gần mình
-            </h2>
-            <p className="mt-4 max-w-2xl leading-8 text-slate-300">
-              Khách có thể chọn đúng phường, đúng dịch vụ và gửi thông tin mà không phải đọc quá
-              nhiều. Đây là điểm quan trọng cho trang web đặt lịch dịch vụ địa phương.
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <a
-                className="inline-flex h-11 items-center gap-2 rounded-md border border-white/15 bg-white/10 px-4 text-sm font-black text-white transition hover:bg-white/15"
-                href={integrationSettings.zaloUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <MessageCircle className="h-4 w-4 text-cyan-200" />
-                Nhắn Zalo
-              </a>
-              <a
-                className="inline-flex h-11 items-center gap-2 rounded-md bg-amber-400 px-4 text-sm font-black text-slate-950 transition hover:bg-amber-300"
-                href={phoneHref}
-              >
-                <Phone className="h-4 w-4" />
-                Gọi kỹ thuật
-              </a>
-            </div>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            {PRIORITY_DISTRICTS.map((ward, index) => (
-              <Link
-                key={ward.slug}
-                href={`/areas/${ward.slug}/sua-may-lanh`}
-                className="group relative min-h-[230px] overflow-hidden rounded-md border border-white/10 bg-white/[0.06] transition hover:-translate-y-0.5 hover:bg-white/[0.1]"
-              >
-                <ImageFadeCarousel
-                  images={areaLocationCarouselImages[ward.slug]}
-                  alt={`Khu vực phục vụ ${ward.name}, Cần Thơ`}
-                  sizes="(min-width: 1024px) 28vw, (min-width: 640px) 50vw, 100vw"
-                  startDelayMs={index * 1800}
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(0deg,rgb(2_6_23_/_0.68)_0%,rgb(2_6_23_/_0.22)_64%,rgb(2_6_23_/_0.06)_100%)]" />
-                <span className="absolute inset-x-0 bottom-0 p-5">
-                  <span className="flex items-center justify-between gap-3">
-                    <span className="inline-flex items-center gap-3 text-lg font-black">
-                      <MapPin className="h-5 w-5 text-cyan-300" />
-                      {ward.name}
-                    </span>
-                    <ArrowRight className="h-4 w-4 text-cyan-300 transition group-hover:translate-x-1" />
-                  </span>
-                  {/* removed non-essential overlay description per design request */}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="container py-16 lg:py-20">
+      <section className="container py-12 sm:py-16 lg:py-20">
         <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
           <div className="max-w-2xl">
             <p className="text-sm font-black uppercase tracking-wide text-primary">Quy trình</p>
-            <h2 className="mt-2 text-3xl font-black tracking-normal sm:text-4xl">
+            <h2 className="mt-2 text-2xl font-black tracking-normal sm:text-4xl">
               Quy trình đặt lịch và thi công rõ từng bước
             </h2>
           </div>
@@ -529,11 +506,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-white py-16 lg:py-20">
+      <section className="bg-white py-12 sm:py-16 lg:py-20">
         <div className="container grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <div>
             <p className="text-sm font-black uppercase tracking-wide text-primary">Đặt lịch</p>
-            <h2 className="mt-2 text-3xl font-black tracking-normal sm:text-4xl">
+            <h2 className="mt-2 text-2xl font-black tracking-normal sm:text-4xl">
               Gửi thông tin để kỹ thuật viên xác nhận lịch
             </h2>
             <p className="mt-4 leading-8 text-slate-700">
@@ -555,9 +532,9 @@ export default function HomePage() {
             </div>
           </div>
 
-          <aside className="rounded-md border border-slate-200 bg-[#f4f8fb] p-5 shadow-xl shadow-slate-200/70">
-            <div className="flex items-start justify-between gap-4">
-              <div>
+          <aside className="min-w-0 rounded-md border border-slate-200 bg-[#f4f8fb] p-4 shadow-xl shadow-slate-200/70 sm:p-5">
+            <div className="flex min-w-0 items-start justify-between gap-4">
+              <div className="min-w-0">
                 <p className="text-sm font-black uppercase text-primary">Đặt lịch nhanh</p>
                 <h3 className="mt-1 text-2xl font-black">Minh Nhật sẽ liên hệ xác nhận</h3>
                 <p className="mt-2 text-sm leading-6 text-slate-600">
@@ -575,11 +552,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-slate-950 py-16 text-white lg:py-20">
+      <section className="bg-[#0b172a] py-12 text-white sm:py-16 lg:py-20">
         <div className="container grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
           <div>
             <p className="text-sm font-black uppercase tracking-wide text-cyan-300">Hỏi đáp</p>
-            <h2 className="mt-2 text-3xl font-black tracking-normal sm:text-4xl">
+            <h2 className="mt-2 text-2xl font-black tracking-normal sm:text-4xl">
               Trả lời nhanh các băn khoăn trước khi đặt lịch
             </h2>
             <div className="mt-7 grid gap-4">
@@ -592,9 +569,9 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="rounded-md bg-white p-5 text-slate-950 shadow-2xl shadow-black/30">
-            <div className="flex items-start justify-between gap-4">
-              <div>
+          <div className="min-w-0 rounded-md bg-white p-4 text-slate-950 shadow-2xl shadow-black/30 sm:p-5">
+            <div className="flex min-w-0 items-start justify-between gap-4">
+              <div className="min-w-0">
                 <p className="text-sm font-black uppercase text-primary">Yêu cầu báo giá</p>
                 <h2 className="mt-1 text-2xl font-black">Mô tả nhu cầu của bạn</h2>
                 <p className="mt-2 text-sm leading-6 text-slate-600">
@@ -635,7 +612,7 @@ export default function HomePage() {
             </div>
           </div>
           <Link
-            className="inline-flex h-12 items-center gap-2 rounded-md bg-amber-400 px-5 text-sm font-black text-slate-950 transition hover:bg-amber-300"
+            className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-md bg-amber-400 px-5 text-sm font-black text-slate-950 transition hover:bg-amber-300 sm:w-auto"
             href="/booking"
           >
             Đặt lịch kiểm tra

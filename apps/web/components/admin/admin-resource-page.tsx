@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import { apiClient } from '@/lib/api/client';
@@ -53,13 +54,34 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
               <p className="text-sm text-slate-600">Tổng số: {data.total}</p>
               <div className="mt-4 grid gap-3">
                 {data.items.map((item, index) => {
-                  const record = item as { id?: string; name?: string; title?: string; email?: string };
+                  const record = item as {
+                    id?: string;
+                    name?: string;
+                    title?: string;
+                    email?: string;
+                    featuredImage?: { url?: string; altText?: string };
+                  };
                   return (
                     <div
                       key={record.id ?? index}
                       className="flex items-center justify-between rounded-md border p-3 text-sm"
                     >
-                      <span>{record.name ?? record.title ?? record.email ?? record.id ?? `Mục ${index + 1}`}</span>
+                      <span className="flex min-w-0 items-center gap-3">
+                        {record.featuredImage?.url ? (
+                          <span className="relative h-12 w-16 shrink-0 overflow-hidden rounded-md bg-slate-100">
+                            <Image
+                              src={record.featuredImage.url}
+                              alt={record.featuredImage.altText ?? record.title ?? 'Ảnh bài viết'}
+                              fill
+                              className="object-cover"
+                              sizes="64px"
+                            />
+                          </span>
+                        ) : null}
+                        <span className="truncate">
+                          {record.name ?? record.title ?? record.email ?? record.id ?? `Mục ${index + 1}`}
+                        </span>
+                      </span>
                       {record.id ? (
                         <button
                           className="text-red-600"

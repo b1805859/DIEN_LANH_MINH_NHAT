@@ -11,13 +11,13 @@ export const metadata = buildMetadata({
 
 export default function FaqPage() {
   return (
-    <main className="container py-12">
-      <h1 className="text-4xl font-bold">Câu hỏi thường gặp</h1>
+    <main className="container py-10 sm:py-12">
+      <h1 className="text-3xl font-black tracking-normal sm:text-4xl">Câu hỏi thường gặp</h1>
       <div className="mt-8 grid gap-4">
         {FAQS.map((faq) => (
-          <section key={faq.question} className="rounded-md border p-5">
+          <section key={faq.question} className="rounded-md border p-4 sm:p-5">
             <h2 className="font-semibold">{faq.question}</h2>
-            <p className="mt-2 text-slate-700">{faq.answer}</p>
+            <p className="mt-2 leading-7 text-slate-700">{faq.answer}</p>
           </section>
         ))}
       </div>

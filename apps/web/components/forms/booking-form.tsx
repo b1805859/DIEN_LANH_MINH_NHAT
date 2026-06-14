@@ -23,7 +23,7 @@ const bookingSchema = z.object({
 type BookingInput = z.infer<typeof bookingSchema>;
 
 const fieldClass =
-  'h-12 rounded-md border border-slate-200 bg-slate-50 px-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10';
+  'h-12 w-full min-w-0 rounded-md border border-slate-200 bg-slate-50 px-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10';
 
 function BookingFormContent({ compact = false }: { compact?: boolean }) {
   const form = useForm<BookingInput>({
@@ -50,7 +50,7 @@ function BookingFormContent({ compact = false }: { compact?: boolean }) {
 
   return (
     <form
-      className="grid gap-3"
+      className="grid min-w-0 gap-3"
       onSubmit={form.handleSubmit((values) => mutation.mutate(values))}
     >
       <div className={`grid gap-3 ${compact ? '' : 'sm:grid-cols-2'}`}>
@@ -83,11 +83,11 @@ function BookingFormContent({ compact = false }: { compact?: boolean }) {
         {...form.register('address')}
       />
       <textarea
-        className="min-h-24 rounded-md border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
+        className="min-h-24 w-full min-w-0 rounded-md border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
         placeholder="Ghi chú"
         {...form.register('notes')}
       />
-      <Button className="h-12 font-bold" type="submit" disabled={mutation.isPending}>
+      <Button className="h-12 w-full font-bold" type="submit" disabled={mutation.isPending}>
         {mutation.isPending ? 'Đang gửi...' : 'Đặt lịch'}
       </Button>
       {mutation.isSuccess ? <p className="text-sm text-emerald-700">Đã gửi lịch hẹn.</p> : null}

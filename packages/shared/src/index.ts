@@ -9,7 +9,6 @@ export const BUSINESS = {
   phone: '0939370109',
   address: 'Cần Thơ, Việt Nam',
   zaloUrl: 'https://zalo.me/0939370109',
-  messengerUrl: 'https://m.me/',
   googleMapsUrl: '',
   googleMapsEmbedUrl: '',
 };
@@ -71,36 +70,50 @@ export const BLOG_POSTS = [
     title: 'Bao lâu nên vệ sinh máy lạnh một lần?',
     slug: 'bao-lau-nen-ve-sinh-may-lanh-mot-lan',
     category: 'may-lanh',
+    image: '/images/services/ve-sinh-may-lanh.jpg',
+    excerpt: 'Mốc thời gian vệ sinh máy lạnh phù hợp cho gia đình, phòng trọ và cửa hàng sử dụng thường xuyên.',
   },
   {
     title: 'Dấu hiệu máy lạnh cần nạp gas',
     slug: 'dau-hieu-may-lanh-can-nap-gas',
     category: 'may-lanh',
+    image: '/images/services/nap-gas-may-lanh.jpg',
+    excerpt: 'Các biểu hiện thiếu gas, cách kiểm tra ban đầu và thời điểm nên gọi kỹ thuật viên.',
   },
   {
     title: 'Máy lạnh không lạnh nguyên nhân do đâu?',
     slug: 'may-lanh-khong-lanh-nguyen-nhan-do-dau',
     category: 'may-lanh',
+    image: '/images/services/sua-may-lanh.jpg',
+    excerpt: 'Tổng hợp nguyên nhân khiến máy lạnh chạy nhưng không mát và hướng xử lý an toàn.',
   },
   {
     title: 'Máy lạnh chảy nước phải làm sao?',
     slug: 'may-lanh-chay-nuoc-phai-lam-sao',
     category: 'may-lanh',
+    image: '/images/services/ve-sinh-may-lanh.jpg',
+    excerpt: 'Nhận biết nguyên nhân máy lạnh rò nước, nghẹt ống thoát và các bước xử lý ban đầu.',
   },
   {
     title: 'Các lỗi thường gặp ở tủ lạnh',
     slug: 'cac-loi-thuong-gap-o-tu-lanh',
     category: 'tu-lanh',
+    image: '/images/services/sua-tu-lanh.jpg',
+    excerpt: 'Những lỗi tủ lạnh thường gặp như yếu lạnh, đóng tuyết, rò nước và tiếng ồn bất thường.',
   },
   {
     title: 'Khi nào cần vệ sinh máy giặt?',
     slug: 'khi-nao-can-ve-sinh-may-giat',
     category: 'may-giat',
+    image: '/images/services/ve-sinh-may-giat.jpg',
+    excerpt: 'Dấu hiệu lồng giặt bám cặn, có mùi và lịch vệ sinh giúp quần áo sạch hơn.',
   },
   {
     title: 'Mẹo tiết kiệm điện khi sử dụng máy lạnh',
     slug: 'meo-tiet-kiem-dien-khi-su-dung-may-lanh',
     category: 'tiet-kiem-dien',
+    image: '/images/services/ve-sinh-may-lanh.jpg',
+    excerpt: 'Cách cài đặt nhiệt độ, vệ sinh định kỳ và dùng máy lạnh hợp lý để giảm hao điện.',
   },
 ] as const;
 
