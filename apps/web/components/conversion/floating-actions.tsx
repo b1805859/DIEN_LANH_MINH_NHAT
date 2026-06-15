@@ -122,7 +122,7 @@ export function FloatingActions() {
 
   return (
     <>
-      <div className="fixed bottom-4 left-3 z-50 sm:bottom-10 sm:left-4">
+      <div className="fixed bottom-10 left-3 z-50 sm:bottom-16 sm:left-4">
         <a
           aria-label={`Gọi ${integrationSettings.phone}`}
           href={phoneHref}
@@ -140,7 +140,7 @@ export function FloatingActions() {
       </div>
 
       {isChatOpen ? (
-        <section className="fixed bottom-24 right-3 z-50 w-[calc(100vw-1.5rem)] max-w-sm overflow-hidden rounded-md border border-slate-200 bg-white shadow-2xl shadow-slate-950/20 sm:bottom-8 sm:right-24 sm:w-[calc(100vw-2rem)] sm:max-w-[380px] lg:max-w-[400px]">
+        <section className="fixed bottom-32 right-3 z-50 w-[calc(100vw-1.5rem)] max-w-sm overflow-hidden rounded-md border border-slate-200 bg-white shadow-2xl shadow-slate-950/20 sm:bottom-16 sm:right-24 sm:w-[calc(100vw-2rem)] sm:max-w-[380px] lg:max-w-[400px]">
           <div className="flex items-start justify-between gap-3 bg-[#0b172a] p-4 text-white">
             <div className="flex min-w-0 items-start gap-3">
               <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-cyan-400 text-slate-950">
@@ -213,7 +213,7 @@ export function FloatingActions() {
         </section>
       ) : null}
 
-      <div className="fixed bottom-4 right-3 z-50 flex flex-col-reverse items-end gap-2 sm:bottom-10 sm:right-4 sm:gap-3">
+      <div className="fixed bottom-10 right-3 z-50 flex flex-col-reverse items-end gap-2 sm:bottom-16 sm:right-4 sm:gap-3">
         <button
           type="button"
           aria-label="Mở AI tư vấn"
@@ -236,7 +236,7 @@ export function FloatingActions() {
           target="_blank"
           rel="noreferrer"
         >
-          <Image src="/icons/zalo.svg" alt="" width={56} height={56} className="h-14 w-14 shrink-0 drop-shadow-lg" />
+          <Image src="/icons/zalo.svg" alt="" width={56} height={56} priority className="h-14 w-14 shrink-0 drop-shadow-lg" />
         </a>
       </div>
     </>

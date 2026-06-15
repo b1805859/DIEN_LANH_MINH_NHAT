@@ -101,8 +101,6 @@ const quickNeeds = [
   'Cần tháo lắp di dời',
 ];
 
-const imageVersion = 'real-services-20260614';
-
 const heroImages = [
   {
     src: '/images/hvac-hero.png',
@@ -120,17 +118,17 @@ const heroImages = [
     objectClassName: 'object-center',
   },
   {
-    src: `/images/services/ve-sinh-may-lanh.jpg?v=${imageVersion}`,
+    src: '/images/services/ve-sinh-may-lanh.jpg',
     alt: 'Kỹ thuật vệ sinh máy lạnh tận nơi',
     objectClassName: 'object-center',
   },
   {
-    src: `/images/services/sua-may-lanh.jpg?v=${imageVersion}`,
+    src: '/images/services/sua-may-lanh.jpg',
     alt: 'Dịch vụ sửa máy lạnh tận nơi',
     objectClassName: 'object-center',
   },
   {
-    src: `/images/services/nap-gas-may-lanh.jpg?v=${imageVersion}`,
+    src: '/images/services/nap-gas-may-lanh.jpg',
     alt: 'Kỹ thuật viên nạp gas và kiểm tra áp suất máy lạnh',
     objectClassName: 'object-center',
   },
@@ -156,6 +154,16 @@ export default function HomePage() {
   return (
     <main className="bg-[#f4f8fb] text-slate-950">
       <section className="relative overflow-hidden bg-[#0b172a] text-white lg:min-h-[calc(100svh-4rem)]">
+        <div className="absolute inset-x-0 top-0 h-svh lg:hidden">
+          <Image
+            src="/images/home-mobile-hero.png"
+            alt="KhÃ´ng gian mÃ¡t máº» vá»›i mÃ¡y láº¡nh gia Ä‘Ã¬nh"
+            fill
+            priority
+            className="object-cover object-center brightness-[1.06] saturate-[1.12] contrast-[1.03]"
+            sizes="100vw"
+          />
+        </div>
         {heroImages.map((image, index) => (
           <Image
             key={image.src}
@@ -163,7 +171,7 @@ export default function HomePage() {
             alt={image.alt}
             fill
             priority
-            className={`hero-fade-image object-cover brightness-[1.1] saturate-[1.16] contrast-[1.04] ${image.objectClassName}`}
+            className={`hero-fade-image hidden object-cover brightness-[1.1] saturate-[1.16] contrast-[1.04] lg:block ${image.objectClassName}`}
             sizes="100vw"
             style={{ animationDelay: `${index * 12}s` }}
           />
@@ -383,8 +391,9 @@ export default function HomePage() {
                   alt={`Khu vực phục vụ ${ward.name}, Cần Thơ`}
                   sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                   startDelayMs={index * 1800}
+                  imageClassName="brightness-[1.16] saturate-[1.08]"
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(0deg,rgb(11_23_42_/_0.66)_0%,rgb(11_23_42_/_0.2)_64%,rgb(11_23_42_/_0.04)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(0deg,rgb(11_23_42_/_0.46)_0%,rgb(11_23_42_/_0.12)_58%,rgb(11_23_42_/_0)_100%)]" />
                 <span className="absolute inset-x-0 bottom-0 p-4 text-white">
                   <span className="flex items-center justify-between gap-3">
                     <span className="inline-flex min-w-0 items-center gap-2 text-lg font-black">
@@ -393,7 +402,6 @@ export default function HomePage() {
                     </span>
                     <ArrowRight className="h-4 w-4 shrink-0 text-cyan-300 transition group-hover:translate-x-1" />
                   </span>
-                  <span className="mt-2 block text-sm font-semibold leading-6 text-slate-200">{ward.highlight}</span>
                 </span>
               </Link>
             ))}
@@ -429,7 +437,7 @@ export default function HomePage() {
               >
                 <div className="relative aspect-[4/3] overflow-hidden border-b border-slate-200 bg-slate-100 sm:aspect-[16/10]">
                   <Image
-                    src={`/images/services/${service.slug}.jpg?v=${imageVersion}`}
+                    src={`/images/services/${service.slug}.jpg`}
                     alt={`${service.name} tại ${TARGET_CITY}`}
                     fill
                     className="object-contain transition duration-700 sm:scale-[1.04] sm:object-cover sm:group-hover:scale-[1.1]"

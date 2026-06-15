@@ -30,8 +30,6 @@ export const metadata = buildMetadata({
   path: '/services',
 });
 
-const imageVersion = 'real-services-20260614';
-
 const serviceDetails: Record<
   string,
   {
@@ -246,7 +244,7 @@ export default function ServicesPage() {
               >
                 <div className="relative aspect-[4/3] overflow-hidden border-b border-slate-200 bg-slate-100 sm:aspect-[16/10]">
                   <Image
-                    src={`/images/services/${service.slug}.jpg?v=${imageVersion}`}
+                    src={`/images/services/${service.slug}.jpg`}
                     alt={`${service.name} tại ${TARGET_CITY}`}
                     fill
                     className="object-contain transition duration-700 sm:scale-[1.03] sm:object-cover sm:group-hover:scale-[1.1]"

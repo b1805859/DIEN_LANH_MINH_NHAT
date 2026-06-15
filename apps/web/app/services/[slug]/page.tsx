@@ -35,6 +35,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           src="/images/service-tools.png"
           alt="Dụng cụ sửa chữa điện lạnh"
           fill
+          priority
           className="object-cover opacity-35"
           sizes="100vw"
         />
