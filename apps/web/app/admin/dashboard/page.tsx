@@ -2,27 +2,28 @@
 
 import Link from 'next/link';
 import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 import { QueryBoundary } from '@/components/layout/query-boundary';
+import { getStoredAccessToken } from '@/lib/auth/tokens';
 import { apiClient } from '@/lib/api/client';
 
 const resources = [
   { key: 'services', label: 'Dịch vụ' },
   { key: 'locations', label: 'Khu vực' },
   { key: 'categories', label: 'Danh mục' },
-  { key: 'tags', label: 'Thẻ' },
   { key: 'faqs', label: 'Hỏi đáp' },
-  { key: 'testimonials', label: 'Đánh giá khách hàng' },
   { key: 'blog', label: 'Bài viết' },
   { key: 'bookings', label: 'Lịch hẹn' },
   { key: 'contacts', label: 'Liên hệ' },
-  { key: 'media', label: 'Thư viện' },
-  { key: 'seo', label: 'Tối ưu tìm kiếm' },
-  { key: 'users', label: 'Người dùng' },
-  { key: 'roles', label: 'Vai trò' },
 ];
 
 function AdminDashboardPageContent() {
-  const token = typeof window !== 'undefined' ? window.localStorage.getItem('accessToken') : '';
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    setToken(getStoredAccessToken());
+  }, []);
+
   const { data } = useQuery({
     queryKey: ['admin-dashboard'],
     queryFn: async () => {
@@ -35,8 +36,13 @@ function AdminDashboardPageContent() {
   });
 
   return (
-    <main className="container py-10">
+    <main className="w-full px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
       <h1 className="text-3xl font-bold">Bảng điều khiển quản trị</h1>
+      {token === '' ? (
+        <p className="mt-4 text-sm text-slate-600">
+          Vui lòng <Link href="/admin/login" className="font-semibold text-primary">đăng nhập</Link> để quản trị.
+        </p>
+      ) : null}
       <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {resources.map((resource) => (
           <Link key={resource.key} href={`/admin/${resource.key}`} className="rounded-md border p-4 font-semibold">

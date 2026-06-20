@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
 import { Be_Vietnam_Pro } from 'next/font/google';
 import Script from 'next/script';
-import { FloatingActions } from '@/components/conversion/floating-actions';
-import { SiteFooter } from '@/components/layout/site-footer';
-import { SiteHeader } from '@/components/layout/site-header';
+import { SiteChrome } from '@/components/layout/site-chrome';
 import { JsonLdScript } from '@/components/seo/json-ld-script';
 import { localBusinessJsonLd } from '@/lib/seo/json-ld';
 import { integrationSettings } from '@/lib/integrations/settings';
@@ -34,11 +32,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body className={beVietnamPro.variable}>
-        <SiteHeader />
-        {children}
-        <SiteFooter />
-        <FloatingActions />
+      <body className={`${beVietnamPro.variable} flex min-h-dvh flex-col`}>
+        <SiteChrome>{children}</SiteChrome>
         <JsonLdScript data={localBusinessJsonLd()} />
         {integrationSettings.googleAnalyticsId ? (
           <>

@@ -2,10 +2,17 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { usePathname } from 'next/navigation';
-import { ChevronRight, Menu, X } from 'lucide-react';
+import { usePathname, useRouter } from 'next/navigation';
+import { ChevronRight, LogOut, Menu, X } from 'lucide-react';
 import { APP_NAME } from '@minhnhat/shared';
 import { MinhNhatLogoMark } from '@/components/brand/minh-nhat-logo';
+import {
+  AUTH_TOKEN_CHANGE_EVENT,
+  clearStoredAuthTokens,
+  getStoredAccessToken,
+  getStoredRefreshToken,
+} from '@/lib/auth/tokens';
+import { apiClient } from '@/lib/api/client';
 import { cn } from '@/lib/utils';
 
 const navItems = [
@@ -20,9 +27,28 @@ const mobileNavItems = navItems;
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [hasAdminSession, setHasAdminSession] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const drawerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const syncAdminSession = () => {
+      setHasAdminSession(Boolean(getStoredAccessToken()));
+    };
+
+    syncAdminSession();
+    window.addEventListener(AUTH_TOKEN_CHANGE_EVENT, syncAdminSession);
+    window.addEventListener('focus', syncAdminSession);
+    window.addEventListener('storage', syncAdminSession);
+
+    return () => {
+      window.removeEventListener(AUTH_TOKEN_CHANGE_EVENT, syncAdminSession);
+      window.removeEventListener('focus', syncAdminSession);
+      window.removeEventListener('storage', syncAdminSession);
+    };
+  }, []);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -67,6 +93,31 @@ export function SiteHeader() {
   const isActive = (href: string) =>
     href === '/' ? pathname === href : pathname === href || pathname.startsWith(`${href}/`);
 
+  const handleLogout = async () => {
+    const accessToken = getStoredAccessToken();
+    const refreshToken = getStoredRefreshToken();
+
+    if (accessToken && refreshToken) {
+      try {
+        await apiClient.post(
+          '/auth/logout',
+          { refreshToken },
+          { headers: { Authorization: `Bearer ${accessToken}` } },
+        );
+      } catch {
+        // Local logout should still complete even if the token is already invalid.
+      }
+    }
+
+    clearStoredAuthTokens();
+    setHasAdminSession(false);
+    setMobileOpen(false);
+
+    if (pathname.startsWith('/admin')) {
+      router.replace('/admin/login');
+    }
+  };
+
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-[#0b172a] text-white shadow-lg shadow-slate-950/20">
@@ -110,6 +161,24 @@ export function SiteHeader() {
             </nav>
 
             <div className="flex items-center justify-end gap-2">
+              {hasAdminSession ? (
+                <Link
+                  href="/admin/dashboard"
+                  className="hidden h-10 items-center justify-center rounded-md border border-cyan-200/40 bg-cyan-300/10 px-3 text-sm font-black text-cyan-100 transition hover:border-cyan-100 hover:bg-cyan-300/20 sm:inline-flex"
+                >
+                  Quản trị
+                </Link>
+              ) : null}
+              {hasAdminSession ? (
+                <button
+                  type="button"
+                  className="hidden h-10 items-center justify-center gap-2 rounded-md border border-white/15 bg-white/10 px-3 text-sm font-black text-slate-100 transition hover:border-red-200/60 hover:bg-red-400/15 hover:text-white sm:inline-flex"
+                  onClick={handleLogout}
+                >
+                  <LogOut className="h-4 w-4" />
+                  Đăng xuất
+                </button>
+              ) : null}
               <button
                 ref={menuButtonRef}
                 type="button"
@@ -186,6 +255,25 @@ export function SiteHeader() {
                     <ChevronRight className="h-4 w-4" />
                   </Link>
                 ))}
+                {hasAdminSession ? (
+                  <Link
+                    href="/admin/dashboard"
+                    className="mt-2 flex min-h-12 items-center justify-between rounded-md bg-primary/10 px-3 text-base font-black text-primary transition hover:bg-primary/15"
+                  >
+                    <span>Quản trị</span>
+                    <ChevronRight className="h-4 w-4" />
+                  </Link>
+                ) : null}
+                {hasAdminSession ? (
+                  <button
+                    type="button"
+                    className="mt-2 flex min-h-12 w-full items-center justify-between rounded-md px-3 text-left text-base font-black text-red-600 transition hover:bg-red-50"
+                    onClick={handleLogout}
+                  >
+                    <span>Đăng xuất</span>
+                    <LogOut className="h-4 w-4" />
+                  </button>
+                ) : null}
               </nav>
 
               <div className="border-t border-slate-200 p-4">

@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { QueryBoundary } from '@/components/layout/query-boundary';
+import { setStoredAuthTokens } from '@/lib/auth/tokens';
 import { apiClient } from '@/lib/api/client';
 
 const loginSchema = z.object({
@@ -25,8 +26,7 @@ function AdminLoginPageContent() {
   const mutation = useMutation({
     mutationFn: (input: LoginInput) => apiClient.post('/auth/login', input),
     onSuccess: (response) => {
-      window.localStorage.setItem('accessToken', response.data.accessToken);
-      window.localStorage.setItem('refreshToken', response.data.refreshToken);
+      setStoredAuthTokens(response.data.accessToken, response.data.refreshToken);
       router.push('/admin/dashboard');
     },
   });
@@ -35,7 +35,7 @@ function AdminLoginPageContent() {
     <main className="container flex min-h-[70vh] items-center justify-center py-12">
       <form className="w-full max-w-sm rounded-md border p-6" onSubmit={form.handleSubmit((values) => mutation.mutate(values))}>
         <h1 className="text-2xl font-bold">Đăng nhập quản trị</h1>
-        <input className="mt-5 h-11 w-full rounded-md border px-3" placeholder="Thư điện tử" {...form.register('email')} />
+        <input className="mt-5 h-11 w-full rounded-md border px-3" placeholder="Tài khoản" {...form.register('email')} />
         <input className="mt-3 h-11 w-full rounded-md border px-3" type="password" placeholder="Mật khẩu" {...form.register('password')} />
         <Button className="mt-5 w-full" type="submit" disabled={mutation.isPending}>
           Đăng nhập
