@@ -3,8 +3,9 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { ChevronRight, Menu, Wrench, X } from 'lucide-react';
+import { ChevronRight, Menu, X } from 'lucide-react';
 import { APP_NAME } from '@minhnhat/shared';
+import { MinhNhatLogoMark } from '@/components/brand/minh-nhat-logo';
 import { cn } from '@/lib/utils';
 
 const navItems = [
@@ -72,9 +73,10 @@ export function SiteHeader() {
         <div className="container">
           <div className="flex min-h-16 items-center justify-between gap-3 sm:gap-5">
             <Link href="/" className="group flex min-w-0 items-center gap-2 sm:gap-3">
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-cyan-400 text-slate-950 shadow-lg shadow-cyan-400/20 transition sm:h-10 sm:w-10">
-                <Wrench className="h-5 w-5" />
-              </span>
+              <MinhNhatLogoMark
+                className="h-9 w-9 shadow-lg shadow-cyan-400/20 transition group-hover:scale-[1.03] sm:h-10 sm:w-10"
+                idPrefix="site-header-logo"
+              />
               <span className="min-w-0">
                 <span className="block max-w-[calc(100vw-10rem)] truncate text-sm font-black leading-tight sm:max-w-none sm:text-base">
                   {APP_NAME}
@@ -149,9 +151,10 @@ export function SiteHeader() {
             >
               <div className="flex min-h-16 items-center justify-between gap-3 border-b border-slate-200 px-4">
                 <Link href="/" className="flex min-w-0 items-center gap-3">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary text-white shadow-lg shadow-primary/20">
-                    <Wrench className="h-5 w-5" />
-                  </span>
+                  <MinhNhatLogoMark
+                    className="h-10 w-10 shadow-lg shadow-primary/20"
+                    idPrefix="site-mobile-logo"
+                  />
                   <span className="min-w-0">
                     <span className="block truncate text-sm font-black">{APP_NAME}</span>
                     <span className="block text-xs font-semibold text-slate-500">

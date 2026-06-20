@@ -8,6 +8,7 @@ import {
   CheckCircle2,
   ClipboardCheck,
   Clock,
+  Droplets,
   Fan,
   Gauge,
   Headphones,
@@ -19,7 +20,6 @@ import {
   Sparkles,
   Star,
   ThermometerSun,
-  Wrench,
   Zap,
 } from 'lucide-react';
 import { APP_NAME, FAQS, PRIORITY_DISTRICTS, SERVICES, TARGET_CITY } from '@minhnhat/shared';
@@ -94,11 +94,11 @@ const processSteps = [
   ['05', 'Nghiệm thu', 'Chạy thử, bàn giao, dọn khu vực và ghi nhận lưu ý bảo trì tiếp theo.'],
 ];
 
-const quickNeeds = [
-  'Máy lạnh không lạnh',
-  'Máy lạnh chảy nước',
-  'Cần vệ sinh định kỳ',
-  'Cần tháo lắp di dời',
+const quickNeeds: Array<{ label: string; icon: LucideIcon }> = [
+  { label: 'Máy lạnh không lạnh', icon: Snowflake },
+  { label: 'Máy lạnh chảy nước', icon: Droplets },
+  { label: 'Cần vệ sinh định kỳ', icon: Sparkles },
+  { label: 'Cần tháo lắp di dời', icon: AirVent },
 ];
 
 const heroImages = [
@@ -235,20 +235,20 @@ export default function HomePage() {
             </p>
 
             <div className="mt-5 grid gap-3">
-              {quickNeeds.map((need, index) => {
+              {quickNeeds.map(({ label, icon: Icon }, index) => {
                 const service = SERVICES[index];
 
                 return (
                   <Link
-                    key={need}
+                    key={label}
                     href={`/services/${service.slug}`}
                     className="group flex items-center justify-between gap-3 rounded-md border border-slate-200 bg-slate-50 p-3 transition hover:border-primary/40 hover:bg-white"
                   >
                     <span className="flex min-w-0 items-center gap-3">
                       <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-primary text-white">
-                        <Wrench className="h-4 w-4" />
+                        <Icon className="h-4 w-4" />
                       </span>
-                      <span className="min-w-0 break-words text-sm font-black leading-5">{need}</span>
+                      <span className="min-w-0 break-words text-sm font-black leading-5">{label}</span>
                     </span>
                     <ArrowRight className="h-4 w-4 shrink-0 text-primary transition group-hover:translate-x-1" />
                   </Link>

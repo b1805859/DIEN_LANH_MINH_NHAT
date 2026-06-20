@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import {
+  AirVent,
   ArrowRight,
   BadgeCheck,
   CalendarCheck,
@@ -13,7 +14,6 @@ import {
   ShieldCheck,
   Snowflake,
   Sparkles,
-  Wrench,
   Zap,
 } from 'lucide-react';
 import { SERVICES, TARGET_CITY } from '@minhnhat/shared';
@@ -42,7 +42,7 @@ const serviceDetails: Record<
   'thao-lap-may-lanh': {
     desc: 'Tháo lắp, di dời máy lạnh đúng kỹ thuật, kiểm tra lại ống đồng, dây điện và đường thoát nước trước khi bàn giao.',
     tag: 'Lắp đặt',
-    icon: Wrench,
+    icon: AirVent,
     checks: ['Khảo sát vị trí', 'Đi ống gọn', 'Chạy thử tải lạnh'],
   },
   've-sinh-may-lanh': {
@@ -346,7 +346,7 @@ export default function ServicesPage() {
         <div className="container flex flex-col items-start justify-between gap-5 md:flex-row md:items-center">
           <div className="flex items-start gap-4">
             <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-primary text-white sm:h-12 sm:w-12">
-              <Wrench className="h-6 w-6" />
+              <CalendarCheck className="h-6 w-6" />
             </span>
             <div>
               <h2 className="text-2xl font-black">Cần kỹ thuật viên kiểm tra hôm nay?</h2>

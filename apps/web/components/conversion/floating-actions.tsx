@@ -2,7 +2,8 @@
 
 import Image from 'next/image';
 import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
-import { Bot, Phone, Send, Sparkles, X } from 'lucide-react';
+import { Phone, Send, X } from 'lucide-react';
+import { AiChatbotIcon } from '@/components/brand/ai-chatbot-icon';
 import { integrationSettings } from '@/lib/integrations/settings';
 
 type ChatMessage = {
@@ -126,12 +127,13 @@ export function FloatingActions() {
         <a
           aria-label={`Gọi ${integrationSettings.phone}`}
           href={phoneHref}
-          className="contact-action-float relative inline-flex h-12 w-12 select-none items-center justify-center gap-0 overflow-hidden rounded-full border border-white/70 bg-[linear-gradient(135deg,#ffd84d_0%,#ffc21f_52%,#ffad1f_100%)] p-0 text-slate-950 shadow-[0_18px_38px_rgb(245_158_11_/_0.36)] ring-1 ring-amber-500/20 sm:h-16 sm:w-auto sm:gap-3 sm:py-2 sm:pl-2 sm:pr-5"
+          className="contact-action-float relative inline-flex h-12 w-12 select-none items-center justify-center gap-0 overflow-visible rounded-full border border-white/70 bg-[linear-gradient(135deg,#ffd84d_0%,#ffc21f_52%,#ffad1f_100%)] p-0 text-slate-950 shadow-[0_18px_38px_rgb(245_158_11_/_0.36)] ring-1 ring-amber-500/20 sm:h-16 sm:w-auto sm:gap-3 sm:py-2 sm:pl-2 sm:pr-5"
         >
           <span className="pointer-events-none absolute inset-x-5 top-1 h-5 rounded-full bg-white/35 blur-md" />
-          <span className="relative inline-flex h-full w-full items-center justify-center rounded-full bg-primary text-white shadow-[inset_0_1px_0_rgb(255_255_255_/_0.24),0_10px_22px_rgb(0_91_187_/_0.32)] sm:h-12 sm:w-12">
-            <span className="phone-ring-halo absolute inset-0 rounded-full border border-cyan-100/70" />
-            <Phone className="phone-ring-icon relative h-5 w-5" />
+          <span className="phone-ring-halo pointer-events-none absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-red-500/45 sm:left-8 sm:h-16 sm:w-16" />
+          <span className="phone-ring-halo pointer-events-none absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-red-500/30 [animation-delay:400ms] sm:left-8 sm:h-16 sm:w-16" />
+          <span className="relative inline-flex h-full w-full translate-x-0.5 items-center justify-center rounded-full text-red-600 sm:h-12 sm:w-10 sm:translate-x-1">
+            <Phone className="phone-ring-icon relative h-7 w-7 sm:h-6 sm:w-6" />
           </span>
           <span className="relative hidden text-sm font-black tracking-normal sm:inline sm:text-base">
             {integrationSettings.phone}
@@ -140,15 +142,15 @@ export function FloatingActions() {
       </div>
 
       {isChatOpen ? (
-        <section className="fixed bottom-32 right-3 z-50 w-[calc(100vw-1.5rem)] max-w-sm overflow-hidden rounded-md border border-slate-200 bg-white shadow-2xl shadow-slate-950/20 sm:bottom-16 sm:right-24 sm:w-[calc(100vw-2rem)] sm:max-w-[380px] lg:max-w-[400px]">
+        <section className="fixed bottom-3 right-3 z-50 w-[calc(100vw-1.5rem)] max-w-sm overflow-hidden rounded-md border border-slate-200 bg-white shadow-2xl shadow-slate-950/20 sm:bottom-4 sm:right-24 sm:w-[calc(100vw-8rem)] sm:max-w-[380px] lg:max-w-[400px]">
           <div className="flex items-start justify-between gap-3 bg-[#0b172a] p-4 text-white">
             <div className="flex min-w-0 items-start gap-3">
-              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-cyan-400 text-slate-950">
-                <Bot className="h-5 w-5" />
-              </span>
+              <AiChatbotIcon className="h-10 w-10" idPrefix="ai-chat-modal-icon" />
               <div className="min-w-0">
                 <h2 className="text-sm font-black">AI tư vấn Minh Nhật</h2>
-                <p className="mt-1 text-xs leading-5 text-slate-300">Gợi ý nhanh theo tình trạng thiết bị</p>
+                <p className="mt-1 text-xs leading-5 text-slate-300">
+                  Gợi ý nhanh theo tình trạng thiết bị
+                </p>
               </div>
             </div>
             <button
@@ -214,21 +216,23 @@ export function FloatingActions() {
       ) : null}
 
       <div className="fixed bottom-10 right-3 z-50 flex flex-col-reverse items-end gap-2 sm:bottom-16 sm:right-4 sm:gap-3">
-        <button
-          type="button"
-          aria-label="Mở AI tư vấn"
-          className="contact-action contact-action-float inline-flex h-14 max-w-[calc(100vw-2rem)] items-center justify-center gap-2 rounded-full bg-[#0b172a] py-2 pl-2 pr-3 text-left text-cyan-100 shadow-lg shadow-slate-950/25 ring-1 ring-cyan-200/25 [animation-delay:80ms] sm:pr-4"
-          onClick={() => setIsChatOpen((currentValue) => !currentValue)}
-        >
-          <span className="relative inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cyan-400 text-slate-950">
-            <Sparkles className="absolute -right-0.5 -top-0.5 h-3.5 w-3.5 text-white" />
-            <Bot className="h-5 w-5" />
-          </span>
-          <span className="min-w-0 leading-tight">
-            <span className="block text-sm font-black">AI tư vấn</span>
-            <span className="hidden text-[11px] font-semibold text-cyan-200 min-[381px]:block">Hỏi nhanh lỗi thiết bị</span>
-          </span>
-        </button>
+        {!isChatOpen ? (
+          <button
+            type="button"
+            aria-label="Mở AI tư vấn"
+            className="ai-chat-action contact-action-float group inline-flex h-16 max-w-[calc(100vw-2rem)] items-center justify-center gap-2.5 rounded-full bg-[#0b172a] py-2 pl-2 pr-4 text-left text-cyan-100 shadow-lg shadow-slate-950/25 ring-1 ring-cyan-200/25 [animation-delay:80ms] sm:gap-3 sm:pr-5"
+            onClick={() => setIsChatOpen(true)}
+          >
+            <span className="relative z-10 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#061326] p-0.5 shadow-lg shadow-cyan-500/20 transition duration-200 group-hover:shadow-cyan-300/45">
+              <AiChatbotIcon className="h-full w-full rounded-full" idPrefix="ai-chat-fab-icon" />
+            </span>
+            <span className="min-w-0 leading-tight">
+              <span className="block text-sm font-black transition group-hover:text-white">
+                AI tư vấn
+              </span>
+            </span>
+          </button>
+        ) : null}
         <a
           href={integrationSettings.zaloUrl}
           aria-label="Liên hệ qua Zalo"
@@ -236,7 +240,14 @@ export function FloatingActions() {
           target="_blank"
           rel="noreferrer"
         >
-          <Image src="/icons/zalo.svg" alt="" width={56} height={56} priority className="h-14 w-14 shrink-0 drop-shadow-lg" />
+          <Image
+            src="/icons/zalo.svg"
+            alt=""
+            width={56}
+            height={56}
+            priority
+            className="h-14 w-14 shrink-0 drop-shadow-lg"
+          />
         </a>
       </div>
     </>
