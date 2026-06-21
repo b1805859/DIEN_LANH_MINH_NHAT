@@ -9,7 +9,6 @@ import { apiClient } from '@/lib/api/client';
 
 const resources = [
   { key: 'services', label: 'Dịch vụ' },
-  { key: 'locations', label: 'Khu vực' },
   { key: 'categories', label: 'Danh mục' },
   { key: 'faqs', label: 'Hỏi đáp' },
   { key: 'blog', label: 'Bài viết' },
@@ -40,12 +39,20 @@ function AdminDashboardPageContent() {
       <h1 className="text-3xl font-bold">Bảng điều khiển quản trị</h1>
       {token === '' ? (
         <p className="mt-4 text-sm text-slate-600">
-          Vui lòng <Link href="/admin/login" className="font-semibold text-primary">đăng nhập</Link> để quản trị.
+          Vui lòng{' '}
+          <Link href="/admin/login" className="font-semibold text-primary">
+            đăng nhập
+          </Link>{' '}
+          để quản trị.
         </p>
       ) : null}
       <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {resources.map((resource) => (
-          <Link key={resource.key} href={`/admin/${resource.key}`} className="rounded-md border p-4 font-semibold">
+          <Link
+            key={resource.key}
+            href={`/admin/${resource.key}`}
+            className="rounded-md border p-4 font-semibold"
+          >
             <span className="block">{resource.label}</span>
             {data ? (
               <span className="mt-2 block text-sm font-medium text-slate-500">

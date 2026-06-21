@@ -8,7 +8,14 @@ import { getStoredAccessToken } from '@/lib/auth/tokens';
 import { Button } from '@/components/ui/button';
 import { QueryBoundary } from '@/components/layout/query-boundary';
 
-type FieldType = 'text' | 'textarea' | 'number' | 'checkbox' | 'select' | 'datetime-local' | 'image';
+type FieldType =
+  | 'text'
+  | 'textarea'
+  | 'number'
+  | 'checkbox'
+  | 'select'
+  | 'datetime-local'
+  | 'image';
 
 type AdminField = {
   name: string;
@@ -22,6 +29,8 @@ type AdminField = {
 type ResourceConfig = {
   fields: AdminField[];
   primaryLabel: (record: AdminRecord, index: number) => string;
+  readOnly?: boolean;
+  readOnlyMessage?: string;
 };
 
 type AdminRecord = {
@@ -32,28 +41,32 @@ type AdminRecord = {
 
 type FormState = Record<string, string | number | boolean>;
 type AdminScreenMode = 'list' | 'create' | 'edit' | 'view';
+type CurrentImagePreview = {
+  key: string;
+  label: string;
+  url: string;
+  alt: string;
+  note?: string;
+};
 
 const resourceConfigs: Record<string, ResourceConfig> = {
   services: {
     fields: [
       { name: 'name', label: 'Tên dịch vụ', type: 'text', required: true },
-      { name: 'slug', label: 'Đường dẫn', type: 'text', required: true, placeholder: 'sua-may-lanh' },
+      {
+        name: 'slug',
+        label: 'Đường dẫn',
+        type: 'text',
+        required: true,
+        placeholder: 'sua-may-lanh',
+      },
       { name: 'summary', label: 'Tóm tắt', type: 'textarea' },
       { name: 'description', label: 'Mô tả', type: 'textarea' },
       { name: 'displayOrder', label: 'Thứ tự hiển thị', type: 'number' },
       { name: 'isActive', label: 'Đang hiển thị', type: 'checkbox' },
     ],
-    primaryLabel: (record, index) => textValue(record.name) || textValue(record.slug) || `Dịch vụ ${index + 1}`,
-  },
-  locations: {
-    fields: [
-      { name: 'name', label: 'Tên khu vực', type: 'text', required: true },
-      { name: 'slug', label: 'Đường dẫn', type: 'text', required: true, placeholder: 'ninh-kieu' },
-      { name: 'description', label: 'Mô tả', type: 'textarea' },
-      { name: 'isPriority', label: 'Khu vực ưu tiên', type: 'checkbox' },
-      { name: 'isActive', label: 'Đang hiển thị', type: 'checkbox' },
-    ],
-    primaryLabel: (record, index) => textValue(record.name) || textValue(record.slug) || `Khu vực ${index + 1}`,
+    primaryLabel: (record, index) =>
+      textValue(record.name) || textValue(record.slug) || `Dịch vụ ${index + 1}`,
   },
   categories: {
     fields: [
@@ -61,14 +74,16 @@ const resourceConfigs: Record<string, ResourceConfig> = {
       { name: 'slug', label: 'Đường dẫn', type: 'text', required: true },
       { name: 'description', label: 'Mô tả', type: 'textarea' },
     ],
-    primaryLabel: (record, index) => textValue(record.name) || textValue(record.slug) || `Danh mục ${index + 1}`,
+    primaryLabel: (record, index) =>
+      textValue(record.name) || textValue(record.slug) || `Danh mục ${index + 1}`,
   },
   tags: {
     fields: [
       { name: 'name', label: 'Tên thẻ', type: 'text', required: true },
       { name: 'slug', label: 'Đường dẫn', type: 'text', required: true },
     ],
-    primaryLabel: (record, index) => textValue(record.name) || textValue(record.slug) || `Thẻ ${index + 1}`,
+    primaryLabel: (record, index) =>
+      textValue(record.name) || textValue(record.slug) || `Thẻ ${index + 1}`,
   },
   faqs: {
     fields: [
@@ -102,7 +117,8 @@ const resourceConfigs: Record<string, ResourceConfig> = {
       { name: 'featuredImageUrl', label: 'Ảnh đại diện', type: 'image' },
       { name: 'featuredImageAlt', label: 'Mô tả ảnh', type: 'text' },
     ],
-    primaryLabel: (record, index) => textValue(record.title) || textValue(record.slug) || `Bài viết ${index + 1}`,
+    primaryLabel: (record, index) =>
+      textValue(record.title) || textValue(record.slug) || `Bài viết ${index + 1}`,
   },
   bookings: {
     fields: [
@@ -127,7 +143,8 @@ const resourceConfigs: Record<string, ResourceConfig> = {
         ],
       },
     ],
-    primaryLabel: (record, index) => textValue(record.customerName) || textValue(record.customerPhone) || `Lịch hẹn ${index + 1}`,
+    primaryLabel: (record, index) =>
+      textValue(record.customerName) || textValue(record.customerPhone) || `Lịch hẹn ${index + 1}`,
   },
   contacts: {
     fields: [
@@ -139,13 +156,20 @@ const resourceConfigs: Record<string, ResourceConfig> = {
       { name: 'source', label: 'Nguồn', type: 'text' },
       { name: 'isResolved', label: 'Đã xử lý', type: 'checkbox' },
     ],
-    primaryLabel: (record, index) => textValue(record.name) || textValue(record.phone) || `Liên hệ ${index + 1}`,
+    primaryLabel: (record, index) =>
+      textValue(record.name) || textValue(record.phone) || `Liên hệ ${index + 1}`,
   },
   media: {
     fields: [
       { name: 'fileName', label: 'Tên file', type: 'text', required: true },
       { name: 'originalName', label: 'Tên gốc', type: 'text', required: true },
-      { name: 'mimeType', label: 'Loại file', type: 'text', required: true, placeholder: 'image/jpeg' },
+      {
+        name: 'mimeType',
+        label: 'Loại file',
+        type: 'text',
+        required: true,
+        placeholder: 'image/jpeg',
+      },
       { name: 'size', label: 'Dung lượng', type: 'number' },
       { name: 'url', label: 'Ảnh', type: 'image', required: true },
       { name: 'altText', label: 'Mô tả ảnh', type: 'text' },
@@ -159,7 +183,8 @@ const resourceConfigs: Record<string, ResourceConfig> = {
         ],
       },
     ],
-    primaryLabel: (record, index) => textValue(record.originalName) || textValue(record.fileName) || `Ảnh ${index + 1}`,
+    primaryLabel: (record, index) =>
+      textValue(record.originalName) || textValue(record.fileName) || `Ảnh ${index + 1}`,
   },
   seo: {
     fields: [
@@ -174,17 +199,24 @@ const resourceConfigs: Record<string, ResourceConfig> = {
       { name: 'locationId', label: 'ID khu vực', type: 'text' },
       { name: 'blogPostId', label: 'ID bài viết', type: 'text' },
     ],
-    primaryLabel: (record, index) => textValue(record.title) || textValue(record.pageKey) || `SEO ${index + 1}`,
+    primaryLabel: (record, index) =>
+      textValue(record.title) || textValue(record.pageKey) || `SEO ${index + 1}`,
   },
   users: {
     fields: [
       { name: 'email', label: 'Email', type: 'text', required: true },
       { name: 'name', label: 'Tên người dùng', type: 'text', required: true },
-      { name: 'password', label: 'Mật khẩu mới', type: 'text', placeholder: 'Để trống nếu không đổi khi sửa' },
+      {
+        name: 'password',
+        label: 'Mật khẩu mới',
+        type: 'text',
+        placeholder: 'Để trống nếu không đổi khi sửa',
+      },
       { name: 'roleId', label: 'ID vai trò', type: 'text', required: true },
       { name: 'isActive', label: 'Đang hoạt động', type: 'checkbox' },
     ],
-    primaryLabel: (record, index) => textValue(record.email) || textValue(record.name) || `Người dùng ${index + 1}`,
+    primaryLabel: (record, index) =>
+      textValue(record.email) || textValue(record.name) || `Người dùng ${index + 1}`,
   },
   roles: {
     fields: [
@@ -296,8 +328,70 @@ function formatAdminValue(value: unknown) {
   return JSON.stringify(value);
 }
 
-function getRecordImageUrl(record: AdminRecord) {
-  return record.featuredImage?.url ?? textValue(record.url);
+function getServiceImageUrl(record: AdminRecord) {
+  const slug = textValue(record.slug);
+  return slug ? `/images/services/${slug}.jpg` : '';
+}
+
+function getRecordImageUrls(record: AdminRecord, resource?: string) {
+  if (resource === 'services') {
+    const serviceImageUrl = getServiceImageUrl(record);
+    return serviceImageUrl ? [serviceImageUrl] : [];
+  }
+
+  const imageUrl = record.featuredImage?.url ?? textValue(record.url);
+  return imageUrl ? [imageUrl] : [];
+}
+
+function getRecordImageUrl(record: AdminRecord, resource?: string) {
+  return getRecordImageUrls(record, resource)[0] ?? '';
+}
+
+function getRecordImageFieldUrl(record: AdminRecord, field: AdminField) {
+  if (field.name === 'featuredImageUrl') {
+    return record.featuredImage?.url ?? textValue(record[field.name]);
+  }
+
+  return textValue(record[field.name]);
+}
+
+function getCurrentImagePreviews(
+  resource: string,
+  config: ResourceConfig,
+  record: AdminRecord,
+): CurrentImagePreview[] {
+  if (resource === 'services') {
+    const serviceImageUrl = getServiceImageUrl(record);
+    const serviceName = config.primaryLabel(record, 0);
+
+    return [
+      {
+        key: 'service-image',
+        label: 'Ảnh đại diện trên website',
+        url: serviceImageUrl,
+        alt: serviceName,
+        note: serviceImageUrl
+          ? `Ảnh tĩnh theo slug, không lưu trong bảng dịch vụ: ${serviceImageUrl}`
+          : 'Dịch vụ chưa có đường dẫn nên chưa xác định được ảnh.',
+      },
+    ];
+  }
+
+  return config.fields
+    .filter((field) => field.type === 'image')
+    .map((field) => {
+      const imageUrl = getRecordImageFieldUrl(record, field);
+
+      return {
+        key: field.name,
+        label: field.label,
+        url: imageUrl,
+        alt:
+          record.featuredImage?.altText ??
+          textValue(record.altText) ??
+          config.primaryLabel(record, 0),
+      };
+    });
 }
 
 function AdminResourcePageContent({ title, resource }: { title: string; resource: string }) {
@@ -343,6 +437,7 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
   };
 
   const handleCreateRecord = () => {
+    if (config.readOnly) return;
     setForm(createInitialForm(config));
     setEditingRecord(null);
     setSelectedRecord(null);
@@ -350,6 +445,7 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
   };
 
   const handleViewRecord = (record: AdminRecord) => {
+    if (config.readOnly) return;
     setSelectedRecord(record);
     setEditingRecord(null);
     setScreenMode('view');
@@ -395,6 +491,7 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
   };
 
   const handleEditRecord = (record: AdminRecord) => {
+    if (config.readOnly) return;
     setEditingRecord(record);
     setSelectedRecord(record);
     setForm(createEditForm(config, record));
@@ -402,6 +499,7 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
   };
 
   const handleDeleteRecord = async (record: AdminRecord) => {
+    if (config.readOnly) return;
     if (!token || !record.id || !window.confirm('Xóa dữ liệu này?')) return;
     await apiClient.delete(`/admin/${resource}/${record.id}`, {
       headers: { Authorization: `Bearer ${token}` },
@@ -409,60 +507,74 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
     if (editingRecord?.id === record.id) resetForm();
     await refetch();
   };
+  const currentImagePreviews = editingRecord
+    ? getCurrentImagePreviews(resource, config, editingRecord)
+    : [];
+  const selectedImagePreviews = selectedRecord
+    ? getCurrentImagePreviews(resource, config, selectedRecord)
+    : [];
 
   return (
-    <main className="w-full px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+    <main className="flex min-h-full w-full flex-col px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="text-2xl font-bold">{title}</h1>
-        {screenMode === 'list' ? (
+        {screenMode === 'list' && !config.readOnly ? (
           <Button type="button" onClick={handleCreateRecord} disabled={!token}>
             Thêm mới
           </Button>
         ) : null}
       </div>
-      <div className="mt-6">
+      <div className="mt-6 flex flex-1 flex-col">
         {screenMode === 'create' || screenMode === 'edit' ? (
-        <form className="max-w-3xl rounded-md border bg-white p-4" onSubmit={handleSubmit}>
-          <div className="flex items-center justify-between gap-3">
-            <h2 className="font-semibold">{editingRecord ? 'Chỉnh sửa dữ liệu' : 'Tạo dữ liệu'}</h2>
-            <button type="button" className="text-sm font-semibold text-slate-500" onClick={resetForm}>
-              Quay lại danh sách
-            </button>
-          </div>
+          <form className="max-w-3xl rounded-md border bg-white p-4" onSubmit={handleSubmit}>
+            <div className="flex items-center justify-between gap-3">
+              <h2 className="font-semibold">
+                {editingRecord ? 'Chỉnh sửa dữ liệu' : 'Tạo dữ liệu'}
+              </h2>
+              <button
+                type="button"
+                className="text-sm font-semibold text-slate-500"
+                onClick={resetForm}
+              >
+                Quay lại danh sách
+              </button>
+            </div>
 
-          <div className="mt-4 grid gap-4">
-            {config.fields.map((field) => (
-              <label key={field.name} className="grid gap-2 text-sm font-semibold text-slate-700">
-                <span>
-                  {field.label}
-                  {field.required ? <span className="text-red-600"> *</span> : null}
-                </span>
-                <FormField
-                  field={field}
-                  value={form[field.name]}
-                  onChange={(value) => updateField(field.name, value)}
-                  onImageChange={(event) => handleImageChange(event, field)}
-                />
-              </label>
-            ))}
-          </div>
+            <CurrentImagePreviewSection previews={currentImagePreviews} />
 
-          <div className="mt-5 flex gap-2">
-            <Button type="submit" disabled={!token || isSaving}>
-              {editingRecord ? 'Lưu thay đổi' : 'Tạo mới'}
-            </Button>
-            <Button type="button" variant="outline" onClick={resetForm}>
-              Hủy
-            </Button>
-          </div>
-        </form>
+            <div className="mt-4 grid gap-4">
+              {config.fields.map((field) => (
+                <label key={field.name} className="grid gap-2 text-sm font-semibold text-slate-700">
+                  <span>
+                    {field.label}
+                    {field.required ? <span className="text-red-600"> *</span> : null}
+                  </span>
+                  <FormField
+                    field={field}
+                    value={form[field.name]}
+                    onChange={(value) => updateField(field.name, value)}
+                    onImageChange={(event) => handleImageChange(event, field)}
+                  />
+                </label>
+              ))}
+            </div>
+
+            <div className="mt-5 flex gap-2">
+              <Button type="submit" disabled={!token || isSaving}>
+                {editingRecord ? 'Lưu thay đổi' : 'Tạo mới'}
+              </Button>
+              <Button type="button" variant="outline" onClick={resetForm}>
+                Hủy
+              </Button>
+            </div>
+          </form>
         ) : null}
 
         {screenMode === 'view' && selectedRecord ? (
           <div className="rounded-md border bg-white p-4">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <p className="text-sm font-semibold uppercase text-slate-500">View</p>
+                <p className="text-sm font-semibold uppercase text-slate-500">Chi tiết</p>
                 <h2 className="text-xl font-black">{config.primaryLabel(selectedRecord, 0)}</h2>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -470,37 +582,30 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
                   Quay lại
                 </Button>
                 <Button type="button" onClick={() => handleEditRecord(selectedRecord)}>
-                  Update
+                  Cập nhật
                 </Button>
               </div>
             </div>
 
-            {getRecordImageUrl(selectedRecord) ? (
-              <div className="relative mt-5 aspect-[16/9] max-w-xl overflow-hidden rounded-md border bg-slate-100">
-                <Image
-                  src={getRecordImageUrl(selectedRecord)}
-                  alt={selectedRecord.featuredImage?.altText ?? textValue(selectedRecord.altText) ?? config.primaryLabel(selectedRecord, 0)}
-                  fill
-                  className="object-cover"
-                  sizes="640px"
-                  unoptimized={getRecordImageUrl(selectedRecord).startsWith('data:')}
-                />
-              </div>
-            ) : null}
+            <CurrentImagePreviewSection previews={selectedImagePreviews} />
 
             <dl className="mt-5 grid gap-3 md:grid-cols-2">
               <div className="rounded-md border bg-slate-50 p-3">
                 <dt className="text-xs font-black uppercase text-slate-500">ID</dt>
-                <dd className="mt-1 break-words text-sm font-semibold text-slate-900">{selectedRecord.id ?? 'Chưa có'}</dd>
+                <dd className="mt-1 break-words text-sm font-semibold text-slate-900">
+                  {selectedRecord.id ?? 'Chưa có'}
+                </dd>
               </div>
               {config.fields.map((field) => (
                 <div key={field.name} className="rounded-md border bg-slate-50 p-3">
                   <dt className="text-xs font-black uppercase text-slate-500">{field.label}</dt>
                   <dd className="mt-1 break-words text-sm font-semibold text-slate-900">
                     {field.name === 'featuredImageUrl'
-                      ? getRecordImageUrl(selectedRecord) || 'Chưa có'
+                      ? getRecordImageUrl(selectedRecord, resource) || 'Chưa có'
                       : field.name === 'featuredImageAlt'
-                        ? selectedRecord.featuredImage?.altText || textValue(selectedRecord.altText) || 'Chưa có'
+                        ? selectedRecord.featuredImage?.altText ||
+                          textValue(selectedRecord.altText) ||
+                          'Chưa có'
                         : formatAdminValue(selectedRecord[field.name])}
                   </dd>
                 </div>
@@ -509,63 +614,123 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
           </div>
         ) : null}
 
-        <div className={screenMode === 'list' ? 'rounded-md border bg-white p-4' : 'hidden'}>
-          {!token ? <p className="text-sm text-slate-600">Vui lòng đăng nhập để quản trị.</p> : null}
+        <div
+          className={
+            screenMode === 'list' ? 'flex flex-1 flex-col rounded-md border bg-white p-4' : 'hidden'
+          }
+        >
+          {!token ? (
+            <p className="text-sm text-slate-600">Vui lòng đăng nhập để quản trị.</p>
+          ) : null}
           {isLoading ? <p className="text-sm text-slate-600">Đang tải...</p> : null}
           {data ? (
             <div>
               <p className="text-sm text-slate-600">Tổng số: {data.total}</p>
+              {config.readOnlyMessage ? (
+                <p className="mt-2 text-sm font-semibold text-slate-500">
+                  {config.readOnlyMessage}
+                </p>
+              ) : null}
               <div className="mt-4 grid gap-3">
-                {data.items.map((record, index) => (
-                  <div
-                    key={record.id ?? index}
-                    className="flex items-center justify-between gap-3 rounded-md border p-3 text-sm"
-                  >
-                    <span className="flex min-w-0 items-center gap-3">
-                      {record.featuredImage?.url || textValue(record.url) ? (
-                        <span className="relative h-12 w-16 shrink-0 overflow-hidden rounded-md bg-slate-100">
-                          {(() => {
-                            const imageUrl = record.featuredImage?.url ?? textValue(record.url);
+                {data.items.map((record, index) => {
+                  const imageUrls = getRecordImageUrls(record, resource);
+                  const imageUrl = imageUrls[0];
+                  const label = config.primaryLabel(record, index);
 
-                            return (
-                              <Image
-                                src={imageUrl}
-                                alt={record.featuredImage?.altText ?? textValue(record.altText) ?? config.primaryLabel(record, index)}
-                                fill
-                                className="object-cover"
-                                sizes="64px"
-                                unoptimized={imageUrl.startsWith('data:')}
-                              />
-                            );
-                          })()}
+                  return (
+                    <div
+                      key={record.id ?? index}
+                      className="flex items-center justify-between gap-3 rounded-md border p-3 text-sm"
+                    >
+                      <span className="flex min-w-0 items-center gap-3">
+                        {imageUrl ? (
+                          <span className="relative h-12 w-16 shrink-0 overflow-hidden rounded-md bg-slate-100">
+                            <Image
+                              src={imageUrl}
+                              alt={
+                                record.featuredImage?.altText ?? textValue(record.altText) ?? label
+                              }
+                              fill
+                              className="object-cover"
+                              sizes="64px"
+                              unoptimized={imageUrl.startsWith('data:')}
+                            />
+                            {imageUrls.length > 1 ? (
+                              <span className="absolute bottom-1 right-1 rounded bg-slate-950/80 px-1.5 py-0.5 text-[10px] font-black leading-none text-white">
+                                {imageUrls.length} ảnh
+                              </span>
+                            ) : null}
+                          </span>
+                        ) : null}
+                        <span className="truncate">{label}</span>
+                      </span>
+                      {record.id && !config.readOnly ? (
+                        <span className="flex shrink-0 items-center gap-3">
+                          <button
+                            className="font-semibold text-slate-700"
+                            onClick={() => handleViewRecord(record)}
+                          >
+                            Xem
+                          </button>
+                          <button
+                            className="font-semibold text-primary"
+                            onClick={() => handleEditRecord(record)}
+                          >
+                            Cập nhật
+                          </button>
+                          <button
+                            className="font-semibold text-red-600"
+                            onClick={() => handleDeleteRecord(record)}
+                          >
+                            Xóa
+                          </button>
                         </span>
                       ) : null}
-                      <span className="truncate">{config.primaryLabel(record, index)}</span>
-                    </span>
-                    {record.id ? (
-                      <span className="flex shrink-0 items-center gap-3">
-                        <button className="font-semibold text-slate-700" onClick={() => handleViewRecord(record)}>
-                          View
-                        </button>
-                        <button className="font-semibold text-primary" onClick={() => handleEditRecord(record)}>
-                          Update
-                        </button>
-                        <button
-                          className="font-semibold text-red-600"
-                          onClick={() => handleDeleteRecord(record)}
-                        >
-                          Xóa
-                        </button>
-                      </span>
-                    ) : null}
-                  </div>
-                ))}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           ) : null}
         </div>
       </div>
     </main>
+  );
+}
+
+function CurrentImagePreviewSection({ previews }: { previews: CurrentImagePreview[] }) {
+  if (!previews.length) return null;
+
+  return (
+    <div className="mt-4 rounded-md border border-slate-200 bg-slate-50 p-3">
+      <p className="text-sm font-black uppercase text-slate-500">Hình ảnh hiện tại</p>
+      <div className="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+        {previews.map((preview) => (
+          <div key={preview.key} className="grid gap-2">
+            <span className="text-sm font-semibold text-slate-700">{preview.label}</span>
+            {preview.url ? (
+              <span className="relative block aspect-[16/9] overflow-hidden rounded-md border bg-white">
+                <Image
+                  src={preview.url}
+                  alt={preview.alt}
+                  fill
+                  className="object-cover"
+                  sizes="360px"
+                  unoptimized={preview.url.startsWith('data:')}
+                />
+              </span>
+            ) : (
+              <span className="flex aspect-[16/9] items-center justify-center rounded-md border border-dashed bg-white text-sm font-semibold text-slate-500">
+                Chưa có ảnh
+              </span>
+            )}
+            {preview.note ? (
+              <span className="break-words text-xs font-medium text-slate-500">{preview.note}</span>
+            ) : null}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -580,7 +745,8 @@ function FormField({
   onChange: (value: string | number | boolean) => void;
   onImageChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }) {
-  const inputClass = 'min-h-11 rounded-md border px-3 py-2 text-sm font-medium text-slate-900 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10';
+  const inputClass =
+    'min-h-11 rounded-md border px-3 py-2 text-sm font-medium text-slate-900 outline-none focus:border-primary focus:ring-2 focus:ring-primary/10';
 
   if (field.type === 'textarea') {
     return (
@@ -610,7 +776,12 @@ function FormField({
 
   if (field.type === 'select') {
     return (
-      <select className={inputClass} value={String(value ?? '')} required={field.required} onChange={(event) => onChange(event.target.value)}>
+      <select
+        className={inputClass}
+        value={String(value ?? '')}
+        required={field.required}
+        onChange={(event) => onChange(event.target.value)}
+      >
         {field.options?.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
@@ -642,7 +813,12 @@ function FormField({
           placeholder="Dán URL ảnh hoặc chọn file bên dưới"
           onChange={(event) => onChange(event.target.value)}
         />
-        <input type="file" accept="image/*" className="text-sm font-medium" onChange={onImageChange} />
+        <input
+          type="file"
+          accept="image/*"
+          className="text-sm font-medium"
+          onChange={onImageChange}
+        />
       </span>
     );
   }
@@ -654,7 +830,9 @@ function FormField({
       value={String(value ?? '')}
       required={field.required}
       placeholder={field.placeholder}
-      onChange={(event) => onChange(field.type === 'number' ? event.target.value : event.target.value)}
+      onChange={(event) =>
+        onChange(field.type === 'number' ? event.target.value : event.target.value)
+      }
     />
   );
 }
