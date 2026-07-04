@@ -3,6 +3,7 @@ import { Be_Vietnam_Pro } from 'next/font/google';
 import Script from 'next/script';
 import { SiteChrome } from '@/components/layout/site-chrome';
 import { JsonLdScript } from '@/components/seo/json-ld-script';
+import { ToastProvider } from '@/components/ui/toast';
 import { localBusinessJsonLd } from '@/lib/seo/json-ld';
 import { integrationSettings } from '@/lib/integrations/settings';
 import './globals.css';
@@ -33,7 +34,9 @@ export default function RootLayout({
   return (
     <html lang="vi">
       <body className={`${beVietnamPro.variable} flex min-h-dvh flex-col`}>
-        <SiteChrome>{children}</SiteChrome>
+        <ToastProvider>
+          <SiteChrome>{children}</SiteChrome>
+        </ToastProvider>
         <JsonLdScript data={localBusinessJsonLd()} />
         {integrationSettings.googleAnalyticsId ? (
           <>

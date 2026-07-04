@@ -7,6 +7,7 @@ import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { apiClient } from '@/lib/api/client';
 import { QueryBoundary } from '@/components/layout/query-boundary';
+import { useToast } from '@/components/ui/toast';
 
 const contactSchema = z.object({
   name: z.string().min(2),
@@ -22,6 +23,7 @@ const fieldClass =
   'h-12 w-full min-w-0 rounded-md border border-slate-200 bg-slate-50 px-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10';
 
 function ContactFormContent({ quotation = false }: { quotation?: boolean }) {
+  const { toast } = useToast();
   const form = useForm<ContactInput>({
     resolver: zodResolver(contactSchema),
     defaultValues: { name: '', phone: '', email: '', subject: '', message: '' },
@@ -29,10 +31,28 @@ function ContactFormContent({ quotation = false }: { quotation?: boolean }) {
   const mutation = useMutation({
     mutationFn: (input: ContactInput) =>
       apiClient.post(quotation ? '/quotation-requests' : '/contact-requests', input),
+    onSuccess: () => {
+      toast({
+        title: quotation ? 'Đã gửi yêu cầu báo giá' : 'Đã gửi liên hệ',
+        description: 'Minh Nhật sẽ phản hồi trong thời gian sớm nhất.',
+        variant: 'success',
+      });
+      form.reset();
+    },
+    onError: () => {
+      toast({
+        title: 'Không gửi được thông tin',
+        description: 'Vui lòng thử lại hoặc gọi hotline.',
+        variant: 'error',
+      });
+    },
   });
 
   return (
-    <form className="grid min-w-0 gap-3" onSubmit={form.handleSubmit((values) => mutation.mutate(values))}>
+    <form
+      className="grid min-w-0 gap-3"
+      onSubmit={form.handleSubmit((values) => mutation.mutate(values))}
+    >
       <input className={fieldClass} placeholder="Họ tên" {...form.register('name')} />
       <input className={fieldClass} placeholder="Số điện thoại" {...form.register('phone')} />
       <input className={fieldClass} placeholder="Thư điện tử" {...form.register('email')} />

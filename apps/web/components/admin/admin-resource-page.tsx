@@ -1,11 +1,12 @@
 'use client';
 
-import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
 import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from 'react';
 import { apiClient } from '@/lib/api/client';
 import { getStoredAccessToken } from '@/lib/auth/tokens';
 import { Button } from '@/components/ui/button';
+import { LoadingImage } from '@/components/ui/loading-image';
+import { useToast } from '@/components/ui/toast';
 import { QueryBoundary } from '@/components/layout/query-boundary';
 
 type FieldType =
@@ -31,6 +32,9 @@ type ResourceConfig = {
   primaryLabel: (record: AdminRecord, index: number) => string;
   readOnly?: boolean;
   readOnlyMessage?: string;
+  allowCreate?: boolean;
+  allowDelete?: boolean;
+  updateFields?: string[];
 };
 
 type AdminRecord = {
@@ -62,6 +66,8 @@ const resourceConfigs: Record<string, ResourceConfig> = {
       },
       { name: 'summary', label: 'Tóm tắt', type: 'textarea' },
       { name: 'description', label: 'Mô tả', type: 'textarea' },
+      { name: 'imageUrl', label: 'Ảnh dịch vụ', type: 'image' },
+      { name: 'imageAlt', label: 'Mô tả ảnh', type: 'text' },
       { name: 'displayOrder', label: 'Thứ tự hiển thị', type: 'number' },
       { name: 'isActive', label: 'Đang hiển thị', type: 'checkbox' },
     ],
@@ -145,6 +151,9 @@ const resourceConfigs: Record<string, ResourceConfig> = {
     ],
     primaryLabel: (record, index) =>
       textValue(record.customerName) || textValue(record.customerPhone) || `Lịch hẹn ${index + 1}`,
+    allowCreate: false,
+    allowDelete: false,
+    updateFields: ['status'],
   },
   contacts: {
     fields: [
@@ -158,6 +167,9 @@ const resourceConfigs: Record<string, ResourceConfig> = {
     ],
     primaryLabel: (record, index) =>
       textValue(record.name) || textValue(record.phone) || `Liên hệ ${index + 1}`,
+    allowCreate: false,
+    allowDelete: false,
+    updateFields: ['isResolved'],
   },
   media: {
     fields: [
@@ -246,6 +258,11 @@ function createInitialForm(config: ResourceConfig) {
   }, {});
 }
 
+function getUpdateFields(config: ResourceConfig) {
+  if (!config.updateFields) return config.fields;
+  return config.fields.filter((field) => config.updateFields?.includes(field.name));
+}
+
 function formatDateTimeInput(value: unknown) {
   if (typeof value !== 'string' || !value) return '';
   const date = new Date(value);
@@ -280,8 +297,8 @@ function createEditForm(config: ResourceConfig, record: AdminRecord) {
   return initialForm;
 }
 
-function buildPayload(config: ResourceConfig, form: FormState) {
-  return config.fields.reduce<Record<string, unknown>>((payload, field) => {
+function buildPayload(fields: AdminField[], form: FormState) {
+  return fields.reduce<Record<string, unknown>>((payload, field) => {
     const value = form[field.name];
 
     if (field.type === 'checkbox') {
@@ -329,6 +346,9 @@ function formatAdminValue(value: unknown) {
 }
 
 function getServiceImageUrl(record: AdminRecord) {
+  const savedImageUrl = textValue(record.imageUrl);
+  if (savedImageUrl) return savedImageUrl;
+
   const slug = textValue(record.slug);
   return slug ? `/images/services/${slug}.jpg` : '';
 }
@@ -362,17 +382,19 @@ function getCurrentImagePreviews(
 ): CurrentImagePreview[] {
   if (resource === 'services') {
     const serviceImageUrl = getServiceImageUrl(record);
-    const serviceName = config.primaryLabel(record, 0);
+    const serviceName = textValue(record.imageAlt) || config.primaryLabel(record, 0);
 
     return [
       {
         key: 'service-image',
-        label: 'Ảnh đại diện trên website',
+        label: 'Ảnh dịch vụ',
         url: serviceImageUrl,
         alt: serviceName,
         note: serviceImageUrl
-          ? `Ảnh tĩnh theo slug, không lưu trong bảng dịch vụ: ${serviceImageUrl}`
-          : 'Dịch vụ chưa có đường dẫn nên chưa xác định được ảnh.',
+          ? textValue(record.imageUrl)
+            ? 'Ảnh đang lưu trong dữ liệu dịch vụ.'
+            : `Chưa có ảnh riêng, đang dùng ảnh mặc định theo slug: ${serviceImageUrl}`
+          : 'Dịch vụ chưa có ảnh riêng hoặc slug ảnh mặc định.',
       },
     ];
   }
@@ -396,6 +418,11 @@ function getCurrentImagePreviews(
 
 function AdminResourcePageContent({ title, resource }: { title: string; resource: string }) {
   const config = useMemo(() => resourceConfigs[resource] ?? resourceConfigs.services, [resource]);
+  const updateFields = useMemo(() => getUpdateFields(config), [config]);
+  const canCreate = !config.readOnly && (config.allowCreate ?? true);
+  const canUpdate = !config.readOnly && updateFields.length > 0;
+  const canDelete = !config.readOnly && (config.allowDelete ?? true);
+  const { toast } = useToast();
   const [token, setToken] = useState<string | null>(null);
   const [form, setForm] = useState<FormState>(() => createInitialForm(config));
   const [editingRecord, setEditingRecord] = useState<AdminRecord | null>(null);
@@ -437,7 +464,7 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
   };
 
   const handleCreateRecord = () => {
-    if (config.readOnly) return;
+    if (!canCreate) return;
     setForm(createInitialForm(config));
     setEditingRecord(null);
     setSelectedRecord(null);
@@ -445,7 +472,6 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
   };
 
   const handleViewRecord = (record: AdminRecord) => {
-    if (config.readOnly) return;
     setSelectedRecord(record);
     setEditingRecord(null);
     setScreenMode('view');
@@ -457,18 +483,35 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
 
     setIsSaving(true);
     try {
-      const payload = buildPayload(config, form);
       if (editingRecord?.id) {
+        const payload = buildPayload(updateFields, form);
         await apiClient.patch(`/admin/${resource}/${editingRecord.id}`, payload, {
           headers: { Authorization: `Bearer ${token}` },
         });
+        toast({
+          title: 'Đã cập nhật dữ liệu',
+          description: title,
+          variant: 'success',
+        });
       } else {
+        const payload = buildPayload(config.fields, form);
         await apiClient.post(`/admin/${resource}`, payload, {
           headers: { Authorization: `Bearer ${token}` },
+        });
+        toast({
+          title: 'Đã tạo dữ liệu mới',
+          description: title,
+          variant: 'success',
         });
       }
       resetForm();
       await refetch();
+    } catch {
+      toast({
+        title: 'Không lưu được dữ liệu',
+        description: 'Vui lòng kiểm tra thông tin rồi thử lại.',
+        variant: 'error',
+      });
     } finally {
       setIsSaving(false);
     }
@@ -477,7 +520,21 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
   const handleImageChange = async (event: ChangeEvent<HTMLInputElement>, field: AdminField) => {
     const file = event.target.files?.[0];
     if (!file) return;
-    updateField(field.name, await readImageFile(file));
+    try {
+      updateField(field.name, await readImageFile(file));
+      toast({
+        title: 'Đã chọn ảnh',
+        description: file.name,
+        variant: 'success',
+      });
+    } catch {
+      toast({
+        title: 'Không đọc được ảnh',
+        description: 'Vui lòng chọn file ảnh khác.',
+        variant: 'error',
+      });
+      return;
+    }
 
     if (resource === 'media' && field.name === 'url') {
       setForm((current) => ({
@@ -491,7 +548,7 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
   };
 
   const handleEditRecord = (record: AdminRecord) => {
-    if (config.readOnly) return;
+    if (!canUpdate) return;
     setEditingRecord(record);
     setSelectedRecord(record);
     setForm(createEditForm(config, record));
@@ -499,13 +556,26 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
   };
 
   const handleDeleteRecord = async (record: AdminRecord) => {
-    if (config.readOnly) return;
+    if (!canDelete) return;
     if (!token || !record.id || !window.confirm('Xóa dữ liệu này?')) return;
-    await apiClient.delete(`/admin/${resource}/${record.id}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    if (editingRecord?.id === record.id) resetForm();
-    await refetch();
+    try {
+      await apiClient.delete(`/admin/${resource}/${record.id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      toast({
+        title: 'Đã xóa dữ liệu',
+        description: config.primaryLabel(record, 0),
+        variant: 'success',
+      });
+      if (editingRecord?.id === record.id) resetForm();
+      await refetch();
+    } catch {
+      toast({
+        title: 'Không xóa được dữ liệu',
+        description: 'Vui lòng thử lại sau.',
+        variant: 'error',
+      });
+    }
   };
   const currentImagePreviews = editingRecord
     ? getCurrentImagePreviews(resource, config, editingRecord)
@@ -518,7 +588,7 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
     <main className="flex min-h-full w-full flex-col px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <h1 className="text-2xl font-bold">{title}</h1>
-        {screenMode === 'list' && !config.readOnly ? (
+        {screenMode === 'list' && canCreate ? (
           <Button type="button" onClick={handleCreateRecord} disabled={!token}>
             Thêm mới
           </Button>
@@ -543,7 +613,7 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
             <CurrentImagePreviewSection previews={currentImagePreviews} />
 
             <div className="mt-4 grid gap-4">
-              {config.fields.map((field) => (
+              {(editingRecord ? updateFields : config.fields).map((field) => (
                 <label key={field.name} className="grid gap-2 text-sm font-semibold text-slate-700">
                   <span>
                     {field.label}
@@ -581,9 +651,11 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
                 <Button type="button" variant="outline" onClick={resetForm}>
                   Quay lại
                 </Button>
-                <Button type="button" onClick={() => handleEditRecord(selectedRecord)}>
-                  Cập nhật
-                </Button>
+                {canUpdate ? (
+                  <Button type="button" onClick={() => handleEditRecord(selectedRecord)}>
+                    Cập nhật
+                  </Button>
+                ) : null}
               </div>
             </div>
 
@@ -645,7 +717,7 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
                       <span className="flex min-w-0 items-center gap-3">
                         {imageUrl ? (
                           <span className="relative h-12 w-16 shrink-0 overflow-hidden rounded-md bg-slate-100">
-                            <Image
+                            <LoadingImage
                               src={imageUrl}
                               alt={
                                 record.featuredImage?.altText ?? textValue(record.altText) ?? label
@@ -664,7 +736,7 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
                         ) : null}
                         <span className="truncate">{label}</span>
                       </span>
-                      {record.id && !config.readOnly ? (
+                      {record.id ? (
                         <span className="flex shrink-0 items-center gap-3">
                           <button
                             className="font-semibold text-slate-700"
@@ -672,18 +744,22 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
                           >
                             Xem
                           </button>
-                          <button
-                            className="font-semibold text-primary"
-                            onClick={() => handleEditRecord(record)}
-                          >
-                            Cập nhật
-                          </button>
-                          <button
-                            className="font-semibold text-red-600"
-                            onClick={() => handleDeleteRecord(record)}
-                          >
-                            Xóa
-                          </button>
+                          {canUpdate ? (
+                            <button
+                              className="font-semibold text-primary"
+                              onClick={() => handleEditRecord(record)}
+                            >
+                              Cập nhật
+                            </button>
+                          ) : null}
+                          {canDelete ? (
+                            <button
+                              className="font-semibold text-red-600"
+                              onClick={() => handleDeleteRecord(record)}
+                            >
+                              Xóa
+                            </button>
+                          ) : null}
                         </span>
                       ) : null}
                     </div>
@@ -710,7 +786,7 @@ function CurrentImagePreviewSection({ previews }: { previews: CurrentImagePrevie
             <span className="text-sm font-semibold text-slate-700">{preview.label}</span>
             {preview.url ? (
               <span className="relative block aspect-[16/9] overflow-hidden rounded-md border bg-white">
-                <Image
+                <LoadingImage
                   src={preview.url}
                   alt={preview.alt}
                   fill
@@ -797,7 +873,7 @@ function FormField({
       <span className="grid gap-3">
         {imageUrl ? (
           <span className="relative block aspect-[16/9] overflow-hidden rounded-md border bg-slate-100">
-            <Image
+            <LoadingImage
               src={imageUrl}
               alt=""
               fill

@@ -197,11 +197,10 @@
 
 @keyframes hero-fade {
   0% {
-    opacity: 0;
-    transform: scale(1.025);
+    opacity: 1;
+    transform: scale(1.01);
   }
 
-  4%,
   15% {
     opacity: 1;
     transform: scale(1.01);
@@ -221,11 +220,10 @@
 
 @keyframes area-fade-two {
   0% {
-    opacity: 0;
-    transform: scale(1.02);
+    opacity: 1;
+    transform: scale(1.01);
   }
 
-  10%,
   55% {
     opacity: 1;
     transform: scale(1.01);
@@ -240,11 +238,10 @@
 
 @keyframes area-fade-three {
   0% {
-    opacity: 0;
-    transform: scale(1.02);
+    opacity: 1;
+    transform: scale(1.01);
   }
 
-  8%,
   36% {
     opacity: 1;
     transform: scale(1.01);
@@ -267,12 +264,20 @@
     opacity: 1;
   }
 
+  .hero-fade-image:first-of-type {
+    opacity: 1;
+  }
+
   .area-fade-image {
     animation: none;
     opacity: 0;
   }
 
   .area-fade-image:first-child {
+    opacity: 1;
+  }
+
+  .area-fade-image:first-of-type {
     opacity: 1;
   }
 }

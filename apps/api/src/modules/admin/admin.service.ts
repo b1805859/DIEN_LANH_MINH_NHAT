@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { hash } from 'bcryptjs';
 import { PrismaService } from '../../prisma/prisma.service';
 
@@ -44,11 +44,30 @@ const SEARCH_FIELDS: Record<string, string[]> = {
   users: ['email', 'name'],
 };
 
+const CUSTOMER_MANAGED_RESOURCES = new Set(['bookings', 'contacts']);
+const BOOKING_STATUSES = new Set(['PENDING', 'CONFIRMED', 'IN_PROGRESS', 'COMPLETED', 'CANCELLED']);
+const CONTENT_RESOURCES = new Set([
+  'services',
+  'locations',
+  'categories',
+  'tags',
+  'faqs',
+  'media',
+  'seo',
+  'blog',
+]);
+const LEAD_RESOURCES = new Set(['bookings', 'contacts']);
+const IDENTITY_RESOURCES = new Set(['users', 'roles']);
+
+type AdminAction = 'read' | 'create' | 'update' | 'delete';
+
 @Injectable()
 export class AdminService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async getDashboard() {
+  async getDashboard(role: string) {
+    this.assertCanAccessDashboard(role);
+
     const [
       services,
       locations,
@@ -81,7 +100,8 @@ export class AdminService {
     };
   }
 
-  async list(resource: string, query: Record<string, string | undefined>) {
+  async list(resource: string, query: Record<string, string | undefined>, role: string) {
+    this.assertCanAccessResource(role, resource, 'read');
     const page = Math.max(Number(query.page ?? 1), 1);
     const pageSize = Math.min(Math.max(Number(query.pageSize ?? 20), 1), 100);
     const where = this.buildWhere(resource, query.search);
@@ -100,7 +120,8 @@ export class AdminService {
     return { items: this.sanitize(items), total, page, pageSize };
   }
 
-  async get(resource: string, id: string) {
+  async get(resource: string, id: string, role: string) {
+    this.assertCanAccessResource(role, resource, 'read');
     const item = await this.getDelegate(resource).findUnique({
       where: { id },
       include: this.getInclude(resource),
@@ -112,19 +133,24 @@ export class AdminService {
     return this.sanitize(item);
   }
 
-  async create(resource: string, payload: Record<string, unknown>) {
+  async create(resource: string, payload: Record<string, unknown>, role: string) {
+    this.assertCanAccessResource(role, resource, 'create');
+    this.assertAdminCanMutateResource(resource, 'create');
     const data = await this.preparePayload(resource, payload);
     const item = await this.getDelegate(resource).create({ data });
     return this.sanitize(item);
   }
 
-  async update(resource: string, id: string, payload: Record<string, unknown>) {
+  async update(resource: string, id: string, payload: Record<string, unknown>, role: string) {
+    this.assertCanAccessResource(role, resource, 'update');
     const data = await this.preparePayload(resource, payload, true, id);
     const item = await this.getDelegate(resource).update({ where: { id }, data });
     return this.sanitize(item);
   }
 
-  async remove(resource: string, id: string) {
+  async remove(resource: string, id: string, role: string) {
+    this.assertCanAccessResource(role, resource, 'delete');
+    this.assertAdminCanMutateResource(resource, 'delete');
     return this.prisma.$transaction(async (client) => {
       await this.prepareHardDelete(client, resource, id);
       const item = await this.getDelegate(resource, client).delete({ where: { id } });
@@ -139,6 +165,42 @@ export class AdminService {
     }
 
     return (client as Record<string, Delegate>)[delegateName];
+  }
+
+  private assertCanAccessDashboard(role: string) {
+    if (!['SUPER_ADMIN', 'ADMIN', 'EDITOR', 'STAFF'].includes(role)) {
+      throw new ForbiddenException('Admin access denied.');
+    }
+  }
+
+  private assertCanAccessResource(role: string, resource: string, action: AdminAction) {
+    this.getDelegate(resource);
+
+    if (role === 'SUPER_ADMIN') return;
+
+    if (IDENTITY_RESOURCES.has(resource)) {
+      throw new ForbiddenException('Only SUPER_ADMIN can access user and role data.');
+    }
+
+    if (LEAD_RESOURCES.has(resource)) {
+      if (['ADMIN', 'STAFF'].includes(role) && ['read', 'update'].includes(action)) return;
+      throw new ForbiddenException('Lead data is limited to ADMIN and STAFF roles.');
+    }
+
+    if (CONTENT_RESOURCES.has(resource)) {
+      if (['ADMIN', 'EDITOR'].includes(role)) return;
+      throw new ForbiddenException('Content data is limited to ADMIN and EDITOR roles.');
+    }
+
+    throw new ForbiddenException('Admin resource access denied.');
+  }
+
+  private assertAdminCanMutateResource(resource: string, action: 'create' | 'delete') {
+    if (CUSTOMER_MANAGED_RESOURCES.has(resource)) {
+      throw new BadRequestException(
+        `Admin cannot ${action} ${resource}. Customers create these records from the website.`,
+      );
+    }
   }
 
   private async prepareHardDelete(client: unknown, resource: string, id: string) {
@@ -213,6 +275,14 @@ export class AdminService {
     isUpdate = false,
     id?: string,
   ) {
+    if (CUSTOMER_MANAGED_RESOURCES.has(resource)) {
+      if (!isUpdate) {
+        throw new BadRequestException(`Admin cannot create ${resource}.`);
+      }
+
+      return this.prepareCustomerManagedUpdate(resource, payload);
+    }
+
     const data = { ...payload };
 
     if (resource === 'users') {
@@ -279,6 +349,26 @@ export class AdminService {
     }
 
     return data;
+  }
+
+  private prepareCustomerManagedUpdate(resource: string, payload: Record<string, unknown>) {
+    if (resource === 'bookings') {
+      if (typeof payload.status !== 'string' || !BOOKING_STATUSES.has(payload.status)) {
+        throw new BadRequestException('Booking status is required.');
+      }
+
+      return { status: payload.status };
+    }
+
+    if (resource === 'contacts') {
+      if (typeof payload.isResolved !== 'boolean') {
+        throw new BadRequestException('Contact resolution status is required.');
+      }
+
+      return { isResolved: payload.isResolved };
+    }
+
+    throw new BadRequestException(`Unsupported customer-managed resource: ${resource}`);
   }
 
   private buildImageFileName(baseName: string, imageUrl: string) {

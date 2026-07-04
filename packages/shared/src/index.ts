@@ -71,7 +71,8 @@ export const BLOG_POSTS = [
     slug: 'bao-lau-nen-ve-sinh-may-lanh-mot-lan',
     category: 'may-lanh',
     image: '/images/services/ve-sinh-may-lanh.jpg',
-    excerpt: 'Mốc thời gian vệ sinh máy lạnh phù hợp cho gia đình, phòng trọ và cửa hàng sử dụng thường xuyên.',
+    excerpt:
+      'Mốc thời gian vệ sinh máy lạnh phù hợp cho gia đình, phòng trọ và cửa hàng sử dụng thường xuyên.',
   },
   {
     title: 'Dấu hiệu máy lạnh cần nạp gas',
@@ -99,7 +100,8 @@ export const BLOG_POSTS = [
     slug: 'cac-loi-thuong-gap-o-tu-lanh',
     category: 'tu-lanh',
     image: '/images/services/sua-tu-lanh.jpg',
-    excerpt: 'Những lỗi tủ lạnh thường gặp như yếu lạnh, đóng tuyết, rò nước và tiếng ồn bất thường.',
+    excerpt:
+      'Những lỗi tủ lạnh thường gặp như yếu lạnh, đóng tuyết, rò nước và tiếng ồn bất thường.',
   },
   {
     title: 'Khi nào cần vệ sinh máy giặt?',
@@ -128,7 +130,8 @@ export const FAQS = [
   },
   {
     question: 'Khu vực nào được hỗ trợ nhanh?',
-    answer: 'Ưu tiên các phường Ninh Kiều, Cái Răng, Bình Thủy, Ô Môn và các khu vực lân cận tại Cần Thơ.',
+    answer:
+      'Ưu tiên các phường Ninh Kiều, Cái Răng, Bình Thủy, Ô Môn và các khu vực lân cận tại Cần Thơ.',
   },
 ] as const;
 

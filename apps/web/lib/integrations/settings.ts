@@ -9,6 +9,10 @@ export const integrationSettings = {
   phone: process.env.NEXT_PUBLIC_BUSINESS_PHONE || BUSINESS.phone,
   address: process.env.NEXT_PUBLIC_BUSINESS_ADDRESS || BUSINESS.address,
   zaloUrl: configuredZaloUrl && !rootZaloUrls.has(configuredZaloUrl) ? configuredZaloUrl : fallbackZaloUrl,
+  facebookUrl: process.env.NEXT_PUBLIC_FACEBOOK_URL || '',
+  tiktokUrl: process.env.NEXT_PUBLIC_TIKTOK_URL || '',
+  youtubeUrl: process.env.NEXT_PUBLIC_YOUTUBE_URL || '',
+  messengerUrl: process.env.NEXT_PUBLIC_FACEBOOK_MESSENGER_URL || '',
   googleMapsUrl: process.env.NEXT_PUBLIC_GOOGLE_MAPS_URL || BUSINESS.googleMapsUrl,
   googleMapsEmbedUrl:
     process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_URL || BUSINESS.googleMapsEmbedUrl,

@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import {
   AirVent,
@@ -25,15 +24,21 @@ import {
 import { APP_NAME, FAQS, PRIORITY_DISTRICTS, SERVICES, TARGET_CITY } from '@minhnhat/shared';
 import { BookingForm } from '@/components/forms/booking-form';
 import { ContactForm } from '@/components/forms/contact-form';
+import { HeroImageCarousel } from '@/components/public/hero-image-carousel';
 import { ImageFadeCarousel } from '@/components/public/image-fade-carousel';
 import { JsonLdScript } from '@/components/seo/json-ld-script';
+import { LoadingImage } from '@/components/ui/loading-image';
 import { integrationSettings } from '@/lib/integrations/settings';
 import { faqJsonLd } from '@/lib/seo/json-ld';
 
 const stats = [
   { label: 'Phản hồi', value: '30p', desc: 'tiếp nhận nhanh trong giờ làm việc' },
   { label: 'Lịch trong ngày', value: 'Nhanh', desc: 'ưu tiên xử lý các yêu cầu cần kiểm tra sớm' },
-  { label: 'Dịch vụ', value: `${SERVICES.length}+`, desc: 'máy lạnh, tủ lạnh, máy giặt, điện nước' },
+  {
+    label: 'Dịch vụ',
+    value: `${SERVICES.length}+`,
+    desc: 'máy lạnh, tủ lạnh, máy giặt, điện nước',
+  },
 ];
 
 const trustItems: Array<{ icon: LucideIcon; title: string; desc: string }> = [
@@ -86,12 +91,37 @@ const featureItems: Array<{ icon: LucideIcon; title: string; desc: string }> = [
   },
 ];
 
-const processSteps = [
-  ['01', 'Gửi nhu cầu', 'Chọn dịch vụ, địa chỉ, thời gian và mô tả nhanh tình trạng thiết bị.'],
-  ['02', 'Xác nhận lịch', 'Minh Nhật gọi lại để hỏi thêm thông tin và hẹn khung giờ phù hợp.'],
-  ['03', 'Kiểm tra tận nơi', 'Kỹ thuật viên đánh giá thực tế, báo nguyên nhân và chi phí trước khi làm.'],
-  ['04', 'Thi công', 'Sửa chữa, vệ sinh hoặc lắp đặt theo phương án khách đã đồng ý.'],
-  ['05', 'Nghiệm thu', 'Chạy thử, bàn giao, dọn khu vực và ghi nhận lưu ý bảo trì tiếp theo.'],
+const processSteps: Array<{ number: string; title: string; desc: string; image: string }> = [
+  {
+    number: '01',
+    title: 'Gửi nhu cầu',
+    desc: 'Chọn dịch vụ, địa chỉ, thời gian và mô tả nhanh tình trạng thiết bị.',
+    image: '/images/process/process-step-1.png',
+  },
+  {
+    number: '02',
+    title: 'Xác nhận lịch',
+    desc: 'Minh Nhật gọi lại để hỏi thêm thông tin và hẹn khung giờ phù hợp.',
+    image: '/images/process/process-step-2.png',
+  },
+  {
+    number: '03',
+    title: 'Kiểm tra tận nơi',
+    desc: 'Kỹ thuật viên đánh giá thực tế, báo nguyên nhân và chi phí trước khi làm.',
+    image: '/images/process/process-step-3.png',
+  },
+  {
+    number: '04',
+    title: 'Thi công',
+    desc: 'Sửa chữa, vệ sinh hoặc lắp đặt theo phương án khách đã đồng ý.',
+    image: '/images/process/process-step-4.png',
+  },
+  {
+    number: '05',
+    title: 'Nghiệm thu',
+    desc: 'Chạy thử, bàn giao, dọn khu vực và ghi nhận lưu ý bảo trì tiếp theo.',
+    image: '/images/process/process-step-5.png',
+  },
 ];
 
 const quickNeeds: Array<{ label: string; icon: LucideIcon }> = [
@@ -143,7 +173,10 @@ const areaLocationCarouselImages: Record<AreaSlug, string[]> = {
     '/images/wards/ninh-kieu-ngo-duc-ke.jpg',
   ],
   'cai-rang': ['/images/wards/cai-rang-cong-chao.jpg', '/images/wards/cai-rang-cho-le-binh.jpg'],
-  'binh-thuy': ['/images/wards/binh-thuy-stella-mega-city.jpg', '/images/wards/binh-thuy-long-tuyen-road.jpg'],
+  'binh-thuy': [
+    '/images/wards/binh-thuy-stella-mega-city.jpg',
+    '/images/wards/binh-thuy-long-tuyen-road.jpg',
+  ],
   'o-mon': ['/images/wards/o-mon-do-thi.jpg', '/images/wards/o-mon-tran-hung-dao.jpg'],
 };
 
@@ -154,8 +187,18 @@ export default function HomePage() {
   return (
     <main className="bg-[#f4f8fb] text-slate-950">
       <section className="relative overflow-hidden bg-[#0b172a] text-white lg:min-h-[calc(100svh-4rem)]">
+        <LoadingImage
+          src="/images/home-hero.jpg"
+          alt=""
+          fill
+          priority
+          className="hidden object-cover object-center brightness-[1.04] saturate-[1.08] contrast-[1.02] lg:block"
+          sizes="100vw"
+          reveal="none"
+          showLoader={false}
+        />
         <div className="absolute inset-x-0 top-0 h-svh lg:hidden">
-          <Image
+          <LoadingImage
             src="/images/home-mobile-hero.png"
             alt="KhÃ´ng gian mÃ¡t máº» vá»›i mÃ¡y láº¡nh gia Ä‘Ã¬nh"
             fill
@@ -164,18 +207,7 @@ export default function HomePage() {
             sizes="100vw"
           />
         </div>
-        {heroImages.map((image, index) => (
-          <Image
-            key={image.src}
-            src={image.src}
-            alt={image.alt}
-            fill
-            priority
-            className={`hero-fade-image hidden object-cover brightness-[1.1] saturate-[1.16] contrast-[1.04] lg:block ${image.objectClassName}`}
-            sizes="100vw"
-            style={{ animationDelay: `${index * 12}s` }}
-          />
-        ))}
+        <HeroImageCarousel images={heroImages} />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(11_23_42_/_0.88)_0%,rgb(11_23_42_/_0.72)_36%,rgb(11_23_42_/_0.48)_66%,rgb(11_23_42_/_0.26)_100%)]" />
         <div className="absolute inset-0 opacity-55 [background-image:linear-gradient(90deg,rgb(255_255_255_/_0.16)_1px,transparent_1px),linear-gradient(0deg,rgb(255_255_255_/_0.13)_1px,transparent_1px)] [background-size:44px_44px]" />
         <div className="absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(0deg,#f4f8fb_0%,rgb(244_248_251_/_0)_100%)]" />
@@ -184,16 +216,18 @@ export default function HomePage() {
           <div className="min-w-0 max-w-4xl animate-in-soft">
             <div className="inline-flex max-w-full items-center gap-2 rounded-md border border-cyan-200/20 bg-white/[0.1] px-3 py-2 text-xs font-black text-cyan-50 shadow-2xl shadow-slate-950/30 backdrop-blur-md sm:px-4 sm:text-sm">
               <Sparkles className="h-4 w-4 text-amber-300" />
-              <span className="min-w-0 break-words">Sửa chữa, vệ sinh, lắp đặt máy lạnh tại {TARGET_CITY}</span>
+              <span className="min-w-0 break-words">
+                Sửa chữa, vệ sinh, lắp đặt máy lạnh tại {TARGET_CITY}
+              </span>
             </div>
 
             <h1 className="mt-6 max-w-4xl text-3xl font-black leading-[1.08] tracking-normal sm:text-5xl lg:text-7xl">
               {APP_NAME}
             </h1>
             <p className="mt-6 max-w-2xl text-base font-medium leading-8 text-slate-100 sm:text-lg">
-              Dịch vụ điện lạnh tận nơi cho gia đình và cửa hàng: máy lạnh, tủ lạnh, máy giặt,
-              điện nước. Trang web được thiết kế để khách chọn đúng nhu cầu, đặt lịch nhanh và nắm
-              rõ quy trình trước khi kỹ thuật viên đến.
+              Dịch vụ điện lạnh tận nơi cho gia đình và cửa hàng: máy lạnh, tủ lạnh, máy giặt, điện
+              nước. Trang web được thiết kế để khách chọn đúng nhu cầu, đặt lịch nhanh và nắm rõ quy
+              trình trước khi kỹ thuật viên đến.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -210,15 +244,26 @@ export default function HomePage() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <Image src="/icons/zalo.svg" alt="" width={40} height={40} className="h-10 w-10 shrink-0" />
+                <LoadingImage
+                  src="/icons/zalo.svg"
+                  alt=""
+                  width={40}
+                  height={40}
+                  className="h-10 w-10 shrink-0"
+                />
                 Liên hệ qua Zalo
               </a>
             </div>
 
             <div className="mt-10 grid max-w-3xl gap-3 sm:grid-cols-3">
               {stats.map((item) => (
-                <div key={item.label} className="min-w-0 rounded-md border border-white/15 bg-white/10 p-4 backdrop-blur-md">
-                  <p className="break-words text-2xl font-black text-amber-300 sm:text-3xl">{item.value}</p>
+                <div
+                  key={item.label}
+                  className="min-w-0 rounded-md border border-white/15 bg-white/10 p-4 backdrop-blur-md"
+                >
+                  <p className="break-words text-2xl font-black text-amber-300 sm:text-3xl">
+                    {item.value}
+                  </p>
                   <p className="mt-2 text-sm font-black text-white">{item.label}</p>
                   <p className="mt-1 text-xs leading-5 text-slate-300">{item.desc}</p>
                 </div>
@@ -230,8 +275,8 @@ export default function HomePage() {
             <p className="text-sm font-black uppercase text-primary">Chọn nhanh tình trạng</p>
             <h2 className="mt-1 text-2xl font-black">Cần kỹ thuật viên xử lý gì?</h2>
             <p className="mt-2 text-sm leading-6 text-slate-600">
-              Bắt đầu bằng nhóm nhu cầu gần nhất, đội kỹ thuật sẽ kiểm tra và báo giá trước khi
-              thi công.
+              Bắt đầu bằng nhóm nhu cầu gần nhất, đội kỹ thuật sẽ kiểm tra và báo giá trước khi thi
+              công.
             </p>
 
             <div className="mt-5 grid gap-3">
@@ -248,7 +293,9 @@ export default function HomePage() {
                       <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-primary text-white">
                         <Icon className="h-4 w-4" />
                       </span>
-                      <span className="min-w-0 break-words text-sm font-black leading-5">{label}</span>
+                      <span className="min-w-0 break-words text-sm font-black leading-5">
+                        {label}
+                      </span>
                     </span>
                     <ArrowRight className="h-4 w-4 shrink-0 text-primary transition group-hover:translate-x-1" />
                   </Link>
@@ -276,7 +323,10 @@ export default function HomePage() {
       <section className="relative z-10 -mt-9">
         <div className="container grid gap-3 md:grid-cols-3">
           {trustItems.map(({ icon: Icon, title, desc }) => (
-            <article key={title} className="rounded-md border border-slate-200 bg-white p-5 shadow-lg shadow-slate-200/70">
+            <article
+              key={title}
+              className="rounded-md border border-slate-200 bg-white p-5 shadow-lg shadow-slate-200/70"
+            >
               <div className="flex items-start gap-4">
                 <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-primary text-white">
                   <Icon className="h-5 w-5" />
@@ -311,7 +361,7 @@ export default function HomePage() {
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div className="relative overflow-hidden rounded-md border border-slate-200 bg-slate-100 shadow-xl shadow-slate-200">
             <div className="relative aspect-[4/3]">
-              <Image
+              <LoadingImage
                 src="/images/home-animated-cooling-hero.png"
                 alt="Không gian gia đình mát mẻ với máy lạnh hoạt động ổn định"
                 fill
@@ -342,8 +392,8 @@ export default function HomePage() {
             </h2>
             <p className="mt-4 max-w-2xl leading-8 text-slate-700">
               Điện Lạnh Minh Nhật hỗ trợ sửa chữa, vệ sinh và lắp đặt máy lạnh, tủ lạnh, máy giặt,
-              điện nước cho gia đình, cửa hàng và văn phòng tại Cần Thơ. Đội kỹ thuật tập trung kiểm tra đúng
-              tình trạng, tư vấn phương án phù hợp và báo giá rõ ràng trước khi thi công.
+              điện nước cho gia đình, cửa hàng và văn phòng tại Cần Thơ. Đội kỹ thuật tập trung kiểm
+              tra đúng tình trạng, tư vấn phương án phù hợp và báo giá rõ ràng trước khi thi công.
             </p>
 
             <div className="mt-7 grid gap-3 sm:grid-cols-2">
@@ -353,7 +403,10 @@ export default function HomePage() {
                 'Phục vụ các khu vực trọng điểm tại Cần Thơ',
                 'Báo giá rõ ràng trước khi sửa chữa hoặc vệ sinh',
               ].map((item) => (
-                <div key={item} className="flex items-center gap-3 rounded-md border border-slate-200 bg-white p-3 text-sm font-bold">
+                <div
+                  key={item}
+                  className="flex items-center gap-3 rounded-md border border-slate-200 bg-white p-3 text-sm font-bold"
+                >
                   <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600" />
                   {item}
                 </div>
@@ -365,15 +418,22 @@ export default function HomePage() {
         <div className="mt-10 border-t border-slate-200 pt-8">
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div className="max-w-2xl">
-              <p className="text-sm font-black uppercase tracking-wide text-primary">Phạm vi hoạt động</p>
+              <p className="text-sm font-black uppercase tracking-wide text-primary">
+                Phạm vi hoạt động
+              </p>
               <h3 className="mt-2 text-2xl font-black tracking-normal sm:text-3xl">
                 Có mặt tại các khu vực cần thợ điện lạnh gần bạn
               </h3>
               <p className="mt-3 leading-7 text-slate-600">
-                Minh Nhật ưu tiên tiếp nhận lịch tại Ninh Kiều, Cái Răng, Bình Thủy, Ô Môn và các khu vực lân cận tại Cần Thơ. Khách chỉ cần gửi địa chỉ, tình trạng thiết bị và khung giờ mong muốn để được xác nhận lịch phù hợp.
+                Minh Nhật ưu tiên tiếp nhận lịch tại Ninh Kiều, Cái Răng, Bình Thủy, Ô Môn và các
+                khu vực lân cận tại Cần Thơ. Khách chỉ cần gửi địa chỉ, tình trạng thiết bị và khung
+                giờ mong muốn để được xác nhận lịch phù hợp.
               </p>
             </div>
-            <Link className="inline-flex items-center gap-2 text-sm font-black text-primary" href="/contact">
+            <Link
+              className="inline-flex items-center gap-2 text-sm font-black text-primary"
+              href="/contact"
+            >
               Xem liên hệ
               <ArrowRight className="h-4 w-4" />
             </Link>
@@ -422,7 +482,10 @@ export default function HomePage() {
                 dịch vụ, xem chi tiết và gửi yêu cầu trong một luồng liền mạch.
               </p>
             </div>
-            <Link className="inline-flex items-center gap-2 text-sm font-black text-primary" href="/services">
+            <Link
+              className="inline-flex items-center gap-2 text-sm font-black text-primary"
+              href="/services"
+            >
               Xem tất cả dịch vụ
               <ArrowRight className="h-4 w-4" />
             </Link>
@@ -436,7 +499,7 @@ export default function HomePage() {
                 className="group overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200"
               >
                 <div className="relative aspect-[4/3] overflow-hidden border-b border-slate-200 bg-slate-100 sm:aspect-[16/10]">
-                  <Image
+                  <LoadingImage
                     src={`/images/services/${service.slug}.jpg`}
                     alt={`${service.name} tại ${TARGET_CITY}`}
                     fill
@@ -448,7 +511,8 @@ export default function HomePage() {
                 <div className="p-5">
                   <h3 className="text-lg font-black leading-6">{service.name}</h3>
                   <p className="mt-3 text-sm leading-6 text-slate-600 sm:min-h-[4.5rem]">
-                    {serviceDescriptions[service.slug] ?? 'Tư vấn đúng tình trạng, báo giá trước và hỗ trợ tận nơi.'}
+                    {serviceDescriptions[service.slug] ??
+                      'Tư vấn đúng tình trạng, báo giá trước và hỗ trợ tận nơi.'}
                   </p>
                   <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-primary">
                     Xem chi tiết
@@ -469,14 +533,28 @@ export default function HomePage() {
               Tập trung vào điều khách cần biết trước khi đặt lịch
             </h2>
             <p className="mt-4 leading-8 text-slate-700">
-              Trang chủ mới không chỉ giới thiệu dịch vụ, mà dẫn khách đi từ vấn đề đang gặp đến
-              lựa chọn dịch vụ và biểu mẫu xác nhận lịch.
+              Trang chủ mới không chỉ giới thiệu dịch vụ, mà dẫn khách đi từ vấn đề đang gặp đến lựa
+              chọn dịch vụ và biểu mẫu xác nhận lịch.
             </p>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
+            <div className="relative min-h-[240px] overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm sm:col-span-2 lg:min-h-[300px]">
+              <LoadingImage
+                src="/images/feature-cartoon-technician.png"
+                alt="Minh hoa ky thuat vien dien lanh kiem tra may lanh"
+                fill
+                className="object-cover object-[62%_center]"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                reveal="none"
+                showLoader={false}
+              />
+            </div>
             {featureItems.map(({ icon: Icon, title, desc }) => (
-              <article key={title} className="rounded-md border border-slate-200 bg-white p-5 shadow-sm">
+              <article
+                key={title}
+                className="rounded-md border border-slate-200 bg-white p-5 shadow-sm"
+              >
                 <span className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-cyan-50 text-primary">
                   <Icon className="h-5 w-5" />
                 </span>
@@ -489,29 +567,46 @@ export default function HomePage() {
       </section>
 
       <section className="container py-12 sm:py-16 lg:py-20">
-        <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
-          <div className="max-w-2xl">
-            <p className="text-sm font-black uppercase tracking-wide text-primary">Quy trình</p>
+          <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+            <div className="max-w-2xl">
+              <p className="text-sm font-black uppercase tracking-wide text-primary">Quy trình</p>
             <h2 className="mt-2 text-2xl font-black tracking-normal sm:text-4xl">
               Quy trình đặt lịch và thi công rõ từng bước
             </h2>
           </div>
           <div className="flex items-center gap-2 text-sm font-black text-slate-600">
             <Fan className="h-5 w-5 text-primary" />
-            Minh bạch từ lúc nhận lịch đến nghiệm thu
+              Minh bạch từ lúc nhận lịch đến nghiệm thu
+            </div>
           </div>
-        </div>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-5">
-          {processSteps.map(([number, title, desc]) => (
-            <article key={number} className="rounded-md border border-slate-200 bg-white p-5 shadow-sm">
-              <p className="text-3xl font-black text-primary">{number}</p>
-              <p className="mt-2 text-xs font-black uppercase text-slate-400">Bước</p>
-              <h3 className="mt-3 text-lg font-black">{title}</h3>
-              <p className="mt-2 text-sm leading-6 text-slate-600">{desc}</p>
-            </article>
-          ))}
-        </div>
+          <div className="relative mt-8 grid gap-6 md:grid-cols-5 xl:gap-7">
+            {processSteps.map(({ number, title, desc, image }) => (
+              <article
+                key={number}
+                className="relative overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-slate-200"
+              >
+                <div className="relative aspect-[32/47] overflow-hidden border-b border-slate-200 bg-white">
+                  <LoadingImage
+                    src={image}
+                    alt={`Minh họa ${title.toLowerCase()} trong quy trình dịch vụ`}
+                    fill
+                    className="scale-[1.12] object-cover object-center"
+                    sizes="(min-width: 768px) 20vw, 100vw"
+                    reveal="none"
+                    showLoader={false}
+                  />
+                </div>
+                <div className="relative p-4">
+                  <p className="inline-flex rounded-md bg-primary px-2.5 py-1 text-xs font-black uppercase text-white shadow-sm">
+                    Bước {number}
+                  </p>
+                  <h3 className="mt-3 text-lg font-black">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{desc}</p>
+                </div>
+              </article>
+            ))}
+          </div>
       </section>
 
       <section className="bg-white py-12 sm:py-16 lg:py-20">
@@ -532,7 +627,10 @@ export default function HomePage() {
                 'Ghi rõ địa chỉ và khung giờ mong muốn',
                 'Kỹ thuật viên gọi lại trước khi đến',
               ].map((item) => (
-                <div key={item} className="flex items-center gap-3 text-sm font-bold text-slate-700">
+                <div
+                  key={item}
+                  className="flex items-center gap-3 text-sm font-bold text-slate-700"
+                >
                   <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600" />
                   {item}
                 </div>
@@ -569,7 +667,10 @@ export default function HomePage() {
             </h2>
             <div className="mt-7 grid gap-4">
               {FAQS.map((faq) => (
-                <article key={faq.question} className="rounded-md border border-white/10 bg-white/[0.06] p-4">
+                <article
+                  key={faq.question}
+                  className="rounded-md border border-white/10 bg-white/[0.06] p-4"
+                >
                   <h3 className="font-black">{faq.question}</h3>
                   <p className="mt-2 text-sm leading-6 text-slate-300">{faq.answer}</p>
                 </article>

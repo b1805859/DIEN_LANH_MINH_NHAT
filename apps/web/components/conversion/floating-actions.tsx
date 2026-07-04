@@ -1,9 +1,9 @@
 'use client';
 
-import Image from 'next/image';
 import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
 import { Phone, Send, X } from 'lucide-react';
 import { AiChatbotIcon } from '@/components/brand/ai-chatbot-icon';
+import { LoadingImage } from '@/components/ui/loading-image';
 import { integrationSettings } from '@/lib/integrations/settings';
 
 type ChatMessage = {
@@ -240,7 +240,7 @@ export function FloatingActions() {
           target="_blank"
           rel="noreferrer"
         >
-          <Image
+          <LoadingImage
             src="/icons/zalo.svg"
             alt=""
             width={56}

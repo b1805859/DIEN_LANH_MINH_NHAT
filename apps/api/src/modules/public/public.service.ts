@@ -1,11 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 
+const PUBLIC_SETTING_KEYS = new Set(['business']);
+
 @Injectable()
 export class PublicService {
   constructor(private readonly prisma: PrismaService) {}
 
-  createContactRequest(payload: {
+  async createContactRequest(payload: {
     name: string;
     phone: string;
     email?: string;
@@ -13,12 +15,19 @@ export class PublicService {
     message?: string;
     source?: string;
   }) {
-    return this.prisma.contactRequest.create({ data: payload });
+    const request = await this.prisma.contactRequest.create({
+      data: payload,
+      select: { id: true, createdAt: true },
+    });
+
+    return { success: true, id: request.id, createdAt: request.createdAt };
   }
 
   async getSettings() {
-    const settings = await this.prisma.setting.findMany();
+    const settings = await this.prisma.setting.findMany({
+      where: { key: { in: [...PUBLIC_SETTING_KEYS] } },
+    });
+
     return Object.fromEntries(settings.map((setting) => [setting.key, setting.value]));
   }
 }
-

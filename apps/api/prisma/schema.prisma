@@ -27,16 +27,16 @@ enum MediaVisibility {
 }
 
 model User {
-  id           String         @id @default(cuid())
-  email        String         @unique
-  passwordHash String
-  name         String
-  isActive     Boolean        @default(true)
-  roleId       String
-  role         Role           @relation(fields: [roleId], references: [id])
+  id            String         @id @default(cuid())
+  email         String         @unique
+  passwordHash  String
+  name          String
+  isActive      Boolean        @default(true)
+  roleId        String
+  role          Role           @relation(fields: [roleId], references: [id])
   refreshTokens RefreshToken[]
-  createdAt    DateTime       @default(now())
-  updatedAt    DateTime       @updatedAt
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
 
   @@map("users")
 }
@@ -53,13 +53,13 @@ model Role {
 }
 
 model RefreshToken {
-  id        String   @id @default(cuid())
-  tokenHash String   @unique
+  id        String    @id @default(cuid())
+  tokenHash String    @unique
   userId    String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   expiresAt DateTime
   revokedAt DateTime?
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
 
   @@index([userId])
   @@map("refresh_tokens")
@@ -71,6 +71,8 @@ model Service {
   slug                     String                    @unique
   summary                  String?
   description              String?
+  imageUrl                 String?
+  imageAlt                 String?
   isActive                 Boolean                   @default(true)
   displayOrder             Int                       @default(0)
   faqs                     FAQ[]
@@ -124,20 +126,20 @@ model ServiceLocationOverride {
 }
 
 model Booking {
-  id           String        @id @default(cuid())
-  serviceId    String
-  locationId   String
-  service      Service       @relation(fields: [serviceId], references: [id])
-  location     Location      @relation(fields: [locationId], references: [id])
-  scheduledAt  DateTime
-  address      String
-  customerName String
+  id            String        @id @default(cuid())
+  serviceId     String
+  locationId    String
+  service       Service       @relation(fields: [serviceId], references: [id])
+  location      Location      @relation(fields: [locationId], references: [id])
+  scheduledAt   DateTime
+  address       String
+  customerName  String
   customerPhone String
   customerEmail String?
-  notes        String?
-  status       BookingStatus @default(PENDING)
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
+  notes         String?
+  status        BookingStatus @default(PENDING)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 
   @@index([status])
   @@index([scheduledAt])
@@ -145,16 +147,16 @@ model Booking {
 }
 
 model ContactRequest {
-  id            String   @id @default(cuid())
-  name          String
-  phone         String
-  email         String?
-  subject       String?
-  message       String?
-  source        String?
-  isResolved    Boolean  @default(false)
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  id         String   @id @default(cuid())
+  name       String
+  phone      String
+  email      String?
+  subject    String?
+  message    String?
+  source     String?
+  isResolved Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   @@map("contact_requests")
 }
@@ -239,38 +241,38 @@ model Testimonial {
 }
 
 model MediaFile {
-  id          String          @id @default(cuid())
-  fileName    String
+  id           String          @id @default(cuid())
+  fileName     String
   originalName String
-  mimeType    String
-  size        Int
-  url         String
-  altText     String?
-  visibility  MediaVisibility @default(PUBLIC)
-  blogPosts   BlogPost[]
-  createdAt   DateTime        @default(now())
-  updatedAt   DateTime        @updatedAt
+  mimeType     String
+  size         Int
+  url          String
+  altText      String?
+  visibility   MediaVisibility @default(PUBLIC)
+  blogPosts    BlogPost[]
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
 
   @@map("media_files")
 }
 
 model SEOSetting {
-  id              String    @id @default(cuid())
-  pageType        String
-  pageKey         String
-  title           String
-  description     String?
-  canonicalUrl    String?
-  openGraphImage  String?
-  noIndex         Boolean   @default(false)
-  serviceId       String?
-  service         Service?  @relation(fields: [serviceId], references: [id], onDelete: SetNull)
-  locationId      String?
-  location        Location? @relation(fields: [locationId], references: [id], onDelete: SetNull)
-  blogPostId      String?
-  blogPost        BlogPost? @relation(fields: [blogPostId], references: [id], onDelete: SetNull)
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  id             String    @id @default(cuid())
+  pageType       String
+  pageKey        String
+  title          String
+  description    String?
+  canonicalUrl   String?
+  openGraphImage String?
+  noIndex        Boolean   @default(false)
+  serviceId      String?
+  service        Service?  @relation(fields: [serviceId], references: [id], onDelete: SetNull)
+  locationId     String?
+  location       Location? @relation(fields: [locationId], references: [id], onDelete: SetNull)
+  blogPostId     String?
+  blogPost       BlogPost? @relation(fields: [blogPostId], references: [id], onDelete: SetNull)
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 
   @@unique([pageType, pageKey])
   @@map("seo_settings")
@@ -285,4 +287,3 @@ model Setting {
 
   @@map("settings")
 }
-

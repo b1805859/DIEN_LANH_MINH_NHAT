@@ -8,6 +8,7 @@ import { z } from 'zod';
 import { apiClient } from '@/lib/api/client';
 import { Button } from '@/components/ui/button';
 import { QueryBoundary } from '@/components/layout/query-boundary';
+import { useToast } from '@/components/ui/toast';
 
 const bookingSchema = z.object({
   serviceId: z.string().min(1),
@@ -26,6 +27,7 @@ const fieldClass =
   'h-12 w-full min-w-0 rounded-md border border-slate-200 bg-slate-50 px-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10';
 
 function BookingFormContent({ compact = false }: { compact?: boolean }) {
+  const { toast } = useToast();
   const form = useForm<BookingInput>({
     resolver: zodResolver(bookingSchema),
     defaultValues: {
@@ -41,11 +43,29 @@ function BookingFormContent({ compact = false }: { compact?: boolean }) {
   });
 
   const mutation = useMutation({
-    mutationFn: (input: BookingInput) =>
-      apiClient.post('/bookings', {
-        ...input,
-        scheduledAt: new Date(`${input.date}T${input.time}:00`).toISOString(),
-      }),
+    mutationFn: (input: BookingInput) => {
+      const { date, time, ...booking } = input;
+
+      return apiClient.post('/bookings', {
+        ...booking,
+        scheduledAt: new Date(`${date}T${time}:00`).toISOString(),
+      });
+    },
+    onSuccess: () => {
+      toast({
+        title: 'Đã gửi lịch hẹn',
+        description: 'Minh Nhật sẽ liên hệ xác nhận sớm.',
+        variant: 'success',
+      });
+      form.reset();
+    },
+    onError: () => {
+      toast({
+        title: 'Không gửi được lịch hẹn',
+        description: 'Vui lòng thử lại hoặc gọi hotline.',
+        variant: 'error',
+      });
+    },
   });
 
   return (

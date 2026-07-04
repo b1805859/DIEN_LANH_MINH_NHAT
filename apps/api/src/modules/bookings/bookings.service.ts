@@ -27,7 +27,7 @@ export class BookingsService {
       throw new BadRequestException('Invalid service or district.');
     }
 
-    return this.prisma.booking.create({
+    const booking = await this.prisma.booking.create({
       data: {
         address: dto.address,
         customerName: dto.customerName,
@@ -38,7 +38,10 @@ export class BookingsService {
         locationId: location.id,
         scheduledAt: new Date(dto.scheduledAt),
       },
+      select: { id: true, status: true, createdAt: true },
     });
+
+    return { success: true, ...booking };
   }
 
   list(query: { status?: BookingStatus; serviceId?: string; locationId?: string; date?: string }) {

@@ -2,6 +2,13 @@ const { PrismaClient } = require('@prisma/client');
 const { hash } = require('bcryptjs');
 
 const prisma = new PrismaClient();
+const isProduction = process.env.NODE_ENV === 'production';
+const seedAdminEmail = process.env.SEED_ADMIN_EMAIL || 'admin@minhnhat.local';
+const seedAdminPassword = process.env.SEED_ADMIN_PASSWORD || (isProduction ? '' : 'ChangeMe123!');
+
+if (isProduction && seedAdminPassword.length < 12) {
+  throw new Error('SEED_ADMIN_PASSWORD must be set to at least 12 characters in production.');
+}
 
 const services = [
   ['Tháo Lắp Máy Lạnh', 'thao-lap-may-lanh'],
@@ -15,6 +22,10 @@ const services = [
   ['Sửa Lắp Máy Nước Uống Nóng Lạnh', 'sua-lap-may-nuoc-uong-nong-lanh'],
   ['Sửa Lắp Máy Nước Nóng Lạnh Tắm', 'sua-lap-may-nuoc-nong-lanh-tam'],
 ];
+
+function serviceImageUrl(slug) {
+  return `/images/services/${slug}.jpg`;
+}
 
 const locations = [
   ['Ninh Kiều', 'ninh-kieu'],
@@ -37,7 +48,8 @@ const blogPosts = [
     slug: 'bao-lau-nen-ve-sinh-may-lanh-mot-lan',
     categorySlug: 'may-lanh',
     image: '/images/services/ve-sinh-may-lanh.jpg',
-    excerpt: 'Mốc thời gian vệ sinh máy lạnh phù hợp cho gia đình, phòng trọ và cửa hàng sử dụng thường xuyên.',
+    excerpt:
+      'Mốc thời gian vệ sinh máy lạnh phù hợp cho gia đình, phòng trọ và cửa hàng sử dụng thường xuyên.',
   },
   {
     title: 'Dấu hiệu máy lạnh cần nạp gas',
@@ -65,7 +77,8 @@ const blogPosts = [
     slug: 'cac-loi-thuong-gap-o-tu-lanh',
     categorySlug: 'tu-lanh',
     image: '/images/services/sua-tu-lanh.jpg',
-    excerpt: 'Những lỗi tủ lạnh thường gặp như yếu lạnh, đóng tuyết, rò nước và tiếng ồn bất thường.',
+    excerpt:
+      'Những lỗi tủ lạnh thường gặp như yếu lạnh, đóng tuyết, rò nước và tiếng ồn bất thường.',
   },
   {
     title: 'Khi nào cần vệ sinh máy giặt?',
@@ -96,25 +109,32 @@ async function main() {
 
   const superAdmin = roles.find((role) => role.name === 'SUPER_ADMIN');
   await prisma.user.upsert({
-    where: { email: 'admin@minhnhat.local' },
+    where: { email: seedAdminEmail },
     update: {},
     create: {
-      email: 'admin@minhnhat.local',
+      email: seedAdminEmail,
       name: 'Minh Nhat Admin',
-      passwordHash: await hash('ChangeMe123!', 12),
+      passwordHash: await hash(seedAdminPassword, 12),
       roleId: superAdmin.id,
     },
   });
 
   for (const [name, slug] of services) {
+    const imageUrl = serviceImageUrl(slug);
+
     await prisma.service.upsert({
       where: { slug },
-      update: {},
+      update: {
+        imageUrl,
+        imageAlt: name,
+      },
       create: {
         name,
         slug,
         summary: `${name} tại Cần Thơ, hỗ trợ nhanh tại Ninh Kiều, Cái Răng, Bình Thủy và Ô Môn.`,
         description: `${name} chuyên nghiệp cho hộ gia đình và cửa hàng tại Cần Thơ.`,
+        imageUrl,
+        imageAlt: name,
         displayOrder: services.findIndex((service) => service[1] === slug),
       },
     });

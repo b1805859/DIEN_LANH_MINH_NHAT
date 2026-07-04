@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import type { LucideIcon } from 'lucide-react';
 import { MapPin, Phone } from 'lucide-react';
 import { ContactForm } from '@/components/forms/contact-form';
+import { LoadingImage } from '@/components/ui/loading-image';
 import { integrationSettings } from '@/lib/integrations/settings';
 import { buildMetadata } from '@/lib/seo/metadata';
 
@@ -63,7 +63,13 @@ export default function ContactPage() {
                     }
                   >
                     {image ? (
-                      <Image src={image} alt="" width={48} height={48} className="h-12 w-12 max-w-none shrink-0" />
+                      <LoadingImage
+                        src={image}
+                        alt=""
+                        width={48}
+                        height={48}
+                        className="h-12 w-12 max-w-none shrink-0"
+                      />
                     ) : Icon ? (
                       <Icon className="h-5 w-5" />
                     ) : null}
@@ -85,7 +91,9 @@ export default function ContactPage() {
               </span>
               <div className="min-w-0">
                 <h2 className="font-black">Địa chỉ phục vụ</h2>
-                <p className="mt-1 text-sm leading-6 text-slate-600">{integrationSettings.address}</p>
+                <p className="mt-1 text-sm leading-6 text-slate-600">
+                  {integrationSettings.address}
+                </p>
                 <p className="mt-2 text-sm leading-6 text-slate-600">
                   Ưu tiên hỗ trợ các khu vực trung tâm và lân cận tại Cần Thơ.
                 </p>

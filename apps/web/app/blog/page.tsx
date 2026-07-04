@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, BookOpen, CalendarDays } from 'lucide-react';
 import { BLOG_CATEGORIES, BLOG_POSTS } from '@minhnhat/shared';
+import { LoadingImage } from '@/components/ui/loading-image';
 import { buildMetadata } from '@/lib/seo/metadata';
 
 export const metadata = buildMetadata({
@@ -17,13 +17,14 @@ export default function BlogPage() {
   return (
     <main className="bg-[#f4f8fb] text-slate-950">
       <section className="relative overflow-hidden bg-[#0b172a] py-12 text-white sm:py-16 lg:py-20">
-        <Image
+        <LoadingImage
           src="/images/service-tools.png"
           alt="Dụng cụ điện lạnh Minh Nhật"
           fill
           priority
           className="object-cover opacity-[0.34]"
           sizes="100vw"
+          reveal="filter"
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(11_23_42_/_0.86)_0%,rgb(11_23_42_/_0.72)_48%,rgb(11_23_42_/_0.32)_100%)]" />
         <div className="container relative">
@@ -35,8 +36,8 @@ export default function BlogPage() {
             Bài viết điện lạnh cho gia đình tại Cần Thơ
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-8 text-slate-200 sm:text-lg">
-            Tổng hợp dấu hiệu hư hỏng, lịch bảo trì và cách sử dụng thiết bị điện lạnh an toàn hơn trước khi cần gọi
-            kỹ thuật viên.
+            Tổng hợp dấu hiệu hư hỏng, lịch bảo trì và cách sử dụng thiết bị điện lạnh an toàn hơn
+            trước khi cần gọi kỹ thuật viên.
           </p>
         </div>
       </section>
@@ -59,7 +60,7 @@ export default function BlogPage() {
           className="group mt-8 grid min-w-0 overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200 lg:grid-cols-[1.1fr_0.9fr]"
         >
           <div className="relative min-h-[220px] overflow-hidden bg-slate-100 sm:min-h-[280px]">
-            <Image
+            <LoadingImage
               src={featuredPost.image}
               alt={featuredPost.title}
               fill
@@ -72,7 +73,9 @@ export default function BlogPage() {
               <CalendarDays className="h-4 w-4" />
               Bài nổi bật
             </span>
-            <h2 className="mt-5 text-2xl font-black leading-tight sm:text-3xl">{featuredPost.title}</h2>
+            <h2 className="mt-5 text-2xl font-black leading-tight sm:text-3xl">
+              {featuredPost.title}
+            </h2>
             <p className="mt-3 leading-7 text-slate-600">{featuredPost.excerpt}</p>
             <span className="mt-6 inline-flex items-center gap-2 text-sm font-black text-primary">
               Đọc bài viết
@@ -89,7 +92,7 @@ export default function BlogPage() {
               className="group overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200"
             >
               <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
-                <Image
+                <LoadingImage
                   src={post.image}
                   alt={post.title}
                   fill
@@ -99,7 +102,9 @@ export default function BlogPage() {
               </div>
               <div className="p-5">
                 <h2 className="text-lg font-black leading-6">{post.title}</h2>
-                <p className="mt-3 text-sm leading-6 text-slate-600 sm:min-h-[4.5rem]">{post.excerpt}</p>
+                <p className="mt-3 text-sm leading-6 text-slate-600 sm:min-h-[4.5rem]">
+                  {post.excerpt}
+                </p>
                 <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-primary">
                   Xem chi tiết
                   <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />

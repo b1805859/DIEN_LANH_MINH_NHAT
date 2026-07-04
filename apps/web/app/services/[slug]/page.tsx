@@ -1,10 +1,10 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { FAQS, SERVICES, findService } from '@minhnhat/shared';
 import { BookingForm } from '@/components/forms/booking-form';
 import { JsonLdScript } from '@/components/seo/json-ld-script';
+import { LoadingImage } from '@/components/ui/loading-image';
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from '@/lib/seo/json-ld';
 import { buildMetadata, localTitle } from '@/lib/seo/metadata';
 
@@ -31,13 +31,14 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   return (
     <main className="bg-white">
       <section className="relative overflow-hidden bg-[#0b172a] py-12 text-white sm:py-16">
-        <Image
+        <LoadingImage
           src="/images/service-tools.png"
           alt="Dụng cụ sửa chữa điện lạnh"
           fill
           priority
           className="object-cover opacity-35"
           sizes="100vw"
+          reveal="filter"
         />
         <div className="absolute inset-0 bg-[#0b172a]/55" />
         <div className="container relative grid min-w-0 gap-8 lg:grid-cols-[1fr_390px] lg:items-center lg:gap-10">

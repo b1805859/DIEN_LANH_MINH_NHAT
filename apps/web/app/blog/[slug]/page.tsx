@@ -1,9 +1,9 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowRight, CalendarDays, Share2 } from 'lucide-react';
 import { BLOG_CATEGORIES, BLOG_POSTS, findBlogPost } from '@minhnhat/shared';
 import { JsonLdScript } from '@/components/seo/json-ld-script';
+import { LoadingImage } from '@/components/ui/loading-image';
 import { articleJsonLd, breadcrumbJsonLd } from '@/lib/seo/json-ld';
 import { buildMetadata } from '@/lib/seo/metadata';
 
@@ -34,7 +34,10 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
     <main className="bg-[#f4f8fb] text-slate-950">
       <section className="border-b border-slate-200 bg-white py-8 sm:py-10">
         <div className="container">
-          <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-black text-primary">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 text-sm font-black text-primary"
+          >
             <ArrowRight className="h-4 w-4 rotate-180" />
             Bài viết
           </Link>
@@ -55,7 +58,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
               <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-700">{post.excerpt}</p>
             </div>
             <div className="relative aspect-[16/11] min-h-[210px] overflow-hidden rounded-md border border-slate-200 bg-slate-100 shadow-xl shadow-slate-200">
-              <Image
+              <LoadingImage
                 src={post.image}
                 alt={post.title}
                 fill
@@ -81,21 +84,23 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
 
         <article className="min-w-0 rounded-md border border-slate-200 bg-white p-4 shadow-sm sm:p-5 md:p-8">
           <p className="leading-8 text-slate-700">
-            Bài viết cung cấp hướng dẫn thực tế cho khách hàng tại Cần Thơ, giúp nhận biết vấn đề và chọn thời điểm gọi
-            kỹ thuật viên phù hợp. Các dấu hiệu dưới đây chỉ nên dùng để tham khảo ban đầu, những lỗi liên quan điện,
-            gas hoặc rò nước nên được kiểm tra bằng dụng cụ chuyên môn.
+            Bài viết cung cấp hướng dẫn thực tế cho khách hàng tại Cần Thơ, giúp nhận biết vấn đề và
+            chọn thời điểm gọi kỹ thuật viên phù hợp. Các dấu hiệu dưới đây chỉ nên dùng để tham
+            khảo ban đầu, những lỗi liên quan điện, gas hoặc rò nước nên được kiểm tra bằng dụng cụ
+            chuyên môn.
           </p>
 
           <h2 id="dau-hieu" className="mt-10 text-2xl font-black">
             Dấu hiệu cần chú ý
           </h2>
           <p className="mt-3 leading-8 text-slate-700">
-            Thiết bị giảm hiệu suất, phát tiếng ồn, rò nước, báo lỗi hoặc tiêu thụ điện bất thường là các dấu hiệu nên
-            kiểm tra sớm. Nếu tình trạng lặp lại nhiều lần, việc tiếp tục sử dụng có thể làm hư thêm linh kiện bên trong.
+            Thiết bị giảm hiệu suất, phát tiếng ồn, rò nước, báo lỗi hoặc tiêu thụ điện bất thường
+            là các dấu hiệu nên kiểm tra sớm. Nếu tình trạng lặp lại nhiều lần, việc tiếp tục sử
+            dụng có thể làm hư thêm linh kiện bên trong.
           </p>
 
           <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-md bg-slate-100">
-            <Image
+            <LoadingImage
               src={post.image}
               alt={`Minh họa: ${post.title}`}
               fill
@@ -108,8 +113,9 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
             Cách xử lý an toàn
           </h2>
           <p className="mt-3 leading-8 text-slate-700">
-            Ngắt nguồn khi có dấu hiệu nguy hiểm, ghi nhận hiện tượng và liên hệ kỹ thuật viên để được kiểm tra đúng quy
-            trình. Không tự tháo máy nếu không có dụng cụ bảo hộ hoặc chưa biết vị trí nguồn điện, đường nước, đường gas.
+            Ngắt nguồn khi có dấu hiệu nguy hiểm, ghi nhận hiện tượng và liên hệ kỹ thuật viên để
+            được kiểm tra đúng quy trình. Không tự tháo máy nếu không có dụng cụ bảo hộ hoặc chưa
+            biết vị trí nguồn điện, đường nước, đường gas.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3 text-sm">
@@ -140,7 +146,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
                 className="group grid grid-cols-[82px_1fr] gap-3 rounded-md border border-slate-200 bg-white p-3 text-sm shadow-sm transition hover:border-primary/40"
               >
                 <span className="relative h-20 overflow-hidden rounded-md bg-slate-100">
-                  <Image
+                  <LoadingImage
                     src={item.image}
                     alt={item.title}
                     fill
@@ -148,7 +154,9 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
                     sizes="82px"
                   />
                 </span>
-                <span className="font-bold leading-5 text-slate-800 group-hover:text-primary">{item.title}</span>
+                <span className="font-bold leading-5 text-slate-800 group-hover:text-primary">
+                  {item.title}
+                </span>
               </Link>
             ))}
           </div>
