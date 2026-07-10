@@ -19,17 +19,13 @@ import {
   Sparkles,
   Star,
   ThermometerSun,
-  Zap,
 } from 'lucide-react';
-import { APP_NAME, FAQS, PRIORITY_DISTRICTS, SERVICES, TARGET_CITY } from '@minhnhat/shared';
+import { APP_NAME, PRIORITY_DISTRICTS, SERVICES, TARGET_CITY } from '@minhnhat/shared';
 import { BookingForm } from '@/components/forms/booking-form';
-import { ContactForm } from '@/components/forms/contact-form';
 import { HeroImageCarousel } from '@/components/public/hero-image-carousel';
 import { ImageFadeCarousel } from '@/components/public/image-fade-carousel';
-import { JsonLdScript } from '@/components/seo/json-ld-script';
 import { LoadingImage } from '@/components/ui/loading-image';
 import { integrationSettings } from '@/lib/integrations/settings';
-import { faqJsonLd } from '@/lib/seo/json-ld';
 
 const stats = [
   { label: 'Phản hồi', value: '30p', desc: 'tiếp nhận nhanh trong giờ làm việc' },
@@ -182,7 +178,16 @@ const areaLocationCarouselImages: Record<AreaSlug, string[]> = {
 
 export default function HomePage() {
   const phoneHref = `tel:${integrationSettings.phone.replace(/\s/g, '')}`;
-  const featuredServices = SERVICES.slice(0, 6);
+  const featuredServices = [
+    'sua-may-lanh',
+    'sua-tu-lanh',
+    'sua-may-giat',
+    've-sinh-may-lanh',
+    'nap-gas-may-lanh',
+    'thao-lap-may-lanh',
+  ]
+    .map((slug) => SERVICES.find((service) => service.slug === slug))
+    .filter((service): service is (typeof SERVICES)[number] => Boolean(service));
 
   return (
     <main className="bg-[#f4f8fb] text-slate-950">
@@ -320,7 +325,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="relative z-10 -mt-9">
+      <section className="relative z-10 py-6 sm:py-8">
         <div className="container grid gap-3 md:grid-cols-3">
           {trustItems.map(({ icon: Icon, title, desc }) => (
             <article
@@ -386,7 +391,7 @@ export default function HomePage() {
           </div>
 
           <div>
-            <p className="text-sm font-black uppercase tracking-wide text-primary">Giới thiệu</p>
+            <p className="text-sm font-black uppercase tracking-wide text-primary sm:text-base">Giới thiệu</p>
             <h2 className="mt-2 text-2xl font-black tracking-normal sm:text-4xl">
               Điện Lạnh Minh Nhật phục vụ tận nơi tại {TARGET_CITY}
             </h2>
@@ -418,23 +423,23 @@ export default function HomePage() {
         <div className="mt-10 border-t border-slate-200 pt-8">
           <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div className="max-w-2xl">
-              <p className="text-sm font-black uppercase tracking-wide text-primary">
-                Phạm vi hoạt động
+              <p className="text-sm font-black uppercase tracking-wide text-primary sm:text-base">
+                Khu vực phục vụ
               </p>
               <h3 className="mt-2 text-2xl font-black tracking-normal sm:text-3xl">
                 Có mặt tại các khu vực cần thợ điện lạnh gần bạn
               </h3>
               <p className="mt-3 leading-7 text-slate-600">
                 Minh Nhật ưu tiên tiếp nhận lịch tại Ninh Kiều, Cái Răng, Bình Thủy, Ô Môn và các
-                khu vực lân cận tại Cần Thơ. Khách chỉ cần gửi địa chỉ, tình trạng thiết bị và khung
-                giờ mong muốn để được xác nhận lịch phù hợp.
+                khu vực lân cận tại Cần Thơ. Khách chỉ cần cung cấp địa chỉ, tình trạng thiết bị và
+                khung giờ mong muốn qua hotline hoặc Zalo để được xác nhận lịch phù hợp.
               </p>
             </div>
             <Link
               className="inline-flex items-center gap-2 text-sm font-black text-primary"
               href="/contact"
             >
-              Xem liên hệ
+              Liên hệ tư vấn
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -473,13 +478,15 @@ export default function HomePage() {
         <div className="container">
           <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <div className="max-w-2xl">
-              <p className="text-sm font-black uppercase tracking-wide text-primary">Dịch vụ</p>
+              <p className="text-sm font-black uppercase tracking-wide text-primary sm:text-base">
+                Dịch vụ nổi bật
+              </p>
               <h2 className="mt-2 text-2xl font-black tracking-normal sm:text-4xl">
                 Dịch vụ sửa chữa, vệ sinh và lắp đặt nổi bật
               </h2>
               <p className="mt-3 leading-7 text-slate-600">
-                Các hạng mục phổ biến được đưa lên trước để khách đang cần xử lý nhanh có thể chọn
-                dịch vụ, xem chi tiết và gửi yêu cầu trong một luồng liền mạch.
+                Các hạng mục phổ biến được đưa lên trước để khách dễ chọn dịch vụ, xem thông tin và
+                liên hệ qua hotline hoặc Zalo khi cần tư vấn.
               </p>
             </div>
             <Link
@@ -528,13 +535,15 @@ export default function HomePage() {
       <section className="container py-12 sm:py-16 lg:py-20">
         <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
           <div>
-            <p className="text-sm font-black uppercase tracking-wide text-primary">Điểm nổi bật</p>
+            <p className="text-sm font-black uppercase tracking-wide text-primary sm:text-base">
+              Điểm nổi bật
+            </p>
             <h2 className="mt-2 text-2xl font-black tracking-normal sm:text-4xl">
               Tập trung vào điều khách cần biết trước khi đặt lịch
             </h2>
             <p className="mt-4 leading-8 text-slate-700">
-              Trang chủ mới không chỉ giới thiệu dịch vụ, mà dẫn khách đi từ vấn đề đang gặp đến lựa
-              chọn dịch vụ và biểu mẫu xác nhận lịch.
+              Thông tin dịch vụ được trình bày theo từng nhu cầu để khách dễ chọn phương án phù hợp,
+              xem quy trình và đặt lịch kiểm tra.
             </p>
           </div>
 
@@ -567,52 +576,56 @@ export default function HomePage() {
       </section>
 
       <section className="container py-12 sm:py-16 lg:py-20">
-          <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
-            <div className="max-w-2xl">
-              <p className="text-sm font-black uppercase tracking-wide text-primary">Quy trình</p>
+        <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+          <div className="max-w-2xl">
+            <p className="text-sm font-black uppercase tracking-wide text-primary sm:text-base">
+              Quy trình
+            </p>
             <h2 className="mt-2 text-2xl font-black tracking-normal sm:text-4xl">
               Quy trình đặt lịch và thi công rõ từng bước
             </h2>
           </div>
           <div className="flex items-center gap-2 text-sm font-black text-slate-600">
             <Fan className="h-5 w-5 text-primary" />
-              Minh bạch từ lúc nhận lịch đến nghiệm thu
-            </div>
+            Minh bạch từ lúc nhận lịch đến nghiệm thu
           </div>
+        </div>
 
-          <div className="relative mt-8 grid gap-6 md:grid-cols-5 xl:gap-7">
-            {processSteps.map(({ number, title, desc, image }) => (
-              <article
-                key={number}
-                className="relative overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-slate-200"
-              >
-                <div className="relative aspect-[32/47] overflow-hidden border-b border-slate-200 bg-white">
-                  <LoadingImage
-                    src={image}
-                    alt={`Minh họa ${title.toLowerCase()} trong quy trình dịch vụ`}
-                    fill
-                    className="scale-[1.12] object-cover object-center"
-                    sizes="(min-width: 768px) 20vw, 100vw"
-                    reveal="none"
-                    showLoader={false}
-                  />
-                </div>
-                <div className="relative p-4">
-                  <p className="inline-flex rounded-md bg-primary px-2.5 py-1 text-xs font-black uppercase text-white shadow-sm">
-                    Bước {number}
-                  </p>
-                  <h3 className="mt-3 text-lg font-black">{title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">{desc}</p>
-                </div>
-              </article>
-            ))}
-          </div>
+        <div className="relative mt-8 grid gap-6 md:grid-cols-5 xl:gap-7">
+          {processSteps.map(({ number, title, desc, image }) => (
+            <article
+              key={number}
+              className="relative overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-slate-200"
+            >
+              <div className="relative aspect-[32/47] overflow-hidden border-b border-slate-200 bg-white">
+                <LoadingImage
+                  src={image}
+                  alt={`Minh họa ${title.toLowerCase()} trong quy trình dịch vụ`}
+                  fill
+                  className="scale-[1.12] object-cover object-center"
+                  sizes="(min-width: 768px) 20vw, 100vw"
+                  reveal="none"
+                  showLoader={false}
+                />
+              </div>
+              <div className="relative p-4">
+                <p className="inline-flex rounded-md bg-primary px-2.5 py-1 text-xs font-black uppercase text-white shadow-sm">
+                  Bước {number}
+                </p>
+                <h3 className="mt-3 text-lg font-black">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{desc}</p>
+              </div>
+            </article>
+          ))}
+        </div>
       </section>
 
       <section className="bg-white py-12 sm:py-16 lg:py-20">
         <div className="container grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <div>
-            <p className="text-sm font-black uppercase tracking-wide text-primary">Đặt lịch</p>
+            <p className="text-sm font-black uppercase tracking-wide text-primary sm:text-base">
+              Đặt lịch
+            </p>
             <h2 className="mt-2 text-2xl font-black tracking-normal sm:text-4xl">
               Gửi thông tin để kỹ thuật viên xác nhận lịch
             </h2>
@@ -658,46 +671,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-[#0b172a] py-12 text-white sm:py-16 lg:py-20">
-        <div className="container grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-          <div>
-            <p className="text-sm font-black uppercase tracking-wide text-cyan-300">Hỏi đáp</p>
-            <h2 className="mt-2 text-2xl font-black tracking-normal sm:text-4xl">
-              Trả lời nhanh các băn khoăn trước khi đặt lịch
-            </h2>
-            <div className="mt-7 grid gap-4">
-              {FAQS.map((faq) => (
-                <article
-                  key={faq.question}
-                  className="rounded-md border border-white/10 bg-white/[0.06] p-4"
-                >
-                  <h3 className="font-black">{faq.question}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{faq.answer}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-
-          <div className="min-w-0 rounded-md bg-white p-4 text-slate-950 shadow-2xl shadow-black/30 sm:p-5">
-            <div className="flex min-w-0 items-start justify-between gap-4">
-              <div className="min-w-0">
-                <p className="text-sm font-black uppercase text-primary">Yêu cầu báo giá</p>
-                <h2 className="mt-1 text-2xl font-black">Mô tả nhu cầu của bạn</h2>
-                <p className="mt-2 text-sm leading-6 text-slate-600">
-                  Chúng tôi sẽ liên hệ tư vấn phương án phù hợp trước khi thi công.
-                </p>
-              </div>
-              <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-amber-100 text-amber-700">
-                <Zap className="h-6 w-6" />
-              </span>
-            </div>
-            <div className="mt-5">
-              <ContactForm quotation />
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="relative overflow-hidden bg-white py-12">
         <div className="absolute inset-y-0 right-0 hidden w-1/3 bg-cyan-50 lg:block" />
         <div className="container relative flex flex-col items-start justify-between gap-5 md:flex-row md:items-center">
@@ -729,8 +702,6 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
-
-      <JsonLdScript data={faqJsonLd()} />
     </main>
   );
 }

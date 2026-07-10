@@ -3,8 +3,8 @@ const { hash } = require('bcryptjs');
 
 const prisma = new PrismaClient();
 const isProduction = process.env.NODE_ENV === 'production';
-const seedAdminEmail = process.env.SEED_ADMIN_EMAIL || 'admin@minhnhat.local';
-const seedAdminPassword = process.env.SEED_ADMIN_PASSWORD || (isProduction ? '' : 'ChangeMe123!');
+const seedAdminEmail = process.env.SEED_ADMIN_EMAIL || 'ngokinh30311@gmail.com';
+const seedAdminPassword = process.env.SEED_ADMIN_PASSWORD || (isProduction ? '' : 'by!6$Qhm');
 
 if (isProduction && seedAdminPassword.length < 12) {
   throw new Error('SEED_ADMIN_PASSWORD must be set to at least 12 characters in production.');

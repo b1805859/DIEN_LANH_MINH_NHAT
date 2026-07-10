@@ -1,13 +1,13 @@
 import type { LucideIcon } from 'lucide-react';
-import { MapPin, Phone } from 'lucide-react';
-import { ContactForm } from '@/components/forms/contact-form';
+import { MapPin, Navigation, Phone } from 'lucide-react';
+import { APP_NAME, TARGET_CITY } from '@minhnhat/shared';
 import { LoadingImage } from '@/components/ui/loading-image';
 import { integrationSettings } from '@/lib/integrations/settings';
 import { buildMetadata } from '@/lib/seo/metadata';
 
 export const metadata = buildMetadata({
   title: 'Liên hệ ĐIỆN LẠNH MINH NHẬT',
-  description: 'Liên hệ đường dây nóng, Zalo và gửi yêu cầu báo giá dịch vụ tại Cần Thơ.',
+  description: 'Liên hệ đường dây nóng và Zalo để được tư vấn dịch vụ điện lạnh tại Cần Thơ.',
   path: '/contact',
 });
 
@@ -32,17 +32,19 @@ const contactMethods: Array<{
 ];
 
 export default function ContactPage() {
+  const hasMapEmbed = Boolean(integrationSettings.googleMapsEmbedUrl);
+
   return (
     <main className="bg-[#f5f8fb] py-10 sm:py-12 lg:py-16">
-      <div className="container grid min-w-0 gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-        <section className="min-w-0">
+      <div className="container grid min-w-0 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
+        <section className="flex min-w-0 flex-col">
           <p className="text-sm font-black uppercase tracking-wide text-primary">Liên hệ</p>
           <h1 className="mt-2 text-[1.75rem] font-black leading-[1.1] tracking-normal sm:text-5xl">
-            Gửi tình trạng thiết bị, Minh Nhật sẽ tư vấn lại
+            Gọi hoặc nhắn Zalo, Minh Nhật sẽ tư vấn trực tiếp
           </h1>
           <p className="mt-4 max-w-2xl leading-8 text-slate-700">
-            Bạn có thể gọi trực tiếp khi cần xử lý gấp, hoặc gửi biểu mẫu để đội kỹ thuật nắm trước
-            dịch vụ, địa chỉ và nhu cầu báo giá.
+            Khách hàng chỉ cần mô tả nhanh tình trạng thiết bị qua điện thoại hoặc Zalo. Đội kỹ
+            thuật sẽ hỏi thêm thông tin cần thiết và hẹn lịch phù hợp.
           </p>
 
           <div className="mt-8 grid gap-3">
@@ -102,15 +104,34 @@ export default function ContactPage() {
           </div>
         </section>
 
-        <section className="min-w-0 rounded-md border border-slate-200 bg-white p-4 shadow-xl shadow-slate-200/70 sm:p-5">
-          <p className="text-sm font-black uppercase text-primary">Gửi yêu cầu</p>
-          <h2 className="mt-1 text-2xl font-black">Mô tả nhu cầu của bạn</h2>
-          <p className="mt-2 text-sm leading-6 text-slate-600">
-            Càng rõ tình trạng, kỹ thuật viên càng dễ chuẩn bị phương án và dụng cụ phù hợp.
+        <section className="flex min-w-0 flex-col">
+          <p className="text-sm font-black uppercase tracking-wide text-primary">Vị trí</p>
+          <h2 className="mt-1 text-2xl font-black">Khu vực phục vụ tại {TARGET_CITY}</h2>
+          <p className="mt-3 text-sm leading-6 text-slate-600">
+            Xem vị trí để thuận tiện trao đổi khu vực phục vụ và sắp xếp lịch kỹ thuật viên.
           </p>
-          <div className="mt-5">
-            <ContactForm />
-          </div>
+
+          {hasMapEmbed ? (
+            <div className="mt-5 flex-1 overflow-hidden rounded-md border border-slate-200 bg-white shadow-xl shadow-slate-200/70">
+              <iframe
+                className="block h-[360px] w-full bg-slate-100 sm:h-[420px] lg:h-full lg:min-h-[500px]"
+                src={integrationSettings.googleMapsEmbedUrl}
+                loading="eager"
+                referrerPolicy="no-referrer-when-downgrade"
+                title={`Bản đồ ${APP_NAME}`}
+              />
+            </div>
+          ) : (
+            <div className="mt-5 rounded-md border border-slate-200 bg-white p-5 shadow-xl shadow-slate-200/70">
+              <p className="flex gap-3 font-semibold text-slate-900">
+                <Navigation className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                <span>Thông tin vị trí tại {TARGET_CITY}</span>
+              </p>
+              <p className="mt-3 pl-8 text-sm leading-6 text-slate-600">
+                {integrationSettings.address}
+              </p>
+            </div>
+          )}
         </section>
       </div>
     </main>

@@ -3,6 +3,7 @@ import { CurrentUser } from '../../common/decorators/current-user.decorator';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RequestUser } from '../../common/types/request-user';
 import { AuthService } from './auth.service';
+import { ChangePasswordDto } from './dto/change-password.dto';
 import { LoginDto } from './dto/login.dto';
 import { RefreshTokenDto } from './dto/refresh-token.dto';
 
@@ -25,5 +26,10 @@ export class AuthController {
   logout(@CurrentUser() user: RequestUser, @Body() dto: RefreshTokenDto) {
     return this.authService.logout(user.sub, dto.refreshToken);
   }
-}
 
+  @UseGuards(JwtAuthGuard)
+  @Post('change-password')
+  changePassword(@CurrentUser() user: RequestUser, @Body() dto: ChangePasswordDto) {
+    return this.authService.changePassword(user.sub, dto);
+  }
+}

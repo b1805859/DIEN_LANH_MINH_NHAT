@@ -8,9 +8,7 @@ services:
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-minh_nhat}
       POSTGRES_USER: ${POSTGRES_USER:-minh_nhat}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-minh_nhat_password}
-    ports:
-      - "${POSTGRES_PORT:-5432}:5432"
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
@@ -28,7 +26,7 @@ services:
     environment:
       NODE_ENV: production
       PORT: 4000
-      DATABASE_URL: postgresql://${POSTGRES_USER:-minh_nhat}:${POSTGRES_PASSWORD:-minh_nhat_password}@postgres:5432/${POSTGRES_DB:-minh_nhat}?schema=public
+      DATABASE_URL: postgresql://${POSTGRES_USER:-minh_nhat}:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}@postgres:5432/${POSTGRES_DB:-minh_nhat}?schema=public
       CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost,http://localhost:3000}
       JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET:?Set JWT_ACCESS_SECRET in .env}
       JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:?Set JWT_REFRESH_SECRET in .env}

@@ -27,6 +27,16 @@ export class AdminController {
     return this.adminService.getDashboard(user.role);
   }
 
+  @Get('history')
+  history(@CurrentUser() user: RequestUser, @Query() query: Record<string, string | undefined>) {
+    return this.adminService.listHistory(query, user.role);
+  }
+
+  @Post('history/:id/revert')
+  revertHistory(@CurrentUser() user: RequestUser, @Param('id') id: string) {
+    return this.adminService.revertHistory(id, user);
+  }
+
   @Get(':resource')
   list(
     @CurrentUser() user: RequestUser,
@@ -57,11 +67,11 @@ export class AdminController {
     @Param('id') id: string,
     @Body() payload: Record<string, unknown>,
   ) {
-    return this.adminService.update(resource, id, payload, user.role);
+    return this.adminService.update(resource, id, payload, user);
   }
 
   @Delete(':resource/:id')
   remove(@CurrentUser() user: RequestUser, @Param('resource') resource: string, @Param('id') id: string) {
-    return this.adminService.remove(resource, id, user.role);
+    return this.adminService.remove(resource, id, user);
   }
 }

@@ -1,9 +1,10 @@
 import { randomBytes, createHash } from 'node:crypto';
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
-import { compare } from 'bcryptjs';
+import { compare, hash } from 'bcryptjs';
 import { PrismaService } from '../../prisma/prisma.service';
+import { ChangePasswordDto } from './dto/change-password.dto';
 import { LoginDto } from './dto/login.dto';
 
 @Injectable()
@@ -73,6 +74,42 @@ export class AuthService {
     return { success: true };
   }
 
+  async changePassword(userId: string, dto: ChangePasswordDto) {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!user || !user.isActive) {
+      throw new UnauthorizedException('Invalid credentials.');
+    }
+
+    const isCurrentPasswordValid = await compare(dto.currentPassword, user.passwordHash);
+    if (!isCurrentPasswordValid) {
+      throw new UnauthorizedException('Invalid credentials.');
+    }
+
+    const isSamePassword = await compare(dto.newPassword, user.passwordHash);
+    if (isSamePassword) {
+      throw new BadRequestException('New password must be different from the current password.');
+    }
+
+    await this.prisma.$transaction([
+      this.prisma.user.update({
+        where: { id: userId },
+        data: { passwordHash: await hash(dto.newPassword, 12) },
+      }),
+      this.prisma.refreshToken.updateMany({
+        where: {
+          userId,
+          revokedAt: null,
+        },
+        data: { revokedAt: new Date() },
+      }),
+    ]);
+
+    return { success: true };
+  }
+
   private async issueTokens(userId: string, email: string, role: string) {
     const payload = { sub: userId, email, role };
     const accessToken = await this.jwtService.signAsync(payload);
@@ -105,4 +142,3 @@ export class AuthService {
     return match ? Number(match[1]) : 30;
   }
 }
-

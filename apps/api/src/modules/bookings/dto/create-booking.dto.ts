@@ -1,4 +1,6 @@
-import { IsDateString, IsEmail, IsOptional, IsString, MinLength } from 'class-validator';
+import { IsEmail, IsOptional, IsString, Matches, MinLength } from 'class-validator';
+
+const DATE_KEY_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
 
 export class CreateBookingDto {
   @IsString()
@@ -7,8 +9,8 @@ export class CreateBookingDto {
   @IsString()
   locationId!: string;
 
-  @IsDateString()
-  scheduledAt!: string;
+  @Matches(DATE_KEY_PATTERN, { message: 'scheduledDate must use YYYY-MM-DD format.' })
+  scheduledDate!: string;
 
   @IsString()
   @MinLength(5)
@@ -30,4 +32,3 @@ export class CreateBookingDto {
   @IsString()
   notes?: string;
 }
-

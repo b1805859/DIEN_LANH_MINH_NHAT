@@ -6,6 +6,7 @@ import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { BookingsService } from './bookings.service';
 import { CreateBookingDto } from './dto/create-booking.dto';
+import { ScheduleQueryDto } from './dto/schedule-query.dto';
 import { UpdateBookingStatusDto } from './dto/update-booking-status.dto';
 
 @Controller('bookings')
@@ -35,6 +36,13 @@ export class BookingsController {
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('SUPER_ADMIN', 'ADMIN', 'STAFF')
+  @Get('schedule')
+  schedule(@Query() query: ScheduleQueryDto) {
+    return this.bookingsService.getSchedule(query);
+  }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('SUPER_ADMIN', 'ADMIN', 'STAFF')
   @Get(':id')
   get(@Param('id') id: string) {
     return this.bookingsService.get(id);
@@ -47,4 +55,3 @@ export class BookingsController {
     return this.bookingsService.updateStatus(id, dto.status);
   }
 }
-

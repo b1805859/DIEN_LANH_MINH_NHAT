@@ -1,5 +1,5 @@
-import { AdminResourcePage } from '@/components/admin/admin-resource-page';
+import { AdminBookingsPage } from '@/components/admin/admin-bookings-page';
 
 export default function Page() {
-  return <AdminResourcePage title="Quản lý lịch hẹn" resource="bookings" />;
+  return <AdminBookingsPage />;
 }
