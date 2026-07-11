@@ -29,7 +29,6 @@ const RESOURCE_DELEGATES: Record<string, string> = {
   seo: 'sEOSetting',
   users: 'user',
   roles: 'role',
-  contacts: 'contactRequest',
   blog: 'blogPost',
   bookings: 'booking',
 };
@@ -40,14 +39,13 @@ const SEARCH_FIELDS: Record<string, string[]> = {
   categories: ['name', 'slug'],
   tags: ['name', 'slug'],
   faqs: ['question'],
-  contacts: ['name', 'phone', 'email'],
   blog: ['title', 'slug'],
   media: ['fileName', 'originalName'],
   seo: ['title', 'pageKey'],
   users: ['email', 'name'],
 };
 
-const CUSTOMER_MANAGED_RESOURCES = new Set(['bookings', 'contacts']);
+const CUSTOMER_MANAGED_RESOURCES = new Set(['bookings']);
 const BOOKING_STATUSES = new Set(['PENDING', 'CONFIRMED', 'IN_PROGRESS', 'COMPLETED', 'CANCELLED']);
 const CONTENT_RESOURCES = new Set([
   'services',
@@ -59,7 +57,7 @@ const CONTENT_RESOURCES = new Set([
   'seo',
   'blog',
 ]);
-const LEAD_RESOURCES = new Set(['bookings', 'contacts']);
+const LEAD_RESOURCES = new Set(['bookings']);
 const IDENTITY_RESOURCES = new Set(['users', 'roles']);
 const IMAGE_UPDATE_FIELDS: Record<string, Set<string>> = {
   services: new Set(['imageUrl']),
@@ -86,8 +84,6 @@ export class AdminService {
       locations,
       bookings,
       pendingBookings,
-      contacts,
-      unresolvedContacts,
       posts,
       publishedPosts,
       todayBookings,
@@ -98,8 +94,6 @@ export class AdminService {
       this.prisma.location.count(),
       this.prisma.booking.count(),
       this.prisma.booking.count({ where: { status: 'PENDING' } }),
-      this.prisma.contactRequest.count(),
-      this.prisma.contactRequest.count({ where: { isResolved: false } }),
       this.prisma.blogPost.count(),
       this.prisma.blogPost.count({ where: { status: 'PUBLISHED' } }),
       this.prisma.booking.count({
@@ -141,8 +135,6 @@ export class AdminService {
       locations,
       bookings,
       pendingBookings,
-      contacts,
-      unresolvedContacts,
       posts,
       publishedPosts,
       bookingOverview: {
@@ -553,14 +545,6 @@ export class AdminService {
       }
 
       return { status: payload.status };
-    }
-
-    if (resource === 'contacts') {
-      if (typeof payload.isResolved !== 'boolean') {
-        throw new BadRequestException('Contact resolution status is required.');
-      }
-
-      return { isResolved: payload.isResolved };
     }
 
     throw new BadRequestException(`Unsupported customer-managed resource: ${resource}`);

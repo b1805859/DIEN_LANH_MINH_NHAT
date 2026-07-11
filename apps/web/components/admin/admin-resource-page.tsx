@@ -222,30 +222,6 @@ const resourceConfigs: Record<string, ResourceConfig> = {
     allowDelete: false,
     updateFields: ['status'],
   },
-  contacts: {
-    fields: [
-      { name: 'name', label: 'Tên khách hàng', type: 'text', required: true },
-      { name: 'phone', label: 'Số điện thoại', type: 'text', required: true },
-      { name: 'email', label: 'Email', type: 'text' },
-      { name: 'subject', label: 'Chủ đề', type: 'text' },
-      { name: 'message', label: 'Nội dung', type: 'textarea' },
-      { name: 'source', label: 'Nguồn', type: 'text' },
-      { name: 'isResolved', label: 'Đã xử lý', type: 'checkbox' },
-    ],
-    listColumns: [
-      textColumn('name', 'Khách hàng', { primary: true }),
-      textColumn('phone', 'Số điện thoại'),
-      textColumn('subject', 'Chủ đề', { truncate: true }),
-      booleanColumn('isResolved', 'Trạng thái', 'Đã xử lý', 'Chưa xử lý'),
-      textColumn('source', 'Nguồn'),
-      dateColumn('createdAt', 'Ngày tạo'),
-    ],
-    primaryLabel: (record, index) =>
-      textValue(record.name) || textValue(record.phone) || `Liên hệ ${index + 1}`,
-    allowCreate: false,
-    allowDelete: false,
-    updateFields: ['isResolved'],
-  },
   media: {
     fields: [
       { name: 'fileName', label: 'Tên file', type: 'text', required: true },
