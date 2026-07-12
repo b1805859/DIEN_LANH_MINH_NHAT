@@ -1,4 +1,5 @@
 import { NestFactory } from '@nestjs/core';
+import { NestExpressApplication } from '@nestjs/platform-express';
 import { ConfigService } from '@nestjs/config';
 import { ValidationPipe } from '@nestjs/common';
 import { json, urlencoded } from 'express';
@@ -44,12 +45,15 @@ function requireStrongProductionConfig(configService: ConfigService) {
 }
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { bodyParser: false });
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, { bodyParser: false });
   const configService = app.get(ConfigService);
   requireStrongProductionConfig(configService);
   const port = configService.get<number>('PORT', 4000);
   const corsOrigin = configService.get<string>('CORS_ORIGIN', 'http://localhost');
 
+  // The production stack has exactly one trusted reverse proxy (nginx). This
+  // lets rate limiting use the real client IP instead of grouping all traffic.
+  app.set('trust proxy', 1);
   app.use(json({ limit: '20mb' }));
   app.use(urlencoded({ limit: '20mb', extended: true }));
   app.use(helmet());

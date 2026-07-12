@@ -205,7 +205,7 @@ export default function HomePage() {
         <div className="absolute inset-x-0 top-0 h-svh lg:hidden">
           <LoadingImage
             src="/images/home-mobile-hero.png"
-            alt="KhÃ´ng gian mÃ¡t máº» vá»›i mÃ¡y láº¡nh gia Ä‘Ã¬nh"
+            alt="Không gian mát mẻ với máy lạnh gia đình"
             fill
             priority
             className="object-cover object-center brightness-[1.06] saturate-[1.12] contrast-[1.03]"
