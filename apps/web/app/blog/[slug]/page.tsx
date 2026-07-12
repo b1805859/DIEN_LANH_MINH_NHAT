@@ -19,6 +19,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: post.title,
     description: post.excerpt,
     path: `/blog/${slug}`,
+    image: post.image,
+    type: 'article',
   });
 }
 
@@ -163,7 +165,9 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
         </aside>
       </section>
 
-      <JsonLdScript data={articleJsonLd(post.title, `/blog/${post.slug}`)} />
+      <JsonLdScript
+        data={articleJsonLd(post.title, post.excerpt, post.image, `/blog/${post.slug}`)}
+      />
       <JsonLdScript
         data={breadcrumbJsonLd([
           { name: 'Trang chủ', path: '/' },

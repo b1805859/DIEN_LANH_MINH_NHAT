@@ -31,6 +31,7 @@ export async function generateMetadata({
     title: `${service.name} tại ${ward.name}, Cần Thơ`,
     description: `${service.name} tại ${ward.name}, Cần Thơ. Báo giá rõ ràng, đặt lịch nhanh, hỗ trợ tận nơi.`,
     path: `/areas/${locationSlug}/${serviceSlug}`,
+    image: ward.image,
   });
 }
 
@@ -131,6 +132,7 @@ export default async function ServiceWardPage({
         data={serviceJsonLd(
           `${service.name} tại ${ward.name}`,
           `/areas/${ward.slug}/${service.slug}`,
+          ward.image,
         )}
       />
       <JsonLdScript

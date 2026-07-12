@@ -20,6 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: localTitle(service.name),
     description: `${service.name} chuyên nghiệp tại Cần Thơ, đặt lịch nhanh và báo giá rõ ràng.`,
     path: `/services/${slug}`,
+    image: `/images/services/${slug}.jpg`,
   });
 }
 
@@ -102,7 +103,13 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </Link>
         </aside>
       </section>
-      <JsonLdScript data={serviceJsonLd(service.name, `/services/${service.slug}`)} />
+      <JsonLdScript
+        data={serviceJsonLd(
+          service.name,
+          `/services/${service.slug}`,
+          `/images/services/${service.slug}.jpg`,
+        )}
+      />
       <JsonLdScript data={faqJsonLd()} />
       <JsonLdScript
         data={breadcrumbJsonLd([

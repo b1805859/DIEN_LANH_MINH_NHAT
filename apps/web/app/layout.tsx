@@ -4,7 +4,8 @@ import Script from 'next/script';
 import { SiteChrome } from '@/components/layout/site-chrome';
 import { JsonLdScript } from '@/components/seo/json-ld-script';
 import { ToastProvider } from '@/components/ui/toast';
-import { localBusinessJsonLd } from '@/lib/seo/json-ld';
+import { localBusinessJsonLd, websiteJsonLd } from '@/lib/seo/json-ld';
+import { absoluteUrl } from '@/lib/seo/metadata';
 import { integrationSettings } from '@/lib/integrations/settings';
 import './globals.css';
 
@@ -16,11 +17,14 @@ const beVietnamPro = Be_Vietnam_Pro({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(absoluteUrl('/')),
   title: {
     default: 'ĐIỆN LẠNH MINH NHẬT',
     template: '%s | ĐIỆN LẠNH MINH NHẬT',
   },
   description: 'Dịch vụ điện lạnh và sửa chữa tận nơi tại Cần Thơ.',
+  applicationName: 'ĐIỆN LẠNH MINH NHẬT',
+  category: 'Dịch vụ điện lạnh',
   verification: {
     google: integrationSettings.googleSearchConsoleVerification || undefined,
   },
@@ -38,6 +42,7 @@ export default function RootLayout({
           <SiteChrome>{children}</SiteChrome>
         </ToastProvider>
         <JsonLdScript data={localBusinessJsonLd()} />
+        <JsonLdScript data={websiteJsonLd()} />
         {integrationSettings.googleAnalyticsId ? (
           <>
             <Script

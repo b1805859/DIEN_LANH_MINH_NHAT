@@ -3,19 +3,41 @@ import { absoluteUrl } from './metadata';
 import { integrationSettings } from '../integrations/settings';
 
 export function localBusinessJsonLd() {
+  const sameAs = [
+    integrationSettings.facebookUrl,
+    integrationSettings.tiktokUrl,
+    integrationSettings.youtubeUrl,
+    integrationSettings.zaloUrl,
+  ].filter(Boolean);
+
   return {
     '@context': 'https://schema.org',
     '@type': ['LocalBusiness', 'HVACBusiness'],
+    '@id': absoluteUrl('/#business'),
     name: APP_NAME,
+    image: absoluteUrl('/images/home-hero.jpg'),
     telephone: integrationSettings.phone,
     address: {
       '@type': 'PostalAddress',
       addressLocality: TARGET_CITY,
       addressCountry: 'VN',
-      streetAddress: integrationSettings.address,
+      ...(integrationSettings.address ? { streetAddress: integrationSettings.address } : {}),
     },
     areaServed: TARGET_CITY,
     url: absoluteUrl('/'),
+    ...(sameAs.length ? { sameAs } : {}),
+  };
+}
+
+export function websiteJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    '@id': absoluteUrl('/#website'),
+    url: absoluteUrl('/'),
+    name: APP_NAME,
+    inLanguage: 'vi-VN',
+    publisher: { '@id': absoluteUrl('/#business') },
   };
 }
 
@@ -47,7 +69,7 @@ export function breadcrumbJsonLd(items: Array<{ name: string; path: string }>) {
   };
 }
 
-export function serviceJsonLd(serviceName: string, path: string) {
+export function serviceJsonLd(serviceName: string, path: string, image?: string) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -55,17 +77,22 @@ export function serviceJsonLd(serviceName: string, path: string) {
     provider: localBusinessJsonLd(),
     areaServed: TARGET_CITY,
     url: absoluteUrl(path),
+    ...(image ? { image: absoluteUrl(image) } : {}),
   };
 }
 
-export function articleJsonLd(title: string, path: string) {
+export function articleJsonLd(title: string, description: string, image: string, path: string) {
   return {
     '@context': 'https://schema.org',
     '@type': ['Article', 'BlogPosting'],
     headline: title,
+    description,
+    image: [absoluteUrl(image)],
     author: { '@type': 'Organization', name: APP_NAME },
-    publisher: { '@type': 'Organization', name: APP_NAME },
-    mainEntityOfPage: absoluteUrl(path),
+    publisher: { '@id': absoluteUrl('/#business') },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': absoluteUrl(path) },
+    url: absoluteUrl(path),
+    inLanguage: 'vi-VN',
   };
 }
 

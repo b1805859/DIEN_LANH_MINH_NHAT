@@ -13,9 +13,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const category = BLOG_CATEGORIES.find((item) => item.slug === slug);
   if (!category) return {};
+  const hasPosts = BLOG_POSTS.some((post) => post.category === slug);
+  if (!hasPosts) {
+    return {
+      title: `Bài viết ${category.name}`,
+      robots: { index: false, follow: true },
+    };
+  }
   return buildMetadata({
     title: `Bài viết ${category.name}`,
-    description: `Bài viết SEO về ${category.name} cho khách hàng tại Cần Thơ.`,
+    description: `Hướng dẫn sử dụng, bảo trì và nhận biết lỗi ${category.name.toLowerCase()} dành cho khách hàng tại Cần Thơ.`,
     path: `/blog/category/${slug}`,
   });
 }

@@ -4,6 +4,8 @@ import { ArrowRight, CalendarCheck, MapPin } from 'lucide-react';
 import { PRIORITY_DISTRICTS, SERVICES, findDistrict } from '@minhnhat/shared';
 import { BookingForm } from '@/components/forms/booking-form';
 import { LoadingImage } from '@/components/ui/loading-image';
+import { JsonLdScript } from '@/components/seo/json-ld-script';
+import { breadcrumbJsonLd } from '@/lib/seo/json-ld';
 import { buildMetadata } from '@/lib/seo/metadata';
 
 export function generateStaticParams() {
@@ -19,6 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locationS
     title: `Dịch vụ điện lạnh ${ward.name}, Cần Thơ`,
     description: `Dịch vụ điện lạnh và sửa chữa tận nơi tại ${ward.name}, Cần Thơ.`,
     path: `/areas/${locationSlug}`,
+    image: ward.image,
   });
 }
 
@@ -115,6 +118,13 @@ export default async function WardPage({ params }: { params: Promise<{ locationS
           ))}
         </div>
       </section>
+      <JsonLdScript
+        data={breadcrumbJsonLd([
+          { name: 'Trang chủ', path: '/' },
+          { name: 'Khu vực phục vụ', path: '/services' },
+          { name: ward.name, path: `/areas/${ward.slug}` },
+        ])}
+      />
     </main>
   );
 }

@@ -3,8 +3,6 @@ import { BLOG_CATEGORIES, BLOG_POSTS, PRIORITY_DISTRICTS, SERVICES } from '@minh
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost';
-  const now = new Date();
-
   const urls: Array<{
     path: string;
     changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'];
@@ -36,7 +34,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
       })),
     ),
-    ...BLOG_CATEGORIES.map((category) => ({
+    ...BLOG_CATEGORIES.filter((category) =>
+      BLOG_POSTS.some((post) => post.category === category.slug),
+    ).map((category) => ({
       path: `/blog/category/${category.slug}`,
       changeFrequency: 'weekly' as const,
       priority: 0.65,
@@ -49,8 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   return urls.map(({ path, changeFrequency, priority }) => ({
-    url: `${siteUrl}${path}`,
-    lastModified: now,
+    url: new URL(path, siteUrl).toString(),
     changeFrequency,
     priority,
   }));

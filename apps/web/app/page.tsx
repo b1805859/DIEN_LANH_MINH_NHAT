@@ -26,6 +26,15 @@ import { HeroImageCarousel } from '@/components/public/hero-image-carousel';
 import { ImageFadeCarousel } from '@/components/public/image-fade-carousel';
 import { LoadingImage } from '@/components/ui/loading-image';
 import { integrationSettings } from '@/lib/integrations/settings';
+import { buildMetadata } from '@/lib/seo/metadata';
+
+export const metadata = buildMetadata({
+  title: 'Dịch vụ điện lạnh Cần Thơ tận nơi',
+  description:
+    'Sửa chữa, vệ sinh, tháo lắp và nạp gas máy lạnh tận nơi tại Cần Thơ. Kiểm tra rõ ràng, báo giá trước khi làm và đặt lịch nhanh.',
+  path: '/',
+  image: '/images/home-hero.jpg',
+});
 
 const stats = [
   { label: 'Phản hồi', value: '30p', desc: 'tiếp nhận nhanh trong giờ làm việc' },

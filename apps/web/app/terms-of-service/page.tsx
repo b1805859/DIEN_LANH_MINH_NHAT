@@ -1,3 +1,11 @@
+import { buildMetadata } from '@/lib/seo/metadata';
+
+export const metadata = buildMetadata({
+  title: 'Điều khoản dịch vụ',
+  description: 'Điều khoản sử dụng dịch vụ sửa chữa và bảo trì điện lạnh của Điện Lạnh Minh Nhật.',
+  path: '/terms-of-service',
+});
+
 export default function TermsPage() {
   return (
     <main className="container py-10 sm:py-12">

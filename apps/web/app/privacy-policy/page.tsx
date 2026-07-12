@@ -1,3 +1,11 @@
+import { buildMetadata } from '@/lib/seo/metadata';
+
+export const metadata = buildMetadata({
+  title: 'Chính sách bảo mật',
+  description: 'Chính sách thu thập, sử dụng và bảo vệ thông tin khách hàng của Điện Lạnh Minh Nhật.',
+  path: '/privacy-policy',
+});
+
 export default function PrivacyPolicyPage() {
   return (
     <main className="container py-10 sm:py-12">
