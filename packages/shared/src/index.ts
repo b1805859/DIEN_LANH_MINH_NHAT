@@ -1,3 +1,7 @@
+import type { FaqItem } from './seo-content';
+
+export * from './seo-content';
+
 export const APP_NAME = 'ĐIỆN LẠNH MINH NHẬT';
 
 export const ASCII_APP_NAME = 'DIEN LANH MINH NHAT';
@@ -73,27 +77,38 @@ export const BLOG_POSTS = [
     image: '/images/services/ve-sinh-may-lanh.jpg',
     excerpt:
       'Mốc thời gian vệ sinh máy lạnh phù hợp cho gia đình, phòng trọ và cửa hàng sử dụng thường xuyên.',
+    publishedAt: '2026-07-23',
+    updatedAt: '2026-07-23',
   },
   {
     title: 'Dấu hiệu máy lạnh cần nạp gas',
     slug: 'dau-hieu-may-lanh-can-nap-gas',
     category: 'may-lanh',
     image: '/images/services/nap-gas-may-lanh.jpg',
-    excerpt: 'Các biểu hiện thiếu gas, cách kiểm tra ban đầu và thời điểm nên gọi kỹ thuật viên.',
+    excerpt:
+      'Nhận biết biểu hiện máy lạnh có thể thiếu gas, bước kiểm tra ban đầu và thời điểm nên gọi kỹ thuật viên tại Cần Thơ.',
+    publishedAt: '2026-07-23',
+    updatedAt: '2026-07-23',
   },
   {
     title: 'Máy lạnh không lạnh nguyên nhân do đâu?',
     slug: 'may-lanh-khong-lanh-nguyen-nhan-do-dau',
     category: 'may-lanh',
     image: '/images/services/sua-may-lanh.jpg',
-    excerpt: 'Tổng hợp nguyên nhân khiến máy lạnh chạy nhưng không mát và hướng xử lý an toàn.',
+    excerpt:
+      'Tổng hợp nguyên nhân khiến máy lạnh vẫn chạy nhưng không mát, cách kiểm tra ban đầu và hướng xử lý an toàn tại nhà.',
+    publishedAt: '2026-07-23',
+    updatedAt: '2026-07-23',
   },
   {
     title: 'Máy lạnh chảy nước phải làm sao?',
     slug: 'may-lanh-chay-nuoc-phai-lam-sao',
     category: 'may-lanh',
     image: '/images/services/ve-sinh-may-lanh.jpg',
-    excerpt: 'Nhận biết nguyên nhân máy lạnh rò nước, nghẹt ống thoát và các bước xử lý ban đầu.',
+    excerpt:
+      'Nhận biết nguyên nhân máy lạnh rò nước, nghẹt ống thoát và các bước xử lý ban đầu an toàn trước khi gọi thợ.',
+    publishedAt: '2026-07-23',
+    updatedAt: '2026-07-23',
   },
   {
     title: 'Các lỗi thường gặp ở tủ lạnh',
@@ -101,25 +116,33 @@ export const BLOG_POSTS = [
     category: 'tu-lanh',
     image: '/images/services/sua-tu-lanh.jpg',
     excerpt:
-      'Những lỗi tủ lạnh thường gặp như yếu lạnh, đóng tuyết, rò nước và tiếng ồn bất thường.',
+      'Nhận biết các lỗi tủ lạnh thường gặp như yếu lạnh, đóng tuyết, rò nước, tiếng ồn bất thường và cách xử lý ban đầu.',
+    publishedAt: '2026-07-23',
+    updatedAt: '2026-07-23',
   },
   {
     title: 'Khi nào cần vệ sinh máy giặt?',
     slug: 'khi-nao-can-ve-sinh-may-giat',
     category: 'may-giat',
     image: '/images/services/ve-sinh-may-giat.jpg',
-    excerpt: 'Dấu hiệu lồng giặt bám cặn, có mùi và lịch vệ sinh giúp quần áo sạch hơn.',
+    excerpt:
+      'Các dấu hiệu lồng giặt bám cặn, có mùi và cách chọn lịch vệ sinh phù hợp để máy hoạt động ổn định, quần áo sạch hơn.',
+    publishedAt: '2026-07-23',
+    updatedAt: '2026-07-23',
   },
   {
     title: 'Mẹo tiết kiệm điện khi sử dụng máy lạnh',
     slug: 'meo-tiet-kiem-dien-khi-su-dung-may-lanh',
     category: 'tiet-kiem-dien',
     image: '/images/services/ve-sinh-may-lanh.jpg',
-    excerpt: 'Cách cài đặt nhiệt độ, vệ sinh định kỳ và dùng máy lạnh hợp lý để giảm hao điện.',
+    excerpt:
+      'Cách cài đặt nhiệt độ, vệ sinh định kỳ và sử dụng máy lạnh hợp lý để giảm hao điện mà vẫn giữ phòng thoải mái.',
+    publishedAt: '2026-07-23',
+    updatedAt: '2026-07-23',
   },
 ] as const;
 
-export const FAQS = [
+export const FAQS: readonly FaqItem[] = [
   {
     question: 'Bao lâu nên vệ sinh máy lạnh?',
     answer: 'Gia đình nên vệ sinh máy lạnh mỗi 3 đến 6 tháng tùy tần suất sử dụng.',
@@ -133,7 +156,32 @@ export const FAQS = [
     answer:
       'Ưu tiên các phường Ninh Kiều, Cái Răng, Bình Thủy, Ô Môn và các khu vực lân cận tại Cần Thơ.',
   },
-] as const;
+  {
+    question: 'Cần gửi thông tin gì khi đặt lịch?',
+    answer:
+      'Nên gửi loại thiết bị, model nếu có, biểu hiện đang gặp, địa chỉ cụ thể và hình ảnh hoặc mã lỗi. Thông tin càng rõ thì bước xác nhận nhu cầu càng thuận tiện.',
+  },
+  {
+    question: 'Có nên tiếp tục sử dụng thiết bị đang có mùi khét hoặc rò điện?',
+    answer:
+      'Không. Hãy dừng sử dụng, ngắt nguồn ở vị trí an toàn và tránh chạm vào thiết bị khi tay hoặc nền đang ướt.',
+  },
+  {
+    question: 'Máy lạnh yếu có phải luôn cần nạp gas không?',
+    answer:
+      'Không. Bụi bẩn, quạt, cảm biến, dàn nóng hoặc cài đặt cũng có thể làm máy yếu lạnh. Cần kiểm tra trước khi kết luận thiếu gas.',
+  },
+  {
+    question: 'Nên sửa hay thay thiết bị mới?',
+    answer:
+      'Quyết định phụ thuộc vào nguyên nhân, tình trạng tổng thể, khả năng có linh kiện phù hợp và chi phí dự kiến. Nên kiểm tra hiện trạng rồi so sánh phương án trước khi quyết định.',
+  },
+  {
+    question: 'Khách hàng cần chuẩn bị gì trước khi kỹ thuật viên đến?',
+    answer:
+      'Nên dọn khoảng trống quanh thiết bị, giữ lại mã lỗi hoặc hình ảnh biểu hiện và thông báo trước nếu vị trí ở cao, khó tiếp cận hoặc có quy định ra vào.',
+  },
+];
 
 export function findService(slug: string) {
   return SERVICES.find((service) => service.slug === slug);

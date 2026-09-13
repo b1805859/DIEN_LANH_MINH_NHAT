@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import {
   AirVent,
@@ -5,712 +6,549 @@ import {
   BadgeCheck,
   CalendarCheck,
   CheckCircle2,
-  ClipboardCheck,
-  Clock,
-  Droplets,
+  ChevronRight,
+  Clock3,
   Fan,
-  Gauge,
-  Headphones,
-  LucideIcon,
   MapPin,
   Phone,
   ShieldCheck,
-  Snowflake,
   Sparkles,
   Star,
-  ThermometerSun,
+  ThermometerSnowflake,
+  Wrench,
 } from 'lucide-react';
-import { APP_NAME, PRIORITY_DISTRICTS, SERVICES, TARGET_CITY } from '@minhnhat/shared';
+import { TARGET_CITY } from '@minhnhat/shared';
 import { BookingForm } from '@/components/forms/booking-form';
-import { HeroImageCarousel } from '@/components/public/hero-image-carousel';
-import { ImageFadeCarousel } from '@/components/public/image-fade-carousel';
-import { LoadingImage } from '@/components/ui/loading-image';
+import { ReviewCarousel, type Review } from '@/components/public/review-carousel';
+import { TrustMetrics } from '@/components/public/trust-metrics';
+import { Reveal } from '@/components/ui/reveal';
 import { integrationSettings } from '@/lib/integrations/settings';
 import { buildMetadata } from '@/lib/seo/metadata';
 
 export const metadata = buildMetadata({
-  title: 'Dịch vụ điện lạnh Cần Thơ tận nơi',
+  title: 'Sửa chữa - Lắp đặt máy lạnh tại Cần Thơ',
   description:
-    'Sửa chữa, vệ sinh, tháo lắp và nạp gas máy lạnh tận nơi tại Cần Thơ. Kiểm tra rõ ràng, báo giá trước khi làm và đặt lịch nhanh.',
+    'Điện Lạnh Minh Nhật sửa chữa, lắp đặt, vệ sinh và di dời máy lạnh tận nơi tại Cần Thơ. Có mặt nhanh, báo giá rõ ràng, bảo hành uy tín.',
   path: '/',
   image: '/images/home-hero.jpg',
 });
 
-const stats = [
-  { label: 'Phản hồi', value: '30p', desc: 'tiếp nhận nhanh trong giờ làm việc' },
-  { label: 'Lịch trong ngày', value: 'Nhanh', desc: 'ưu tiên xử lý các yêu cầu cần kiểm tra sớm' },
+const phoneHref = `tel:${integrationSettings.phone.replace(/\s/g, '')}`;
+
+const serviceCards = [
   {
-    label: 'Dịch vụ',
-    value: `${SERVICES.length}+`,
-    desc: 'máy lạnh, tủ lạnh, máy giặt, điện nước',
+    slug: 'sua-may-lanh',
+    title: 'Sửa chữa máy lạnh',
+    description: 'Xử lý nhanh lỗi không lạnh, chảy nước, báo lỗi hoặc kêu lớn.',
+    image: '/images/services/sua-may-lanh-branded.png',
+    icon: Wrench,
+  },
+  {
+    slug: 'thao-lap-may-lanh',
+    title: 'Lắp đặt máy lạnh',
+    description: 'Lắp mới đúng kỹ thuật, đi ống gọn và kiểm tra vận hành đầy đủ.',
+    image: '/images/services/thao-lap-may-lanh-branded.png',
+    icon: AirVent,
+  },
+  {
+    slug: 've-sinh-may-lanh',
+    title: 'Vệ sinh / Bảo trì',
+    description: 'Làm sạch dàn lạnh, dàn nóng, khử mùi và kiểm tra thoát nước.',
+    image: '/images/services/ve-sinh-may-lanh-branded.png',
+    icon: Sparkles,
+  },
+  {
+    slug: 'thao-lap-may-lanh',
+    title: 'Di dời máy lạnh',
+    description: 'Tháo lắp, di dời an toàn, kiểm tra ống đồng và nạp gas khi cần.',
+    image: '/images/services/thao-lap-may-lanh-branded.png',
+    icon: Fan,
   },
 ];
 
-const trustItems: Array<{ icon: LucideIcon; title: string; desc: string }> = [
+const reviews: Review[] = [
   {
-    icon: ShieldCheck,
-    title: 'Báo giá trước khi làm',
-    desc: 'Kiểm tra thực tế, giải thích nguyên nhân và chốt chi phí rõ ràng.',
+    name: 'Chị Minh Anh',
+    area: 'Ninh Kiều, Cần Thơ',
+    service: 'Vệ sinh máy lạnh',
+    content:
+      'Gọi buổi sáng, kỹ thuật viên đến đúng hẹn. Làm gọn, tư vấn rõ và báo giá trước khi vệ sinh.',
+    initials: 'MA',
   },
   {
-    icon: Clock,
-    title: 'Ưu tiên lịch trong ngày',
-    desc: 'Tiếp nhận qua đường dây nóng, Zalo và biểu mẫu đặt lịch trên trang web.',
+    name: 'Anh Hoàng Nam',
+    area: 'Cái Răng, Cần Thơ',
+    service: 'Sửa máy lạnh',
+    content:
+      'Máy lạnh chảy nước được kiểm tra khá kỹ, xử lý xong chạy êm. Mình thích nhất là giải thích dễ hiểu.',
+    initials: 'HN',
   },
   {
-    icon: BadgeCheck,
-    title: 'Bàn giao gọn gàng',
-    desc: 'Chạy thử thiết bị, vệ sinh khu vực thi công và nhắc lịch bảo trì.',
-  },
-];
-
-const serviceDescriptions: Record<string, string> = {
-  'thao-lap-may-lanh': 'Tháo lắp, di dời máy lạnh đúng kỹ thuật, kiểm tra ống đồng và thoát nước.',
-  've-sinh-may-lanh': 'Vệ sinh dàn lạnh, dàn nóng, khử mùi và kiểm tra hiệu suất làm lạnh.',
-  'sua-may-lanh': 'Xử lý máy không lạnh, chảy nước, báo lỗi, kêu lớn hoặc tự ngắt.',
-  'nap-gas-may-lanh': 'Đo áp suất, kiểm tra rò rỉ và nạp gas theo đúng tình trạng máy.',
-  'sua-tu-lanh': 'Kiểm tra tủ lạnh yếu lạnh, đóng tuyết, rò nước, kêu lớn hoặc không chạy.',
-  'sua-may-giat': 'Xử lý máy giặt không vắt, không cấp nước, rung mạnh hoặc báo lỗi.',
-};
-
-const featureItems: Array<{ icon: LucideIcon; title: string; desc: string }> = [
-  {
-    icon: ThermometerSun,
-    title: 'Chẩn đoán đúng tình trạng',
-    desc: 'Tập trung vào triệu chứng khách gặp: không lạnh, chảy nước, hao điện, tiếng ồn.',
-  },
-  {
-    icon: Gauge,
-    title: 'Kiểm tra bằng thông số',
-    desc: 'Đo gas, kiểm tra tải, đường nước và nguồn điện trước khi đề xuất phương án.',
-  },
-  {
-    icon: ClipboardCheck,
-    title: 'Quy trình dễ theo dõi',
-    desc: 'Khách biết trước bước kiểm tra, hạng mục thi công và thời gian dự kiến.',
-  },
-  {
-    icon: Headphones,
-    title: 'Tư vấn sau dịch vụ',
-    desc: 'Hướng dẫn sử dụng, vệ sinh định kỳ và cách nhận biết lỗi cần gọi kỹ thuật.',
+    name: 'Chị Ngọc Hân',
+    area: 'Bình Thủy, Cần Thơ',
+    service: 'Lắp đặt máy lạnh',
+    content:
+      'Đội thợ làm nhanh nhưng rất sạch sẽ. Đi ống gọn, chạy thử kỹ và có hướng dẫn bảo hành đầy đủ.',
+    initials: 'NH',
   },
 ];
 
-const processSteps: Array<{ number: string; title: string; desc: string; image: string }> = [
-  {
-    number: '01',
-    title: 'Gửi nhu cầu',
-    desc: 'Chọn dịch vụ, địa chỉ, thời gian và mô tả nhanh tình trạng thiết bị.',
-    image: '/images/process/process-step-1.png',
-  },
-  {
-    number: '02',
-    title: 'Xác nhận lịch',
-    desc: 'Minh Nhật gọi lại để hỏi thêm thông tin và hẹn khung giờ phù hợp.',
-    image: '/images/process/process-step-2.png',
-  },
-  {
-    number: '03',
-    title: 'Kiểm tra tận nơi',
-    desc: 'Kỹ thuật viên đánh giá thực tế, báo nguyên nhân và chi phí trước khi làm.',
-    image: '/images/process/process-step-3.png',
-  },
-  {
-    number: '04',
-    title: 'Thi công',
-    desc: 'Sửa chữa, vệ sinh hoặc lắp đặt theo phương án khách đã đồng ý.',
-    image: '/images/process/process-step-4.png',
-  },
-  {
-    number: '05',
-    title: 'Nghiệm thu',
-    desc: 'Chạy thử, bàn giao, dọn khu vực và ghi nhận lưu ý bảo trì tiếp theo.',
-    image: '/images/process/process-step-5.png',
-  },
+const processSteps = [
+  { number: '01', title: 'Đặt lịch', desc: 'Qua form hoặc gọi hotline' },
+  { number: '02', title: 'Xác nhận', desc: 'Nhân viên liên hệ ngay' },
+  { number: '03', title: 'Kỹ thuật đến', desc: 'Có mặt tận nơi' },
+  { number: '04', title: 'Hoàn thành', desc: 'Nghiệm thu & bảo hành' },
 ];
 
-const quickNeeds: Array<{ label: string; icon: LucideIcon }> = [
-  { label: 'Máy lạnh không lạnh', icon: Snowflake },
-  { label: 'Máy lạnh chảy nước', icon: Droplets },
-  { label: 'Cần vệ sinh định kỳ', icon: Sparkles },
-  { label: 'Cần tháo lắp di dời', icon: AirVent },
+const benefits = [
+  { icon: ThermometerSnowflake, title: 'Có mặt nhanh', desc: 'Trong 30 phút' },
+  { icon: BadgeCheck, title: 'Báo giá rõ ràng', desc: 'Không phát sinh' },
+  { icon: ShieldCheck, title: 'Bảo hành uy tín', desc: 'An tâm sử dụng' },
 ];
 
-const heroImages = [
+const reasons = [
+  { icon: Clock3, title: 'Có mặt nhanh', desc: 'Ưu tiên lịch cần xử lý trong ngày.' },
+  { icon: BadgeCheck, title: 'Báo giá rõ ràng', desc: 'Chốt chi phí trước khi thi công.' },
   {
-    src: '/images/hvac-hero.png',
-    alt: 'Kỹ thuật viên Minh Nhật kiểm tra máy lạnh tại nhà',
-    objectClassName: 'object-[58%_center] sm:object-[64%_center]',
+    icon: Wrench,
+    title: 'Kỹ thuật viên chuyên nghiệp',
+    desc: 'Kiểm tra đúng lỗi, làm gọn tại nhà.',
   },
-  {
-    src: '/images/home-animated-cooling-hero.png',
-    alt: 'Không gian gia đình mát mẻ với máy lạnh hoạt động ổn định',
-    objectClassName: 'object-[55%_center] sm:object-[62%_center]',
-  },
-  {
-    src: '/images/service-tools.png',
-    alt: 'Dụng cụ sửa chữa điện lạnh và thiết bị gia đình',
-    objectClassName: 'object-center',
-  },
-  {
-    src: '/images/services/ve-sinh-may-lanh.jpg',
-    alt: 'Kỹ thuật vệ sinh máy lạnh tận nơi',
-    objectClassName: 'object-center',
-  },
-  {
-    src: '/images/services/sua-may-lanh.jpg',
-    alt: 'Dịch vụ sửa máy lạnh tận nơi',
-    objectClassName: 'object-center',
-  },
-  {
-    src: '/images/services/nap-gas-may-lanh.jpg',
-    alt: 'Kỹ thuật viên nạp gas và kiểm tra áp suất máy lạnh',
-    objectClassName: 'object-center',
-  },
+  { icon: ShieldCheck, title: 'Bảo hành dài hạn', desc: 'Bàn giao rõ ràng, an tâm sử dụng.' },
 ];
-
-type AreaSlug = (typeof PRIORITY_DISTRICTS)[number]['slug'];
-
-const areaLocationCarouselImages: Record<AreaSlug, string[]> = {
-  'ninh-kieu': [
-    '/images/wards/ninh-kieu-dai-lo-hoa-binh.jpg',
-    '/images/wards/ninh-kieu-duong-30-4.jpg',
-    '/images/wards/ninh-kieu-ngo-duc-ke.jpg',
-  ],
-  'cai-rang': ['/images/wards/cai-rang-cong-chao.jpg', '/images/wards/cai-rang-cho-le-binh.jpg'],
-  'binh-thuy': [
-    '/images/wards/binh-thuy-stella-mega-city.jpg',
-    '/images/wards/binh-thuy-long-tuyen-road.jpg',
-  ],
-  'o-mon': ['/images/wards/o-mon-do-thi.jpg', '/images/wards/o-mon-tran-hung-dao.jpg'],
-};
 
 export default function HomePage() {
-  const phoneHref = `tel:${integrationSettings.phone.replace(/\s/g, '')}`;
-  const featuredServices = [
-    'sua-may-lanh',
-    'sua-tu-lanh',
-    'sua-may-giat',
-    've-sinh-may-lanh',
-    'nap-gas-may-lanh',
-    'thao-lap-may-lanh',
-  ]
-    .map((slug) => SERVICES.find((service) => service.slug === slug))
-    .filter((service): service is (typeof SERVICES)[number] => Boolean(service));
-
   return (
-    <main className="bg-[#f4f8fb] text-slate-950">
-      <section className="relative overflow-hidden bg-[#0b172a] text-white lg:min-h-[calc(100svh-4rem)]">
-        <LoadingImage
-          src="/images/home-hero.jpg"
-          alt=""
-          fill
-          priority
-          className="hidden object-cover object-center brightness-[1.04] saturate-[1.08] contrast-[1.02] lg:block"
-          sizes="100vw"
-          reveal="none"
-          showLoader={false}
-        />
-        <div className="absolute inset-x-0 top-0 h-svh lg:hidden">
-          <LoadingImage
-            src="/images/home-mobile-hero.png"
-            alt="Không gian mát mẻ với máy lạnh gia đình"
-            fill
-            priority
-            className="object-cover object-center brightness-[1.06] saturate-[1.12] contrast-[1.03]"
-            sizes="100vw"
-          />
-        </div>
-        <HeroImageCarousel images={heroImages} />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(11_23_42_/_0.88)_0%,rgb(11_23_42_/_0.72)_36%,rgb(11_23_42_/_0.48)_66%,rgb(11_23_42_/_0.26)_100%)]" />
-        <div className="absolute inset-0 opacity-55 [background-image:linear-gradient(90deg,rgb(255_255_255_/_0.16)_1px,transparent_1px),linear-gradient(0deg,rgb(255_255_255_/_0.13)_1px,transparent_1px)] [background-size:44px_44px]" />
-        <div className="absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(0deg,#f4f8fb_0%,rgb(244_248_251_/_0)_100%)]" />
-
-        <div className="container relative grid min-w-0 gap-6 pb-28 pt-10 sm:gap-8 sm:pb-24 sm:pt-16 lg:min-h-[calc(100svh-4rem)] lg:grid-cols-[minmax(0,1fr)_400px] lg:items-center lg:gap-10 lg:py-16">
-          <div className="min-w-0 max-w-4xl animate-in-soft">
-            <div className="inline-flex max-w-full items-center gap-2 rounded-md border border-cyan-200/20 bg-white/[0.1] px-3 py-2 text-xs font-black text-cyan-50 shadow-2xl shadow-slate-950/30 backdrop-blur-md sm:px-4 sm:text-sm">
-              <Sparkles className="h-4 w-4 text-amber-300" />
-              <span className="min-w-0 break-words">
-                Sửa chữa, vệ sinh, lắp đặt máy lạnh tại {TARGET_CITY}
+    <main className="bg-[#f5faff] text-[#0b172a]">
+      <section className="relative bg-[radial-gradient(circle_at_78%_18%,rgba(191,236,255,0.7),transparent_28%),linear-gradient(135deg,#f7fcff_0%,#edf7fc_55%,#ffffff_100%)] pb-8 pt-5 sm:pb-12 lg:pb-8 lg:pt-7">
+        <div className="container relative grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(390px,0.86fr)] lg:items-start lg:gap-14 xl:gap-20">
+          <div className="min-w-0 pt-4 sm:pt-8 lg:pt-9">
+            <Reveal>
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#b7e5fa] bg-white/75 px-3.5 py-2 text-xs font-black uppercase tracking-[0.14em] text-[#0877c9] shadow-sm backdrop-blur sm:text-sm">
+                <span className="h-2 w-2 rounded-full bg-[#16a7e8] shadow-[0_0_0_5px_rgba(22,167,232,0.12)]" />
+                Dịch vụ điện lạnh tại Cần Thơ
               </span>
-            </div>
+            </Reveal>
+            <Reveal delay={80}>
+              <h1 className="mt-6 max-w-3xl text-[2.55rem] font-black leading-[1.08] tracking-[-0.045em] text-[#0b172a] sm:text-6xl lg:text-[4.35rem]">
+                Sửa chữa - Lắp đặt
+                <span className="block text-[#0877c9]">Máy lạnh tại Cần Thơ</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={140}>
+              <p className="mt-5 text-lg font-bold text-[#15527a] sm:text-xl">
+                Có mặt nhanh – Làm tận tâm – Mát lạnh mỗi ngày
+              </p>
+              <p className="mt-3 max-w-xl text-sm leading-7 text-slate-600 sm:text-base">
+                Điện Lạnh Minh Nhật – giải pháp tối ưu cho không gian sống thoải mái của bạn.
+              </p>
+            </Reveal>
 
-            <h1 className="mt-6 max-w-4xl text-3xl font-black leading-[1.08] tracking-normal sm:text-5xl lg:text-7xl">
-              {APP_NAME}
-            </h1>
-            <p className="mt-6 max-w-2xl text-base font-medium leading-8 text-slate-100 sm:text-lg">
-              Dịch vụ điện lạnh tận nơi cho gia đình và cửa hàng: máy lạnh, tủ lạnh, máy giặt, điện
-              nước. Trang web được thiết kế để khách chọn đúng nhu cầu, đặt lịch nhanh và nắm rõ quy
-              trình trước khi kỹ thuật viên đến.
-            </p>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-md bg-amber-400 px-5 py-2 text-sm font-black text-slate-950 shadow-lg shadow-amber-500/25 transition hover:-translate-y-0.5 hover:bg-amber-300 sm:w-auto"
-                href="/booking"
-              >
-                Đặt lịch kiểm tra
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <a
-                className="inline-flex min-h-14 w-full items-center justify-center gap-2 rounded-md border border-white/25 bg-white/[0.12] px-4 py-2 text-sm font-black text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/20 sm:w-auto"
-                href={integrationSettings.zaloUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <LoadingImage
-                  src="/icons/zalo.svg"
-                  alt=""
-                  width={40}
-                  height={40}
-                  className="h-10 w-10 shrink-0"
-                />
-                Liên hệ qua Zalo
-              </a>
-            </div>
-
-            <div className="mt-10 grid max-w-3xl gap-3 sm:grid-cols-3">
-              {stats.map((item) => (
-                <div
-                  key={item.label}
-                  className="min-w-0 rounded-md border border-white/15 bg-white/10 p-4 backdrop-blur-md"
-                >
-                  <p className="break-words text-2xl font-black text-amber-300 sm:text-3xl">
-                    {item.value}
-                  </p>
-                  <p className="mt-2 text-sm font-black text-white">{item.label}</p>
-                  <p className="mt-1 text-xs leading-5 text-slate-300">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <aside className="min-w-0 animate-in-soft rounded-md border border-white/20 bg-white/95 p-4 text-slate-950 shadow-2xl shadow-slate-950/35 backdrop-blur-xl sm:p-5">
-            <p className="text-sm font-black uppercase text-primary">Chọn nhanh tình trạng</p>
-            <h2 className="mt-1 text-2xl font-black">Cần kỹ thuật viên xử lý gì?</h2>
-            <p className="mt-2 text-sm leading-6 text-slate-600">
-              Bắt đầu bằng nhóm nhu cầu gần nhất, đội kỹ thuật sẽ kiểm tra và báo giá trước khi thi
-              công.
-            </p>
-
-            <div className="mt-5 grid gap-3">
-              {quickNeeds.map(({ label, icon: Icon }, index) => {
-                const service = SERVICES[index];
-
-                return (
-                  <Link
-                    key={label}
-                    href={`/services/${service.slug}`}
-                    className="group flex items-center justify-between gap-3 rounded-md border border-slate-200 bg-slate-50 p-3 transition hover:border-primary/40 hover:bg-white"
+            <Reveal delay={200}>
+              <div className="mt-6 grid max-w-2xl grid-cols-3 gap-2 sm:mt-8 sm:gap-3">
+                {benefits.map(({ icon: Icon, title, desc }) => (
+                  <div
+                    key={title}
+                    className="flex min-w-0 flex-col items-center gap-2 rounded-2xl border border-white/90 bg-white/70 px-2 py-3 text-center shadow-sm backdrop-blur sm:flex-row sm:items-start sm:p-3.5 sm:text-left"
                   >
-                    <span className="flex min-w-0 items-center gap-3">
-                      <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-primary text-white">
-                        <Icon className="h-4 w-4" />
+                    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-[#e4f5ff] text-[#0877c9] sm:h-9 sm:w-9">
+                      <Icon className="h-[18px] w-[18px]" aria-hidden="true" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-[11px] font-black leading-4 sm:text-sm sm:leading-5">
+                        {title}
                       </span>
-                      <span className="min-w-0 break-words text-sm font-black leading-5">
-                        {label}
+                      <span className="mt-0.5 block text-[10px] font-semibold leading-4 text-slate-500 sm:text-[13px]">
+                        {desc}
                       </span>
                     </span>
-                    <ArrowRight className="h-4 w-4 shrink-0 text-primary transition group-hover:translate-x-1" />
-                  </Link>
-                );
-              })}
-            </div>
-
-            <div className="mt-5 rounded-md border border-cyan-100 bg-cyan-50 p-4">
-              <p className="text-sm font-black text-slate-900">Đang cần xử lý gấp?</p>
-              <p className="mt-1 text-sm leading-6 text-slate-600">
-                Gọi đường dây nóng để mô tả tình trạng trước, sau đó chốt lịch tận nơi.
-              </p>
-              <a
-                className="mt-3 inline-flex h-10 w-full items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-black text-white transition hover:bg-primary/90 sm:w-auto"
-                href={phoneHref}
-              >
-                <Phone className="h-4 w-4" />
-                Gọi ngay
-              </a>
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section className="relative z-10 py-6 sm:py-8">
-        <div className="container grid gap-3 md:grid-cols-3">
-          {trustItems.map(({ icon: Icon, title, desc }) => (
-            <article
-              key={title}
-              className="rounded-md border border-slate-200 bg-white p-5 shadow-lg shadow-slate-200/70"
-            >
-              <div className="flex items-start gap-4">
-                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-primary text-white">
-                  <Icon className="h-5 w-5" />
-                </span>
-                <div>
-                  <h3 className="font-black">{title}</h3>
-                  <p className="mt-1 text-sm leading-6 text-slate-600">{desc}</p>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="overflow-hidden border-y border-slate-200 bg-white py-4">
-        <div className="container flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-black uppercase text-slate-500">
-          <span className="inline-flex items-center gap-2 text-primary">
-            <Snowflake className="h-4 w-4" />
-            Làm lạnh ổn định
-          </span>
-          <span>Kiểm tra tận nơi</span>
-          <span className="text-amber-600">Báo giá rõ ràng</span>
-          <span>Đặt lịch nhanh</span>
-          <span className="inline-flex items-center gap-2 text-emerald-600">
-            <CheckCircle2 className="h-4 w-4" />
-            Nghiệm thu gọn
-          </span>
-        </div>
-      </section>
-
-      <section className="container py-12 sm:py-16 lg:py-20">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-          <div className="relative overflow-hidden rounded-md border border-slate-200 bg-slate-100 shadow-xl shadow-slate-200">
-            <div className="relative aspect-[4/3]">
-              <LoadingImage
-                src="/images/home-animated-cooling-hero.png"
-                alt="Không gian gia đình mát mẻ với máy lạnh hoạt động ổn định"
-                fill
-                className="object-contain sm:object-cover"
-                sizes="(min-width: 1024px) 45vw, 100vw"
-              />
-            </div>
-            <div className="grid grid-cols-3 border-t border-slate-200 bg-white">
-              <div className="p-4">
-                <p className="text-2xl font-black text-primary">Rõ</p>
-                <p className="mt-1 text-xs font-semibold text-slate-500">tình trạng</p>
-              </div>
-              <div className="border-x border-slate-200 p-4">
-                <p className="text-2xl font-black text-emerald-600">Gọn</p>
-                <p className="mt-1 text-xs font-semibold text-slate-500">thi công</p>
-              </div>
-              <div className="p-4">
-                <p className="text-2xl font-black text-amber-600">Nhanh</p>
-                <p className="mt-1 text-xs font-semibold text-slate-500">phản hồi</p>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <p className="text-sm font-black uppercase tracking-wide text-primary sm:text-base">Giới thiệu</p>
-            <h2 className="mt-2 text-2xl font-black tracking-normal sm:text-4xl">
-              Điện Lạnh Minh Nhật phục vụ tận nơi tại {TARGET_CITY}
-            </h2>
-            <p className="mt-4 max-w-2xl leading-8 text-slate-700">
-              Điện Lạnh Minh Nhật hỗ trợ sửa chữa, vệ sinh và lắp đặt máy lạnh, tủ lạnh, máy giặt,
-              điện nước cho gia đình, cửa hàng và văn phòng tại Cần Thơ. Đội kỹ thuật tập trung kiểm
-              tra đúng tình trạng, tư vấn phương án phù hợp và báo giá rõ ràng trước khi thi công.
-            </p>
-
-            <div className="mt-7 grid gap-3 sm:grid-cols-2">
-              {[
-                'Tiếp nhận nhanh qua hotline, Zalo và biểu mẫu đặt lịch',
-                'Tư vấn đúng tình trạng trước khi hẹn kỹ thuật viên',
-                'Phục vụ các khu vực trọng điểm tại Cần Thơ',
-                'Báo giá rõ ràng trước khi sửa chữa hoặc vệ sinh',
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-3 rounded-md border border-slate-200 bg-white p-3 text-sm font-bold"
-                >
-                  <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600" />
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-10 border-t border-slate-200 pt-8">
-          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
-            <div className="max-w-2xl">
-              <p className="text-sm font-black uppercase tracking-wide text-primary sm:text-base">
-                Khu vực phục vụ
-              </p>
-              <h3 className="mt-2 text-2xl font-black tracking-normal sm:text-3xl">
-                Có mặt tại các khu vực cần thợ điện lạnh gần bạn
-              </h3>
-              <p className="mt-3 leading-7 text-slate-600">
-                Minh Nhật ưu tiên tiếp nhận lịch tại Ninh Kiều, Cái Răng, Bình Thủy, Ô Môn và các
-                khu vực lân cận tại Cần Thơ. Khách chỉ cần cung cấp địa chỉ, tình trạng thiết bị và
-                khung giờ mong muốn qua hotline hoặc Zalo để được xác nhận lịch phù hợp.
-              </p>
-            </div>
-            <Link
-              className="inline-flex items-center gap-2 text-sm font-black text-primary"
-              href="/contact"
-            >
-              Liên hệ tư vấn
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {PRIORITY_DISTRICTS.map((ward, index) => (
-              <Link
-                key={ward.slug}
-                href={`/areas/${ward.slug}/sua-may-lanh`}
-                className="group relative min-h-[220px] overflow-hidden rounded-md border border-slate-200 bg-slate-100 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-200"
-              >
-                <ImageFadeCarousel
-                  images={areaLocationCarouselImages[ward.slug]}
-                  alt={`Khu vực phục vụ ${ward.name}, Cần Thơ`}
-                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                  startDelayMs={index * 1800}
-                  imageClassName="brightness-[1.16] saturate-[1.08]"
-                />
-                <div className="absolute inset-0 bg-[linear-gradient(0deg,rgb(11_23_42_/_0.46)_0%,rgb(11_23_42_/_0.12)_58%,rgb(11_23_42_/_0)_100%)]" />
-                <span className="absolute inset-x-0 bottom-0 p-4 text-white">
-                  <span className="flex items-center justify-between gap-3">
-                    <span className="inline-flex min-w-0 items-center gap-2 text-lg font-black">
-                      <MapPin className="h-5 w-5 shrink-0 text-cyan-300" />
-                      <span className="min-w-0 break-words">{ward.name}</span>
-                    </span>
-                    <ArrowRight className="h-4 w-4 shrink-0 text-cyan-300 transition group-hover:translate-x-1" />
-                  </span>
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white py-12 sm:py-16 lg:py-20">
-        <div className="container">
-          <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
-            <div className="max-w-2xl">
-              <p className="text-sm font-black uppercase tracking-wide text-primary sm:text-base">
-                Dịch vụ nổi bật
-              </p>
-              <h2 className="mt-2 text-2xl font-black tracking-normal sm:text-4xl">
-                Dịch vụ sửa chữa, vệ sinh và lắp đặt nổi bật
-              </h2>
-              <p className="mt-3 leading-7 text-slate-600">
-                Các hạng mục phổ biến được đưa lên trước để khách dễ chọn dịch vụ, xem thông tin và
-                liên hệ qua hotline hoặc Zalo khi cần tư vấn.
-              </p>
-            </div>
-            <Link
-              className="inline-flex items-center gap-2 text-sm font-black text-primary"
-              href="/services"
-            >
-              Xem tất cả dịch vụ
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredServices.map((service) => (
-              <Link
-                key={service.slug}
-                href={`/services/${service.slug}`}
-                className="group overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden border-b border-slate-200 bg-slate-100 sm:aspect-[16/10]">
-                  <LoadingImage
-                    src={`/images/services/${service.slug}.jpg`}
-                    alt={`${service.name} tại ${TARGET_CITY}`}
-                    fill
-                    className="object-contain transition duration-700 sm:scale-[1.04] sm:object-cover sm:group-hover:scale-[1.1]"
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  />
-                  <div className="absolute inset-0 bg-[linear-gradient(0deg,rgb(15_23_42_/_0.54)_0%,rgb(15_23_42_/_0)_62%)]" />
-                </div>
-                <div className="p-5">
-                  <h3 className="text-lg font-black leading-6">{service.name}</h3>
-                  <p className="mt-3 text-sm leading-6 text-slate-600 sm:min-h-[4.5rem]">
-                    {serviceDescriptions[service.slug] ??
-                      'Tư vấn đúng tình trạng, báo giá trước và hỗ trợ tận nơi.'}
-                  </p>
-                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-primary">
-                    Xem chi tiết
-                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="container py-12 sm:py-16 lg:py-20">
-        <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
-          <div>
-            <p className="text-sm font-black uppercase tracking-wide text-primary sm:text-base">
-              Điểm nổi bật
-            </p>
-            <h2 className="mt-2 text-2xl font-black tracking-normal sm:text-4xl">
-              Tập trung vào điều khách cần biết trước khi đặt lịch
-            </h2>
-            <p className="mt-4 leading-8 text-slate-700">
-              Thông tin dịch vụ được trình bày theo từng nhu cầu để khách dễ chọn phương án phù hợp,
-              xem quy trình và đặt lịch kiểm tra.
-            </p>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="relative min-h-[240px] overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm sm:col-span-2 lg:min-h-[300px]">
-              <LoadingImage
-                src="/images/feature-cartoon-technician.png"
-                alt="Minh hoa ky thuat vien dien lanh kiem tra may lanh"
-                fill
-                className="object-cover object-[62%_center]"
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                reveal="none"
-                showLoader={false}
-              />
-            </div>
-            {featureItems.map(({ icon: Icon, title, desc }) => (
-              <article
-                key={title}
-                className="rounded-md border border-slate-200 bg-white p-5 shadow-sm"
-              >
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-cyan-50 text-primary">
-                  <Icon className="h-5 w-5" />
-                </span>
-                <h3 className="mt-4 text-lg font-black">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{desc}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="container py-12 sm:py-16 lg:py-20">
-        <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
-          <div className="max-w-2xl">
-            <p className="text-sm font-black uppercase tracking-wide text-primary sm:text-base">
-              Quy trình
-            </p>
-            <h2 className="mt-2 text-2xl font-black tracking-normal sm:text-4xl">
-              Quy trình đặt lịch và thi công rõ từng bước
-            </h2>
-          </div>
-          <div className="flex items-center gap-2 text-sm font-black text-slate-600">
-            <Fan className="h-5 w-5 text-primary" />
-            Minh bạch từ lúc nhận lịch đến nghiệm thu
-          </div>
-        </div>
-
-        <div className="relative mt-8 grid gap-6 md:grid-cols-5 xl:gap-7">
-          {processSteps.map(({ number, title, desc, image }) => (
-            <article
-              key={number}
-              className="relative overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-primary/40 hover:shadow-lg hover:shadow-slate-200"
-            >
-              <div className="relative aspect-[32/47] overflow-hidden border-b border-slate-200 bg-white">
-                <LoadingImage
-                  src={image}
-                  alt={`Minh họa ${title.toLowerCase()} trong quy trình dịch vụ`}
-                  fill
-                  className="scale-[1.12] object-cover object-center"
-                  sizes="(min-width: 768px) 20vw, 100vw"
-                  reveal="none"
-                  showLoader={false}
-                />
-              </div>
-              <div className="relative p-4">
-                <p className="inline-flex rounded-md bg-primary px-2.5 py-1 text-xs font-black uppercase text-white shadow-sm">
-                  Bước {number}
-                </p>
-                <h3 className="mt-3 text-lg font-black">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{desc}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="bg-white py-12 sm:py-16 lg:py-20">
-        <div className="container grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
-          <div>
-            <p className="text-sm font-black uppercase tracking-wide text-primary sm:text-base">
-              Đặt lịch
-            </p>
-            <h2 className="mt-2 text-2xl font-black tracking-normal sm:text-4xl">
-              Gửi thông tin để kỹ thuật viên xác nhận lịch
-            </h2>
-            <p className="mt-4 leading-8 text-slate-700">
-              Khi đã chọn được nhóm dịch vụ phù hợp, hãy gửi thông tin để Minh Nhật chuẩn bị phương
-              án kiểm tra. Nếu thiết bị đang cần xử lý gấp, gọi đường dây nóng sẽ nhanh hơn.
-            </p>
-
-            <div className="mt-6 grid gap-3">
-              {[
-                'Chọn đúng nhóm dịch vụ cần xử lý',
-                'Ghi rõ địa chỉ và khung giờ mong muốn',
-                'Kỹ thuật viên gọi lại trước khi đến',
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-3 text-sm font-bold text-slate-700"
-                >
-                  <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600" />
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <aside className="min-w-0 rounded-md border border-slate-200 bg-[#f4f8fb] p-4 shadow-xl shadow-slate-200/70 sm:p-5">
-            <div className="flex min-w-0 items-start justify-between gap-4">
-              <div className="min-w-0">
-                <p className="text-sm font-black uppercase text-primary">Đặt lịch nhanh</p>
-                <h3 className="mt-1 text-2xl font-black">Minh Nhật sẽ liên hệ xác nhận</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">
-                  Điền thông tin cơ bản, đội kỹ thuật sẽ gọi lại để chốt tình trạng và thời gian.
-                </p>
-              </div>
-              <div className="rounded-md bg-cyan-100 p-3 text-primary">
-                <CalendarCheck className="h-6 w-6" />
-              </div>
-            </div>
-            <div className="mt-5">
-              <BookingForm />
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section className="relative overflow-hidden bg-white py-12">
-        <div className="absolute inset-y-0 right-0 hidden w-1/3 bg-cyan-50 lg:block" />
-        <div className="container relative flex flex-col items-start justify-between gap-5 md:flex-row md:items-center">
-          <div className="flex items-start gap-4">
-            <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-primary text-white">
-              <AirVent className="h-6 w-6" />
-            </span>
-            <div>
-              <h2 className="text-2xl font-black">Cần kiểm tra thiết bị hôm nay?</h2>
-              <p className="mt-1 text-sm leading-6 text-slate-600">
-                Gọi trực tiếp hoặc gửi lịch hẹn, đội kỹ thuật sẽ xác nhận lại trước khi đến.
-              </p>
-              <div className="mt-3 flex items-center gap-1 text-amber-500">
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <Star key={index} className="h-4 w-4 fill-current" />
+                  </div>
                 ))}
-                <span className="ml-2 text-xs font-black uppercase text-slate-500">
-                  Tư vấn rõ, thi công gọn
+              </div>
+            </Reveal>
+
+            <Reveal delay={260}>
+              <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center">
+                <Link
+                  href="#booking"
+                  className="group inline-flex min-h-14 items-center justify-center gap-2 rounded-xl bg-[#0877c9] px-6 text-sm font-black text-white shadow-[0_14px_28px_rgba(8,119,201,0.24)] transition duration-200 hover:-translate-y-0.5 hover:bg-[#0765aa] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#9ddaff]"
+                >
+                  Đặt lịch ngay
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
+                <a
+                  href={phoneHref}
+                  className="hidden min-h-14 items-center justify-center gap-3 rounded-xl border border-[#b7dff5] bg-white/80 px-5 text-sm font-black text-[#0b5fa5] transition duration-200 hover:-translate-y-0.5 hover:border-[#0877c9] hover:bg-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#9ddaff] sm:inline-flex"
+                >
+                  <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#e6f5ff] text-[#0877c9]">
+                    <Phone className="h-4 w-4" />
+                  </span>
+                  <span className="text-left">
+                    <span className="block text-base leading-5">{integrationSettings.phone}</span>
+                    <span className="mt-0.5 block text-xs font-semibold text-slate-500">
+                      Tư vấn miễn phí 24/7
+                    </span>
+                  </span>
+                </a>
+              </div>
+            </Reveal>
+
+            <Reveal delay={320}>
+              <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-bold text-slate-500 sm:mt-8 sm:text-sm">
+                <span className="inline-flex items-center gap-2">
+                  <MapPin className="h-4 w-4 text-[#0877c9]" />
+                  Phục vụ tận nơi tại Cần Thơ
                 </span>
+                <span className="inline-flex items-center gap-2">
+                  <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+                  Kiểm tra trước – báo giá rõ
+                </span>
+              </div>
+            </Reveal>
+          </div>
+
+          <div className="relative min-w-0 lg:pt-2">
+            <div className="hero-visual relative isolate mx-auto max-w-[560px]">
+              <Reveal variant="fade" delay={100}>
+                <div className="hero-photo relative z-10 h-[300px] overflow-hidden rounded-[2rem] border-8 border-white bg-[#dff3ff] shadow-[0_25px_70px_rgba(8,80,130,0.16)] sm:h-[360px] lg:h-[320px]">
+                  <div className="hero-photo-image-frame absolute inset-0">
+                    <Image
+                      src="/images/hvac-hero-branded.png"
+                      alt="Kỹ thuật viên Điện Lạnh Minh Nhật đang sửa máy lạnh"
+                      fill
+                      priority
+                      sizes="(min-width: 1024px) 48vw, 100vw"
+                      className="hero-photo-image object-cover object-[67%_center] transition duration-700 hover:scale-[1.02]"
+                    />
+                  </div>
+                  <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.2),transparent_36%,rgba(8,119,201,0.12))]" />
+                  <div className="hero-cooling-badge pointer-events-none absolute left-6 top-6 z-20 flex items-center gap-2 rounded-full border border-white/70 bg-white/85 px-3 py-2 text-xs font-black text-[#0b5fa5] shadow-lg backdrop-blur">
+                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[#0877c9] text-white">
+                      <SnowflakeGlyph />
+                    </span>
+                    Mát lạnh đúng chuẩn
+                  </div>
+                </div>
+              </Reveal>
+              <AirflowDecoration />
+
+              <Reveal variant="up" delay={280}>
+                <aside
+                  id="booking"
+                  className="hero-booking-panel mx-auto mt-3 w-full max-w-[560px] scroll-mt-24 rounded-[1.5rem] border border-slate-200/80 bg-white p-4 shadow-[0_18px_48px_rgba(15,23,42,0.11)] sm:mt-4 sm:p-5"
+                >
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="text-xs font-black uppercase tracking-[0.16em] text-[#0877c9]">
+                      Đặt lịch dịch vụ
+                    </p>
+                    <h2 className="mt-1 text-xl font-black tracking-tight text-[#0b172a] sm:text-2xl">
+                      Kỹ thuật viên liên hệ ngay
+                    </h2>
+                    <p className="mt-1.5 text-sm leading-6 text-slate-500">
+                      Chỉ mất 30 giây, thông tin được bảo mật.
+                    </p>
+                  </div>
+                  <span className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#e8f6ff] text-[#0877c9] sm:inline-flex">
+                    <CalendarCheck className="h-5 w-5" />
+                  </span>
+                </div>
+                <div className="mt-4">
+                  <BookingForm compact hideNotes />
+                </div>
+                </aside>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Chỉ số tin cậy">
+        <div className="container">
+          <Reveal variant="up">
+            <TrustMetrics
+              metrics={[
+                { target: 10000, suffix: '+', label: 'Khách hàng tin tưởng', icon: 'users' },
+                { target: 49, display: '4.9/5', label: 'Đánh giá từ khách hàng', icon: 'award' },
+                { target: 5, suffix: '+ năm', label: 'Kinh nghiệm', icon: 'experience' },
+                { target: 0, display: 'Cần Thơ', label: 'Phục vụ tại', icon: 'location' },
+              ]}
+            />
+          </Reveal>
+        </div>
+      </section>
+
+      <section id="services" className="py-12 sm:py-16 lg:py-20" aria-labelledby="services-title">
+        <div className="container">
+          <Reveal>
+            <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+              <div className="max-w-2xl">
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-[#0877c9] sm:text-sm">
+                  Dịch vụ của chúng tôi
+                </p>
+                <h2
+                  id="services-title"
+                  className="mt-3 text-3xl font-black tracking-[-0.035em] text-[#0b172a] sm:text-4xl lg:text-5xl"
+                >
+                  Giải pháp toàn diện cho máy lạnh
+                </h2>
+                <p className="mt-4 text-base leading-7 text-slate-600">
+                  Từ sửa chữa, lắp đặt đến bảo trì định kỳ – Minh Nhật luôn sẵn sàng phục vụ.
+                </p>
+              </div>
+              <Link
+                href="/services"
+                className="inline-flex min-h-11 items-center gap-2 text-sm font-black text-[#0877c9] transition hover:gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0877c9]"
+              >
+                Xem tất cả dịch vụ <ChevronRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </Reveal>
+
+          <div className="mt-7 grid gap-5 sm:mt-8 sm:grid-cols-2 lg:grid-cols-4">
+            {serviceCards.map(({ slug, title, description, image, icon: Icon }, index) => (
+              <Reveal key={`${slug}-${title}`} delay={index * 90} asChild>
+                <Link
+                  href={`/services/${slug}`}
+                  className="group overflow-hidden rounded-[1.35rem] border border-slate-200 bg-white shadow-[0_12px_38px_rgba(15,23,42,0.05)] transition [transition-duration:260ms] hover:-translate-y-1 hover:border-[#91d4f7] hover:shadow-[0_20px_50px_rgba(15,23,42,0.1)]"
+                >
+                  <div className="relative aspect-[1.35] overflow-hidden bg-[#e6f6ff]">
+                    <Image
+                      src={image}
+                      alt={`${title} tại ${TARGET_CITY}`}
+                      fill
+                      loading="lazy"
+                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-cover transition [transition-duration:260ms] group-hover:scale-[1.03]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b172a]/35 to-transparent" />
+                    <span className="absolute bottom-4 right-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white text-[#0877c9] shadow-lg transition duration-300 group-hover:scale-105">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                  </div>
+                  <div className="p-5">
+                    <h3 className="text-lg font-black tracking-tight">{title}</h3>
+                    <p className="mt-2 min-h-[3.5rem] text-[15px] leading-6 text-slate-600">
+                      {description}
+                    </p>
+                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-black text-[#0877c9]">
+                      Xem chi tiết{' '}
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="container pb-12 sm:pb-16 lg:pb-20" aria-labelledby="why-title">
+        <Reveal variant="scale">
+          <div className="relative overflow-hidden rounded-[2rem] bg-[#0b2038] px-5 py-8 text-white shadow-[0_24px_70px_rgba(11,32,56,0.18)] sm:px-8 sm:py-10 lg:px-12 lg:py-12">
+            <div className="pointer-events-none absolute -right-20 -top-32 h-72 w-72 rounded-full border border-cyan-200/10 bg-cyan-300/10 blur-2xl" />
+            <div className="relative grid gap-8 lg:grid-cols-[0.72fr_1.28fr] lg:items-center lg:gap-12">
+              <div>
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-300">
+                  Vì sao chọn Minh Nhật
+                </p>
+                <h2
+                  id="why-title"
+                  className="mt-3 max-w-md text-3xl font-black leading-tight tracking-[-0.035em] sm:text-4xl"
+                >
+                  Dịch vụ uy tín, khách hàng luôn tin chọn
+                </h2>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {reasons.map(({ icon: Icon, title, desc }, index) => (
+                  <div
+                    key={title}
+                    className={`group flex gap-4 border-b border-white/10 pb-4 transition duration-300 sm:pb-5 ${index === reasons.length - 1 ? 'border-b-0' : ''} ${index >= reasons.length - 2 ? 'sm:border-b-0' : ''}`}
+                  >
+                    <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-cyan-200/25 bg-cyan-300/10 text-cyan-300 transition group-hover:scale-105 group-hover:bg-cyan-300/15">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <span className="pt-0.5">
+                      <span className="block text-[15px] font-black">{title}</span>
+                      <span className="mt-1 block text-sm leading-5 text-slate-300">{desc}</span>
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-          <Link
-            className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-md bg-amber-400 px-5 text-sm font-black text-slate-950 transition hover:bg-amber-300 sm:w-auto"
-            href="/booking"
-          >
-            Đặt lịch kiểm tra
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+        </Reveal>
+      </section>
+
+      <section
+        id="process"
+        className="bg-white py-12 sm:py-16 lg:py-20"
+        aria-labelledby="process-title"
+      >
+        <div className="container">
+          <Reveal>
+            <div className="max-w-2xl">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#0877c9] sm:text-sm">
+                Quy trình đặt lịch
+              </p>
+              <h2
+                id="process-title"
+                className="mt-3 text-3xl font-black tracking-[-0.035em] sm:text-4xl lg:text-5xl"
+              >
+                Chỉ 4 bước đơn giản
+              </h2>
+              <p className="mt-3 max-w-xl text-[15px] leading-7 text-slate-600 sm:text-base">
+                Gửi thông tin cần thiết, Minh Nhật sẽ xác nhận lịch phù hợp trước khi kỹ thuật viên đến.
+              </p>
+            </div>
+          </Reveal>
+          <div className="relative mt-9 grid gap-8 md:grid-cols-4 md:gap-5">
+            <div
+              aria-hidden="true"
+              className="absolute bottom-6 left-6 top-6 w-0.5 bg-[linear-gradient(180deg,transparent,#9bdcf7_10%,#0877c9_50%,#9bdcf7_90%,transparent)] md:hidden"
+            />
+            <Reveal
+              aria-hidden="true"
+              className="absolute left-[12.5%] right-[12.5%] top-6 hidden md:block"
+              delay={180}
+              variant="right"
+            >
+              <div className="process-line h-0.5 w-full bg-[linear-gradient(90deg,transparent,#9bdcf7_12%,#0877c9_50%,#9bdcf7_88%,transparent)]" />
+            </Reveal>
+            {processSteps.map(({ number, title, desc }, index) => (
+              <Reveal key={number} delay={260 + index * 100} asChild>
+                <div className="relative flex gap-4 md:block md:text-center">
+                  <span className="process-step-marker relative z-10 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-4 border-white bg-[#0877c9] text-sm font-black text-white shadow-[0_0_0_1px_#b9e5fa,0_10px_22px_rgba(8,119,201,0.2)]">
+                    {number}
+                  </span>
+                  <div className="pt-1 md:pt-5">
+                    <h3 className="text-lg font-black">{title}</h3>
+                    <p className="mt-1.5 text-[15px] leading-6 text-slate-500">{desc}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
+      </section>
+
+      <section className="py-12 sm:py-16 lg:py-20" aria-labelledby="reviews-title">
+        <div className="container">
+          <Reveal>
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#0877c9] sm:text-sm">
+                Khách hàng nói gì
+              </p>
+              <h2
+                id="reviews-title"
+                className="mt-3 max-w-3xl text-3xl font-black tracking-[-0.035em] sm:text-4xl lg:text-5xl"
+              >
+                Hơn 10.000+ khách hàng đã tin tưởng
+              </h2>
+              <div
+                className="mt-4 flex flex-wrap items-center gap-3 text-sm font-black text-[#0b5fa5]"
+                aria-label="Đánh giá trung bình 4.9 trên 5, hơn 1.200 đánh giá"
+              >
+                <span className="inline-flex items-center gap-2">
+                  <Star className="h-5 w-5 fill-[#e2a400] text-[#e2a400]" />
+                  4.9/5
+                </span>
+                <span className="h-1 w-1 rounded-full bg-slate-300" aria-hidden="true" />
+                <span className="text-slate-500">1.200+ đánh giá</span>
+              </div>
+            </div>
+          </Reveal>
+          <Reveal delay={100}>
+            <div className="mt-9">
+              <ReviewCarousel reviews={reviews} />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="container pb-12 sm:pb-16 lg:pb-20" aria-labelledby="final-cta-title">
+        <Reveal variant="scale">
+          <div className="relative overflow-hidden rounded-[2rem] bg-[linear-gradient(105deg,#075a9e_0%,#0877c9_52%,#20a9df_100%)] px-6 py-8 text-white shadow-[0_24px_70px_rgba(8,119,201,0.24)] sm:px-10 sm:py-10 lg:min-h-[168px] lg:px-14 lg:py-10">
+            <div className="pointer-events-none absolute -right-16 -top-28 h-72 w-72 rounded-full border border-white/15 bg-white/10 blur-2xl" />
+            <div className="relative flex flex-col justify-between gap-8 lg:flex-row lg:items-center">
+              <div className="max-w-2xl">
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-100">
+                  Sẵn sàng hỗ trợ
+                </p>
+                <h2
+                  id="final-cta-title"
+                  className="mt-3 text-3xl font-black tracking-[-0.035em] sm:text-4xl lg:text-[2.35rem]"
+                >
+                  Đặt lịch ngay – Tận hưởng không gian mát lạnh!
+                </h2>
+                <p className="mt-3 max-w-xl text-sm leading-7 text-cyan-50 sm:text-base">
+                  Liên hệ với Điện Lạnh Minh Nhật để được tư vấn và hỗ trợ nhanh nhất.
+                </p>
+              </div>
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <a
+                  href={phoneHref}
+                  className="inline-flex min-h-14 items-center justify-center gap-2 rounded-xl border border-white/35 bg-white/10 px-6 text-[15px] font-black whitespace-nowrap backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200"
+                >
+                  <Phone className="h-4 w-4" />
+                  {integrationSettings.phone}
+                </a>
+                <Link
+                  href="#booking"
+                  className="inline-flex min-h-14 items-center justify-center gap-2 rounded-xl bg-white px-6 text-[15px] font-black text-[#075a9e] shadow-[0_12px_26px_rgba(3,53,92,0.2)] whitespace-nowrap transition hover:-translate-y-0.5 hover:bg-cyan-50 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200"
+                >
+                  Đặt lịch ngay <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </Reveal>
       </section>
     </main>
+  );
+}
+
+function SnowflakeGlyph() {
+  return (
+    <span aria-hidden="true" className="text-sm leading-none">
+      ✦
+    </span>
+  );
+}
+
+function AirflowDecoration() {
+  return (
+    <div
+      aria-hidden="true"
+      className="airflow-decoration pointer-events-none absolute -right-2 -top-7 z-20 hidden h-48 w-64 sm:block"
+    >
+      <div className="absolute inset-8 rounded-full bg-cyan-200/35 blur-3xl" />
+      <svg className="relative h-full w-full" viewBox="0 0 260 190" fill="none">
+        <path
+          className="airflow-path airflow-path-one"
+          d="M26 116C70 62 128 52 205 94"
+          pathLength="1"
+          stroke="#8ed8f8"
+          strokeLinecap="round"
+          strokeWidth="3"
+        />
+        <path
+          className="airflow-path airflow-path-two"
+          d="M54 150C100 104 151 104 230 132"
+          pathLength="1"
+          stroke="#c3edff"
+          strokeLinecap="round"
+          strokeWidth="2"
+        />
+        <circle className="airflow-particle" cx="206" cy="94" r="3" fill="#0877c9" />
+        <circle
+          className="airflow-particle airflow-particle-two"
+          cx="229"
+          cy="132"
+          r="2"
+          fill="#8ed8f8"
+        />
+      </svg>
+    </div>
   );
 }

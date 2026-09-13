@@ -19,6 +19,7 @@ import { SERVICES, TARGET_CITY } from '@minhnhat/shared';
 import { BookingForm } from '@/components/forms/booking-form';
 import { JsonLdScript } from '@/components/seo/json-ld-script';
 import { LoadingImage } from '@/components/ui/loading-image';
+import { Reveal } from '@/components/ui/reveal';
 import { integrationSettings } from '@/lib/integrations/settings';
 import { breadcrumbJsonLd } from '@/lib/seo/json-ld';
 import { buildMetadata } from '@/lib/seo/metadata';
@@ -133,7 +134,7 @@ const processSteps = [
 const quickStats = [
   ['10+', 'nhóm dịch vụ'],
   ['Nhanh', 'đặt lịch'],
-  ['30p', 'phản hồi nhanh'],
+  ['Đa kênh', 'tiếp nhận'],
 ];
 
 export default function ServicesPage() {
@@ -194,16 +195,15 @@ export default function ServicesPage() {
           <aside className="min-w-0 rounded-md border border-white/15 bg-white/95 p-4 text-slate-950 shadow-2xl shadow-slate-950/35 backdrop-blur-xl sm:p-5">
             <p className="text-sm font-black uppercase text-primary">Tổng quan dịch vụ</p>
             <div className="mt-4 grid gap-3">
-              {quickStats.map(([value, label]) => (
-                <div
-                  key={label}
-                  className="flex min-w-0 items-center justify-between gap-3 rounded-md border border-slate-200 bg-slate-50 p-4"
-                >
-                  <span className="min-w-0 text-2xl font-black text-primary sm:text-3xl">
-                    {value}
-                  </span>
-                  <span className="text-right text-sm font-bold text-slate-600">{label}</span>
-                </div>
+              {quickStats.map(([value, label], index) => (
+                <Reveal key={label} asChild delay={Math.min(index, 4) * 55}>
+                  <div className="flex min-w-0 items-center justify-between gap-3 rounded-md border border-slate-200 bg-slate-50 p-4">
+                    <span className="min-w-0 text-2xl font-black text-primary sm:text-3xl">
+                      {value}
+                    </span>
+                    <span className="text-right text-sm font-bold text-slate-600">{label}</span>
+                  </div>
+                </Reveal>
               ))}
             </div>
             <div className="mt-5 rounded-md bg-cyan-50 p-4">
@@ -219,17 +219,16 @@ export default function ServicesPage() {
 
       <section className="relative z-10 -mt-8">
         <div className="container grid gap-3 md:grid-cols-3">
-          {promiseItems.map(({ icon: Icon, title, desc }) => (
-            <article
-              key={title}
-              className="rounded-md border border-slate-200 bg-white p-5 shadow-lg shadow-slate-200/70"
-            >
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-primary text-white">
-                <Icon className="h-5 w-5" />
-              </span>
-              <h2 className="mt-4 text-lg font-black">{title}</h2>
-              <p className="mt-2 text-sm leading-6 text-slate-600">{desc}</p>
-            </article>
+          {promiseItems.map(({ icon: Icon, title, desc }, index) => (
+            <Reveal key={title} asChild delay={Math.min(index, 4) * 55}>
+              <article className="rounded-md border border-slate-200 bg-white p-5 shadow-lg shadow-slate-200/70">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-primary text-white">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <h2 className="mt-4 text-lg font-black">{title}</h2>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{desc}</p>
+              </article>
+            </Reveal>
           ))}
         </div>
       </section>
@@ -258,47 +257,48 @@ export default function ServicesPage() {
         </div>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {SERVICES.map((service) => {
+          {SERVICES.map((service, index) => {
             const detail = serviceDetails[service.slug];
 
             return (
-              <Link
-                key={service.slug}
-                href={`/services/${service.slug}`}
-                className="group overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden border-b border-slate-200 bg-slate-100 sm:aspect-[16/10]">
-                  <LoadingImage
-                    src={`/images/services/${service.slug}.jpg`}
-                    alt={`${service.name} tại ${TARGET_CITY}`}
-                    fill
-                    className="object-contain transition duration-700 sm:scale-[1.03] sm:object-cover sm:group-hover:scale-[1.1]"
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  />
-                  <div className="absolute inset-0 bg-[linear-gradient(0deg,rgb(11_23_42_/_0.56)_0%,rgb(11_23_42_/_0.04)_68%)]" />
-                </div>
+              <Reveal key={service.slug} asChild delay={Math.min(index, 4) * 55}>
+                <Link
+                  href={`/services/${service.slug}`}
+                  className="group overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden border-b border-slate-200 bg-slate-100 sm:aspect-[16/10]">
+                    <LoadingImage
+                      src={`/images/services/${service.slug}.jpg`}
+                      alt={`${service.name} tại ${TARGET_CITY}`}
+                      fill
+                      className="object-contain transition duration-700 sm:scale-[1.03] sm:object-cover sm:group-hover:scale-[1.1]"
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    />
+                    <div className="absolute inset-0 bg-[linear-gradient(0deg,rgb(11_23_42_/_0.56)_0%,rgb(11_23_42_/_0.04)_68%)]" />
+                  </div>
 
-                <div className="p-5">
-                  <div className="flex items-start justify-between gap-3">
-                    <h3 className="text-lg font-black leading-6">{service.name}</h3>
-                    <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-primary transition group-hover:translate-x-1" />
+                  <div className="p-5">
+                    <div className="flex items-start justify-between gap-3">
+                      <h3 className="text-lg font-black leading-6">{service.name}</h3>
+                      <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-primary transition group-hover:translate-x-1" />
+                    </div>
+                    <p className="mt-3 text-sm leading-6 text-slate-600 sm:min-h-[6rem]">
+                      {detail.desc}
+                    </p>
+                    <div className="mt-4 grid gap-2">
+                      {detail.checks.map((item) => (
+                        <span
+                          key={item}
+                          className="flex items-center gap-2 text-xs font-bold text-slate-600"
+                        >
+                          <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" />
+                          {item}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <p className="mt-3 text-sm leading-6 text-slate-600 sm:min-h-[6rem]">
-                    {detail.desc}
-                  </p>
-                  <div className="mt-4 grid gap-2">
-                    {detail.checks.map((item) => (
-                      <span
-                        key={item}
-                        className="flex items-center gap-2 text-xs font-bold text-slate-600"
-                      >
-                        <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-600" />
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </Link>
+                </Link>
+              </Reveal>
             );
           })}
         </div>
@@ -318,12 +318,14 @@ export default function ServicesPage() {
           </div>
 
           <div className="grid gap-4 sm:grid-cols-2">
-            {processSteps.map(([number, title, desc]) => (
-              <article key={number} className="rounded-md border border-slate-200 bg-[#f4f8fb] p-5">
-                <p className="text-3xl font-black text-primary">{number}</p>
-                <h3 className="mt-3 text-lg font-black">{title}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">{desc}</p>
-              </article>
+            {processSteps.map(([number, title, desc], index) => (
+              <Reveal key={number} asChild delay={Math.min(index, 4) * 55}>
+                <article className="rounded-md border border-slate-200 bg-[#f4f8fb] p-5">
+                  <p className="text-3xl font-black text-primary">{number}</p>
+                  <h3 className="mt-3 text-lg font-black">{title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{desc}</p>
+                </article>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -345,14 +347,13 @@ export default function ServicesPage() {
                 'Chọn dịch vụ và địa chỉ',
                 'Ghi rõ địa chỉ tại Cần Thơ',
                 'Kỹ thuật viên gọi lại trước khi đến',
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-3 text-sm font-bold text-slate-700"
-                >
-                  <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600" />
-                  {item}
-                </div>
+              ].map((item, index) => (
+                <Reveal key={item} asChild delay={Math.min(index, 4) * 55}>
+                  <div className="flex items-center gap-3 text-sm font-bold text-slate-700">
+                    <CheckCircle2 className="h-5 w-5 shrink-0 text-emerald-600" />
+                    {item}
+                  </div>
+                </Reveal>
               ))}
             </div>
           </div>

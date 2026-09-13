@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { APP_NAME, TARGET_CITY } from '@minhnhat/shared';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim() || 'http://localhost:3000';
+export const siteUrl = new URL(configuredSiteUrl).origin;
 const defaultSocialImage = '/images/home-hero.jpg';
 
 export function absoluteUrl(path: string) {
@@ -43,6 +44,9 @@ export function buildMetadata({
       description,
       images: [imageUrl],
     },
+    authors: [{ name: APP_NAME, url: absoluteUrl('/about') }],
+    creator: APP_NAME,
+    publisher: APP_NAME,
     robots: {
       index: true,
       follow: true,

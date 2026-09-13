@@ -39,7 +39,8 @@ export function LoadingImage({
     isSvg;
   const imageClassName = cn(
     className,
-    effectiveReveal !== 'none' && 'transition-[filter,opacity] duration-700 ease-out',
+    effectiveReveal !== 'none' &&
+      'transition-[filter,opacity] duration-700 ease-out motion-reduce:transition-none',
     effectiveReveal === 'fade' && (loaded && !failed ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'),
     effectiveReveal === 'filter' && (loaded || failed ? 'blur-0' : 'blur-sm'),
   );
@@ -47,11 +48,11 @@ export function LoadingImage({
     <span
       aria-hidden="true"
       className={cn(
-        'pointer-events-none absolute inset-0 z-10 grid place-items-center overflow-hidden bg-slate-100/80 transition-opacity duration-500',
+        'pointer-events-none absolute inset-0 z-10 grid place-items-center overflow-hidden bg-slate-100/80 transition-opacity duration-500 motion-reduce:transition-none',
         loaded || failed || !shouldShowLoader ? 'opacity-0' : 'opacity-100',
       )}
     >
-      <span className="absolute inset-0 animate-pulse bg-[linear-gradient(110deg,rgb(226_232_240_/_0.45)_0%,rgb(255_255_255_/_0.7)_42%,rgb(226_232_240_/_0.45)_78%)]" />
+      <span className="absolute inset-0 animate-pulse bg-[linear-gradient(110deg,rgb(226_232_240_/_0.45)_0%,rgb(255_255_255_/_0.7)_42%,rgb(226_232_240_/_0.45)_78%)] motion-reduce:animate-none" />
       <span className="relative h-7 w-7 rounded-full border-2 border-slate-300 border-t-primary motion-safe:animate-spin" />
     </span>
   );

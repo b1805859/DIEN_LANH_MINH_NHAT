@@ -2,11 +2,13 @@ import Link from 'next/link';
 import { ArrowRight, BookOpen, CalendarDays } from 'lucide-react';
 import { BLOG_CATEGORIES, BLOG_POSTS } from '@minhnhat/shared';
 import { LoadingImage } from '@/components/ui/loading-image';
+import { Reveal } from '@/components/ui/reveal';
 import { buildMetadata } from '@/lib/seo/metadata';
 
 export const metadata = buildMetadata({
   title: 'Bài viết điện lạnh Cần Thơ',
-  description: 'Kiến thức máy lạnh, máy giặt, tủ lạnh, điện nước và tiết kiệm điện.',
+  description:
+    'Kiến thức sử dụng, vệ sinh và nhận biết lỗi máy lạnh, máy giặt, tủ lạnh, điện nước dành cho gia đình tại Cần Thơ.',
   path: '/blog',
 });
 
@@ -44,14 +46,15 @@ export default function BlogPage() {
 
       <section className="container py-10 sm:py-12 lg:py-16">
         <div className="flex flex-wrap gap-2">
-          {BLOG_CATEGORIES.map((category) => (
-            <Link
-              key={category.slug}
-              href={`/blog/category/${category.slug}`}
-              className="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700 transition hover:border-primary/40 hover:text-primary"
-            >
-              {category.name}
-            </Link>
+          {BLOG_CATEGORIES.map((category, index) => (
+            <Reveal key={category.slug} asChild delay={Math.min(index, 4) * 55}>
+              <Link
+                href={`/blog/category/${category.slug}`}
+                className="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700 transition hover:border-primary/40 hover:text-primary"
+              >
+                {category.name}
+              </Link>
+            </Reveal>
           ))}
         </div>
 
@@ -85,32 +88,33 @@ export default function BlogPage() {
         </Link>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
-              className="group overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200"
-            >
-              <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
-                <LoadingImage
-                  src={post.image}
-                  alt={post.title}
-                  fill
-                  className="object-cover transition duration-700 group-hover:scale-105"
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                />
-              </div>
-              <div className="p-5">
-                <h2 className="text-lg font-black leading-6">{post.title}</h2>
-                <p className="mt-3 text-sm leading-6 text-slate-600 sm:min-h-[4.5rem]">
-                  {post.excerpt}
-                </p>
-                <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-primary">
-                  Xem chi tiết
-                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                </span>
-              </div>
-            </Link>
+          {posts.map((post, index) => (
+            <Reveal key={post.slug} asChild delay={Math.min(index, 4) * 55}>
+              <Link
+                href={`/blog/${post.slug}`}
+                className="group overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                  <LoadingImage
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover transition duration-700 group-hover:scale-105"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                </div>
+                <div className="p-5">
+                  <h2 className="text-lg font-black leading-6">{post.title}</h2>
+                  <p className="mt-3 text-sm leading-6 text-slate-600 sm:min-h-[4.5rem]">
+                    {post.excerpt}
+                  </p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-primary">
+                    Xem chi tiết
+                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
           ))}
         </div>
       </section>

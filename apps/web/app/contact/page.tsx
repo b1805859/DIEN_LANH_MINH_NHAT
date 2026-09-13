@@ -1,13 +1,16 @@
 import type { LucideIcon } from 'lucide-react';
-import { MapPin, Navigation, Phone } from 'lucide-react';
+import { ExternalLink, MapPin, Navigation, Phone } from 'lucide-react';
 import { APP_NAME, TARGET_CITY } from '@minhnhat/shared';
 import { LoadingImage } from '@/components/ui/loading-image';
+import { JsonLdScript } from '@/components/seo/json-ld-script';
 import { integrationSettings } from '@/lib/integrations/settings';
+import { breadcrumbJsonLd } from '@/lib/seo/json-ld';
 import { buildMetadata } from '@/lib/seo/metadata';
 
 export const metadata = buildMetadata({
   title: 'Liên hệ ĐIỆN LẠNH MINH NHẬT',
-  description: 'Liên hệ đường dây nóng và Zalo để được tư vấn dịch vụ điện lạnh tại Cần Thơ.',
+  description:
+    'Liên hệ Điện Lạnh Minh Nhật qua hotline hoặc Zalo để mô tả sự cố và đặt lịch kiểm tra thiết bị tận nơi tại Cần Thơ.',
   path: '/contact',
 });
 
@@ -110,13 +113,24 @@ export default function ContactPage() {
           <p className="mt-3 text-sm leading-6 text-slate-600">
             Xem vị trí để thuận tiện trao đổi khu vực phục vụ và sắp xếp lịch kỹ thuật viên.
           </p>
+          {integrationSettings.googleMapsUrl ? (
+            <a
+              className="mt-4 inline-flex min-h-11 w-fit items-center gap-2 rounded-md border border-primary/25 bg-white px-4 py-2 text-sm font-black text-primary transition hover:border-primary hover:bg-cyan-50"
+              href={integrationSettings.googleMapsUrl}
+              rel="noreferrer"
+              target="_blank"
+            >
+              Mở chỉ đường trên Google Maps
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          ) : null}
 
           {hasMapEmbed ? (
             <div className="mt-5 flex-1 overflow-hidden rounded-md border border-slate-200 bg-white shadow-xl shadow-slate-200/70">
               <iframe
                 className="block h-[360px] w-full bg-slate-100 sm:h-[420px] lg:h-full lg:min-h-[500px]"
                 src={integrationSettings.googleMapsEmbedUrl}
-                loading="eager"
+                loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title={`Bản đồ ${APP_NAME}`}
               />
@@ -134,6 +148,12 @@ export default function ContactPage() {
           )}
         </section>
       </div>
+      <JsonLdScript
+        data={breadcrumbJsonLd([
+          { name: 'Trang chủ', path: '/' },
+          { name: 'Liên hệ', path: '/contact' },
+        ])}
+      />
     </main>
   );
 }

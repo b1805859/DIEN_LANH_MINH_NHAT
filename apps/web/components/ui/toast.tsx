@@ -78,10 +78,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
     <ToastContext.Provider value={value}>
       {children}
       {toasts[0] ? (
-        <NotificationModal
-          toast={toasts[0]}
-          onDismiss={() => dismissToast(toasts[0].id)}
-        />
+        <NotificationModal toast={toasts[0]} onDismiss={() => dismissToast(toasts[0].id)} />
       ) : null}
     </ToastContext.Provider>
   );
@@ -131,7 +128,7 @@ function NotificationModal({ toast, onDismiss }: { toast: ToastItem; onDismiss: 
         aria-modal="true"
         aria-labelledby={`notification-title-${toast.id}`}
         aria-describedby={toast.description ? `notification-description-${toast.id}` : undefined}
-        className="w-full max-w-md animate-in rounded-xl border border-slate-200 bg-white p-6 text-center shadow-2xl fade-in zoom-in-95 duration-200"
+        className="w-full max-w-md animate-in rounded-xl border border-slate-200 bg-white p-6 text-center shadow-2xl fade-in zoom-in-95 duration-200 motion-reduce:animate-none"
       >
         <div
           className={cn(

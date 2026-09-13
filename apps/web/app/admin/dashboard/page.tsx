@@ -14,6 +14,7 @@ import {
 import { useEffect, useState } from 'react';
 import { QueryBoundary } from '@/components/layout/query-boundary';
 import { Button } from '@/components/ui/button';
+import { Reveal } from '@/components/ui/reveal';
 import { getStoredAccessToken } from '@/lib/auth/tokens';
 import { apiClient } from '@/lib/api/client';
 
@@ -101,7 +102,7 @@ function AdminDashboardPageContent() {
           disabled={isFetching}
           onClick={() => refetch()}
         >
-          <RefreshCw className={isFetching ? 'h-4 w-4 animate-spin' : 'h-4 w-4'} />
+          <RefreshCw className={isFetching ? 'h-4 w-4 motion-safe:animate-spin' : 'h-4 w-4'} />
           Tải lại
         </Button>
       </div>
@@ -123,79 +124,104 @@ function AdminDashboardPageContent() {
       ) : null}
 
       {token ? (
-        <section className="mt-6 overflow-hidden rounded-xl border border-primary/20 bg-white shadow-sm">
-          <div className="flex flex-col gap-3 border-b border-slate-200 bg-primary/5 p-5 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex items-center gap-3">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-white">
-                <CalendarClock className="h-5 w-5" />
-              </span>
-              <div>
-                <p className="text-xs font-black uppercase tracking-wide text-primary">
-                  Điều phối lịch hẹn
-                </p>
-                <h2 className="text-lg font-black text-slate-950">
-                  Tóm tắt lịch hôm nay và 7 ngày tới
-                </h2>
+        <Reveal asChild delay={40}>
+          <section
+            className="mt-6 overflow-hidden rounded-xl border border-primary/20 bg-white shadow-sm"
+            aria-busy={isLoading || isFetching}
+          >
+            <div className="flex flex-col gap-3 border-b border-slate-200 bg-primary/5 p-5 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-center gap-3">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-primary text-white">
+                  <CalendarClock className="h-5 w-5" />
+                </span>
+                <div>
+                  <p className="text-xs font-black uppercase tracking-wide text-primary">
+                    Điều phối lịch hẹn
+                  </p>
+                  <h2 className="text-lg font-black text-slate-950">
+                    Tóm tắt lịch hôm nay và 7 ngày tới
+                  </h2>
+                </div>
               </div>
+              <Button asChild className="h-11 gap-2 self-start font-black sm:self-auto">
+                <Link href="/admin/bookings">
+                  Xem lịch hẹn
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
             </div>
-            <Button asChild className="h-11 gap-2 self-start font-black sm:self-auto">
-              <Link href="/admin/bookings">
-                Xem lịch hẹn
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-          <div className="grid gap-3 p-5 sm:grid-cols-2 xl:grid-cols-4">
-            <DashboardMetric
-              label="Lịch hôm nay"
-              value={bookingOverview?.todayActive ?? 0}
-              helper="Không tính lịch đã hủy"
-            />
-            <DashboardMetric
-              label="7 ngày tiếp theo"
-              value={bookingOverview?.upcoming7DaysActive ?? 0}
-              helper="Từ ngày mai đến hết ngày thứ bảy"
-            />
-            <DashboardMetric
-              label="Đang chờ xử lý"
-              value={bookingOverview?.pendingActive ?? 0}
-              helper="Cần admin xác nhận"
-            />
-            <DashboardMetric
-              label="Ngày gần nhất có lịch"
-              value={bookingOverview?.nextBookingCount ?? 0}
-              helper={formatDateKey(bookingOverview?.nextBookingDate)}
-            />
-          </div>
-        </section>
+            <div className="grid gap-3 p-5 sm:grid-cols-2 xl:grid-cols-4">
+              <DashboardMetric
+                label="Lịch hôm nay"
+                value={bookingOverview?.todayActive ?? 0}
+                helper="Không tính lịch đã hủy"
+                isLoading={isLoading}
+              />
+              <DashboardMetric
+                label="7 ngày tiếp theo"
+                value={bookingOverview?.upcoming7DaysActive ?? 0}
+                helper="Từ ngày mai đến hết ngày thứ bảy"
+                isLoading={isLoading}
+              />
+              <DashboardMetric
+                label="Đang chờ xử lý"
+                value={bookingOverview?.pendingActive ?? 0}
+                helper="Cần admin xác nhận"
+                isLoading={isLoading}
+              />
+              <DashboardMetric
+                label="Ngày gần nhất có lịch"
+                value={bookingOverview?.nextBookingCount ?? 0}
+                helper={formatDateKey(bookingOverview?.nextBookingDate)}
+                isLoading={isLoading}
+              />
+            </div>
+          </section>
+        </Reveal>
       ) : null}
 
-      <div className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        {resources.map((resource) => {
+      <div
+        className="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3"
+        aria-busy={isLoading || isFetching}
+      >
+        {resources.map((resource, index) => {
           const Icon = resource.icon;
 
           return (
-            <Link
-              key={resource.key}
-              href={`/admin/${resource.key}`}
-              className="group rounded-md border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg hover:shadow-slate-200"
-            >
-              <span className="flex items-start justify-between gap-3">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-primary/10 text-primary">
-                  <Icon className="h-5 w-5" />
+            <Reveal key={resource.key} asChild delay={index * 45}>
+              <Link
+                href={`/admin/${resource.key}`}
+                className="group rounded-md border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg hover:shadow-slate-200"
+              >
+                <span className="flex items-start justify-between gap-3">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-primary/10 text-primary">
+                    <Icon className="h-5 w-5" />
+                  </span>
+                  <ArrowRight className="h-4 w-4 text-slate-400 transition group-hover:translate-x-1 group-hover:text-primary" />
                 </span>
-                <ArrowRight className="h-4 w-4 text-slate-400 transition group-hover:translate-x-1 group-hover:text-primary" />
-              </span>
-              <span className="mt-5 block text-sm font-black uppercase text-slate-500">
-                {resource.label}
-              </span>
-              <span className="mt-2 block text-3xl font-black tracking-tight text-slate-950">
-                {isLoading ? '...' : getNumberValue(data, resource.key)}
-              </span>
-              <span className="mt-1 block text-sm font-semibold text-slate-500">
-                mục đang được quản lý
-              </span>
-            </Link>
+                <span className="mt-5 block text-sm font-black uppercase text-slate-500">
+                  {resource.label}
+                </span>
+                <span className="mt-2 block min-h-9 text-3xl font-black tracking-tight text-slate-950">
+                  {isLoading ? (
+                    <span
+                      aria-hidden="true"
+                      className="block h-9 w-16 animate-pulse rounded-md bg-slate-200 motion-reduce:animate-none"
+                    />
+                  ) : (
+                    <span
+                      key={getNumberValue(data, resource.key)}
+                      className="inline-block animate-in fade-in zoom-in-95 duration-300 motion-reduce:animate-none"
+                    >
+                      {getNumberValue(data, resource.key)}
+                    </span>
+                  )}
+                </span>
+                <span className="mt-1 block text-sm font-semibold text-slate-500">
+                  mục đang được quản lý
+                </span>
+              </Link>
+            </Reveal>
           );
         })}
       </div>
@@ -207,15 +233,31 @@ function DashboardMetric({
   label,
   value,
   helper,
+  isLoading,
 }: {
   label: string;
   value: number;
   helper: string;
+  isLoading: boolean;
 }) {
   return (
     <div className="rounded-lg border border-slate-200 bg-white p-4">
       <p className="text-xs font-black uppercase tracking-wide text-slate-500">{label}</p>
-      <p className="mt-2 text-3xl font-black tracking-tight text-slate-950">{value}</p>
+      <p className="mt-2 min-h-9 text-3xl font-black tracking-tight text-slate-950">
+        {isLoading ? (
+          <span
+            aria-hidden="true"
+            className="block h-9 w-16 animate-pulse rounded-md bg-slate-200 motion-reduce:animate-none"
+          />
+        ) : (
+          <span
+            key={value}
+            className="inline-block animate-in fade-in zoom-in-95 duration-300 motion-reduce:animate-none"
+          >
+            {value}
+          </span>
+        )}
+      </p>
       <p className="mt-1 text-sm font-semibold text-slate-500">{helper}</p>
     </div>
   );

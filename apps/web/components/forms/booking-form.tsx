@@ -3,6 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { PRIORITY_DISTRICTS, SERVICES } from '@minhnhat/shared';
 import { useMutation } from '@tanstack/react-query';
+import { useId } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { apiClient } from '@/lib/api/client';
@@ -40,19 +41,30 @@ type BookingInput = z.infer<typeof bookingSchema>;
 const fieldClass =
   'h-12 w-full min-w-0 rounded-md border border-slate-200 bg-slate-50 px-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10';
 
-function FieldError({ message }: { message?: string }) {
+function FieldError({ id, message }: { id: string; message?: string }) {
   if (!message) return null;
-  return <p className="text-xs font-semibold leading-5 text-red-600">{message}</p>;
+  return (
+    <p id={id} role="alert" className="text-xs font-semibold leading-5 text-red-600">
+      {message}
+    </p>
+  );
 }
 
-function BookingFormContent({ compact = false }: { compact?: boolean }) {
+function BookingFormContent({
+  compact = false,
+  hideNotes = false,
+}: {
+  compact?: boolean;
+  hideNotes?: boolean;
+}) {
   const { toast } = useToast();
+  const formId = useId();
   const form = useForm<BookingInput>({
     resolver: zodResolver(bookingSchema),
     defaultValues: {
       serviceId: SERVICES[0].slug,
       locationId: PRIORITY_DISTRICTS[0].slug,
-      date: '',
+      date: compact ? getToday() : '',
       address: '',
       customerName: '',
       customerPhone: '',
@@ -91,16 +103,18 @@ function BookingFormContent({ compact = false }: { compact?: boolean }) {
   return (
     <form
       noValidate
+      aria-busy={mutation.isPending}
       className="grid min-w-0 gap-3"
       onSubmit={form.handleSubmit((values) => mutation.mutate(values))}
     >
-      <div className={`grid gap-3 ${compact ? '' : 'sm:grid-cols-2'}`}>
+      <div className="grid gap-3 sm:grid-cols-2">
         <label className="grid gap-1.5">
-          <span className="text-xs font-black uppercase text-slate-500">Dịch vụ</span>
+          <span className="text-xs font-black uppercase text-slate-700">Dịch vụ</span>
           <select
             className={fieldClass}
             required
             aria-invalid={Boolean(errors.serviceId)}
+            aria-describedby={errors.serviceId ? `${formId}-service-error` : undefined}
             {...form.register('serviceId')}
           >
             {SERVICES.map((service) => (
@@ -109,14 +123,15 @@ function BookingFormContent({ compact = false }: { compact?: boolean }) {
               </option>
             ))}
           </select>
-          <FieldError message={errors.serviceId?.message} />
+          <FieldError id={`${formId}-service-error`} message={errors.serviceId?.message} />
         </label>
         <label className="grid gap-1.5">
-          <span className="text-xs font-black uppercase text-slate-500">Khu vực</span>
+          <span className="text-xs font-black uppercase text-slate-700">Khu vực</span>
           <select
             className={fieldClass}
             required
             aria-invalid={Boolean(errors.locationId)}
+            aria-describedby={errors.locationId ? `${formId}-location-error` : undefined}
             {...form.register('locationId')}
           >
             {PRIORITY_DISTRICTS.map((district) => (
@@ -125,75 +140,93 @@ function BookingFormContent({ compact = false }: { compact?: boolean }) {
               </option>
             ))}
           </select>
-          <FieldError message={errors.locationId?.message} />
+          <FieldError id={`${formId}-location-error`} message={errors.locationId?.message} />
         </label>
         <label className="grid gap-1.5">
-          <span className="text-xs font-black uppercase text-slate-500">Ngày hẹn</span>
+          <span className="text-xs font-black uppercase text-slate-700">
+            Ngày hẹn{compact ? ' (tùy chọn)' : ''}
+          </span>
           <input
             className={fieldClass}
             type="date"
             min={today}
             required
             aria-invalid={Boolean(errors.date)}
+            aria-describedby={errors.date ? `${formId}-date-error` : undefined}
             {...form.register('date')}
           />
-          <FieldError message={errors.date?.message} />
+          <FieldError id={`${formId}-date-error`} message={errors.date?.message} />
         </label>
         <label className="grid gap-1.5">
-          <span className="text-xs font-black uppercase text-slate-500">Họ tên</span>
+          <span className="text-xs font-black uppercase text-slate-700">Họ tên</span>
           <input
             className={fieldClass}
+            autoComplete="name"
             placeholder="Nguyễn Văn A"
             required
             aria-invalid={Boolean(errors.customerName)}
+            aria-describedby={errors.customerName ? `${formId}-name-error` : undefined}
             {...form.register('customerName')}
           />
-          <FieldError message={errors.customerName?.message} />
+          <FieldError id={`${formId}-name-error`} message={errors.customerName?.message} />
         </label>
         <label className="grid gap-1.5">
-          <span className="text-xs font-black uppercase text-slate-500">Số điện thoại</span>
+          <span className="text-xs font-black uppercase text-slate-700">Số điện thoại</span>
           <input
             className={fieldClass}
+            type="tel"
             inputMode="tel"
+            autoComplete="tel"
             placeholder="0939 370 109"
             required
             aria-invalid={Boolean(errors.customerPhone)}
+            aria-describedby={errors.customerPhone ? `${formId}-phone-error` : undefined}
             {...form.register('customerPhone')}
           />
-          <FieldError message={errors.customerPhone?.message} />
+          <FieldError id={`${formId}-phone-error`} message={errors.customerPhone?.message} />
+        </label>
+        <label className={`grid gap-1.5${compact ? '' : ' sm:col-span-2'}`}>
+          <span className="text-xs font-black uppercase text-slate-700">Địa chỉ</span>
+          <input
+            className={fieldClass}
+            autoComplete="street-address"
+            placeholder="Số nhà, đường, phường"
+            required
+            aria-invalid={Boolean(errors.address)}
+            aria-describedby={errors.address ? `${formId}-address-error` : undefined}
+            {...form.register('address')}
+          />
+          <FieldError id={`${formId}-address-error`} message={errors.address?.message} />
         </label>
       </div>
-      <label className="grid gap-1.5">
-        <span className="text-xs font-black uppercase text-slate-500">Địa chỉ</span>
-        <input
-          className={fieldClass}
-          placeholder="Số nhà, đường, phường tại Cần Thơ"
-          required
-          aria-invalid={Boolean(errors.address)}
-          {...form.register('address')}
-        />
-        <FieldError message={errors.address?.message} />
-      </label>
-      <label className="grid gap-1.5">
-        <span className="text-xs font-black uppercase text-slate-500">Ghi chú</span>
-        <textarea
-          className="min-h-24 w-full min-w-0 rounded-md border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
-          placeholder="Mô tả nhanh tình trạng thiết bị"
-          {...form.register('notes')}
-        />
-      </label>
+      {hideNotes ? null : (
+        <label className="grid gap-1.5 sm:col-span-2">
+          <span className="text-xs font-black uppercase text-slate-700">Ghi chú</span>
+          <textarea
+            className="min-h-24 w-full min-w-0 rounded-md border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
+            placeholder="Mô tả nhanh tình trạng thiết bị"
+            {...form.register('notes')}
+          />
+        </label>
+      )}
       <Button className="h-12 w-full font-bold" type="submit" disabled={mutation.isPending}>
         {mutation.isPending ? 'Đang gửi...' : 'Đặt lịch'}
       </Button>
-      {mutation.isSuccess ? <p className="text-sm text-emerald-700">Đã gửi lịch hẹn.</p> : null}
+      {mutation.isSuccess ? (
+        <p role="status" aria-live="polite" className="text-sm font-semibold text-emerald-700">
+          Đã gửi lịch hẹn. Minh Nhật sẽ liên hệ xác nhận sớm.
+        </p>
+      ) : null}
       {mutation.isError ? (
-        <p className="text-sm text-red-600">Không gửi được, vui lòng gọi đường dây nóng.</p>
+        <p role="alert" className="text-sm font-semibold text-red-600">
+          Không gửi được, vui lòng gọi đường dây nóng.
+        </p>
       ) : null}
     </form>
   );
 }
 
-export function BookingForm(props: { compact?: boolean }) {
+export function BookingForm(props: { compact?: boolean; hideNotes?: boolean }) {
   return (
     <QueryBoundary>
       <BookingFormContent {...props} />

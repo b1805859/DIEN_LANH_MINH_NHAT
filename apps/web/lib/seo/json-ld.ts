@@ -1,30 +1,92 @@
-import { APP_NAME, FAQS, TARGET_CITY } from '@minhnhat/shared';
+import {
+  APP_NAME,
+  FAQS,
+  PRIORITY_DISTRICTS,
+  SERVICES,
+  TARGET_CITY,
+  findDistrict,
+  findServiceContent,
+} from '@minhnhat/shared';
 import { absoluteUrl } from './metadata';
 import { integrationSettings } from '../integrations/settings';
 
+function localAreas() {
+  return [
+    {
+      '@type': 'City',
+      name: TARGET_CITY,
+    },
+    ...PRIORITY_DISTRICTS.map((district) => ({
+      '@type': 'AdministrativeArea',
+      name: `${district.name}, ${TARGET_CITY}`,
+    })),
+  ];
+}
+
 export function localBusinessJsonLd() {
   const sameAs = [
-    integrationSettings.facebookUrl,
-    integrationSettings.tiktokUrl,
-    integrationSettings.youtubeUrl,
-    integrationSettings.zaloUrl,
-  ].filter(Boolean);
+    ...new Set(
+      [
+        integrationSettings.facebookUrl,
+        integrationSettings.tiktokUrl,
+        integrationSettings.youtubeUrl,
+        integrationSettings.zaloUrl,
+      ].filter(Boolean),
+    ),
+  ];
 
   return {
     '@context': 'https://schema.org',
     '@type': ['LocalBusiness', 'HVACBusiness'],
     '@id': absoluteUrl('/#business'),
-    name: APP_NAME,
+    name: integrationSettings.businessName,
+    description:
+      'Dịch vụ sửa chữa, vệ sinh và lắp đặt điện lạnh tận nơi cho gia đình, cửa hàng tại Cần Thơ.',
     image: absoluteUrl('/images/home-hero.jpg'),
+    logo: absoluteUrl('/favicon.ico'),
     telephone: integrationSettings.phone,
     address: {
       '@type': 'PostalAddress',
       addressLocality: TARGET_CITY,
+      addressRegion: TARGET_CITY,
       addressCountry: 'VN',
-      ...(integrationSettings.address ? { streetAddress: integrationSettings.address } : {}),
+      ...(integrationSettings.hasConfiguredAddress
+        ? { streetAddress: integrationSettings.address }
+        : {}),
     },
-    areaServed: TARGET_CITY,
+    areaServed: localAreas(),
     url: absoluteUrl('/'),
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: integrationSettings.phone,
+      contactType: 'customer service',
+      availableLanguage: ['vi'],
+      areaServed: 'VN',
+    },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Dịch vụ điện lạnh tại Cần Thơ',
+      itemListElement: SERVICES.map((service) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: service.name,
+          url: absoluteUrl(`/services/${service.slug}`),
+        },
+      })),
+    },
+    ...(integrationSettings.googleMapsUrl ? { hasMap: integrationSettings.googleMapsUrl } : {}),
+    ...(integrationSettings.latitude && integrationSettings.longitude
+      ? {
+          geo: {
+            '@type': 'GeoCoordinates',
+            latitude: integrationSettings.latitude,
+            longitude: integrationSettings.longitude,
+          },
+        }
+      : {}),
+    ...(integrationSettings.openingHours ? { openingHours: integrationSettings.openingHours } : {}),
+    ...(integrationSettings.priceRange ? { priceRange: integrationSettings.priceRange } : {}),
     ...(sameAs.length ? { sameAs } : {}),
   };
 }
@@ -70,18 +132,51 @@ export function breadcrumbJsonLd(items: Array<{ name: string; path: string }>) {
 }
 
 export function serviceJsonLd(serviceName: string, path: string, image?: string) {
+  const pathSegments = path.split('/').filter(Boolean);
+  const serviceSlug = pathSegments.at(-1) || '';
+  const serviceContent = findServiceContent(serviceSlug);
+  const district =
+    pathSegments[0] === 'areas' && pathSegments[1] ? findDistrict(pathSegments[1]) : undefined;
+  const areaServed = district
+    ? [
+        {
+          '@type': 'AdministrativeArea',
+          name: `${district.name}, ${TARGET_CITY}`,
+        },
+      ]
+    : localAreas();
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
+    '@id': absoluteUrl(`${path}#service`),
     name: serviceName,
-    provider: localBusinessJsonLd(),
-    areaServed: TARGET_CITY,
+    serviceType: serviceName,
+    ...(serviceContent ? { description: serviceContent.shortDescription } : {}),
+    provider: { '@id': absoluteUrl('/#business') },
+    areaServed,
     url: absoluteUrl(path),
+    availableChannel: {
+      '@type': 'ServiceChannel',
+      serviceUrl: absoluteUrl('/booking'),
+      servicePhone: {
+        '@type': 'ContactPoint',
+        telephone: integrationSettings.phone,
+        contactType: 'customer service',
+        availableLanguage: ['vi'],
+      },
+    },
     ...(image ? { image: absoluteUrl(image) } : {}),
   };
 }
 
-export function articleJsonLd(title: string, description: string, image: string, path: string) {
+export function articleJsonLd(
+  title: string,
+  description: string,
+  image: string,
+  path: string,
+  dates?: { datePublished?: string; dateModified?: string },
+) {
   return {
     '@context': 'https://schema.org',
     '@type': ['Article', 'BlogPosting'],
@@ -93,6 +188,7 @@ export function articleJsonLd(title: string, description: string, image: string,
     mainEntityOfPage: { '@type': 'WebPage', '@id': absoluteUrl(path) },
     url: absoluteUrl(path),
     inLanguage: 'vi-VN',
+    ...(dates?.datePublished ? { datePublished: dates.datePublished } : {}),
+    ...(dates?.dateModified ? { dateModified: dates.dateModified } : {}),
   };
 }
-

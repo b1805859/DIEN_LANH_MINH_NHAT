@@ -1,9 +1,11 @@
 'use client';
 
 import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
+import Link from 'next/link';
 import { Phone, Send, X } from 'lucide-react';
 import { AiChatbotIcon } from '@/components/brand/ai-chatbot-icon';
 import { LoadingImage } from '@/components/ui/loading-image';
+import { useReducedMotion } from '@/lib/hooks/use-reduced-motion';
 import { integrationSettings } from '@/lib/integrations/settings';
 
 type ChatMessage = {
@@ -84,10 +86,13 @@ function getConsultationAnswer(message: string) {
   );
 }
 
-export function FloatingActions() {
+export function FloatingActions({ minimal = false }: { minimal?: boolean }) {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
+  const reducedMotion = useReducedMotion();
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
+  const chatTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const chatInputRef = useRef<HTMLInputElement | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: 'assistant',
@@ -100,8 +105,38 @@ export function FloatingActions() {
 
   useEffect(() => {
     if (!isChatOpen) return;
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
-  }, [messages, isChatOpen]);
+
+    const previouslyFocusedElement =
+      document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const chatTrigger = chatTriggerRef.current;
+    const focusInputFrame = requestAnimationFrame(() => chatInputRef.current?.focus());
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setIsChatOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', closeOnEscape);
+
+    return () => {
+      cancelAnimationFrame(focusInputFrame);
+      document.removeEventListener('keydown', closeOnEscape);
+      if (chatTrigger?.isConnected) {
+        chatTrigger.focus();
+      } else if (previouslyFocusedElement?.isConnected) {
+        previouslyFocusedElement.focus();
+      }
+    };
+  }, [isChatOpen]);
+
+  useEffect(() => {
+    if (!isChatOpen) return;
+    messagesEndRef.current?.scrollIntoView({
+      behavior: reducedMotion ? 'auto' : 'smooth',
+      block: 'end',
+    });
+  }, [messages, isChatOpen, reducedMotion]);
 
   function sendMessage(message: string) {
     const trimmedMessage = message.trim();
@@ -123,11 +158,15 @@ export function FloatingActions() {
 
   return (
     <>
-      <div className="fixed bottom-10 left-3 z-50 sm:bottom-16 sm:left-4">
+      <div
+        className={
+          minimal ? 'hidden' : 'fixed bottom-3 left-3 z-50 hidden lg:block lg:bottom-16 lg:left-4'
+        }
+      >
         <a
           aria-label={`Gọi ${integrationSettings.phone}`}
           href={phoneHref}
-          className="contact-action-float relative inline-flex h-12 w-12 select-none items-center justify-center gap-0 overflow-visible rounded-full border border-white/70 bg-[linear-gradient(135deg,#ffd84d_0%,#ffc21f_52%,#ffad1f_100%)] p-0 text-slate-950 shadow-[0_18px_38px_rgb(245_158_11_/_0.36)] ring-1 ring-amber-500/20 sm:h-16 sm:w-auto sm:gap-3 sm:py-2 sm:pl-2 sm:pr-5"
+          className="contact-action-float relative inline-flex h-12 w-12 select-none items-center justify-center gap-0 overflow-visible rounded-full border border-white/70 bg-[linear-gradient(135deg,#ffd84d_0%,#ffc21f_52%,#ffad1f_100%)] p-0 text-slate-950 shadow-[0_18px_38px_rgb(245_158_11_/_0.36)] ring-1 ring-amber-500/20 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-300 sm:h-16 sm:w-auto sm:gap-3 sm:py-2 sm:pl-2 sm:pr-5"
         >
           <span className="pointer-events-none absolute inset-x-5 top-1 h-5 rounded-full bg-white/35 blur-md" />
           <span className="phone-ring-halo pointer-events-none absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-red-500/45 sm:left-8 sm:h-16 sm:w-16" />
@@ -141,14 +180,45 @@ export function FloatingActions() {
         </a>
       </div>
 
+      <div
+        data-testid="mobile-sticky-cta"
+        className="fixed inset-x-3 bottom-3 z-50 grid grid-cols-2 gap-2 md:hidden"
+        style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+      >
+        <a
+          href={phoneHref}
+          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[#f6c945] bg-[#fff8d9] px-4 text-sm font-black text-[#7a5700] shadow-[0_12px_28px_rgba(15,23,42,0.12)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200"
+        >
+          <Phone className="h-4 w-4" />
+          Gọi ngay
+        </a>
+        <Link
+          href="/booking"
+          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#0877c9] px-4 text-sm font-black text-white shadow-[0_12px_28px_rgba(8,119,201,0.25)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200"
+        >
+          Đặt lịch
+        </Link>
+      </div>
+
       {isChatOpen ? (
-        <section className="fixed bottom-3 right-3 z-50 w-[calc(100vw-1.5rem)] max-w-sm overflow-hidden rounded-md border border-slate-200 bg-white shadow-2xl shadow-slate-950/20 sm:bottom-4 sm:right-24 sm:w-[calc(100vw-8rem)] sm:max-w-[380px] lg:max-w-[400px]">
+        <section
+          id="ai-consultation-dialog"
+          role="dialog"
+          aria-labelledby="ai-consultation-title"
+          aria-describedby="ai-consultation-description"
+          className="fixed bottom-3 right-3 z-50 w-[calc(100vw-1.5rem)] max-w-sm animate-in overflow-hidden rounded-md border border-slate-200 bg-white shadow-2xl shadow-slate-950/20 fade-in slide-in-from-bottom-3 zoom-in-95 duration-200 motion-reduce:animate-none sm:bottom-4 sm:right-24 sm:w-[calc(100vw-8rem)] sm:max-w-[380px] lg:max-w-[400px]"
+        >
           <div className="flex items-start justify-between gap-3 bg-[#0b172a] p-4 text-white">
             <div className="flex min-w-0 items-start gap-3">
               <AiChatbotIcon className="h-10 w-10" idPrefix="ai-chat-modal-icon" />
               <div className="min-w-0">
-                <h2 className="text-sm font-black">AI tư vấn Minh Nhật</h2>
-                <p className="mt-1 text-xs leading-5 text-slate-300">
+                <h2 id="ai-consultation-title" className="text-sm font-black">
+                  AI tư vấn Minh Nhật
+                </h2>
+                <p
+                  id="ai-consultation-description"
+                  className="mt-1 text-xs leading-5 text-slate-300"
+                >
                   Gợi ý nhanh theo tình trạng thiết bị
                 </p>
               </div>
@@ -156,18 +226,26 @@ export function FloatingActions() {
             <button
               type="button"
               aria-label="Đóng tư vấn AI"
-              className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-md text-slate-300 transition hover:bg-white/10 hover:text-white"
+              className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-slate-300 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200"
               onClick={() => setIsChatOpen(false)}
             >
               <X className="h-5 w-5" />
             </button>
           </div>
 
-          <div className="min-h-[260px] max-h-[54vh] space-y-3 overflow-y-auto bg-slate-50 p-4 sm:min-h-[320px] lg:min-h-[360px]">
+          <div
+            role="log"
+            aria-live="polite"
+            aria-atomic="false"
+            aria-relevant="additions text"
+            aria-label="Nội dung hội thoại"
+            tabIndex={0}
+            className="min-h-[260px] max-h-[54vh] space-y-3 overflow-y-auto bg-slate-50 p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary sm:min-h-[320px] lg:min-h-[360px]"
+          >
             {messages.map((message, index) => (
               <div
                 key={`${message.role}-${index}`}
-                className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                className={`flex animate-in fade-in slide-in-from-bottom-1 duration-200 motion-reduce:animate-none ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
               >
                 <p
                   className={`max-w-[88%] rounded-md px-3 py-2 text-sm leading-6 ${
@@ -176,20 +254,27 @@ export function FloatingActions() {
                       : 'border border-slate-200 bg-white text-slate-700 shadow-sm'
                   }`}
                 >
+                  <span className="sr-only">
+                    {message.role === 'user' ? 'Bạn' : 'Trợ lý tư vấn'}:{' '}
+                  </span>
                   {message.content}
                 </p>
               </div>
             ))}
-            <div ref={messagesEndRef} />
+            <div ref={messagesEndRef} aria-hidden="true" />
           </div>
 
           <div className="border-t border-slate-200 bg-white p-4">
-            <div className="mb-3 flex gap-2 overflow-x-auto pb-1">
+            <div
+              role="group"
+              aria-label="Câu hỏi gợi ý"
+              className="mb-3 flex gap-2 overflow-x-auto pb-1"
+            >
               {quickPrompts.map((prompt) => (
                 <button
                   key={prompt}
                   type="button"
-                  className="shrink-0 rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-bold text-slate-700 transition hover:border-primary/40 hover:bg-cyan-50"
+                  className="min-h-11 shrink-0 rounded-md border border-slate-200 bg-slate-50 px-3 py-2 text-xs font-bold text-slate-700 transition hover:border-primary/40 hover:bg-cyan-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                   onClick={() => sendMessage(prompt)}
                 >
                   {prompt}
@@ -197,15 +282,22 @@ export function FloatingActions() {
               ))}
             </div>
             <form onSubmit={handleSubmit} className="flex gap-2">
+              <label htmlFor="ai-consultation-input" className="sr-only">
+                Mô tả tình trạng thiết bị
+              </label>
               <input
+                ref={chatInputRef}
+                id="ai-consultation-input"
+                name="consultation-message"
                 value={inputValue}
                 onChange={(event) => setInputValue(event.target.value)}
-                className="h-11 min-w-0 flex-1 rounded-md border border-slate-200 bg-white px-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/10"
+                className="h-11 min-w-0 flex-1 rounded-md border border-slate-300 bg-white px-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-500 focus:border-primary focus:ring-2 focus:ring-primary/20"
                 placeholder="Nhập tình trạng thiết bị..."
               />
               <button
                 type="submit"
-                className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-primary text-white transition hover:bg-primary/90"
+                disabled={!inputValue.trim()}
+                className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-primary text-white transition hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 aria-label="Gửi tin nhắn"
               >
                 <Send className="h-4 w-4" />
@@ -215,28 +307,37 @@ export function FloatingActions() {
         </section>
       ) : null}
 
-      <div className="fixed bottom-10 right-3 z-50 flex flex-col-reverse items-end gap-2 sm:bottom-16 sm:right-4 sm:gap-3">
-        {!isChatOpen ? (
-          <button
-            type="button"
-            aria-label="Mở AI tư vấn"
-            className="ai-chat-action contact-action-float group inline-flex h-16 max-w-[calc(100vw-2rem)] items-center justify-center gap-2.5 rounded-full bg-[#0b172a] py-2 pl-2 pr-4 text-left text-cyan-100 shadow-lg shadow-slate-950/25 ring-1 ring-cyan-200/25 [animation-delay:80ms] sm:gap-3 sm:pr-5"
-            onClick={() => setIsChatOpen(true)}
-          >
-            <span className="relative z-10 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#061326] p-0.5 shadow-lg shadow-cyan-500/20 transition duration-200 group-hover:shadow-cyan-300/45">
-              <AiChatbotIcon className="h-full w-full rounded-full" idPrefix="ai-chat-fab-icon" />
+      <div
+        className={
+          minimal
+            ? 'hidden'
+            : 'fixed bottom-3 right-3 z-50 hidden flex-col-reverse items-end gap-2 sm:bottom-16 sm:right-4 sm:gap-3 lg:flex'
+        }
+      >
+        <button
+          ref={chatTriggerRef}
+          type="button"
+          hidden={isChatOpen}
+          style={isChatOpen ? { display: 'none' } : undefined}
+          aria-label="Mở AI tư vấn"
+          aria-expanded={isChatOpen}
+          aria-controls="ai-consultation-dialog"
+          className="ai-chat-action contact-action-float group hidden h-16 max-w-[calc(100vw-2rem)] items-center justify-center gap-2.5 rounded-full bg-[#0b172a] py-2 pl-2 pr-4 text-left text-cyan-100 shadow-lg shadow-slate-950/25 ring-1 ring-cyan-200/25 [animation-delay:80ms] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-300 lg:inline-flex lg:gap-3 lg:pr-5"
+          onClick={() => setIsChatOpen(true)}
+        >
+          <span className="relative z-10 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#061326] p-0.5 shadow-lg shadow-cyan-500/20 transition duration-200 group-hover:shadow-cyan-300/45">
+            <AiChatbotIcon className="h-full w-full rounded-full" idPrefix="ai-chat-fab-icon" />
+          </span>
+          <span className="min-w-0 leading-tight">
+            <span className="block text-sm font-black transition group-hover:text-white">
+              AI tư vấn
             </span>
-            <span className="min-w-0 leading-tight">
-              <span className="block text-sm font-black transition group-hover:text-white">
-                AI tư vấn
-              </span>
-            </span>
-          </button>
-        ) : null}
+          </span>
+        </button>
         <a
           href={integrationSettings.zaloUrl}
           aria-label="Liên hệ qua Zalo"
-          className="contact-action contact-action-float inline-flex h-14 w-14 items-center justify-center rounded-full [animation-delay:160ms]"
+          className="contact-action contact-action-float inline-flex h-14 w-14 items-center justify-center rounded-full [animation-delay:160ms] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-300"
           target="_blank"
           rel="noreferrer"
         >

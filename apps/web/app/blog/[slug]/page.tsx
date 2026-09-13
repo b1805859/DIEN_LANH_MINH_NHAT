@@ -1,11 +1,23 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowRight, CalendarDays, Share2 } from 'lucide-react';
-import { BLOG_CATEGORIES, BLOG_POSTS, findBlogPost } from '@minhnhat/shared';
+import { ArrowRight, CalendarDays, ChevronRight, ShieldAlert, UserRound } from 'lucide-react';
+import {
+  APP_NAME,
+  BLOG_CATEGORIES,
+  BLOG_POSTS,
+  findBlogArticleContent,
+  findBlogPost,
+  findService,
+} from '@minhnhat/shared';
 import { JsonLdScript } from '@/components/seo/json-ld-script';
 import { LoadingImage } from '@/components/ui/loading-image';
 import { articleJsonLd, breadcrumbJsonLd } from '@/lib/seo/json-ld';
 import { buildMetadata } from '@/lib/seo/metadata';
+
+function formatDisplayDate(value: string) {
+  const [year, month, day] = value.split('-');
+  return `${day}/${month}/${year}`;
+}
 
 export function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({ slug: post.slug }));
@@ -27,22 +39,63 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 export default async function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = findBlogPost(slug);
-  if (!post) notFound();
+  const article = findBlogArticleContent(slug);
+  if (!post || !article) notFound();
 
   const category = BLOG_CATEGORIES.find((item) => item.slug === post.category);
-  const relatedPosts = BLOG_POSTS.filter((item) => item.slug !== slug).slice(0, 4);
+  const sameCategoryPosts = BLOG_POSTS.filter(
+    (item) => item.slug !== slug && item.category === post.category,
+  );
+  const otherPosts = BLOG_POSTS.filter(
+    (item) => item.slug !== slug && item.category !== post.category,
+  );
+  const relatedPosts = [...sameCategoryPosts, ...otherPosts].slice(0, 4);
+  const relatedServices = article.relatedServiceSlugs
+    .map((serviceSlug) => findService(serviceSlug))
+    .filter((service): service is NonNullable<ReturnType<typeof findService>> => Boolean(service));
 
   return (
     <main className="bg-[#f4f8fb] text-slate-950">
       <section className="border-b border-slate-200 bg-white py-8 sm:py-10">
         <div className="container">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-black text-primary"
-          >
-            <ArrowRight className="h-4 w-4 rotate-180" />
-            Bài viết
-          </Link>
+          <nav aria-label="Điều hướng">
+            <ol className="flex flex-wrap items-center gap-1 text-sm text-slate-500">
+              <li>
+                <Link className="transition hover:text-primary" href="/">
+                  Trang chủ
+                </Link>
+              </li>
+              <li aria-hidden="true">
+                <ChevronRight className="h-4 w-4" />
+              </li>
+              <li>
+                <Link className="transition hover:text-primary" href="/blog">
+                  Bài viết
+                </Link>
+              </li>
+              {category ? (
+                <>
+                  <li aria-hidden="true">
+                    <ChevronRight className="h-4 w-4" />
+                  </li>
+                  <li>
+                    <Link
+                      className="transition hover:text-primary"
+                      href={`/blog/category/${category.slug}`}
+                    >
+                      {category.name}
+                    </Link>
+                  </li>
+                </>
+              ) : null}
+              <li aria-hidden="true">
+                <ChevronRight className="h-4 w-4" />
+              </li>
+              <li className="line-clamp-1 text-slate-950" aria-current="page">
+                {post.title}
+              </li>
+            </ol>
+          </nav>
           <div className="mt-6 grid min-w-0 gap-6 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-center lg:gap-8">
             <div className="min-w-0">
               {category ? (
@@ -58,6 +111,17 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
                 {post.title}
               </h1>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-700">{post.excerpt}</p>
+              <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-600">
+                <span className="inline-flex items-center gap-2">
+                  <UserRound className="h-4 w-4 text-primary" />
+                  Biên soạn bởi {APP_NAME}
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <CalendarDays className="h-4 w-4 text-primary" />
+                  Cập nhật{' '}
+                  <time dateTime={post.updatedAt}>{formatDisplayDate(post.updatedAt)}</time>
+                </span>
+              </div>
             </div>
             <div className="relative aspect-[16/11] min-h-[210px] overflow-hidden rounded-md border border-slate-200 bg-slate-100 shadow-xl shadow-slate-200">
               <LoadingImage
@@ -76,66 +140,88 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
       <section className="container grid min-w-0 gap-8 py-10 sm:py-12 lg:grid-cols-[220px_minmax(0,1fr)_300px] lg:gap-10">
         <aside className="hidden text-sm text-slate-600 lg:block">
           <p className="font-black text-slate-950">Mục lục</p>
-          <a className="mt-3 block transition hover:text-primary" href="#dau-hieu">
-            Dấu hiệu
-          </a>
-          <a className="mt-2 block transition hover:text-primary" href="#xu-ly">
-            Cách xử lý
-          </a>
+          {article.sections.map((section, index) => (
+            <a
+              key={section.id}
+              className={`${index === 0 ? 'mt-3' : 'mt-2'} block transition hover:text-primary`}
+              href={`#${section.id}`}
+            >
+              {section.title}
+            </a>
+          ))}
         </aside>
 
         <article className="min-w-0 rounded-md border border-slate-200 bg-white p-4 shadow-sm sm:p-5 md:p-8">
-          <p className="leading-8 text-slate-700">
-            Bài viết cung cấp hướng dẫn thực tế cho khách hàng tại Cần Thơ, giúp nhận biết vấn đề và
-            chọn thời điểm gọi kỹ thuật viên phù hợp. Các dấu hiệu dưới đây chỉ nên dùng để tham
-            khảo ban đầu, những lỗi liên quan điện, gas hoặc rò nước nên được kiểm tra bằng dụng cụ
-            chuyên môn.
+          <p className="border-l-4 border-primary pl-4 text-lg font-medium leading-8 text-slate-800">
+            {article.lead}
           </p>
 
-          <h2 id="dau-hieu" className="mt-10 text-2xl font-black">
-            Dấu hiệu cần chú ý
-          </h2>
-          <p className="mt-3 leading-8 text-slate-700">
-            Thiết bị giảm hiệu suất, phát tiếng ồn, rò nước, báo lỗi hoặc tiêu thụ điện bất thường
-            là các dấu hiệu nên kiểm tra sớm. Nếu tình trạng lặp lại nhiều lần, việc tiếp tục sử
-            dụng có thể làm hư thêm linh kiện bên trong.
-          </p>
+          {article.sections.map((section, sectionIndex) => (
+            <section key={section.id} aria-labelledby={`${section.id}-title`}>
+              <h2 id={section.id} className="scroll-mt-24 pt-10 text-2xl font-black">
+                <span id={`${section.id}-title`}>{section.title}</span>
+              </h2>
+              <div className="mt-3 space-y-4 leading-8 text-slate-700">
+                {section.paragraphs.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+              {section.bullets?.length ? (
+                <ul className="mt-5 space-y-3 rounded-md bg-slate-50 p-5 text-sm leading-6 text-slate-700">
+                  {section.bullets.map((item) => (
+                    <li key={item} className="flex gap-3">
+                      <span
+                        aria-hidden="true"
+                        className="mt-2 h-2 w-2 shrink-0 rounded-full bg-primary"
+                      />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+              {sectionIndex === 0 ? (
+                <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-md bg-slate-100">
+                  <LoadingImage
+                    src={post.image}
+                    alt={`Minh họa cho nội dung ${section.title.toLocaleLowerCase('vi-VN')}`}
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 720px, 100vw"
+                  />
+                </div>
+              ) : null}
+            </section>
+          ))}
 
-          <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-md bg-slate-100">
-            <LoadingImage
-              src={post.image}
-              alt={`Minh họa: ${post.title}`}
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 720px, 100vw"
-            />
-          </div>
+          {article.safetyNote ? (
+            <aside className="mt-10 rounded-md border border-amber-200 bg-amber-50 p-5">
+              <div className="flex items-start gap-3">
+                <ShieldAlert className="mt-0.5 h-6 w-6 shrink-0 text-amber-700" />
+                <div>
+                  <h2 className="font-black text-amber-950">Lưu ý an toàn</h2>
+                  <p className="mt-2 text-sm leading-6 text-amber-950/80">{article.safetyNote}</p>
+                </div>
+              </div>
+            </aside>
+          ) : null}
 
-          <h2 id="xu-ly" className="mt-10 text-2xl font-black">
-            Cách xử lý an toàn
-          </h2>
-          <p className="mt-3 leading-8 text-slate-700">
-            Ngắt nguồn khi có dấu hiệu nguy hiểm, ghi nhận hiện tượng và liên hệ kỹ thuật viên để
-            được kiểm tra đúng quy trình. Không tự tháo máy nếu không có dụng cụ bảo hộ hoặc chưa
-            biết vị trí nguồn điện, đường nước, đường gas.
-          </p>
-
-          <div className="mt-8 flex flex-wrap gap-3 text-sm">
-            <a
-              className="inline-flex h-10 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 font-bold text-slate-700 transition hover:border-primary/40 hover:text-primary"
-              href={`https://www.facebook.com/sharer/sharer.php?u=/blog/${slug}`}
-            >
-              <Share2 className="h-4 w-4" />
-              Chia sẻ Facebook
-            </a>
-            <a
-              className="inline-flex h-10 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 font-bold text-slate-700 transition hover:border-primary/40 hover:text-primary"
-              href={`https://zalo.me/share?u=/blog/${slug}`}
-            >
-              <Share2 className="h-4 w-4" />
-              Chia sẻ Zalo
-            </a>
-          </div>
+          {relatedServices.length ? (
+            <section className="mt-10 border-t border-slate-200 pt-8">
+              <h2 className="text-xl font-black">Dịch vụ liên quan tại Cần Thơ</h2>
+              <div className="mt-4 flex flex-wrap gap-3">
+                {relatedServices.map((service) => (
+                  <Link
+                    key={service.slug}
+                    href={`/services/${service.slug}`}
+                    className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-3 text-sm font-bold text-white transition hover:bg-primary/90"
+                  >
+                    {service.name}
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                ))}
+              </div>
+            </section>
+          ) : null}
         </article>
 
         <aside className="min-w-0">
@@ -166,7 +252,10 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
       </section>
 
       <JsonLdScript
-        data={articleJsonLd(post.title, post.excerpt, post.image, `/blog/${post.slug}`)}
+        data={articleJsonLd(post.title, post.excerpt, post.image, `/blog/${post.slug}`, {
+          datePublished: post.publishedAt,
+          dateModified: post.updatedAt,
+        })}
       />
       <JsonLdScript
         data={breadcrumbJsonLd([

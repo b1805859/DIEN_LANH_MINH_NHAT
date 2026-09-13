@@ -2,7 +2,8 @@ import { buildMetadata } from '@/lib/seo/metadata';
 
 export const metadata = buildMetadata({
   title: 'Điều khoản dịch vụ',
-  description: 'Điều khoản sử dụng dịch vụ sửa chữa và bảo trì điện lạnh của Điện Lạnh Minh Nhật.',
+  description:
+    'Điều khoản đặt lịch, xác nhận phạm vi công việc và sử dụng dịch vụ sửa chữa, vệ sinh điện lạnh của Điện Lạnh Minh Nhật.',
   path: '/terms-of-service',
 });
 

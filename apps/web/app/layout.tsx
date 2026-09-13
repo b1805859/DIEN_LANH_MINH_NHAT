@@ -11,20 +11,25 @@ import './globals.css';
 
 const beVietnamPro = Be_Vietnam_Pro({
   subsets: ['latin', 'vietnamese'],
-  weight: ['400', '500', '600', '700', '800', '900'],
+  weight: ['400', '700'],
   variable: '--font-be-vietnam-pro',
   display: 'swap',
+  preload: true,
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(absoluteUrl('/')),
   title: {
     default: 'ĐIỆN LẠNH MINH NHẬT',
-    template: '%s | ĐIỆN LẠNH MINH NHẬT',
+    template: '%s | Minh Nhật',
   },
   description: 'Dịch vụ điện lạnh và sửa chữa tận nơi tại Cần Thơ.',
   applicationName: 'ĐIỆN LẠNH MINH NHẬT',
   category: 'Dịch vụ điện lạnh',
+  other: {
+    'geo.region': 'VN-CT',
+    'geo.placename': 'Cần Thơ',
+  },
   verification: {
     google: integrationSettings.googleSearchConsoleVerification || undefined,
   },

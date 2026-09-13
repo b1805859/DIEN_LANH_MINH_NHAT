@@ -1095,6 +1095,7 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
         ) : null}
 
         <div
+          aria-busy={isLoading || isFetching}
           className={
             screenMode === 'list'
               ? 'flex flex-1 flex-col overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm'
@@ -1140,7 +1141,9 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
                     disabled={isFetching}
                     onClick={() => refetch()}
                   >
-                    <RefreshCw className={isFetching ? 'h-4 w-4 animate-spin' : 'h-4 w-4'} />
+                    <RefreshCw
+                      className={isFetching ? 'h-4 w-4 motion-safe:animate-spin' : 'h-4 w-4'}
+                    />
                     Tải lại
                   </Button>
                 </div>
@@ -1252,7 +1255,8 @@ function AdminRecordsTable({
           {records.map((record, index) => (
             <tr
               key={record.id ?? `${resource}-${index}`}
-              className="align-middle transition hover:bg-slate-50"
+              className="animate-in fade-in slide-in-from-bottom-1 align-middle duration-300 motion-reduce:animate-none transition hover:bg-slate-50"
+              style={{ animationDelay: `${Math.min(index * 35, 200)}ms` }}
             >
               {config.listColumns.map((column) => (
                 <td key={column.key} className="px-4 py-3">
@@ -1304,7 +1308,10 @@ function LoadingRows() {
   return (
     <div className="grid gap-3 p-4">
       {Array.from({ length: 6 }).map((_, index) => (
-        <div key={index} className="h-14 animate-pulse rounded-md bg-slate-100" />
+        <div
+          key={index}
+          className="h-14 animate-pulse rounded-md bg-slate-100 motion-reduce:animate-none"
+        />
       ))}
     </div>
   );
