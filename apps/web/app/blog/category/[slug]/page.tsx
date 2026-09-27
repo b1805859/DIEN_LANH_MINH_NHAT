@@ -17,7 +17,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const hasPosts = BLOG_POSTS.some((post) => post.category === slug);
   if (!hasPosts) {
     return {
-      title: `Bài viết ${category.name}`,
+      ...buildMetadata({
+        title: `Bài viết ${category.name}`,
+        description: `Chuyên mục hướng dẫn ${category.name.toLowerCase()} của Điện Lạnh Minh Nhật. Các bài viết mới sẽ được cập nhật tại đây.`,
+        path: `/blog/category/${slug}`,
+      }),
       robots: { index: false, follow: true },
     };
   }
@@ -60,13 +64,14 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ s
             <Reveal key={post.slug} asChild delay={Math.min(index, 4) * 55}>
               <Link
                 href={`/blog/${post.slug}`}
-                className="group overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200"
+                className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200"
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
                   <LoadingImage
                     src={post.image}
                     alt={post.title}
                     fill
+                    priority={index < 3}
                     className="object-cover transition duration-700 group-hover:scale-105"
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                   />

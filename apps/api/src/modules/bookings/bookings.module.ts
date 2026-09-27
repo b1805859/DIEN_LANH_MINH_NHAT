@@ -7,4 +7,3 @@ import { BookingsService } from './bookings.service';
   providers: [BookingsService],
 })
 export class BookingsModule {}
-

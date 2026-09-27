@@ -128,10 +128,10 @@ model ServiceLocationOverride {
 model Booking {
   id            String        @id @default(cuid())
   serviceId     String
-  locationId    String
+  locationId    String?
   service       Service       @relation(fields: [serviceId], references: [id])
-  location      Location      @relation(fields: [locationId], references: [id])
-  scheduledDate DateTime      @db.Date
+  location      Location?     @relation(fields: [locationId], references: [id])
+  scheduledDate DateTime?     @db.Date
   address       String
   customerName  String
   customerPhone String

@@ -57,7 +57,7 @@ export async function generateMetadata({
     title: `${metadataServiceName} tại ${shortWardName}, Cần Thơ`,
     description: areaContent.serviceNotes[service.slug] ?? serviceContent.heroDescription,
     path: `/areas/${locationSlug}/${serviceSlug}`,
-    image: ward.image,
+    image: ward.image || `/images/services/${service.slug}.jpg`,
   });
 }
 
@@ -105,15 +105,17 @@ export default async function ServiceWardPage({
   return (
     <main className="bg-white">
       <section className="relative overflow-hidden bg-[#0b172a] py-16 text-white lg:py-20">
-        <LoadingImage
-          src={ward.image}
-          alt={`${service.name} tại ${ward.name}`}
-          fill
-          priority
-          className="object-cover opacity-55"
-          sizes="100vw"
-          reveal="filter"
-        />
+        {ward.image ? (
+          <LoadingImage
+            src={ward.image}
+            alt={`${service.name} tại ${ward.name}`}
+            fill
+            priority
+            className="object-cover opacity-55"
+            sizes="100vw"
+            reveal="filter"
+          />
+        ) : null}
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(11_23_42)_0%,rgb(11_23_42_/_0.8)_45%,rgb(11_23_42_/_0.32)_100%)]" />
         <div className="container relative grid gap-10 lg:grid-cols-[1fr_390px] lg:items-center">
           <div className="animate-in-soft">
@@ -140,7 +142,7 @@ export default async function ServiceWardPage({
                 </li>
               </ol>
             </nav>
-            <p className="inline-flex items-center gap-2 rounded-md bg-cyan-300 px-4 py-2 text-sm font-black text-slate-950">
+            <p className="inline-flex items-center gap-2 rounded-xl bg-cyan-300 px-4 py-2 text-sm font-black text-slate-950">
               <MapPin className="h-4 w-4" />
               {ward.name}, Cần Thơ
             </p>
@@ -150,13 +152,18 @@ export default async function ServiceWardPage({
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-200">{localServiceNote}</p>
           </div>
 
-          <aside className="rounded-md border border-white/20 bg-white/95 p-5 text-slate-950 shadow-2xl shadow-slate-950/30">
+          <aside className="rounded-xl border border-white/20 bg-white/95 p-5 text-slate-950 shadow-sm shadow-slate-950/30">
             <h2 className="text-xl font-black">Đặt lịch tại {ward.name}</h2>
             <p className="mt-2 text-sm leading-6 text-slate-600">
               Gửi thông tin để kỹ thuật viên xác nhận thời gian phù hợp.
             </p>
             <div className="mt-5">
-              <BookingForm />
+              <BookingForm
+                compact
+                hideNotes
+                serviceSlug={serviceSlug}
+                locationSlug={locationSlug}
+              />
             </div>
           </aside>
         </div>
@@ -178,7 +185,7 @@ export default async function ServiceWardPage({
             </div>
 
             <div className="mt-8 grid gap-5 md:grid-cols-2">
-              <section className="rounded-md border border-slate-200 bg-slate-50 p-5">
+              <section className="rounded-xl border border-slate-200 bg-slate-50 p-5">
                 <h3 className="text-lg font-black">Khi nào nên đặt kiểm tra?</h3>
                 <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-700">
                   {serviceContent.requestSigns.map((item) => (
@@ -189,7 +196,7 @@ export default async function ServiceWardPage({
                   ))}
                 </ul>
               </section>
-              <section className="rounded-md border border-slate-200 bg-white p-5 shadow-sm">
+              <section className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
                 <h3 className="text-lg font-black">Phạm vi cần xem xét</h3>
                 <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-700">
                   {serviceContent.workItems.map((item) => (
@@ -203,7 +210,7 @@ export default async function ServiceWardPage({
             </div>
           </article>
 
-          <aside className="h-fit rounded-md border border-cyan-200 bg-cyan-50 p-5 lg:sticky lg:top-24">
+          <aside className="h-fit rounded-xl border border-cyan-200 bg-cyan-50 p-5 lg:sticky lg:top-24">
             <h2 className="text-xl font-black">Lưu ý cho địa chỉ tại {ward.shortName}</h2>
             <p className="mt-3 text-sm leading-6 text-slate-700">{areaContent.overview[1]}</p>
             <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-700">
@@ -228,8 +235,8 @@ export default async function ServiceWardPage({
         <div className="grid gap-4 md:grid-cols-3">
           {highlights.map(({ icon: Icon, title, desc }, index) => (
             <Reveal key={title} asChild delay={Math.min(index, 4) * 55}>
-              <article className="rounded-md border border-slate-200 bg-white p-5 shadow-sm">
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-cyan-50 text-primary">
+              <article className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-50 text-primary">
                   <Icon className="h-5 w-5" />
                 </span>
                 <h2 className="mt-4 text-lg font-black">{title}</h2>
@@ -247,7 +254,7 @@ export default async function ServiceWardPage({
             {localFaqs.map((faq) => (
               <details
                 key={faq.question}
-                className="faq-disclosure rounded-md border border-slate-200 bg-white p-4 open:border-primary/30 open:bg-cyan-50/40"
+                className="faq-disclosure rounded-xl border border-slate-200 bg-white p-4 open:border-primary/30 open:bg-cyan-50/40"
               >
                 <summary className="cursor-pointer list-none pr-8 font-black marker:content-none">
                   {faq.question}
@@ -266,7 +273,7 @@ export default async function ServiceWardPage({
                 <Link
                   key={item.slug}
                   href={`/areas/${item.slug}/${service.slug}`}
-                  className="rounded-md border border-slate-200 px-4 py-3 text-sm font-bold transition hover:border-primary/40 hover:text-primary"
+                  className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-bold transition hover:border-primary/40 hover:text-primary"
                 >
                   {item.shortName}
                 </Link>
@@ -280,7 +287,7 @@ export default async function ServiceWardPage({
                 <Link
                   key={item.slug}
                   href={`/areas/${ward.slug}/${item.slug}`}
-                  className="flex items-center justify-between gap-3 rounded-md bg-slate-50 px-3 py-3 text-sm font-bold transition hover:bg-cyan-50 hover:text-primary"
+                  className="flex items-center justify-between gap-3 rounded-xl bg-slate-50 px-3 py-3 text-sm font-bold transition hover:bg-cyan-50 hover:text-primary"
                 >
                   {item.name}
                   <ArrowRight className="h-4 w-4 shrink-0" />
@@ -295,7 +302,7 @@ export default async function ServiceWardPage({
         data={serviceJsonLd(
           `${service.name} tại ${ward.name}`,
           `/areas/${ward.slug}/${service.slug}`,
-          ward.image,
+          ward.image || `/images/services/${service.slug}.jpg`,
         )}
       />
       <JsonLdScript data={faqJsonLd(localFaqs)} />

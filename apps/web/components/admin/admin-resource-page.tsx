@@ -191,8 +191,8 @@ const resourceConfigs: Record<string, ResourceConfig> = {
       { name: 'customerPhone', label: 'Số điện thoại', type: 'text', required: true },
       { name: 'customerEmail', label: 'Email', type: 'text' },
       { name: 'serviceId', label: 'ID dịch vụ', type: 'text', required: true },
-      { name: 'locationId', label: 'ID khu vực', type: 'text', required: true },
-      { name: 'scheduledDate', label: 'Ngày hẹn', type: 'date', required: true },
+      { name: 'locationId', label: 'ID khu vực', type: 'text' },
+      { name: 'scheduledDate', label: 'Ngày hẹn', type: 'date' },
       { name: 'address', label: 'Địa chỉ', type: 'textarea', required: true },
       { name: 'notes', label: 'Ghi chú', type: 'textarea' },
       {

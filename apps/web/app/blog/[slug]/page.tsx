@@ -33,6 +33,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     path: `/blog/${slug}`,
     image: post.image,
     type: 'article',
+    publishedTime: post.publishedAt,
+    modifiedTime: post.updatedAt,
   });
 }
 
@@ -101,7 +103,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
               {category ? (
                 <Link
                   href={`/blog/category/${category.slug}`}
-                  className="inline-flex items-center gap-2 rounded-md bg-cyan-50 px-3 py-2 text-xs font-black uppercase text-primary"
+                  className="inline-flex items-center gap-2 rounded-xl bg-cyan-50 px-3 py-2 text-xs font-black uppercase text-primary"
                 >
                   <CalendarDays className="h-4 w-4" />
                   {category.name}
@@ -123,7 +125,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
                 </span>
               </div>
             </div>
-            <div className="relative aspect-[16/11] min-h-[210px] overflow-hidden rounded-md border border-slate-200 bg-slate-100 shadow-xl shadow-slate-200">
+            <div className="relative aspect-[16/11] min-w-0 overflow-hidden rounded-xl border border-slate-200 bg-slate-100 shadow-xl shadow-slate-200">
               <LoadingImage
                 src={post.image}
                 alt={post.title}
@@ -137,8 +139,8 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
         </div>
       </section>
 
-      <section className="container grid min-w-0 gap-8 py-10 sm:py-12 lg:grid-cols-[220px_minmax(0,1fr)_300px] lg:gap-10">
-        <aside className="hidden text-sm text-slate-600 lg:block">
+      <section className="container grid min-w-0 gap-8 py-10 sm:py-12 lg:grid-cols-[minmax(0,1fr)_280px] xl:grid-cols-[180px_minmax(0,1fr)_240px] lg:gap-10">
+        <aside className="hidden text-sm text-slate-600 xl:block">
           <p className="font-black text-slate-950">Mục lục</p>
           {article.sections.map((section, index) => (
             <a
@@ -151,11 +153,21 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
           ))}
         </aside>
 
-        <article className="min-w-0 rounded-md border border-slate-200 bg-white p-4 shadow-sm sm:p-5 md:p-8">
+        <article className="min-w-0 rounded-xl border border-slate-200 bg-white p-4 shadow-sm sm:p-5 md:p-8">
           <p className="border-l-4 border-primary pl-4 text-lg font-medium leading-8 text-slate-800">
             {article.lead}
           </p>
 
+          <details className="my-6 rounded-xl border border-slate-200 p-4 xl:hidden">
+            <summary className="cursor-pointer font-bold">Mục lục bài viết</summary>
+            <nav aria-label="Mục lục bài viết" className="mt-3 grid gap-2">
+              {article.sections.map((section) => (
+                <a className="py-2 text-primary" key={section.id} href={`#${section.id}`}>
+                  {section.title}
+                </a>
+              ))}
+            </nav>
+          </details>
           {article.sections.map((section, sectionIndex) => (
             <section key={section.id} aria-labelledby={`${section.id}-title`}>
               <h2 id={section.id} className="scroll-mt-24 pt-10 text-2xl font-black">
@@ -167,7 +179,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
                 ))}
               </div>
               {section.bullets?.length ? (
-                <ul className="mt-5 space-y-3 rounded-md bg-slate-50 p-5 text-sm leading-6 text-slate-700">
+                <ul className="mt-5 space-y-3 rounded-xl bg-slate-50 p-5 text-sm leading-6 text-slate-700">
                   {section.bullets.map((item) => (
                     <li key={item} className="flex gap-3">
                       <span
@@ -180,7 +192,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
                 </ul>
               ) : null}
               {sectionIndex === 0 ? (
-                <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-md bg-slate-100">
+                <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-xl bg-slate-100">
                   <LoadingImage
                     src={post.image}
                     alt={`Minh họa cho nội dung ${section.title.toLocaleLowerCase('vi-VN')}`}
@@ -194,7 +206,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
           ))}
 
           {article.safetyNote ? (
-            <aside className="mt-10 rounded-md border border-amber-200 bg-amber-50 p-5">
+            <aside className="mt-10 rounded-xl border border-amber-200 bg-amber-50 p-5">
               <div className="flex items-start gap-3">
                 <ShieldAlert className="mt-0.5 h-6 w-6 shrink-0 text-amber-700" />
                 <div>
@@ -213,7 +225,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
                   <Link
                     key={service.slug}
                     href={`/services/${service.slug}`}
-                    className="inline-flex items-center gap-2 rounded-md bg-primary px-4 py-3 text-sm font-bold text-white transition hover:bg-primary/90"
+                    className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-bold text-white transition hover:bg-primary/90"
                   >
                     {service.name}
                     <ArrowRight className="h-4 w-4" />
@@ -231,9 +243,9 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
               <Link
                 key={item.slug}
                 href={`/blog/${item.slug}`}
-                className="group grid grid-cols-[82px_1fr] gap-3 rounded-md border border-slate-200 bg-white p-3 text-sm shadow-sm transition hover:border-primary/40"
+                className="group grid grid-cols-[82px_1fr] gap-3 rounded-xl border border-slate-200 bg-white p-3 text-sm shadow-sm transition hover:border-primary/40"
               >
-                <span className="relative h-20 overflow-hidden rounded-md bg-slate-100">
+                <span className="relative h-20 overflow-hidden rounded-xl bg-slate-100">
                   <LoadingImage
                     src={item.image}
                     alt={item.title}

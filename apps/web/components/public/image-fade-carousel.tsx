@@ -91,15 +91,18 @@ export function ImageFadeCarousel({
       stopTimers();
       if (desktopOnly && !desktopMedia.matches) return;
 
-      startTimer = window.setTimeout(() => {
-        setCarousel((current) => moveToNextSlide(current, images.length));
-
-        interval = window.setInterval(() => {
-          if (document.visibilityState !== 'visible') return;
-
+      startTimer = window.setTimeout(
+        () => {
           setCarousel((current) => moveToNextSlide(current, images.length));
-        }, slotSeconds * 1000);
-      }, slotSeconds * 1000 + startDelayMs);
+
+          interval = window.setInterval(() => {
+            if (document.visibilityState !== 'visible') return;
+
+            setCarousel((current) => moveToNextSlide(current, images.length));
+          }, slotSeconds * 1000);
+        },
+        slotSeconds * 1000 + startDelayMs,
+      );
     };
 
     syncTimers();

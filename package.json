@@ -34,11 +34,11 @@
   },
   "overrides": {
     "form-data": "4.0.6",
-    "next": {
-      ".": "15.5.18",
-      "postcss": "8.5.10"
-    },
-    "postcss": "8.5.10"
+    "body-parser": "2.3.0",
+    "nanoid": "3.3.19",
+    "postcss": "8.5.28",
+    "qs": "6.16.0",
+    "sharp": "0.35.4"
   },
   "devDependencies": {
     "prettier": "3.6.2",

@@ -16,13 +16,14 @@ export function LoadingImage({
   onLoad,
   onError,
   priority,
-  reveal = 'fade',
-  showLoader = true,
+  reveal = 'none',
+  showLoader = false,
   src,
   width,
   height,
   sizes,
   loading,
+  fetchPriority,
   style,
   ...props
 }: LoadingImageProps) {
@@ -30,7 +31,7 @@ export function LoadingImage({
   const [failed, setFailed] = useState(false);
   const srcValue = typeof src === 'string' ? src : '';
   const isSvg = srcValue.endsWith('.svg');
-  const effectiveReveal = isSvg ? 'none' : reveal;
+  const effectiveReveal = isSvg || priority ? 'none' : reveal;
   const shouldShowLoader = showLoader && !isSvg;
   const useNativeImage =
     srcValue.startsWith('data:') ||
@@ -70,7 +71,7 @@ export function LoadingImage({
 
   const fallback = failed ? (
     <span className="pointer-events-none absolute inset-0 z-20 grid place-items-center bg-slate-100 px-3 text-center text-xs font-bold text-slate-500">
-      Khong tai duoc anh
+      Không tải được ảnh
     </span>
   ) : null;
 
@@ -90,6 +91,7 @@ export function LoadingImage({
       alt={alt}
       className={cn(imageClassName, fill && 'absolute inset-0 h-full w-full')}
       height={typeof height === 'number' ? height : undefined}
+      fetchPriority={priority ? 'high' : fetchPriority}
       loading={priority ? 'eager' : loading}
       onError={handleError}
       onLoad={handleLoad}
@@ -105,10 +107,10 @@ export function LoadingImage({
       className={imageClassName}
       fill={fill}
       height={height}
-      loading={loading}
+      fetchPriority={priority ? 'high' : fetchPriority}
+      loading={priority ? 'eager' : loading}
       onError={handleError}
       onLoad={handleLoad}
-      priority={priority}
       sizes={sizes}
       src={src}
       style={style}

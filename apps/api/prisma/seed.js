@@ -32,6 +32,7 @@ const locations = [
   ['Cái Răng', 'cai-rang'],
   ['Bình Thủy', 'binh-thuy'],
   ['Ô Môn', 'o-mon'],
+  ['Thốt Nốt', 'thot-not'],
 ];
 
 const categories = [

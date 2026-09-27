@@ -6,4 +6,3 @@ export function JsonLdScript({ data }: { data: object }) {
     />
   );
 }
-

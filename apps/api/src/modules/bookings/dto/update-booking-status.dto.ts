@@ -5,4 +5,3 @@ export class UpdateBookingStatusDto {
   @IsEnum(BookingStatus)
   status!: BookingStatus;
 }
-

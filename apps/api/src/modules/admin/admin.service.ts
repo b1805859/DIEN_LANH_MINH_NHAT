@@ -1,4 +1,9 @@
-import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ForbiddenException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { hash } from 'bcryptjs';
 import { RequestUser } from '../../common/types/request-user';
@@ -120,7 +125,7 @@ export class AdminService {
         select: { scheduledDate: true },
       }),
     ]);
-    const nextBookingDate = nextBooking?.scheduledDate.toISOString().slice(0, 10) ?? null;
+    const nextBookingDate = nextBooking?.scheduledDate?.toISOString().slice(0, 10) ?? null;
     const nextBookingCount = nextBookingDate
       ? await this.prisma.booking.count({
           where: {
@@ -389,8 +394,14 @@ export class AdminService {
           delegates.booking?.deleteMany?.({ where: { serviceId: id } }),
           delegates.serviceLocationOverride?.deleteMany?.({ where: { serviceId: id } }),
           delegates.fAQ?.updateMany?.({ where: { serviceId: id }, data: { serviceId: null } }),
-          delegates.testimonial?.updateMany?.({ where: { serviceId: id }, data: { serviceId: null } }),
-          delegates.sEOSetting?.updateMany?.({ where: { serviceId: id }, data: { serviceId: null } }),
+          delegates.testimonial?.updateMany?.({
+            where: { serviceId: id },
+            data: { serviceId: null },
+          }),
+          delegates.sEOSetting?.updateMany?.({
+            where: { serviceId: id },
+            data: { serviceId: null },
+          }),
         ]);
         break;
       case 'locations':
@@ -398,12 +409,21 @@ export class AdminService {
           delegates.booking?.deleteMany?.({ where: { locationId: id } }),
           delegates.serviceLocationOverride?.deleteMany?.({ where: { locationId: id } }),
           delegates.fAQ?.updateMany?.({ where: { locationId: id }, data: { locationId: null } }),
-          delegates.testimonial?.updateMany?.({ where: { locationId: id }, data: { locationId: null } }),
-          delegates.sEOSetting?.updateMany?.({ where: { locationId: id }, data: { locationId: null } }),
+          delegates.testimonial?.updateMany?.({
+            where: { locationId: id },
+            data: { locationId: null },
+          }),
+          delegates.sEOSetting?.updateMany?.({
+            where: { locationId: id },
+            data: { locationId: null },
+          }),
         ]);
         break;
       case 'categories':
-        await delegates.blogPost?.updateMany?.({ where: { categoryId: id }, data: { categoryId: null } });
+        await delegates.blogPost?.updateMany?.({
+          where: { categoryId: id },
+          data: { categoryId: null },
+        });
         break;
       case 'media':
         await delegates.blogPost?.updateMany?.({
@@ -414,7 +434,10 @@ export class AdminService {
       case 'blog':
         await Promise.all([
           delegates.fAQ?.updateMany?.({ where: { blogPostId: id }, data: { blogPostId: null } }),
-          delegates.sEOSetting?.updateMany?.({ where: { blogPostId: id }, data: { blogPostId: null } }),
+          delegates.sEOSetting?.updateMany?.({
+            where: { blogPostId: id },
+            data: { blogPostId: null },
+          }),
         ]);
         break;
       case 'users':
@@ -478,16 +501,21 @@ export class AdminService {
 
       if (!isUpdate && typeof data.featuredImageUrl === 'string') {
         const featuredImageUrl = data.featuredImageUrl.trim();
-        const altText = typeof data.featuredImageAlt === 'string' ? data.featuredImageAlt : undefined;
+        const altText =
+          typeof data.featuredImageAlt === 'string' ? data.featuredImageAlt : undefined;
 
         if (featuredImageUrl) {
           const fileName = this.buildImageFileName(
-            typeof data.slug === 'string' ? data.slug : id ?? 'blog-image',
+            typeof data.slug === 'string' ? data.slug : (id ?? 'blog-image'),
             featuredImageUrl,
           );
-          const currentPost = isUpdate && id
-            ? await this.prisma.blogPost.findUnique({ where: { id }, select: { featuredImageId: true } })
-            : null;
+          const currentPost =
+            isUpdate && id
+              ? await this.prisma.blogPost.findUnique({
+                  where: { id },
+                  select: { featuredImageId: true },
+                })
+              : null;
           const mediaFile = currentPost?.featuredImageId
             ? await this.prisma.mediaFile.update({
                 where: { id: currentPost.featuredImageId },

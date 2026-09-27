@@ -47,7 +47,11 @@ export class AdminController {
   }
 
   @Get(':resource/:id')
-  get(@CurrentUser() user: RequestUser, @Param('resource') resource: string, @Param('id') id: string) {
+  get(
+    @CurrentUser() user: RequestUser,
+    @Param('resource') resource: string,
+    @Param('id') id: string,
+  ) {
     return this.adminService.get(resource, id, user.role);
   }
 
@@ -71,7 +75,11 @@ export class AdminController {
   }
 
   @Delete(':resource/:id')
-  remove(@CurrentUser() user: RequestUser, @Param('resource') resource: string, @Param('id') id: string) {
+  remove(
+    @CurrentUser() user: RequestUser,
+    @Param('resource') resource: string,
+    @Param('id') id: string,
+  ) {
     return this.adminService.remove(resource, id, user);
   }
 }

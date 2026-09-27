@@ -33,7 +33,7 @@ export default function FaqPage() {
               </li>
             </ol>
           </nav>
-          <span className="mt-8 inline-flex h-11 w-11 items-center justify-center rounded-md bg-cyan-50 text-primary">
+          <span className="mt-8 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-50 text-primary">
             <CircleHelp className="h-6 w-6" />
           </span>
           <h1 className="mt-4 text-3xl font-black tracking-normal sm:text-5xl">
@@ -52,7 +52,7 @@ export default function FaqPage() {
           <div className="mt-5 grid gap-4">
             {FAQS.map((faq, index) => (
               <Reveal key={faq.question} asChild delay={Math.min(index, 4) * 55}>
-                <details className="faq-disclosure group rounded-md border border-slate-200 bg-white p-4 shadow-sm open:border-primary/30 open:bg-cyan-50/40 sm:p-5">
+                <details className="faq-disclosure group rounded-xl border border-slate-200 bg-white p-4 shadow-sm open:border-primary/30 open:bg-cyan-50/40 sm:p-5">
                   <summary className="cursor-pointer list-none pr-8 font-black marker:content-none">
                     {faq.question}
                   </summary>
@@ -63,7 +63,7 @@ export default function FaqPage() {
           </div>
         </div>
 
-        <aside className="h-fit rounded-md border border-slate-200 bg-white p-5 lg:sticky lg:top-24">
+        <aside className="h-fit rounded-xl border border-slate-200 bg-white p-5 lg:sticky lg:top-24">
           <h2 className="text-xl font-black">Tra cứu theo thiết bị</h2>
           <p className="mt-2 text-sm leading-6 text-slate-600">
             Mỗi trang có phần hỏi đáp riêng, dấu hiệu cần kiểm tra và lưu ý an toàn theo dịch vụ.
@@ -73,7 +73,7 @@ export default function FaqPage() {
               <Link
                 key={service.slug}
                 href={`/services/${service.slug}`}
-                className="flex items-center justify-between gap-3 rounded-md bg-slate-50 px-3 py-3 text-sm font-bold transition hover:bg-cyan-50 hover:text-primary"
+                className="flex items-center justify-between gap-3 rounded-xl bg-slate-50 px-3 py-3 text-sm font-bold transition hover:bg-cyan-50 hover:text-primary"
               >
                 {service.name}
                 <ArrowRight className="h-4 w-4 shrink-0" />
@@ -82,7 +82,7 @@ export default function FaqPage() {
           </div>
           <Link
             href="/contact"
-            className="mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-bold text-white"
+            className="mt-5 inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-bold text-white"
           >
             Gửi câu hỏi cụ thể
             <ArrowRight className="h-4 w-4" />

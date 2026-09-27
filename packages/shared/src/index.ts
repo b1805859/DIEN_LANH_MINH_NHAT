@@ -2,7 +2,7 @@ import type { FaqItem } from './seo-content';
 
 export * from './seo-content';
 
-export const APP_NAME = 'ĐIỆN LẠNH MINH NHẬT';
+export const APP_NAME = 'Điện Lạnh Minh Nhật';
 
 export const ASCII_APP_NAME = 'DIEN LANH MINH NHAT';
 
@@ -45,6 +45,13 @@ export const PRIORITY_DISTRICTS = [
     slug: 'o-mon',
     image: '/images/wards/o-mon-do-thi.jpg',
     highlight: 'Trung tâm Ô Môn',
+  },
+  {
+    name: 'Phường Thốt Nốt',
+    shortName: 'Thốt Nốt',
+    slug: 'thot-not',
+    image: '',
+    highlight: 'Thốt Nốt, Cần Thơ',
   },
 ] as const;
 

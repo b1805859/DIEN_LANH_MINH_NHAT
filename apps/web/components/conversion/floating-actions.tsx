@@ -1,8 +1,9 @@
 'use client';
 
-import { FormEvent, useEffect, useMemo, useRef, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { Phone, Send, X } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { CalendarDays, Grid2X2, House, Send, UserRound, X } from 'lucide-react';
 import { AiChatbotIcon } from '@/components/brand/ai-chatbot-icon';
 import { LoadingImage } from '@/components/ui/loading-image';
 import { useReducedMotion } from '@/lib/hooks/use-reduced-motion';
@@ -87,6 +88,7 @@ function getConsultationAnswer(message: string) {
 }
 
 export function FloatingActions({ minimal = false }: { minimal?: boolean }) {
+  const pathname = usePathname();
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const reducedMotion = useReducedMotion();
@@ -100,8 +102,6 @@ export function FloatingActions({ minimal = false }: { minimal?: boolean }) {
         'Xin chào, mình là trợ lý tư vấn của Điện Lạnh Minh Nhật. Anh/chị mô tả tình trạng thiết bị, mình sẽ gợi ý hướng xử lý và dịch vụ phù hợp.',
     },
   ]);
-
-  const phoneHref = useMemo(() => `tel:${integrationSettings.phone.replace(/\s/g, '')}`, []);
 
   useEffect(() => {
     if (!isChatOpen) return;
@@ -159,45 +159,26 @@ export function FloatingActions({ minimal = false }: { minimal?: boolean }) {
   return (
     <>
       <div
-        className={
-          minimal ? 'hidden' : 'fixed bottom-3 left-3 z-50 hidden lg:block lg:bottom-16 lg:left-4'
-        }
-      >
-        <a
-          aria-label={`Gọi ${integrationSettings.phone}`}
-          href={phoneHref}
-          className="contact-action-float relative inline-flex h-12 w-12 select-none items-center justify-center gap-0 overflow-visible rounded-full border border-white/70 bg-[linear-gradient(135deg,#ffd84d_0%,#ffc21f_52%,#ffad1f_100%)] p-0 text-slate-950 shadow-[0_18px_38px_rgb(245_158_11_/_0.36)] ring-1 ring-amber-500/20 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-300 sm:h-16 sm:w-auto sm:gap-3 sm:py-2 sm:pl-2 sm:pr-5"
-        >
-          <span className="pointer-events-none absolute inset-x-5 top-1 h-5 rounded-full bg-white/35 blur-md" />
-          <span className="phone-ring-halo pointer-events-none absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-red-500/45 sm:left-8 sm:h-16 sm:w-16" />
-          <span className="phone-ring-halo pointer-events-none absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-red-500/30 [animation-delay:400ms] sm:left-8 sm:h-16 sm:w-16" />
-          <span className="relative inline-flex h-full w-full translate-x-0.5 items-center justify-center rounded-full text-red-600 sm:h-12 sm:w-10 sm:translate-x-1">
-            <Phone className="phone-ring-icon relative h-7 w-7 sm:h-6 sm:w-6" />
-          </span>
-          <span className="relative hidden text-sm font-black tracking-normal sm:inline sm:text-base">
-            {integrationSettings.phone}
-          </span>
-        </a>
-      </div>
-
-      <div
         data-testid="mobile-sticky-cta"
-        className="fixed inset-x-3 bottom-3 z-50 grid grid-cols-2 gap-2 md:hidden"
-        style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+        className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-4 border-t border-[#d9eaff] bg-white px-3 pt-2 md:hidden"
+        style={{ paddingBottom: 'calc(7px + env(safe-area-inset-bottom))' }}
       >
-        <a
-          href={phoneHref}
-          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[#f6c945] bg-[#fff8d9] px-4 text-sm font-black text-[#7a5700] shadow-[0_12px_28px_rgba(15,23,42,0.12)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200"
-        >
-          <Phone className="h-4 w-4" />
-          Gọi ngay
-        </a>
-        <Link
-          href="/booking"
-          className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#0877c9] px-4 text-sm font-black text-white shadow-[0_12px_28px_rgba(8,119,201,0.25)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-cyan-200"
-        >
-          Đặt lịch
-        </Link>
+        {[
+          { href: '/', label: 'Trang chủ', icon: House },
+          { href: '/services', label: 'Dịch vụ', icon: Grid2X2 },
+          { href: '/booking', label: 'Đặt lịch', icon: CalendarDays },
+          { href: '/contact', label: 'Liên hệ', icon: UserRound },
+        ].map(({ href, label, icon: Icon }) => (
+          <Link
+            key={href}
+            href={href}
+            aria-current={pathname === href ? 'page' : undefined}
+            className="flex min-h-12 flex-col items-center justify-center gap-0.5 text-[10px] font-semibold text-[#2862ae] transition hover:text-primary"
+          >
+            <Icon className="h-5 w-5" />
+            {label}
+          </Link>
+        ))}
       </div>
 
       {isChatOpen ? (
@@ -311,7 +292,7 @@ export function FloatingActions({ minimal = false }: { minimal?: boolean }) {
         className={
           minimal
             ? 'hidden'
-            : 'fixed bottom-3 right-3 z-50 hidden flex-col-reverse items-end gap-2 sm:bottom-16 sm:right-4 sm:gap-3 lg:flex'
+            : 'desktop-contact-dock fixed bottom-4 right-2 z-30 hidden flex-col-reverse items-end gap-2 lg:flex'
         }
       >
         <button

@@ -8,4 +8,3 @@ import { ContentService } from './content.service';
   exports: [ContentService],
 })
 export class ContentModule {}
-

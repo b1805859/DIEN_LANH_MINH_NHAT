@@ -30,8 +30,8 @@ export default function BlogPage() {
         />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(11_23_42_/_0.86)_0%,rgb(11_23_42_/_0.72)_48%,rgb(11_23_42_/_0.32)_100%)]" />
         <div className="container relative">
-          <p className="inline-flex max-w-full items-center gap-2 rounded-md border border-cyan-200/20 bg-white/10 px-3 py-2 text-xs font-black text-cyan-50 backdrop-blur sm:px-4 sm:text-sm">
-            <BookOpen className="h-4 w-4 text-amber-300" />
+          <p className="inline-flex max-w-full items-center gap-2 rounded-xl border border-cyan-200/20 bg-white/10 px-3 py-2 text-xs font-black text-cyan-50 backdrop-blur sm:px-4 sm:text-sm">
+            <BookOpen className="h-4 w-4 text-sky-200" />
             Kinh nghiệm điện lạnh
           </p>
           <h1 className="mt-5 max-w-4xl text-3xl font-black leading-[1.08] tracking-normal sm:text-5xl lg:text-6xl">
@@ -50,7 +50,7 @@ export default function BlogPage() {
             <Reveal key={category.slug} asChild delay={Math.min(index, 4) * 55}>
               <Link
                 href={`/blog/category/${category.slug}`}
-                className="rounded-md border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700 transition hover:border-primary/40 hover:text-primary"
+                className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-bold text-slate-700 transition hover:border-primary/40 hover:text-primary"
               >
                 {category.name}
               </Link>
@@ -60,19 +60,20 @@ export default function BlogPage() {
 
         <Link
           href={`/blog/${featuredPost.slug}`}
-          className="group mt-8 grid min-w-0 overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200 lg:grid-cols-[1.1fr_0.9fr]"
+          className="group mt-8 grid min-w-0 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200 lg:grid-cols-[1.1fr_0.9fr]"
         >
           <div className="relative min-h-[220px] overflow-hidden bg-slate-100 sm:min-h-[280px]">
             <LoadingImage
               src={featuredPost.image}
               alt={featuredPost.title}
               fill
+              priority
               className="object-cover transition duration-700 group-hover:scale-105"
               sizes="(min-width: 1024px) 55vw, 100vw"
             />
           </div>
           <div className="flex flex-col justify-center p-6 lg:p-8">
-            <span className="inline-flex w-fit items-center gap-2 rounded-md bg-cyan-50 px-3 py-2 text-xs font-black uppercase text-primary">
+            <span className="inline-flex w-fit items-center gap-2 rounded-xl bg-cyan-50 px-3 py-2 text-xs font-black uppercase text-primary">
               <CalendarDays className="h-4 w-4" />
               Bài nổi bật
             </span>
@@ -92,7 +93,7 @@ export default function BlogPage() {
             <Reveal key={post.slug} asChild delay={Math.min(index, 4) * 55}>
               <Link
                 href={`/blog/${post.slug}`}
-                className="group overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200"
+                className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200"
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
                   <LoadingImage

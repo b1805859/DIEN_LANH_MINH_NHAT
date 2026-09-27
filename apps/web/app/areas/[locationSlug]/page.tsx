@@ -1,3 +1,4 @@
+import { ImageGallery, areaGallery } from '@/components/public/content-sections';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowRight, CalendarCheck, CheckCircle2, ChevronRight, MapPin } from 'lucide-react';
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locationS
     title: `Dịch vụ điện lạnh ${ward.name}, Cần Thơ`,
     description: areaContent.metaDescription,
     path: `/areas/${locationSlug}`,
-    image: ward.image,
+    image: ward.image || undefined,
   });
 }
 
@@ -44,15 +45,17 @@ export default async function WardPage({ params }: { params: Promise<{ locationS
   return (
     <main className="bg-[#f4f8fb]">
       <section className="relative overflow-hidden bg-[#0b172a] py-16 text-white lg:py-20">
-        <LoadingImage
-          src={ward.image}
-          alt={`Dịch vụ điện lạnh tại ${ward.name}, Cần Thơ`}
-          fill
-          priority
-          className="object-cover opacity-55"
-          sizes="100vw"
-          reveal="filter"
-        />
+        {ward.image ? (
+          <LoadingImage
+            src={ward.image}
+            alt={`Dịch vụ điện lạnh tại ${ward.name}, Cần Thơ`}
+            fill
+            priority
+            className="object-cover opacity-55"
+            sizes="100vw"
+            reveal="filter"
+          />
+        ) : null}
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgb(11_23_42)_0%,rgb(11_23_42_/_0.82)_45%,rgb(11_23_42_/_0.32)_100%)]" />
         <div className="container relative grid gap-10 lg:grid-cols-[1fr_390px] lg:items-center">
           <div className="animate-in-soft">
@@ -79,14 +82,14 @@ export default async function WardPage({ params }: { params: Promise<{ locationS
                 </li>
               </ol>
             </nav>
-            <p className="inline-flex items-center gap-2 rounded-md bg-cyan-300 px-4 py-2 text-sm font-black text-slate-950">
+            <p className="inline-flex items-center gap-2 rounded-xl bg-cyan-300 px-4 py-2 text-sm font-black text-slate-950">
               <MapPin className="h-4 w-4" />
               Khu vực phục vụ
             </p>
             <h1 className="mt-5 max-w-4xl text-4xl font-black tracking-normal sm:text-6xl">
               Dịch vụ điện lạnh tại {ward.name}
             </h1>
-            <p className="mt-4 inline-flex rounded-md border border-white/15 bg-white/10 px-4 py-2 text-sm font-black text-cyan-100 backdrop-blur">
+            <p className="mt-4 inline-flex rounded-xl border border-white/15 bg-white/10 px-4 py-2 text-sm font-black text-cyan-100 backdrop-blur">
               Khu vực nhận lịch: {ward.highlight}
             </p>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-200">
@@ -94,9 +97,9 @@ export default async function WardPage({ params }: { params: Promise<{ locationS
             </p>
           </div>
 
-          <aside className="rounded-md border border-white/20 bg-white/95 p-5 text-slate-950 shadow-2xl shadow-slate-950/30">
+          <aside className="rounded-xl border border-white/20 bg-white/95 p-5 text-slate-950 shadow-sm shadow-slate-950/30">
             <div className="flex items-start gap-3">
-              <span className="rounded-md bg-cyan-100 p-3 text-primary">
+              <span className="rounded-xl bg-cyan-100 p-3 text-primary">
                 <CalendarCheck className="h-6 w-6" />
               </span>
               <div>
@@ -107,7 +110,7 @@ export default async function WardPage({ params }: { params: Promise<{ locationS
               </div>
             </div>
             <div className="mt-5">
-              <BookingForm />
+              <BookingForm compact hideNotes locationSlug={locationSlug} />
             </div>
           </aside>
         </div>
@@ -128,7 +131,7 @@ export default async function WardPage({ params }: { params: Promise<{ locationS
               ))}
             </div>
           </article>
-          <aside className="rounded-md border border-cyan-200 bg-cyan-50 p-5">
+          <aside className="rounded-xl border border-cyan-200 bg-cyan-50 p-5">
             <h2 className="text-xl font-black">Thông tin giúp xác nhận lịch</h2>
             <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-700">
               {areaContent.bookingTips.map((tip) => (
@@ -167,7 +170,7 @@ export default async function WardPage({ params }: { params: Promise<{ locationS
               <Reveal key={service.slug} asChild delay={Math.min(index, 4) * 55}>
                 <Link
                   href={`/areas/${ward.slug}/${service.slug}`}
-                  className="rounded-md border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg"
+                  className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-lg"
                 >
                   <h3 className="text-lg font-black">{service.name}</h3>
                   <p className="mt-2 text-sm leading-6 text-slate-600">
@@ -191,7 +194,7 @@ export default async function WardPage({ params }: { params: Promise<{ locationS
               <Link
                 key={item.slug}
                 href={`/areas/${item.slug}`}
-                className="inline-flex items-center gap-2 rounded-md border border-slate-200 bg-white px-4 py-3 text-sm font-bold transition hover:border-primary/40 hover:text-primary"
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold transition hover:border-primary/40 hover:text-primary"
               >
                 <MapPin className="h-4 w-4" />
                 {item.name}
@@ -200,6 +203,12 @@ export default async function WardPage({ params }: { params: Promise<{ locationS
           </div>
         </section>
       </section>
+      {areaGallery[locationSlug]?.length ? (
+        <section className="container py-12">
+          <h2 className="mb-6 text-2xl font-bold">Hình ảnh khu vực {ward.shortName}</h2>
+          <ImageGallery items={areaGallery[locationSlug] || []} />
+        </section>
+      ) : null}
       <JsonLdScript
         data={breadcrumbJsonLd([
           { name: 'Trang chủ', path: '/' },

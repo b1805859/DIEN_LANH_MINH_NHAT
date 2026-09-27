@@ -1,10 +1,22 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { ChevronRight, LogOut, Menu, Phone, X } from 'lucide-react';
-import { APP_NAME, PRIORITY_DISTRICTS } from '@minhnhat/shared';
+import {
+  BadgeDollarSign,
+  ChevronRight,
+  ChevronUp,
+  Grid2X2,
+  House,
+  Info,
+  LogOut,
+  MapPin,
+  Menu,
+  Phone,
+  X,
+} from 'lucide-react';
 import { MinhNhatLogoMark } from '@/components/brand/minh-nhat-logo';
 import {
   AUTH_TOKEN_CHANGE_EVENT,
@@ -21,13 +33,19 @@ const navItems = [
   ['Dịch vụ', '/services'],
   ['Khu vực', '/areas'],
   ['Giới thiệu', '/about'],
-  ['Bài viết', '/blog'],
-  ['Hỏi đáp', '/faq'],
-  ['Đặt lịch', '/booking'],
   ['Liên hệ', '/contact'],
 ];
 
-const mobileNavItems = navItems;
+const mobileNavItems = [...navItems.slice(0, 4), ['Báo giá', '/booking'], navItems[4]] as const;
+const desktopNavItems = navItems;
+const mobileNavIcons = {
+  '/': House,
+  '/services': Grid2X2,
+  '/areas': MapPin,
+  '/about': Info,
+  '/booking': BadgeDollarSign,
+  '/contact': Phone,
+} as const;
 const focusableElementSelector = [
   'a[href]',
   'button:not([disabled])',
@@ -162,34 +180,35 @@ export function SiteHeader() {
     <>
       <header
         className={cn(
-          'fixed inset-x-0 top-0 z-40 border-b text-[#0b172a] transition-all duration-200',
-          isScrolled
-            ? 'border-slate-200/80 bg-white/90 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur-xl'
-            : 'border-white/70 bg-white/70 backdrop-blur-md',
+          'mock-site-header fixed inset-x-0 top-0 z-40 border-b text-[#081f60] transition-all duration-200',
+          isScrolled ? 'border-slate-200/80 bg-white shadow-sm' : 'border-slate-200 bg-white',
         )}
       >
         <div className="container">
-          <div className="flex min-h-16 items-center justify-between gap-3 sm:gap-5 xl:min-h-[72px]">
-            <Link href="/" className="group flex min-w-0 items-center gap-2 sm:gap-3 xl:shrink-0">
+          <div className="mock-header-row flex min-h-16 items-center justify-between gap-3 sm:gap-4 xl:min-h-[70px]">
+            <Link
+              href="/"
+              className="mock-site-brand group flex min-w-0 items-center gap-2 sm:gap-3 xl:shrink-0"
+            >
               <MinhNhatLogoMark
-                className="h-9 w-9 shadow-lg shadow-cyan-400/20 transition group-hover:scale-[1.03] sm:h-10 sm:w-10 xl:h-11 xl:w-11"
+                className="h-9 w-9 transition group-hover:scale-[1.03] sm:h-10 sm:w-10"
                 idPrefix="site-header-logo"
               />
               <span className="min-w-0 xl:min-w-max">
-                <span className="block max-w-[calc(100vw-10rem)] truncate text-sm font-black leading-tight sm:max-w-none sm:text-base xl:text-[17px] xl:whitespace-nowrap">
-                  {APP_NAME}
+                <span className="mock-site-brand-title block text-sm font-black leading-tight sm:max-w-none xl:text-[15px] xl:whitespace-nowrap">
+                  <span className="mock-brand-first">Điện Lạnh</span> <span>Minh Nhật</span>
                 </span>
-                <span className="hidden text-xs font-semibold leading-tight text-slate-500 sm:block">
-                  Điện lạnh tận nơi tại Cần Thơ
+                <span className="mock-brand-tagline hidden text-xs font-semibold leading-tight text-slate-500 sm:block">
+                  Đồng hành cùng ngôi nhà bạn
                 </span>
               </span>
             </Link>
 
             <nav
-              className="ml-auto hidden shrink-0 items-center justify-center gap-6 text-[15px] font-bold xl:flex"
+              className="mock-desktop-nav hidden shrink-0 items-center justify-center gap-3 text-[13px] font-bold xl:flex"
               aria-label="Điều hướng chính"
             >
-              {navItems.map(([label, href]) => {
+              {desktopNavItems.map(([label, href]) => {
                 const active = isActive(href);
 
                 return (
@@ -215,11 +234,11 @@ export function SiteHeader() {
               })}
             </nav>
 
-            <div className="flex shrink-0 items-center justify-end gap-2">
+            <div className="mock-header-actions flex shrink-0 items-center justify-end gap-2">
               {hasAdminSession ? (
                 <Link
                   href="/admin/dashboard"
-                  className="hidden h-11 items-center justify-center rounded-md border border-cyan-200/40 bg-cyan-300/10 px-3 text-sm font-black text-cyan-100 transition hover:border-cyan-100 hover:bg-cyan-300/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 sm:inline-flex"
+                  className="hidden h-11 items-center justify-center rounded-md border border-cyan-200/40 bg-cyan-300/10 px-3 text-sm font-black text-primary transition hover:border-primary hover:bg-cyan-300/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 sm:inline-flex"
                 >
                   Quản trị
                 </Link>
@@ -227,7 +246,7 @@ export function SiteHeader() {
               {hasAdminSession ? (
                 <button
                   type="button"
-                  className="hidden h-11 items-center justify-center gap-2 rounded-md border border-white/15 bg-white/10 px-3 text-sm font-black text-slate-100 transition hover:border-red-200/60 hover:bg-red-400/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 sm:inline-flex"
+                  className="hidden h-11 items-center justify-center gap-2 rounded-md border border-white/15 bg-white/10 px-3 text-sm font-black text-slate-700 transition hover:border-red-200/60 hover:bg-red-400/15 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200 sm:inline-flex"
                   onClick={handleLogout}
                 >
                   <LogOut className="h-4 w-4" />
@@ -236,22 +255,26 @@ export function SiteHeader() {
               ) : null}
               <a
                 href={`tel:${integrationSettings.phone.replace(/\s/g, '')}`}
-                className="hidden min-h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-xl px-2 text-[15px] font-black text-[#0b5fa5] transition hover:bg-[#eef8ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0877c9] lg:inline-flex"
+                className="mock-header-phone hidden min-h-11 shrink-0 items-center gap-2 whitespace-nowrap rounded-xl px-2 text-[13px] font-black text-[#0b5fa5] transition hover:bg-[#eef8ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0877c9] lg:inline-flex"
               >
                 <Phone className="h-4 w-4" />
-                <span>{integrationSettings.phone}</span>
+                <span className="grid">
+                  <strong>0939 370 109</strong>
+                  <small className="text-[10px] font-normal">08:00–17:00 Thứ 2–CN</small>
+                </span>
               </a>
-              <Link
-                href="/booking"
-                className="hidden min-h-12 shrink-0 items-center gap-2 whitespace-nowrap rounded-xl bg-[#0877c9] px-5 text-[15px] font-black text-white shadow-[0_8px_18px_rgba(8,119,201,0.2)] transition hover:-translate-y-0.5 hover:bg-[#0765aa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0877c9] focus-visible:ring-offset-2 sm:inline-flex"
+              <a
+                href={integrationSettings.zaloUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mock-header-zalo hidden min-h-10 shrink-0 items-center gap-2 whitespace-nowrap rounded-md bg-[#0877e7] px-4 text-[13px] font-black text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#0765aa] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0877c9] focus-visible:ring-offset-2 sm:inline-flex"
               >
-                Đặt lịch ngay
-                <ChevronRight className="h-4 w-4" />
-              </Link>
+                <Image src="/icons/zalo.svg" width={16} height={16} alt="" /> Nhắn Zalo
+              </a>
               <a
                 href={`tel:${integrationSettings.phone.replace(/\s/g, '')}`}
                 aria-label={`Gọi ${integrationSettings.phone}`}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white/75 text-[#0877c9] transition hover:border-[#9ddaff] hover:bg-[#eef8ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0877c9] lg:hidden"
+                className="mock-mobile-phone inline-flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200 bg-white/75 text-[#0877c9] transition hover:border-[#9ddaff] hover:bg-[#eef8ff] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0877c9] lg:hidden"
               >
                 <Phone className="h-4 w-4" />
               </a>
@@ -259,13 +282,13 @@ export function SiteHeader() {
                 ref={menuButtonRef}
                 type="button"
                 className={cn(
-                  'inline-flex h-11 w-11 items-center justify-center rounded-xl border transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0877c9] xl:hidden',
-                  'border-slate-200 bg-white/75 text-[#0b172a] shadow-sm hover:border-[#9ddaff] hover:text-[#0877c9]',
+                  'mock-menu-toggle inline-flex h-11 w-11 items-center justify-center rounded-xl border transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0877c9] xl:hidden',
+                  'border-slate-200 bg-white/75 text-[#0868d2] shadow-sm hover:border-[#9ddaff] hover:text-[#0877c9]',
                 )}
                 aria-label={mobileOpen ? 'Đóng menu' : 'Mở menu'}
                 aria-expanded={mobileOpen}
                 aria-controls="mobile-site-menu"
-                onClick={() => setMobileOpen((current) => !current)}
+                onClick={() => setMobileOpen(true)}
               >
                 {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </button>
@@ -273,7 +296,7 @@ export function SiteHeader() {
           </div>
 
           {mobileOpen ? (
-            <div className="fixed inset-0 z-50 xl:hidden">
+            <div className="mock-menu-overlay fixed inset-0 z-50 xl:hidden">
               <button
                 type="button"
                 className="absolute inset-0 bg-[#0b172a]/55 backdrop-blur-[2px]"
@@ -288,7 +311,7 @@ export function SiteHeader() {
                 aria-modal="true"
                 aria-labelledby="mobile-site-menu-title"
                 tabIndex={-1}
-                className="absolute right-0 top-0 flex h-svh w-[min(22rem,86vw)] animate-in flex-col bg-white text-slate-950 shadow-2xl shadow-slate-950/30 slide-in-from-right duration-300 motion-reduce:animate-none"
+                className="absolute right-0 top-0 flex h-svh w-full animate-in flex-col bg-white text-slate-950 shadow-2xl shadow-slate-950/30 slide-in-from-right duration-300 motion-reduce:animate-none sm:w-[min(22rem,86vw)]"
               >
                 <div className="flex min-h-16 items-center justify-between gap-3 border-b border-slate-200 px-4">
                   <Link href="/" className="flex min-w-0 items-center gap-3">
@@ -301,7 +324,7 @@ export function SiteHeader() {
                         id="mobile-site-menu-title"
                         className="block truncate text-sm font-black"
                       >
-                        {APP_NAME}
+                        <span className="mock-brand-first">Điện Lạnh</span> <span>Minh Nhật</span>
                       </span>
                       <span className="block text-xs font-semibold text-slate-500">
                         Điện lạnh Cần Thơ
@@ -320,47 +343,58 @@ export function SiteHeader() {
                 </div>
 
                 <nav className="flex-1 overflow-y-auto px-3 py-4" aria-label="Liên kết di động">
-                  {mobileNavItems.map(([label, href]) => (
-                    <Link
-                      key={href}
-                      href={href}
-                      className={cn(
-                        'flex min-h-12 items-center justify-between rounded-md px-3 text-base font-black transition hover:bg-slate-100 hover:text-primary',
-                        isActive(href) && 'bg-primary/10 text-primary',
-                      )}
-                      aria-current={pathname === href ? 'page' : undefined}
-                    >
-                      <span>{label}</span>
-                      <ChevronRight className="h-4 w-4" />
-                    </Link>
-                  ))}
-                  <div className="mx-3 my-3 border-t border-slate-200 pt-4">
-                    <Link
-                      href="/areas"
-                      className="inline-flex min-h-11 items-center rounded-md px-1 text-xs font-black uppercase tracking-wide text-slate-600 transition hover:text-primary"
-                    >
-                      Khu vực phục vụ
-                    </Link>
-                    <div className="mt-2 grid grid-cols-2 gap-2">
-                      {PRIORITY_DISTRICTS.map((district) => {
-                        const href = `/areas/${district.slug}`;
+                  {mobileNavItems.map(([label, href]) => {
+                    const Icon = mobileNavIcons[href as keyof typeof mobileNavIcons];
 
-                        return (
-                          <Link
-                            key={district.slug}
-                            href={href}
-                            className={cn(
-                              'inline-flex min-h-11 items-center rounded-md border border-slate-200 px-3 text-sm font-bold text-slate-700 transition hover:border-primary/30 hover:bg-cyan-50 hover:text-primary',
-                              isActive(href) && 'border-primary/30 bg-primary/10 text-primary',
-                            )}
-                            aria-current={pathname === href ? 'page' : undefined}
-                          >
-                            {district.shortName}
-                          </Link>
-                        );
-                      })}
-                    </div>
-                  </div>
+                    return (
+                      <div key={href}>
+                        <Link
+                          onClick={() => setMobileOpen(false)}
+                          href={href}
+                          className={cn(
+                            'mock-mobile-nav-link flex min-h-11 items-center justify-between border-b border-slate-100 px-3 text-sm font-bold transition hover:bg-slate-100 hover:text-primary',
+                            isActive(href) && 'text-primary',
+                          )}
+                          aria-current={pathname === href ? 'page' : undefined}
+                        >
+                          <span className="flex items-center gap-3">
+                            <Icon className="h-4 w-4" aria-hidden="true" />
+                            {label}
+                          </span>
+                          {href === '/services' ? (
+                            <ChevronUp className="h-4 w-4" />
+                          ) : (
+                            <ChevronRight className="h-4 w-4" />
+                          )}
+                        </Link>
+                        {href === '/services' ? (
+                          <div className="grid border-b border-slate-100 pb-2 pl-7 text-xs text-[#315eae]">
+                            {[
+                              ['Máy lạnh', '/services/sua-may-lanh'],
+                              ['Máy giặt', '/services/sua-may-giat'],
+                              ['Tủ lạnh', '/services/sua-tu-lanh'],
+                              ['Máy nước nóng', '/services/sua-lap-may-nuoc-nong-lanh-tam'],
+                              ['Điện nước', '/services/sua-dien-nuoc'],
+                              ['Nạp gas', '/services/nap-gas-may-lanh'],
+                              [
+                                'Máy nước uống nóng/lạnh',
+                                '/services/sua-lap-may-nuoc-uong-nong-lanh',
+                              ],
+                            ].map(([name, serviceHref]) => (
+                              <Link
+                                key={`${name}-${serviceHref}`}
+                                href={serviceHref}
+                                onClick={() => setMobileOpen(false)}
+                                className="py-1.5 hover:text-primary"
+                              >
+                                {name}
+                              </Link>
+                            ))}
+                          </div>
+                        ) : null}
+                      </div>
+                    );
+                  })}
                   {hasAdminSession ? (
                     <Link
                       href="/admin/dashboard"
@@ -382,20 +416,33 @@ export function SiteHeader() {
                   ) : null}
                 </nav>
 
-                <div className="border-t border-slate-200 p-4">
-                  <Link
-                    href="/booking"
-                    className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-md bg-amber-400 px-4 text-sm font-black text-slate-950 transition hover:bg-amber-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                  >
-                    Đặt lịch kiểm tra
-                  </Link>
+                <div className="mock-menu-ctas border-t border-slate-200 p-4">
+                  <div className="grid gap-2">
+                    <a
+                      href={`tel:${integrationSettings.phone}`}
+                      className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-md bg-primary px-4 text-sm font-black text-white"
+                    >
+                      <Phone className="h-4 w-4" />{' '}
+                      <span>
+                        Gọi ngay<strong>0939 370 109</strong>
+                      </span>
+                    </a>
+                    <a
+                      href={integrationSettings.zaloUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex h-11 w-full items-center justify-center rounded-md border border-primary text-sm font-black text-primary"
+                    >
+                      <Image src="/icons/zalo.svg" width={24} height={24} alt="" /> Nhắn Zalo
+                    </a>
+                  </div>
                 </div>
               </aside>
             </div>
           ) : null}
         </div>
       </header>
-      <div className="h-16 xl:h-[72px]" aria-hidden="true" />
+      <div className="mock-site-header-spacer h-16 xl:h-[72px]" aria-hidden="true" />
     </>
   );
 }

@@ -26,7 +26,7 @@ type ScheduleView = 'calendar' | 'list';
 
 type Booking = {
   id: string;
-  scheduledDate: string;
+  scheduledDate: string | null;
   customerName: string;
   customerPhone: string;
   customerEmail?: string | null;
@@ -125,7 +125,7 @@ function formatFullDate(value: string) {
 }
 
 function bookingDate(booking: Booking) {
-  return booking.scheduledDate.slice(0, 10);
+  return booking.scheduledDate?.slice(0, 10) ?? '';
 }
 
 function AdminBookingsPageContent() {
@@ -155,6 +155,16 @@ function AdminBookingsPageContent() {
     },
     enabled: Boolean(token),
   });
+  const requestsQuery = useQuery({
+    queryKey: ['booking-requests'],
+    queryFn: async () => {
+      const response = await apiClient.get('/bookings', {
+        headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+      });
+      return response.data as Booking[];
+    },
+    enabled: Boolean(token),
+  });
 
   const updateStatus = useMutation({
     mutationFn: ({ id, status }: { id: string; status: BookingStatus }) =>
@@ -171,6 +181,7 @@ function AdminBookingsPageContent() {
       });
       await Promise.all([
         queryClient.invalidateQueries({ queryKey: ['booking-schedule'] }),
+        queryClient.invalidateQueries({ queryKey: ['booking-requests'] }),
         queryClient.invalidateQueries({ queryKey: ['admin-dashboard'] }),
       ]);
     },
@@ -215,6 +226,9 @@ function AdminBookingsPageContent() {
   }, [filteredBookings]);
 
   const monthDays = [...dayMap.values()].filter((day) => day.date.startsWith(month));
+  const unscheduledRequests = (requestsQuery.data ?? []).filter(
+    (booking) => !booking.scheduledDate,
+  );
   const monthActiveCount = monthDays.reduce((total, day) => total + day.activeCount, 0);
   const monthCancelledCount = monthDays.reduce((total, day) => total + day.cancelledCount, 0);
   const monthPendingCount = monthDays.reduce(
@@ -247,7 +261,10 @@ function AdminBookingsPageContent() {
           variant="outline"
           className="h-11 gap-2 self-start font-black"
           disabled={scheduleQuery.isFetching}
-          onClick={() => scheduleQuery.refetch()}
+          onClick={() => {
+            scheduleQuery.refetch();
+            requestsQuery.refetch();
+          }}
         >
           <RefreshCw
             className={cn('h-4 w-4', scheduleQuery.isFetching && 'motion-safe:animate-spin')}
@@ -261,6 +278,33 @@ function AdminBookingsPageContent() {
         <SummaryCard label="Ngày có lịch" value={activeDayCount} tone="sky" />
         <SummaryCard label="Đang chờ xử lý" value={monthPendingCount} tone="amber" />
         <SummaryCard label="Đã hủy" value={monthCancelledCount} tone="slate" />
+      </section>
+
+      <section className="mt-5 rounded-xl border border-sky-200 bg-sky-50 p-4 sm:p-5">
+        <h2 className="text-xl font-black text-slate-950">
+          Yêu cầu chưa có ngày hẹn ({unscheduledRequests.length})
+        </h2>
+        <p className="mt-1 text-sm text-slate-600">
+          Khách đã gửi thông tin dịch vụ. Liên hệ khách để thống nhất thời gian.
+        </p>
+        {requestsQuery.isError ? (
+          <p role="alert" className="mt-3 text-sm text-red-700">
+            Không tải được yêu cầu mới.
+          </p>
+        ) : null}
+        {unscheduledRequests.length ? (
+          <div className="mt-4 grid gap-3 xl:grid-cols-2">
+            {unscheduledRequests.map((booking, index) => (
+              <BookingCard
+                key={booking.id}
+                booking={booking}
+                animationIndex={index}
+                isUpdating={updateStatus.isPending}
+                onStatusChange={(id, status) => updateStatus.mutate({ id, status })}
+              />
+            ))}
+          </div>
+        ) : null}
       </section>
 
       <section

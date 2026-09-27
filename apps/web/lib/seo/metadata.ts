@@ -15,18 +15,22 @@ export function buildMetadata({
   path,
   image = defaultSocialImage,
   type = 'website',
+  publishedTime,
+  modifiedTime,
 }: {
   title: string;
   description: string;
   path: string;
   image?: string;
   type?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
 }): Metadata {
   const url = absoluteUrl(path);
   const imageUrl = absoluteUrl(image);
 
   return {
-    title,
+    title: { absolute: title.includes(APP_NAME) ? title : `${title} | ${APP_NAME}` },
     description,
     alternates: { canonical: url },
     openGraph: {
@@ -36,6 +40,7 @@ export function buildMetadata({
       siteName: APP_NAME,
       locale: 'vi_VN',
       type,
+      ...(type === 'article' ? { publishedTime, modifiedTime } : {}),
       images: [{ url: imageUrl, alt: title }],
     },
     twitter: {

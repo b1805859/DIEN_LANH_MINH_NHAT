@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Be_Vietnam_Pro } from 'next/font/google';
+import { Be_Vietnam_Pro, Roboto, Dancing_Script } from 'next/font/google';
 import Script from 'next/script';
 import { SiteChrome } from '@/components/layout/site-chrome';
 import { JsonLdScript } from '@/components/seo/json-ld-script';
@@ -8,6 +8,20 @@ import { localBusinessJsonLd, websiteJsonLd } from '@/lib/seo/json-ld';
 import { absoluteUrl } from '@/lib/seo/metadata';
 import { integrationSettings } from '@/lib/integrations/settings';
 import './globals.css';
+import './mockup.css';
+
+const mockupFont = Roboto({
+  subsets: ['latin', 'vietnamese'],
+  weight: ['400', '700'],
+  variable: '--font-mockup',
+  display: 'swap',
+});
+const handwriting = Dancing_Script({
+  subsets: ['latin', 'vietnamese'],
+  weight: '700',
+  variable: '--font-handwriting',
+  display: 'swap',
+});
 
 const beVietnamPro = Be_Vietnam_Pro({
   subsets: ['latin', 'vietnamese'],
@@ -20,11 +34,11 @@ const beVietnamPro = Be_Vietnam_Pro({
 export const metadata: Metadata = {
   metadataBase: new URL(absoluteUrl('/')),
   title: {
-    default: 'ĐIỆN LẠNH MINH NHẬT',
+    default: 'Điện Lạnh Minh Nhật',
     template: '%s | Minh Nhật',
   },
   description: 'Dịch vụ điện lạnh và sửa chữa tận nơi tại Cần Thơ.',
-  applicationName: 'ĐIỆN LẠNH MINH NHẬT',
+  applicationName: 'Điện Lạnh Minh Nhật',
   category: 'Dịch vụ điện lạnh',
   other: {
     'geo.region': 'VN-CT',
@@ -42,7 +56,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <body className={`${beVietnamPro.variable} flex min-h-dvh flex-col`}>
+      <body
+        className={`${beVietnamPro.variable} ${mockupFont.variable} ${handwriting.variable} flex min-h-dvh flex-col`}
+      >
         <ToastProvider>
           <SiteChrome>{children}</SiteChrome>
         </ToastProvider>

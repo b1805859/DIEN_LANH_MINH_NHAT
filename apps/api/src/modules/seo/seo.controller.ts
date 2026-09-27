@@ -10,4 +10,3 @@ export class SeoController {
     return this.seoService.getSitemapEntries();
   }
 }
-
