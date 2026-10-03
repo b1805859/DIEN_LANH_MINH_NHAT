@@ -31,7 +31,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const content = findServiceContent(slug);
   if (!service || !content) notFound();
 
-  const serviceImage = `/images/services/${service.slug}.jpg`;
+  const serviceImage =
+    slug === 'sua-tu-lanh' ? '/images/mockup/fridge.png' : `/images/services/${service.slug}.jpg`;
   const displayServiceName = slug === 'sua-tu-lanh' ? 'Sửa tủ lạnh' : service.name;
   const displayHeroDescription =
     slug === 'sua-tu-lanh'
@@ -48,7 +49,12 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   ];
   const gallery =
     slug === 'sua-tu-lanh'
-      ? [serviceImage, serviceImage, serviceImage, '/images/service-tools.png']
+      ? [
+          '/images/services/sua-tu-lanh.jpg',
+          '/images/mockup/fridge-compressor.jpg',
+          '/images/mockup/fridge-gauges.jpg',
+          '/images/mockup/fridge-interior.jpg',
+        ]
       : [
           serviceImage,
           '/images/services/sua-tu-lanh.jpg',
@@ -62,7 +68,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           'Tủ bị đóng tuyết',
           'Tủ chạy liên tục không ngắt',
           'Tủ phát ra tiếng ồn',
-          'Tủ bị rỉ nước',
+          'Tủ bị rò nước',
           'Các lỗi khác...',
         ]
       : content.requestSigns;
@@ -147,7 +153,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </section>
         </div>
         <section className="mock-detail-gallery">
-          <h2>Hình ảnh dịch vụ</h2>
+          <h2>Hình ảnh thực tế</h2>
           <div>
             {gallery.map((src, i) => (
               <div

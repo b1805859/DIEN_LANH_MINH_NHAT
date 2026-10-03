@@ -1,167 +1,190 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronRight, Facebook, MapPin, Phone } from 'lucide-react';
+import {
+  ArrowRight,
+  CalendarDays,
+  Clock3,
+  ExternalLink,
+  Facebook,
+  Mail,
+  MapPin,
+  Phone,
+  ShieldCheck,
+} from 'lucide-react';
+import { TrustBar } from '@/components/areas-reference/sections';
+import { ServicesBookingForm } from '@/components/services-reference/booking-form';
 import { JsonLdScript } from '@/components/seo/json-ld-script';
 import { integrationSettings } from '@/lib/integrations/settings';
 import { breadcrumbJsonLd } from '@/lib/seo/json-ld';
 import { buildMetadata } from '@/lib/seo/metadata';
+import serviceStyles from '@/components/services-reference/services.module.css';
+import styles from './contact.module.css';
 
 export const metadata = buildMetadata({
   title: 'Liên hệ Điện Lạnh Minh Nhật',
   description:
     'Liên hệ Điện Lạnh Minh Nhật qua điện thoại, Zalo hoặc Facebook. Phục vụ Ninh Kiều, Bình Thủy, Cái Răng, Ô Môn và Thốt Nốt tại Cần Thơ.',
   path: '/contact',
+  image: '/images/areas/hero-can-tho.webp',
 });
 
-const facebookUrl = 'https://www.facebook.com/profile.php?id=100063792110691';
+const phone = integrationSettings.phone.replace(/\s/g, '');
+const phoneLabel = /^0939370109$/.test(phone) ? '0939 370 109' : integrationSettings.phone;
+const facebookUrl =
+  integrationSettings.facebookUrl || 'https://www.facebook.com/profile.php?id=100063792110691';
+const mapUrl =
+  integrationSettings.googleMapsUrl ||
+  'https://www.google.com/maps/search/?api=1&query=C%E1%BA%A7n+Th%C6%A1';
+
+const contactChannels = [
+  {
+    label: 'ĐIỆN THOẠI', value: phoneLabel,
+    description: 'Gọi để được tư vấn trực tiếp', href: `tel:${phone}`, external: false,
+    icon: <Phone aria-hidden="true" />,
+  },
+  {
+    label: 'ZALO', value: phoneLabel,
+    description: 'Nhắn tin qua số Zalo của Minh Nhật',
+    href: integrationSettings.zaloUrl, external: true,
+    icon: <Image src="/icons/zalo.svg" alt="" width={26} height={26} />,
+  },
+  {
+    label: 'FACEBOOK', value: 'Điện Lạnh - Nhựt',
+    description: 'Kết nối qua trang Facebook', href: facebookUrl, external: true,
+    icon: <Facebook aria-hidden="true" />,
+  },
+  {
+    label: 'EMAIL', value: 'dienlanhminhnhat@gmail.com',
+    description: 'Gửi thông tin cần hỗ trợ',
+    href: 'mailto:dienlanhminhnhat@gmail.com', external: false,
+    icon: <Mail aria-hidden="true" />,
+  },
+];
 
 export default function ContactPage() {
   return (
-    <main className="mock-page mock-inner-page mock-contact">
-      <div className="mock-shell">
-        <nav className="mock-breadcrumb" aria-label="Đường dẫn">
-          <Link href="/">Trang chủ</Link>
-          <ChevronRight size={15} />
-          <span>Liên hệ</span>
-        </nav>
-        <div className="mock-contact-layout">
-          <section>
-            <h1>Liên hệ với Minh Nhật</h1>
-            <p>Mọi thắc mắc về dịch vụ, liên hệ qua các kênh dưới đây.</p>
-            <div className="mock-contact-list">
-              <a href={`tel:${integrationSettings.phone}`}>
-                <span className="mock-contact-icon">
-                  <Phone />
-                </span>
-                <span>
-                  <strong>Điện thoại</strong>
-                  <b>0939 370 109</b>
-                  <small>08:00 – 17:00 Thứ 2 – CN</small>
-                </span>
-              </a>
-              <a href={integrationSettings.zaloUrl} target="_blank" rel="noreferrer">
-                <span className="mock-contact-icon">
-                  <Image src="/icons/zalo.svg" width={32} height={32} alt="" />
-                </span>
-                <span>
-                  <strong>Zalo</strong>
-                  <b>0939 370 109</b>
-                  <small>Liên hệ qua số Zalo</small>
-                </span>
-              </a>
-              <a href={facebookUrl} target="_blank" rel="noreferrer">
-                <span className="mock-contact-icon">
-                  <Facebook />
-                </span>
-                <span>
-                  <strong>Facebook</strong>
-                  <small>Facebook Điện Lạnh Minh Nhật</small>
-                </span>
-              </a>
-              <div>
-                <span className="mock-contact-icon">
-                  <MapPin />
-                </span>
-                <span>
-                  <strong>Địa chỉ phục vụ</strong>
-                  <small>
-                    Ninh Kiều, Bình Thủy, Cái Răng,
-                    <br />Ô Môn, Thốt Nốt – Cần Thơ
-                  </small>
-                </span>
-              </div>
-            </div>
-          </section>
-          <section className="mock-map" aria-label="Sơ đồ minh họa khu vực Cần Thơ">
-            <svg
-              viewBox="0 0 620 430"
-              role="img"
-              aria-label="Sơ đồ minh họa trung tâm Cần Thơ"
-              preserveAspectRatio="xMidYMid slice"
-            >
-              <defs>
-                <pattern
-                  id="contact-street-blocks"
-                  width="65"
-                  height="48"
-                  patternUnits="userSpaceOnUse"
-                  patternTransform="rotate(-24)"
-                >
-                  <rect width="65" height="48" fill="#eeefea" />
-                  <path
-                    d="M0 0H65V48 M22 0V48 M0 24H65"
-                    fill="none"
-                    stroke="#fff"
-                    strokeWidth="3"
-                  />
-                  <path d="M45 0V24" stroke="#dde8e1" strokeWidth="2" />
-                </pattern>
-              </defs>
-              <rect width="620" height="430" fill="url(#contact-street-blocks)" />
-              <path
-                d="M245 -30 C272 80 350 126 440 175 S560 265 650 280"
-                fill="none"
-                stroke="#9ed9f5"
-                strokeWidth="72"
-              />
-              <path
-                d="M245 -30 C272 80 350 126 440 175 S560 265 650 280"
-                fill="none"
-                stroke="#c7eafd"
-                strokeWidth="57"
-              />
-              <path
-                d="M15 62 L360 0 M-20 144 L385 75 M-10 240 L405 152 M0 335 L370 235 M115 430 L438 286 M470 20 L630 120 M430 128 L628 220 M395 265 L615 350"
-                stroke="#fff"
-                strokeWidth="7"
-                fill="none"
-              />
-              <path
-                d="M55 -15 L128 430 M166 -10 L218 430 M266 -10 L280 430 M-10 189 L335 430 M337 20 L10 390 M458 0 L600 420"
-                stroke="#fff"
-                strokeWidth="5"
-                fill="none"
-              />
-              <path
-                d="M0 108 L368 49 M0 286 L396 194 M58 430 L413 308 M127 0 L204 430 M316 -10 L318 430"
-                stroke="#e9d9ac"
-                strokeWidth="2"
-                fill="none"
-              />
-              <path
-                d="M22 15 L84 6 L92 54 L29 72 Z M209 203 L270 186 L301 232 L236 260 Z M493 308 L560 320 L545 372 L470 356 Z"
-                fill="#d3ead4"
-              />
-              <text x="153" y="172" fill="#3f6692" fontSize="15" fontWeight="700">
-                Ninh Kiều
-              </text>
-              <text x="202" y="328" fill="#2868a7" fontSize="30" fontWeight="400">
-                Cần Thơ
-              </text>
-              <text x="493" y="104" fill="#3f6692" fontSize="13">
-                Bình Thủy
-              </text>
-              <text x="488" y="313" fill="#3f6692" fontSize="13">
-                Cái Răng
-              </text>
-              <path
-                d="M288 267 C281 254 267 240 267 228 A21 21 0 1 1 309 228 C309 240 295 254 288 267Z"
-                fill="#f24d28"
-                stroke="white"
-                strokeWidth="2"
-              />
-              <circle cx="288" cy="227" r="7" fill="#963119" />
-            </svg>
-            <div>
-              <MapPin size={21} />
-              <span>
-                <strong>Khu vực Cần Thơ</strong>
-                <small>Sơ đồ minh họa</small>
-              </span>
-            </div>
-          </section>
+    <main className={`${serviceStyles.page} ${styles.page}`}>
+      <section
+        className={`${serviceStyles.hero} ${styles.hero}`}
+        aria-labelledby="contact-hero-title"
+      >
+        <Image
+          src="/images/areas/hero-can-tho.webp"
+          alt="Cảnh quan trung tâm Cần Thơ"
+          fill
+          priority
+          unoptimized
+          sizes="100vw"
+          className={`${serviceStyles.heroImage} ${styles.heroImage}`}
+        />
+        <div className={`${serviceStyles.heroShade} ${styles.heroShade}`} aria-hidden="true" />
+        <div className={`${serviceStyles.heroCopy} ${styles.heroCopy}`}>
+          <p className={`${serviceStyles.heroEyebrow} ${styles.heroEyebrow}`}>
+            <Phone aria-hidden="true" /> KẾT NỐI VỚI MINH NHẬT
+          </p>
+          <h1 id="contact-hero-title">
+            Sẵn sàng hỗ trợ
+            <br />
+            <span>khi bạn cần</span>
+          </h1>
+          <p className={serviceStyles.heroDescription}>
+            Liên hệ để được tư vấn sửa chữa, vệ sinh và lắp đặt điện lạnh tận nơi tại Cần Thơ.
+          </p>
+          <div className={`${serviceStyles.heroActions} ${styles.heroActions}`}>
+            <a href={`tel:${phone}`} className={serviceStyles.primaryButton}>
+              <Phone aria-hidden="true" /> {phoneLabel} <ArrowRight aria-hidden="true" />
+            </a>
+            <a href="#dat-lich" className={styles.outlineButton}>
+              <CalendarDays aria-hidden="true" /> Đặt lịch dịch vụ
+            </a>
+          </div>
         </div>
-      </div>
+      </section>
+
+      <section className={styles.contactSection} aria-labelledby="contact-info-title">
+        <div className={styles.contactCopy}>
+          <p className={`${serviceStyles.eyebrow} ${styles.eyebrow}`}>THÔNG TIN LIÊN HỆ</p>
+          <h2 id="contact-info-title">
+            Liên hệ với <span>Minh Nhật</span>
+          </h2>
+          <p className={styles.sectionDescription}>
+            Mọi thắc mắc về dịch vụ, liên hệ qua các kênh dưới đây.
+          </p>
+          <div className={styles.contactList}>
+            {contactChannels.map((channel) => (
+              <a
+                className={styles.contactCard}
+                href={channel.href}
+                key={channel.label}
+                target={channel.external ? '_blank' : undefined}
+                rel={channel.external ? 'noreferrer' : undefined}
+              >
+                <span className={styles.contactIcon} aria-hidden="true">{channel.icon}</span>
+                <span className={styles.channelCopy}>
+                  <small>{channel.label}</small>
+                  <strong>{channel.value}</strong>
+                  <span>{channel.description}</span>
+                </span>
+                <ArrowRight className={styles.channelArrow} aria-hidden="true" />
+              </a>
+            ))}
+          </div>
+          <div className={styles.openingHours}>
+            <span className={styles.contactIcon} aria-hidden="true"><Clock3 /></span>
+            <p>
+              <strong>THỜI GIAN LIÊN HỆ</strong>
+              <span>{integrationSettings.openingHours || '08:00 – 20:00 (T2 – CN)'}</span>
+            </p>
+          </div>
+        </div>
+        <div className={`${serviceStyles.bookingForm} ${styles.contactBooking}`} id="dat-lich">
+          <ServicesBookingForm />
+          <p className={styles.formNote}>
+            <ShieldCheck aria-hidden="true" />
+            <span>Chúng tôi sẽ liên hệ tư vấn và xác nhận lịch.</span>
+          </p>
+        </div>
+      </section>
+
+      <section className={styles.coverageSection} aria-labelledby="contact-coverage-title">
+        <div className={styles.coverageCopy}>
+          <p className={`${serviceStyles.eyebrow} ${styles.eyebrow}`}>KHU VỰC PHỤC VỤ</p>
+          <h2 id="contact-coverage-title">
+            Có mặt nhanh
+            <br /> tại <span>Cần Thơ</span>
+          </h2>
+          <p className={styles.sectionDescription}>
+            Ninh Kiều, Bình Thủy, Cái Răng, Ô Môn, Thốt Nốt và các khu vực lân cận.
+          </p>
+          {integrationSettings.hasConfiguredAddress && (
+            <p className={styles.configuredAddress}>
+              <MapPin aria-hidden="true" />
+              {integrationSettings.address}
+            </p>
+          )}
+          <div className={styles.coverageActions}>
+            <Link href="/areas" className={serviceStyles.primaryButton}>
+              Xem tất cả khu vực <ArrowRight aria-hidden="true" />
+            </Link>
+            <a href={mapUrl} target="_blank" rel="noreferrer" className={styles.textLink}>
+              Mở Google Maps <ExternalLink aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+        <div className={styles.map}>
+          <iframe
+            title="Bản đồ khu vực phục vụ Cần Thơ"
+            src={
+              integrationSettings.googleMapsEmbedUrl ||
+              'https://maps.google.com/maps?q=C%E1%BA%A7n%20Th%C6%A1&z=12&output=embed'
+            }
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+        </div>
+      </section>
+      <TrustBar polished />
       <JsonLdScript
         data={breadcrumbJsonLd([
           { name: 'Trang chủ', path: '/' },

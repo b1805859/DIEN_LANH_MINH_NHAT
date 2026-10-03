@@ -1,0 +1,48 @@
+{
+  "mode": "built-in image_gen tool",
+  "generatedOn": "2026-10-03",
+  "reference": "User-supplied mockup inspected for composition; no screenshot pixels used in final assets.",
+  "status": "Generated illustrative local-area photographs following requested Can Tho compositions; not documentary location photography.",
+  "output": {
+    "width": 768,
+    "height": 440,
+    "format": "webp",
+    "quality": 88
+  },
+  "assets": [
+    {
+      "slug": "thot-not",
+      "prompt": "Use case: photorealistic-natural. Asset type: a single landscape area-card photograph for a Vietnamese service website. Primary request: photorealistic aerial urban view of Thot Not district, Can Tho, Vietnam, roundabout and broad road network, dense Vietnamese neighborhoods, greenery, daylight, realistic city photography. Composition: match a high drone view toward a large circular roundabout in the lower center with a slender pale stone civic monument on the center island, broad roads curve around it and one boulevard leads toward the bottom edge; dense low-rise Vietnamese homes and tropical trees fill the upper half, narrow strip of blue sky. Bright clean natural daytime, vivid but realistic greens and blue atmosphere. Wide 7:4 landscape crop. Roads must connect logically, buildings have believable geometry and scale. Deliver ONLY the photograph, no website UI, no text, no captions, no logo, no watermark, no fake signage, no impossible roads or architecture.",
+      "attempts": 1,
+      "source": "/Users/macbookprom1/.codex/generated_images/01a0ff5c-54d1-7533-ac82-3c061f1c1697/exec-8978ad1f-d301-4e3a-be81-06cdb4249cb7.png",
+      "destination": "apps/web/public/images/areas/thot-not.webp",
+      "qa": "Visually inspected at generated resolution. Believable architecture, coherent roads/bridge, no UI, watermarks or rendered text. Composition compared with respective mockup card."
+    },
+    {
+      "slug": "phong-dien",
+      "prompt": "Use case: photorealistic-natural. Asset type: a single landscape area-card photograph. Generate an independent highly realistic aerial landscape of Phong Dien district, Can Tho, Mekong Delta Vietnam. Very high drone camera looking down moderately at the neighborhood: a modest winding river occupies the left third and lower-left of the frame; lush green land with dense tropical trees forms a broad peninsula or curved bank in the lower center and right, with tiny pale Vietnamese low-rise homes and a road following the bend. The river curves gently right toward the distant city. Densely built neighborhoods cover the middle distant horizon. Show only a shallow strip of blue sky and scattered clouds, around 15% of height. Crucial: land, tropical vegetation and small residential houses dominate 70% of image area; water only about 25%, not a vast open river. Bright vivid natural daytime, crisp detailed authentic Mekong Delta atmosphere. Wide 7:4 landscape. Coherent real-world geography and realistic perspective. Deliver ONLY a real-looking photograph, absolutely no text, no logo, no watermark, no UI, no captions, no weird roads or buildings.",
+      "initialPrompt": "Use case: photorealistic-natural. Asset type: a single landscape area-card photograph for a Vietnamese service website. Primary request: photorealistic landscape of Phong Dien district, Can Tho, Vietnam, wide river, green trees, low-rise residential area, tropical Mekong Delta atmosphere, realistic daylight photography. Composition: high drone camera, a broad softly curving river crosses the lower left toward the center distance, densely green riverbanks and small Vietnamese low-rise residential buildings on the right, neighborhood extending to distant horizon in the top third, blue sky with scattered white clouds. Bright clean sunlight, realistic lush greens, muted green-brown river water. Wide 7:4 landscape crop. Natural river shape, realistic houses and trees, physically coherent roads. Deliver ONLY the photograph, no website UI, no text, no captions, no logo, no watermark, no fake signage, no impossible roads or architecture.",
+      "attempts": 2,
+      "source": "/Users/macbookprom1/.codex/generated_images/01a0ff5c-54d1-7533-ac82-3c061f1c1697/exec-ee99c22f-9b0b-49af-89bc-d056ac5868fa.png",
+      "destination": "apps/web/public/images/areas/phong-dien.webp",
+      "qa": "Visually inspected at generated resolution. Believable architecture, coherent roads/bridge, no UI, watermarks or rendered text. Composition compared with respective mockup card."
+    },
+    {
+      "slug": "thoi-lai",
+      "prompt": "Use case: photorealistic-natural. Asset type: a single landscape area-card photograph. Generate a realistic elevated daytime view of a canal and small bridge in Thoi Lai district, Can Tho, Mekong Delta Vietnam. Composition: calm narrow urban canal recedes from bottom center straight to center distance, occupying central third of frame; a small low pale concrete bridge with three broad simple arches spans the canal across the lower-middle; both banks are lined with dense tropical trees, grass, paths, believable low-rise Vietnamese residential houses. More compact urban buildings toward the top right. High elevated view looking down on the scene, trees dominate sides and foreground; show only 5% sky along uppermost edge, making the scene lush and urban. Important: bridge occupies only central half of width, banks fill both side quarters, and bridge road logically reaches each riverbank. Bright realistic daytime, vivid natural green tropical plants and blue-green water reflections, crisp commercial photography. Wide 7:4 landscape crop. Deliver ONLY a photograph, no text, no logo, no watermark, no website UI, no captions, no distorted bridge or impossible roads.",
+      "initialPrompt": "Use case: photorealistic-natural. Asset type: a single landscape area-card photograph for a Vietnamese service website. Primary request: photorealistic district landscape in Thoi Lai, Can Tho, Vietnam, river and low bridge, tropical greenery, residential area, daylight, natural realistic photography. Composition: elevated camera looking along a calm straight canal receding into the center distance; a low pale concrete bridge crosses the canal horizontally near the middle foreground, bridge has simple repeated supports and realistic access roads; tree-lined banks on both sides with modest Vietnamese houses and civic buildings beyond, lush green trees dominate, blue sky with few white clouds along upper strip. Bright daylight, crisp natural commercial photography. Wide 7:4 landscape crop. Coherent bridge engineering and road geometry, clean water reflections. Deliver ONLY the photograph, no website UI, no text, no captions, no logo, no watermark, no fake signage, no impossible roads or architecture.",
+      "attempts": 2,
+      "source": "/Users/macbookprom1/.codex/generated_images/01a0ff5c-54d1-7533-ac82-3c061f1c1697/exec-04940050-cfef-4a1b-b35a-fd72efae5fb9.png",
+      "destination": "apps/web/public/images/areas/thoi-lai.webp",
+      "qa": "Visually inspected at generated resolution. Believable architecture, coherent roads/bridge, no UI, watermarks or rendered text. Composition compared with respective mockup card."
+    },
+    {
+      "slug": "vinh-thanh",
+      "prompt": "Use case: photorealistic-natural. Asset type: a single landscape area-card photograph for a Vietnamese service website. Primary request: photorealistic aerial view of Vinh Thanh district, Can Tho, Vietnam, town center, roads, residential blocks, agricultural greenery, bright daylight, realistic commercial photography. Composition: high drone view over a dense small Mekong Delta town; a main road runs from lower center toward upper left distance, low-rise tightly packed Vietnamese homes with pale walls and varied pastel roofs arranged in plausible blocks, green trees between roads and houses; expansive agricultural green fields beyond the right side of town and along the low horizon, blue sky occupying upper fifth. Bright daytime, vivid realistic greens, excellent building detail, believable Vietnamese local scale. Wide 7:4 landscape crop. All roads connect logically; no distorted buildings. Deliver ONLY the photograph, no website UI, no text, no captions, no logo, no watermark, no fake signage, no impossible roads or architecture.",
+      "attempts": 1,
+      "source": "/Users/macbookprom1/.codex/generated_images/01a0ff5c-54d1-7533-ac82-3c061f1c1697/exec-bbc800c4-1790-4136-82b8-970f7bd523d4.png",
+      "destination": "apps/web/public/images/areas/vinh-thanh.webp",
+      "qa": "Visually inspected at generated resolution. Believable architecture, coherent roads/bridge, no UI, watermarks or rendered text. Composition compared with respective mockup card."
+    }
+  ]
+}

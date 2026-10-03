@@ -4,8 +4,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { SERVICES } from '@minhnhat/shared';
 import { useMutation } from '@tanstack/react-query';
 import { useId, useRef } from 'react';
-import Link from 'next/link';
-import { Send } from 'lucide-react';
 import { integrationSettings } from '@/lib/integrations/settings';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -25,11 +23,11 @@ const bookingSchema = z.object({
     ),
   serviceId: z.string().min(1, 'Vui lòng chọn dịch vụ.'),
   address: z.string().trim().min(5, 'Vui lòng nhập địa chỉ cụ thể hơn.'),
+  notes: z.string().trim().max(2000, 'Ghi chú tối đa 2000 ký tự.').optional(),
 });
 
 type BookingInput = z.infer<typeof bookingSchema>;
-const fieldClass =
-  'h-12 w-full min-w-0 rounded-md border border-[#c8e0fc] bg-white px-3 text-base text-[#09245b] outline-none transition placeholder:text-[#8aa6ce] focus:border-[#0874e5] focus:ring-4 focus:ring-[#0874e5]/10';
+const fieldClass = 'site-form-field';
 
 function FieldError({ id, message }: { id: string; message?: string }) {
   return message ? (
@@ -56,6 +54,7 @@ function BookingFormContent({
       customerPhone: '',
       serviceId: SERVICES.some((service) => service.slug === serviceSlug) ? serviceSlug : '',
       address: '',
+      notes: '',
     },
   });
   const mutation = useMutation({
@@ -166,13 +165,19 @@ function BookingFormContent({
         />
         <FieldError id={`${formId}-address-error`} message={errors.address?.message} />
       </label>
+      <label>
+        <span className="mock-field-label">Ghi chú (nếu có)</span>
+        <textarea
+          className={fieldClass}
+          placeholder="Nhập thêm thông tin..."
+          rows={3}
+          maxLength={2000}
+          {...form.register('notes')}
+        />
+      </label>
       <button className="mock-request-submit" type="submit" disabled={mutation.isPending}>
-        <Send size={19} /> {mutation.isPending ? 'Đang gửi...' : 'Gửi yêu cầu'}
+        {mutation.isPending ? 'Đang gửi...' : 'Gửi yêu cầu'}
       </button>
-      <p className="mock-request-note">
-        Minh Nhật sẽ liên hệ để xác nhận thời gian.{' '}
-        <Link href="/privacy-policy">Chính sách bảo mật</Link>
-      </p>
       {mutation.isSuccess ? (
         <p role="status" aria-live="polite" className="text-sm font-semibold text-emerald-700">
           Đã gửi yêu cầu. Minh Nhật sẽ liên hệ xác nhận.

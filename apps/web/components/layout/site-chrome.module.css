@@ -1,0 +1,77 @@
+.siteShell {
+  --site-header-height: 84px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.overlayContent {
+  --site-hero-header-offset: var(--site-header-height);
+}
+
+/* Image heroes use the Home overlay. Plain content keeps a readable,
+   translucent header in flow and inherits Home's background after scrolling. */
+.innerHeader.innerHeader {
+  position: sticky;
+  inset: 0 0 auto;
+  flex-shrink: 0;
+}
+
+.innerHeader.innerHeader:not([data-scrolled='true']) {
+  background: #001c32b0;
+  backdrop-filter: blur(14px);
+}
+
+@media (max-width: 760px) {
+  .siteShell {
+    --site-header-height: 76px;
+  }
+}
+
+.adminSession {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 3.125% 8px 7.324%;
+  border-bottom: 1px solid var(--site-border, #b8dced);
+  background: var(--site-surface, #edf8ff);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.adminSession :is(a, button) {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 15px;
+  border: 1px solid var(--site-border, #b8dced);
+  border-radius: 30px;
+  background: #fff;
+  color: inherit;
+}
+
+.adminSession svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media (max-width: 960px) and (min-width: 761px) {
+  .adminSession {
+    padding-inline: 5% 3%;
+  }
+}
+
+@media (max-width: 760px) {
+  .adminSession {
+    padding-inline: 20px;
+  }
+}

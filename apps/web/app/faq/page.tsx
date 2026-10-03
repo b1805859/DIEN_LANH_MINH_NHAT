@@ -15,7 +15,7 @@ export const metadata = buildMetadata({
 
 export default function FaqPage() {
   return (
-    <main className="bg-[#f4f8fb] text-slate-950">
+    <main className="public-page bg-[#f4f8fb] text-slate-950">
       <section className="border-b border-slate-200 bg-white py-10 sm:py-14">
         <div className="container">
           <nav aria-label="Điều hướng">

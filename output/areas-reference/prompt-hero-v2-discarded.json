@@ -1,0 +1,7 @@
+{
+  "mode": "built-in image_gen",
+  "prompt": "Use case: photorealistic-natural. Generate a revised PHOTO ONLY website hero background. Image 1 is the full website mockup used as composition reference only, concentrate on its top 880x471 hero photograph. Image 2 is the first generated hero, to revise. Preserve the realistic saturated daylight visual quality of Image 2 but correct composition to follow Image 1 more exactly. In the final photo, the right edge of the close-up left building is at 42% of image width (current first generation only35%). The central axis of the golden landmark statue must be at 76.5% of image width (current about72%). Top of statue at30% height, bottom of stone base at63% height; statue a little smaller/slimmer than first generation. River horizontal behind statue, boulevard and palm foreground. Match reference white low-rise city buildings, cloudy bright sky, broad roundabout with flower circle. Deliver wide landscape 1.87:1, high-resolution ~2640x1410. NO headline, UI, buttons, text, logo, watermark or overlay. Left building dark naturally, right scene brightly lit. Keep coherent roads/buildings and believable cars/motorbikes, commercial city photography, Can Tho Vietnamese architecture and tropical trees.",
+  "source": "/Users/macbookprom1/.codex/generated_images/01a0ff5a-b850-78d1-b223-0eabce65ad5b/exec-733b663c-6ad9-443d-aa26-0c83874aba42.png",
+  "selected": false,
+  "reason": "Statue moved down relative to the reference; original generation with CSS crop aligns the landmark better."
+}

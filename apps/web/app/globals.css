@@ -4,6 +4,9 @@
 
 @layer base {
   :root {
+    --font-be-vietnam-pro: 'Segoe UI', Arial, sans-serif;
+    --font-mockup: 'Segoe UI', Arial, sans-serif;
+    --font-handwriting: 'Comic Sans MS', cursive;
     --background: 0 0% 100%;
     --foreground: 222.2 47.4% 11.2%;
     --card: 0 0% 100%;
@@ -688,16 +691,16 @@
   max-width: 1240px;
   padding-inline: 24px;
 }
-.public-site h1,
-.public-site h2,
-.public-site h3 {
+.public-page h1,
+.public-page h2,
+.public-page h3 {
   text-wrap: balance;
 }
-.public-site h1 {
+.public-page h1 {
   letter-spacing: -0.035em;
 }
 .public-site :focus-visible {
-  outline: 3px solid #0877c9;
+  outline: 3px solid var(--site-focus, #0877c9);
   outline-offset: 4px;
 }
 .public-site input,

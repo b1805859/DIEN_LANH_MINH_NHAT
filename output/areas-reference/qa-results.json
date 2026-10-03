@@ -1,0 +1,1005 @@
+{
+  "baseURL": "http://localhost:3000",
+  "startedAt": "2026-10-03T01:52:57.449Z",
+  "viewports": [
+    {
+      "width": 320,
+      "height": 844,
+      "viewportWidth": 320,
+      "documentWidth": 320,
+      "bodyWidth": 320,
+      "documentHeight": 4899,
+      "sections": {
+        "hero": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 575,
+          "bottom": 575
+        },
+        "areas": {
+          "x": 0,
+          "y": 575,
+          "width": 320,
+          "height": 2407.09,
+          "bottom": 2982.09
+        },
+        "nearby": {
+          "x": 0,
+          "y": 2982.09,
+          "width": 320,
+          "height": 308.59,
+          "bottom": 3290.69
+        },
+        "commitments": {
+          "x": 0,
+          "y": 3290.69,
+          "width": 320,
+          "height": 154,
+          "bottom": 3444.69
+        },
+        "booking": {
+          "x": 0,
+          "y": 3444.69,
+          "width": 320,
+          "height": 786,
+          "bottom": 4230.69
+        },
+        "footer": {
+          "x": 0,
+          "y": 4230.69,
+          "width": 320,
+          "height": 668.78,
+          "bottom": 4899.47
+        }
+      },
+      "form": {
+        "x": 16,
+        "y": 3761.69,
+        "width": 288,
+        "height": 442,
+        "bottom": 4203.69
+      },
+      "overflowElements": [
+        {
+          "tag": "IMG",
+          "className": "areas-module__czUZia__heroImage"
+        }
+      ],
+      "images": [
+        {
+          "alt": "Cảnh quan đô thị Cần Thơ với sông, cây xanh và vòng xoay trung tâm",
+          "src": "http://localhost:3000/images/areas/hero-can-tho.webp",
+          "width": 1719,
+          "height": 915
+        },
+        {
+          "alt": "Cảnh quan Quận Ninh Kiều, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/ninh-kieu.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Quận Bình Thủy, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/binh-thuy.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Quận Cái Răng, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/cai-rang.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Quận Ô Môn, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/o-mon.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Quận Thốt Nốt, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/thot-not.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Huyện Phong Điền, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/phong-dien.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Huyện Thới Lai, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/thoi-lai.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Huyện Vĩnh Thạnh, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/vinh-thanh.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Kỹ thuật viên Minh Nhật mặc đồng phục xanh, cầm dụng cụ trước xe dịch vụ",
+          "src": "http://localhost:3000/images/areas/technician-booking.webp",
+          "width": 2113,
+          "height": 744
+        },
+        {
+          "alt": "",
+          "src": "http://localhost:3000/icons/zalo.svg",
+          "width": 150,
+          "height": 150
+        },
+        {
+          "alt": "",
+          "src": "http://localhost:3000/icons/zalo.svg",
+          "width": 150,
+          "height": 150
+        }
+      ],
+      "screenshot": "areas-320.png"
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "viewportWidth": 390,
+      "documentWidth": 390,
+      "bodyWidth": 390,
+      "documentHeight": 5061,
+      "sections": {
+        "hero": {
+          "x": 0,
+          "y": 0,
+          "width": 390,
+          "height": 575,
+          "bottom": 575
+        },
+        "areas": {
+          "x": 0,
+          "y": 575,
+          "width": 390,
+          "height": 2657.5,
+          "bottom": 3232.5
+        },
+        "nearby": {
+          "x": 0,
+          "y": 3232.5,
+          "width": 390,
+          "height": 240,
+          "bottom": 3472.5
+        },
+        "commitments": {
+          "x": 0,
+          "y": 3472.5,
+          "width": 390,
+          "height": 154,
+          "bottom": 3626.5
+        },
+        "booking": {
+          "x": 0,
+          "y": 3626.5,
+          "width": 390,
+          "height": 786,
+          "bottom": 4412.5
+        },
+        "footer": {
+          "x": 0,
+          "y": 4412.5,
+          "width": 390,
+          "height": 648.78,
+          "bottom": 5061.28
+        }
+      },
+      "form": {
+        "x": 19.5,
+        "y": 3943.5,
+        "width": 351,
+        "height": 442,
+        "bottom": 4385.5
+      },
+      "overflowElements": [
+        {
+          "tag": "IMG",
+          "className": "areas-module__czUZia__heroImage"
+        }
+      ],
+      "images": [
+        {
+          "alt": "Cảnh quan đô thị Cần Thơ với sông, cây xanh và vòng xoay trung tâm",
+          "src": "http://localhost:3000/images/areas/hero-can-tho.webp",
+          "width": 1719,
+          "height": 915
+        },
+        {
+          "alt": "Cảnh quan Quận Ninh Kiều, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/ninh-kieu.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Quận Bình Thủy, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/binh-thuy.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Quận Cái Răng, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/cai-rang.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Quận Ô Môn, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/o-mon.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Quận Thốt Nốt, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/thot-not.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Huyện Phong Điền, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/phong-dien.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Huyện Thới Lai, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/thoi-lai.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Huyện Vĩnh Thạnh, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/vinh-thanh.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Kỹ thuật viên Minh Nhật mặc đồng phục xanh, cầm dụng cụ trước xe dịch vụ",
+          "src": "http://localhost:3000/images/areas/technician-booking.webp",
+          "width": 2113,
+          "height": 744
+        },
+        {
+          "alt": "",
+          "src": "http://localhost:3000/icons/zalo.svg",
+          "width": 150,
+          "height": 150
+        },
+        {
+          "alt": "",
+          "src": "http://localhost:3000/icons/zalo.svg",
+          "width": 150,
+          "height": 150
+        }
+      ],
+      "screenshot": "areas-390.png"
+    },
+    {
+      "width": 768,
+      "height": 1788,
+      "viewportWidth": 768,
+      "documentWidth": 768,
+      "bodyWidth": 768,
+      "documentHeight": 3103,
+      "sections": {
+        "hero": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 500,
+          "bottom": 500
+        },
+        "areas": {
+          "x": 0,
+          "y": 500,
+          "width": 768,
+          "height": 1353.63,
+          "bottom": 1853.63
+        },
+        "nearby": {
+          "x": 0,
+          "y": 1853.63,
+          "width": 768,
+          "height": 214,
+          "bottom": 2067.63
+        },
+        "commitments": {
+          "x": 0,
+          "y": 2067.63,
+          "width": 768,
+          "height": 154,
+          "bottom": 2221.63
+        },
+        "booking": {
+          "x": 0,
+          "y": 2221.63,
+          "width": 768,
+          "height": 484,
+          "bottom": 2705.63
+        },
+        "footer": {
+          "x": 0,
+          "y": 2705.63,
+          "width": 768,
+          "height": 397.39,
+          "bottom": 3103.02
+        }
+      },
+      "form": {
+        "x": 396,
+        "y": 2246.63,
+        "width": 333.61,
+        "height": 434,
+        "bottom": 2680.63
+      },
+      "overflowElements": [
+        {
+          "tag": "IMG",
+          "className": "areas-module__czUZia__heroImage"
+        }
+      ],
+      "images": [
+        {
+          "alt": "Cảnh quan đô thị Cần Thơ với sông, cây xanh và vòng xoay trung tâm",
+          "src": "http://localhost:3000/images/areas/hero-can-tho.webp",
+          "width": 1719,
+          "height": 915
+        },
+        {
+          "alt": "Cảnh quan Quận Ninh Kiều, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/ninh-kieu.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Quận Bình Thủy, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/binh-thuy.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Quận Cái Răng, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/cai-rang.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Quận Ô Môn, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/o-mon.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Quận Thốt Nốt, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/thot-not.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Huyện Phong Điền, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/phong-dien.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Huyện Thới Lai, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/thoi-lai.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Huyện Vĩnh Thạnh, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/vinh-thanh.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Kỹ thuật viên Minh Nhật mặc đồng phục xanh, cầm dụng cụ trước xe dịch vụ",
+          "src": "http://localhost:3000/images/areas/technician-booking.webp",
+          "width": 2113,
+          "height": 744
+        },
+        {
+          "alt": "",
+          "src": "http://localhost:3000/icons/zalo.svg",
+          "width": 150,
+          "height": 150
+        },
+        {
+          "alt": "",
+          "src": "http://localhost:3000/icons/zalo.svg",
+          "width": 150,
+          "height": 150
+        }
+      ],
+      "screenshot": "areas-768.png"
+    },
+    {
+      "width": 880,
+      "height": 1788,
+      "viewportWidth": 880,
+      "documentWidth": 880,
+      "bodyWidth": 880,
+      "documentHeight": 1788,
+      "sections": {
+        "hero": {
+          "x": 0,
+          "y": 0,
+          "width": 880,
+          "height": 471,
+          "bottom": 471
+        },
+        "areas": {
+          "x": 0,
+          "y": 471,
+          "width": 880,
+          "height": 524,
+          "bottom": 995
+        },
+        "nearby": {
+          "x": 0,
+          "y": 995,
+          "width": 880,
+          "height": 149,
+          "bottom": 1144
+        },
+        "commitments": {
+          "x": 0,
+          "y": 1144,
+          "width": 880,
+          "height": 86,
+          "bottom": 1230
+        },
+        "booking": {
+          "x": 0,
+          "y": 1230,
+          "width": 880,
+          "height": 303,
+          "bottom": 1533
+        },
+        "footer": {
+          "x": 0,
+          "y": 1533,
+          "width": 880,
+          "height": 255,
+          "bottom": 1788
+        }
+      },
+      "form": {
+        "x": 559.02,
+        "y": 1246,
+        "width": 287.98,
+        "height": 272,
+        "bottom": 1518
+      },
+      "overflowElements": [
+        {
+          "tag": "IMG",
+          "className": "areas-module__czUZia__heroImage"
+        },
+        {
+          "tag": "IMG",
+          "className": "areas-module__czUZia__bookingImage"
+        }
+      ],
+      "images": [
+        {
+          "alt": "Cảnh quan đô thị Cần Thơ với sông, cây xanh và vòng xoay trung tâm",
+          "src": "http://localhost:3000/images/areas/hero-can-tho.webp",
+          "width": 1719,
+          "height": 915
+        },
+        {
+          "alt": "Cảnh quan Quận Ninh Kiều, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/ninh-kieu.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Quận Bình Thủy, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/binh-thuy.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Quận Cái Răng, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/cai-rang.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Quận Ô Môn, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/o-mon.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Quận Thốt Nốt, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/thot-not.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Huyện Phong Điền, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/phong-dien.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Huyện Thới Lai, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/thoi-lai.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Huyện Vĩnh Thạnh, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/vinh-thanh.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Kỹ thuật viên Minh Nhật mặc đồng phục xanh, cầm dụng cụ trước xe dịch vụ",
+          "src": "http://localhost:3000/images/areas/technician-booking.webp",
+          "width": 2113,
+          "height": 744
+        },
+        {
+          "alt": "",
+          "src": "http://localhost:3000/icons/zalo.svg",
+          "width": 150,
+          "height": 150
+        },
+        {
+          "alt": "",
+          "src": "http://localhost:3000/icons/zalo.svg",
+          "width": 150,
+          "height": 150
+        }
+      ],
+      "screenshot": "areas-880.png"
+    },
+    {
+      "width": 1440,
+      "height": 1788,
+      "viewportWidth": 1440,
+      "documentWidth": 1440,
+      "bodyWidth": 1440,
+      "documentHeight": 2924,
+      "sections": {
+        "hero": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 770.72,
+          "bottom": 770.72
+        },
+        "areas": {
+          "x": 0,
+          "y": 770.72,
+          "width": 1440,
+          "height": 856.08,
+          "bottom": 1626.8
+        },
+        "nearby": {
+          "x": 0,
+          "y": 1626.8,
+          "width": 1440,
+          "height": 243.13,
+          "bottom": 1869.92
+        },
+        "commitments": {
+          "x": 0,
+          "y": 1869.92,
+          "width": 1440,
+          "height": 140.72,
+          "bottom": 2010.64
+        },
+        "booking": {
+          "x": 0,
+          "y": 2010.64,
+          "width": 1440,
+          "height": 495.81,
+          "bottom": 2506.45
+        },
+        "footer": {
+          "x": 0,
+          "y": 2506.45,
+          "width": 1440,
+          "height": 417.27,
+          "bottom": 2923.72
+        }
+      },
+      "form": {
+        "x": 914.73,
+        "y": 2036.81,
+        "width": 471.27,
+        "height": 445.08,
+        "bottom": 2481.89
+      },
+      "overflowElements": [
+        {
+          "tag": "IMG",
+          "className": "areas-module__czUZia__heroImage"
+        },
+        {
+          "tag": "IMG",
+          "className": "areas-module__czUZia__bookingImage"
+        }
+      ],
+      "images": [
+        {
+          "alt": "Cảnh quan đô thị Cần Thơ với sông, cây xanh và vòng xoay trung tâm",
+          "src": "http://localhost:3000/images/areas/hero-can-tho.webp",
+          "width": 1719,
+          "height": 915
+        },
+        {
+          "alt": "Cảnh quan Quận Ninh Kiều, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/ninh-kieu.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Quận Bình Thủy, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/binh-thuy.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Quận Cái Răng, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/cai-rang.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Quận Ô Môn, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/o-mon.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Quận Thốt Nốt, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/thot-not.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Huyện Phong Điền, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/phong-dien.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Huyện Thới Lai, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/thoi-lai.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Cảnh quan Huyện Vĩnh Thạnh, Cần Thơ",
+          "src": "http://localhost:3000/images/areas/vinh-thanh.webp",
+          "width": 768,
+          "height": 440
+        },
+        {
+          "alt": "Kỹ thuật viên Minh Nhật mặc đồng phục xanh, cầm dụng cụ trước xe dịch vụ",
+          "src": "http://localhost:3000/images/areas/technician-booking.webp",
+          "width": 2113,
+          "height": 744
+        },
+        {
+          "alt": "",
+          "src": "http://localhost:3000/icons/zalo.svg",
+          "width": 150,
+          "height": 150
+        },
+        {
+          "alt": "",
+          "src": "http://localhost:3000/icons/zalo.svg",
+          "width": 150,
+          "height": 150
+        }
+      ],
+      "screenshot": "areas-1440.png"
+    }
+  ],
+  "checks": [
+    {
+      "name": "viewport 320",
+      "passed": true,
+      "details": {
+        "screenshot": "areas-320.png",
+        "documentWidth": 320,
+        "documentHeight": 4899,
+        "imageCount": 12
+      }
+    },
+    {
+      "name": "viewport 390",
+      "passed": true,
+      "details": {
+        "screenshot": "areas-390.png",
+        "documentWidth": 390,
+        "documentHeight": 5061,
+        "imageCount": 12
+      }
+    },
+    {
+      "name": "viewport 768",
+      "passed": true,
+      "details": {
+        "screenshot": "areas-768.png",
+        "documentWidth": 768,
+        "documentHeight": 3103,
+        "imageCount": 12
+      }
+    },
+    {
+      "name": "viewport 880",
+      "passed": true,
+      "details": {
+        "screenshot": "areas-880.png",
+        "documentWidth": 880,
+        "documentHeight": 1788,
+        "imageCount": 12
+      }
+    },
+    {
+      "name": "viewport 1440",
+      "passed": true,
+      "details": {
+        "screenshot": "areas-1440.png",
+        "documentWidth": 1440,
+        "documentHeight": 2924,
+        "imageCount": 12
+      }
+    },
+    {
+      "name": "native mockup side-by-side comparison artifact",
+      "passed": true,
+      "details": {
+        "screenshot": "compare-desktop.png",
+        "reference": "reference.png",
+        "implementation": "areas-880.png",
+        "note": "Visual review required; geometry and image appearance are assessed separately."
+      }
+    },
+    {
+      "name": "area search unaccented filter Escape and service selection",
+      "passed": true,
+      "details": {
+        "query": "binh thuy",
+        "destination": "/services/thao-lap-may-lanh"
+      }
+    },
+    {
+      "name": "eight area cards and six nearby chips open working details",
+      "passed": true,
+      "details": {
+        "areas": [
+          "Quận Ninh Kiều",
+          "Quận Bình Thủy",
+          "Quận Cái Răng",
+          "Quận Ô Môn",
+          "Quận Thốt Nốt",
+          "Huyện Phong Điền",
+          "Huyện Thới Lai",
+          "Huyện Vĩnh Thạnh"
+        ],
+        "nearby": [
+          "Hậu Giang",
+          "Kiên Giang",
+          "Sóc Trăng",
+          "Vĩnh Long",
+          "Đồng Tháp",
+          "An Giang"
+        ]
+      }
+    },
+    {
+      "name": "booking anchor scrolls to form",
+      "passed": true,
+      "details": {
+        "scrollY": 888
+      }
+    },
+    {
+      "name": "booking required fields and invalid phone",
+      "passed": true,
+      "details": {
+        "controls": 4,
+        "serviceOptions": 10,
+        "postCount": 0
+      }
+    },
+    {
+      "name": "booking intercepted success pending and duplicate guard",
+      "passed": true,
+      "details": {
+        "simulatedPosts": 1,
+        "realPosts": 0,
+        "payload": {
+          "customerName": "Nguyễn Minh Kiểm Tra",
+          "customerPhone": "0939370109",
+          "serviceId": "ve-sinh-may-lanh",
+          "address": "123 Đường kiểm thử, Cần Thơ"
+        }
+      }
+    },
+    {
+      "name": "booking simulated server error retains values and permits retry",
+      "passed": true,
+      "details": {
+        "errorStatus": 503,
+        "retryStatus": 201,
+        "realPosts": 0
+      }
+    },
+    {
+      "name": "mobile menu Escape focus and navigation",
+      "passed": true,
+      "details": {
+        "destination": "/about"
+      }
+    },
+    {
+      "name": "existing Home and Services source and assets remain unchanged",
+      "passed": true,
+      "details": {
+        "checkedFiles": 150,
+        "changedExistingFiles": [],
+        "allowed": [
+          "apps/web/app/areas/page.tsx",
+          "apps/web/components/layout/site-chrome.tsx"
+        ]
+      }
+    },
+    {
+      "name": "home visual regression",
+      "passed": true,
+      "details": {
+        "width": 1024,
+        "height": 1536,
+        "viewport": {
+          "width": 1024,
+          "height": 900
+        },
+        "fullPage": true,
+        "differentPixels": 27861,
+        "differentPixelsOutsidePhotos": 0,
+        "maxChannelDifference": 30,
+        "screenshot": "home-after.png",
+        "note": "Raw photo raster differences are retained; source hashes, every computed style/box/image URL and pixels outside photos remain unchanged."
+      }
+    },
+    {
+      "name": "services visual regression",
+      "passed": true,
+      "details": {
+        "width": 941,
+        "height": 1672,
+        "viewport": {
+          "width": 941,
+          "height": 900
+        },
+        "fullPage": true,
+        "differentPixels": 0,
+        "differentPixelsOutsidePhotos": 0,
+        "maxChannelDifference": 0,
+        "screenshot": "services-after.png",
+        "note": "Raw photo raster differences are retained; source hashes, every computed style/box/image URL and pixels outside photos remain unchanged."
+      }
+    },
+    {
+      "name": "no runtime errors and no real booking requests",
+      "passed": true,
+      "details": {
+        "runtimeErrors": 0,
+        "consoleErrors": 0,
+        "expectedSimulatedServerErrors": 1,
+        "realBookingRequests": 0,
+        "simulatedBookingRequests": 3
+      }
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "expectedConsoleErrors": [
+    {
+      "url": "http://localhost:3000/areas",
+      "message": "Failed to load resource: the server responded with a status of 503 (Service Unavailable)",
+      "location": {
+        "url": "http://localhost:3000/api/bookings",
+        "line": 0,
+        "column": 0,
+        "lineNumber": 0,
+        "columnNumber": 0
+      }
+    }
+  ],
+  "reference": {
+    "width": 880,
+    "height": 1788
+  },
+  "homeComparison": {
+    "width": 1024,
+    "height": 1536,
+    "viewport": {
+      "width": 1024,
+      "height": 900
+    },
+    "fullPage": true,
+    "differentPixels": 27861,
+    "differentPixelsOutsidePhotos": 0,
+    "maxChannelDifference": 30,
+    "screenshot": "home-after.png",
+    "note": "Raw photo raster differences are retained; source hashes, every computed style/box/image URL and pixels outside photos remain unchanged."
+  },
+  "homeStyleIsolation": {
+    "removedRules": 148,
+    "checkedElements": 480,
+    "changedElements": []
+  },
+  "servicesComparison": {
+    "width": 941,
+    "height": 1672,
+    "viewport": {
+      "width": 941,
+      "height": 900
+    },
+    "fullPage": true,
+    "differentPixels": 0,
+    "differentPixelsOutsidePhotos": 0,
+    "maxChannelDifference": 0,
+    "screenshot": "services-after.png",
+    "note": "Raw photo raster differences are retained; source hashes, every computed style/box/image URL and pixels outside photos remain unchanged."
+  },
+  "servicesStyleIsolation": {
+    "removedRules": 148,
+    "checkedElements": 565,
+    "changedElements": []
+  },
+  "completedAt": "2026-10-03T01:53:15.232Z",
+  "passed": 17,
+  "failed": 0,
+  "interceptedBookings": [
+    {
+      "mode": "pending",
+      "url": "http://localhost:3000/api/bookings",
+      "payload": {
+        "customerName": "Nguyễn Minh Kiểm Tra",
+        "customerPhone": "0939370109",
+        "serviceId": "ve-sinh-may-lanh",
+        "address": "123 Đường kiểm thử, Cần Thơ"
+      }
+    },
+    {
+      "mode": "error",
+      "url": "http://localhost:3000/api/bookings",
+      "payload": {
+        "customerName": "Nguyễn Minh Kiểm Tra",
+        "customerPhone": "0939370109",
+        "serviceId": "ve-sinh-may-lanh",
+        "address": "123 Đường kiểm thử, Cần Thơ"
+      }
+    },
+    {
+      "mode": "success",
+      "url": "http://localhost:3000/api/bookings",
+      "payload": {
+        "customerName": "Nguyễn Minh Kiểm Tra",
+        "customerPhone": "0939370109",
+        "serviceId": "ve-sinh-may-lanh",
+        "address": "123 Đường kiểm thử, Cần Thơ"
+      }
+    }
+  ]
+}

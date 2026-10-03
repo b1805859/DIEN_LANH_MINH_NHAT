@@ -57,7 +57,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
     .filter((service): service is NonNullable<ReturnType<typeof findService>> => Boolean(service));
 
   return (
-    <main className="bg-[#f4f8fb] text-slate-950">
+    <main className="public-page bg-[#f4f8fb] text-slate-950">
       <section className="border-b border-slate-200 bg-white py-8 sm:py-10">
         <div className="container">
           <nav aria-label="Điều hướng">

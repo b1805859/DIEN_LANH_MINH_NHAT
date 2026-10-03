@@ -1,0 +1,16 @@
+{
+  "recordedAt": "2026-10-03T01:24:37.413Z",
+  "files": 150,
+  "home": {
+    "width": 1024,
+    "viewportHeight": 900
+  },
+  "services": {
+    "width": 941,
+    "viewportHeight": 900
+  },
+  "excluded": [
+    "apps/web/components/layout/site-chrome.tsx",
+    "apps/web/app/areas/page.tsx"
+  ]
+}

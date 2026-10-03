@@ -1,0 +1,2827 @@
+{
+  "baseURL": "http://127.0.0.1:3001",
+  "checks": [
+    {
+      "name": "existing assets, booking logic and unrelated page sources unchanged",
+      "passed": true,
+      "detail": {
+        "files": 15
+      }
+    },
+    {
+      "name": "responsive About 1920",
+      "passed": true,
+      "detail": {
+        "height": 4268,
+        "headingFont": "58px"
+      }
+    },
+    {
+      "name": "responsive About 1440",
+      "passed": true,
+      "detail": {
+        "height": 4267,
+        "headingFont": "57.6px"
+      }
+    },
+    {
+      "name": "responsive About 1280",
+      "passed": true,
+      "detail": {
+        "height": 4169,
+        "headingFont": "51.2px"
+      }
+    },
+    {
+      "name": "responsive About 1199",
+      "passed": true,
+      "detail": {
+        "height": 4317,
+        "headingFont": "48px"
+      }
+    },
+    {
+      "name": "responsive About 1024",
+      "passed": true,
+      "detail": {
+        "height": 4356,
+        "headingFont": "48px"
+      }
+    },
+    {
+      "name": "responsive About 960",
+      "passed": true,
+      "detail": {
+        "height": 5976,
+        "headingFont": "44px"
+      }
+    },
+    {
+      "name": "responsive About 768",
+      "passed": true,
+      "detail": {
+        "height": 5841,
+        "headingFont": "44px"
+      }
+    },
+    {
+      "name": "responsive About 760",
+      "passed": true,
+      "detail": {
+        "height": 6826,
+        "headingFont": "44px"
+      }
+    },
+    {
+      "name": "responsive About 600",
+      "passed": true,
+      "detail": {
+        "height": 6778,
+        "headingFont": "42px"
+      }
+    },
+    {
+      "name": "responsive About 390",
+      "passed": true,
+      "detail": {
+        "height": 7327,
+        "headingFont": "36px"
+      }
+    },
+    {
+      "name": "responsive About 320",
+      "passed": true,
+      "detail": {
+        "height": 7363,
+        "headingFont": "36px"
+      }
+    },
+    {
+      "name": "brand content, shared navigation, links and SEO",
+      "passed": true,
+      "detail": {
+        "menu": 5,
+        "commitments": 4,
+        "teamStandards": 3
+      }
+    },
+    {
+      "name": "booking anchor and accessible validation",
+      "passed": true,
+      "detail": {
+        "errors": 4,
+        "realPosts": 0
+      }
+    },
+    {
+      "name": "booking success presentation with mocked response",
+      "passed": true,
+      "detail": {
+        "mode": "success",
+        "realPosts": 0
+      }
+    },
+    {
+      "name": "booking error presentation with mocked response",
+      "passed": true,
+      "detail": {
+        "mode": "error",
+        "realPosts": 0
+      }
+    },
+    {
+      "name": "shared form appearance matches Services",
+      "passed": true,
+      "detail": {
+        "widths": [
+          1440,
+          768,
+          390
+        ]
+      }
+    },
+    {
+      "name": "shared mobile menu navigation",
+      "passed": true,
+      "detail": {
+        "active": "Về chúng tôi"
+      }
+    },
+    {
+      "name": "Home, Services, Contact and Areas retain their layouts/content",
+      "passed": true,
+      "detail": {
+        "routes": 4,
+        "viewports": 2
+      }
+    },
+    {
+      "name": "no uncaught errors or real booking requests",
+      "passed": true,
+      "detail": {
+        "errors": 0,
+        "realPosts": 0
+      }
+    }
+  ],
+  "layouts": [
+    {
+      "width": 1920,
+      "scrollWidth": 1920,
+      "height": 4268,
+      "hero": {
+        "x": 0,
+        "y": 84,
+        "width": 1920,
+        "height": 646,
+        "right": 1920,
+        "bottom": 730
+      },
+      "heroCopy": {
+        "x": 300,
+        "y": 233.953125,
+        "width": 590,
+        "height": 346.09375,
+        "right": 890,
+        "bottom": 580.046875
+      },
+      "actions": [
+        {
+          "x": 300,
+          "y": 528.046875,
+          "width": 196.84375,
+          "height": 52,
+          "right": 496.84375,
+          "bottom": 580.046875
+        },
+        {
+          "x": 512.84375,
+          "y": 528.046875,
+          "width": 201.4375,
+          "height": 52,
+          "right": 714.28125,
+          "bottom": 580.046875
+        }
+      ],
+      "intro": {
+        "x": 0,
+        "y": 730,
+        "width": 1920,
+        "height": 325.1875,
+        "right": 1920,
+        "bottom": 1055.1875
+      },
+      "introColumns": [
+        502.391,
+        753.609
+      ],
+      "introHeading": {
+        "x": 300,
+        "y": 818,
+        "width": 502.390625,
+        "height": 122.6875,
+        "right": 802.390625,
+        "bottom": 940.6875
+      },
+      "introCopy": {
+        "x": 866.390625,
+        "y": 818,
+        "width": 690,
+        "height": 197.1875,
+        "right": 1556.390625,
+        "bottom": 1015.1875
+      },
+      "values": [
+        {
+          "x": 300,
+          "y": 1055.1875,
+          "width": 424,
+          "height": 156,
+          "right": 724,
+          "bottom": 1211.1875,
+          "title": "Tận tâm",
+          "contentFits": true
+        },
+        {
+          "x": 748,
+          "y": 1055.1875,
+          "width": 424,
+          "height": 156,
+          "right": 1172,
+          "bottom": 1211.1875,
+          "title": "Chu đáo",
+          "contentFits": true
+        },
+        {
+          "x": 1196,
+          "y": 1055.1875,
+          "width": 424,
+          "height": 156,
+          "right": 1620,
+          "bottom": 1211.1875,
+          "title": "Phục vụ nhanh",
+          "contentFits": true
+        }
+      ],
+      "work": [
+        {
+          "x": 300,
+          "y": 2041.96875,
+          "width": 424,
+          "height": 421.25,
+          "right": 724,
+          "bottom": 2463.21875,
+          "title": "Kiểm tra & sửa chữa",
+          "contentFits": true
+        },
+        {
+          "x": 748,
+          "y": 2041.96875,
+          "width": 424,
+          "height": 421.25,
+          "right": 1172,
+          "bottom": 2463.21875,
+          "title": "Vệ sinh & bảo trì",
+          "contentFits": true
+        },
+        {
+          "x": 1196,
+          "y": 2041.96875,
+          "width": 424,
+          "height": 421.25,
+          "right": 1620,
+          "bottom": 2463.21875,
+          "title": "Lắp đặt tận nơi",
+          "contentFits": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 1041.09375,
+          "y": 3352.03125,
+          "width": 262.9375,
+          "height": 48,
+          "right": 1304.03125,
+          "bottom": 3400.03125,
+          "name": "customerName",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 1324.03125,
+          "y": 3352.03125,
+          "width": 262.953125,
+          "height": 48,
+          "right": 1586.984375,
+          "bottom": 3400.03125,
+          "name": "customerPhone",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 1041.09375,
+          "y": 3447.625,
+          "width": 545.890625,
+          "height": 48,
+          "right": 1586.984375,
+          "bottom": 3495.625,
+          "name": "serviceId",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 1041.09375,
+          "y": 3543.21875,
+          "width": 545.890625,
+          "height": 48,
+          "right": 1586.984375,
+          "bottom": 3591.21875,
+          "name": "address",
+          "radius": "10px",
+          "font": "16px"
+        }
+      ],
+      "form": {
+        "x": 1008.09375,
+        "y": 3241.796875,
+        "width": 611.890625,
+        "height": 454.421875,
+        "right": 1619.984375,
+        "bottom": 3696.21875
+      },
+      "formRadius": "16px",
+      "bookingCopy": {
+        "x": 300,
+        "y": 3284.46875,
+        "width": 430,
+        "height": 369.0625,
+        "right": 730,
+        "bottom": 3653.53125
+      },
+      "bookingImage": {
+        "x": 0,
+        "y": 3153.796875,
+        "width": 1920,
+        "height": 630.421875,
+        "right": 1920,
+        "bottom": 3784.21875
+      },
+      "images": [
+        {
+          "src": "/images/home-reference/hero.webp",
+          "alt": "Kỹ thuật viên trong đồng phục Minh Nhật chăm sóc máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/gallery-repair.webp",
+          "alt": "Minh họa kỹ thuật viên kiểm tra máy lạnh tại nhà",
+          "decoded": true
+        },
+        {
+          "src": "/images/services-reference/clean-air.webp",
+          "alt": "Minh họa vệ sinh dàn lạnh với túi hứng nước",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/install.webp",
+          "alt": "Minh họa kỹ thuật viên lắp đặt dàn nóng máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/areas/technician-booking.webp",
+          "alt": "Kỹ thuật viên Minh Nhật mặc đồng phục xanh, cầm dụng cụ trước xe dịch vụ",
+          "decoded": true
+        }
+      ],
+      "headingFont": "58px",
+      "sections": [
+        "about-hero-title",
+        "about-intro-title",
+        "about-values-title",
+        "about-story-title",
+        "about-work-title",
+        "about-team-title",
+        "Cam kết dịch vụ",
+        "areas-booking-title"
+      ]
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "height": 4267,
+      "hero": {
+        "x": 0,
+        "y": 84,
+        "width": 1440,
+        "height": 646,
+        "right": 1440,
+        "bottom": 730
+      },
+      "heroCopy": {
+        "x": 60,
+        "y": 234.40625,
+        "width": 590,
+        "height": 345.1875,
+        "right": 650,
+        "bottom": 579.59375
+      },
+      "actions": [
+        {
+          "x": 60,
+          "y": 527.59375,
+          "width": 196.84375,
+          "height": 52,
+          "right": 256.84375,
+          "bottom": 579.59375
+        },
+        {
+          "x": 272.84375,
+          "y": 527.59375,
+          "width": 201.4375,
+          "height": 52,
+          "right": 474.28125,
+          "bottom": 579.59375
+        }
+      ],
+      "intro": {
+        "x": 0,
+        "y": 730,
+        "width": 1440,
+        "height": 325.1875,
+        "right": 1440,
+        "bottom": 1055.1875
+      },
+      "introColumns": [
+        502.391,
+        753.609
+      ],
+      "introHeading": {
+        "x": 60,
+        "y": 818,
+        "width": 502.390625,
+        "height": 121.34375,
+        "right": 562.390625,
+        "bottom": 939.34375
+      },
+      "introCopy": {
+        "x": 626.390625,
+        "y": 818,
+        "width": 690,
+        "height": 197.1875,
+        "right": 1316.390625,
+        "bottom": 1015.1875
+      },
+      "values": [
+        {
+          "x": 60,
+          "y": 1055.1875,
+          "width": 424,
+          "height": 156,
+          "right": 484,
+          "bottom": 1211.1875,
+          "title": "Tận tâm",
+          "contentFits": true
+        },
+        {
+          "x": 508,
+          "y": 1055.1875,
+          "width": 424,
+          "height": 156,
+          "right": 932,
+          "bottom": 1211.1875,
+          "title": "Chu đáo",
+          "contentFits": true
+        },
+        {
+          "x": 956,
+          "y": 1055.1875,
+          "width": 424,
+          "height": 156,
+          "right": 1380,
+          "bottom": 1211.1875,
+          "title": "Phục vụ nhanh",
+          "contentFits": true
+        }
+      ],
+      "work": [
+        {
+          "x": 60,
+          "y": 2041.296875,
+          "width": 424,
+          "height": 421.25,
+          "right": 484,
+          "bottom": 2462.546875,
+          "title": "Kiểm tra & sửa chữa",
+          "contentFits": true
+        },
+        {
+          "x": 508,
+          "y": 2041.296875,
+          "width": 424,
+          "height": 421.25,
+          "right": 932,
+          "bottom": 2462.546875,
+          "title": "Vệ sinh & bảo trì",
+          "contentFits": true
+        },
+        {
+          "x": 956,
+          "y": 2041.296875,
+          "width": 424,
+          "height": 421.25,
+          "right": 1380,
+          "bottom": 2462.546875,
+          "title": "Lắp đặt tận nơi",
+          "contentFits": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 801.09375,
+          "y": 3351.359375,
+          "width": 262.9375,
+          "height": 48,
+          "right": 1064.03125,
+          "bottom": 3399.359375,
+          "name": "customerName",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 1084.03125,
+          "y": 3351.359375,
+          "width": 262.953125,
+          "height": 48,
+          "right": 1346.984375,
+          "bottom": 3399.359375,
+          "name": "customerPhone",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 801.09375,
+          "y": 3446.953125,
+          "width": 545.890625,
+          "height": 48,
+          "right": 1346.984375,
+          "bottom": 3494.953125,
+          "name": "serviceId",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 801.09375,
+          "y": 3542.546875,
+          "width": 545.890625,
+          "height": 48,
+          "right": 1346.984375,
+          "bottom": 3590.546875,
+          "name": "address",
+          "radius": "10px",
+          "font": "16px"
+        }
+      ],
+      "form": {
+        "x": 768.09375,
+        "y": 3241.125,
+        "width": 611.890625,
+        "height": 454.421875,
+        "right": 1379.984375,
+        "bottom": 3695.546875
+      },
+      "formRadius": "16px",
+      "bookingCopy": {
+        "x": 60,
+        "y": 3284.46875,
+        "width": 430,
+        "height": 367.71875,
+        "right": 490,
+        "bottom": 3652.1875
+      },
+      "bookingImage": {
+        "x": 0,
+        "y": 3153.125,
+        "width": 1440,
+        "height": 630.421875,
+        "right": 1440,
+        "bottom": 3783.546875
+      },
+      "images": [
+        {
+          "src": "/images/home-reference/hero.webp",
+          "alt": "Kỹ thuật viên trong đồng phục Minh Nhật chăm sóc máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/gallery-repair.webp",
+          "alt": "Minh họa kỹ thuật viên kiểm tra máy lạnh tại nhà",
+          "decoded": true
+        },
+        {
+          "src": "/images/services-reference/clean-air.webp",
+          "alt": "Minh họa vệ sinh dàn lạnh với túi hứng nước",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/install.webp",
+          "alt": "Minh họa kỹ thuật viên lắp đặt dàn nóng máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/areas/technician-booking.webp",
+          "alt": "Kỹ thuật viên Minh Nhật mặc đồng phục xanh, cầm dụng cụ trước xe dịch vụ",
+          "decoded": true
+        }
+      ],
+      "headingFont": "57.6px",
+      "sections": [
+        "about-hero-title",
+        "about-intro-title",
+        "about-values-title",
+        "about-story-title",
+        "about-work-title",
+        "about-team-title",
+        "Cam kết dịch vụ",
+        "areas-booking-title"
+      ]
+    },
+    {
+      "width": 1280,
+      "scrollWidth": 1280,
+      "height": 4169,
+      "hero": {
+        "x": 0,
+        "y": 84,
+        "width": 1280,
+        "height": 574.71875,
+        "right": 1280,
+        "bottom": 658.71875
+      },
+      "heroCopy": {
+        "x": 32,
+        "y": 205.921875,
+        "width": 583.671875,
+        "height": 330.875,
+        "right": 615.671875,
+        "bottom": 536.796875
+      },
+      "actions": [
+        {
+          "x": 32,
+          "y": 484.796875,
+          "width": 196.84375,
+          "height": 52,
+          "right": 228.84375,
+          "bottom": 536.796875
+        },
+        {
+          "x": 244.84375,
+          "y": 484.796875,
+          "width": 201.4375,
+          "height": 52,
+          "right": 446.28125,
+          "bottom": 536.796875
+        }
+      ],
+      "intro": {
+        "x": 0,
+        "y": 658.71875,
+        "width": 1280,
+        "height": 325.1875,
+        "right": 1280,
+        "bottom": 983.90625
+      },
+      "introColumns": [
+        460.797,
+        691.203
+      ],
+      "introHeading": {
+        "x": 32,
+        "y": 746.71875,
+        "width": 460.796875,
+        "height": 111.375,
+        "right": 492.796875,
+        "bottom": 858.09375
+      },
+      "introCopy": {
+        "x": 556.796875,
+        "y": 746.71875,
+        "width": 690,
+        "height": 197.1875,
+        "right": 1246.796875,
+        "bottom": 943.90625
+      },
+      "values": [
+        {
+          "x": 32,
+          "y": 983.90625,
+          "width": 389.328125,
+          "height": 156,
+          "right": 421.328125,
+          "bottom": 1139.90625,
+          "title": "Tận tâm",
+          "contentFits": true
+        },
+        {
+          "x": 445.328125,
+          "y": 983.90625,
+          "width": 389.328125,
+          "height": 156,
+          "right": 834.65625,
+          "bottom": 1139.90625,
+          "title": "Chu đáo",
+          "contentFits": true
+        },
+        {
+          "x": 858.65625,
+          "y": 983.90625,
+          "width": 389.34375,
+          "height": 156,
+          "right": 1248,
+          "bottom": 1139.90625,
+          "title": "Phục vụ nhanh",
+          "contentFits": true
+        }
+      ],
+      "work": [
+        {
+          "x": 32,
+          "y": 1965.03125,
+          "width": 389.328125,
+          "height": 398.890625,
+          "right": 421.328125,
+          "bottom": 2363.921875,
+          "title": "Kiểm tra & sửa chữa",
+          "contentFits": true
+        },
+        {
+          "x": 445.328125,
+          "y": 1965.03125,
+          "width": 389.328125,
+          "height": 398.890625,
+          "right": 834.65625,
+          "bottom": 2363.921875,
+          "title": "Vệ sinh & bảo trì",
+          "contentFits": true
+        },
+        {
+          "x": 858.65625,
+          "y": 1965.03125,
+          "width": 389.34375,
+          "height": 398.890625,
+          "right": 1248,
+          "bottom": 2363.921875,
+          "title": "Lắp đặt tận nơi",
+          "contentFits": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 719.765625,
+          "y": 3252.734375,
+          "width": 237.609375,
+          "height": 48,
+          "right": 957.375,
+          "bottom": 3300.734375,
+          "name": "customerName",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 977.375,
+          "y": 3252.734375,
+          "width": 237.625,
+          "height": 48,
+          "right": 1215,
+          "bottom": 3300.734375,
+          "name": "customerPhone",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 719.765625,
+          "y": 3348.328125,
+          "width": 495.234375,
+          "height": 48,
+          "right": 1215,
+          "bottom": 3396.328125,
+          "name": "serviceId",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 719.765625,
+          "y": 3443.921875,
+          "width": 495.234375,
+          "height": 48,
+          "right": 1215,
+          "bottom": 3491.921875,
+          "name": "address",
+          "radius": "10px",
+          "font": "16px"
+        }
+      ],
+      "form": {
+        "x": 686.765625,
+        "y": 3142.5,
+        "width": 561.234375,
+        "height": 454.421875,
+        "right": 1248,
+        "bottom": 3596.921875
+      },
+      "formRadius": "16px",
+      "bookingCopy": {
+        "x": 32,
+        "y": 3190.828125,
+        "width": 430,
+        "height": 357.75,
+        "right": 462,
+        "bottom": 3548.578125
+      },
+      "bookingImage": {
+        "x": 0,
+        "y": 3054.5,
+        "width": 1280,
+        "height": 630.421875,
+        "right": 1280,
+        "bottom": 3684.921875
+      },
+      "images": [
+        {
+          "src": "/images/home-reference/hero.webp",
+          "alt": "Kỹ thuật viên trong đồng phục Minh Nhật chăm sóc máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/gallery-repair.webp",
+          "alt": "Minh họa kỹ thuật viên kiểm tra máy lạnh tại nhà",
+          "decoded": true
+        },
+        {
+          "src": "/images/services-reference/clean-air.webp",
+          "alt": "Minh họa vệ sinh dàn lạnh với túi hứng nước",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/install.webp",
+          "alt": "Minh họa kỹ thuật viên lắp đặt dàn nóng máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/areas/technician-booking.webp",
+          "alt": "Kỹ thuật viên Minh Nhật mặc đồng phục xanh, cầm dụng cụ trước xe dịch vụ",
+          "decoded": true
+        }
+      ],
+      "headingFont": "51.2px",
+      "sections": [
+        "about-hero-title",
+        "about-intro-title",
+        "about-values-title",
+        "about-story-title",
+        "about-work-title",
+        "about-team-title",
+        "Cam kết dịch vụ",
+        "areas-booking-title"
+      ]
+    },
+    {
+      "width": 1199,
+      "scrollWidth": 1199,
+      "height": 4317,
+      "hero": {
+        "x": 0,
+        "y": 84,
+        "width": 1199,
+        "height": 560,
+        "right": 1199,
+        "bottom": 644
+      },
+      "heroCopy": {
+        "x": 28,
+        "y": 203.90625,
+        "width": 640.078125,
+        "height": 320.1875,
+        "right": 668.078125,
+        "bottom": 524.09375
+      },
+      "actions": [
+        {
+          "x": 28,
+          "y": 472.09375,
+          "width": 196.84375,
+          "height": 52,
+          "right": 224.84375,
+          "bottom": 524.09375
+        },
+        {
+          "x": 240.84375,
+          "y": 472.09375,
+          "width": 201.4375,
+          "height": 52,
+          "right": 442.28125,
+          "bottom": 524.09375
+        }
+      ],
+      "intro": {
+        "x": 0,
+        "y": 644,
+        "width": 1199,
+        "height": 309.1875,
+        "right": 1199,
+        "bottom": 953.1875
+      },
+      "introColumns": [
+        441.188,
+        661.812
+      ],
+      "introHeading": {
+        "x": 28,
+        "y": 716,
+        "width": 441.1875,
+        "height": 108.28125,
+        "right": 469.1875,
+        "bottom": 824.28125
+      },
+      "introCopy": {
+        "x": 509.1875,
+        "y": 716,
+        "width": 661.8125,
+        "height": 197.1875,
+        "right": 1171,
+        "bottom": 913.1875
+      },
+      "values": [
+        {
+          "x": 28,
+          "y": 953.1875,
+          "width": 367.65625,
+          "height": 182.5,
+          "right": 395.65625,
+          "bottom": 1135.6875,
+          "title": "Tận tâm",
+          "contentFits": true
+        },
+        {
+          "x": 415.65625,
+          "y": 953.1875,
+          "width": 367.671875,
+          "height": 182.5,
+          "right": 783.328125,
+          "bottom": 1135.6875,
+          "title": "Chu đáo",
+          "contentFits": true
+        },
+        {
+          "x": 803.328125,
+          "y": 953.1875,
+          "width": 367.65625,
+          "height": 182.5,
+          "right": 1170.984375,
+          "bottom": 1135.6875,
+          "title": "Phục vụ nhanh",
+          "contentFits": true
+        }
+      ],
+      "work": [
+        {
+          "x": 28,
+          "y": 1911.265625,
+          "width": 365,
+          "height": 379.1875,
+          "right": 393,
+          "bottom": 2290.453125,
+          "title": "Kiểm tra & sửa chữa",
+          "contentFits": true
+        },
+        {
+          "x": 417,
+          "y": 1911.265625,
+          "width": 365,
+          "height": 379.1875,
+          "right": 782,
+          "bottom": 2290.453125,
+          "title": "Vệ sinh & bảo trì",
+          "contentFits": true
+        },
+        {
+          "x": 806,
+          "y": 1911.265625,
+          "width": 365,
+          "height": 379.1875,
+          "right": 1171,
+          "bottom": 2290.453125,
+          "title": "Lắp đặt tận nơi",
+          "contentFits": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 630.9375,
+          "y": 3189.265625,
+          "width": 245.53125,
+          "height": 48,
+          "right": 876.46875,
+          "bottom": 3237.265625,
+          "name": "customerName",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 896.46875,
+          "y": 3189.265625,
+          "width": 245.53125,
+          "height": 48,
+          "right": 1142,
+          "bottom": 3237.265625,
+          "name": "customerPhone",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 630.9375,
+          "y": 3284.859375,
+          "width": 511.0625,
+          "height": 48,
+          "right": 1142,
+          "bottom": 3332.859375,
+          "name": "serviceId",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 630.9375,
+          "y": 3380.453125,
+          "width": 511.0625,
+          "height": 48,
+          "right": 1142,
+          "bottom": 3428.453125,
+          "name": "address",
+          "radius": "10px",
+          "font": "16px"
+        }
+      ],
+      "form": {
+        "x": 601.9375,
+        "y": 3083.03125,
+        "width": 569.0625,
+        "height": 446.421875,
+        "right": 1171,
+        "bottom": 3529.453125
+      },
+      "formRadius": "16px",
+      "bookingCopy": {
+        "x": 28,
+        "y": 3128.90625,
+        "width": 430,
+        "height": 354.65625,
+        "right": 458,
+        "bottom": 3483.5625
+      },
+      "bookingImage": {
+        "x": 0,
+        "y": 3011.03125,
+        "width": 1199,
+        "height": 590.421875,
+        "right": 1199,
+        "bottom": 3601.453125
+      },
+      "images": [
+        {
+          "src": "/images/home-reference/hero.webp",
+          "alt": "Kỹ thuật viên trong đồng phục Minh Nhật chăm sóc máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/gallery-repair.webp",
+          "alt": "Minh họa kỹ thuật viên kiểm tra máy lạnh tại nhà",
+          "decoded": true
+        },
+        {
+          "src": "/images/services-reference/clean-air.webp",
+          "alt": "Minh họa vệ sinh dàn lạnh với túi hứng nước",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/install.webp",
+          "alt": "Minh họa kỹ thuật viên lắp đặt dàn nóng máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/areas/technician-booking.webp",
+          "alt": "Kỹ thuật viên Minh Nhật mặc đồng phục xanh, cầm dụng cụ trước xe dịch vụ",
+          "decoded": true
+        }
+      ],
+      "headingFont": "48px",
+      "sections": [
+        "about-hero-title",
+        "about-intro-title",
+        "about-values-title",
+        "about-story-title",
+        "about-work-title",
+        "about-team-title",
+        "Cam kết dịch vụ",
+        "areas-booking-title"
+      ]
+    },
+    {
+      "width": 1024,
+      "scrollWidth": 1024,
+      "height": 4356,
+      "hero": {
+        "x": 0,
+        "y": 84,
+        "width": 1024,
+        "height": 560,
+        "right": 1024,
+        "bottom": 644
+      },
+      "heroCopy": {
+        "x": 28,
+        "y": 203.90625,
+        "width": 542.078125,
+        "height": 320.1875,
+        "right": 570.078125,
+        "bottom": 524.09375
+      },
+      "actions": [
+        {
+          "x": 28,
+          "y": 472.09375,
+          "width": 196.84375,
+          "height": 52,
+          "right": 224.84375,
+          "bottom": 524.09375
+        },
+        {
+          "x": 240.84375,
+          "y": 472.09375,
+          "width": 201.4375,
+          "height": 52,
+          "right": 442.28125,
+          "bottom": 524.09375
+        }
+      ],
+      "intro": {
+        "x": 0,
+        "y": 644,
+        "width": 1024,
+        "height": 309.1875,
+        "right": 1024,
+        "bottom": 953.1875
+      },
+      "introColumns": [
+        371.188,
+        556.812
+      ],
+      "introHeading": {
+        "x": 28,
+        "y": 716,
+        "width": 371.1875,
+        "height": 108.28125,
+        "right": 399.1875,
+        "bottom": 824.28125
+      },
+      "introCopy": {
+        "x": 439.1875,
+        "y": 716,
+        "width": 556.8125,
+        "height": 197.1875,
+        "right": 996,
+        "bottom": 913.1875
+      },
+      "values": [
+        {
+          "x": 28,
+          "y": 953.1875,
+          "width": 309.328125,
+          "height": 182.5,
+          "right": 337.328125,
+          "bottom": 1135.6875,
+          "title": "Tận tâm",
+          "contentFits": true
+        },
+        {
+          "x": 357.328125,
+          "y": 953.1875,
+          "width": 309.328125,
+          "height": 182.5,
+          "right": 666.65625,
+          "bottom": 1135.6875,
+          "title": "Chu đáo",
+          "contentFits": true
+        },
+        {
+          "x": 686.65625,
+          "y": 953.1875,
+          "width": 309.34375,
+          "height": 182.5,
+          "right": 996,
+          "bottom": 1135.6875,
+          "title": "Phục vụ nhanh",
+          "contentFits": true
+        }
+      ],
+      "work": [
+        {
+          "x": 28,
+          "y": 1987.765625,
+          "width": 306.65625,
+          "height": 341.5625,
+          "right": 334.65625,
+          "bottom": 2329.328125,
+          "title": "Kiểm tra & sửa chữa",
+          "contentFits": true
+        },
+        {
+          "x": 358.65625,
+          "y": 1987.765625,
+          "width": 306.671875,
+          "height": 341.5625,
+          "right": 665.328125,
+          "bottom": 2329.328125,
+          "title": "Vệ sinh & bảo trì",
+          "contentFits": true
+        },
+        {
+          "x": 689.328125,
+          "y": 1987.765625,
+          "width": 306.65625,
+          "height": 341.5625,
+          "right": 995.984375,
+          "bottom": 2329.328125,
+          "title": "Lắp đặt tận nơi",
+          "contentFits": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 545.578125,
+          "y": 3228.140625,
+          "width": 200.703125,
+          "height": 48,
+          "right": 746.28125,
+          "bottom": 3276.140625,
+          "name": "customerName",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 766.28125,
+          "y": 3228.140625,
+          "width": 200.71875,
+          "height": 48,
+          "right": 967,
+          "bottom": 3276.140625,
+          "name": "customerPhone",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 545.578125,
+          "y": 3323.734375,
+          "width": 421.421875,
+          "height": 48,
+          "right": 967,
+          "bottom": 3371.734375,
+          "name": "serviceId",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 545.578125,
+          "y": 3419.328125,
+          "width": 421.421875,
+          "height": 48,
+          "right": 967,
+          "bottom": 3467.328125,
+          "name": "address",
+          "radius": "10px",
+          "font": "16px"
+        }
+      ],
+      "form": {
+        "x": 516.578125,
+        "y": 3121.90625,
+        "width": 479.421875,
+        "height": 446.421875,
+        "right": 996,
+        "bottom": 3568.328125
+      },
+      "formRadius": "16px",
+      "bookingCopy": {
+        "x": 28,
+        "y": 3167.78125,
+        "width": 430,
+        "height": 354.65625,
+        "right": 458,
+        "bottom": 3522.4375
+      },
+      "bookingImage": {
+        "x": 0,
+        "y": 3049.90625,
+        "width": 1024,
+        "height": 590.421875,
+        "right": 1024,
+        "bottom": 3640.328125
+      },
+      "images": [
+        {
+          "src": "/images/home-reference/hero.webp",
+          "alt": "Kỹ thuật viên trong đồng phục Minh Nhật chăm sóc máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/gallery-repair.webp",
+          "alt": "Minh họa kỹ thuật viên kiểm tra máy lạnh tại nhà",
+          "decoded": true
+        },
+        {
+          "src": "/images/services-reference/clean-air.webp",
+          "alt": "Minh họa vệ sinh dàn lạnh với túi hứng nước",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/install.webp",
+          "alt": "Minh họa kỹ thuật viên lắp đặt dàn nóng máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/areas/technician-booking.webp",
+          "alt": "Kỹ thuật viên Minh Nhật mặc đồng phục xanh, cầm dụng cụ trước xe dịch vụ",
+          "decoded": true
+        }
+      ],
+      "headingFont": "48px",
+      "sections": [
+        "about-hero-title",
+        "about-intro-title",
+        "about-values-title",
+        "about-story-title",
+        "about-work-title",
+        "about-team-title",
+        "Cam kết dịch vụ",
+        "areas-booking-title"
+      ]
+    },
+    {
+      "width": 960,
+      "scrollWidth": 960,
+      "height": 5976,
+      "hero": {
+        "x": 0,
+        "y": 84,
+        "width": 960,
+        "height": 560,
+        "right": 960,
+        "bottom": 644
+      },
+      "heroCopy": {
+        "x": 28,
+        "y": 208.390625,
+        "width": 578.546875,
+        "height": 311.21875,
+        "right": 606.546875,
+        "bottom": 519.609375
+      },
+      "actions": [
+        {
+          "x": 28,
+          "y": 467.609375,
+          "width": 188.84375,
+          "height": 52,
+          "right": 216.84375,
+          "bottom": 519.609375
+        },
+        {
+          "x": 232.84375,
+          "y": 467.609375,
+          "width": 193.4375,
+          "height": 52,
+          "right": 426.28125,
+          "bottom": 519.609375
+        }
+      ],
+      "intro": {
+        "x": 0,
+        "y": 644,
+        "width": 960,
+        "height": 407.078125,
+        "right": 960,
+        "bottom": 1051.078125
+      },
+      "introColumns": [
+        904
+      ],
+      "introHeading": {
+        "x": 28,
+        "y": 716,
+        "width": 904,
+        "height": 69.890625,
+        "right": 932,
+        "bottom": 785.890625
+      },
+      "introCopy": {
+        "x": 28,
+        "y": 813.890625,
+        "width": 690,
+        "height": 197.1875,
+        "right": 718,
+        "bottom": 1011.078125
+      },
+      "values": [
+        {
+          "x": 28,
+          "y": 1051.078125,
+          "width": 288,
+          "height": 182.5,
+          "right": 316,
+          "bottom": 1233.578125,
+          "title": "Tận tâm",
+          "contentFits": true
+        },
+        {
+          "x": 336,
+          "y": 1051.078125,
+          "width": 288,
+          "height": 182.5,
+          "right": 624,
+          "bottom": 1233.578125,
+          "title": "Chu đáo",
+          "contentFits": true
+        },
+        {
+          "x": 644,
+          "y": 1051.078125,
+          "width": 288,
+          "height": 182.5,
+          "right": 932,
+          "bottom": 1233.578125,
+          "title": "Phục vụ nhanh",
+          "contentFits": true
+        }
+      ],
+      "work": [
+        {
+          "x": 28,
+          "y": 2272.234375,
+          "width": 440,
+          "height": 510,
+          "right": 468,
+          "bottom": 2782.234375,
+          "title": "Kiểm tra & sửa chữa",
+          "contentFits": true
+        },
+        {
+          "x": 492,
+          "y": 2272.234375,
+          "width": 440,
+          "height": 510,
+          "right": 932,
+          "bottom": 2782.234375,
+          "title": "Vệ sinh & bảo trì",
+          "contentFits": true
+        },
+        {
+          "x": 28,
+          "y": 2806.234375,
+          "width": 904,
+          "height": 510,
+          "right": 932,
+          "bottom": 3316.234375,
+          "title": "Lắp đặt tận nơi",
+          "contentFits": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 57,
+          "y": 4848.53125,
+          "width": 413,
+          "height": 48,
+          "right": 470,
+          "bottom": 4896.53125,
+          "name": "customerName",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 490,
+          "y": 4848.53125,
+          "width": 413,
+          "height": 48,
+          "right": 903,
+          "bottom": 4896.53125,
+          "name": "customerPhone",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 57,
+          "y": 4944.125,
+          "width": 846,
+          "height": 48,
+          "right": 903,
+          "bottom": 4992.125,
+          "name": "serviceId",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 57,
+          "y": 5039.71875,
+          "width": 846,
+          "height": 48,
+          "right": 903,
+          "bottom": 5087.71875,
+          "name": "address",
+          "radius": "10px",
+          "font": "16px"
+        }
+      ],
+      "form": {
+        "x": 28,
+        "y": 4742.296875,
+        "width": 904,
+        "height": 446.421875,
+        "right": 932,
+        "bottom": 5188.71875
+      },
+      "formRadius": "16px",
+      "bookingCopy": {
+        "x": 28,
+        "y": 4296.296875,
+        "width": 432,
+        "height": 410,
+        "right": 460,
+        "bottom": 4706.296875
+      },
+      "bookingImage": {
+        "x": 480,
+        "y": 4296.296875,
+        "width": 452,
+        "height": 410,
+        "right": 932,
+        "bottom": 4706.296875
+      },
+      "images": [
+        {
+          "src": "/images/home-reference/hero.webp",
+          "alt": "Kỹ thuật viên trong đồng phục Minh Nhật chăm sóc máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/gallery-repair.webp",
+          "alt": "Minh họa kỹ thuật viên kiểm tra máy lạnh tại nhà",
+          "decoded": true
+        },
+        {
+          "src": "/images/services-reference/clean-air.webp",
+          "alt": "Minh họa vệ sinh dàn lạnh với túi hứng nước",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/install.webp",
+          "alt": "Minh họa kỹ thuật viên lắp đặt dàn nóng máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/areas/technician-booking.webp",
+          "alt": "Kỹ thuật viên Minh Nhật mặc đồng phục xanh, cầm dụng cụ trước xe dịch vụ",
+          "decoded": true
+        }
+      ],
+      "headingFont": "44px",
+      "sections": [
+        "about-hero-title",
+        "about-intro-title",
+        "about-values-title",
+        "about-story-title",
+        "about-work-title",
+        "about-team-title",
+        "Cam kết dịch vụ",
+        "areas-booking-title"
+      ]
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768,
+      "height": 5841,
+      "hero": {
+        "x": 0,
+        "y": 84,
+        "width": 768,
+        "height": 560,
+        "right": 768,
+        "bottom": 644
+      },
+      "heroCopy": {
+        "x": 28,
+        "y": 208.390625,
+        "width": 455.671875,
+        "height": 311.21875,
+        "right": 483.671875,
+        "bottom": 519.609375
+      },
+      "actions": [
+        {
+          "x": 28,
+          "y": 467.609375,
+          "width": 188.84375,
+          "height": 52,
+          "right": 216.84375,
+          "bottom": 519.609375
+        },
+        {
+          "x": 232.84375,
+          "y": 467.609375,
+          "width": 193.4375,
+          "height": 52,
+          "right": 426.28125,
+          "bottom": 519.609375
+        }
+      ],
+      "intro": {
+        "x": 0,
+        "y": 644,
+        "width": 768,
+        "height": 407.078125,
+        "right": 768,
+        "bottom": 1051.078125
+      },
+      "introColumns": [
+        712
+      ],
+      "introHeading": {
+        "x": 28,
+        "y": 716,
+        "width": 712,
+        "height": 69.890625,
+        "right": 740,
+        "bottom": 785.890625
+      },
+      "introCopy": {
+        "x": 28,
+        "y": 813.890625,
+        "width": 690,
+        "height": 197.1875,
+        "right": 718,
+        "bottom": 1011.078125
+      },
+      "values": [
+        {
+          "x": 28,
+          "y": 1051.078125,
+          "width": 224,
+          "height": 208,
+          "right": 252,
+          "bottom": 1259.078125,
+          "title": "Tận tâm",
+          "contentFits": true
+        },
+        {
+          "x": 272,
+          "y": 1051.078125,
+          "width": 224,
+          "height": 208,
+          "right": 496,
+          "bottom": 1259.078125,
+          "title": "Chu đáo",
+          "contentFits": true
+        },
+        {
+          "x": 516,
+          "y": 1051.078125,
+          "width": 224,
+          "height": 208,
+          "right": 740,
+          "bottom": 1259.078125,
+          "title": "Phục vụ nhanh",
+          "contentFits": true
+        }
+      ],
+      "work": [
+        {
+          "x": 28,
+          "y": 2297.734375,
+          "width": 344,
+          "height": 430,
+          "right": 372,
+          "bottom": 2727.734375,
+          "title": "Kiểm tra & sửa chữa",
+          "contentFits": true
+        },
+        {
+          "x": 396,
+          "y": 2297.734375,
+          "width": 344,
+          "height": 430,
+          "right": 740,
+          "bottom": 2727.734375,
+          "title": "Vệ sinh & bảo trì",
+          "contentFits": true
+        },
+        {
+          "x": 28,
+          "y": 2751.734375,
+          "width": 712,
+          "height": 430,
+          "right": 740,
+          "bottom": 3181.734375,
+          "title": "Lắp đặt tận nơi",
+          "contentFits": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 57,
+          "y": 4714.03125,
+          "width": 317,
+          "height": 48,
+          "right": 374,
+          "bottom": 4762.03125,
+          "name": "customerName",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 394,
+          "y": 4714.03125,
+          "width": 317,
+          "height": 48,
+          "right": 711,
+          "bottom": 4762.03125,
+          "name": "customerPhone",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 57,
+          "y": 4809.625,
+          "width": 654,
+          "height": 48,
+          "right": 711,
+          "bottom": 4857.625,
+          "name": "serviceId",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 57,
+          "y": 4905.21875,
+          "width": 654,
+          "height": 48,
+          "right": 711,
+          "bottom": 4953.21875,
+          "name": "address",
+          "radius": "10px",
+          "font": "16px"
+        }
+      ],
+      "form": {
+        "x": 28,
+        "y": 4607.796875,
+        "width": 712,
+        "height": 446.421875,
+        "right": 740,
+        "bottom": 5054.21875
+      },
+      "formRadius": "16px",
+      "bookingCopy": {
+        "x": 28,
+        "y": 4161.796875,
+        "width": 336,
+        "height": 410,
+        "right": 364,
+        "bottom": 4571.796875
+      },
+      "bookingImage": {
+        "x": 384,
+        "y": 4161.796875,
+        "width": 356,
+        "height": 410,
+        "right": 740,
+        "bottom": 4571.796875
+      },
+      "images": [
+        {
+          "src": "/images/home-reference/hero.webp",
+          "alt": "Kỹ thuật viên trong đồng phục Minh Nhật chăm sóc máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/gallery-repair.webp",
+          "alt": "Minh họa kỹ thuật viên kiểm tra máy lạnh tại nhà",
+          "decoded": true
+        },
+        {
+          "src": "/images/services-reference/clean-air.webp",
+          "alt": "Minh họa vệ sinh dàn lạnh với túi hứng nước",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/install.webp",
+          "alt": "Minh họa kỹ thuật viên lắp đặt dàn nóng máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/areas/technician-booking.webp",
+          "alt": "Kỹ thuật viên Minh Nhật mặc đồng phục xanh, cầm dụng cụ trước xe dịch vụ",
+          "decoded": true
+        }
+      ],
+      "headingFont": "44px",
+      "sections": [
+        "about-hero-title",
+        "about-intro-title",
+        "about-values-title",
+        "about-story-title",
+        "about-work-title",
+        "about-team-title",
+        "Cam kết dịch vụ",
+        "areas-booking-title"
+      ]
+    },
+    {
+      "width": 760,
+      "scrollWidth": 760,
+      "height": 6826,
+      "hero": {
+        "x": 0,
+        "y": 76,
+        "width": 760,
+        "height": 560,
+        "right": 760,
+        "bottom": 636
+      },
+      "heroCopy": {
+        "x": 24,
+        "y": 205.390625,
+        "width": 530,
+        "height": 301.21875,
+        "right": 554,
+        "bottom": 506.609375
+      },
+      "actions": [
+        {
+          "x": 24,
+          "y": 454.609375,
+          "width": 184.84375,
+          "height": 52,
+          "right": 208.84375,
+          "bottom": 506.609375
+        },
+        {
+          "x": 220.84375,
+          "y": 454.609375,
+          "width": 189.4375,
+          "height": 52,
+          "right": 410.28125,
+          "bottom": 506.609375
+        }
+      ],
+      "intro": {
+        "x": 0,
+        "y": 636,
+        "width": 760,
+        "height": 390.1875,
+        "right": 760,
+        "bottom": 1026.1875
+      },
+      "introColumns": [
+        712
+      ],
+      "introHeading": {
+        "x": 24,
+        "y": 692,
+        "width": 712,
+        "height": 69,
+        "right": 736,
+        "bottom": 761
+      },
+      "introCopy": {
+        "x": 24,
+        "y": 789,
+        "width": 690,
+        "height": 197.1875,
+        "right": 714,
+        "bottom": 986.1875
+      },
+      "values": [
+        {
+          "x": 24,
+          "y": 1026.1875,
+          "width": 712,
+          "height": 111.140625,
+          "right": 736,
+          "bottom": 1137.328125,
+          "title": "Tận tâm",
+          "contentFits": true
+        },
+        {
+          "x": 24,
+          "y": 1153.328125,
+          "width": 712,
+          "height": 111.140625,
+          "right": 736,
+          "bottom": 1264.46875,
+          "title": "Chu đáo",
+          "contentFits": true
+        },
+        {
+          "x": 24,
+          "y": 1280.46875,
+          "width": 712,
+          "height": 111.140625,
+          "right": 736,
+          "bottom": 1391.609375,
+          "title": "Phục vụ nhanh",
+          "contentFits": true
+        }
+      ],
+      "work": [
+        {
+          "x": 24,
+          "y": 2420.484375,
+          "width": 712,
+          "height": 573.703125,
+          "right": 736,
+          "bottom": 2994.1875,
+          "title": "Kiểm tra & sửa chữa",
+          "contentFits": true
+        },
+        {
+          "x": 24,
+          "y": 3018.1875,
+          "width": 712,
+          "height": 573.703125,
+          "right": 736,
+          "bottom": 3591.890625,
+          "title": "Vệ sinh & bảo trì",
+          "contentFits": true
+        },
+        {
+          "x": 24,
+          "y": 3615.890625,
+          "width": 712,
+          "height": 573.703125,
+          "right": 736,
+          "bottom": 4189.59375,
+          "title": "Lắp đặt tận nơi",
+          "contentFits": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 49,
+          "y": 5573.21875,
+          "width": 321,
+          "height": 48,
+          "right": 370,
+          "bottom": 5621.21875,
+          "name": "customerName",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 390,
+          "y": 5573.21875,
+          "width": 321,
+          "height": 48,
+          "right": 711,
+          "bottom": 5621.21875,
+          "name": "customerPhone",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 49,
+          "y": 5668.8125,
+          "width": 662,
+          "height": 48,
+          "right": 711,
+          "bottom": 5716.8125,
+          "name": "serviceId",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 49,
+          "y": 5764.40625,
+          "width": 662,
+          "height": 48,
+          "right": 711,
+          "bottom": 5812.40625,
+          "name": "address",
+          "radius": "10px",
+          "font": "16px"
+        }
+      ],
+      "form": {
+        "x": 24,
+        "y": 5470.984375,
+        "width": 712,
+        "height": 438.421875,
+        "right": 736,
+        "bottom": 5909.40625
+      },
+      "formRadius": "16px",
+      "bookingCopy": {
+        "x": 24,
+        "y": 5082.109375,
+        "width": 450,
+        "height": 352.875,
+        "right": 474,
+        "bottom": 5434.984375
+      },
+      "bookingImage": {
+        "x": 0,
+        "y": 5026.109375,
+        "width": 760,
+        "height": 345,
+        "right": 760,
+        "bottom": 5371.109375
+      },
+      "images": [
+        {
+          "src": "/images/home-reference/hero.webp",
+          "alt": "Kỹ thuật viên trong đồng phục Minh Nhật chăm sóc máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/gallery-repair.webp",
+          "alt": "Minh họa kỹ thuật viên kiểm tra máy lạnh tại nhà",
+          "decoded": true
+        },
+        {
+          "src": "/images/services-reference/clean-air.webp",
+          "alt": "Minh họa vệ sinh dàn lạnh với túi hứng nước",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/install.webp",
+          "alt": "Minh họa kỹ thuật viên lắp đặt dàn nóng máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/areas/technician-booking.webp",
+          "alt": "Kỹ thuật viên Minh Nhật mặc đồng phục xanh, cầm dụng cụ trước xe dịch vụ",
+          "decoded": true
+        }
+      ],
+      "headingFont": "44px",
+      "sections": [
+        "about-hero-title",
+        "about-intro-title",
+        "about-values-title",
+        "about-story-title",
+        "about-work-title",
+        "about-team-title",
+        "Cam kết dịch vụ",
+        "areas-booking-title"
+      ]
+    },
+    {
+      "width": 600,
+      "scrollWidth": 600,
+      "height": 6778,
+      "hero": {
+        "x": 0,
+        "y": 76,
+        "width": 600,
+        "height": 560,
+        "right": 600,
+        "bottom": 636
+      },
+      "heroCopy": {
+        "x": 24,
+        "y": 175.625,
+        "width": 530,
+        "height": 360.75,
+        "right": 554,
+        "bottom": 536.375
+      },
+      "actions": [
+        {
+          "x": 24,
+          "y": 420.375,
+          "width": 380,
+          "height": 52,
+          "right": 404,
+          "bottom": 472.375
+        },
+        {
+          "x": 24,
+          "y": 484.375,
+          "width": 380,
+          "height": 52,
+          "right": 404,
+          "bottom": 536.375
+        }
+      ],
+      "intro": {
+        "x": 0,
+        "y": 636,
+        "width": 600,
+        "height": 390.1875,
+        "right": 600,
+        "bottom": 1026.1875
+      },
+      "introColumns": [
+        552
+      ],
+      "introHeading": {
+        "x": 24,
+        "y": 692,
+        "width": 552,
+        "height": 69,
+        "right": 576,
+        "bottom": 761
+      },
+      "introCopy": {
+        "x": 24,
+        "y": 789,
+        "width": 552,
+        "height": 197.1875,
+        "right": 576,
+        "bottom": 986.1875
+      },
+      "values": [
+        {
+          "x": 24,
+          "y": 1026.1875,
+          "width": 552,
+          "height": 111.140625,
+          "right": 576,
+          "bottom": 1137.328125,
+          "title": "Tận tâm",
+          "contentFits": true
+        },
+        {
+          "x": 24,
+          "y": 1153.328125,
+          "width": 552,
+          "height": 111.140625,
+          "right": 576,
+          "bottom": 1264.46875,
+          "title": "Chu đáo",
+          "contentFits": true
+        },
+        {
+          "x": 24,
+          "y": 1280.46875,
+          "width": 552,
+          "height": 111.140625,
+          "right": 576,
+          "bottom": 1391.609375,
+          "title": "Phục vụ nhanh",
+          "contentFits": true
+        }
+      ],
+      "work": [
+        {
+          "x": 24,
+          "y": 2500.28125,
+          "width": 552,
+          "height": 470.46875,
+          "right": 576,
+          "bottom": 2970.75,
+          "title": "Kiểm tra & sửa chữa",
+          "contentFits": true
+        },
+        {
+          "x": 24,
+          "y": 2994.75,
+          "width": 552,
+          "height": 470.46875,
+          "right": 576,
+          "bottom": 3465.21875,
+          "title": "Vệ sinh & bảo trì",
+          "contentFits": true
+        },
+        {
+          "x": 24,
+          "y": 3489.21875,
+          "width": 552,
+          "height": 470.46875,
+          "right": 576,
+          "bottom": 3959.6875,
+          "title": "Lắp đặt tận nơi",
+          "contentFits": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 49,
+          "y": 5343.3125,
+          "width": 241,
+          "height": 48,
+          "right": 290,
+          "bottom": 5391.3125,
+          "name": "customerName",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 310,
+          "y": 5343.3125,
+          "width": 241,
+          "height": 48,
+          "right": 551,
+          "bottom": 5391.3125,
+          "name": "customerPhone",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 49,
+          "y": 5438.90625,
+          "width": 502,
+          "height": 48,
+          "right": 551,
+          "bottom": 5486.90625,
+          "name": "serviceId",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 49,
+          "y": 5534.5,
+          "width": 502,
+          "height": 48,
+          "right": 551,
+          "bottom": 5582.5,
+          "name": "address",
+          "radius": "10px",
+          "font": "16px"
+        }
+      ],
+      "form": {
+        "x": 24,
+        "y": 5241.078125,
+        "width": 552,
+        "height": 438.421875,
+        "right": 576,
+        "bottom": 5679.5
+      },
+      "formRadius": "16px",
+      "bookingCopy": {
+        "x": 24,
+        "y": 4852.203125,
+        "width": 450,
+        "height": 352.875,
+        "right": 474,
+        "bottom": 5205.078125
+      },
+      "bookingImage": {
+        "x": 0,
+        "y": 4796.203125,
+        "width": 600,
+        "height": 345,
+        "right": 600,
+        "bottom": 5141.203125
+      },
+      "images": [
+        {
+          "src": "/images/home-reference/hero.webp",
+          "alt": "Kỹ thuật viên trong đồng phục Minh Nhật chăm sóc máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/gallery-repair.webp",
+          "alt": "Minh họa kỹ thuật viên kiểm tra máy lạnh tại nhà",
+          "decoded": true
+        },
+        {
+          "src": "/images/services-reference/clean-air.webp",
+          "alt": "Minh họa vệ sinh dàn lạnh với túi hứng nước",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/install.webp",
+          "alt": "Minh họa kỹ thuật viên lắp đặt dàn nóng máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/areas/technician-booking.webp",
+          "alt": "Kỹ thuật viên Minh Nhật mặc đồng phục xanh, cầm dụng cụ trước xe dịch vụ",
+          "decoded": true
+        }
+      ],
+      "headingFont": "42px",
+      "sections": [
+        "about-hero-title",
+        "about-intro-title",
+        "about-values-title",
+        "about-story-title",
+        "about-work-title",
+        "about-team-title",
+        "Cam kết dịch vụ",
+        "areas-booking-title"
+      ]
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "height": 7327,
+      "hero": {
+        "x": 0,
+        "y": 76,
+        "width": 390,
+        "height": 560,
+        "right": 390,
+        "bottom": 636
+      },
+      "heroCopy": {
+        "x": 24,
+        "y": 182.34375,
+        "width": 342,
+        "height": 347.3125,
+        "right": 366,
+        "bottom": 529.65625
+      },
+      "actions": [
+        {
+          "x": 24,
+          "y": 413.65625,
+          "width": 342,
+          "height": 52,
+          "right": 366,
+          "bottom": 465.65625
+        },
+        {
+          "x": 24,
+          "y": 477.65625,
+          "width": 342,
+          "height": 52,
+          "right": 366,
+          "bottom": 529.65625
+        }
+      ],
+      "intro": {
+        "x": 0,
+        "y": 636,
+        "width": 390,
+        "height": 514.078125,
+        "right": 390,
+        "bottom": 1150.078125
+      },
+      "introColumns": [
+        342
+      ],
+      "introHeading": {
+        "x": 24,
+        "y": 692,
+        "width": 342,
+        "height": 106.5,
+        "right": 366,
+        "bottom": 798.5
+      },
+      "introCopy": {
+        "x": 24,
+        "y": 826.5,
+        "width": 342,
+        "height": 283.578125,
+        "right": 366,
+        "bottom": 1110.078125
+      },
+      "values": [
+        {
+          "x": 24,
+          "y": 1150.078125,
+          "width": 342,
+          "height": 136.640625,
+          "right": 366,
+          "bottom": 1286.71875,
+          "title": "Tận tâm",
+          "contentFits": true
+        },
+        {
+          "x": 24,
+          "y": 1302.71875,
+          "width": 342,
+          "height": 136.640625,
+          "right": 366,
+          "bottom": 1439.359375,
+          "title": "Chu đáo",
+          "contentFits": true
+        },
+        {
+          "x": 24,
+          "y": 1455.359375,
+          "width": 342,
+          "height": 136.640625,
+          "right": 366,
+          "bottom": 1592,
+          "title": "Phục vụ nhanh",
+          "contentFits": true
+        }
+      ],
+      "work": [
+        {
+          "x": 24,
+          "y": 2964.0625,
+          "width": 342,
+          "height": 362.984375,
+          "right": 366,
+          "bottom": 3327.046875,
+          "title": "Kiểm tra & sửa chữa",
+          "contentFits": true
+        },
+        {
+          "x": 24,
+          "y": 3351.046875,
+          "width": 342,
+          "height": 362.984375,
+          "right": 366,
+          "bottom": 3714.03125,
+          "title": "Vệ sinh & bảo trì",
+          "contentFits": true
+        },
+        {
+          "x": 24,
+          "y": 3738.03125,
+          "width": 342,
+          "height": 362.984375,
+          "right": 366,
+          "bottom": 4101.015625,
+          "title": "Lắp đặt tận nơi",
+          "contentFits": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 45,
+          "y": 5796.515625,
+          "width": 300,
+          "height": 48,
+          "right": 345,
+          "bottom": 5844.515625,
+          "name": "customerName",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 45,
+          "y": 5892.109375,
+          "width": 300,
+          "height": 48,
+          "right": 345,
+          "bottom": 5940.109375,
+          "name": "customerPhone",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 45,
+          "y": 5987.703125,
+          "width": 300,
+          "height": 48,
+          "right": 345,
+          "bottom": 6035.703125,
+          "name": "serviceId",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 45,
+          "y": 6083.296875,
+          "width": 300,
+          "height": 48,
+          "right": 345,
+          "bottom": 6131.296875,
+          "name": "address",
+          "radius": "10px",
+          "font": "16px"
+        }
+      ],
+      "form": {
+        "x": 24,
+        "y": 5694.28125,
+        "width": 342,
+        "height": 534.015625,
+        "right": 366,
+        "bottom": 6228.296875
+      },
+      "formRadius": "16px",
+      "bookingCopy": {
+        "x": 24,
+        "y": 5305.40625,
+        "width": 342,
+        "height": 352.875,
+        "right": 366,
+        "bottom": 5658.28125
+      },
+      "bookingImage": {
+        "x": 0,
+        "y": 5249.40625,
+        "width": 390,
+        "height": 345,
+        "right": 390,
+        "bottom": 5594.40625
+      },
+      "images": [
+        {
+          "src": "/images/home-reference/hero.webp",
+          "alt": "Kỹ thuật viên trong đồng phục Minh Nhật chăm sóc máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/gallery-repair.webp",
+          "alt": "Minh họa kỹ thuật viên kiểm tra máy lạnh tại nhà",
+          "decoded": true
+        },
+        {
+          "src": "/images/services-reference/clean-air.webp",
+          "alt": "Minh họa vệ sinh dàn lạnh với túi hứng nước",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/install.webp",
+          "alt": "Minh họa kỹ thuật viên lắp đặt dàn nóng máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/areas/technician-booking.webp",
+          "alt": "Kỹ thuật viên Minh Nhật mặc đồng phục xanh, cầm dụng cụ trước xe dịch vụ",
+          "decoded": true
+        }
+      ],
+      "headingFont": "36px",
+      "sections": [
+        "about-hero-title",
+        "about-intro-title",
+        "about-values-title",
+        "about-story-title",
+        "about-work-title",
+        "about-team-title",
+        "Cam kết dịch vụ",
+        "areas-booking-title"
+      ]
+    },
+    {
+      "width": 320,
+      "scrollWidth": 320,
+      "height": 7363,
+      "hero": {
+        "x": 0,
+        "y": 76,
+        "width": 320,
+        "height": 560,
+        "right": 320,
+        "bottom": 636
+      },
+      "heroCopy": {
+        "x": 16,
+        "y": 168.34375,
+        "width": 288,
+        "height": 375.3125,
+        "right": 304,
+        "bottom": 543.65625
+      },
+      "actions": [
+        {
+          "x": 16,
+          "y": 427.65625,
+          "width": 288,
+          "height": 52,
+          "right": 304,
+          "bottom": 479.65625
+        },
+        {
+          "x": 16,
+          "y": 491.65625,
+          "width": 288,
+          "height": 52,
+          "right": 304,
+          "bottom": 543.65625
+        }
+      ],
+      "intro": {
+        "x": 0,
+        "y": 636,
+        "width": 320,
+        "height": 537.875,
+        "right": 320,
+        "bottom": 1173.875
+      },
+      "introColumns": [
+        288
+      ],
+      "introHeading": {
+        "x": 16,
+        "y": 692,
+        "width": 288,
+        "height": 101.5,
+        "right": 304,
+        "bottom": 793.5
+      },
+      "introCopy": {
+        "x": 16,
+        "y": 821.5,
+        "width": 288,
+        "height": 312.375,
+        "right": 304,
+        "bottom": 1133.875
+      },
+      "values": [
+        {
+          "x": 16,
+          "y": 1173.875,
+          "width": 288,
+          "height": 136.640625,
+          "right": 304,
+          "bottom": 1310.515625,
+          "title": "Tận tâm",
+          "contentFits": true
+        },
+        {
+          "x": 16,
+          "y": 1326.515625,
+          "width": 288,
+          "height": 136.640625,
+          "right": 304,
+          "bottom": 1463.15625,
+          "title": "Chu đáo",
+          "contentFits": true
+        },
+        {
+          "x": 16,
+          "y": 1479.15625,
+          "width": 288,
+          "height": 136.640625,
+          "right": 304,
+          "bottom": 1615.796875,
+          "title": "Phục vụ nhanh",
+          "contentFits": true
+        }
+      ],
+      "work": [
+        {
+          "x": 16,
+          "y": 3024.15625,
+          "width": 288,
+          "height": 328.15625,
+          "right": 304,
+          "bottom": 3352.3125,
+          "title": "Kiểm tra & sửa chữa",
+          "contentFits": true
+        },
+        {
+          "x": 16,
+          "y": 3376.3125,
+          "width": 288,
+          "height": 328.15625,
+          "right": 304,
+          "bottom": 3704.46875,
+          "title": "Vệ sinh & bảo trì",
+          "contentFits": true
+        },
+        {
+          "x": 16,
+          "y": 3728.46875,
+          "width": 288,
+          "height": 328.15625,
+          "right": 304,
+          "bottom": 4056.625,
+          "title": "Lắp đặt tận nơi",
+          "contentFits": true
+        }
+      ],
+      "controls": [
+        {
+          "x": 33,
+          "y": 5762.921875,
+          "width": 254,
+          "height": 48,
+          "right": 287,
+          "bottom": 5810.921875,
+          "name": "customerName",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 33,
+          "y": 5858.515625,
+          "width": 254,
+          "height": 48,
+          "right": 287,
+          "bottom": 5906.515625,
+          "name": "customerPhone",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 33,
+          "y": 5954.109375,
+          "width": 254,
+          "height": 48,
+          "right": 287,
+          "bottom": 6002.109375,
+          "name": "serviceId",
+          "radius": "10px",
+          "font": "16px"
+        },
+        {
+          "x": 33,
+          "y": 6049.703125,
+          "width": 254,
+          "height": 48,
+          "right": 287,
+          "bottom": 6097.703125,
+          "name": "address",
+          "radius": "10px",
+          "font": "16px"
+        }
+      ],
+      "form": {
+        "x": 16,
+        "y": 5660.6875,
+        "width": 288,
+        "height": 534.015625,
+        "right": 304,
+        "bottom": 6194.703125
+      },
+      "formRadius": "16px",
+      "bookingCopy": {
+        "x": 16,
+        "y": 5276.8125,
+        "width": 288,
+        "height": 347.875,
+        "right": 304,
+        "bottom": 5624.6875
+      },
+      "bookingImage": {
+        "x": 0,
+        "y": 5220.8125,
+        "width": 320,
+        "height": 345,
+        "right": 320,
+        "bottom": 5565.8125
+      },
+      "images": [
+        {
+          "src": "/images/home-reference/hero.webp",
+          "alt": "Kỹ thuật viên trong đồng phục Minh Nhật chăm sóc máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/gallery-repair.webp",
+          "alt": "Minh họa kỹ thuật viên kiểm tra máy lạnh tại nhà",
+          "decoded": true
+        },
+        {
+          "src": "/images/services-reference/clean-air.webp",
+          "alt": "Minh họa vệ sinh dàn lạnh với túi hứng nước",
+          "decoded": true
+        },
+        {
+          "src": "/images/home-reference/install.webp",
+          "alt": "Minh họa kỹ thuật viên lắp đặt dàn nóng máy lạnh",
+          "decoded": true
+        },
+        {
+          "src": "/images/areas/technician-booking.webp",
+          "alt": "Kỹ thuật viên Minh Nhật mặc đồng phục xanh, cầm dụng cụ trước xe dịch vụ",
+          "decoded": true
+        }
+      ],
+      "headingFont": "36px",
+      "sections": [
+        "about-hero-title",
+        "about-intro-title",
+        "about-values-title",
+        "about-story-title",
+        "about-work-title",
+        "about-team-title",
+        "Cam kết dịch vụ",
+        "areas-booking-title"
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "interceptedBookings": [
+    {
+      "mode": "success",
+      "payload": {
+        "customerName": "Nguyễn Minh Kiểm Tra",
+        "customerPhone": "0939370109",
+        "serviceId": "ve-sinh-may-lanh",
+        "address": "123 Đường kiểm thử, Cần Thơ"
+      }
+    },
+    {
+      "mode": "error",
+      "payload": {
+        "customerName": "Nguyễn Minh Kiểm Tra",
+        "customerPhone": "0939370109",
+        "serviceId": "ve-sinh-may-lanh",
+        "address": "123 Đường kiểm thử, Cần Thơ"
+      }
+    }
+  ],
+  "realPosts": 0,
+  "passed": 20,
+  "failed": 0
+}

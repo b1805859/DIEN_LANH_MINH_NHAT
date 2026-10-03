@@ -1,0 +1,1009 @@
+{
+  "startedAt": "2026-10-03T02:35:09.260Z",
+  "checks": [
+    {
+      "name": "about viewport 320",
+      "passed": true,
+      "details": {
+        "width": 320,
+        "height": 3739,
+        "images": 7
+      }
+    },
+    {
+      "name": "about viewport 390",
+      "passed": true,
+      "details": {
+        "width": 390,
+        "height": 3717,
+        "images": 7
+      }
+    },
+    {
+      "name": "about viewport 768",
+      "passed": true,
+      "details": {
+        "width": 768,
+        "height": 2247,
+        "images": 7
+      }
+    },
+    {
+      "name": "about viewport 880",
+      "passed": true,
+      "details": {
+        "width": 880,
+        "height": 1790,
+        "images": 7
+      }
+    },
+    {
+      "name": "about viewport 1440",
+      "passed": true,
+      "details": {
+        "width": 1440,
+        "height": 2926,
+        "images": 7
+      }
+    },
+    {
+      "name": "about search and menu",
+      "passed": true,
+      "details": {
+        "search": true,
+        "activeLabel": "Giới thiệu"
+      }
+    },
+    {
+      "name": "about form validation and submission",
+      "passed": true,
+      "details": {
+        "realPosts": 0,
+        "simulatedPosts": 1,
+        "duplicateGuard": true
+      }
+    },
+    {
+      "name": "contact viewport 320",
+      "passed": true,
+      "details": {
+        "width": 320,
+        "height": 2971,
+        "images": 4
+      }
+    },
+    {
+      "name": "contact viewport 390",
+      "passed": true,
+      "details": {
+        "width": 390,
+        "height": 2965,
+        "images": 4
+      }
+    },
+    {
+      "name": "contact viewport 768",
+      "passed": true,
+      "details": {
+        "width": 768,
+        "height": 1878,
+        "images": 4
+      }
+    },
+    {
+      "name": "contact viewport 880",
+      "passed": true,
+      "details": {
+        "width": 880,
+        "height": 1662,
+        "images": 4
+      }
+    },
+    {
+      "name": "contact viewport 1440",
+      "passed": true,
+      "details": {
+        "width": 1440,
+        "height": 2681,
+        "images": 4
+      }
+    },
+    {
+      "name": "contact search and menu",
+      "passed": true,
+      "details": {
+        "search": true,
+        "activeLabel": "Liên hệ"
+      }
+    },
+    {
+      "name": "contact form validation and submission",
+      "passed": true,
+      "details": {
+        "realPosts": 0,
+        "simulatedPosts": 1,
+        "duplicateGuard": true
+      }
+    },
+    {
+      "name": "contact error retry and contact channels",
+      "passed": true,
+      "details": {
+        "errorRetainsValues": true,
+        "retry": true,
+        "map": "https://maps.google.com/maps?q=C%E1%BA%A7n%20Th%C6%A1&z=12&output=embed"
+      }
+    },
+    {
+      "name": "original source and assets retained",
+      "passed": true,
+      "details": {
+        "files": 113,
+        "changed": [
+          "apps/web/components/areas-reference/chrome.tsx",
+          "apps/web/components/layout/site-chrome.tsx"
+        ]
+      }
+    },
+    {
+      "name": "home visual regression",
+      "passed": true,
+      "details": {
+        "differentPixels": 0,
+        "maxChannelDifference": 0,
+        "baselineElements": 361,
+        "changedElements": [],
+        "isolation": {
+          "removedRules": 83,
+          "elements": 477,
+          "changed": []
+        }
+      }
+    },
+    {
+      "name": "services visual regression",
+      "passed": true,
+      "details": {
+        "differentPixels": 70542,
+        "maxChannelDifference": 31,
+        "baselineElements": 458,
+        "changedElements": [],
+        "isolation": {
+          "removedRules": 83,
+          "elements": 562,
+          "changed": []
+        }
+      }
+    },
+    {
+      "name": "areas visual regression",
+      "passed": true,
+      "details": {
+        "differentPixels": 155865,
+        "maxChannelDifference": 22,
+        "baselineElements": 392,
+        "changedElements": [],
+        "isolation": {
+          "removedRules": 83,
+          "elements": 539,
+          "changed": []
+        }
+      }
+    },
+    {
+      "name": "no runtime errors or real booking requests",
+      "passed": true,
+      "details": {
+        "pageErrors": 0,
+        "consoleErrors": 0,
+        "realPosts": 0,
+        "simulatedPosts": 4,
+        "externalMapFailures": 0
+      }
+    }
+  ],
+  "viewports": [
+    {
+      "route": "/about",
+      "width": 320,
+      "documentWidth": 320,
+      "height": 3739,
+      "images": [
+        {
+          "src": "http://127.0.0.1:3001/images/home-reference/hero.webp",
+          "w": 1860,
+          "h": 846
+        },
+        {
+          "src": "http://127.0.0.1:3001/images/home-reference/gallery-repair.webp",
+          "w": 1536,
+          "h": 1024
+        },
+        {
+          "src": "http://127.0.0.1:3001/images/services-reference/clean-air.webp",
+          "w": 1536,
+          "h": 1024
+        },
+        {
+          "src": "http://127.0.0.1:3001/images/home-reference/install.webp",
+          "w": 1254,
+          "h": 1254
+        },
+        {
+          "src": "http://127.0.0.1:3001/images/areas/technician-booking.webp",
+          "w": 2113,
+          "h": 744
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        }
+      ],
+      "sections": [
+        {
+          "id": "about-hero-title",
+          "x": 0,
+          "y": 0,
+          "w": 320,
+          "h": 410
+        },
+        {
+          "id": "about-intro-title",
+          "x": 0,
+          "y": 410,
+          "w": 320,
+          "h": 298.390625
+        },
+        {
+          "id": "Giá trị phục vụ",
+          "x": 0,
+          "y": 708.390625,
+          "w": 320,
+          "h": 328
+        },
+        {
+          "id": "about-work-title",
+          "x": 0,
+          "y": 1036.390625,
+          "w": 320,
+          "h": 1093.546875
+        },
+        {
+          "id": "Cam kết dịch vụ",
+          "x": 0,
+          "y": 2129.9375,
+          "w": 320,
+          "h": 154
+        },
+        {
+          "id": "dat-lich",
+          "x": 0,
+          "y": 2283.9375,
+          "w": 320,
+          "h": 786
+        }
+      ]
+    },
+    {
+      "route": "/about",
+      "width": 390,
+      "documentWidth": 390,
+      "height": 3717,
+      "images": [
+        {
+          "src": "http://127.0.0.1:3001/images/home-reference/hero.webp",
+          "w": 1860,
+          "h": 846
+        },
+        {
+          "src": "http://127.0.0.1:3001/images/home-reference/gallery-repair.webp",
+          "w": 1536,
+          "h": 1024
+        },
+        {
+          "src": "http://127.0.0.1:3001/images/services-reference/clean-air.webp",
+          "w": 1536,
+          "h": 1024
+        },
+        {
+          "src": "http://127.0.0.1:3001/images/home-reference/install.webp",
+          "w": 1254,
+          "h": 1254
+        },
+        {
+          "src": "http://127.0.0.1:3001/images/areas/technician-booking.webp",
+          "w": 2113,
+          "h": 744
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        }
+      ],
+      "sections": [
+        {
+          "id": "about-hero-title",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 410
+        },
+        {
+          "id": "about-intro-title",
+          "x": 0,
+          "y": 410,
+          "w": 390,
+          "h": 278.390625
+        },
+        {
+          "id": "Giá trị phục vụ",
+          "x": 0,
+          "y": 688.390625,
+          "w": 390,
+          "h": 294
+        },
+        {
+          "id": "about-work-title",
+          "x": 0,
+          "y": 982.390625,
+          "w": 390,
+          "h": 1145.46875
+        },
+        {
+          "id": "Cam kết dịch vụ",
+          "x": 0,
+          "y": 2127.859375,
+          "w": 390,
+          "h": 154
+        },
+        {
+          "id": "dat-lich",
+          "x": 0,
+          "y": 2281.859375,
+          "w": 390,
+          "h": 786
+        }
+      ]
+    },
+    {
+      "route": "/about",
+      "width": 768,
+      "documentWidth": 768,
+      "height": 2247,
+      "images": [
+        {
+          "src": "http://127.0.0.1:3001/images/home-reference/hero.webp",
+          "w": 1860,
+          "h": 846
+        },
+        {
+          "src": "http://127.0.0.1:3001/images/home-reference/gallery-repair.webp",
+          "w": 1536,
+          "h": 1024
+        },
+        {
+          "src": "http://127.0.0.1:3001/images/services-reference/clean-air.webp",
+          "w": 1536,
+          "h": 1024
+        },
+        {
+          "src": "http://127.0.0.1:3001/images/home-reference/install.webp",
+          "w": 1254,
+          "h": 1254
+        },
+        {
+          "src": "http://127.0.0.1:3001/images/areas/technician-booking.webp",
+          "w": 2113,
+          "h": 744
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        }
+      ],
+      "sections": [
+        {
+          "id": "about-hero-title",
+          "x": 0,
+          "y": 0,
+          "w": 768,
+          "h": 410
+        },
+        {
+          "id": "about-intro-title",
+          "x": 0,
+          "y": 410,
+          "w": 768,
+          "h": 197.390625
+        },
+        {
+          "id": "Giá trị phục vụ",
+          "x": 0,
+          "y": 607.390625,
+          "w": 768,
+          "h": 166
+        },
+        {
+          "id": "about-work-title",
+          "x": 0,
+          "y": 773.390625,
+          "w": 768,
+          "h": 438.109375
+        },
+        {
+          "id": "Cam kết dịch vụ",
+          "x": 0,
+          "y": 1211.5,
+          "w": 768,
+          "h": 154
+        },
+        {
+          "id": "dat-lich",
+          "x": 0,
+          "y": 1365.5,
+          "w": 768,
+          "h": 484
+        }
+      ]
+    },
+    {
+      "route": "/about",
+      "width": 880,
+      "documentWidth": 880,
+      "height": 1790,
+      "images": [
+        {
+          "src": "http://127.0.0.1:3001/images/home-reference/hero.webp",
+          "w": 1860,
+          "h": 846
+        },
+        {
+          "src": "http://127.0.0.1:3001/images/home-reference/gallery-repair.webp",
+          "w": 1536,
+          "h": 1024
+        },
+        {
+          "src": "http://127.0.0.1:3001/images/services-reference/clean-air.webp",
+          "w": 1536,
+          "h": 1024
+        },
+        {
+          "src": "http://127.0.0.1:3001/images/home-reference/install.webp",
+          "w": 1254,
+          "h": 1254
+        },
+        {
+          "src": "http://127.0.0.1:3001/images/areas/technician-booking.webp",
+          "w": 2113,
+          "h": 744
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        }
+      ],
+      "sections": [
+        {
+          "id": "about-hero-title",
+          "x": 0,
+          "y": 0,
+          "w": 880,
+          "h": 395
+        },
+        {
+          "id": "about-intro-title",
+          "x": 0,
+          "y": 395,
+          "w": 880,
+          "h": 197.390625
+        },
+        {
+          "id": "Giá trị phục vụ",
+          "x": 0,
+          "y": 592.390625,
+          "w": 880,
+          "h": 132
+        },
+        {
+          "id": "about-work-title",
+          "x": 0,
+          "y": 724.390625,
+          "w": 880,
+          "h": 421.578125
+        },
+        {
+          "id": "Cam kết dịch vụ",
+          "x": 0,
+          "y": 1145.96875,
+          "w": 880,
+          "h": 86
+        },
+        {
+          "id": "dat-lich",
+          "x": 0,
+          "y": 1231.96875,
+          "w": 880,
+          "h": 303
+        }
+      ]
+    },
+    {
+      "route": "/about",
+      "width": 1440,
+      "documentWidth": 1440,
+      "height": 2926,
+      "images": [
+        {
+          "src": "http://127.0.0.1:3001/images/home-reference/hero.webp",
+          "w": 1860,
+          "h": 846
+        },
+        {
+          "src": "http://127.0.0.1:3001/images/home-reference/gallery-repair.webp",
+          "w": 1536,
+          "h": 1024
+        },
+        {
+          "src": "http://127.0.0.1:3001/images/services-reference/clean-air.webp",
+          "w": 1536,
+          "h": 1024
+        },
+        {
+          "src": "http://127.0.0.1:3001/images/home-reference/install.webp",
+          "w": 1254,
+          "h": 1254
+        },
+        {
+          "src": "http://127.0.0.1:3001/images/areas/technician-booking.webp",
+          "w": 2113,
+          "h": 744
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        }
+      ],
+      "sections": [
+        {
+          "id": "about-hero-title",
+          "x": 0,
+          "y": 0,
+          "w": 1440,
+          "h": 646.359375
+        },
+        {
+          "id": "about-intro-title",
+          "x": 0,
+          "y": 646.359375,
+          "w": 1440,
+          "h": 322.296875
+        },
+        {
+          "id": "Giá trị phục vụ",
+          "x": 0,
+          "y": 968.65625,
+          "w": 1440,
+          "h": 214.6875
+        },
+        {
+          "id": "about-work-title",
+          "x": 0,
+          "y": 1183.34375,
+          "w": 1440,
+          "h": 688.703125
+        },
+        {
+          "id": "Cam kết dịch vụ",
+          "x": 0,
+          "y": 1872.046875,
+          "w": 1440,
+          "h": 140.71875
+        },
+        {
+          "id": "dat-lich",
+          "x": 0,
+          "y": 2012.765625,
+          "w": 1440,
+          "h": 495.8125
+        }
+      ]
+    },
+    {
+      "route": "/contact",
+      "width": 320,
+      "documentWidth": 320,
+      "height": 2971,
+      "images": [
+        {
+          "src": "http://127.0.0.1:3001/images/areas/hero-can-tho.webp",
+          "w": 1719,
+          "h": 915
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        }
+      ],
+      "sections": [
+        {
+          "id": "contact-hero-title",
+          "x": 0,
+          "y": 0,
+          "w": 320,
+          "h": 395
+        },
+        {
+          "id": "contact-info-title",
+          "x": 0,
+          "y": 395,
+          "w": 320,
+          "h": 1167
+        },
+        {
+          "id": "contact-coverage-title",
+          "x": 0,
+          "y": 1562,
+          "w": 320,
+          "h": 586
+        },
+        {
+          "id": "Cam kết dịch vụ",
+          "x": 0,
+          "y": 2148,
+          "w": 320,
+          "h": 154
+        }
+      ]
+    },
+    {
+      "route": "/contact",
+      "width": 390,
+      "documentWidth": 390,
+      "height": 2965,
+      "images": [
+        {
+          "src": "http://127.0.0.1:3001/images/areas/hero-can-tho.webp",
+          "w": 1719,
+          "h": 915
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        }
+      ],
+      "sections": [
+        {
+          "id": "contact-hero-title",
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 395
+        },
+        {
+          "id": "contact-info-title",
+          "x": 0,
+          "y": 395,
+          "w": 390,
+          "h": 1179
+        },
+        {
+          "id": "contact-coverage-title",
+          "x": 0,
+          "y": 1574,
+          "w": 390,
+          "h": 588
+        },
+        {
+          "id": "Cam kết dịch vụ",
+          "x": 0,
+          "y": 2162,
+          "w": 390,
+          "h": 154
+        }
+      ]
+    },
+    {
+      "route": "/contact",
+      "width": 768,
+      "documentWidth": 768,
+      "height": 1878,
+      "images": [
+        {
+          "src": "http://127.0.0.1:3001/images/areas/hero-can-tho.webp",
+          "w": 1719,
+          "h": 915
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        }
+      ],
+      "sections": [
+        {
+          "id": "contact-hero-title",
+          "x": 0,
+          "y": 0,
+          "w": 768,
+          "h": 395
+        },
+        {
+          "id": "contact-info-title",
+          "x": 0,
+          "y": 395,
+          "w": 768,
+          "h": 585
+        },
+        {
+          "id": "contact-coverage-title",
+          "x": 0,
+          "y": 980,
+          "w": 768,
+          "h": 347
+        },
+        {
+          "id": "Cam kết dịch vụ",
+          "x": 0,
+          "y": 1327,
+          "w": 768,
+          "h": 154
+        }
+      ]
+    },
+    {
+      "route": "/contact",
+      "width": 880,
+      "documentWidth": 880,
+      "height": 1662,
+      "images": [
+        {
+          "src": "http://127.0.0.1:3001/images/areas/hero-can-tho.webp",
+          "w": 1719,
+          "h": 915
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        }
+      ],
+      "sections": [
+        {
+          "id": "contact-hero-title",
+          "x": 0,
+          "y": 0,
+          "w": 880,
+          "h": 374.390625
+        },
+        {
+          "id": "contact-info-title",
+          "x": 0,
+          "y": 374.390625,
+          "w": 880,
+          "h": 600
+        },
+        {
+          "id": "contact-coverage-title",
+          "x": 0,
+          "y": 974.390625,
+          "w": 880,
+          "h": 347
+        },
+        {
+          "id": "Cam kết dịch vụ",
+          "x": 0,
+          "y": 1321.390625,
+          "w": 880,
+          "h": 86
+        }
+      ]
+    },
+    {
+      "route": "/contact",
+      "width": 1440,
+      "documentWidth": 1440,
+      "height": 2681,
+      "images": [
+        {
+          "src": "http://127.0.0.1:3001/images/areas/hero-can-tho.webp",
+          "w": 1719,
+          "h": 915
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        },
+        {
+          "src": "http://127.0.0.1:3001/icons/zalo.svg",
+          "w": 150,
+          "h": 150
+        }
+      ],
+      "sections": [
+        {
+          "id": "contact-hero-title",
+          "x": 0,
+          "y": 0,
+          "w": 1440,
+          "h": 610.3125
+        },
+        {
+          "id": "contact-info-title",
+          "x": 0,
+          "y": 610.3125,
+          "w": 1440,
+          "h": 946.375
+        },
+        {
+          "id": "contact-coverage-title",
+          "x": 0,
+          "y": 1556.6875,
+          "w": 1440,
+          "h": 565.890625
+        },
+        {
+          "id": "Cam kết dịch vụ",
+          "x": 0,
+          "y": 2122.578125,
+          "w": 1440,
+          "h": 140.71875
+        }
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "externalFailures": [],
+  "bookings": [
+    {
+      "mode": "pending",
+      "payload": {
+        "customerName": "Nguyễn Minh Kiểm Tra",
+        "customerPhone": "0939370109",
+        "serviceId": "ve-sinh-may-lanh",
+        "address": "123 Đường kiểm thử, Cần Thơ"
+      }
+    },
+    {
+      "mode": "pending",
+      "payload": {
+        "customerName": "Nguyễn Minh Kiểm Tra",
+        "customerPhone": "0939370109",
+        "serviceId": "ve-sinh-may-lanh",
+        "address": "123 Đường kiểm thử, Cần Thơ"
+      }
+    },
+    {
+      "mode": "error",
+      "payload": {
+        "customerName": "Nguyễn Minh Kiểm Tra",
+        "customerPhone": "0939370109",
+        "serviceId": "ve-sinh-may-lanh",
+        "address": "123 Đường kiểm thử, Cần Thơ"
+      }
+    },
+    {
+      "mode": "success",
+      "payload": {
+        "customerName": "Nguyễn Minh Kiểm Tra",
+        "customerPhone": "0939370109",
+        "serviceId": "ve-sinh-may-lanh",
+        "address": "123 Đường kiểm thử, Cần Thơ"
+      }
+    }
+  ],
+  "homeComparison": {
+    "differentPixels": 0,
+    "maxChannelDifference": 0,
+    "baselineElements": 361,
+    "changedElements": [],
+    "isolation": {
+      "removedRules": 83,
+      "elements": 477,
+      "changed": []
+    }
+  },
+  "servicesComparison": {
+    "differentPixels": 70542,
+    "maxChannelDifference": 31,
+    "baselineElements": 458,
+    "changedElements": [],
+    "isolation": {
+      "removedRules": 83,
+      "elements": 562,
+      "changed": []
+    }
+  },
+  "areasComparison": {
+    "differentPixels": 155865,
+    "maxChannelDifference": 22,
+    "baselineElements": 392,
+    "changedElements": [],
+    "isolation": {
+      "removedRules": 83,
+      "elements": 539,
+      "changed": []
+    }
+  },
+  "completedAt": "2026-10-03T02:36:08.542Z",
+  "passed": 20,
+  "failed": 0
+}

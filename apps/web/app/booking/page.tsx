@@ -26,7 +26,7 @@ export default function BookingPage() {
         <div className="mock-booking-layout">
           <section className="mock-booking-main">
             <h1>Đặt lịch sửa chữa điện lạnh</h1>
-            <p>Để lại thông tin, Minh Nhật sẽ liên hệ trong thời gian phù hợp.</p>
+            <p>Để lại thông tin, Minh Nhật sẽ liên hệ trong thời gian sớm nhất.</p>
             <BookingForm />
             <p className="mock-booking-check">
               <CheckCircle2 size={18} />{' '}
@@ -38,8 +38,8 @@ export default function BookingPage() {
           <aside className="mock-booking-aside">
             <div className="mock-booking-image">
               <Image
-                src="/images/hvac-hero-branded.png"
-                alt="Kỹ thuật viên Minh Nhật đang kiểm tra máy lạnh"
+                src="/images/mockup/portrait.png"
+                alt="Kỹ thuật viên Minh Nhật mỉm cười, sẵn sàng phục vụ"
                 fill
                 priority
                 sizes="(min-width: 768px) 80vw, 100vw"
@@ -50,7 +50,7 @@ export default function BookingPage() {
               <br />
               đã tin tưởng Minh Nhật!
               <br />
-              Chúng tôi sẽ luôn hỗ trợ bạn hết mình.
+              <span className="mock-thanks-last-line">Chúng tôi sẽ liên hệ sớm nhất.</span>
             </p>
           </aside>
         </div>
@@ -59,7 +59,7 @@ export default function BookingPage() {
             <Phone />
             <span>
               <strong>0939 370 109</strong>
-              <small>08:00 – 17:00 Thứ 2 – CN</small>
+              <small>08:00 – 20:00 Thứ 2 – CN</small>
             </span>
           </a>
           <a href={integrationSettings.zaloUrl} target="_blank" rel="noreferrer">

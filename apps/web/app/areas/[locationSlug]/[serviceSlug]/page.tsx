@@ -103,7 +103,7 @@ export default async function ServiceWardPage({
   ];
 
   return (
-    <main className="bg-white">
+    <main className="public-page bg-white">
       <section className="relative overflow-hidden bg-[#0b172a] py-16 text-white lg:py-20">
         {ward.image ? (
           <LoadingImage

@@ -43,7 +43,7 @@ export default async function WardPage({ params }: { params: Promise<{ locationS
   const otherAreas = PRIORITY_DISTRICTS.filter((item) => item.slug !== ward.slug);
 
   return (
-    <main className="bg-[#f4f8fb]">
+    <main className="public-page bg-[#f4f8fb]">
       <section className="relative overflow-hidden bg-[#0b172a] py-16 text-white lg:py-20">
         {ward.image ? (
           <LoadingImage

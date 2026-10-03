@@ -1,0 +1,19 @@
+{
+  "apps/web/public/images/services-reference/ASSETS.md": "d39ae5433db5bc4019493bb1edd08098672686f2b3e5f57defb1f5d3568012e0",
+  "apps/web/public/images/services-reference/background-provenance.md": "580335335806db26055527e687dfe1e307518b084f13c18a73ab5dea94bfb0dc",
+  "apps/web/public/images/services-reference/booking.webp": "065f28b4053a7ad15428bc6e13f059b106126f694f2206d6ff619ed862e0dae5",
+  "apps/web/public/images/services-reference/clean-air.webp": "fdc463a557646b6e7a49f886b978bed94c15d0bb7da6429bd26b085de52ad7a2",
+  "apps/web/public/images/services-reference/clean-washer.webp": "3abefc1eb29b383c2779db094e9152f6c2ff500f6e3c690c1787706583bead0b",
+  "apps/web/public/images/services-reference/fridge.webp": "ef4f94c1f6ab67143929bc3fd816dff828e13b47a5138f46e826f0a019e19f37",
+  "apps/web/public/images/services-reference/gas.webp": "b4e76da3f9135a29d0e1f28f320bc09225029799dbc91a0e5aca7969be263d7e",
+  "apps/web/public/images/services-reference/hero.webp": "ebd9f6454e56ecc1dec7ce3e310218484014d8dec1014e0f64d19754f94f1540",
+  "apps/web/public/images/services-reference/install.webp": "885f7055b9c827f883cb3a60e5b58c025b1ae29dd051c3d08b2222caa12d5830",
+  "apps/web/public/images/services-reference/repair-air.webp": "f3be10d828b6a4b948cb79627cf684cefae70729d59a4e9ef36bf1cc032fd0ea",
+  "apps/web/public/images/services-reference/washer.webp": "2d842bbae7f5f8a572cbefdb784deb871c6e1258e1b96d1d2d6c5935d06b9499",
+  "apps/web/public/images/services-reference/water-heater.webp": "f7d7b8b1932a1c724b3876e968f5dc0920a2a0e15e81913489ed14ec7b15794a",
+  "apps/web/components/services-reference/data.ts": "5c92de9fb4b0bd22581bfb39b7b9e8df3e02b4525bdfcbe151cefca1cfc45d6b",
+  "apps/web/components/services-reference/booking-form.tsx": "fc681e23f36a61a0daa2c4da466c0bea2b1af0961022b606796aecfe4f11ddd3",
+  "apps/web/components/layout/navigation.ts": "5e0e57caf8633257f83201f2df09f02fa0df49701d8bb6bc133ced6bae1ee208",
+  "apps/web/components/layout/site-header.tsx": "786dcec13bdab65258bd904604b37205c72d3b21f1d688cfdeda6abc98e53c8b",
+  "apps/web/components/home-reference/chrome.tsx": "2bd496723ab99bb24a9ffe941ae581b7c98d6c841e73d75bde7462ed396de948"
+}
