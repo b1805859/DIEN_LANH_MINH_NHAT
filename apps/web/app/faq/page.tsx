@@ -36,7 +36,7 @@ export default function FaqPage() {
           <span className="mt-8 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-50 text-primary">
             <CircleHelp className="h-6 w-6" />
           </span>
-          <h1 className="mt-4 text-3xl font-black tracking-normal sm:text-5xl">
+          <h1 data-motion="hero" className="mt-4 text-3xl font-black tracking-normal sm:text-5xl">
             Câu hỏi thường gặp
           </h1>
           <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-700">

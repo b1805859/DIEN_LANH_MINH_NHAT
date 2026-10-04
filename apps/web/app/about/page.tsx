@@ -101,26 +101,27 @@ export default function AboutPage() {
           unoptimized
           sizes="100vw"
           className={styles.heroImage}
+          data-motion="hero-image"
         />
         <div className={styles.heroShade} />
         <div className={styles.heroCopy}>
-          <p className={styles.heroEyebrow}>
+          <p className={styles.heroEyebrow} data-motion="hero">
             <Snowflake aria-hidden="true" /> VỀ CHÚNG TÔI
           </p>
-          <h1 id="about-hero-title">
+          <h1 id="about-hero-title" data-motion="hero" data-motion-delay="70">
             Điện Lạnh
             <br />
             <span>Minh Nhật</span>
           </h1>
-          <p className={styles.heroDescription}>
+          <p className={styles.heroDescription} data-motion="hero" data-motion-delay="140">
             Tận tâm trong từng dịch vụ.
             <br /> Chăm sóc thiết bị điện lạnh cho gia đình bạn tại Cần Thơ.
           </p>
-          <div className={styles.heroActions}>
-            <a href="#dat-lich" className={serviceStyles.primaryButton}>
+          <div className={styles.heroActions} data-motion="hero" data-motion-delay="210">
+            <a href="#dat-lich" className={serviceStyles.primaryButton} data-motion-hover="button">
               <CalendarDays aria-hidden="true" /> Đặt lịch ngay <ArrowRight aria-hidden="true" />
             </a>
-            <Link href="/services" className={styles.outlineButton}>
+            <Link href="/services" className={styles.outlineButton} data-motion-hover="button">
               Khám phá dịch vụ <ArrowRight aria-hidden="true" />
             </Link>
           </div>
@@ -128,14 +129,14 @@ export default function AboutPage() {
       </section>
 
       <section className={styles.introduction} aria-labelledby="about-intro-title">
-        <div className={styles.introHeading}>
+        <div className={styles.introHeading} data-motion="up">
           <p className={styles.eyebrow}>ĐIỆN LẠNH MINH NHẬT</p>
           <h2 id="about-intro-title">
             Dịch vụ tận tâm,
             <br /> <span>gắn bó cùng Cần Thơ</span>
           </h2>
         </div>
-        <div className={styles.introCopy}>
+        <div className={styles.introCopy} data-motion="up" data-motion-delay="80">
           <p>
             Điện Lạnh Minh Nhật cung cấp dịch vụ sửa chữa, vệ sinh, bảo trì và lắp đặt thiết bị điện
             lạnh cho các gia đình tại Cần Thơ.
@@ -154,10 +155,10 @@ export default function AboutPage() {
         <h2 id="about-values-title" className="sr-only">
           Giá trị cốt lõi
         </h2>
-        <div className={styles.valuesGrid}>
+        <div className={styles.valuesGrid} data-motion-stagger="80">
           {values.map(({ icon: Icon, title, description }) => (
-            <article className={styles.valueCard} key={title}>
-              <span className={styles.valueIcon}>
+            <article className={styles.valueCard} key={title} data-motion-hover="card">
+              <span className={styles.valueIcon} data-motion-hover="icon">
                 <Icon aria-hidden="true" />
               </span>
               <div>
@@ -170,7 +171,7 @@ export default function AboutPage() {
       </section>
 
       <section className={styles.storySection} aria-labelledby="about-story-title">
-        <div className={styles.storyCopy}>
+        <div className={styles.storyCopy} data-motion="up">
           <p className={styles.eyebrow}>TINH THẦN MINH NHẬT</p>
           <h2 id="about-story-title">
             Đồng hành cùng từng <span>không gian sống</span>
@@ -184,7 +185,7 @@ export default function AboutPage() {
             hợp, trao đổi rõ ràng và tiếp tục hỗ trợ khách hàng sau khi công việc hoàn thành.
           </p>
         </div>
-        <div className={styles.commitmentPanel}>
+        <div className={styles.commitmentPanel} data-motion="up" data-motion-delay="80">
           <h3>Cam kết của Minh Nhật</h3>
           <ul>
             {commitments.map(({ title, text }) => (
@@ -203,7 +204,7 @@ export default function AboutPage() {
       </section>
 
       <section className={styles.workSection} aria-labelledby="about-work-title">
-        <div className={styles.sectionHeading}>
+        <div className={styles.sectionHeading} data-motion="up">
           <div>
             <p className={styles.eyebrow}>CHĂM SÓC ĐIỆN LẠNH TẬN NƠI</p>
             <h2 id="about-work-title">
@@ -214,10 +215,10 @@ export default function AboutPage() {
             Xem dịch vụ <ArrowRight aria-hidden="true" />
           </Link>
         </div>
-        <div className={styles.workGrid}>
+        <div className={styles.workGrid} data-motion-stagger="80">
           {photos.map((photo) => (
-            <article key={photo.src} className={styles.workCard}>
-              <div className={styles.workPhoto}>
+            <article key={photo.src} className={styles.workCard} data-motion-hover="card">
+              <div className={styles.workPhoto} data-motion-hover="image">
                 <Image
                   src={photo.src}
                   alt={photo.alt}
@@ -237,7 +238,7 @@ export default function AboutPage() {
       </section>
 
       <section className={styles.teamSection} aria-labelledby="about-team-title">
-        <div className={styles.teamHeading}>
+        <div className={styles.teamHeading} data-motion="up">
           <p className={styles.eyebrow}>CON NGƯỜI MINH NHẬT</p>
           <h2 id="about-team-title">
             Đội ngũ kỹ thuật viên <span>Minh Nhật</span>
@@ -247,7 +248,7 @@ export default function AboutPage() {
             kỹ thuật, thái độ phục vụ và sự rõ ràng trong mỗi lần hỗ trợ tại nhà.
           </p>
         </div>
-        <ul className={styles.teamApproach}>
+        <ul className={styles.teamApproach} data-motion-stagger="70">
           {teamApproach.map(({ icon: Icon, title, text }) => (
             <li key={title}>
               <span className={styles.teamIcon}>

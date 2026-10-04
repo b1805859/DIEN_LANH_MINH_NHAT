@@ -31,7 +31,7 @@ type BookingInput = z.infer<typeof bookingSchema>;
 
 function FieldError({ id, message }: { id: string; message?: string }) {
   return message ? (
-    <p id={id} role="alert" className={styles.fieldError}>
+    <p id={id} role="alert" className={`${styles.fieldError} motion-feedback`}>
       {message}
     </p>
   ) : null;
@@ -165,17 +165,17 @@ function BookingFormContent() {
           <FieldError id={`${formId}-address-error`} message={errors.address?.message} />
         </div>
       </fieldset>
-      <button className={styles.submit} type="submit" disabled={mutation.isPending}>
+      <button className={`${styles.submit} motion-button`} type="submit" disabled={mutation.isPending}>
         {mutation.isPending ? 'Đang gửi yêu cầu...' : 'Gửi yêu cầu ngay'}
         {!mutation.isPending && <ArrowRight aria-hidden="true" />}
       </button>
       {mutation.isSuccess && (
-        <p role="status" aria-live="polite" className={styles.success}>
+        <p role="status" aria-live="polite" className={`${styles.success} motion-feedback`}>
           Đã gửi yêu cầu. Minh Nhật sẽ liên hệ xác nhận.
         </p>
       )}
       {mutation.isError && (
-        <p role="alert" className={styles.submitError}>
+        <p role="alert" className={`${styles.submitError} motion-feedback`}>
           Không gửi được yêu cầu. Vui lòng thử lại hoặc{' '}
           <a href={`tel:${integrationSettings.phone}`}>gọi {integrationSettings.phone}</a>.
         </p>

@@ -16,10 +16,11 @@ export const areaGallery: Record<string, string[]> = {
 
 export function ImageGallery({ items }: { items: string[] }) {
   return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" data-motion-stagger="60">
       {items.map((src, index) => (
         <div
           key={`${src}-${index}`}
+          data-motion-hover="image"
           className="relative aspect-[4/3] overflow-hidden rounded-xl bg-slate-100"
         >
           <Image

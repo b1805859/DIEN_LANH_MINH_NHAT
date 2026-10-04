@@ -72,12 +72,13 @@
   white-space: nowrap;
   box-shadow: 0 4px 16px #0066ff20;
   transition:
-    transform 180ms,
-    box-shadow 180ms;
+    transform var(--motion-normal) var(--motion-ease),
+    box-shadow var(--motion-normal) var(--motion-ease);
 }
-.primaryButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 22px #0066ff35;
+@media (hover: hover) and (pointer: fine) {
+  .primaryButton:hover {
+    box-shadow: 0 6px 22px #0066ff35;
+  }
 }
 .primaryButton svg {
   width: 18px;
@@ -88,6 +89,7 @@
 .hero {
   position: relative;
   isolation: isolate;
+  overflow: clip;
   display: flex;
   align-items: center;
   min-height: calc(clamp(560px, 43.4644vw, 660px) + var(--site-hero-header-offset, 0px));
@@ -163,12 +165,16 @@
   color: #fff;
   text-decoration: none;
   transition:
-    background 180ms,
-    border-color 180ms;
+    transform var(--motion-normal) var(--motion-ease),
+    box-shadow var(--motion-normal) var(--motion-ease),
+    background var(--motion-normal) var(--motion-ease),
+    border-color var(--motion-normal) var(--motion-ease);
 }
-.consultButton:hover {
-  background: #00395f;
-  border-color: var(--site-cyan);
+@media (hover: hover) and (pointer: fine) {
+  .consultButton:hover {
+    background: #00395f;
+    border-color: var(--site-cyan);
+  }
 }
 .consultButton > svg {
   width: 20px;
@@ -306,14 +312,15 @@
   text-decoration: none;
   box-shadow: var(--site-shadow);
   transition:
-    transform 180ms,
-    box-shadow 180ms,
-    border-color 180ms;
+    transform var(--motion-normal) var(--motion-ease),
+    box-shadow var(--motion-normal) var(--motion-ease),
+    border-color var(--motion-normal) var(--motion-ease);
 }
-.serviceCard:hover {
-  transform: translateY(-3px);
-  border-color: #48c9f480;
-  box-shadow: 0 8px 24px #00213a12;
+@media (hover: hover) and (pointer: fine) {
+  .serviceCard:hover {
+    border-color: #48c9f480;
+    box-shadow: 0 8px 24px #00213a12;
+  }
 }
 /* LOCKED composition: same assets, cover/center and original frame ratios.
    Below 1200 the original four-column frame was fixed at 136/138px.
@@ -383,10 +390,12 @@
   width: 18px;
   height: 18px;
   stroke-width: 2;
-  transition: transform 180ms;
+  transition: transform var(--motion-normal) var(--motion-ease);
 }
-.serviceCard:hover .cardArrow svg {
-  transform: translateX(3px);
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .serviceCard:hover .cardArrow svg {
+    transform: translateX(3px);
+  }
 }
 .commitments {
   display: grid;
@@ -457,6 +466,36 @@
   gap: 16px;
   min-width: 0;
 }
+.steps li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 37px;
+  right: -13px;
+  width: 13px;
+  height: 1px;
+  background: #48b4ed80;
+  transform-origin: left;
+  pointer-events: none;
+}
+@keyframes connectSteps {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes connectStepsVertical {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .steps[data-motion-state='visible'] li:not(:last-child)::after {
+    animation: connectSteps var(--motion-reveal) var(--motion-enter) both;
+  }
+  .steps[data-motion-state='visible'] li:nth-child(2)::after {
+    animation-delay: var(--motion-stagger);
+  }
+  .steps[data-motion-state='visible'] li:nth-child(3)::after {
+    animation-delay: calc(var(--motion-stagger) * 2);
+  }
+}
 .stepIcon {
   display: grid;
   place-items: center;
@@ -510,6 +549,7 @@
 .booking {
   position: relative;
   isolation: isolate;
+  overflow: clip;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
   align-items: center;
@@ -666,6 +706,9 @@
   .steps {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 40px 56px;
+  }
+  .steps li:not(:last-child)::after {
+    display: none;
   }
   .steps li:nth-child(2) > .stepArrow {
     top: auto;
@@ -922,6 +965,18 @@
   .steps li {
     align-items: flex-start;
     gap: 18px;
+  }
+  .steps li:not(:last-child)::after {
+    display: block;
+    top: calc(100% + 3px);
+    left: 31px;
+    right: auto;
+    width: 1px;
+    height: 9px;
+    transform-origin: top;
+  }
+  .steps[data-motion-state='visible'] li:not(:last-child)::after {
+    animation-name: connectStepsVertical;
   }
   .stepIcon {
     width: 64px;

@@ -93,11 +93,13 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </nav>
         <div className="mock-detail-hero">
           <div>
-            <h1>{displayServiceName} tại Cần Thơ</h1>
-            <p>{displayHeroDescription}</p>
-            <div className="mock-hero-actions">
+            <h1 data-motion="hero">{displayServiceName} tại Cần Thơ</h1>
+            <p data-motion="hero" data-motion-delay="70">
+              {displayHeroDescription}
+            </p>
+            <div className="mock-hero-actions" data-motion="hero" data-motion-delay="140">
               <a
-                className="mock-button mock-button-primary"
+                className="motion-button mock-button mock-button-primary"
                 href={`tel:${integrationSettings.phone}`}
               >
                 <Phone size={20} />
@@ -106,7 +108,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </span>
               </a>
               <a
-                className="mock-button mock-button-outline"
+                className="motion-button mock-button mock-button-outline"
                 href={integrationSettings.zaloUrl}
                 target="_blank"
                 rel="noreferrer"
@@ -115,7 +117,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               </a>
             </div>
           </div>
-          <div className="mock-detail-photo">
+          <div className="mock-detail-photo" data-motion="hero-image">
             <Image
               src={serviceImage}
               alt={`Kỹ thuật viên kiểm tra cho dịch vụ ${service.name}`}
@@ -127,7 +129,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         </div>
         <div className="mock-detail-middle">
           <section className="mock-detail-signs">
-            <h2>{slug === 'sua-tu-lanh' ? 'Các lỗi tủ lạnh thường gặp' : 'Các lỗi thường gặp'}</h2>
+            <h2 data-motion="up">
+              {slug === 'sua-tu-lanh' ? 'Các lỗi tủ lạnh thường gặp' : 'Các lỗi thường gặp'}
+            </h2>
             <ul>
               {requestSigns.slice(0, 6).map((item) => (
                 <li key={item}>
@@ -138,10 +142,10 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </ul>
           </section>
           <section className="mock-detail-steps">
-            <h2>Quy trình thực hiện</h2>
+            <h2 data-motion="up">Quy trình thực hiện</h2>
             <div>
               {process.map((step, i) => (
-                <article key={step.title}>
+                <article key={step.title} data-motion="up" data-motion-delay={i * 70}>
                   <span>{String(i + 1).padStart(2, '0')}</span>
                   <div>
                     <h3>{step.title}</h3>
@@ -153,10 +157,12 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </section>
         </div>
         <section className="mock-detail-gallery">
-          <h2>Hình ảnh thực tế</h2>
+          <h2 data-motion="up">Hình ảnh thực tế</h2>
           <div>
             {gallery.map((src, i) => (
               <div
+                data-motion="image"
+                data-motion-hover="image"
                 className={`mock-detail-gallery-image mock-detail-gallery-image-${i + 1}`}
                 key={`${src}-${i}`}
               >

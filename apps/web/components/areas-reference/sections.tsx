@@ -24,6 +24,7 @@ export function AreasHero() {
     <section className={styles.hero} aria-labelledby="areas-hero-title">
       <Image
         className={styles.heroImage}
+        data-motion="hero-image"
         src="/images/areas/hero-can-tho.webp"
         alt="Cảnh quan đô thị Cần Thơ với sông, cây xanh và vòng xoay trung tâm"
         fill
@@ -33,11 +34,11 @@ export function AreasHero() {
       />
       <div className={styles.heroShade} />
       <div className={styles.heroCopy}>
-        <p className={styles.heroEyebrow}>
+        <p className={styles.heroEyebrow} data-motion="hero">
           <BriefcaseMedical />
           DỊCH VỤ ĐIỆN LẠNH TẠI CẦN THƠ
         </p>
-        <h1 id="areas-hero-title">
+        <h1 id="areas-hero-title" data-motion="hero" data-motion-delay="60">
           Phục vụ khắp
           <br />
           các{' '}
@@ -47,14 +48,14 @@ export function AreasHero() {
             Cần Thơ
           </span>
         </h1>
-        <p className={styles.heroDescription}>
+        <p className={styles.heroDescription} data-motion="hero" data-motion-delay="120">
           Điện Lạnh Minh Nhật có mặt nhanh tại mọi quận huyện
           <br className={styles.desktopBreak} /> ở Cần Thơ. Sẵn sàng hỗ trợ sửa chữa, vệ sinh, lắp
           đặt
           <br className={styles.desktopBreak} /> điện lạnh tận nơi.
         </p>
-        <div className={styles.heroActions}>
-          <a href="#dat-lich" className={styles.primaryButton}>
+        <div className={styles.heroActions} data-motion="hero" data-motion-delay="180">
+          <a href="#dat-lich" className={styles.primaryButton} data-motion-hover="button">
             <CalendarDays />
             Đặt lịch ngay
             <ArrowRight />
@@ -62,6 +63,7 @@ export function AreasHero() {
           <a
             href={`tel:${integrationSettings.phone.replace(/\s/g, '')}`}
             className={styles.consultButton}
+            data-motion-hover="button"
           >
             <Phone />
             <span>
@@ -70,7 +72,7 @@ export function AreasHero() {
             </span>
           </a>
         </div>
-        <ul className={styles.heroHighlights}>
+        <ul className={styles.heroHighlights} data-motion="hero" data-motion-delay="240">
           <li>
             <span>
               <Zap fill="currentColor" />
@@ -109,8 +111,8 @@ export function AreasHero() {
 
 export function AreaCard({ area }: { area: (typeof areas)[number] }) {
   return (
-    <AreaButton className={styles.areaCard} area={area.title}>
-      <span className={styles.cardPhoto}>
+    <AreaButton className={styles.areaCard} area={area.title} motionHover="card">
+      <span className={styles.cardPhoto} data-motion-hover="image">
         <Image
           src={`/images/areas/${area.slug}.webp`}
           alt={`Cảnh quan ${area.title}, Cần Thơ`}
@@ -133,7 +135,7 @@ export function AreaCard({ area }: { area: (typeof areas)[number] }) {
 export function AreaGrid() {
   return (
     <section className={styles.areas} id="area-list" aria-labelledby="area-list-title">
-      <div className={styles.sectionHeading}>
+      <div className={styles.sectionHeading} data-motion="up">
         <div>
           <p className={styles.eyebrow}>KHU VỰC PHỤC VỤ</p>
           <h2 id="area-list-title">
@@ -145,12 +147,12 @@ export function AreaGrid() {
           <ArrowRight />
         </a>
       </div>
-      <p className={styles.sectionDescription}>
+      <p className={styles.sectionDescription} data-motion="up" data-motion-delay="70">
         Chúng tôi cung cấp dịch vụ điện lạnh tận nơi tại tất cả các quận, huyện và khu vực lân cận
         <br className={styles.desktopBreak} /> ở Cần Thơ. Chọn khu vực của bạn để xem chi tiết dịch
         vụ.
       </p>
-      <div className={styles.areaGrid} id="area-cards">
+      <div className={styles.areaGrid} id="area-cards" data-motion-stagger="70">
         {areas.map((area) => (
           <AreaCard key={area.slug} area={area} />
         ))}
@@ -162,7 +164,7 @@ export function AreaGrid() {
 export function NearbyAreas() {
   return (
     <section className={styles.nearby} id="nearby-areas" aria-labelledby="nearby-title">
-      <div className={styles.sectionHeading}>
+      <div className={styles.sectionHeading} data-motion="up">
         <div>
           <p className={styles.eyebrow}>KHU VỰC LÂN CẬN</p>
           <h2 id="nearby-title">
@@ -174,7 +176,7 @@ export function NearbyAreas() {
           <ArrowRight />
         </a>
       </div>
-      <div className={styles.nearbyChips} id="nearby-chips">
+      <div className={styles.nearbyChips} id="nearby-chips" data-motion-stagger="60">
         {nearbyAreas.map((area) => (
           <AreaButton className={styles.nearbyChip} key={area} area={area}>
             <MapPin />
@@ -194,6 +196,7 @@ export function TrustBar({
     <section
       className={`${polished ? polishedStyles.commitments : styles.trustBar} ${className}`}
       aria-label="Cam kết dịch vụ"
+      data-motion-stagger="60"
     >
       <div>
         <span>
@@ -237,7 +240,7 @@ export function TrustBar({
 
 export function BookingForm({ className = styles.bookingForm }: { className?: string } = {}) {
   return (
-    <div className={className}>
+    <div className={className} data-motion="up" data-motion-delay="90">
       <ServicesBookingForm />
     </div>
   );
@@ -257,12 +260,13 @@ export function BookingSection({
       <Image
         src="/images/areas/technician-booking.webp"
         className={sectionStyles.bookingImage}
+        data-motion="image"
         alt="Kỹ thuật viên Minh Nhật mặc đồng phục xanh, cầm dụng cụ trước xe dịch vụ"
         fill
         unoptimized
         sizes="100vw"
       />
-      <div className={sectionStyles.bookingCopy}>
+      <div className={sectionStyles.bookingCopy} data-motion="left">
         <p className={sectionStyles.eyebrow}>ĐẶT LỊCH NGAY</p>
         <h2 id="areas-booking-title">
           Cần hỗ trợ điện lạnh

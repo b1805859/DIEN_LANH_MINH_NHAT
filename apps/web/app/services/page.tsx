@@ -43,6 +43,7 @@ export default function ServicesPage() {
       <section className={styles.hero} aria-labelledby="services-hero-title">
         <Image
           className={styles.heroImage}
+          data-motion="hero-image"
           src="/images/services-reference/hero.webp"
           alt="Kỹ thuật viên Minh Nhật cùng máy lạnh, máy giặt, tủ lạnh và dụng cụ điện lạnh"
           fill
@@ -52,22 +53,24 @@ export default function ServicesPage() {
         />
         <div className={styles.heroShade} />
         <div className={styles.heroCopy}>
-          <p className={styles.heroEyebrow}>DỊCH VỤ ĐIỆN LẠNH CHUYÊN NGHIỆP</p>
-          <h1 id="services-hero-title">
+          <p className={styles.heroEyebrow} data-motion="hero">
+            DỊCH VỤ ĐIỆN LẠNH CHUYÊN NGHIỆP
+          </p>
+          <h1 id="services-hero-title" data-motion="hero" data-motion-delay="60">
             Dịch vụ điện lạnh
             <br />
             <span>tại Cần Thơ</span>
           </h1>
-          <p className={styles.heroDescription}>
+          <p className={styles.heroDescription} data-motion="hero" data-motion-delay="120">
             Sửa chữa – Vệ sinh – Lắp đặt – Bảo trì nhanh chóng,
             <br /> uy tín, chuyên nghiệp.
           </p>
-          <div className={styles.heroActions}>
-            <a href="#dat-lich" className={styles.primaryButton}>
+          <div className={styles.heroActions} data-motion="hero" data-motion-delay="180">
+            <a href="#dat-lich" className={styles.primaryButton} data-motion-hover="button">
               <CalendarDays aria-hidden="true" />
               Đặt lịch ngay <ArrowRight aria-hidden="true" />
             </a>
-            <a href={phoneHref} className={styles.consultButton}>
+            <a href={phoneHref} className={styles.consultButton} data-motion-hover="button">
               <Phone aria-hidden="true" />
               <span>
                 <small>Gọi tư vấn</small>
@@ -75,7 +78,7 @@ export default function ServicesPage() {
               </span>
             </a>
           </div>
-          <ul className={styles.heroHighlights}>
+          <ul className={styles.heroHighlights} data-motion="hero" data-motion-delay="240">
             <li>
               <span>
                 <ShieldCheck aria-hidden="true" />
@@ -114,7 +117,7 @@ export default function ServicesPage() {
       </section>
 
       <section className={styles.services} id="service-list" aria-labelledby="service-list-title">
-        <div className={styles.sectionHeading}>
+        <div className={styles.sectionHeading} data-motion="up">
           <div>
             <p className={styles.eyebrow}>DANH SÁCH DỊCH VỤ</p>
             <h2 id="service-list-title">
@@ -125,10 +128,15 @@ export default function ServicesPage() {
             Xem tất cả dịch vụ <ArrowRight aria-hidden="true" />
           </a>
         </div>
-        <div id="service-cards" className={styles.serviceGrid}>
+        <div id="service-cards" className={styles.serviceGrid} data-motion-stagger="70">
           {serviceCards.map(({ slug, title, description, image, icon: Icon }) => (
-            <Link className={styles.serviceCard} href={`/services/${slug}`} key={slug}>
-              <div className={styles.cardPhoto}>
+            <Link
+              className={styles.serviceCard}
+              href={`/services/${slug}`}
+              key={slug}
+              data-motion-hover="card"
+            >
+              <div className={styles.cardPhoto} data-motion-hover="image">
                 <Image
                   src={`/images/services-reference/${image}.webp`}
                   alt={title}
@@ -137,7 +145,7 @@ export default function ServicesPage() {
                 />
               </div>
               <div className={styles.cardContent}>
-                <span className={styles.cardIcon}>
+                <span className={styles.cardIcon} data-motion-hover="icon">
                   <Icon aria-hidden="true" />
                 </span>
                 <h3>{title}</h3>
@@ -151,7 +159,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className={styles.commitments} aria-label="Cam kết dịch vụ">
+      <section className={styles.commitments} aria-label="Cam kết dịch vụ" data-motion-stagger="60">
         <div>
           <span>
             <Zap aria-hidden="true" />
@@ -195,11 +203,13 @@ export default function ServicesPage() {
       </section>
 
       <section className={styles.process} aria-labelledby="services-process-title">
-        <p className={styles.eyebrow}>QUY TRÌNH DỊCH VỤ</p>
-        <h2 id="services-process-title">
+        <p className={styles.eyebrow} data-motion="up">
+          QUY TRÌNH DỊCH VỤ
+        </p>
+        <h2 id="services-process-title" data-motion="up" data-motion-delay="60">
           4 bước <span>đơn giản</span>
         </h2>
-        <ol className={styles.steps}>
+        <ol className={styles.steps} data-motion="workflow" data-motion-stagger="90">
           {steps.map(({ number, icon: Icon, title, description }, index) => (
             <li key={number}>
               <span className={styles.stepIcon}>
@@ -223,13 +233,14 @@ export default function ServicesPage() {
       <section className={styles.booking} id="dat-lich" aria-labelledby="services-booking-title">
         <Image
           className={styles.bookingImage}
+          data-motion="image"
           src="/images/services-reference/booking.webp"
           alt="Kỹ thuật viên Điện Lạnh Minh Nhật sẵn sàng hỗ trợ khách hàng"
           fill
           unoptimized
           sizes="100vw"
         />
-        <div className={styles.bookingCopy}>
+        <div className={styles.bookingCopy} data-motion="left">
           <p className={styles.eyebrow}>ĐẶT LỊCH NGAY</p>
           <h2 id="services-booking-title">
             Cần hỗ trợ điện lạnh
@@ -261,7 +272,7 @@ export default function ServicesPage() {
             </li>
           </ul>
         </div>
-        <div className={styles.bookingForm}>
+        <div className={styles.bookingForm} data-motion="up" data-motion-delay="90">
           <ServicesBookingForm />
         </div>
       </section>

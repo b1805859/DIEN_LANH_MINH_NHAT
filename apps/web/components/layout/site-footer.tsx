@@ -24,7 +24,11 @@ const serviceAreas = ['ninh-kieu', 'binh-thuy', 'cai-rang', 'o-mon', 'thot-not']
 
 function Brand({ tagline = false }: { tagline?: boolean }) {
   return (
-    <Link href="/" className={homeStyles.brand} aria-label="Điện Lạnh Minh Nhật — Trang chủ">
+    <Link
+      href="/"
+      className={`${homeStyles.brand} motion-brand`}
+      aria-label="Điện Lạnh Minh Nhật — Trang chủ"
+    >
       <svg
         viewBox="0 0 48 48"
         fill="none"
@@ -59,12 +63,19 @@ function SocialLinks() {
           'https://www.facebook.com/profile.php?id=100063792110691'
         }
         aria-label="Facebook"
+        data-motion-hover="icon"
         target="_blank"
         rel="noreferrer"
       >
         <Facebook fill="currentColor" />
       </a>
-      <a href={integrationSettings.zaloUrl} aria-label="Zalo" target="_blank" rel="noreferrer">
+      <a
+        href={integrationSettings.zaloUrl}
+        aria-label="Zalo"
+        data-motion-hover="icon"
+        target="_blank"
+        rel="noreferrer"
+      >
         <Image src="/icons/zalo.svg" alt="" width={19} height={19} />
       </a>
       {integrationSettings.youtubeUrl ? (
@@ -107,7 +118,7 @@ function SocialLinks() {
 
 function FooterBottom({ children, label }: { children: ReactNode; label: string }) {
   return (
-    <div className={`${homeStyles.footerBottom} ${styles.bottom}`}>
+    <div className={`${homeStyles.footerBottom} ${styles.bottom}`} data-motion="fade">
       {children}
       <nav aria-label={label}>
         {footerLinks.map(([title, href]) => (
@@ -122,7 +133,7 @@ function FooterBottom({ children, label }: { children: ReactNode; label: string 
 
 function PolicyFooterBottom() {
   return (
-    <div className={`${homeStyles.footerBottom} ${styles.bottom}`}>
+    <div className={`${homeStyles.footerBottom} ${styles.bottom}`} data-motion="fade">
       <span>© 2024 Điện Lạnh Minh Nhật. Tất cả quyền được bảo lưu.</span>
       <nav aria-label="Chính sách">
         <Link href="/privacy-policy">Chính sách bảo mật</Link>
@@ -182,7 +193,11 @@ function ServicesLinks() {
 function ContactFooter() {
   return (
     <footer className={`${homeStyles.footer} ${styles.sharedFooter}`}>
-      <div className={`${homeStyles.footerMain} ${styles.footerGrid} ${styles.contactGrid}`}>
+      <div
+        data-motion-stagger="50"
+        data-motion-group-variant="fade"
+        className={`${homeStyles.footerMain} ${styles.footerGrid} ${styles.contactGrid}`}
+      >
         <div className={`${homeStyles.footerIntro} ${styles.brandColumn}`}>
           <Brand tagline />
           <p>
@@ -231,7 +246,11 @@ function ContactFooter() {
 function ServicesFooter() {
   return (
     <footer className={`${homeStyles.footer} ${styles.sharedFooter} ${styles.polishedFooter}`}>
-      <div className={`${homeStyles.footerMain} ${styles.footerGrid}`}>
+      <div
+        data-motion-stagger="50"
+        data-motion-group-variant="fade"
+        className={`${homeStyles.footerMain} ${styles.footerGrid}`}
+      >
         <div className={`${homeStyles.footerIntro} ${styles.brandColumn}`}>
           <Brand />
           <p>
@@ -258,7 +277,11 @@ function AreasFooter({ polished = false }: { polished?: boolean } = {}) {
     <footer
       className={`${homeStyles.footer} ${styles.sharedFooter}${polished ? ` ${styles.polishedFooter}` : ''}`}
     >
-      <div className={`${homeStyles.footerMain} ${styles.footerGrid}`}>
+      <div
+        data-motion-stagger="50"
+        data-motion-group-variant="fade"
+        className={`${homeStyles.footerMain} ${styles.footerGrid}`}
+      >
         <div className={`${homeStyles.footerIntro} ${styles.brandColumn}`}>
           <Brand />
           <p>

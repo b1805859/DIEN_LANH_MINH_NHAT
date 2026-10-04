@@ -34,7 +34,7 @@ function Brand({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <Link
       href="/"
-      className={styles.brand}
+      className={`${styles.brand} motion-brand`}
       aria-label="Điện Lạnh Minh Nhật — Trang chủ"
       onClick={onNavigate}
     >
@@ -101,12 +101,18 @@ export function HomeHeader({ className = '' }: { className?: string }) {
   );
   return (
     <header
-      className={`${styles.header} ${scrolled ? styles.headerScrolled : ''} ${className}`}
+      data-motion="header"
+      className={`motion-header ${styles.header} ${scrolled ? styles.headerScrolled : ''} ${className}`}
       data-scrolled={scrolled ? 'true' : undefined}
     >
       <div className={styles.headerInner}>
         <Brand onNavigate={() => setLocationHash('')} />
-        <nav className={styles.desktopNav} aria-label="Điều hướng chính">
+        <nav
+          className={`${styles.desktopNav} motion-nav`}
+          data-motion-stagger="35"
+          data-motion-group-variant="fade"
+          aria-label="Điều hướng chính"
+        >
           {navigationItems.map(({ label, href }) => (
             <Link
               key={href}
@@ -122,6 +128,7 @@ export function HomeHeader({ className = '' }: { className?: string }) {
           <button
             type="button"
             className={styles.searchButton}
+            data-motion-hover="icon"
             onClick={() => {
               search.current?.showModal();
               searchInput.current?.focus();
@@ -130,12 +137,13 @@ export function HomeHeader({ className = '' }: { className?: string }) {
           >
             <Search />
           </button>
-          <Link href="/booking" className={styles.primaryButton}>
+          <Link href="/booking" className={`${styles.primaryButton} motion-button`}>
             Đặt lịch ngay <ArrowRight />
           </Link>
           <button
             type="button"
             className={styles.menuButton}
+            data-motion-hover="icon"
             onClick={() => {
               menu.current?.showModal();
               setMenuOpen(true);
@@ -189,7 +197,7 @@ export function HomeHeader({ className = '' }: { className?: string }) {
           ))}
         </nav>
         <Link
-          className={styles.primaryButton}
+          className={`${styles.primaryButton} motion-button`}
           href="/booking"
           onClick={() => menu.current?.close()}
         >
@@ -259,7 +267,7 @@ export function HomeFooter() {
   const displayPhone = phone.replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3');
   return (
     <footer className={styles.footer}>
-      <div className={styles.footerMain}>
+      <div className={styles.footerMain} data-motion-stagger="50" data-motion-group-variant="fade">
         <div className={styles.footerIntro}>
           <Brand />
           <p>
@@ -322,6 +330,7 @@ export function HomeFooter() {
                 'https://www.facebook.com/profile.php?id=100063792110691'
               }
               aria-label="Facebook"
+              data-motion-hover="icon"
               target="_blank"
               rel="noreferrer"
             >
@@ -330,6 +339,7 @@ export function HomeFooter() {
             <a
               href={integrationSettings.zaloUrl}
               aria-label="Zalo"
+              data-motion-hover="icon"
               target="_blank"
               rel="noreferrer"
             >
@@ -372,7 +382,7 @@ export function HomeFooter() {
           </div>
         </div>
       </div>
-      <div className={styles.footerBottom}>
+      <div className={styles.footerBottom} data-motion="fade">
         <span>© 2024 Điện Lạnh Minh Nhật. Tất cả quyền được bảo lưu.</span>
         <nav aria-label="Chính sách">
           <Link href="/privacy-policy">Chính sách bảo mật</Link>

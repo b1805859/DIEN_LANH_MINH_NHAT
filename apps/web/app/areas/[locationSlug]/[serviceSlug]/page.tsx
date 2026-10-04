@@ -146,7 +146,10 @@ export default async function ServiceWardPage({
               <MapPin className="h-4 w-4" />
               {ward.name}, Cần Thơ
             </p>
-            <h1 className="mt-5 max-w-4xl text-4xl font-black tracking-normal sm:text-6xl">
+            <h1
+              data-motion="hero"
+              className="mt-5 max-w-4xl text-4xl font-black tracking-normal sm:text-6xl"
+            >
               {service.name} tại {ward.name}
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-200">{localServiceNote}</p>

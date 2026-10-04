@@ -1,5 +1,8 @@
 /* Reuse Services primitives and the Home container; keep Contact styles local. */
-.page.page { --service-inset: var(--home-inset); }
+.page.page {
+  --service-inset: var(--home-inset);
+  --motion-card-lift: -2px;
+}
 .page .hero {
   min-height: 0;
   padding: calc(64px + var(--site-hero-header-offset, 0px)) var(--home-inset) 64px;
@@ -62,9 +65,15 @@
   color: var(--site-text);
   text-decoration: none;
   box-shadow: var(--site-shadow);
-  transition: transform 180ms, border-color 180ms, box-shadow 180ms;
+  transition:
+    transform var(--motion-normal) var(--motion-ease),
+    border-color var(--motion-normal) var(--motion-ease),
+    box-shadow var(--motion-normal) var(--motion-ease);
 }
-.contactCard:hover { transform: translateY(-2px); border-color: #48c9f4b3; box-shadow: 0 6px 20px #00213a0d; }
+@media (hover: hover) and (pointer: fine) {
+  .contactCard:hover { border-color: #48c9f4b3; box-shadow: 0 6px 20px #00213a0d; }
+  .contactCard:hover .contactIcon { border-color: #48c9f499; background: #dcf3ff; }
+}
 .contactIcon {
   display: grid;
   place-items: center;
@@ -75,6 +84,10 @@
   border-radius: 50%;
   background: #e6f3ff;
   color: #0074cc;
+  transition:
+    scale var(--motion-normal) var(--motion-ease),
+    background-color var(--motion-normal) var(--motion-ease),
+    border-color var(--motion-normal) var(--motion-ease);
 }
 .contactIcon svg { width: 22px; height: 22px; stroke-width: 1.8; }
 .channelCopy { display: grid; gap: 2px; min-width: 0; }
@@ -100,9 +113,11 @@
   margin-left: auto;
   color: #0074cc;
   stroke-width: 2;
-  transition: transform 180ms;
+  transition: transform var(--motion-normal) var(--motion-ease);
 }
-.contactCard:hover .channelArrow { transform: translateX(3px); }
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .contactCard:hover .channelArrow { transform: translateX(3px); }
+}
 .openingHours {
   display: flex;
   align-items: center;

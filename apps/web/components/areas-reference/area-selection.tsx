@@ -29,6 +29,7 @@ export function AreaSelectionProvider({ children }: { children: ReactNode }) {
       >
         <button
           className={styles.closeButton}
+          data-motion-hover="icon"
           aria-label="Đóng chi tiết khu vực"
           onClick={() => dialog.current?.close()}
         >
@@ -39,6 +40,7 @@ export function AreaSelectionProvider({ children }: { children: ReactNode }) {
           {serviceCards.map((service) => (
             <Link
               key={service.slug}
+              data-motion-hover="button"
               href={`/services/${service.slug}`}
               onClick={() => dialog.current?.close()}
             >
@@ -49,6 +51,7 @@ export function AreaSelectionProvider({ children }: { children: ReactNode }) {
         </div>
         <a
           className={styles.primaryButton}
+          data-motion-hover="button"
           href="#dat-lich"
           onClick={() => dialog.current?.close()}
         >
@@ -64,16 +67,19 @@ export function AreaButton({
   area,
   children,
   className,
+  motionHover = 'button',
 }: {
   area: string;
   children: ReactNode;
   className?: string;
+  motionHover?: 'card' | 'button';
 }) {
   const selectArea = useContext(AreaContext);
   return (
     <button
       type="button"
       className={className}
+      data-motion-hover={motionHover}
       onClick={() => selectArea(area)}
       aria-label={`Xem dịch vụ tại ${area}`}
     >

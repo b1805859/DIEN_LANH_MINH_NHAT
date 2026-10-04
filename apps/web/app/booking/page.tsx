@@ -25,7 +25,7 @@ export default function BookingPage() {
         </nav>
         <div className="mock-booking-layout">
           <section className="mock-booking-main">
-            <h1>Đặt lịch sửa chữa điện lạnh</h1>
+            <h1 data-motion="hero">Đặt lịch sửa chữa điện lạnh</h1>
             <p>Để lại thông tin, Minh Nhật sẽ liên hệ trong thời gian sớm nhất.</p>
             <BookingForm />
             <p className="mock-booking-check">
@@ -35,7 +35,7 @@ export default function BookingPage() {
               </a>
             </p>
           </section>
-          <aside className="mock-booking-aside">
+          <aside className="mock-booking-aside" data-motion="image">
             <div className="mock-booking-image">
               <Image
                 src="/images/mockup/portrait.png"
@@ -54,7 +54,7 @@ export default function BookingPage() {
             </p>
           </aside>
         </div>
-        <div className="mock-contact-strip">
+        <div className="mock-contact-strip" data-motion-stagger="60">
           <a href={`tel:${integrationSettings.phone}`}>
             <Phone />
             <span>

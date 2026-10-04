@@ -204,7 +204,6 @@
 }
 .primaryButton:hover {
   box-shadow: 0 6px 22px #0066ff35;
-  transform: translateY(-2px);
 }
 .primaryButton svg,
 .callButton svg {
@@ -212,9 +211,6 @@
   height: 18px;
   flex-shrink: 0;
   transition: transform 180ms;
-}
-.primaryButton:hover svg {
-  transform: translateX(3px);
 }
 .headerActions .primaryButton {
   min-height: 44px;
@@ -359,10 +355,6 @@
   gap: 16px;
   position: relative;
   padding: 20px 24px;
-  transition: background-color 180ms;
-}
-.benefits > div:hover {
-  background: #68d7ff08;
 }
 .benefits > div:not(:last-child)::after {
   content: '';
@@ -462,7 +454,7 @@
   object-fit: cover;
   object-position: center 36%;
   z-index: -2;
-  transition: transform 220ms;
+  transition: transform var(--motion-reveal) var(--motion-enter);
 }
 .serviceCard::after {
   content: '';
@@ -470,13 +462,6 @@
   inset: 0;
   background: linear-gradient(180deg, transparent 15%, #032a461a 32%, #03233ced 72%, #031b2d 100%);
   z-index: -1;
-}
-.serviceCard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 24px #00213a1a;
-}
-.serviceCard:hover > img {
-  transform: scale(1.03);
 }
 .serviceContent {
   position: absolute;
@@ -493,6 +478,9 @@
   border-radius: 9px;
   background: #0086df;
   margin-bottom: 16px;
+  transition:
+    scale var(--motion-normal) var(--motion-ease),
+    background-color var(--motion-normal) var(--motion-ease);
 }
 .serviceIcon svg {
   width: 21px;
@@ -597,7 +585,7 @@
   object-fit: cover;
   object-position: center;
   z-index: -2;
-  transition: transform 220ms;
+  transition: transform var(--motion-reveal) var(--motion-enter);
 }
 .featureVideo::after {
   content: '';
@@ -605,9 +593,6 @@
   inset: 0;
   background: linear-gradient(0deg, #001c32e6, transparent 60%);
   z-index: -1;
-}
-.featureVideo:hover > img {
-  transform: scale(1.03);
 }
 .bigPlay {
   display: grid;
@@ -623,6 +608,9 @@
   color: #0078ff;
   border-radius: 50%;
   box-shadow: 0 4px 20px #001a2c44;
+  transition:
+    scale var(--motion-normal) var(--motion-ease),
+    box-shadow var(--motion-normal) var(--motion-ease);
 }
 .bigPlay svg {
   width: 28px;
@@ -704,6 +692,16 @@
   gap: 16px;
   position: relative;
   min-width: 0;
+  --workflow-step: 0;
+}
+.processRow li:nth-child(2) {
+  --workflow-step: 1;
+}
+.processRow li:nth-child(3) {
+  --workflow-step: 2;
+}
+.processRow li:nth-child(4) {
+  --workflow-step: 3;
 }
 .processRow li:not(:last-child)::after {
   content: '';
@@ -713,6 +711,7 @@
   bottom: 4px;
   width: 1px;
   background: #b9e7ff1f;
+  transform-origin: top;
 }
 .stepCircle {
   display: grid;
@@ -764,13 +763,15 @@
   background: #dce9ed;
   aspect-ratio: 4 / 3;
 }
+.galleryPhoto {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
 .galleryGrid img {
   object-fit: cover;
   object-position: center 42%;
-  transition: transform 220ms;
-}
-.galleryGrid button:hover img {
-  transform: scale(1.03);
+  transition: transform var(--motion-reveal) var(--motion-enter);
 }
 .galleryArrow {
   position: absolute;
@@ -820,6 +821,9 @@
   border-radius: 12px;
   background: #e4f5ff;
   color: #0064ca;
+  transition:
+    background-color var(--motion-normal) var(--motion-ease),
+    scale var(--motion-normal) var(--motion-ease);
 }
 .commitmentCard svg {
   width: 24px;
@@ -1233,6 +1237,68 @@
   margin-top: 4px;
   font-size: 13px;
 }
+/* Local moments use the same timing as the shared reveal system. */
+@media (prefers-reduced-motion: no-preference) {
+  .processRow ol[data-motion-state='visible'] li::after {
+    animation: workflowConnector var(--motion-reveal) var(--motion-enter) both;
+    animation-delay: calc(var(--workflow-step) * var(--motion-stagger));
+  }
+  .processRow ol[data-motion-state='visible'] .stepCircle {
+    animation: workflowStep var(--motion-normal) var(--motion-enter) both;
+    animation-delay: calc(var(--workflow-step) * var(--motion-stagger));
+  }
+  .galleryPhotoChanged,
+  .lightboxImage {
+    animation: galleryChange var(--motion-normal) var(--motion-enter) both;
+  }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .serviceCard:hover .serviceIcon {
+    scale: 1.04;
+    background-color: #008de8;
+  }
+  .featureVideo:hover .bigPlay,
+  .featureVideo:focus-visible .bigPlay {
+    scale: 1.045;
+    box-shadow:
+      0 4px 20px #001a2c44,
+      0 0 0 7px #69dcff1c;
+  }
+  .commitmentCard:hover > span {
+    background-color: #d8f0ff;
+    scale: 1.035;
+  }
+}
+@keyframes workflowConnector {
+  from {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+@keyframes workflowStep {
+  from {
+    scale: 0.94;
+    opacity: 0.7;
+  }
+  to {
+    scale: 1;
+    opacity: 1;
+  }
+}
+@keyframes galleryChange {
+  from {
+    opacity: 0.4;
+    translate: var(--gallery-shift, 6px) 0;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
 @media (min-width: 1700px) {
   .hero {
     min-height: 830px;
@@ -1427,6 +1493,10 @@
   }
 }
 @media (max-width: 760px) {
+  .galleryPhotoChanged,
+  .lightboxImage {
+    --gallery-shift: 3px;
+  }
   .site {
     --home-gutter: 24px;
     --home-section-space: 56px;

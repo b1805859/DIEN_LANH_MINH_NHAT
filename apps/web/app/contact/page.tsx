@@ -76,25 +76,26 @@ export default function ContactPage() {
           unoptimized
           sizes="100vw"
           className={`${serviceStyles.heroImage} ${styles.heroImage}`}
+          data-motion="hero-image"
         />
         <div className={`${serviceStyles.heroShade} ${styles.heroShade}`} aria-hidden="true" />
         <div className={`${serviceStyles.heroCopy} ${styles.heroCopy}`}>
-          <p className={`${serviceStyles.heroEyebrow} ${styles.heroEyebrow}`}>
+          <p className={`${serviceStyles.heroEyebrow} ${styles.heroEyebrow}`} data-motion="hero">
             <Phone aria-hidden="true" /> KẾT NỐI VỚI MINH NHẬT
           </p>
-          <h1 id="contact-hero-title">
+          <h1 id="contact-hero-title" data-motion="hero" data-motion-delay="50">
             Sẵn sàng hỗ trợ
             <br />
             <span>khi bạn cần</span>
           </h1>
-          <p className={serviceStyles.heroDescription}>
+          <p className={serviceStyles.heroDescription} data-motion="hero" data-motion-delay="100">
             Liên hệ để được tư vấn sửa chữa, vệ sinh và lắp đặt điện lạnh tận nơi tại Cần Thơ.
           </p>
-          <div className={`${serviceStyles.heroActions} ${styles.heroActions}`}>
-            <a href={`tel:${phone}`} className={serviceStyles.primaryButton}>
+          <div className={`${serviceStyles.heroActions} ${styles.heroActions}`} data-motion="hero" data-motion-delay="150">
+            <a href={`tel:${phone}`} className={serviceStyles.primaryButton} data-motion-hover="button">
               <Phone aria-hidden="true" /> {phoneLabel} <ArrowRight aria-hidden="true" />
             </a>
-            <a href="#dat-lich" className={styles.outlineButton}>
+            <a href="#dat-lich" className={styles.outlineButton} data-motion-hover="button">
               <CalendarDays aria-hidden="true" /> Đặt lịch dịch vụ
             </a>
           </div>
@@ -103,23 +104,25 @@ export default function ContactPage() {
 
       <section className={styles.contactSection} aria-labelledby="contact-info-title">
         <div className={styles.contactCopy}>
-          <p className={`${serviceStyles.eyebrow} ${styles.eyebrow}`}>THÔNG TIN LIÊN HỆ</p>
-          <h2 id="contact-info-title">
+          <p className={`${serviceStyles.eyebrow} ${styles.eyebrow}`} data-motion="up">THÔNG TIN LIÊN HỆ</p>
+          <h2 id="contact-info-title" data-motion="up" data-motion-delay="50">
             Liên hệ với <span>Minh Nhật</span>
           </h2>
-          <p className={styles.sectionDescription}>
+          <p className={styles.sectionDescription} data-motion="up" data-motion-delay="100">
             Mọi thắc mắc về dịch vụ, liên hệ qua các kênh dưới đây.
           </p>
-          <div className={styles.contactList}>
+          <div className={styles.contactList} data-motion-stagger="60">
             {contactChannels.map((channel) => (
               <a
                 className={styles.contactCard}
+                data-motion="fade"
+                data-motion-hover="card"
                 href={channel.href}
                 key={channel.label}
                 target={channel.external ? '_blank' : undefined}
                 rel={channel.external ? 'noreferrer' : undefined}
               >
-                <span className={styles.contactIcon} aria-hidden="true">{channel.icon}</span>
+                <span className={styles.contactIcon} data-motion-hover="icon" aria-hidden="true">{channel.icon}</span>
                 <span className={styles.channelCopy}>
                   <small>{channel.label}</small>
                   <strong>{channel.value}</strong>
@@ -129,7 +132,7 @@ export default function ContactPage() {
               </a>
             ))}
           </div>
-          <div className={styles.openingHours}>
+          <div className={styles.openingHours} data-motion="fade">
             <span className={styles.contactIcon} aria-hidden="true"><Clock3 /></span>
             <p>
               <strong>THỜI GIAN LIÊN HỆ</strong>
@@ -137,7 +140,7 @@ export default function ContactPage() {
             </p>
           </div>
         </div>
-        <div className={`${serviceStyles.bookingForm} ${styles.contactBooking}`} id="dat-lich">
+        <div className={`${serviceStyles.bookingForm} ${styles.contactBooking}`} id="dat-lich" data-motion="fade" data-motion-delay="100">
           <ServicesBookingForm />
           <p className={styles.formNote}>
             <ShieldCheck aria-hidden="true" />
@@ -147,7 +150,7 @@ export default function ContactPage() {
       </section>
 
       <section className={styles.coverageSection} aria-labelledby="contact-coverage-title">
-        <div className={styles.coverageCopy}>
+        <div className={styles.coverageCopy} data-motion="up">
           <p className={`${serviceStyles.eyebrow} ${styles.eyebrow}`}>KHU VỰC PHỤC VỤ</p>
           <h2 id="contact-coverage-title">
             Có mặt nhanh
@@ -163,15 +166,15 @@ export default function ContactPage() {
             </p>
           )}
           <div className={styles.coverageActions}>
-            <Link href="/areas" className={serviceStyles.primaryButton}>
+            <Link href="/areas" className={serviceStyles.primaryButton} data-motion-hover="button">
               Xem tất cả khu vực <ArrowRight aria-hidden="true" />
             </Link>
-            <a href={mapUrl} target="_blank" rel="noreferrer" className={styles.textLink}>
+            <a href={mapUrl} target="_blank" rel="noreferrer" className={styles.textLink} data-motion-hover="button">
               Mở Google Maps <ExternalLink aria-hidden="true" />
             </a>
           </div>
         </div>
-        <div className={styles.map}>
+        <div className={styles.map} data-motion="scale">
           <iframe
             title="Bản đồ khu vực phục vụ Cần Thơ"
             src={

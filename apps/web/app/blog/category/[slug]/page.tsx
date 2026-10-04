@@ -42,14 +42,14 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ s
     <main className={styles.page}>
       <section className={styles.categoryHero} aria-labelledby="blog-category-title">
         <div className={styles.container}>
-          <Link href="/blog" className={styles.backLink}>
+          <Link href="/blog" className={styles.backLink} data-motion="hero">
             <ArrowLeft aria-hidden="true" />
             Tất cả bài viết
           </Link>
-          <h1 id="blog-category-title">
+          <h1 id="blog-category-title" data-motion="hero" data-motion-delay="60">
             Bài viết {category.name}
           </h1>
-          <p className={styles.categoryDescription}>
+          <p className={styles.categoryDescription} data-motion="hero" data-motion-delay="120">
             Các hướng dẫn và dấu hiệu cần chú ý liên quan đến {category.name.toLowerCase()}.
           </p>
         </div>
@@ -62,13 +62,13 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ s
           <p className={styles.articleCount}>{posts.length} bài viết</p>
         </div>
         {posts.length ? (
-          <div className={styles.grid}>
+          <div className={`${styles.grid} ${styles.categoryResults}`} key={category.slug}>
             {posts.map((post, index) => (
               <ArticleCard post={post} priority={index < 3} key={post.slug} />
             ))}
           </div>
         ) : (
-          <div className={styles.emptyState}>
+          <div className={`${styles.emptyState} ${styles.categoryResults}`} key={category.slug}>
             <span className={styles.emptyIcon}><BookOpen aria-hidden="true" /></span>
             <h2>Không tìm thấy bài viết phù hợp.</h2>
             <p>Chuyên mục này chưa có bài viết. Bạn có thể khám phá các nội dung điện lạnh khác.</p>

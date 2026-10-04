@@ -86,7 +86,10 @@ export default async function WardPage({ params }: { params: Promise<{ locationS
               <MapPin className="h-4 w-4" />
               Khu vực phục vụ
             </p>
-            <h1 className="mt-5 max-w-4xl text-4xl font-black tracking-normal sm:text-6xl">
+            <h1
+              data-motion="hero"
+              className="mt-5 max-w-4xl text-4xl font-black tracking-normal sm:text-6xl"
+            >
               Dịch vụ điện lạnh tại {ward.name}
             </h1>
             <p className="mt-4 inline-flex rounded-xl border border-white/15 bg-white/10 px-4 py-2 text-sm font-black text-cyan-100 backdrop-blur">

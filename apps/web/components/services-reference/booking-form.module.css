@@ -59,7 +59,10 @@
   font-size: var(--site-text-small);
   font-weight: 600;
   line-height: 1.4;
+  transition: color var(--motion-fast) var(--motion-ease);
 }
+
+.field:focus-within label { color: var(--site-primary); }
 
 .field label span {
   color: #e8233e;
@@ -82,8 +85,9 @@
   font-size: 16px;
   line-height: normal;
   transition:
-    border-color 0.18s,
-    box-shadow 0.18s;
+    border-color var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-fast) var(--motion-ease),
+    background-color var(--motion-fast) var(--motion-ease);
 }
 
 .control::placeholder,
@@ -94,6 +98,7 @@
 
 .control:focus-visible {
   border-color: var(--site-primary);
+  box-shadow: 0 0 0 4px rgb(0 116 204 / 0.08);
   outline: 3px solid var(--site-focus);
   outline-offset: 3px;
 }
@@ -151,8 +156,9 @@
   line-height: 1.4;
   cursor: pointer;
   transition:
-    filter 0.18s,
-    box-shadow 0.18s;
+    transform var(--motion-fast) var(--motion-ease),
+    filter var(--motion-fast) var(--motion-ease),
+    box-shadow var(--motion-fast) var(--motion-ease);
 }
 
 .submit > svg {
@@ -215,7 +221,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .control,
-  .submit {
+  .submit,
+  .field label {
     transition: none;
   }
 }

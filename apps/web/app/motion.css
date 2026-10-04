@@ -1,0 +1,177 @@
+/* Shared motion tokens are emitted in SSR by SiteChrome from lib/motion/config.ts.
+   No initial opacity:0 or permanent GPU layers: content works without JavaScript. */
+.public-site :is(a, button, input, select, textarea, summary) {
+  transition-timing-function: var(--motion-ease);
+  transition-duration: var(--motion-fast);
+}
+.public-site :is(input, select, textarea) {
+  transition-property: border-color, background-color, box-shadow, outline-color;
+}
+.public-site :is(input, select, textarea):focus-visible {
+  border-color: var(--site-focus, #0877c9);
+  box-shadow: 0 0 0 3px rgb(8 119 201 / 12%);
+}
+.public-site :is([data-motion-hover], .motion-button) {
+  transition:
+    transform var(--motion-normal) var(--motion-ease),
+    scale var(--motion-normal) var(--motion-ease),
+    background-color var(--motion-normal) var(--motion-ease),
+    border-color var(--motion-normal) var(--motion-ease),
+    color var(--motion-normal) var(--motion-ease),
+    box-shadow var(--motion-normal) var(--motion-ease);
+}
+.public-site :is([data-motion-hover='image'], [data-motion-hover='card']) img {
+  transition: scale var(--motion-reveal) var(--motion-enter);
+}
+.public-site :is(a, button) .lucide-arrow-right {
+  transition: transform var(--motion-normal) var(--motion-ease);
+}
+.public-site
+  [data-motion-hover='card']
+  :is([data-motion-icon], .motion-icon, [data-motion-hover='icon']) {
+  transition:
+    scale var(--motion-normal) var(--motion-ease),
+    color var(--motion-normal) var(--motion-ease);
+}
+.public-site .motion-header {
+  background-color: transparent;
+  transition:
+    background-color var(--motion-normal) var(--motion-ease),
+    border-color var(--motion-normal) var(--motion-ease),
+    box-shadow var(--motion-normal) var(--motion-ease),
+    backdrop-filter var(--motion-normal) var(--motion-ease);
+}
+/* Preserve the original gradient; fade a solid navy backing underneath it. */
+.public-site .motion-header[data-scrolled='true'] {
+  background-image: linear-gradient(90deg, #00192cb0, #16344e55);
+  background-color: #001c32;
+}
+.public-site .motion-nav > a::after {
+  position: absolute;
+  content: '';
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--cyan, #20baff);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--motion-normal) var(--motion-enter);
+}
+.public-site .motion-nav > a[aria-current]::after,
+.public-site .motion-nav > a:focus-visible::after {
+  transform: scaleX(1);
+}
+.public-site .motion-brand {
+  transition: scale var(--motion-normal) var(--motion-ease);
+}
+.public-site .motion-feedback {
+  animation: motion-feedback var(--motion-fast) var(--motion-enter);
+}
+.public-site dialog[open] {
+  animation: motion-dialog var(--motion-normal) var(--motion-enter);
+}
+.public-site dialog[open]::backdrop {
+  animation: motion-backdrop var(--motion-normal) var(--motion-ease);
+}
+@keyframes motion-feedback {
+  from {
+    opacity: 0.4;
+    translate: 0 4px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+@keyframes motion-dialog {
+  from {
+    opacity: 0.5;
+    scale: 0.985;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+@keyframes motion-backdrop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .public-site :is([data-motion-hover='button'], .motion-button):not(:disabled):hover {
+    transform: translateY(var(--motion-button-lift, -2px));
+    box-shadow: 0 7px 20px rgb(0 75 130 / 16%);
+  }
+  .public-site [data-motion-hover='card']:hover {
+    transform: translateY(var(--motion-card-lift, -4px));
+    border-color: #70c4e5;
+    box-shadow: 0 10px 24px rgb(0 52 91 / 10%);
+  }
+  .public-site :is([data-motion-hover='image'], [data-motion-hover='card']):hover img {
+    scale: 1.025;
+  }
+  .public-site
+    [data-motion-hover='card']:hover
+    :is([data-motion-icon], .motion-icon, [data-motion-hover='icon']) {
+    scale: 1.06;
+  }
+  .public-site [data-motion-hover='icon']:not(:disabled):hover {
+    scale: 1.05;
+  }
+  .public-site :is(a, button):not(:disabled):hover .lucide-arrow-right {
+    transform: translateX(4px);
+  }
+  .public-site .motion-nav > a:hover::after {
+    transform: scaleX(1);
+  }
+  .public-site .motion-brand:hover {
+    scale: 1.02;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .public-site
+    :is([data-motion-hover='button'], .motion-button, [data-motion-hover='icon']):not(
+      :disabled
+    ):active {
+    scale: 0.98;
+    transition-duration: var(--motion-fast);
+  }
+  .public-site :is(a, button)[data-motion-hover='card']:active {
+    scale: 0.995;
+  }
+}
+@media (max-width: 760px) {
+  .public-site {
+    --motion-distance: 8px;
+  }
+  .public-site .motion-header[data-scrolled='true'] {
+    backdrop-filter: blur(8px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  .public-site *,
+  .public-site *::before,
+  .public-site *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+  .public-site :is([data-motion-hover='card'], [data-motion-hover='button'], .motion-button):hover,
+  .public-site :is(a, button):hover .lucide-arrow-right {
+    transform: none !important;
+  }
+  .public-site :is([data-motion-hover], .motion-button, .motion-brand):is(:hover, :active),
+  .public-site :is([data-motion-hover='card'], [data-motion-hover='image']):hover img {
+    scale: 1 !important;
+  }
+}

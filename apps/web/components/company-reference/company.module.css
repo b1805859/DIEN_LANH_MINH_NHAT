@@ -784,12 +784,16 @@
   border-color: #d5edf480;
   border-radius: 999px;
   transition:
-    background 180ms,
-    border-color 180ms;
+    transform var(--motion-normal) var(--motion-ease),
+    box-shadow var(--motion-normal) var(--motion-ease),
+    background var(--motion-normal) var(--motion-ease),
+    border-color var(--motion-normal) var(--motion-ease);
 }
-.aboutPage .outlineButton:hover {
-  background: #00395f;
-  border-color: var(--site-cyan);
+@media (hover: hover) and (pointer: fine) {
+  .aboutPage .outlineButton:hover {
+    background: #00395f;
+    border-color: var(--site-cyan);
+  }
 }
 .aboutPage :is(.introduction, .storySection, .teamSection, .workSection) {
   padding: var(--service-space) var(--home-inset);
@@ -849,6 +853,7 @@
   grid-auto-rows: 1fr;
 }
 .aboutPage .valueCard {
+  --motion-card-lift: -2px;
   min-width: 0;
   min-height: 156px;
   align-items: flex-start;
@@ -857,14 +862,15 @@
   border-radius: 16px;
   background: var(--site-surface);
   transition:
-    transform 180ms,
-    border-color 180ms,
-    box-shadow 180ms;
+    transform var(--motion-normal) var(--motion-ease),
+    border-color var(--motion-normal) var(--motion-ease),
+    box-shadow var(--motion-normal) var(--motion-ease);
 }
-.aboutPage .valueCard:hover {
-  transform: translateY(-2px);
-  border-color: #48c9f480;
-  box-shadow: 0 8px 24px #00213a12;
+@media (hover: hover) and (pointer: fine) {
+  .aboutPage .valueCard:hover {
+    border-color: #48c9f480;
+    box-shadow: 0 8px 24px #00213a12;
+  }
 }
 .aboutPage .valueIcon {
   width: 52px;

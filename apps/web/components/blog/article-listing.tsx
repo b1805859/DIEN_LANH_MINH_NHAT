@@ -25,13 +25,14 @@ function ArticleMeta({ post }: { post: BlogPost }) {
 
 export function CategoryFilter({ activeSlug }: { activeSlug?: string } = {}) {
   return (
-    <nav className={styles.filters} aria-label="Chuyên mục bài viết">
-      <Link className={styles.filterChip} href="/blog" aria-current={!activeSlug ? 'page' : undefined}>
+    <nav className={styles.filters} aria-label="Chuyên mục bài viết" data-motion-stagger="35">
+      <Link className={styles.filterChip} data-motion-hover="button" href="/blog" aria-current={!activeSlug ? 'page' : undefined}>
         Tất cả
       </Link>
       {BLOG_CATEGORIES.map((category) => (
         <Link
           className={styles.filterChip}
+          data-motion-hover="button"
           href={'/blog/category/' + category.slug}
           aria-current={activeSlug === category.slug ? 'page' : undefined}
           key={category.slug}
@@ -47,9 +48,9 @@ export function FeaturedArticle({ post }: { post: BlogPost }) {
   const titleId = 'featured-' + post.slug;
 
   return (
-    <article className={styles.featured}>
+    <article className={styles.featured} data-motion-hover="card">
       <Link className={styles.featuredLink} href={'/blog/' + post.slug} aria-labelledby={titleId}>
-        <div className={styles.featuredPhoto}>
+        <div className={styles.featuredPhoto} data-motion="image">
           <LoadingImage
             src={post.image}
             alt={post.title}
@@ -59,7 +60,7 @@ export function FeaturedArticle({ post }: { post: BlogPost }) {
             sizes="(max-width: 960px) 100vw, (max-width: 1384px) 55vw, 726px"
           />
         </div>
-        <div className={styles.featuredContent}>
+        <div className={styles.featuredContent} data-motion="up" data-motion-delay="80">
           <span className={styles.featuredBadge}>
             <BookOpen aria-hidden="true" /> BÀI NỔI BẬT
           </span>
@@ -79,7 +80,7 @@ export function ArticleCard({ post, priority = false }: { post: BlogPost; priori
   const titleId = 'article-' + post.slug;
 
   return (
-    <article className={styles.card}>
+    <article className={styles.card} data-motion-hover="card">
       <Link className={styles.cardLink} href={'/blog/' + post.slug} aria-labelledby={titleId}>
         <div className={styles.cardPhoto}>
           <LoadingImage

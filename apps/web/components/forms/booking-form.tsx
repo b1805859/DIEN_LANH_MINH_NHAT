@@ -31,7 +31,7 @@ const fieldClass = 'site-form-field';
 
 function FieldError({ id, message }: { id: string; message?: string }) {
   return message ? (
-    <p id={id} role="alert" className="text-xs font-semibold text-red-600">
+    <p id={id} role="alert" className="motion-feedback text-xs font-semibold text-red-600">
       {message}
     </p>
   ) : null;
@@ -175,16 +175,16 @@ function BookingFormContent({
           {...form.register('notes')}
         />
       </label>
-      <button className="mock-request-submit" type="submit" disabled={mutation.isPending}>
+      <button className="mock-request-submit motion-button" type="submit" disabled={mutation.isPending}>
         {mutation.isPending ? 'Đang gửi...' : 'Gửi yêu cầu'}
       </button>
       {mutation.isSuccess ? (
-        <p role="status" aria-live="polite" className="text-sm font-semibold text-emerald-700">
+        <p role="status" aria-live="polite" className="motion-feedback text-sm font-semibold text-emerald-700">
           Đã gửi yêu cầu. Minh Nhật sẽ liên hệ xác nhận.
         </p>
       ) : null}
       {mutation.isError ? (
-        <p role="alert" className="text-sm font-semibold text-red-600">
+        <p role="alert" className="motion-feedback text-sm font-semibold text-red-600">
           Không gửi được yêu cầu. Vui lòng thử lại hoặc{' '}
           <a className="underline" href={`tel:${integrationSettings.phone}`}>
             gọi {integrationSettings.phone}

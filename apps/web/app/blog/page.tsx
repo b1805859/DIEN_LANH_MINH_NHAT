@@ -25,19 +25,20 @@ export default function BlogPage() {
           fill
           priority
           className={styles.heroImage}
+          data-motion="hero-image"
           sizes="100vw"
           reveal="filter"
         />
         <div className={styles.heroShade} />
         <div className={`${styles.container} ${styles.heroCopy}`}>
-          <p className={styles.heroBadge}>
+          <p className={styles.heroBadge} data-motion="hero">
             <BookOpen aria-hidden="true" /> Kinh nghiệm điện lạnh
           </p>
-          <h1 id="blog-title">
+          <h1 id="blog-title" data-motion="hero" data-motion-delay="70">
             Bài viết điện lạnh cho
             <br className={styles.heroBreak} /> gia đình tại Cần Thơ
           </h1>
-          <p className={styles.heroDescription}>
+          <p className={styles.heroDescription} data-motion="hero" data-motion-delay="130">
             Tổng hợp dấu hiệu hư hỏng, lịch bảo trì và cách sử dụng thiết bị điện lạnh an toàn hơn
             trước khi cần gọi kỹ thuật viên.
           </p>
@@ -51,8 +52,8 @@ export default function BlogPage() {
         </div>
         {featuredPost ? <FeaturedArticle post={featuredPost} /> : null}
         <section className={styles.articleSection} aria-labelledby="blog-list-title">
-          <h2 className={styles.listHeading} id="blog-list-title">Khám phá bài viết</h2>
-          <div className={styles.grid}>
+          <h2 className={styles.listHeading} id="blog-list-title" data-motion="up">Khám phá bài viết</h2>
+          <div className={styles.grid} data-motion-stagger="55">
             {posts.map((post) => <ArticleCard post={post} key={post.slug} />)}
           </div>
         </section>

@@ -10,6 +10,7 @@ import './globals.css';
 import './mockup-fonts.css';
 import './mockup.css';
 import './public-theme.css';
+import './motion.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL(absoluteUrl('/')),

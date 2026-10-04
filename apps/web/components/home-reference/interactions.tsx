@@ -16,7 +16,7 @@ export function VideoButton({ variant }: { variant: 'outline' | 'feature' }) {
   return (
     <>
       {variant === 'outline' ? (
-        <button className={styles.videoOutline} onClick={open}>
+        <button className={styles.videoOutline} onClick={open} data-motion-hover="button">
           <CirclePlay />
           Xem video
         </button>
@@ -25,6 +25,9 @@ export function VideoButton({ variant }: { variant: 'outline' | 'feature' }) {
           className={styles.featureVideo}
           onClick={open}
           aria-label="Xem video quy trình của chúng tôi"
+          data-motion="image"
+          data-motion-delay="120"
+          data-motion-hover="image"
         >
           <Image
             src="/images/home-reference/technician.webp"
@@ -59,6 +62,7 @@ export function VideoButton({ variant }: { variant: 'outline' | 'feature' }) {
           className={styles.closeButton}
           onClick={() => dialog.current?.close()}
           aria-label="Đóng video"
+          data-motion-hover="icon"
         >
           <X />
         </button>
@@ -86,6 +90,7 @@ export function VideoButton({ variant }: { variant: 'outline' | 'feature' }) {
 
 export function HomeGallery() {
   const [offset, setOffset] = useState(0);
+  const [hasNavigated, setHasNavigated] = useState(false);
   const [selected, setSelected] = useState(0);
   const dialog = useRef<HTMLDialogElement>(null);
   const open = (index: number) => {
@@ -94,9 +99,13 @@ export function HomeGallery() {
   };
   const step = (amount: number) =>
     setSelected((index) => (index + amount + galleryImages.length) % galleryImages.length);
+  const moveGallery = (amount: number) => {
+    setHasNavigated(true);
+    setOffset((index) => (index + amount + galleryImages.length) % galleryImages.length);
+  };
   return (
     <section className={styles.gallery} id="hinh-anh" aria-labelledby="gallery-title">
-      <div className={styles.sectionHeading}>
+      <div className={styles.sectionHeading} data-motion-stagger="60">
         <h2 id="gallery-title">Hình ảnh thực tế</h2>
         <p>Ảnh minh hoạ các dịch vụ thi công, sửa chữa và lắp đặt điện lạnh tại Cần Thơ.</p>
         <button onClick={() => open(0)}>
@@ -107,28 +116,33 @@ export function HomeGallery() {
         <button
           className={`${styles.galleryArrow} ${styles.previous}`}
           aria-label="Nhóm ảnh trước"
-          onClick={() =>
-            setOffset((index) => (index + galleryImages.length - 1) % galleryImages.length)
-          }
+          data-motion-hover="icon"
+          onClick={() => moveGallery(-1)}
         >
           <ChevronLeft />
         </button>
-        <div className={styles.galleryGrid}>
+        <div className={styles.galleryGrid} data-motion-stagger="60">
           {galleryImages.map((_, index) => {
             const actualIndex = (offset + index) % galleryImages.length;
             const item = galleryImages[actualIndex];
             return (
               <button
-                key={actualIndex}
+                key={index}
                 onClick={() => open(actualIndex)}
                 aria-label={`Xem ảnh: ${item.alt}`}
+                data-motion-hover="image"
               >
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  fill
-                  sizes="(max-width: 760px) 50vw, (max-width: 960px) 33vw, (min-width: 1440px) 248px, 20vw"
-                />
+                <span
+                  key={actualIndex}
+                  className={`${styles.galleryPhoto} ${hasNavigated ? styles.galleryPhotoChanged : ''}`}
+                >
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    sizes="(max-width: 760px) 50vw, (max-width: 960px) 33vw, (min-width: 1440px) 248px, 20vw"
+                  />
+                </span>
               </button>
             );
           })}
@@ -136,7 +150,8 @@ export function HomeGallery() {
         <button
           className={`${styles.galleryArrow} ${styles.next}`}
           aria-label="Nhóm ảnh tiếp theo"
-          onClick={() => setOffset((index) => (index + 1) % galleryImages.length)}
+          data-motion-hover="icon"
+          onClick={() => moveGallery(1)}
         >
           <ChevronRight />
         </button>
@@ -157,19 +172,22 @@ export function HomeGallery() {
           className={styles.closeButton}
           onClick={() => dialog.current?.close()}
           aria-label="Đóng thư viện"
+          data-motion-hover="icon"
         >
           <X />
         </button>
         <div className={styles.lightboxPhoto}>
           <Image
+            key={selected}
             src={galleryImages[selected].src}
             alt={galleryImages[selected].alt}
+            className={styles.lightboxImage}
             fill
             sizes="90vw"
           />
         </div>
         <div className={styles.lightboxControls}>
-          <button aria-label="Ảnh trước" onClick={() => step(-1)}>
+          <button aria-label="Ảnh trước" onClick={() => step(-1)} data-motion-hover="icon">
             <ChevronLeft />
           </button>
           <p>
@@ -178,7 +196,7 @@ export function HomeGallery() {
               {selected + 1} / {galleryImages.length}
             </span>
           </p>
-          <button aria-label="Ảnh tiếp theo" onClick={() => step(1)}>
+          <button aria-label="Ảnh tiếp theo" onClick={() => step(1)} data-motion-hover="icon">
             <ChevronRight />
           </button>
         </div>
