@@ -15,6 +15,7 @@
     "build:api": "npm run build --workspace @minhnhat/api",
     "validate:production": "node scripts/validate-production-env.mjs",
     "deploy": "npm run validate:production && docker compose up -d --build && docker compose restart nginx",
+    "deploy:vercel": "node scripts/deploy-vercel.mjs",
     "deploy:web": "npm run validate:production && docker compose up -d --build web && docker compose restart nginx",
     "deploy:api": "docker compose up -d --build api && docker compose restart nginx",
     "deploy:nginx": "docker compose up -d nginx && docker compose restart nginx",

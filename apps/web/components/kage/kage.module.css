@@ -1653,7 +1653,8 @@
   .line > span,
   .reveal,
   .mask,
-  .mask img {
+  .mask img,
+  .step {
     transition: none !important;
     transform: none !important;
     opacity: 1 !important;

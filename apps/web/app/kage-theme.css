@@ -7,9 +7,7 @@
    because module styles carry their own (lighter) theme.
    ========================================================================== */
 
-.kage-site,
-.kage-site main,
-.kage-site main * {
+.kage-site {
   --k-bg: #0a0b0c;
   --k-bg-2: #111315;
   --k-bg-3: #171a1d;
@@ -44,15 +42,26 @@
   --line: var(--k-line);
 }
 
-.kage-site {
+.kage-site:not(.kage-home) {
   background: var(--k-bg) !important;
   color: var(--k-text);
   font-family: 'Be Vietnam Pro', HomeRoboto, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
-html:has(.kage-site) {
+.kage-site.kage-home {
+  background: #ffffff !important;
+  color: #0f172a;
+  font-family: 'Be Vietnam Pro', HomeRoboto, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+html:has(.kage-site:not(.kage-home)) {
   background: #0a0b0c;
   color-scheme: dark;
+  scroll-behavior: smooth;
+}
+html:has(.kage-site.kage-home) {
+  background: #ffffff;
+  color-scheme: light;
   scroll-behavior: smooth;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -340,7 +349,7 @@ html:has(.kage-site) {
 .kage-site:not(.kage-home) main form {
   border: 1px solid var(--k-line) !important;
 }
-.kage-site:not(.kage-home) main [class*='rror'] {
+.kage-site:not(.kage-home) main :is([role='alert'], [class*='rror'], [class*='text-red']) {
   color: #ff9a8a !important;
 }
 

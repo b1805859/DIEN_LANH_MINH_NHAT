@@ -36,7 +36,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       <a className="skip-link" href="#main-content">
         Bỏ qua điều hướng
       </a>
-      <SiteHeader className={hasImageHero ? undefined : styles.innerHeader} />
+      {!isHome && <SiteHeader className={hasImageHero ? undefined : styles.innerHeader} />}
       {hasFloatingActions ? <AdminSessionControls /> : null}
       <div
         id="main-content"
@@ -45,7 +45,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       >
         {hasAreaSelection ? <AreaSelectionProvider>{children}</AreaSelectionProvider> : children}
       </div>
-      <HomeFooter />
+      {!isHome && <HomeFooter />}
       {hasFloatingActions ? (
         <FloatingActions minimal={pathname === '/booking' || pathname.startsWith('/services/')} />
       ) : null}

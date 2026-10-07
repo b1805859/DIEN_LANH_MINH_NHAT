@@ -103,6 +103,8 @@ export function HomeHeader({ className = '' }: { className?: string }) {
   useEffect(() => {
     menu.current?.close();
     search.current?.close();
+    setMenuOpen(false);
+    setHidden(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -240,7 +242,14 @@ export function HomeHeader({ className = '' }: { className?: string }) {
         className={`${k.root} ${k.search}`}
         aria-labelledby="search-title"
         onClick={(event) => {
-          if (event.target === event.currentTarget) search.current?.close();
+          if (event.target !== event.currentTarget) return;
+          const rect = event.currentTarget.getBoundingClientRect();
+          const isOutside =
+            event.clientX < rect.left ||
+            event.clientX > rect.right ||
+            event.clientY < rect.top ||
+            event.clientY > rect.bottom;
+          if (isOutside) search.current?.close();
         }}
       >
         <button

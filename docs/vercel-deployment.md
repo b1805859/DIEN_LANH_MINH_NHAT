@@ -10,27 +10,13 @@ PostgreSQL is provided by the Neon Marketplace resource `minh-nhat-postgres` (Fr
 
 ## Redeploy
 
-Both projects are connected to `b1805859/DIEN_LANH_MINH_NHAT` on GitHub, with `main` as the production branch. Commit and push changes to `main` to trigger production builds. A successful build updates the corresponding production alias. No local Vercel CLI command is needed for routine updates.
+From the repository root, run this single command to deploy the current working tree to production. The script deploys the API first, then the website, and stops if either deployment fails:
 
 ```sh
-git add <changed-files>
-git commit -m "Describe the change"
-git push origin main
+npm run deploy:vercel
 ```
 
-Frontend and API builds are independent, so changes spanning both must remain compatible during rollout. Other branches create preview deployments; preview API/database environment variables need separate configuration before those environments can run.
-
-### Manual fallback
-
-Run from the repository root. Deploy the projects sequentially because `vercel link` changes the local project selection.
-
-```sh
-npx vercel link --yes --project dien-lanh-minh-nhat-api --scope shun-f9e0
-npx vercel deploy --prod --yes --scope shun-f9e0
-
-npx vercel link --yes --project dien-lanh-minh-nhat --scope shun-f9e0
-npx vercel deploy --prod --yes --scope shun-f9e0
-```
+The Vercel CLI must be logged in on this computer. For normal Git-based deployment, commit and push to `main`; Vercel then deploys the connected GitHub projects automatically. Feature branches create previews; preview API/database environment variables need separate configuration before those environments can run.
 
 The API production build generates Prisma Client, compiles the API, then runs `prisma migrate deploy`. Commit migration SQL under `apps/api/prisma/migrations` whenever changing the Prisma schema. A schema edit alone does not create a migration. Migration failure blocks API deployment; preview builds skip migrations. Use backward-compatible migrations because the previous production API remains live during the build. Never run `migrate dev` or reset against production. The frontend build compiles the shared package first.
 
