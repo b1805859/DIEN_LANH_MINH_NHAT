@@ -1,0 +1,434 @@
+/* ==========================================================================
+   Cinematic skin for every public page (Kage-inspired visual language).
+   The homepage is art-directed in components/kage/kage.module.css; this layer
+   re-dresses the existing inner-page modules (services, about, blog, contact,
+   areas, booking, faq, legal…) into the same dark editorial system without
+   touching their markup, data or behaviour. `!important` is used deliberately
+   because module styles carry their own (lighter) theme.
+   ========================================================================== */
+
+.kage-site,
+.kage-site main,
+.kage-site main * {
+  --k-bg: #0a0b0c;
+  --k-bg-2: #111315;
+  --k-bg-3: #171a1d;
+  --k-text: #ece8e1;
+  --k-soft: #c9c6c0;
+  --k-muted: #8f9194;
+  --k-dim: #5d6064;
+  --k-line: rgb(236 232 225 / 12%);
+  --k-line-strong: rgb(236 232 225 / 26%);
+  --k-accent: #4aa3ff;
+  --k-ice: #bfe2ff;
+  --k-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --site-font: 'Be Vietnam Pro', HomeRoboto, system-ui, sans-serif !important;
+  --site-text: var(--k-text) !important;
+  --site-text-muted: var(--k-muted) !important;
+  --site-primary: var(--k-ice) !important;
+  --site-cyan: var(--k-ice) !important;
+  --site-navy: var(--k-bg) !important;
+  --site-surface: var(--k-bg-2) !important;
+  --site-border: var(--k-line) !important;
+  --site-input-border: var(--k-line-strong) !important;
+  --site-focus: var(--k-accent) !important;
+  --site-gradient: linear-gradient(rgb(236 232 225 / 4%), rgb(236 232 225 / 4%)) !important;
+  --site-radius: 2px !important;
+  --site-input-radius: 2px !important;
+  --site-pill: 2px !important;
+  --site-shadow: none !important;
+  --brand: var(--k-ice);
+  --ink: var(--k-text);
+  --surface: var(--k-bg-2);
+  --line: var(--k-line);
+}
+
+.kage-site {
+  background: var(--k-bg) !important;
+  color: var(--k-text);
+  font-family: 'Be Vietnam Pro', HomeRoboto, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+html:has(.kage-site) {
+  background: #0a0b0c;
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html:has(.kage-site) {
+    scroll-behavior: auto;
+  }
+}
+.kage-site ::selection {
+  background: #bfe2ff;
+  color: #0a0b0c;
+}
+
+/* ---------- Page canvas ---------- */
+.kage-site:not(.kage-home) main {
+  background: var(--k-bg) !important;
+  color: var(--k-text) !important;
+  font-family: 'Be Vietnam Pro', HomeRoboto, system-ui, sans-serif !important;
+}
+
+/* Surfaces become editorial: no fills, no shadows, hairline borders. */
+.kage-site:not(.kage-home)
+  main
+  :is(section, article, aside, form, figure, li, div, fieldset, details, dl, table, nav, ol, ul):not(
+    [class*='hade']
+  ):not([class*='mage']):not([class*='hoto']):not([class*='map']):not([class*='Map']) {
+  background-color: transparent !important;
+  border-color: var(--k-line) !important;
+  border-radius: 2px !important;
+  box-shadow: none !important;
+}
+/* Light card gradients → flat; keep image backgrounds intact. */
+.kage-site:not(.kage-home)
+  main
+  :is([class*='ard'], [class*='anel'], [class*='ommitment'], [class*='rust'], [class*='alue'], [class*='success'], [class*='mpty']):not(
+    [class*='hoto']
+  ):not([class*='mage']) {
+  background-image: none !important;
+}
+
+.kage-site:not(.kage-home) main > section {
+  position: relative;
+  border-top: 1px solid var(--k-line);
+}
+
+/* ---------- Text ---------- */
+.kage-site:not(.kage-home)
+  main
+  :is(p, li, span, strong, b, em, small, dt, dd, label, a, blockquote, figcaption, td, th, time, summary, legend):not(
+    button
+  ):not([class*='utton']):not([class*='utton'] *):not([class*='ubmit']):not([class*='ubmit'] *) {
+  color: inherit;
+}
+.kage-site:not(.kage-home) main :is(p, li, dd, figcaption, td, small, time):not([class*='utton'] *) {
+  color: var(--k-muted) !important;
+}
+.kage-site:not(.kage-home) main :is(strong, b, dt, th, label, summary, legend) {
+  color: var(--k-soft) !important;
+}
+.kage-site:not(.kage-home) main a:not([class*='utton']):not([class*='ard']) {
+  transition: color 0.4s var(--k-ease);
+}
+
+.kage-site:not(.kage-home) main :is(h1, h2, h3, h4) {
+  color: var(--k-text) !important;
+  font-family: 'Be Vietnam Pro', HomeRoboto, system-ui, sans-serif !important;
+  font-weight: 400 !important;
+  text-wrap: balance;
+}
+.kage-site:not(.kage-home) main h1 {
+  font-size: clamp(44px, 6.4vw, 96px) !important;
+  line-height: 1 !important;
+  letter-spacing: -0.05em !important;
+}
+.kage-site:not(.kage-home) main h2 {
+  font-size: clamp(34px, 4.4vw, 68px) !important;
+  line-height: 1.04 !important;
+  letter-spacing: -0.045em !important;
+}
+.kage-site:not(.kage-home) main h3 {
+  font-size: clamp(20px, 1.9vw, 28px) !important;
+  line-height: 1.2 !important;
+  letter-spacing: -0.025em !important;
+}
+.kage-site:not(.kage-home) main :is(h1, h2) :is(span, em, strong) {
+  color: var(--k-ice) !important;
+  font-weight: inherit !important;
+}
+
+/* Eyebrows / small labels → editorial chapter labels */
+.kage-site:not(.kage-home) main :is([class*='yebrow'], [class*='adge'], [class*='Eyebrow']) {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 14px;
+  padding: 0 !important;
+  border: 0 !important;
+  background: none !important;
+  color: var(--k-muted) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase;
+}
+.kage-site:not(.kage-home) main :is([class*='yebrow'], [class*='adge'], [class*='Eyebrow'])::before {
+  content: '';
+  width: 34px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+.kage-site:not(.kage-home) main :is([class*='yebrow'], [class*='adge'], [class*='Eyebrow']) svg {
+  display: none;
+}
+
+/* ---------- Cinematic heroes ---------- */
+.kage-site:not(.kage-home) main > section:first-of-type[class*='ero'] {
+  min-height: min(92svh, 920px) !important;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  border-top: 0;
+}
+.kage-site:not(.kage-home) main [class*='heroImage'] {
+  filter: saturate(0.82) brightness(0.9);
+  animation: kInnerHero 2.6s var(--k-ease) both;
+}
+@keyframes kInnerHero {
+  from {
+    transform: scale(1.14);
+    filter: brightness(0.35) blur(6px);
+  }
+  to {
+    transform: scale(1.02);
+  }
+}
+.kage-site:not(.kage-home) main [class*='heroShade'] {
+  background:
+    linear-gradient(180deg, rgb(10 11 12 / 70%) 0%, rgb(10 11 12 / 15%) 35%, rgb(10 11 12 / 70%) 78%, #0a0b0c 100%),
+    linear-gradient(90deg, rgb(10 11 12 / 85%) 0%, rgb(10 11 12 / 30%) 55%, transparent 100%) !important;
+}
+.kage-site:not(.kage-home) main [class*='heroCopy'] > * {
+  animation: kRise 1.2s var(--k-ease) both;
+}
+.kage-site:not(.kage-home) main [class*='heroCopy'] > :nth-child(2) {
+  animation-delay: 0.12s;
+}
+.kage-site:not(.kage-home) main [class*='heroCopy'] > :nth-child(3) {
+  animation-delay: 0.24s;
+}
+.kage-site:not(.kage-home) main [class*='heroCopy'] > :nth-child(n + 4) {
+  animation-delay: 0.36s;
+}
+@keyframes kRise {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+}
+.kage-site:not(.kage-home) main [class*='heroHighlights'] {
+  border-top: 1px solid var(--k-line) !important;
+  padding-top: 20px !important;
+}
+
+/* ---------- Images ---------- */
+.kage-site:not(.kage-home) main img {
+  border-radius: 0 !important;
+}
+.kage-site:not(.kage-home) main :is([class*='hoto'], [class*='mage']):not([class*='hero']) {
+  overflow: hidden;
+  border-radius: 2px !important;
+  box-shadow: none !important;
+}
+.kage-site:not(.kage-home) main :is([class*='hoto'], [class*='mage']):not([class*='hero']) img {
+  transition: transform 1.4s var(--k-ease), filter 0.8s !important;
+  filter: saturate(0.85);
+}
+.kage-site:not(.kage-home) main :is(a, article, li):hover :is([class*='hoto'], [class*='mage']) img {
+  transform: scale(1.05);
+  filter: saturate(1);
+}
+
+/* Cards → editorial rows with a hairline that draws on hover */
+.kage-site:not(.kage-home) main :is([class*='ard']):not([class*='hoto']):not([class*='rrow']) {
+  position: relative;
+  border: 0 !important;
+  border-top: 1px solid var(--k-line) !important;
+  transition: transform 0.7s var(--k-ease) !important;
+}
+.kage-site:not(.kage-home) main :is(a[class*='ard'], [class*='ard']:has(> a)):hover {
+  transform: translateY(-4px);
+}
+.kage-site:not(.kage-home) main :is([class*='ardIcon'], [class*='tepIcon'], [class*='alueIcon'], [class*='eamIcon'], [class*='ontactIcon'], [class*='ommitmentIcon']) {
+  background: transparent !important;
+  border: 1px solid var(--k-line-strong) !important;
+  border-radius: 50% !important;
+  color: var(--k-ice) !important;
+}
+.kage-site:not(.kage-home) main :is([class*='ardIcon'], [class*='tepIcon'], [class*='alueIcon'], [class*='eamIcon'], [class*='ontactIcon'], [class*='ommitmentIcon']) * {
+  color: var(--k-ice) !important;
+}
+.kage-site:not(.kage-home) main svg {
+  color: inherit;
+}
+
+/* ---------- Buttons ---------- */
+.kage-site:not(.kage-home) main :is([class*='primaryButton'], [class*='ubmit'], button[type='submit'], [class*='ctaButton']) {
+  min-height: 52px !important;
+  padding: 0 26px !important;
+  border: 1px solid var(--k-text) !important;
+  border-radius: 2px !important;
+  background: var(--k-text) !important;
+  box-shadow: none !important;
+  color: #0a0b0c !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+  transition:
+    background-color 0.5s var(--k-ease),
+    color 0.5s var(--k-ease),
+    border-color 0.5s var(--k-ease) !important;
+}
+.kage-site:not(.kage-home) main :is([class*='primaryButton'], [class*='ubmit'], button[type='submit'], [class*='ctaButton']) * {
+  color: inherit !important;
+}
+.kage-site:not(.kage-home) main :is([class*='primaryButton'], [class*='ubmit'], button[type='submit'], [class*='ctaButton']):hover {
+  border-color: var(--k-accent) !important;
+  background: var(--k-accent) !important;
+  color: #fff !important;
+}
+.kage-site:not(.kage-home)
+  main
+  :is([class*='onsultButton'], [class*='utlineButton'], [class*='econdaryButton'], [class*='ghost'], [class*='callButton'], [class*='emptyLink'], [class*='backLink'], [class*='filterChip'], [class*='nearbyChip']) {
+  border: 1px solid var(--k-line-strong) !important;
+  border-radius: 2px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--k-text) !important;
+  transition:
+    border-color 0.4s,
+    background-color 0.4s !important;
+}
+.kage-site:not(.kage-home)
+  main
+  :is([class*='onsultButton'], [class*='utlineButton'], [class*='econdaryButton'], [class*='ghost'], [class*='callButton'], [class*='emptyLink'], [class*='backLink'], [class*='filterChip'], [class*='nearbyChip'])
+  * {
+  color: inherit !important;
+}
+.kage-site:not(.kage-home)
+  main
+  :is([class*='onsultButton'], [class*='utlineButton'], [class*='econdaryButton'], [class*='ghost'], [class*='callButton'], [class*='emptyLink'], [class*='backLink'], [class*='filterChip'], [class*='nearbyChip']):is(:hover, [aria-current], [aria-pressed='true'], [data-active='true']) {
+  border-color: var(--k-text) !important;
+  background: rgb(236 232 225 / 8%) !important;
+}
+.kage-site:not(.kage-home) main :is([class*='textLink'], [class*='cardLink'], [class*='featuredLink']) {
+  color: var(--k-text) !important;
+  letter-spacing: 0.06em;
+  text-decoration: underline;
+  text-decoration-color: var(--k-line-strong);
+  text-underline-offset: 6px;
+}
+
+/* ---------- Forms ---------- */
+.kage-site:not(.kage-home) main :is(input:not([type='checkbox']):not([type='radio']), select, textarea) {
+  border: 0 !important;
+  border-bottom: 1px solid var(--k-line-strong) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: var(--k-text) !important;
+  font-size: 16px !important;
+  transition: border-color 0.4s !important;
+}
+.kage-site:not(.kage-home) main :is(input, select, textarea):focus {
+  border-bottom-color: var(--k-ice) !important;
+  outline: none !important;
+}
+.kage-site:not(.kage-home) main :is(input, textarea)::placeholder {
+  color: var(--k-dim) !important;
+}
+.kage-site:not(.kage-home) main select option {
+  background: #111315;
+  color: #ece8e1;
+}
+.kage-site:not(.kage-home) main form {
+  border: 1px solid var(--k-line) !important;
+}
+.kage-site:not(.kage-home) main [class*='rror'] {
+  color: #ff9a8a !important;
+}
+
+/* ---------- Map / embeds ---------- */
+.kage-site:not(.kage-home) main iframe {
+  border: 0 !important;
+  border-radius: 2px !important;
+  filter: grayscale(1) invert(0.9) contrast(0.9) brightness(0.95);
+}
+
+/* ---------- Long-form (blog article, legal, faq) ---------- */
+.kage-site:not(.kage-home) main :is([class*='articleSection'], [class*='prose'], [class*='legal']) :is(p, li) {
+  color: var(--k-soft) !important;
+  font-size: 17px;
+  line-height: 1.85;
+}
+.kage-site:not(.kage-home) main :is([class*='articleSection'], [class*='prose'], [class*='legal']) a:not([class]) {
+  color: var(--k-ice) !important;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.kage-site:not(.kage-home) main blockquote {
+  margin-inline: 0;
+  padding-left: 24px;
+  border-left: 1px solid var(--k-ice) !important;
+  color: var(--k-text) !important;
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.4;
+}
+.kage-site:not(.kage-home) main details {
+  border: 0 !important;
+  border-bottom: 1px solid var(--k-line) !important;
+}
+.kage-site:not(.kage-home) main details summary {
+  padding-block: 22px;
+  color: var(--k-text) !important;
+  font-size: clamp(18px, 1.6vw, 24px);
+  letter-spacing: -0.02em;
+  cursor: pointer;
+}
+.kage-site:not(.kage-home) main hr {
+  border-color: var(--k-line);
+}
+
+/* Handwritten decorative accents don't belong to the editorial system. */
+.kage-site:not(.kage-home) main [class*='andwriting'] {
+  font-family: 'Be Vietnam Pro', sans-serif !important;
+  font-size: 12px !important;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--k-muted) !important;
+  transform: none !important;
+}
+
+/* ---------- Shared chrome bits outside main ---------- */
+.kage-site [class*='adminSession'] {
+  border-color: var(--k-line) !important;
+  background: var(--k-bg-2) !important;
+  color: var(--k-text);
+}
+.kage-site [class*='adminSession'] :is(a, button) {
+  border-color: var(--k-line-strong) !important;
+  border-radius: 2px !important;
+  background: transparent !important;
+  color: var(--k-text) !important;
+}
+.kage-site .skip-link {
+  background: var(--k-text);
+  color: var(--k-bg);
+}
+
+/* Lighter-weight entrance for inner-page sections (existing data-motion system
+   still drives timing; this just softens the look). */
+.kage-site:not(.kage-home) main > section:not(:first-of-type) {
+  animation: kSection linear both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 40%;
+}
+@keyframes kSection {
+  from {
+    opacity: 0.35;
+    transform: translateY(40px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kage-site:not(.kage-home) main > section,
+  .kage-site:not(.kage-home) main [class*='heroImage'],
+  .kage-site:not(.kage-home) main [class*='heroCopy'] > * {
+    animation: none !important;
+  }
+}

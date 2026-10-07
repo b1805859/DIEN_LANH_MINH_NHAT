@@ -3,11 +3,11 @@
 import { ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import { FloatingActions } from '@/components/conversion/floating-actions';
-import { SiteFooter } from '@/components/layout/site-footer';
 import { AdminSessionControls, SiteHeader } from '@/components/layout/site-header';
 import { AreaSelectionProvider } from '@/components/areas-reference/area-selection';
 import { HomeFooter } from '@/components/home-reference/chrome';
 import { SiteMotion } from '@/components/motion/site-motion';
+import { KageMotion } from '@/components/kage/kage-motion';
 import { motionVariables } from '@/lib/motion/config';
 import homeStyles from '@/components/home-reference/home.module.css';
 import styles from './site-chrome.module.css';
@@ -29,9 +29,10 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   return (
     <div
       style={motionVariables}
-      className={`public-site ${homeStyles.site} ${styles.siteShell}${hasFloatingActions ? ' has-floating-actions' : ''}`}
+      className={`public-site kage-site${isHome ? ' kage-home' : ''} ${homeStyles.site} ${styles.siteShell}${hasFloatingActions ? ' has-floating-actions' : ''}`}
     >
       <SiteMotion />
+      <KageMotion />
       <a className="skip-link" href="#main-content">
         Bỏ qua điều hướng
       </a>
@@ -44,7 +45,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       >
         {hasAreaSelection ? <AreaSelectionProvider>{children}</AreaSelectionProvider> : children}
       </div>
-      {isHome ? <HomeFooter /> : <SiteFooter />}
+      <HomeFooter />
       {hasFloatingActions ? (
         <FloatingActions minimal={pathname === '/booking' || pathname.startsWith('/services/')} />
       ) : null}

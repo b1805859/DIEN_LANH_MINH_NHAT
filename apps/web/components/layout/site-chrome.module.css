@@ -24,7 +24,7 @@
 }
 
 .innerHeader.innerHeader:not([data-scrolled='true']) {
-  background: #001c32b0;
+  background: rgb(10 11 12 / 82%);
   backdrop-filter: blur(14px);
 }
 

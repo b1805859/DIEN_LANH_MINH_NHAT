@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import {
   ArrowRight,
+  ArrowUpRight,
   Clock3,
   Facebook,
   Mail,
@@ -17,10 +18,11 @@ import {
   X,
   Youtube,
 } from 'lucide-react';
+import { PRIORITY_DISTRICTS } from '@minhnhat/shared';
 import { integrationSettings } from '@/lib/integrations/settings';
 import { isNavigationItemActive, navigationItems } from '@/components/layout/navigation';
+import k from '@/components/kage/kage.module.css';
 import { homeServices } from './data';
-import styles from './home.module.css';
 
 const normalizeSearch = (value: string) =>
   value
@@ -30,11 +32,23 @@ const normalizeSearch = (value: string) =>
     .replace(/đ/g, 'd')
     .trim();
 
+const serviceAreas = ['ninh-kieu', 'binh-thuy', 'cai-rang', 'o-mon', 'thot-not']
+  .map((slug) => PRIORITY_DISTRICTS.find((area) => area.slug === slug))
+  .filter((area): area is NonNullable<typeof area> => Boolean(area));
+
+const pad = (value: number) => String(value).padStart(2, '0');
+
+function usePhone() {
+  const phone = integrationSettings.phone.replace(/\s/g, '');
+  const displayPhone = phone.replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3');
+  return { phone, displayPhone };
+}
+
 function Brand({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <Link
       href="/"
-      className={`${styles.brand} motion-brand`}
+      className={k.brand}
       aria-label="Điện Lạnh Minh Nhật — Trang chủ"
       onClick={onNavigate}
     >
@@ -42,7 +56,7 @@ function Brand({ onNavigate }: { onNavigate?: () => void }) {
         viewBox="0 0 48 48"
         fill="none"
         stroke="currentColor"
-        strokeWidth="3.4"
+        strokeWidth="2.6"
         strokeLinecap="round"
         strokeLinejoin="round"
         aria-hidden="true"
@@ -70,7 +84,9 @@ export function HomeHeader({ className = '' }: { className?: string }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [query, setQuery] = useState('');
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const [locationHash, setLocationHash] = useState('');
+  const { phone, displayPhone } = usePhone();
   const isActive = (href: string) => isNavigationItemActive(href, pathname, locationHash);
 
   useEffect(() => {
@@ -90,7 +106,15 @@ export function HomeHeader({ className = '' }: { className?: string }) {
   }, [pathname]);
 
   useEffect(() => {
-    const update = () => setScrolled(window.scrollY > 24);
+    let last = window.scrollY;
+    const update = () => {
+      const y = window.scrollY;
+      setScrolled(y > 24);
+      // Hide while travelling down through content, reveal on any upward scroll.
+      setHidden(y > 480 && y > last + 2);
+      if (y < last - 2 || y <= 480) setHidden(false);
+      last = y;
+    };
     update();
     window.addEventListener('scroll', update, { passive: true });
     return () => window.removeEventListener('scroll', update);
@@ -99,36 +123,37 @@ export function HomeHeader({ className = '' }: { className?: string }) {
   const results = homeServices.filter((service) =>
     normalizeSearch(service.title).includes(normalizeSearch(query)),
   );
+
   return (
     <header
-      data-motion="header"
-      className={`motion-header ${styles.header} ${scrolled ? styles.headerScrolled : ''} ${className}`}
+      className={`${k.root} ${k.header} ${scrolled ? k.headerScrolled : ''} ${
+        hidden && !menuOpen ? k.headerHidden : ''
+      } ${className}`}
       data-scrolled={scrolled ? 'true' : undefined}
     >
-      <div className={styles.headerInner}>
+      <div className={k.headerInner}>
         <Brand onNavigate={() => setLocationHash('')} />
-        <nav
-          className={`${styles.desktopNav} motion-nav`}
-          data-motion-stagger="35"
-          data-motion-group-variant="fade"
-          aria-label="Điều hướng chính"
-        >
-          {navigationItems.map(({ label, href }) => (
+        <nav className={k.nav} aria-label="Điều hướng chính">
+          {navigationItems.map(({ label, href }, index) => (
             <Link
               key={href}
               href={href}
               aria-current={isActive(href) ? 'page' : undefined}
               onClick={() => setLocationHash(new URL(href, window.location.href).hash)}
             >
+              <small>{pad(index + 1)}</small>
               {label}
             </Link>
           ))}
         </nav>
-        <div className={styles.headerActions}>
+        <div className={k.actions}>
+          <a className={k.headerPhone} href={`tel:${phone}`}>
+            <Phone aria-hidden="true" />
+            {displayPhone}
+          </a>
           <button
             type="button"
-            className={styles.searchButton}
-            data-motion-hover="icon"
+            className={k.iconBtn}
             onClick={() => {
               search.current?.showModal();
               searchInput.current?.focus();
@@ -137,13 +162,12 @@ export function HomeHeader({ className = '' }: { className?: string }) {
           >
             <Search />
           </button>
-          <Link href="/booking" className={`${styles.primaryButton} motion-button`}>
-            Đặt lịch ngay <ArrowRight />
+          <Link href="/booking" className={`${k.btn} ${k.headerCta}`}>
+            Đặt lịch ngay <ArrowRight aria-hidden="true" />
           </Link>
           <button
             type="button"
-            className={styles.menuButton}
-            data-motion-hover="icon"
+            className={`${k.iconBtn} ${k.menuToggle}`}
             onClick={() => {
               menu.current?.showModal();
               setMenuOpen(true);
@@ -156,57 +180,64 @@ export function HomeHeader({ className = '' }: { className?: string }) {
           </button>
         </div>
       </div>
+
       <dialog
         id="public-site-menu"
         ref={menu}
         aria-label="Menu điều hướng"
-        className={`${styles.dialog} ${styles.menuDialog}`}
+        className={`${k.root} ${k.menu}`}
         onClose={() => setMenuOpen(false)}
-        onClick={(event) => {
-          if (event.target === event.currentTarget) menu.current?.close();
-        }}
       >
-        <button
-          type="button"
-          className={styles.closeButton}
-          onClick={() => menu.current?.close()}
-          aria-label="Đóng menu"
-        >
-          <X />
-        </button>
-        <Brand
-          onNavigate={() => {
-            setLocationHash('');
-            menu.current?.close();
-          }}
-        />
-        <nav aria-label="Điều hướng di động">
-          {navigationItems.map(({ label, href }) => (
-            <Link
-              key={href}
-              href={href}
-              aria-current={isActive(href) ? 'page' : undefined}
-              onClick={() => {
-                setLocationHash(new URL(href, window.location.href).hash);
-                menu.current?.close();
-              }}
-            >
-              {label}
-              <ArrowRight />
-            </Link>
-          ))}
-        </nav>
-        <Link
-          className={`${styles.primaryButton} motion-button`}
-          href="/booking"
-          onClick={() => menu.current?.close()}
-        >
-          Đặt lịch ngay <ArrowRight />
-        </Link>
+        <div className={k.menuTop}>
+          <Brand
+            onNavigate={() => {
+              setLocationHash('');
+              menu.current?.close();
+            }}
+          />
+          <button
+            type="button"
+            className={k.iconBtn}
+            onClick={() => menu.current?.close()}
+            aria-label="Đóng menu"
+          >
+            <X />
+          </button>
+        </div>
+        {menuOpen ? (
+          <nav className={k.menuNav} aria-label="Điều hướng di động">
+            {navigationItems.map(({ label, href }, index) => (
+              <Link
+                key={href}
+                href={href}
+                style={{ ['--i' as string]: index }}
+                aria-current={isActive(href) ? 'page' : undefined}
+                onClick={() => {
+                  setLocationHash(new URL(href, window.location.href).hash);
+                  menu.current?.close();
+                }}
+              >
+                <small>{pad(index + 1)}</small>
+                {label}
+              </Link>
+            ))}
+          </nav>
+        ) : (
+          <div className={k.menuNav} />
+        )}
+        <div className={k.menuFoot}>
+          <a href={`tel:${phone}`}>{displayPhone}</a>
+          <a href="mailto:dienlanhminhnhat@gmail.com">dienlanhminhnhat@gmail.com</a>
+          <span>Ninh Kiều, Cần Thơ · T2 - CN: 8:00 – 20:00</span>
+          <Link className={k.btn} href="/booking" onClick={() => menu.current?.close()}>
+            Đặt lịch ngay <ArrowRight aria-hidden="true" />
+          </Link>
+        </div>
       </dialog>
+
       <dialog
         ref={search}
-        className={`${styles.dialog} ${styles.searchDialog}`}
+        className={`${k.root} ${k.search}`}
         aria-labelledby="search-title"
         onClick={(event) => {
           if (event.target === event.currentTarget) search.current?.close();
@@ -214,14 +245,14 @@ export function HomeHeader({ className = '' }: { className?: string }) {
       >
         <button
           type="button"
-          className={styles.closeButton}
+          className={`${k.iconBtn} ${k.closeBtn}`}
           onClick={() => search.current?.close()}
           aria-label="Đóng tìm kiếm"
         >
           <X />
         </button>
         <h2 id="search-title">Tìm kiếm dịch vụ</h2>
-        <label className={styles.searchInput}>
+        <label className={k.searchField}>
           <Search />
           <input
             ref={searchInput}
@@ -239,12 +270,12 @@ export function HomeHeader({ className = '' }: { className?: string }) {
             onChange={(event) => setQuery(event.target.value)}
           />
         </label>
-        <div className={styles.searchResults}>
+        <div className={k.searchResults}>
           {results.length ? (
             results.map((service) => (
               <Link href={service.href} key={service.href} onClick={() => search.current?.close()}>
                 {service.title}
-                <ArrowRight />
+                <ArrowUpRight />
               </Link>
             ))
           ) : (
@@ -263,87 +294,45 @@ export function HomeHeader({ className = '' }: { className?: string }) {
 }
 
 export function HomeFooter() {
-  const phone = integrationSettings.phone.replace(/\s/g, '');
-  const displayPhone = phone.replace(/^(\d{4})(\d{3})(\d{3})$/, '$1 $2 $3');
+  const { phone, displayPhone } = usePhone();
   return (
-    <footer className={styles.footer}>
-      <div className={styles.footerMain} data-motion-stagger="50" data-motion-group-variant="fade">
-        <div className={styles.footerIntro}>
+    <footer className={`${k.root} ${k.footer}`}>
+      <div className={k.footerStatement}>
+        <h2 className={k.reveal} data-k-reveal>
+          Nhanh chóng – Uy tín
+          <br />
+          <span>Chuyên nghiệp – Tận tâm.</span>
+        </h2>
+        <div className={k.footerPhone}>
+          <small>Gọi kỹ thuật viên</small>
+          <a href={`tel:${phone}`}>{displayPhone}</a>
+          <Link href="/booking" className={k.textLink}>
+            Đặt lịch ngay <ArrowRight aria-hidden="true" />
+          </Link>
+        </div>
+      </div>
+
+      <div className={k.footerGrid}>
+        <div className={k.footerIntro}>
           <Brand />
           <p>
-            Chuyên cung cấp dịch vụ sửa chữa, lắp đặt, vệ sinh, bảo trì
-            <br className={styles.desktopBreak} /> máy lạnh, máy giặt, tủ lạnh tại Cần Thơ và các
-            quận huyện lân cận.
-            <br className={styles.desktopBreak} /> Nhanh chóng – Uy tín – Chuyên nghiệp – Tận tâm.
+            Chuyên cung cấp dịch vụ sửa chữa, lắp đặt, vệ sinh, bảo trì máy lạnh, máy giặt, tủ lạnh
+            tại Cần Thơ và các quận huyện lân cận.
           </p>
-        </div>
-        <div>
-          <h2>Dịch vụ</h2>
-          <nav aria-label="Dịch vụ cuối trang">
-            {homeServices.map((service) => (
-              <Link key={service.href} href={service.href}>
-                {service.title}
-              </Link>
-            ))}
-          </nav>
-        </div>
-        <div>
-          <h2>Về chúng tôi</h2>
-          <nav aria-label="Về chúng tôi">
-            <Link href="/about">Giới thiệu</Link>
-            <Link href="/blog">Tin tức</Link>
-            <Link href="/contact">Liên hệ</Link>
-          </nav>
-        </div>
-        <div className={styles.footerContact}>
-          <h2>Thông tin liên hệ</h2>
-          <a href={`tel:${phone}`}>
-            <Phone />
-            {displayPhone}
-          </a>
-          <a href="mailto:dienlanhminhnhat@gmail.com">
-            <Mail />
-            dienlanhminhnhat@gmail.com
-          </a>
-          <a
-            href={
-              integrationSettings.googleMapsUrl ||
-              'https://www.google.com/maps/search/?api=1&query=Ninh+Kieu+Can+Tho'
-            }
-            target="_blank"
-            rel="noreferrer"
-          >
-            <MapPin />
-            Ninh Kiều, Cần Thơ
-          </a>
-          <p>
-            <Clock3 />
-            T2 - CN: 8:00 – 20:00
-          </p>
-        </div>
-        <div className={styles.footerSocial}>
-          <h2>Kết nối với chúng tôi</h2>
-          <div>
+          <div className={k.social}>
             <a
               href={
                 integrationSettings.facebookUrl ||
                 'https://www.facebook.com/profile.php?id=100063792110691'
               }
               aria-label="Facebook"
-              data-motion-hover="icon"
               target="_blank"
               rel="noreferrer"
             >
               <Facebook fill="currentColor" />
             </a>
-            <a
-              href={integrationSettings.zaloUrl}
-              aria-label="Zalo"
-              data-motion-hover="icon"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Image src="/icons/zalo.svg" alt="" width={19} height={19} />
+            <a href={integrationSettings.zaloUrl} aria-label="Zalo" target="_blank" rel="noreferrer">
+              <Image src="/icons/zalo.svg" alt="" width={16} height={16} />
             </a>
             {integrationSettings.youtubeUrl ? (
               <a
@@ -352,14 +341,14 @@ export function HomeFooter() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <Youtube fill="currentColor" />
+                <Youtube />
               </a>
             ) : (
               <span
                 aria-label="YouTube — chưa có kênh được công bố"
                 title="Chưa có kênh YouTube được công bố"
               >
-                <Youtube fill="currentColor" />
+                <Youtube />
               </span>
             )}
             {integrationSettings.tiktokUrl ? (
@@ -369,24 +358,88 @@ export function HomeFooter() {
                 target="_blank"
                 rel="noreferrer"
               >
-                <Music2 fill="currentColor" />
+                <Music2 />
               </a>
             ) : (
               <span
                 aria-label="TikTok — chưa có kênh được công bố"
                 title="Chưa có kênh TikTok được công bố"
               >
-                <Music2 fill="currentColor" />
+                <Music2 />
               </span>
             )}
           </div>
         </div>
+        <div>
+          <h3>Dịch vụ</h3>
+          <nav aria-label="Dịch vụ cuối trang">
+            {homeServices.map((service) => (
+              <Link key={service.href} href={service.href}>
+                {service.title}
+              </Link>
+            ))}
+          </nav>
+        </div>
+        <div>
+          <h3>Khám phá</h3>
+          <nav aria-label="Về chúng tôi">
+            <Link href="/about">Giới thiệu</Link>
+            <Link href="/areas">Khu vực</Link>
+            <Link href="/blog">Tin tức</Link>
+            <Link href="/faq">Câu hỏi thường gặp</Link>
+            <Link href="/contact">Liên hệ</Link>
+          </nav>
+        </div>
+        <div>
+          <h3>Liên hệ</h3>
+          <div className={k.footerContact}>
+            <a href={`tel:${phone}`}>
+              <Phone aria-hidden="true" />
+              {displayPhone}
+            </a>
+            <a href="mailto:dienlanhminhnhat@gmail.com">
+              <Mail aria-hidden="true" />
+              dienlanhminhnhat@gmail.com
+            </a>
+            <a
+              href={
+                integrationSettings.googleMapsUrl ||
+                'https://www.google.com/maps/search/?api=1&query=Ninh+Kieu+Can+Tho'
+              }
+              target="_blank"
+              rel="noreferrer"
+            >
+              <MapPin aria-hidden="true" />
+              Ninh Kiều, Cần Thơ
+            </a>
+            <p>
+              <Clock3 aria-hidden="true" />
+              T2 - CN: 8:00 – 20:00
+            </p>
+          </div>
+          {serviceAreas.length ? (
+            <>
+              <h3 style={{ marginTop: 32 }}>Khu vực phục vụ</h3>
+              <nav aria-label="Khu vực phục vụ">
+                {serviceAreas.map((area) => (
+                  <Link key={area.slug} href={`/areas/${area.slug}`}>
+                    {area.shortName}
+                  </Link>
+                ))}
+              </nav>
+            </>
+          ) : null}
+        </div>
       </div>
-      <div className={styles.footerBottom} data-motion="fade">
+
+      <p className={k.footerWord} aria-hidden="true">
+        MINH NHẬT
+      </p>
+
+      <div className={k.footerBottom}>
         <span>© 2024 Điện Lạnh Minh Nhật. Tất cả quyền được bảo lưu.</span>
         <nav aria-label="Chính sách">
           <Link href="/privacy-policy">Chính sách bảo mật</Link>
-          <span>|</span>
           <Link href="/terms-of-service">Điều khoản sử dụng</Link>
         </nav>
       </div>
