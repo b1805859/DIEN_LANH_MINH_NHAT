@@ -31,13 +31,13 @@ export function CoolFixCta() {
         </h2>
 
         <p className={styles.breatheSubtitle}>
-          Phục vụ tận nơi cho gia đình và doanh nghiệp tại Ninh Kiều, Cái Răng, Bình Thủy...
-          Có mặt nhanh trong 30 phút, bảo hành uy tín dài hạn.
+          Phục vụ tận nơi cho gia đình và cơ sở kinh doanh tại Ninh Kiều, Cái Răng, Bình Thủy, Ô Môn, Thốt Nốt...
+          Kiểm tra đúng bệnh, báo rõ phương án, bảo hành chu đáo dài lâu.
         </p>
 
         <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
           <Link href="/booking" className={styles.heroBtnWhite}>
-            Đặt lịch ngay <ArrowRight size={17} />
+            Đặt lịch khảo sát <ArrowRight size={17} />
           </Link>
           <a href={`tel:${phone}`} className={styles.heroBtnGlass}>
             <Phone size={17} /> Gọi 0939 370 109

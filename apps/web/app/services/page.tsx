@@ -165,9 +165,9 @@ export default function ServicesPage() {
             <Zap aria-hidden="true" />
           </span>
           <p>
-            Có mặt nhanh
+            Phục vụ tận nơi
             <br />
-            trong <strong>30 phút</strong>
+            tại <strong>Cần Thơ</strong>
           </p>
         </div>
         <div>

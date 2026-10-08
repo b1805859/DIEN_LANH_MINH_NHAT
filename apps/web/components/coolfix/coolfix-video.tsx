@@ -24,7 +24,7 @@ export function CoolFixVideo() {
       <div className={styles.showcaseFrame}>
         <Image
           src="/images/home-reference/technician.webp"
-          alt="Kỹ thuật viên Điện Lạnh Minh Nhật kiểm tra và bảo dưỡng dàn nóng máy lạnh"
+          alt="Hình ảnh minh họa: Quy trình kiểm tra và bảo dưỡng thiết bị điện lạnh"
           fill
           priority
           sizes="(max-width: 1024px) 100vw, 1320px"
@@ -39,7 +39,7 @@ export function CoolFixVideo() {
           aria-label="Phát video quy trình làm việc"
         >
           <Play size={26} fill="currentColor" />
-          <span>Play Video</span>
+          <span>Xem video</span>
         </button>
       </div>
 

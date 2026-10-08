@@ -59,22 +59,22 @@ export function CoolFixHero() {
 
       <div className={styles.heroContent}>
         <h1 id="hero-title" className={styles.heroTitle}>
-          Sửa Chữa Máy Lạnh Cần Thơ —
+          Dịch Vụ Điện Lạnh Cần Thơ —
           <br />
-          Khi Bạn Cần Nhất.
+          Tận Tâm & Chuyên Nghiệp.
         </h1>
         <p className={styles.heroSubtitle}>
-          Có mặt nhanh trong 30 phút. Kỹ thuật viên chuyên nghiệp tận tâm.
+          Sửa chữa, vệ sinh, lắp đặt máy lạnh, máy giặt, tủ lạnh tận nơi tại Cần Thơ.
           <br />
-          Cam kết 100% hài lòng và bảo hành dài hạn.
+          Kiểm tra đúng bệnh, báo rõ phương án kỹ thuật trước khi làm.
         </p>
 
         <div className={styles.heroActions}>
           <Link href="/booking" className={styles.heroBtnWhite}>
-            Đặt lịch ngay <ArrowRight size={17} />
+            Đặt lịch khảo sát <ArrowRight size={17} />
           </Link>
           <a href={`tel:${phone}`} className={styles.heroBtnGlass}>
-            <Phone size={17} /> Báo giá nhanh
+            <Phone size={17} /> Gọi tư vấn ngay
           </a>
         </div>
       </div>

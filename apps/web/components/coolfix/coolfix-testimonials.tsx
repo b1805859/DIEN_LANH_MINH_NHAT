@@ -2,30 +2,30 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Star } from 'lucide-react';
+import { BadgeCheck, ShieldCheck, HeartHandshake } from 'lucide-react';
 import styles from './coolfix.module.css';
 
-const reviews = [
+const coreValues = [
   {
-    name: 'Anh Minh Trí',
-    location: 'Ninh Kiều, Cần Thơ',
-    quote:
-      'Máy lạnh phòng khách chảy nước lúc trưa nắng gắt. Gọi Minh Nhật chưa đầy 25 phút thợ đã có mặt, vệ sinh thông ống sạch sẽ, rất lịch sự.',
+    title: 'Kỹ Thuật Chuẩn Xác',
+    tagline: 'Đúng quy trình — Đúng bệnh',
+    desc: 'Kiểm tra hiện trạng tỉ mỉ, thao tác chuẩn kỹ thuật bằng dụng cụ đo đạc chuyên nghiệp, bảo vệ độ bền thiết bị tối đa.',
     image: '/images/home-reference/hero.webp',
+    icon: <BadgeCheck size={20} />,
   },
   {
-    name: 'Chị Bích Ngọc',
-    location: 'Cái Răng, Cần Thơ',
-    quote:
-      'Tôi dọn nhà mới cần tháo lắp 2 máy lạnh. Đội ngũ làm việc rất kỹ càng, bọc đệm cẩn thận và hút chân không đúng kỹ thuật. Giá báo sao thu đúng vậy!',
+    title: 'Minh Bạch Phương Án',
+    tagline: 'Rõ ràng — Khách duyệt mới làm',
+    desc: 'Giải thích cặn kẽ nguyên nhân sự cố và tư vấn giải pháp tối ưu cho gia đình. Khách hàng an tâm tuyệt đối.',
     image: '/images/mockup/portrait.png',
+    icon: <ShieldCheck size={20} />,
   },
   {
-    name: 'Chú Hoàng Nam',
-    location: 'Bình Thủy, Cần Thơ',
-    quote:
-      'Tủ lạnh không đông đá, tưởng phải thay mới. Thợ Minh Nhật qua đo đạc kỹ, thay rơ-le chính hãng chi phí rất hợp lý. Bảo hành rõ ràng, rất an tâm.',
+    title: 'Tận Tâm & Chu Đáo',
+    tagline: 'Phục vụ văn minh — Bảo hành trách nhiệm',
+    desc: 'Thợ địa phương lễ phép, giữ gìn sạch sẽ không gian gia đình, bàn giao kèm tem bảo hành và hướng dẫn sử dụng bền lâu.',
     image: '/images/hvac-hero.png',
+    icon: <HeartHandshake size={20} />,
   },
 ];
 
@@ -35,22 +35,22 @@ export function CoolFixTestimonials() {
       <div className={styles.testimonialsHead}>
         <span className={styles.eyebrow}>
           <span className={styles.eyebrowDot} />
-          ĐÁNH GIÁ TỪ KHÁCH HÀNG
+          GIÁ TRỊ CỐT LÕI
         </span>
 
-        <h2 className={styles.darkTitle}>Khách Hàng Nói Gì Về Minh Nhật</h2>
+        <h2 className={styles.darkTitle}>Vì Sao Khách Hàng Tin Chọn Minh Nhật?</h2>
 
         <p className={styles.darkSubtitle}>
-          Phản hồi nhanh chóng, giá cả trung thực và làm đúng ngay từ lần đầu — đó là lý do bà con Cần Thơ luôn tin chọn và gắn bó dài lâu.
+          Chúng tôi xây dựng uy tín dựa trên sự trung thực, tay nghề vững vàng và tinh thần trách nhiệm trong từng công việc tại Cần Thơ.
         </p>
       </div>
 
       <div className={styles.testimonialsTrack}>
-        {reviews.map((item) => (
-          <div key={item.name} className={styles.testimonialCard}>
+        {coreValues.map((item) => (
+          <div key={item.title} className={styles.testimonialCard}>
             <Image
               src={item.image}
-              alt={item.name}
+              alt={item.title}
               fill
               sizes="(max-width: 1024px) 100vw, 420px"
               className={styles.testimonialImage}
@@ -59,18 +59,21 @@ export function CoolFixTestimonials() {
             <div className={styles.testimonialOverlay} />
 
             <div className={styles.testimonialContent}>
-              <p className={styles.testimonialQuote}>“{item.quote}”</p>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, color: 'var(--cf-blue)' }}>
+                {item.icon}
+                <span style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                  {item.tagline}
+                </span>
+              </div>
+
+              <h3 style={{ fontSize: 20, fontWeight: 700, color: '#ffffff', margin: '4px 0 0' }}>
+                {item.title}
+              </h3>
+
+              <p className={styles.testimonialQuote}>{item.desc}</p>
 
               <div className={styles.testimonialAuthor}>
-                <span>
-                  — {item.name}, {item.location}
-                </span>
-
-                <div className={styles.testimonialStars} aria-label="5 trên 5 sao">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={15} fill="currentColor" stroke="none" />
-                  ))}
-                </div>
+                <span>ĐIỆN LẠNH MINH NHẬT CẦN THƠ</span>
               </div>
             </div>
           </div>

@@ -7,23 +7,23 @@ import styles from './coolfix.module.css';
 const faqs = [
   {
     num: '01',
-    q: 'Kỹ thuật viên có mặt sau bao lâu khi đặt lịch?',
-    a: 'Tại các quận trung tâm Cần Thơ (Ninh Kiều, Cái Răng, Bình Thủy), kỹ thuật viên thường có mặt tận nơi trong vòng 20 - 30 phút kể từ lúc tiếp nhận cuộc gọi. Các khu vực lân cận được hẹn giờ chính xác.',
+    q: 'Bao lâu nên vệ sinh máy lạnh một lần?',
+    a: 'Đối với hộ gia đình, nên vệ sinh máy lạnh định kỳ mỗi 3 đến 6 tháng tùy theo tần suất sử dụng thực tế để đảm bảo luồng gió trong lành và tiết kiệm điện.',
   },
   {
     num: '02',
-    q: 'Chi phí kiểm tra tận nhà có phát sinh phụ phí không?',
-    a: 'Chúng tôi kiểm tra tình trạng máy và báo giá chi tiết, trọn gói trước khi làm. Khách hàng đồng ý phương án mới tiến hành sửa chữa. Tuyệt đối không phát sinh chi phí ẩn.',
+    q: 'Có kiểm tra và tư vấn phương án trước khi sửa không?',
+    a: 'Có. Kỹ thuật viên Minh Nhật luôn kiểm tra hiện trạng thiết bị, giải thích rõ nguyên nhân và tư vấn phương án kỹ thuật minh bạch trước khi thực hiện.',
   },
   {
     num: '03',
-    q: 'Điện Lạnh Minh Nhật có chính sách bảo hành như thế nào?',
-    a: 'Mọi dịch vụ sửa chữa và thay thế linh kiện đều đi kèm phiếu bảo hành chính thức từ 3 đến 6 tháng. Trong thời gian bảo hành, nếu gặp lại lỗi cũ, thợ sẽ đến xử lý hoàn toàn miễn phí.',
+    q: 'Máy lạnh yếu lạnh có phải luôn cần nạp gas không?',
+    a: 'Không hẳn. Bụi bẩn bám dàn lạnh, quạt gió yếu, cảm biến nhiệt độ hoặc dàn nóng bị bí gió cũng có thể làm máy lạnh yếu. Kỹ thuật viên cần đo áp suất gas thực tế trước khi kết luận.',
   },
   {
     num: '04',
-    q: 'Linh kiện thay thế có phải chính hãng không?',
-    a: 'Minh Nhật cam kết 100% linh kiện thay thế (block, tụ điện, rơ-le, quạt, gas R32/R410A) đều chính hãng từ các thương hiệu Panasonic, Daikin, Toshiba, LG, Casper,... với tem mác rõ ràng.',
+    q: 'Khu vực nào tại Cần Thơ được hỗ trợ tận nơi?',
+    a: 'Chúng tôi ưu tiên phục vụ tận nơi tại các phường thuộc Ninh Kiều, Cái Răng, Bình Thủy, Ô Môn, Thốt Nốt và các khu vực lân cận thuộc TP. Cần Thơ.',
   },
 ];
 

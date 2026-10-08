@@ -103,7 +103,7 @@ export function CoolFixHeader() {
           height: '100%',
           margin: 0,
         }}
-        onClose={() => setMobileOpen(false)}
+        onClose={closeMobileMenu}
         onClick={(e) => {
           if (e.target === dialogRef.current) closeMobileMenu();
         }}
@@ -147,21 +147,27 @@ export function CoolFixHeader() {
             </button>
           </div>
 
-          <nav style={{ display: 'flex', flexDirection: 'column', gap: 24, fontSize: 24, fontWeight: 600 }}>
+          <nav style={{ display: 'flex', flexDirection: 'column', gap: 20, fontSize: 22, fontWeight: 600 }}>
             <Link href="#dich-vu" onClick={closeMobileMenu} style={{ color: '#fff', textDecoration: 'none' }}>
               Dịch vụ nổi bật
+            </Link>
+            <Link href="/services" onClick={closeMobileMenu} style={{ color: '#93c5fd', textDecoration: 'none', fontSize: 18 }}>
+              Danh mục dịch vụ →
             </Link>
             <Link href="#quy-trinh" onClick={closeMobileMenu} style={{ color: '#fff', textDecoration: 'none' }}>
               Quy trình 5 bước
             </Link>
             <Link href="#danh-gia" onClick={closeMobileMenu} style={{ color: '#fff', textDecoration: 'none' }}>
-              Đánh giá khách hàng
+              Cam kết dịch vụ
+            </Link>
+            <Link href="/areas" onClick={closeMobileMenu} style={{ color: '#fff', textDecoration: 'none' }}>
+              Khu vực Cần Thơ
             </Link>
             <Link href="#faq" onClick={closeMobileMenu} style={{ color: '#fff', textDecoration: 'none' }}>
               Câu hỏi thường gặp
             </Link>
             <Link href="/about" onClick={closeMobileMenu} style={{ color: '#fff', textDecoration: 'none' }}>
-              Về chúng tôi
+              Giới thiệu Minh Nhật
             </Link>
             <Link href="/contact" onClick={closeMobileMenu} style={{ color: '#fff', textDecoration: 'none' }}>
               Liên hệ
@@ -169,7 +175,7 @@ export function CoolFixHeader() {
           </nav>
 
           <div style={{ marginTop: 'auto', paddingTop: 32, borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-            <p style={{ color: '#94a3b8', fontSize: 14, margin: '0 0 16px' }}>Hotline hỗ trợ nhanh 24/7:</p>
+            <p style={{ color: '#94a3b8', fontSize: 14, margin: '0 0 16px' }}>Hotline liên hệ:</p>
             <a
               href={`tel:${phone}`}
               style={{

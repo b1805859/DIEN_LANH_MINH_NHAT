@@ -10,7 +10,7 @@ const services = [
   {
     id: 'diagnostics',
     title: 'Sửa chữa & Khắc phục sự cố',
-    subtitle: 'Bắt đúng bệnh, xử lý dứt điểm ngay lần đầu — không trễ hẹn, không báo giá ảo.',
+    subtitle: 'Kiểm tra hiện trạng, xác định nguyên nhân và đưa ra giải pháp sửa chữa phù hợp.',
     image: '/images/home-reference/air-natural.webp',
     alt: 'Sửa chữa máy lạnh không lạnh, chảy nước tại Cần Thơ',
     href: '/services/sua-may-lanh',
@@ -34,7 +34,7 @@ const services = [
   {
     id: 'appliances',
     title: 'Sửa máy giặt & Tủ lạnh tận nơi',
-    subtitle: 'Khắc phục nhanh máy giặt không vắt, tủ lạnh không đông đá bằng linh kiện chính hãng bảo hành dài.',
+    subtitle: 'Khắc phục sự cố máy giặt không vắt, tủ lạnh yếu lạnh, kiểm tra linh kiện và dán tem bảo hành.',
     image: '/images/home-reference/washer.webp',
     alt: 'Sửa chữa máy giặt và tủ lạnh tại Cần Thơ',
     href: '/services/sua-may-giat',
@@ -67,11 +67,11 @@ export function CoolFixServices() {
           </span>
 
           <h2 id="services-title" className={styles.servicesTitle}>
-            Tất Cả Những Gì Máy Lạnh Của Bạn Cần
+            Dịch Vụ Điện Lạnh Trọng Tâm
           </h2>
 
           <p className={styles.servicesSubtitle}>
-            Từ sự cố đột ngột đến bảo dưỡng định kỳ — chúng tôi xử lý nhanh chóng, minh bạch và triệt để. Đội ngũ kỹ thuật viên tay nghề cao sẵn sàng phục vụ tại Cần Thơ.
+            Từ xử lý sự cố đến bảo dưỡng định kỳ — kỹ thuật viên Minh Nhật hỗ trợ tận nơi, kiểm tra rõ ràng và thi công cẩn thận tại Cần Thơ.
           </p>
 
           <ul className={styles.serviceList} role="tablist">

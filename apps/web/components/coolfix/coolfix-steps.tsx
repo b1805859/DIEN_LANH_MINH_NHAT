@@ -5,9 +5,9 @@ import styles from './coolfix.module.css';
 
 const steps = [
   {
-    stepNum: '01. LIÊN HỆ',
-    title: 'Tiếp nhận nhanh chóng',
-    desc: 'Gọi hotline 0939 370 109 hoặc để lại thông tin online — chúng tôi phản hồi ngay trong 5 phút.',
+    stepNum: '01. TIẾP NHẬN',
+    title: 'Tiếp nhận thông tin',
+    desc: 'Khách hàng gọi hotline 0939 370 109, nhắn Zalo hoặc đặt hẹn qua website — kỹ thuật viên sẽ liên hệ lại xác nhận sớm nhất.',
     icon: (
       <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
         <polygon points="22,4 40,36 4,36" />
@@ -16,9 +16,9 @@ const steps = [
     ),
   },
   {
-    stepNum: '02. HẸN GIỜ',
-    title: 'Chọn giờ thuận tiện',
-    desc: 'Lựa chọn khung giờ phù hợp nhất với gia đình bạn — chúng tôi có mặt linh hoạt, kể cả ngoài giờ hành chính.',
+    stepNum: '02. HẸN LỊCH',
+    title: 'Khảo sát tận nơi',
+    desc: 'Sắp xếp khung giờ thuận tiện nhất theo lịch sinh hoạt và làm việc của quý khách tại Cần Thơ.',
     icon: (
       <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="2">
         <circle cx="14" cy="14" r="3" />
@@ -34,9 +34,9 @@ const steps = [
     ),
   },
   {
-    stepNum: '03. KHẢO SÁT',
-    title: 'Kiểm tra & Báo giá',
-    desc: 'Kỹ thuật viên đến tận nơi, kiểm tra chính xác nguyên nhân và báo giá minh bạch trước khi thực hiện.',
+    stepNum: '03. KIỂM TRA',
+    title: 'Kiểm tra & Báo phương án',
+    desc: 'Kỹ thuật viên đến tận nơi, kiểm tra chính xác nguyên nhân và giải thích rõ phương án trước khi thực hiện.',
     icon: (
       <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
         <rect x="8" y="8" width="28" height="28" rx="4" />
@@ -47,9 +47,9 @@ const steps = [
     ),
   },
   {
-    stepNum: '04. THI CÔNG',
-    title: 'Xử lý chuẩn kỹ thuật',
-    desc: 'Thực hiện sửa chữa, vệ sinh hoặc lắp đặt bằng đồ nghề chuyên dụng, bảo đảm an toàn và sạch sẽ.',
+    stepNum: '04. THỰC HIỆN',
+    title: 'Thi công chuẩn kỹ thuật',
+    desc: 'Thực hiện sửa chữa, vệ sinh hoặc lắp đặt bằng đồ nghề chuyên dụng, bảo đảm an toàn điện và sạch sẽ.',
     icon: (
       <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="2">
         <circle cx="22" cy="22" r="14" />
@@ -59,9 +59,9 @@ const steps = [
     ),
   },
   {
-    stepNum: '05. BẢO HÀNH',
-    title: 'An tâm tận hưởng',
-    desc: 'Bàn giao thiết bị mát lạnh hoàn hảo, kèm phiếu bảo hành chu đáo từ 3 đến 6 tháng không lo tái phát.',
+    stepNum: '05. NGHIỆM THU',
+    title: 'Bàn giao & Bảo hành',
+    desc: 'Vận hành thử nghiệm chu đáo, hướng dẫn gia chủ sử dụng an toàn và dán tem bảo hành theo dõi.',
     icon: (
       <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" strokeWidth="2">
         <circle cx="22" cy="10" r="3" />

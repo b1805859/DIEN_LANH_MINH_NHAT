@@ -1,87 +1,60 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 import styles from './coolfix.module.css';
 
-const stats = [
+const advantages = [
   {
-    number: '10',
-    label: 'Năm kinh nghiệm giữ không gian mát mẻ tại Cần Thơ',
+    badge: 'ĐÚNG BỆNH',
+    title: 'Kiểm tra chính xác',
+    label: 'Khảo sát tận nhà, bắt đúng bệnh và giải thích rõ nguyên nhân kỹ thuật.',
   },
   {
-    number: '1 500+',
-    label: 'Thiết bị & khách hàng được phục vụ thành công',
+    badge: 'MINH BẠCH',
+    title: 'Báo rõ phương án',
+    label: 'Thống nhất giải pháp kỹ thuật cụ thể trước khi thực hiện, không mập mờ.',
   },
   {
-    number: '4.9',
-    label: 'Điểm đánh giá dịch vụ trung bình từ khách hàng',
+    badge: 'TẬN NƠI',
+    title: 'Cơ động Cần Thơ',
+    label: 'Ưu tiên hỗ trợ nhanh tại Ninh Kiều, Cái Răng, Bình Thủy, Ô Môn, Thốt Nốt.',
   },
   {
-    number: '30',
-    label: 'Phút có mặt tận nơi trong mùa cao điểm nắng nóng',
+    badge: 'BẢO HÀNH',
+    title: 'Trách nhiệm cao',
+    label: 'Dán tem bảo hành, xuất phiếu theo dõi và hỗ trợ chu đáo sau dịch vụ.',
   },
 ];
 
 export function CoolFixAdvantages() {
-  const [activeStat, setActiveStat] = useState(0);
+  const [activeAdvantage, setActiveAdvantage] = useState(0);
 
   return (
     <section className={styles.advantages} aria-labelledby="advantages-title">
       <div className={styles.advantagesHead}>
         <span className={styles.eyebrow}>
           <span className={styles.eyebrowDot} />
-          ƯU ĐIỂM NỔI BẬT
+          CAM KẾT DỊCH VỤ
         </span>
 
         <div className={styles.advantagesTitleWrap}>
           <h2 id="advantages-title" className={styles.advantagesTitle}>
-            Đội Ngũ Kỹ Thuật Viên Lành Nghề
+            Cam Kết Từ Điện Lạnh Minh Nhật
           </h2>
-
-          <div className={styles.avatarStack} aria-label="Đội ngũ hơn 16 kỹ thuật viên">
-            <div className={styles.avatarItem}>
-              <Image
-                src="/images/mockup/portrait.png"
-                alt="Kỹ thuật viên Minh Nhật"
-                fill
-                sizes="48px"
-                style={{ objectFit: 'cover' }}
-              />
-            </div>
-            <div className={styles.avatarItem}>
-              <Image
-                src="/images/hvac-hero.png"
-                alt="Thợ điện lạnh kiểm tra dàn lạnh"
-                fill
-                sizes="48px"
-                style={{ objectFit: 'cover' }}
-              />
-            </div>
-            <div className={styles.avatarItem}>
-              <Image
-                src="/images/home-reference/technician.webp"
-                alt="Thợ sửa dàn nóng điều hòa"
-                fill
-                sizes="48px"
-                style={{ objectFit: 'cover' }}
-              />
-            </div>
-            <div className={styles.avatarBadge}>+16</div>
-          </div>
         </div>
       </div>
 
-      <div className={styles.counterContainer} role="region" aria-label="Số liệu hoạt động">
-        {stats.map((item, index) => (
+      <div className={styles.counterContainer} role="region" aria-label="Cam kết dịch vụ">
+        {advantages.map((item, index) => (
           <div
-            key={item.number}
+            key={item.title}
             className={styles.counterCard}
-            data-active={activeStat === index}
-            onMouseEnter={() => setActiveStat(index)}
-            onClick={() => setActiveStat(index)}
+            data-active={activeAdvantage === index}
+            onMouseEnter={() => setActiveAdvantage(index)}
+            onClick={() => setActiveAdvantage(index)}
           >
-            <span className={styles.counterNumber}>{item.number}</span>
+            <span className={styles.counterNumber}>{item.badge}</span>
+            <span className={styles.counterTitle}>{item.title}</span>
             <span className={styles.counterLabel}>{item.label}</span>
           </div>
         ))}

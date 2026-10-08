@@ -14,7 +14,7 @@ import styles from '@/components/coolfix/coolfix.module.css';
 export const metadata = buildMetadata({
   title: 'Sửa Chữa Điện Lạnh Tại Cần Thơ — Chuyên Nghiệp & Uy Tín',
   description:
-    'Dịch vụ sửa chữa, vệ sinh, lắp đặt máy lạnh, máy giặt, tủ lạnh tận nơi tại Cần Thơ. Có mặt nhanh trong 30 phút, kỹ thuật viên chính quy, bảo hành dài hạn.',
+    'Dịch vụ sửa chữa, vệ sinh, lắp đặt máy lạnh, máy giặt, tủ lạnh tận nơi tại Cần Thơ. Kỹ thuật viên tay nghề cao, kiểm tra đúng bệnh, báo rõ phương án.',
   path: '/',
 });
 

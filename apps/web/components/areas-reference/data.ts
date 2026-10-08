@@ -2,21 +2,21 @@ export const areas = [
   {
     slug: 'ninh-kieu',
     title: 'Quận Ninh Kiều',
-    description: 'Dịch vụ nhanh chóng,\ncó mặt trong 30 phút',
+    description: 'Dịch vụ nhanh chóng,\nphục vụ tận nơi',
   },
   { slug: 'binh-thuy', title: 'Quận Bình Thủy', description: 'Hỗ trợ sửa chữa, lắp đặt\ntận nơi' },
   {
     slug: 'cai-rang',
     title: 'Quận Cái Răng',
-    description: 'Phục vụ toàn khu vực,\nkỹ thuật viên kinh nghiệm',
+    description: 'Phục vụ toàn khu vực,\ntận tâm, chu đáo',
   },
   {
     slug: 'o-mon',
     title: 'Quận Ô Môn',
     description: 'Sửa chữa, vệ sinh, bảo trì\nuy tín, chuyên nghiệp',
   },
-  { slug: 'thot-not', title: 'Quận Thốt Nốt', description: 'Có mặt nhanh, hỗ trợ\n24/7' },
-  { slug: 'phong-dien', title: 'Huyện Phong Điền', description: 'Dịch vụ tận nơi, giá minh bạch' },
+  { slug: 'thot-not', title: 'Quận Thốt Nốt', description: 'Hỗ trợ kỹ thuật tận nơi\ncác phường' },
+  { slug: 'phong-dien', title: 'Huyện Phong Điền', description: 'Dịch vụ tận nơi, phương án rõ ràng' },
   {
     slug: 'thoi-lai',
     title: 'Huyện Thới Lai',
