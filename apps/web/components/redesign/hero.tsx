@@ -19,13 +19,14 @@ export function HomeHero() {
   const [open, setOpen] = useState(false);
   const modal = useRef<HTMLDialogElement>(null);
   useEffect(() => {
+    const element = modal.current;
     if (open) {
-      modal.current?.showModal();
+      element?.showModal();
       const previousOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
       return () => {
         document.body.style.overflow = previousOverflow;
-        modal.current?.close();
+        element?.close();
       };
     }
     modal.current?.close();

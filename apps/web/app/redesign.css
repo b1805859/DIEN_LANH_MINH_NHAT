@@ -704,7 +704,7 @@
 }
 .mn-support > img {
   width: 60% !important;
-  object-fit: cover;
+  object-fit: contain;
   object-position: left center;
   z-index: -3;
 }
@@ -2632,6 +2632,7 @@
 @media (max-width: 640px) {
   .mn-support > img {
     width: 100% !important;
+    object-fit: cover;
     object-position: 25% center;
   }
   .mn-service-symptoms {
@@ -2639,5 +2640,22 @@
   }
   .mn-header-home.mn-header-scrolled {
     top: 8px;
+  }
+}
+
+@media (min-width: 801px) and (max-width: 1250px) {
+  .mn-nav-shell {
+    min-height: 45px;
+    padding-block: 3px;
+  }
+  .mn-brand .brand-mark {
+    height: 32px;
+  }
+  .mn-header-home:not(.mn-header-scrolled) {
+    top: 5.25vw;
+  }
+  .mn-header-home .mn-nav-shell {
+    width: calc(100% - 110px);
+    transform: translateX(6px);
   }
 }

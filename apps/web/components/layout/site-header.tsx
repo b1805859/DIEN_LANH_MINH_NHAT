@@ -61,13 +61,14 @@ export function SiteHeader() {
     };
   }, []);
   useEffect(() => {
+    const element = dialog.current;
     if (open) {
-      dialog.current?.showModal();
+      element?.showModal();
       const old = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
       return () => {
         document.body.style.overflow = old;
-        dialog.current?.close();
+        element?.close();
       };
     } else {
       dialog.current?.close();
