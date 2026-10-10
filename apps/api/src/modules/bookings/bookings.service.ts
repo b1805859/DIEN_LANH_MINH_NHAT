@@ -21,20 +21,16 @@ export class BookingsService {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(dto: CreateBookingDto) {
-    if (dto.scheduledDate) this.validateBookingDate(dto.scheduledDate);
+    this.validateBookingDate(dto.scheduledDate);
 
     const [service, location] = await Promise.all([
-      this.prisma.service.findFirst({
-        where: { OR: [{ id: dto.serviceId }, { slug: dto.serviceId }] },
+      this.prisma.service.findFirst({ where: { OR: [{ id: dto.serviceId }, { slug: dto.serviceId }] } }),
+      this.prisma.location.findFirst({
+        where: { OR: [{ id: dto.locationId }, { slug: dto.locationId }] },
       }),
-      dto.locationId
-        ? this.prisma.location.findFirst({
-            where: { OR: [{ id: dto.locationId }, { slug: dto.locationId }] },
-          })
-        : Promise.resolve(null),
     ]);
 
-    if (!service || (dto.locationId && !location)) {
+    if (!service || !location) {
       throw new BadRequestException('Invalid service or district.');
     }
 
@@ -46,8 +42,8 @@ export class BookingsService {
         customerEmail: dto.customerEmail,
         notes: dto.notes,
         serviceId: service.id,
-        locationId: location?.id ?? null,
-        scheduledDate: dto.scheduledDate ? toUtcDate(dto.scheduledDate) : null,
+        locationId: location.id,
+        scheduledDate: toUtcDate(dto.scheduledDate),
       },
       select: { id: true, status: true, createdAt: true },
     });
@@ -95,16 +91,14 @@ export class BookingsService {
     >();
 
     for (const booking of bookings) {
-      if (!booking.scheduledDate) continue;
       const date = booking.scheduledDate.toISOString().slice(0, 10);
       const day = dayMap.get(date) ?? {
         date,
         activeCount: 0,
         cancelledCount: 0,
-        statusCounts: Object.fromEntries(BOOKING_STATUSES.map((status) => [status, 0])) as Record<
-          BookingStatus,
-          number
-        >,
+        statusCounts: Object.fromEntries(
+          BOOKING_STATUSES.map((status) => [status, 0]),
+        ) as Record<BookingStatus, number>,
       };
 
       day.statusCounts[booking.status] += 1;

@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
 import { BLOG_CATEGORIES, BLOG_POSTS } from '@minhnhat/shared';
 import { LoadingImage } from '@/components/ui/loading-image';
-import { Reveal } from '@/components/ui/reveal';
 import { buildMetadata } from '@/lib/seo/metadata';
 
 export function generateStaticParams() {
@@ -17,17 +16,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const hasPosts = BLOG_POSTS.some((post) => post.category === slug);
   if (!hasPosts) {
     return {
-      ...buildMetadata({
-        title: `Bài viết ${category.name}`,
-        description: `Chuyên mục hướng dẫn ${category.name.toLowerCase()} của Điện Lạnh Minh Nhật. Các bài viết mới sẽ được cập nhật tại đây.`,
-        path: `/blog/category/${slug}`,
-      }),
+      title: `Bài viết ${category.name}`,
       robots: { index: false, follow: true },
     };
   }
   return buildMetadata({
     title: `Bài viết ${category.name}`,
-    description: `Hướng dẫn sử dụng, vệ sinh, bảo trì và nhận biết lỗi ${category.name.toLowerCase()} an toàn, dễ hiểu dành cho gia đình tại Cần Thơ.`,
+    description: `Hướng dẫn sử dụng, bảo trì và nhận biết lỗi ${category.name.toLowerCase()} dành cho khách hàng tại Cần Thơ.`,
     path: `/blog/category/${slug}`,
   });
 }
@@ -60,34 +55,32 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ s
 
       <section className="container py-10 sm:py-12 lg:py-16">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post, index) => (
-            <Reveal key={post.slug} asChild delay={Math.min(index, 4) * 55}>
-              <Link
-                href={`/blog/${post.slug}`}
-                className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200"
-              >
-                <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
-                  <LoadingImage
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    priority={index < 3}
-                    className="object-cover transition duration-700 group-hover:scale-105"
-                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                  />
-                </div>
-                <div className="p-5">
-                  <h2 className="text-lg font-black leading-6">{post.title}</h2>
-                  <p className="mt-3 text-sm leading-6 text-slate-600 sm:min-h-[4.5rem]">
-                    {post.excerpt}
-                  </p>
-                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-primary">
-                    Đọc bài viết
-                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-                  </span>
-                </div>
-              </Link>
-            </Reveal>
+          {posts.map((post) => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="group overflow-hidden rounded-md border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200"
+            >
+              <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                <LoadingImage
+                  src={post.image}
+                  alt={post.title}
+                  fill
+                  className="object-cover transition duration-700 group-hover:scale-105"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                />
+              </div>
+              <div className="p-5">
+                <h2 className="text-lg font-black leading-6">{post.title}</h2>
+                <p className="mt-3 text-sm leading-6 text-slate-600 sm:min-h-[4.5rem]">
+                  {post.excerpt}
+                </p>
+                <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-primary">
+                  Đọc bài viết
+                  <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                </span>
+              </div>
+            </Link>
           ))}
         </div>
       </section>

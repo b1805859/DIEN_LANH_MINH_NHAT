@@ -1,202 +1,199 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { SERVICES } from '@minhnhat/shared';
+import { PRIORITY_DISTRICTS, SERVICES } from '@minhnhat/shared';
 import { useMutation } from '@tanstack/react-query';
-import { useId, useRef } from 'react';
-import Link from 'next/link';
-import { Send } from 'lucide-react';
-import { integrationSettings } from '@/lib/integrations/settings';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { apiClient } from '@/lib/api/client';
+import { Button } from '@/components/ui/button';
 import { QueryBoundary } from '@/components/layout/query-boundary';
 import { useToast } from '@/components/ui/toast';
 
+function getToday() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
 const bookingSchema = z.object({
+  serviceId: z.string().min(1, 'Vui lòng chọn dịch vụ.'),
+  locationId: z.string().min(1, 'Vui lòng chọn khu vực.'),
+  date: z
+    .string()
+    .min(1, 'Vui lòng chọn ngày hẹn.')
+    .refine((date) => !date || date >= getToday(), 'Vui lòng chọn ngày hẹn từ hôm nay trở đi.'),
+  address: z.string().trim().min(8, 'Vui lòng nhập địa chỉ cụ thể hơn.'),
   customerName: z.string().trim().min(2, 'Vui lòng nhập họ tên.'),
   customerPhone: z
     .string()
     .trim()
     .min(1, 'Vui lòng nhập số điện thoại.')
-    .refine(
-      (value) => /^(?:0|\+?84)(?:[35789]\d{8}|2\d{9})$/.test(value.replace(/[\s.-]/g, '')),
-      'Số điện thoại chưa hợp lệ.',
-    ),
-  serviceId: z.string().min(1, 'Vui lòng chọn dịch vụ.'),
-  address: z.string().trim().min(5, 'Vui lòng nhập địa chỉ cụ thể hơn.'),
+    .regex(/^(?:\+?84|0)(?:\d[\s.-]?){8,10}\d$/, 'Số điện thoại chưa hợp lệ.'),
+  notes: z.string().optional(),
 });
 
 type BookingInput = z.infer<typeof bookingSchema>;
-const fieldClass =
-  'h-12 w-full min-w-0 rounded-md border border-[#c8e0fc] bg-white px-3 text-base text-[#09245b] outline-none transition placeholder:text-[#8aa6ce] focus:border-[#0874e5] focus:ring-4 focus:ring-[#0874e5]/10';
 
-function FieldError({ id, message }: { id: string; message?: string }) {
-  return message ? (
-    <p id={id} role="alert" className="text-xs font-semibold text-red-600">
-      {message}
-    </p>
-  ) : null;
+const fieldClass =
+  'h-12 w-full min-w-0 rounded-md border border-slate-200 bg-slate-50 px-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10';
+
+function FieldError({ message }: { message?: string }) {
+  if (!message) return null;
+  return <p className="text-xs font-semibold leading-5 text-red-600">{message}</p>;
 }
 
-function BookingFormContent({
-  serviceSlug,
-  locationSlug,
-}: {
-  serviceSlug?: string;
-  locationSlug?: string;
-}) {
+function BookingFormContent({ compact = false }: { compact?: boolean }) {
   const { toast } = useToast();
-  const submitting = useRef(false);
-  const formId = useId();
   const form = useForm<BookingInput>({
     resolver: zodResolver(bookingSchema),
     defaultValues: {
+      serviceId: SERVICES[0].slug,
+      locationId: PRIORITY_DISTRICTS[0].slug,
+      date: '',
+      address: '',
       customerName: '',
       customerPhone: '',
-      serviceId: SERVICES.some((service) => service.slug === serviceSlug) ? serviceSlug : '',
-      address: '',
+      notes: '',
     },
   });
+
   const mutation = useMutation({
-    mutationFn: (input: BookingInput) =>
-      apiClient.post('/bookings', {
-        ...input,
-        customerPhone: input.customerPhone.replace(/[\s.-]/g, ''),
-        ...(locationSlug ? { locationId: locationSlug } : {}),
-      }),
+    mutationFn: (input: BookingInput) => {
+      const { date, ...booking } = input;
+
+      return apiClient.post('/bookings', {
+        ...booking,
+        scheduledDate: date,
+      });
+    },
     onSuccess: () => {
       toast({
-        title: 'Đã gửi yêu cầu',
-        description: 'Minh Nhật sẽ liên hệ để xác nhận lịch.',
+        title: 'Đã gửi lịch hẹn',
+        description: 'Minh Nhật sẽ liên hệ xác nhận sớm.',
         variant: 'success',
       });
       form.reset();
     },
     onError: () => {
       toast({
-        title: 'Không gửi được yêu cầu',
+        title: 'Không gửi được lịch hẹn',
         description: 'Vui lòng thử lại hoặc gọi hotline.',
         variant: 'error',
       });
     },
-    onSettled: () => {
-      submitting.current = false;
-    },
   });
+  const today = getToday();
   const errors = form.formState.errors;
 
   return (
     <form
       noValidate
-      aria-busy={mutation.isPending}
-      className="mock-request-form"
-      onSubmit={form.handleSubmit((values) => {
-        if (submitting.current) return;
-        submitting.current = true;
-        mutation.mutate(values);
-      })}
+      className="grid min-w-0 gap-3"
+      onSubmit={form.handleSubmit((values) => mutation.mutate(values))}
     >
-      <div className="mock-request-row">
-        <label>
-          <span className="mock-field-label">
-            Họ và tên <span aria-hidden="true">*</span>
-          </span>
+      <div className={`grid gap-3 ${compact ? '' : 'sm:grid-cols-2'}`}>
+        <label className="grid gap-1.5">
+          <span className="text-xs font-black uppercase text-slate-500">Dịch vụ</span>
+          <select
+            className={fieldClass}
+            required
+            aria-invalid={Boolean(errors.serviceId)}
+            {...form.register('serviceId')}
+          >
+            {SERVICES.map((service) => (
+              <option key={service.slug} value={service.slug}>
+                {service.name}
+              </option>
+            ))}
+          </select>
+          <FieldError message={errors.serviceId?.message} />
+        </label>
+        <label className="grid gap-1.5">
+          <span className="text-xs font-black uppercase text-slate-500">Khu vực</span>
+          <select
+            className={fieldClass}
+            required
+            aria-invalid={Boolean(errors.locationId)}
+            {...form.register('locationId')}
+          >
+            {PRIORITY_DISTRICTS.map((district) => (
+              <option key={district.slug} value={district.slug}>
+                {district.name}
+              </option>
+            ))}
+          </select>
+          <FieldError message={errors.locationId?.message} />
+        </label>
+        <label className="grid gap-1.5">
+          <span className="text-xs font-black uppercase text-slate-500">Ngày hẹn</span>
           <input
             className={fieldClass}
-            autoComplete="name"
-            placeholder="Nhập họ và tên"
+            type="date"
+            min={today}
+            required
+            aria-invalid={Boolean(errors.date)}
+            {...form.register('date')}
+          />
+          <FieldError message={errors.date?.message} />
+        </label>
+        <label className="grid gap-1.5">
+          <span className="text-xs font-black uppercase text-slate-500">Họ tên</span>
+          <input
+            className={fieldClass}
+            placeholder="Nguyễn Văn A"
             required
             aria-invalid={Boolean(errors.customerName)}
-            aria-describedby={errors.customerName ? `${formId}-name-error` : undefined}
             {...form.register('customerName')}
           />
-          <FieldError id={`${formId}-name-error`} message={errors.customerName?.message} />
+          <FieldError message={errors.customerName?.message} />
         </label>
-        <label>
-          <span className="mock-field-label">
-            Số điện thoại <span aria-hidden="true">*</span>
-          </span>
+        <label className="grid gap-1.5">
+          <span className="text-xs font-black uppercase text-slate-500">Số điện thoại</span>
           <input
             className={fieldClass}
-            type="tel"
             inputMode="tel"
-            autoComplete="tel"
-            placeholder="Nhập số điện thoại"
+            placeholder="0939 370 109"
             required
             aria-invalid={Boolean(errors.customerPhone)}
-            aria-describedby={errors.customerPhone ? `${formId}-phone-error` : undefined}
             {...form.register('customerPhone')}
           />
-          <FieldError id={`${formId}-phone-error`} message={errors.customerPhone?.message} />
+          <FieldError message={errors.customerPhone?.message} />
         </label>
       </div>
-      <label>
-        <span className="mock-field-label">
-          Dịch vụ cần làm <span aria-hidden="true">*</span>
-        </span>
-        <select
-          className={fieldClass}
-          required
-          aria-invalid={Boolean(errors.serviceId)}
-          aria-describedby={errors.serviceId ? `${formId}-service-error` : undefined}
-          {...form.register('serviceId')}
-        >
-          <option value="">Chọn dịch vụ</option>
-          {SERVICES.map((service) => (
-            <option key={service.slug} value={service.slug}>
-              {service.name}
-            </option>
-          ))}
-        </select>
-        <FieldError id={`${formId}-service-error`} message={errors.serviceId?.message} />
-      </label>
-      <label>
-        <span className="mock-field-label">
-          Địa chỉ <span aria-hidden="true">*</span>
-        </span>
+      <label className="grid gap-1.5">
+        <span className="text-xs font-black uppercase text-slate-500">Địa chỉ</span>
         <input
           className={fieldClass}
-          autoComplete="street-address"
-          placeholder="Nhập địa chỉ (phường/xã, quận/huyện, Cần Thơ)"
+          placeholder="Số nhà, đường, phường tại Cần Thơ"
           required
           aria-invalid={Boolean(errors.address)}
-          aria-describedby={errors.address ? `${formId}-address-error` : undefined}
           {...form.register('address')}
         />
-        <FieldError id={`${formId}-address-error`} message={errors.address?.message} />
+        <FieldError message={errors.address?.message} />
       </label>
-      <button className="mock-request-submit" type="submit" disabled={mutation.isPending}>
-        <Send size={19} /> {mutation.isPending ? 'Đang gửi...' : 'Gửi yêu cầu'}
-      </button>
-      <p className="mock-request-note">
-        Minh Nhật sẽ liên hệ để xác nhận thời gian.{' '}
-        <Link href="/privacy-policy">Chính sách bảo mật</Link>
-      </p>
-      {mutation.isSuccess ? (
-        <p role="status" aria-live="polite" className="text-sm font-semibold text-emerald-700">
-          Đã gửi yêu cầu. Minh Nhật sẽ liên hệ xác nhận.
-        </p>
-      ) : null}
+      <label className="grid gap-1.5">
+        <span className="text-xs font-black uppercase text-slate-500">Ghi chú</span>
+        <textarea
+          className="min-h-24 w-full min-w-0 rounded-md border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
+          placeholder="Mô tả nhanh tình trạng thiết bị"
+          {...form.register('notes')}
+        />
+      </label>
+      <Button className="h-12 w-full font-bold" type="submit" disabled={mutation.isPending}>
+        {mutation.isPending ? 'Đang gửi...' : 'Đặt lịch'}
+      </Button>
+      {mutation.isSuccess ? <p className="text-sm text-emerald-700">Đã gửi lịch hẹn.</p> : null}
       {mutation.isError ? (
-        <p role="alert" className="text-sm font-semibold text-red-600">
-          Không gửi được yêu cầu. Vui lòng thử lại hoặc{' '}
-          <a className="underline" href={`tel:${integrationSettings.phone}`}>
-            gọi {integrationSettings.phone}
-          </a>
-          .
-        </p>
+        <p className="text-sm text-red-600">Không gửi được, vui lòng gọi đường dây nóng.</p>
       ) : null}
     </form>
   );
 }
 
-export function BookingForm(props: {
-  compact?: boolean;
-  hideNotes?: boolean;
-  serviceSlug?: string;
-  locationSlug?: string;
-}) {
+export function BookingForm(props: { compact?: boolean }) {
   return (
     <QueryBoundary>
       <BookingFormContent {...props} />

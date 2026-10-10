@@ -14,24 +14,11 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   }
 
   return (
-    <div className="public-site contents">
-      <a className="skip-link" href="#main-content">
-        Bỏ qua điều hướng
-      </a>
+    <>
       <SiteHeader />
-      <div id="main-content" tabIndex={-1} className="flex-1">
-        {children}
-      </div>
+      <div className="flex-1">{children}</div>
       <SiteFooter />
-      <FloatingActions
-        minimal={
-          pathname === '/' ||
-          pathname === '/booking' ||
-          pathname === '/about' ||
-          pathname === '/contact' ||
-          pathname.startsWith('/services/')
-        }
-      />
-    </div>
+      <FloatingActions />
+    </>
   );
 }

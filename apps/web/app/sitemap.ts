@@ -1,18 +1,16 @@
 import type { MetadataRoute } from 'next';
 import { BLOG_CATEGORIES, BLOG_POSTS, PRIORITY_DISTRICTS, SERVICES } from '@minhnhat/shared';
-import { siteUrl } from '@/lib/seo/metadata';
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost';
   const urls: Array<{
     path: string;
     changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'];
     priority: number;
-    lastModified?: string;
   }> = [
     { path: '/', changeFrequency: 'weekly', priority: 1 },
     { path: '/about', changeFrequency: 'monthly', priority: 0.7 },
     { path: '/services', changeFrequency: 'weekly', priority: 0.9 },
-    { path: '/areas', changeFrequency: 'weekly', priority: 0.85 },
     { path: '/blog', changeFrequency: 'weekly', priority: 0.8 },
     { path: '/booking', changeFrequency: 'monthly', priority: 0.75 },
     { path: '/contact', changeFrequency: 'monthly', priority: 0.75 },
@@ -47,14 +45,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       path: `/blog/${post.slug}`,
       changeFrequency: 'monthly' as const,
       priority: 0.7,
-      lastModified: post.updatedAt,
     })),
   ];
 
-  return urls.map(({ path, changeFrequency, priority, lastModified }) => ({
+  return urls.map(({ path, changeFrequency, priority }) => ({
     url: new URL(path, siteUrl).toString(),
     changeFrequency,
     priority,
-    ...(lastModified ? { lastModified } : {}),
   }));
 }

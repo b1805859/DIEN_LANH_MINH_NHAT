@@ -55,3 +55,4 @@ export class ContentController {
     return this.contentService.getBlogPost(slug);
   }
 }
+

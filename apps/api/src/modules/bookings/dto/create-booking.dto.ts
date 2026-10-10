@@ -6,13 +6,11 @@ export class CreateBookingDto {
   @IsString()
   serviceId!: string;
 
-  @IsOptional()
   @IsString()
-  locationId?: string;
+  locationId!: string;
 
-  @IsOptional()
   @Matches(DATE_KEY_PATTERN, { message: 'scheduledDate must use YYYY-MM-DD format.' })
-  scheduledDate?: string;
+  scheduledDate!: string;
 
   @IsString()
   @MinLength(5)

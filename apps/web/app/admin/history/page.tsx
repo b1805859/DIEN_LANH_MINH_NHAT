@@ -66,9 +66,7 @@ const resourceOptions = [
   { value: 'roles', label: 'Vai trò' },
 ];
 
-const resourceLabels = Object.fromEntries(
-  resourceOptions.map((option) => [option.value, option.label]),
-);
+const resourceLabels = Object.fromEntries(resourceOptions.map((option) => [option.value, option.label]));
 
 const fieldLabels: Record<string, string> = {
   name: 'Tên',
@@ -173,9 +171,7 @@ function getChangedFields(beforeSnapshot?: Snapshot | null, afterSnapshot?: Snap
       afterValue: after[key],
       isSystemField: systemFields.has(key),
     }))
-    .sort(
-      (a, b) => Number(a.isSystemField) - Number(b.isSystemField) || a.label.localeCompare(b.label),
-    );
+    .sort((a, b) => Number(a.isSystemField) - Number(b.isSystemField) || a.label.localeCompare(b.label));
 }
 
 function getRecordLabel(item: AdminHistoryItem) {
@@ -201,9 +197,7 @@ function ValueBlock({ value, tone }: { value: unknown; tone: 'before' | 'after' 
       : 'border-emerald-100 bg-emerald-50 text-emerald-950';
 
   return (
-    <pre
-      className={`max-h-40 whitespace-pre-wrap break-words rounded-md border p-3 text-xs font-semibold ${toneClass}`}
-    >
+    <pre className={`max-h-40 whitespace-pre-wrap break-words rounded-md border p-3 text-xs font-semibold ${toneClass}`}>
       {formattedValue}
     </pre>
   );
@@ -252,9 +246,7 @@ function ChangedFieldsTable({ item }: { item: AdminHistoryItem }) {
               <tr key={change.field} className="align-top">
                 <td className="px-4 py-3">
                   <p className="font-black text-slate-900">{change.label}</p>
-                  <p className="mt-1 font-mono text-xs font-semibold text-slate-500">
-                    {change.field}
-                  </p>
+                  <p className="mt-1 font-mono text-xs font-semibold text-slate-500">{change.field}</p>
                 </td>
                 <td className="px-4 py-3">
                   <ValueBlock value={change.beforeValue} tone="before" />
@@ -274,12 +266,8 @@ function ChangedFieldsTable({ item }: { item: AdminHistoryItem }) {
           </summary>
           <div className="mt-3 grid gap-2">
             {systemChanges.map((change) => (
-              <div
-                key={change.field}
-                className="rounded-md bg-slate-50 p-3 text-xs font-semibold text-slate-600"
-              >
-                {change.label}: {formatValue(change.beforeValue)} {'->'}{' '}
-                {formatValue(change.afterValue)}
+              <div key={change.field} className="rounded-md bg-slate-50 p-3 text-xs font-semibold text-slate-600">
+                {change.label}: {formatValue(change.beforeValue)} {'->'} {formatValue(change.afterValue)}
               </div>
             ))}
           </div>
@@ -439,9 +427,7 @@ function AdminHistoryPageContent() {
                   return (
                     <Fragment key={item.id}>
                       <tr className="align-top">
-                        <td className="px-4 py-3 font-semibold text-slate-900">
-                          {formatDate(item.createdAt)}
-                        </td>
+                        <td className="px-4 py-3 font-semibold text-slate-900">{formatDate(item.createdAt)}</td>
                         <td className="px-4 py-3">
                           <span className="rounded bg-slate-900 px-2 py-1 text-xs font-black uppercase text-white">
                             {actionLabels[item.action]}
@@ -451,13 +437,9 @@ function AdminHistoryPageContent() {
                           {resourceLabels[item.resource] ?? item.resource}
                         </td>
                         <td className="px-4 py-3">
-                          <p className="max-w-[260px] truncate font-bold text-slate-900">
-                            {getRecordLabel(item)}
-                          </p>
+                          <p className="max-w-[260px] truncate font-bold text-slate-900">{getRecordLabel(item)}</p>
                         </td>
-                        <td className="px-4 py-3 text-slate-700">
-                          {item.actorEmail ?? 'Không rõ'}
-                        </td>
+                        <td className="px-4 py-3 text-slate-700">{item.actorEmail ?? 'Không rõ'}</td>
                         <td className="px-4 py-3">
                           {isReverted ? (
                             <span className="rounded bg-emerald-50 px-2 py-1 text-xs font-black uppercase text-emerald-700">

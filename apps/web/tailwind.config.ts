@@ -21,9 +21,6 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-be-vietnam-pro)', 'Helvetica', 'Arial', 'sans-serif'],
       },
-      fontWeight: {
-        black: '700',
-      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

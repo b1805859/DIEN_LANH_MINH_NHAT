@@ -13,10 +13,9 @@
     "build": "npm run build --workspaces --if-present",
     "build:web": "npm run build --workspace @minhnhat/web",
     "build:api": "npm run build --workspace @minhnhat/api",
-    "validate:production": "node scripts/validate-production-env.mjs",
-    "deploy": "npm run validate:production && docker compose up -d --build && docker compose restart nginx",
+    "deploy": "docker compose up -d --build && docker compose restart nginx",
     "deploy:vercel": "node scripts/deploy-vercel.mjs",
-    "deploy:web": "npm run validate:production && docker compose up -d --build web && docker compose restart nginx",
+    "deploy:web": "docker compose up -d --build web && docker compose restart nginx",
     "deploy:api": "docker compose up -d --build api && docker compose restart nginx",
     "deploy:nginx": "docker compose up -d nginx && docker compose restart nginx",
     "docker:ps": "docker compose ps",
@@ -35,11 +34,11 @@
   },
   "overrides": {
     "form-data": "4.0.6",
-    "body-parser": "2.3.0",
-    "nanoid": "3.3.19",
-    "postcss": "8.5.28",
-    "qs": "6.16.0",
-    "sharp": "0.35.4"
+    "next": {
+      ".": "15.5.18",
+      "postcss": "8.5.10"
+    },
+    "postcss": "8.5.10"
   },
   "devDependencies": {
     "prettier": "3.6.2",

@@ -26,7 +26,7 @@ type ScheduleView = 'calendar' | 'list';
 
 type Booking = {
   id: string;
-  scheduledDate: string | null;
+  scheduledDate: string;
   customerName: string;
   customerPhone: string;
   customerEmail?: string | null;
@@ -125,7 +125,7 @@ function formatFullDate(value: string) {
 }
 
 function bookingDate(booking: Booking) {
-  return booking.scheduledDate?.slice(0, 10) ?? '';
+  return booking.scheduledDate.slice(0, 10);
 }
 
 function AdminBookingsPageContent() {
@@ -155,16 +155,6 @@ function AdminBookingsPageContent() {
     },
     enabled: Boolean(token),
   });
-  const requestsQuery = useQuery({
-    queryKey: ['booking-requests'],
-    queryFn: async () => {
-      const response = await apiClient.get('/bookings', {
-        headers: token ? { Authorization: `Bearer ${token}` } : undefined,
-      });
-      return response.data as Booking[];
-    },
-    enabled: Boolean(token),
-  });
 
   const updateStatus = useMutation({
     mutationFn: ({ id, status }: { id: string; status: BookingStatus }) =>
@@ -181,7 +171,6 @@ function AdminBookingsPageContent() {
       });
       await Promise.all([
         queryClient.invalidateQueries({ queryKey: ['booking-schedule'] }),
-        queryClient.invalidateQueries({ queryKey: ['booking-requests'] }),
         queryClient.invalidateQueries({ queryKey: ['admin-dashboard'] }),
       ]);
     },
@@ -226,9 +215,6 @@ function AdminBookingsPageContent() {
   }, [filteredBookings]);
 
   const monthDays = [...dayMap.values()].filter((day) => day.date.startsWith(month));
-  const unscheduledRequests = (requestsQuery.data ?? []).filter(
-    (booking) => !booking.scheduledDate,
-  );
   const monthActiveCount = monthDays.reduce((total, day) => total + day.activeCount, 0);
   const monthCancelledCount = monthDays.reduce((total, day) => total + day.cancelledCount, 0);
   const monthPendingCount = monthDays.reduce(
@@ -246,9 +232,7 @@ function AdminBookingsPageContent() {
     <main className="w-full px-3 py-5 sm:px-6 lg:px-8 lg:py-8">
       <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
         <div>
-          <p className="text-xs font-black uppercase tracking-wide text-primary">
-            Điều phối công việc
-          </p>
+          <p className="text-xs font-black uppercase tracking-wide text-primary">Điều phối công việc</p>
           <h1 className="mt-1 text-3xl font-black tracking-tight text-slate-950">
             Quản lý lịch hẹn
           </h1>
@@ -261,14 +245,9 @@ function AdminBookingsPageContent() {
           variant="outline"
           className="h-11 gap-2 self-start font-black"
           disabled={scheduleQuery.isFetching}
-          onClick={() => {
-            scheduleQuery.refetch();
-            requestsQuery.refetch();
-          }}
+          onClick={() => scheduleQuery.refetch()}
         >
-          <RefreshCw
-            className={cn('h-4 w-4', scheduleQuery.isFetching && 'motion-safe:animate-spin')}
-          />
+          <RefreshCw className={cn('h-4 w-4', scheduleQuery.isFetching && 'animate-spin')} />
           Tải lại
         </Button>
       </div>
@@ -280,37 +259,7 @@ function AdminBookingsPageContent() {
         <SummaryCard label="Đã hủy" value={monthCancelledCount} tone="slate" />
       </section>
 
-      <section className="mt-5 rounded-xl border border-sky-200 bg-sky-50 p-4 sm:p-5">
-        <h2 className="text-xl font-black text-slate-950">
-          Yêu cầu chưa có ngày hẹn ({unscheduledRequests.length})
-        </h2>
-        <p className="mt-1 text-sm text-slate-600">
-          Khách đã gửi thông tin dịch vụ. Liên hệ khách để thống nhất thời gian.
-        </p>
-        {requestsQuery.isError ? (
-          <p role="alert" className="mt-3 text-sm text-red-700">
-            Không tải được yêu cầu mới.
-          </p>
-        ) : null}
-        {unscheduledRequests.length ? (
-          <div className="mt-4 grid gap-3 xl:grid-cols-2">
-            {unscheduledRequests.map((booking, index) => (
-              <BookingCard
-                key={booking.id}
-                booking={booking}
-                animationIndex={index}
-                isUpdating={updateStatus.isPending}
-                onStatusChange={(id, status) => updateStatus.mutate({ id, status })}
-              />
-            ))}
-          </div>
-        ) : null}
-      </section>
-
-      <section
-        className="mt-5 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm"
-        aria-busy={scheduleQuery.isLoading || scheduleQuery.isFetching}
-      >
+      <section className="mt-5 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
         <div className="flex flex-col gap-4 border-b border-slate-200 p-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex items-center gap-2">
             <Button
@@ -584,11 +533,10 @@ function DaySection({
       </div>
       {bookings.length ? (
         <div className="mt-4 grid gap-3 xl:grid-cols-2">
-          {bookings.map((booking, index) => (
+          {bookings.map((booking) => (
             <BookingCard
               key={booking.id}
               booking={booking}
-              animationIndex={index}
               isUpdating={isUpdating}
               onStatusChange={onStatusChange}
             />
@@ -603,20 +551,15 @@ function DaySection({
 
 function BookingCard({
   booking,
-  animationIndex,
   isUpdating,
   onStatusChange,
 }: {
   booking: Booking;
-  animationIndex: number;
   isUpdating: boolean;
   onStatusChange: (id: string, status: BookingStatus) => void;
 }) {
   return (
-    <article
-      className="animate-in fade-in slide-in-from-bottom-1 rounded-lg border border-slate-200 bg-white p-4 shadow-sm duration-300 motion-reduce:animate-none"
-      style={{ animationDelay: `${Math.min(animationIndex * 40, 200)}ms` }}
-    >
+    <article className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0">
           <h4 className="truncate text-base font-black text-slate-950">{booking.customerName}</h4>

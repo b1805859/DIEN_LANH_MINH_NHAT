@@ -16,14 +16,13 @@ export function LoadingImage({
   onLoad,
   onError,
   priority,
-  reveal = 'none',
-  showLoader = false,
+  reveal = 'fade',
+  showLoader = true,
   src,
   width,
   height,
   sizes,
   loading,
-  fetchPriority,
   style,
   ...props
 }: LoadingImageProps) {
@@ -31,7 +30,7 @@ export function LoadingImage({
   const [failed, setFailed] = useState(false);
   const srcValue = typeof src === 'string' ? src : '';
   const isSvg = srcValue.endsWith('.svg');
-  const effectiveReveal = isSvg || priority ? 'none' : reveal;
+  const effectiveReveal = isSvg ? 'none' : reveal;
   const shouldShowLoader = showLoader && !isSvg;
   const useNativeImage =
     srcValue.startsWith('data:') ||
@@ -40,8 +39,7 @@ export function LoadingImage({
     isSvg;
   const imageClassName = cn(
     className,
-    effectiveReveal !== 'none' &&
-      'transition-[filter,opacity] duration-700 ease-out motion-reduce:transition-none',
+    effectiveReveal !== 'none' && 'transition-[filter,opacity] duration-700 ease-out',
     effectiveReveal === 'fade' && (loaded && !failed ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'),
     effectiveReveal === 'filter' && (loaded || failed ? 'blur-0' : 'blur-sm'),
   );
@@ -49,11 +47,11 @@ export function LoadingImage({
     <span
       aria-hidden="true"
       className={cn(
-        'pointer-events-none absolute inset-0 z-10 grid place-items-center overflow-hidden bg-slate-100/80 transition-opacity duration-500 motion-reduce:transition-none',
+        'pointer-events-none absolute inset-0 z-10 grid place-items-center overflow-hidden bg-slate-100/80 transition-opacity duration-500',
         loaded || failed || !shouldShowLoader ? 'opacity-0' : 'opacity-100',
       )}
     >
-      <span className="absolute inset-0 animate-pulse bg-[linear-gradient(110deg,rgb(226_232_240_/_0.45)_0%,rgb(255_255_255_/_0.7)_42%,rgb(226_232_240_/_0.45)_78%)] motion-reduce:animate-none" />
+      <span className="absolute inset-0 animate-pulse bg-[linear-gradient(110deg,rgb(226_232_240_/_0.45)_0%,rgb(255_255_255_/_0.7)_42%,rgb(226_232_240_/_0.45)_78%)]" />
       <span className="relative h-7 w-7 rounded-full border-2 border-slate-300 border-t-primary motion-safe:animate-spin" />
     </span>
   );
@@ -71,7 +69,7 @@ export function LoadingImage({
 
   const fallback = failed ? (
     <span className="pointer-events-none absolute inset-0 z-20 grid place-items-center bg-slate-100 px-3 text-center text-xs font-bold text-slate-500">
-      Không tải được ảnh
+      Khong tai duoc anh
     </span>
   ) : null;
 
@@ -91,7 +89,6 @@ export function LoadingImage({
       alt={alt}
       className={cn(imageClassName, fill && 'absolute inset-0 h-full w-full')}
       height={typeof height === 'number' ? height : undefined}
-      fetchPriority={priority ? 'high' : fetchPriority}
       loading={priority ? 'eager' : loading}
       onError={handleError}
       onLoad={handleLoad}
@@ -107,10 +104,10 @@ export function LoadingImage({
       className={imageClassName}
       fill={fill}
       height={height}
-      fetchPriority={priority ? 'high' : fetchPriority}
-      loading={priority ? 'eager' : loading}
+      loading={loading}
       onError={handleError}
       onLoad={handleLoad}
+      priority={priority}
       sizes={sizes}
       src={src}
       style={style}

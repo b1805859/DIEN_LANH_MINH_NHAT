@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { APP_NAME, TARGET_CITY } from '@minhnhat/shared';
 
-const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim() || 'http://localhost:3000';
-export const siteUrl = new URL(configuredSiteUrl).origin;
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 const defaultSocialImage = '/images/home-hero.jpg';
 
 export function absoluteUrl(path: string) {
@@ -15,22 +14,18 @@ export function buildMetadata({
   path,
   image = defaultSocialImage,
   type = 'website',
-  publishedTime,
-  modifiedTime,
 }: {
   title: string;
   description: string;
   path: string;
   image?: string;
   type?: 'website' | 'article';
-  publishedTime?: string;
-  modifiedTime?: string;
 }): Metadata {
   const url = absoluteUrl(path);
   const imageUrl = absoluteUrl(image);
 
   return {
-    title: { absolute: title.includes(APP_NAME) ? title : `${title} | ${APP_NAME}` },
+    title,
     description,
     alternates: { canonical: url },
     openGraph: {
@@ -40,7 +35,6 @@ export function buildMetadata({
       siteName: APP_NAME,
       locale: 'vi_VN',
       type,
-      ...(type === 'article' ? { publishedTime, modifiedTime } : {}),
       images: [{ url: imageUrl, alt: title }],
     },
     twitter: {
@@ -49,9 +43,6 @@ export function buildMetadata({
       description,
       images: [imageUrl],
     },
-    authors: [{ name: APP_NAME, url: absoluteUrl('/about') }],
-    creator: APP_NAME,
-    publisher: APP_NAME,
     robots: {
       index: true,
       follow: true,
