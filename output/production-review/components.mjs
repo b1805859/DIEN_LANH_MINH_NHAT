@@ -1,0 +1,10 @@
+import {chromium} from 'playwright';
+import fs from 'node:fs/promises';
+const b=await chromium.launch({headless:true,channel:'chrome'});const p=await b.newPage({viewport:{width:1122,height:900},reducedMotion:'reduce'});const out='output/production-review/after';
+await p.goto('https://dien-lanh-minh-nhat.vercel.app',{waitUntil:'networkidle'});await p.locator('.mn-home-hero').screenshot({path:out+'/hero-1122.png',animations:'disabled'});
+const geometry=await p.evaluate(()=>Object.fromEntries(['.mn-home-hero','.mn-nav-shell','.mn-hero-copy','.mn-hero-copy h1','.mn-actions','.mn-play','.mn-quick-services'].map(s=>{const e=document.querySelector(s);const r=e.getBoundingClientRect();const c=getComputedStyle(e);return[s,{x:r.x,y:r.y,width:r.width,height:r.height,fontSize:c.fontSize,color:c.color}]})));
+await fs.writeFile(out+'/geometry-1122.json',JSON.stringify(geometry,null,2));
+await p.setViewportSize({width:390,height:844});await p.goto('https://dien-lanh-minh-nhat.vercel.app',{waitUntil:'networkidle'});await p.locator('.mn-home-hero').screenshot({path:out+'/mobile-hero.png',animations:'disabled'});
+await p.goto('https://dien-lanh-minh-nhat.vercel.app/services',{waitUntil:'networkidle'});await p.locator('.mn-support img').evaluate(async image=>{image.loading='eager';await image.decode()});await p.locator('.mn-support').screenshot({path:out+'/mobile-support.png',animations:'disabled'});
+await p.goto('https://dien-lanh-minh-nhat.vercel.app/booking',{waitUntil:'networkidle'});await p.locator('.mn-form-panel').screenshot({path:out+'/mobile-form.png',animations:'disabled'});
+await b.close();console.log(geometry);

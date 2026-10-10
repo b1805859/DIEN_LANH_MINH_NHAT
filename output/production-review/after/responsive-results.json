@@ -1,0 +1,962 @@
+[
+  {
+    "name": "home",
+    "width": 1440,
+    "path": "/",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Cho cuộc sốngthoải mái hơn"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/",
+    "unlabelledFields": [],
+    "title": "Điện lạnh tận nơi tại Cần Thơ",
+    "firstView": {
+      "lcp": 2076,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "services",
+    "width": 1440,
+    "path": "/services",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Dịch vụ điện lạnhtoàn diện tại Cần Thơ"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/services",
+    "unlabelledFields": [],
+    "title": "Dịch vụ điện lạnh tại Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 916,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "service-detail",
+    "width": 1440,
+    "path": "/services/sua-may-lanh",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Sửa chữa máy lạnhtận nơi tại Cần Thơ"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/services/sua-may-lanh",
+    "unlabelledFields": [],
+    "title": "Sửa Máy Lạnh tại Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 496,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "about",
+    "width": 1440,
+    "path": "/about",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Tận tâm đồng hànhcùng người dân Cần Thơ"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/about",
+    "unlabelledFields": [],
+    "title": "Giới thiệu Điện Lạnh Minh Nhật | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 540,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "projects",
+    "width": 1440,
+    "path": "/projects",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Dự án thực tế& Tin tức hữu ích"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/projects",
+    "unlabelledFields": [],
+    "title": "Dự án & Tin tức điện lạnh Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 592,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "news",
+    "width": 1440,
+    "path": "/blog",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Dự án thực tế& Tin tức hữu ích"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/blog",
+    "unlabelledFields": [],
+    "title": "Tin tức & Kiến thức điện lạnh | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 496,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "contact",
+    "width": 1440,
+    "path": "/contact",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Đặt lịch dịch vụnhanh chóng, tiện lợi"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/contact",
+    "unlabelledFields": [],
+    "title": "Liên hệ Điện Lạnh Minh Nhật | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 580,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "booking",
+    "width": 1440,
+    "path": "/booking",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Đặt lịch dịch vụnhanh chóng, tiện lợi"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/booking",
+    "unlabelledFields": [],
+    "title": "Đặt lịch dịch vụ điện lạnh Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 200,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "home",
+    "width": 1280,
+    "path": "/",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Cho cuộc sốngthoải mái hơn"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/",
+    "unlabelledFields": [],
+    "title": "Điện lạnh tận nơi tại Cần Thơ",
+    "firstView": {
+      "lcp": 192,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "services",
+    "width": 1280,
+    "path": "/services",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Dịch vụ điện lạnhtoàn diện tại Cần Thơ"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/services",
+    "unlabelledFields": [],
+    "title": "Dịch vụ điện lạnh tại Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 184,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "service-detail",
+    "width": 1280,
+    "path": "/services/sua-may-lanh",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Sửa chữa máy lạnhtận nơi tại Cần Thơ"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/services/sua-may-lanh",
+    "unlabelledFields": [],
+    "title": "Sửa Máy Lạnh tại Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 188,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "about",
+    "width": 1280,
+    "path": "/about",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Tận tâm đồng hànhcùng người dân Cần Thơ"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/about",
+    "unlabelledFields": [],
+    "title": "Giới thiệu Điện Lạnh Minh Nhật | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 188,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "projects",
+    "width": 1280,
+    "path": "/projects",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Dự án thực tế& Tin tức hữu ích"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/projects",
+    "unlabelledFields": [],
+    "title": "Dự án & Tin tức điện lạnh Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 560,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "news",
+    "width": 1280,
+    "path": "/blog",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Dự án thực tế& Tin tức hữu ích"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/blog",
+    "unlabelledFields": [],
+    "title": "Tin tức & Kiến thức điện lạnh | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 472,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "contact",
+    "width": 1280,
+    "path": "/contact",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Đặt lịch dịch vụnhanh chóng, tiện lợi"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/contact",
+    "unlabelledFields": [],
+    "title": "Liên hệ Điện Lạnh Minh Nhật | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 348,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "booking",
+    "width": 1280,
+    "path": "/booking",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Đặt lịch dịch vụnhanh chóng, tiện lợi"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/booking",
+    "unlabelledFields": [],
+    "title": "Đặt lịch dịch vụ điện lạnh Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 416,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "home",
+    "width": 1024,
+    "path": "/",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Cho cuộc sốngthoải mái hơn"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/",
+    "unlabelledFields": [],
+    "title": "Điện lạnh tận nơi tại Cần Thơ",
+    "firstView": {
+      "lcp": 208,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "services",
+    "width": 1024,
+    "path": "/services",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Dịch vụ điện lạnhtoàn diện tại Cần Thơ"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/services",
+    "unlabelledFields": [],
+    "title": "Dịch vụ điện lạnh tại Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 196,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "service-detail",
+    "width": 1024,
+    "path": "/services/sua-may-lanh",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Sửa chữa máy lạnhtận nơi tại Cần Thơ"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/services/sua-may-lanh",
+    "unlabelledFields": [],
+    "title": "Sửa Máy Lạnh tại Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 184,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "about",
+    "width": 1024,
+    "path": "/about",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Tận tâm đồng hànhcùng người dân Cần Thơ"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/about",
+    "unlabelledFields": [],
+    "title": "Giới thiệu Điện Lạnh Minh Nhật | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 184,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "projects",
+    "width": 1024,
+    "path": "/projects",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Dự án thực tế& Tin tức hữu ích"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/projects",
+    "unlabelledFields": [],
+    "title": "Dự án & Tin tức điện lạnh Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 256,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "news",
+    "width": 1024,
+    "path": "/blog",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Dự án thực tế& Tin tức hữu ích"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/blog",
+    "unlabelledFields": [],
+    "title": "Tin tức & Kiến thức điện lạnh | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 164,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "contact",
+    "width": 1024,
+    "path": "/contact",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Đặt lịch dịch vụnhanh chóng, tiện lợi"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/contact",
+    "unlabelledFields": [],
+    "title": "Liên hệ Điện Lạnh Minh Nhật | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 188,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "booking",
+    "width": 1024,
+    "path": "/booking",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Đặt lịch dịch vụnhanh chóng, tiện lợi"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/booking",
+    "unlabelledFields": [],
+    "title": "Đặt lịch dịch vụ điện lạnh Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 168,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "home",
+    "width": 768,
+    "path": "/",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Cho cuộc sốngthoải mái hơn"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/",
+    "unlabelledFields": [],
+    "title": "Điện lạnh tận nơi tại Cần Thơ",
+    "firstView": {
+      "lcp": 220,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "services",
+    "width": 768,
+    "path": "/services",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Dịch vụ điện lạnhtoàn diện tại Cần Thơ"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/services",
+    "unlabelledFields": [],
+    "title": "Dịch vụ điện lạnh tại Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 188,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "service-detail",
+    "width": 768,
+    "path": "/services/sua-may-lanh",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Sửa chữa máy lạnhtận nơi tại Cần Thơ"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/services/sua-may-lanh",
+    "unlabelledFields": [],
+    "title": "Sửa Máy Lạnh tại Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 188,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "about",
+    "width": 768,
+    "path": "/about",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Tận tâm đồng hànhcùng người dân Cần Thơ"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/about",
+    "unlabelledFields": [],
+    "title": "Giới thiệu Điện Lạnh Minh Nhật | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 228,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "projects",
+    "width": 768,
+    "path": "/projects",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Dự án thực tế& Tin tức hữu ích"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/projects",
+    "unlabelledFields": [],
+    "title": "Dự án & Tin tức điện lạnh Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 184,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "news",
+    "width": 768,
+    "path": "/blog",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Dự án thực tế& Tin tức hữu ích"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/blog",
+    "unlabelledFields": [],
+    "title": "Tin tức & Kiến thức điện lạnh | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 180,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "contact",
+    "width": 768,
+    "path": "/contact",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Đặt lịch dịch vụnhanh chóng, tiện lợi"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/contact",
+    "unlabelledFields": [],
+    "title": "Liên hệ Điện Lạnh Minh Nhật | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 404,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "booking",
+    "width": 768,
+    "path": "/booking",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Đặt lịch dịch vụnhanh chóng, tiện lợi"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/booking",
+    "unlabelledFields": [],
+    "title": "Đặt lịch dịch vụ điện lạnh Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 396,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "home",
+    "width": 390,
+    "path": "/",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Cho cuộc sốngthoải mái hơn"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/",
+    "unlabelledFields": [],
+    "title": "Điện lạnh tận nơi tại Cần Thơ",
+    "firstView": {
+      "lcp": 512,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "services",
+    "width": 390,
+    "path": "/services",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Dịch vụ điện lạnhtoàn diện tại Cần Thơ"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/services",
+    "unlabelledFields": [],
+    "title": "Dịch vụ điện lạnh tại Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 568,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "service-detail",
+    "width": 390,
+    "path": "/services/sua-may-lanh",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Sửa chữa máy lạnhtận nơi tại Cần Thơ"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/services/sua-may-lanh",
+    "unlabelledFields": [],
+    "title": "Sửa Máy Lạnh tại Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 208,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "about",
+    "width": 390,
+    "path": "/about",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Tận tâm đồng hànhcùng người dân Cần Thơ"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/about",
+    "unlabelledFields": [],
+    "title": "Giới thiệu Điện Lạnh Minh Nhật | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 172,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "projects",
+    "width": 390,
+    "path": "/projects",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Dự án thực tế& Tin tức hữu ích"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/projects",
+    "unlabelledFields": [],
+    "title": "Dự án & Tin tức điện lạnh Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 164,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "news",
+    "width": 390,
+    "path": "/blog",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Dự án thực tế& Tin tức hữu ích"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/blog",
+    "unlabelledFields": [],
+    "title": "Tin tức & Kiến thức điện lạnh | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 172,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "contact",
+    "width": 390,
+    "path": "/contact",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Đặt lịch dịch vụnhanh chóng, tiện lợi"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/contact",
+    "unlabelledFields": [],
+    "title": "Liên hệ Điện Lạnh Minh Nhật | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 280,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "booking",
+    "width": 390,
+    "path": "/booking",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Đặt lịch dịch vụnhanh chóng, tiện lợi"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/booking",
+    "unlabelledFields": [],
+    "title": "Đặt lịch dịch vụ điện lạnh Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 168,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "home",
+    "width": 375,
+    "path": "/",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Cho cuộc sốngthoải mái hơn"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/",
+    "unlabelledFields": [],
+    "title": "Điện lạnh tận nơi tại Cần Thơ",
+    "firstView": {
+      "lcp": 176,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "services",
+    "width": 375,
+    "path": "/services",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Dịch vụ điện lạnhtoàn diện tại Cần Thơ"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/services",
+    "unlabelledFields": [],
+    "title": "Dịch vụ điện lạnh tại Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 172,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "service-detail",
+    "width": 375,
+    "path": "/services/sua-may-lanh",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Sửa chữa máy lạnhtận nơi tại Cần Thơ"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/services/sua-may-lanh",
+    "unlabelledFields": [],
+    "title": "Sửa Máy Lạnh tại Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 196,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "about",
+    "width": 375,
+    "path": "/about",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Tận tâm đồng hànhcùng người dân Cần Thơ"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/about",
+    "unlabelledFields": [],
+    "title": "Giới thiệu Điện Lạnh Minh Nhật | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 180,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "projects",
+    "width": 375,
+    "path": "/projects",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Dự án thực tế& Tin tức hữu ích"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/projects",
+    "unlabelledFields": [],
+    "title": "Dự án & Tin tức điện lạnh Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 168,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "news",
+    "width": 375,
+    "path": "/blog",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Dự án thực tế& Tin tức hữu ích"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/blog",
+    "unlabelledFields": [],
+    "title": "Tin tức & Kiến thức điện lạnh | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 184,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "contact",
+    "width": 375,
+    "path": "/contact",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Đặt lịch dịch vụnhanh chóng, tiện lợi"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/contact",
+    "unlabelledFields": [],
+    "title": "Liên hệ Điện Lạnh Minh Nhật | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 164,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  },
+  {
+    "name": "booking",
+    "width": 375,
+    "path": "/booking",
+    "status": 200,
+    "overflow": false,
+    "brokenImages": [],
+    "h1": [
+      "Đặt lịch dịch vụnhanh chóng, tiện lợi"
+    ],
+    "canonical": "https://dien-lanh-minh-nhat.vercel.app/booking",
+    "unlabelledFields": [],
+    "title": "Đặt lịch dịch vụ điện lạnh Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "firstView": {
+      "lcp": 184,
+      "cls": 0
+    },
+    "errors": [],
+    "failed": []
+  }
+]

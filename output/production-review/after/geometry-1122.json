@@ -1,0 +1,58 @@
+{
+  ".mn-home-hero": {
+    "x": 18,
+    "y": 16,
+    "width": 1086,
+    "height": 561.515625,
+    "fontSize": "14px",
+    "color": "rgb(246, 250, 255)"
+  },
+  ".mn-nav-shell": {
+    "x": 61,
+    "y": 58.890625,
+    "width": 1012,
+    "height": 45.453125,
+    "fontSize": "14px",
+    "color": "rgb(246, 250, 255)"
+  },
+  ".mn-hero-copy": {
+    "x": 94.875,
+    "y": 138.96875,
+    "width": 466.109375,
+    "height": 312.859375,
+    "fontSize": "14px",
+    "color": "rgb(246, 250, 255)"
+  },
+  ".mn-hero-copy h1": {
+    "x": 94.875,
+    "y": 174.0625,
+    "width": 466.109375,
+    "height": 100.96875,
+    "fontSize": "50.49px",
+    "color": "rgb(246, 250, 255)"
+  },
+  ".mn-actions": {
+    "x": 94.875,
+    "y": 353.640625,
+    "width": 466.109375,
+    "height": 44.1875,
+    "fontSize": "14px",
+    "color": "rgb(246, 250, 255)"
+  },
+  ".mn-play": {
+    "x": 734.4375,
+    "y": 263.171875,
+    "width": 96.53125,
+    "height": 82.828125,
+    "fontSize": "12px",
+    "color": "rgb(255, 255, 255)"
+  },
+  ".mn-quick-services": {
+    "x": 51.515625,
+    "y": 475.265625,
+    "width": 1018.96875,
+    "height": 92.3125,
+    "fontSize": "14px",
+    "color": "rgb(246, 250, 255)"
+  }
+}

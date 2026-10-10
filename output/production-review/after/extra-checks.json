@@ -1,0 +1,9 @@
+{
+  "checks": [
+    "Overlong phone and past appointment blocked before API",
+    "International phone accepted and submit disabled while response pending",
+    "Failure preserves selected service, area, date and phone",
+    "Header elements fit at intermediate breakpoints including 801px"
+  ],
+  "apiMode": "Intercepted POST only; no live booking submitted"
+}

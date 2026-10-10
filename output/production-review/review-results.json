@@ -1,0 +1,88 @@
+{
+  "production": {
+    "id": "dpl_Vn3NS4Vb9jvKxQyJ6QfuAAnA7hWH",
+    "url": "dien-lanh-minh-nhat-cgoil47yc-shun-f9e0.vercel.app",
+    "readyState": "READY",
+    "commit": "b1dd9f1c7d923b1d8ab3daafd5f2d1c286badd4e",
+    "branch": "codex/production-refinement"
+  },
+  "initialProduction": {
+    "commit": "8f2e8a64cabb0859aa72e5b0c5cd3210ffc6f40c",
+    "matchedLocalSource": true,
+    "staleDeployment": false
+  },
+  "rootCauses": [
+    "Support banner used cover across a very wide container, cropping the technician head.",
+    "Service chevron was decorative and had no dropdown behavior.",
+    "Service details reused generic FAQ content across appliances.",
+    "Contact street schematic lacked the reference street block texture.",
+    "Installed local Next 16 differed from locked production Next 15; ESLint config used Next 16 exports.",
+    "Unpinned app Node runtime let CLI deployment select Node 24 instead of project Node 22."
+  ],
+  "visualComparison": {
+    "reference": "/Users/macbookprom1/Downloads/Trang Điện Lạnh Minh Nhật Cần Thơ.png",
+    "shots": 48,
+    "viewports": [
+      1440,
+      1280,
+      1024,
+      768,
+      390,
+      375
+    ],
+    "comparisonScreenshots": 7,
+    "stableFrame": "prefers-reduced-motion: reduce; decoded images; loaded fonts; disabled animations",
+    "navigation1122": {
+      "referenceHeight": 45,
+      "renderedHeight": 45.453125,
+      "referenceX": 61,
+      "renderedX": 61
+    },
+    "failures": []
+  },
+  "functionalChecks": [
+    "Empty form blocks submission and shows validation",
+    "Invalid phone blocked",
+    "API payload preserved; failed request retains input and displays hotline",
+    "Simulated API success acknowledged only after response and clears form",
+    "Service detail preselects correct booking service",
+    "Project category filter and detail link work",
+    "News tab and empty category state work",
+    "Introduction dialog opens and Escape closes",
+    "Reduced motion disables airflow",
+    "Mobile menu navigates and closes",
+    "No document overflow across five routes at 375, 390, 768, 1024, 1280, 1440 px",
+    "Service filters preserve all ten services",
+    "Service dropdown opens with keyboard and closes with Escape",
+    "Dropdown service navigation and service-specific FAQ work",
+    "Home header stays visible while scrolling",
+    "Overlong phone and past appointment blocked before API",
+    "International phone accepted and submit disabled while response pending",
+    "Failure preserves selected service, area, date and phone",
+    "Header elements fit at intermediate breakpoints including 801px"
+  ],
+  "seo": {
+    "uniqueTitles": true,
+    "canonicalMatches": true,
+    "oneH1Each": true,
+    "allFieldsLabelled": true
+  },
+  "performance": {
+    "mode": "Unthrottled browser lab, shared browser cache; not field Core Web Vitals",
+    "maxRecordedLcpMs": 2076,
+    "maxRecordedCls": 0,
+    "fieldInp": "Not measured"
+  },
+  "backend": {
+    "health": 200,
+    "services": 200,
+    "locations": 200,
+    "booking": "POST intercepted for UI success/error/loading; no live booking persisted"
+  },
+  "limitations": [
+    "Generated photographs, reconstructed icons/maps and retained font are not pixel-identical original artwork.",
+    "No real introduction video, verified business statistics or email supplied.",
+    "Live booking database persistence and field INP were not exercised.",
+    "Source changes committed locally on codex/production-refinement; deployment used Vercel CLI, branch not pushed to GitHub."
+  ]
+}
