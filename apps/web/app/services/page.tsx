@@ -1,4 +1,5 @@
-import { PageHero, Process, ServiceGrid, SupportBanner } from '@/components/redesign/ui';
+import { PageHero, Process, SupportBanner } from '@/components/redesign/ui';
+import { ServiceCatalog } from '@/components/redesign/service-catalog';
 import { buildMetadata } from '@/lib/seo/metadata';
 import { JsonLdScript } from '@/components/seo/json-ld-script';
 import { breadcrumbJsonLd } from '@/lib/seo/json-ld';
@@ -17,7 +18,7 @@ export default function ServicesPage() {
         description="Từ sửa chữa, vệ sinh đến lắp đặt – Minh Nhật đồng hành cùng bạn với giải pháp phù hợp cho từng thiết bị."
       />
       <div className="mn-container mn-services-content">
-        <ServiceGrid />
+        <ServiceCatalog />
         <Process />
         <SupportBanner />
       </div>

@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { FAQS, SERVICES, findService } from '@minhnhat/shared';
+import { SERVICES, findService } from '@minhnhat/shared';
 import { BookingForm } from '@/components/forms/booking-form';
 import { JsonLdScript } from '@/components/seo/json-ld-script';
 import { Actions, PageHero, Process, Reasons, SectionHeading } from '@/components/redesign/ui';
+import { serviceDetails } from '@/lib/content/service-details';
 import { serviceCards } from '@/lib/content/site-content';
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from '@/lib/seo/json-ld';
 import { buildMetadata, localTitle } from '@/lib/seo/metadata';
@@ -25,6 +26,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const { slug } = await params;
   const service = serviceCards.find((s) => s.slug === slug);
   if (!service) notFound();
+  const detail = serviceDetails[slug];
   return (
     <main>
       <PageHero
@@ -45,10 +47,18 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               hợp trước khi cử kỹ thuật viên đến kiểm tra. Mọi công việc được trao đổi và thống nhất
               với bạn trước khi thực hiện.
             </p>
+            <h2 className="mn-faq-heading">Các tình trạng thường gặp</h2>
+            <ul className="mn-service-symptoms">
+              {detail.symptoms.map((symptom) => (
+                <li key={symptom}>{symptom}</li>
+              ))}
+            </ul>
+            <h2 className="mn-faq-heading">Quy trình kiểm tra</h2>
+            <p className="mn-detail-description">{detail.inspection}</p>
             <Reasons />
             <h2 className="mn-faq-heading">Câu hỏi thường gặp</h2>
             <div className="mn-faq-list">
-              {FAQS.map((faq) => (
+              {detail.faqs.map((faq) => (
                 <details key={faq.question}>
                   <summary>{faq.question}</summary>
                   <p>{faq.answer}</p>
@@ -68,7 +78,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         <Process />
       </div>
       <JsonLdScript data={serviceJsonLd(service.title, `/services/${slug}`, service.image)} />
-      <JsonLdScript data={faqJsonLd()} />
+      <JsonLdScript data={faqJsonLd(detail.faqs)} />
       <JsonLdScript
         data={breadcrumbJsonLd([
           { name: 'Trang chủ', path: '/' },

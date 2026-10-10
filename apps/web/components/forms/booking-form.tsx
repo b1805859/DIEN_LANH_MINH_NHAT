@@ -34,7 +34,10 @@ const bookingSchema = z.object({
     .string()
     .trim()
     .min(1, 'Vui lòng nhập số điện thoại.')
-    .regex(/^(?:\+?84|0)(?:\d[\s.-]?){8,10}\d$/, 'Số điện thoại chưa hợp lệ.'),
+    .refine(
+      (phone) => /^(?:0|\+?84)(?:[35789]\d{8}|2\d{9})$/.test(phone.replace(/[\s.-]/g, '')),
+      'Số điện thoại chưa hợp lệ.',
+    ),
   notes: z.string().optional(),
 });
 
@@ -150,7 +153,7 @@ function BookingFormContent({
           <FieldError message={errors.serviceId?.message} />
         </label>
         <label className="mn-field-location grid gap-1.5">
-          <span className="text-xs font-black uppercase text-slate-500">Khu vực</span>
+          <span className="text-xs font-black uppercase text-slate-500">Khu vực *</span>
           <select
             className={fieldClass}
             required
@@ -166,7 +169,7 @@ function BookingFormContent({
           <FieldError message={errors.locationId?.message} />
         </label>
         <label className="mn-field-date grid gap-1.5">
-          <span className="text-xs font-black uppercase text-slate-500">Ngày hẹn</span>
+          <span className="text-xs font-black uppercase text-slate-500">Ngày hẹn *</span>
           <input
             className={fieldClass}
             type="date"

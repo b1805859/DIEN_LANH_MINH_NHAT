@@ -4,7 +4,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { CalendarDays, ChevronDown, Menu, Phone, X } from 'lucide-react';
 import { MinhNhatLogoMark } from '@/components/brand/minh-nhat-logo';
-import { siteContent } from '@/lib/content/site-content';
+import { serviceCards, siteContent } from '@/lib/content/site-content';
 import {
   AUTH_TOKEN_CHANGE_EVENT,
   clearStoredAuthTokens,
@@ -25,6 +25,8 @@ export function SiteHeader() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [admin, setAdmin] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const servicesMenu = useRef<HTMLDetailsElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   useEffect(() => {
@@ -41,7 +43,23 @@ export function SiteHeader() {
   }, []);
   useEffect(() => {
     setOpen(false);
+    if (servicesMenu.current) servicesMenu.current.open = false;
   }, [pathname]);
+  useEffect(() => {
+    const syncScroll = () => setScrolled(window.scrollY > 180);
+    const dismiss = (event: PointerEvent) => {
+      if (servicesMenu.current && !servicesMenu.current.contains(event.target as Node)) {
+        servicesMenu.current.open = false;
+      }
+    };
+    syncScroll();
+    window.addEventListener('scroll', syncScroll, { passive: true });
+    document.addEventListener('pointerdown', dismiss);
+    return () => {
+      window.removeEventListener('scroll', syncScroll);
+      document.removeEventListener('pointerdown', dismiss);
+    };
+  }, []);
   useEffect(() => {
     if (open) {
       dialog.current?.showModal();
@@ -76,7 +94,9 @@ export function SiteHeader() {
   }
   const active = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
   return (
-    <header className={`mn-header ${pathname === '/' ? 'mn-header-home' : ''}`}>
+    <header
+      className={`mn-header ${pathname === '/' ? 'mn-header-home' : ''} ${scrolled ? 'mn-header-scrolled' : ''}`}
+    >
       <div className="mn-nav-shell">
         <Link href="/" className="mn-brand" aria-label="Điện Lạnh Minh Nhật – Trang chủ">
           <MinhNhatLogoMark idPrefix="header" />
@@ -86,12 +106,40 @@ export function SiteHeader() {
           </span>
         </Link>
         <nav className="mn-desktop-nav" aria-label="Điều hướng chính">
-          {links.map(([label, href]) => (
-            <Link key={href} href={href} aria-current={active(href) ? 'page' : undefined}>
-              {label}
-              {href === '/services' && <ChevronDown size={12} />}
-            </Link>
-          ))}
+          {links.map(([label, href]) =>
+            href === '/services' ? (
+              <div className="mn-nav-services" key={href}>
+                <Link href={href} aria-current={active(href) ? 'page' : undefined}>
+                  {label}
+                </Link>
+                <details
+                  ref={servicesMenu}
+                  className="mn-services-menu"
+                  onKeyDown={(event) => {
+                    if (event.key === 'Escape') {
+                      event.currentTarget.open = false;
+                      event.currentTarget.querySelector('summary')?.focus();
+                    }
+                  }}
+                >
+                  <summary aria-label="Mở danh sách dịch vụ">
+                    <ChevronDown size={13} />
+                  </summary>
+                  <div className="mn-services-dropdown">
+                    {serviceCards.map((service) => (
+                      <Link key={service.slug} href={`/services/${service.slug}`}>
+                        {service.title}
+                      </Link>
+                    ))}
+                  </div>
+                </details>
+              </div>
+            ) : (
+              <Link key={href} href={href} aria-current={active(href) ? 'page' : undefined}>
+                {label}
+              </Link>
+            ),
+          )}
         </nav>
         <div className="mn-header-actions">
           <a className="mn-hotline" href={siteContent.phoneHref}>

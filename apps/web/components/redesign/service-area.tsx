@@ -113,11 +113,31 @@ export function ContactMap() {
           aria-label="Sơ đồ minh họa các tuyến đường và khu vực Cần Thơ"
         >
           <defs>
+            <pattern
+              id="street-blocks"
+              width="46"
+              height="36"
+              patternUnits="userSpaceOnUse"
+              patternTransform="rotate(32)"
+            >
+              <rect
+                x="3"
+                y="3"
+                width="38"
+                height="28"
+                rx="2"
+                fill="#174a66"
+                stroke="#247699"
+                strokeWidth=".6"
+              />
+              <path d="M22 4v26M4 17h36" stroke="#205d7c" strokeWidth=".65" />
+            </pattern>
             <linearGradient id="river-blue">
               <stop stopColor="#0467a3" />
               <stop offset="1" stopColor="#0a3e65" />
             </linearGradient>
           </defs>
+          <rect width="540" height="330" fill="url(#street-blocks)" opacity=".52" />
           <path
             d="M340-20C260 70 390 86 296 185S253 305 205 360"
             fill="none"

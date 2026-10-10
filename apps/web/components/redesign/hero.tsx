@@ -133,10 +133,10 @@ export function HomeHero() {
           ) : (
             <div>
               <Image
-                src={siteContent.images.technician}
+                src={siteContent.images.hero}
                 width={900}
-                height={600}
-                alt="Kỹ thuật viên – ảnh minh họa"
+                height={464}
+                alt="Gia đình thư giãn trong không gian mát lành – ảnh minh họa"
               />
               <h2>Điện Lạnh Minh Nhật</h2>
               <p>

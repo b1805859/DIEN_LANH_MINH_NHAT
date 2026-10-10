@@ -20,11 +20,7 @@ export default function AboutPage() {
       />
       <div className="mn-container">
         <div className="mn-about-facts mn-panel">
-          {[
-            ['10', 'nhóm dịch vụ'],
-            ['Tận nơi', 'tại Cần Thơ'],
-            ['Rõ ràng', 'từ tư vấn đến bàn giao'],
-          ].map(([value, label]) => (
+          {siteContent.aboutFacts.map(({ value, label }) => (
             <div key={label}>
               <strong>{value}</strong>
               <span>{label}</span>

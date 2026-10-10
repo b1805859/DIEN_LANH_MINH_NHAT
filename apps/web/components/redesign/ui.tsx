@@ -148,10 +148,24 @@ export function PageHero({
     </section>
   );
 }
-export function ServiceGrid({ limit, areaSlug }: { limit?: number; areaSlug?: string }) {
+export function ServiceGrid({
+  limit,
+  areaSlug,
+  category = 'all',
+}: {
+  limit?: number;
+  areaSlug?: string;
+  category?: string;
+}) {
+  const filteredServices = serviceCards.filter((service) => {
+    if (category === 'all') return true;
+    if (category === 'dien-nuoc')
+      return !['may-lanh', 'may-giat', 'tu-lanh'].some((group) => service.slug.includes(group));
+    return service.slug.includes(category);
+  });
   return (
     <div className="mn-service-grid">
-      {serviceCards.slice(0, limit).map((service, i) => (
+      {filteredServices.slice(0, limit).map((service, i) => (
         <Link
           key={service.slug}
           href={areaSlug ? `/areas/${areaSlug}/${service.slug}` : `/services/${service.slug}`}

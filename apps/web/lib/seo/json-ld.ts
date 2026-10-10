@@ -41,7 +41,7 @@ export function websiteJsonLd() {
   };
 }
 
-export function faqJsonLd(faqs = FAQS) {
+export function faqJsonLd(faqs: ReadonlyArray<{ question: string; answer: string }> = FAQS) {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -95,4 +95,3 @@ export function articleJsonLd(title: string, description: string, image: string,
     inLanguage: 'vi-VN',
   };
 }
-

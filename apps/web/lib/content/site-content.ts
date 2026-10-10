@@ -24,6 +24,13 @@ export const siteContent = {
   assetStatus:
     'AI-generated illustrative photography; replace with approved originals when available',
   verifiedMetrics: null,
+  // Mockup metrics are placeholders, never rendered as verified business claims.
+  pendingMetrics: { years: '5+', customers: '1000+', satisfaction: '98%', verified: false },
+  aboutFacts: [
+    { value: String(SERVICES.length), label: 'nhóm dịch vụ' },
+    { value: 'Tận nơi', label: 'tại Cần Thơ' },
+    { value: 'Rõ ràng', label: 'từ tư vấn đến bàn giao' },
+  ],
   areas: [
     { name: 'Ninh Kiều', slug: 'ninh-kieu' },
     { name: 'Bình Thủy', slug: 'binh-thuy' },
