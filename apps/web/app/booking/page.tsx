@@ -25,8 +25,8 @@ export default function BookingPage() {
         </nav>
         <div className="mock-booking-layout">
           <section className="mock-booking-main">
-            <h1 data-motion="hero">Đặt lịch sửa chữa điện lạnh</h1>
-            <p>Để lại thông tin, Minh Nhật sẽ liên hệ trong thời gian sớm nhất.</p>
+            <h1>Đặt lịch sửa chữa điện lạnh</h1>
+            <p>Để lại thông tin, Minh Nhật sẽ liên hệ trong thời gian phù hợp.</p>
             <BookingForm />
             <p className="mock-booking-check">
               <CheckCircle2 size={18} />{' '}
@@ -35,11 +35,11 @@ export default function BookingPage() {
               </a>
             </p>
           </section>
-          <aside className="mock-booking-aside" data-motion="image">
+          <aside className="mock-booking-aside">
             <div className="mock-booking-image">
               <Image
-                src="/images/mockup/portrait.png"
-                alt="Kỹ thuật viên Minh Nhật mỉm cười, sẵn sàng phục vụ"
+                src="/images/hvac-hero-branded.png"
+                alt="Kỹ thuật viên Minh Nhật đang kiểm tra máy lạnh"
                 fill
                 priority
                 sizes="(min-width: 768px) 80vw, 100vw"
@@ -50,16 +50,16 @@ export default function BookingPage() {
               <br />
               đã tin tưởng Minh Nhật!
               <br />
-              <span className="mock-thanks-last-line">Chúng tôi sẽ liên hệ sớm nhất.</span>
+              Chúng tôi sẽ luôn hỗ trợ bạn hết mình.
             </p>
           </aside>
         </div>
-        <div className="mock-contact-strip" data-motion-stagger="60">
+        <div className="mock-contact-strip">
           <a href={`tel:${integrationSettings.phone}`}>
             <Phone />
             <span>
               <strong>0939 370 109</strong>
-              <small>08:00 – 20:00 Thứ 2 – CN</small>
+              <small>08:00 – 17:00 Thứ 2 – CN</small>
             </span>
           </a>
           <a href={integrationSettings.zaloUrl} target="_blank" rel="noreferrer">

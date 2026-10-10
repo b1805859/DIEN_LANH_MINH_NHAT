@@ -4,9 +4,6 @@
 
 @layer base {
   :root {
-    --font-be-vietnam-pro: 'Segoe UI', Arial, sans-serif;
-    --font-mockup: 'Segoe UI', Arial, sans-serif;
-    --font-handwriting: 'Comic Sans MS', cursive;
     --background: 0 0% 100%;
     --foreground: 222.2 47.4% 11.2%;
     --card: 0 0% 100%;
@@ -65,6 +62,34 @@
     --reveal-distance: 16px;
     opacity: 1;
     transform: none;
+  }
+
+  .reveal[data-reveal-state='hidden'] {
+    opacity: 0;
+  }
+
+  .reveal[data-reveal-state='hidden'][data-reveal-variant='up'] {
+    transform: translate3d(0, var(--reveal-distance), 0);
+  }
+
+  .reveal[data-reveal-state='hidden'][data-reveal-variant='left'] {
+    transform: translate3d(calc(var(--reveal-distance) * -1), 0, 0);
+  }
+
+  .reveal[data-reveal-state='hidden'][data-reveal-variant='right'] {
+    transform: translate3d(var(--reveal-distance), 0, 0);
+  }
+
+  .reveal[data-reveal-state='hidden'][data-reveal-variant='scale'] {
+    transform: scale(0.975);
+  }
+
+  .reveal[data-reveal-state='visible'] {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 480ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay),
+      transform 560ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay);
   }
 
   .hero-photo-image-frame {
@@ -663,16 +688,16 @@
   max-width: 1240px;
   padding-inline: 24px;
 }
-.public-page h1,
-.public-page h2,
-.public-page h3 {
+.public-site h1,
+.public-site h2,
+.public-site h3 {
   text-wrap: balance;
 }
-.public-page h1 {
+.public-site h1 {
   letter-spacing: -0.035em;
 }
 .public-site :focus-visible {
-  outline: 3px solid var(--site-focus, #0877c9);
+  outline: 3px solid #0877c9;
   outline-offset: 4px;
 }
 .public-site input,

@@ -15,4 +15,3 @@ Dockerfile.local
 Thumbs.db
 .vercel/
 .vercel
-.env*

@@ -57,7 +57,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
     .filter((service): service is NonNullable<ReturnType<typeof findService>> => Boolean(service));
 
   return (
-    <main className="public-page bg-[#f4f8fb] text-slate-950">
+    <main className="bg-[#f4f8fb] text-slate-950">
       <section className="border-b border-slate-200 bg-white py-8 sm:py-10">
         <div className="container">
           <nav aria-label="Điều hướng">
@@ -99,7 +99,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
             </ol>
           </nav>
           <div className="mt-6 grid min-w-0 gap-6 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-center lg:gap-8">
-            <div className="min-w-0" data-motion="hero">
+            <div className="min-w-0">
               {category ? (
                 <Link
                   href={`/blog/category/${category.slug}`}
@@ -132,7 +132,6 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
                 fill
                 priority
                 className="object-cover"
-                data-motion="hero-image"
                 sizes="(min-width: 1024px) 420px, 100vw"
               />
             </div>
@@ -141,7 +140,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
       </section>
 
       <section className="container grid min-w-0 gap-8 py-10 sm:py-12 lg:grid-cols-[minmax(0,1fr)_280px] xl:grid-cols-[180px_minmax(0,1fr)_240px] lg:gap-10">
-        <aside className="hidden text-sm text-slate-600 xl:block" data-motion="fade">
+        <aside className="hidden text-sm text-slate-600 xl:block">
           <p className="font-black text-slate-950">Mục lục</p>
           {article.sections.map((section, index) => (
             <a
@@ -171,7 +170,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
           </details>
           {article.sections.map((section, sectionIndex) => (
             <section key={section.id} aria-labelledby={`${section.id}-title`}>
-              <h2 id={section.id} className="scroll-mt-24 pt-10 text-2xl font-black" data-motion="up">
+              <h2 id={section.id} className="scroll-mt-24 pt-10 text-2xl font-black">
                 <span id={`${section.id}-title`}>{section.title}</span>
               </h2>
               <div className="mt-3 space-y-4 leading-8 text-slate-700">
@@ -193,7 +192,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
                 </ul>
               ) : null}
               {sectionIndex === 0 ? (
-                <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-xl bg-slate-100" data-motion="image">
+                <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-xl bg-slate-100">
                   <LoadingImage
                     src={post.image}
                     alt={`Minh họa cho nội dung ${section.title.toLocaleLowerCase('vi-VN')}`}
@@ -207,7 +206,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
           ))}
 
           {article.safetyNote ? (
-            <aside className="mt-10 rounded-xl border border-amber-200 bg-amber-50 p-5" data-motion="up">
+            <aside className="mt-10 rounded-xl border border-amber-200 bg-amber-50 p-5">
               <div className="flex items-start gap-3">
                 <ShieldAlert className="mt-0.5 h-6 w-6 shrink-0 text-amber-700" />
                 <div>
@@ -220,13 +219,12 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
 
           {relatedServices.length ? (
             <section className="mt-10 border-t border-slate-200 pt-8">
-              <h2 className="text-xl font-black" data-motion="up">Dịch vụ liên quan tại Cần Thơ</h2>
-              <div className="mt-4 flex flex-wrap gap-3" data-motion-stagger="45">
+              <h2 className="text-xl font-black">Dịch vụ liên quan tại Cần Thơ</h2>
+              <div className="mt-4 flex flex-wrap gap-3">
                 {relatedServices.map((service) => (
                   <Link
                     key={service.slug}
                     href={`/services/${service.slug}`}
-                    data-motion-hover="button"
                     className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-3 text-sm font-bold text-white transition hover:bg-primary/90"
                   >
                     {service.name}
@@ -239,13 +237,12 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
         </article>
 
         <aside className="min-w-0">
-          <p className="font-black" data-motion="up">Bài liên quan</p>
-          <div className="mt-3 grid gap-3" data-motion-stagger="50">
+          <p className="font-black">Bài liên quan</p>
+          <div className="mt-3 grid gap-3">
             {relatedPosts.map((item) => (
               <Link
                 key={item.slug}
                 href={`/blog/${item.slug}`}
-                data-motion-hover="card"
                 className="group grid grid-cols-[82px_1fr] gap-3 rounded-xl border border-slate-200 bg-white p-3 text-sm shadow-sm transition hover:border-primary/40"
               >
                 <span className="relative h-20 overflow-hidden rounded-xl bg-slate-100">
@@ -253,8 +250,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
                     src={item.image}
                     alt={item.title}
                     fill
-                    className="object-cover"
-                    data-motion-hover="image"
+                    className="object-cover transition duration-500 group-hover:scale-105"
                     sizes="82px"
                   />
                 </span>

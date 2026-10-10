@@ -15,7 +15,7 @@ export const metadata = buildMetadata({
 
 export default function FaqPage() {
   return (
-    <main className="public-page bg-[#f4f8fb] text-slate-950">
+    <main className="bg-[#f4f8fb] text-slate-950">
       <section className="border-b border-slate-200 bg-white py-10 sm:py-14">
         <div className="container">
           <nav aria-label="Điều hướng">
@@ -36,7 +36,7 @@ export default function FaqPage() {
           <span className="mt-8 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-50 text-primary">
             <CircleHelp className="h-6 w-6" />
           </span>
-          <h1 data-motion="hero" className="mt-4 text-3xl font-black tracking-normal sm:text-5xl">
+          <h1 className="mt-4 text-3xl font-black tracking-normal sm:text-5xl">
             Câu hỏi thường gặp
           </h1>
           <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-700">

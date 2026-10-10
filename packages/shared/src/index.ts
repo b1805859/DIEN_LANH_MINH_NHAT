@@ -8,17 +8,11 @@ export const ASCII_APP_NAME = 'DIEN LANH MINH NHAT';
 
 export const TARGET_CITY = 'Cần Thơ';
 
-// Single source for public contact facts. Values below come from the owner's
-// reference material; email and contact hours still need owner confirmation
-// (see docs/business-facts.md). Environment variables override them.
 export const BUSINESS = {
   name: APP_NAME,
   phone: '0939370109',
   address: 'Cần Thơ, Việt Nam',
   zaloUrl: 'https://zalo.me/0939370109',
-  email: 'dienlanhminhnhat@gmail.com',
-  contactHours: '08:00 – 20:00 (T2 – CN)',
-  facebookUrl: 'https://www.facebook.com/le.qui.16718',
   googleMapsUrl: '',
   googleMapsEmbedUrl: '',
 };

@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { ArrowLeft, ArrowRight, BookOpen } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { BLOG_CATEGORIES, BLOG_POSTS } from '@minhnhat/shared';
-import { ArticleCard, CategoryFilter } from '@/components/blog/article-listing';
+import { LoadingImage } from '@/components/ui/loading-image';
+import { Reveal } from '@/components/ui/reveal';
 import { buildMetadata } from '@/lib/seo/metadata';
-import styles from '@/components/blog/blog.module.css';
 
 export function generateStaticParams() {
   return BLOG_CATEGORIES.map((category) => ({ slug: category.slug }));
@@ -39,44 +39,57 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ s
   const posts = BLOG_POSTS.filter((post) => post.category === slug);
 
   return (
-    <main className={styles.page}>
-      <section className={styles.categoryHero} aria-labelledby="blog-category-title">
-        <div className={styles.container}>
-          <Link href="/blog" className={styles.backLink} data-motion="hero">
-            <ArrowLeft aria-hidden="true" />
+    <main className="bg-[#f4f8fb] text-slate-950">
+      <section className="border-b border-slate-200 bg-white py-10 sm:py-12">
+        <div className="container">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 text-sm font-black text-primary"
+          >
+            <ArrowRight className="h-4 w-4 rotate-180" />
             Tất cả bài viết
           </Link>
-          <h1 id="blog-category-title" data-motion="hero" data-motion-delay="60">
+          <h1 className="mt-5 text-3xl font-black tracking-normal sm:text-4xl">
             Bài viết {category.name}
           </h1>
-          <p className={styles.categoryDescription} data-motion="hero" data-motion-delay="120">
+          <p className="mt-3 max-w-2xl leading-7 text-slate-600">
             Các hướng dẫn và dấu hiệu cần chú ý liên quan đến {category.name.toLowerCase()}.
           </p>
         </div>
       </section>
 
-      <section className={`${styles.content} ${styles.container}`} aria-labelledby="category-list-title">
-        <h2 className="sr-only" id="category-list-title">Bài viết trong chuyên mục {category.name}</h2>
-        <div className={styles.toolbar}>
-          <CategoryFilter activeSlug={category.slug} />
-          <p className={styles.articleCount}>{posts.length} bài viết</p>
+      <section className="container py-10 sm:py-12 lg:py-16">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {posts.map((post, index) => (
+            <Reveal key={post.slug} asChild delay={Math.min(index, 4) * 55}>
+              <Link
+                href={`/blog/${post.slug}`}
+                className="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-slate-200"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+                  <LoadingImage
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    priority={index < 3}
+                    className="object-cover transition duration-700 group-hover:scale-105"
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  />
+                </div>
+                <div className="p-5">
+                  <h2 className="text-lg font-black leading-6">{post.title}</h2>
+                  <p className="mt-3 text-sm leading-6 text-slate-600 sm:min-h-[4.5rem]">
+                    {post.excerpt}
+                  </p>
+                  <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-primary">
+                    Đọc bài viết
+                    <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
+                  </span>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
         </div>
-        {posts.length ? (
-          <div className={`${styles.grid} ${styles.categoryResults}`} key={category.slug}>
-            {posts.map((post, index) => (
-              <ArticleCard post={post} priority={index < 3} key={post.slug} />
-            ))}
-          </div>
-        ) : (
-          <div className={`${styles.emptyState} ${styles.categoryResults}`} key={category.slug}>
-            <span className={styles.emptyIcon}><BookOpen aria-hidden="true" /></span>
-            <h2>Không tìm thấy bài viết phù hợp.</h2>
-            <p>Chuyên mục này chưa có bài viết. Bạn có thể khám phá các nội dung điện lạnh khác.</p>
-            <Link className={styles.emptyLink} href="/blog">
-              Xem tất cả bài viết <ArrowRight aria-hidden="true" />
-            </Link>
-          </div>
-        )}
       </section>
     </main>
   );
