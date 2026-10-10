@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { APP_NAME, TARGET_CITY } from '@minhnhat/shared';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
-const defaultSocialImage = '/images/home-hero.jpg';
+const defaultSocialImage = '/images/redesign/family-morning.webp';
 
 export function absoluteUrl(path: string) {
   return new URL(path, siteUrl).toString();

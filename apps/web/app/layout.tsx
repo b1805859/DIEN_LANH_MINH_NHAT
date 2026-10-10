@@ -8,6 +8,7 @@ import { localBusinessJsonLd, websiteJsonLd } from '@/lib/seo/json-ld';
 import { absoluteUrl } from '@/lib/seo/metadata';
 import { integrationSettings } from '@/lib/integrations/settings';
 import './globals.css';
+import './redesign.css';
 
 const beVietnamPro = Be_Vietnam_Pro({
   subsets: ['latin', 'vietnamese'],

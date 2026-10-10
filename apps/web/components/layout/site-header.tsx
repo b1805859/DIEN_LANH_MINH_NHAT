@@ -1,11 +1,10 @@
 'use client';
-
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { ChevronRight, LogOut, Menu, X } from 'lucide-react';
-import { APP_NAME } from '@minhnhat/shared';
+import { useEffect, useRef, useState } from 'react';
+import { CalendarDays, ChevronDown, Menu, Phone, X } from 'lucide-react';
 import { MinhNhatLogoMark } from '@/components/brand/minh-nhat-logo';
+import { siteContent } from '@/lib/content/site-content';
 import {
   AUTH_TOKEN_CHANGE_EVENT,
   clearStoredAuthTokens,
@@ -13,90 +12,52 @@ import {
   getStoredRefreshToken,
 } from '@/lib/auth/tokens';
 import { apiClient } from '@/lib/api/client';
-import { cn } from '@/lib/utils';
-
-const navItems = [
+const links = [
   ['Trang chủ', '/'],
+  ['Giới thiệu', '/about'],
   ['Dịch vụ', '/services'],
-  ['Bài viết', '/blog'],
-  ['Đặt lịch', '/booking'],
+  ['Dự án', '/projects'],
+  ['Tin tức', '/blog'],
   ['Liên hệ', '/contact'],
 ];
-
-const mobileNavItems = navItems;
-
 export function SiteHeader() {
   const pathname = usePathname();
   const router = useRouter();
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [hasAdminSession, setHasAdminSession] = useState(false);
-  const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const drawerRef = useRef<HTMLElement>(null);
-
+  const [open, setOpen] = useState(false);
+  const [admin, setAdmin] = useState(false);
+  const dialog = useRef<HTMLDialogElement>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
   useEffect(() => {
-    const syncAdminSession = () => {
-      setHasAdminSession(Boolean(getStoredAccessToken()));
-    };
-
-    syncAdminSession();
-    window.addEventListener(AUTH_TOKEN_CHANGE_EVENT, syncAdminSession);
-    window.addEventListener('focus', syncAdminSession);
-    window.addEventListener('storage', syncAdminSession);
-
+    const sync = () => setAdmin(Boolean(getStoredAccessToken()));
+    sync();
+    window.addEventListener(AUTH_TOKEN_CHANGE_EVENT, sync);
+    window.addEventListener('storage', sync);
+    window.addEventListener('focus', sync);
     return () => {
-      window.removeEventListener(AUTH_TOKEN_CHANGE_EVENT, syncAdminSession);
-      window.removeEventListener('focus', syncAdminSession);
-      window.removeEventListener('storage', syncAdminSession);
+      window.removeEventListener(AUTH_TOKEN_CHANGE_EVENT, sync);
+      window.removeEventListener('storage', sync);
+      window.removeEventListener('focus', sync);
     };
   }, []);
-
   useEffect(() => {
-    setMobileOpen(false);
+    setOpen(false);
   }, [pathname]);
-
   useEffect(() => {
-    if (!mobileOpen) {
-      return;
+    if (open) {
+      dialog.current?.showModal();
+      const old = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = old;
+        dialog.current?.close();
+      };
+    } else {
+      dialog.current?.close();
     }
-
-    const originalOverflow = document.body.style.overflow;
-    const closeOnOutsidePointer = (event: PointerEvent) => {
-      const target = event.target;
-
-      if (!(target instanceof Node)) {
-        return;
-      }
-
-      if (drawerRef.current?.contains(target) || menuButtonRef.current?.contains(target)) {
-        return;
-      }
-
-      setMobileOpen(false);
-    };
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setMobileOpen(false);
-      }
-    };
-
-    document.body.style.overflow = 'hidden';
-    document.addEventListener('pointerdown', closeOnOutsidePointer);
-    document.addEventListener('keydown', closeOnEscape);
-
-    return () => {
-      document.body.style.overflow = originalOverflow;
-      document.removeEventListener('pointerdown', closeOnOutsidePointer);
-      document.removeEventListener('keydown', closeOnEscape);
-    };
-  }, [mobileOpen]);
-
-  const isActive = (href: string) =>
-    href === '/' ? pathname === href : pathname === href || pathname.startsWith(`${href}/`);
-
-  const handleLogout = async () => {
+  }, [open]);
+  async function logout() {
     const accessToken = getStoredAccessToken();
     const refreshToken = getStoredRefreshToken();
-
     if (accessToken && refreshToken) {
       try {
         await apiClient.post(
@@ -105,190 +66,107 @@ export function SiteHeader() {
           { headers: { Authorization: `Bearer ${accessToken}` } },
         );
       } catch {
-        // Local logout should still complete even if the token is already invalid.
+        /* Always clear the local session. */
       }
     }
-
     clearStoredAuthTokens();
-    setHasAdminSession(false);
-    setMobileOpen(false);
-
-    if (pathname.startsWith('/admin')) {
-      router.replace('/admin/login');
-    }
-  };
-
+    setAdmin(false);
+    setOpen(false);
+    router.refresh();
+  }
+  const active = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
   return (
-    <>
-      <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-[#0b172a] text-white shadow-lg shadow-slate-950/20">
-        <div className="container">
-          <div className="flex min-h-16 items-center justify-between gap-3 sm:gap-5">
-            <Link href="/" className="group flex min-w-0 items-center gap-2 sm:gap-3">
-              <MinhNhatLogoMark
-                className="h-9 w-9 shadow-lg shadow-cyan-400/20 transition group-hover:scale-[1.03] sm:h-10 sm:w-10"
-                idPrefix="site-header-logo"
-              />
-              <span className="min-w-0">
-                <span className="block max-w-[calc(100vw-10rem)] truncate text-sm font-black leading-tight sm:max-w-none sm:text-base">
-                  {APP_NAME}
-                </span>
-                <span className="hidden text-xs font-semibold leading-tight text-cyan-100/75 sm:block">
-                  Điện lạnh tận nơi tại Cần Thơ
-                </span>
-              </span>
+    <header className={`mn-header ${pathname === '/' ? 'mn-header-home' : ''}`}>
+      <div className="mn-nav-shell">
+        <Link href="/" className="mn-brand" aria-label="Điện Lạnh Minh Nhật – Trang chủ">
+          <MinhNhatLogoMark idPrefix="header" />
+          <span>
+            ĐIỆN LẠNH<strong>MINH NHẬT</strong>
+            <small>CẦN THƠ</small>
+          </span>
+        </Link>
+        <nav className="mn-desktop-nav" aria-label="Điều hướng chính">
+          {links.map(([label, href]) => (
+            <Link key={href} href={href} aria-current={active(href) ? 'page' : undefined}>
+              {label}
+              {href === '/services' && <ChevronDown size={12} />}
             </Link>
-
-            <nav
-              className="ml-auto hidden items-center justify-center gap-7 text-sm font-bold text-slate-200 xl:flex"
-              aria-label="Điều hướng chính"
-            >
-              {navItems.map(([label, href]) => {
-                const active = isActive(href);
-
-                return (
-                  <Link
-                    key={href}
-                    href={href}
-                    className={cn(
-                      'transition hover:text-cyan-200',
-                      active ? 'text-cyan-200' : 'text-slate-200',
-                    )}
-                  >
-                    {label}
-                  </Link>
-                );
-              })}
-            </nav>
-
-            <div className="flex items-center justify-end gap-2">
-              {hasAdminSession ? (
-                <Link
-                  href="/admin/dashboard"
-                  className="hidden h-10 items-center justify-center rounded-md border border-cyan-200/40 bg-cyan-300/10 px-3 text-sm font-black text-cyan-100 transition hover:border-cyan-100 hover:bg-cyan-300/20 sm:inline-flex"
-                >
-                  Quản trị
-                </Link>
-              ) : null}
-              {hasAdminSession ? (
-                <button
-                  type="button"
-                  className="hidden h-10 items-center justify-center gap-2 rounded-md border border-white/15 bg-white/10 px-3 text-sm font-black text-slate-100 transition hover:border-red-200/60 hover:bg-red-400/15 hover:text-white sm:inline-flex"
-                  onClick={handleLogout}
-                >
-                  <LogOut className="h-4 w-4" />
-                  Đăng xuất
-                </button>
-              ) : null}
-              <button
-                ref={menuButtonRef}
-                type="button"
-                className={cn(
-                  'inline-flex h-10 w-10 items-center justify-center rounded-md border transition xl:hidden',
-                  'border-white/15 bg-white/10 text-white shadow-sm hover:border-cyan-200/50 hover:text-cyan-100',
-                )}
-                aria-label={mobileOpen ? 'Đóng menu' : 'Mở menu'}
-                aria-expanded={mobileOpen}
-                onClick={() => setMobileOpen((current) => !current)}
-              >
-                {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              </button>
+          ))}
+        </nav>
+        <div className="mn-header-actions">
+          <a className="mn-hotline" href={siteContent.phoneHref}>
+            <span>
+              <Phone size={20} />
+            </span>
+            <div>
+              <small>Hotline tư vấn</small>
+              <strong>{siteContent.phoneDisplay}</strong>
             </div>
-          </div>
-
-          <div
-            className={cn(
-              'fixed inset-0 z-50 xl:hidden',
-              mobileOpen ? 'pointer-events-auto' : 'pointer-events-none',
-            )}
+          </a>
+          <Link className="mn-button mn-nav-book" href="/booking">
+            <CalendarDays size={17} />
+            Đặt lịch ngay
+          </Link>
+          {admin && (
+            <Link href="/admin/dashboard" className="mn-admin-link">
+              Quản trị
+            </Link>
+          )}
+          <button
+            ref={trigger}
+            className="mn-menu-button"
+            aria-label="Mở menu"
+            aria-expanded={open}
+            onClick={() => setOpen(true)}
           >
-            <button
-              type="button"
-              className={cn(
-                'absolute inset-0 bg-[#0b172a]/55 backdrop-blur-[2px] transition-opacity duration-300',
-                mobileOpen ? 'opacity-100' : 'opacity-0',
-              )}
-              aria-label="Đóng menu"
-              onClick={() => setMobileOpen(false)}
-            />
-            <aside
-              ref={drawerRef}
-              className={cn(
-                'absolute right-0 top-0 flex h-svh w-[min(22rem,86vw)] flex-col bg-white text-slate-950 shadow-2xl shadow-slate-950/30 transition-transform duration-300',
-                mobileOpen ? 'translate-x-0' : 'translate-x-full',
-              )}
-              aria-label="Menu di động"
-            >
-              <div className="flex min-h-16 items-center justify-between gap-3 border-b border-slate-200 px-4">
-                <Link href="/" className="flex min-w-0 items-center gap-3">
-                  <MinhNhatLogoMark
-                    className="h-10 w-10 shadow-lg shadow-primary/20"
-                    idPrefix="site-mobile-logo"
-                  />
-                  <span className="min-w-0">
-                    <span className="block truncate text-sm font-black">{APP_NAME}</span>
-                    <span className="block text-xs font-semibold text-slate-500">
-                      Điện lạnh Cần Thơ
-                    </span>
-                  </span>
-                </Link>
-                <button
-                  type="button"
-                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md border border-slate-200 bg-white text-slate-800 transition hover:border-primary/40 hover:text-primary"
-                  aria-label="Đóng menu"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  <X className="h-5 w-5" />
-                </button>
-              </div>
-
-              <nav className="flex-1 overflow-y-auto px-3 py-4" aria-label="Liên kết di động">
-                {mobileNavItems.map(([label, href]) => (
-                  <Link
-                    key={href}
-                    href={href}
-                    className={cn(
-                      'flex min-h-12 items-center justify-between rounded-md px-3 text-base font-black transition hover:bg-slate-100 hover:text-primary',
-                      isActive(href) && 'bg-primary/10 text-primary',
-                    )}
-                  >
-                    <span>{label}</span>
-                    <ChevronRight className="h-4 w-4" />
-                  </Link>
-                ))}
-                {hasAdminSession ? (
-                  <Link
-                    href="/admin/dashboard"
-                    className="mt-2 flex min-h-12 items-center justify-between rounded-md bg-primary/10 px-3 text-base font-black text-primary transition hover:bg-primary/15"
-                  >
-                    <span>Quản trị</span>
-                    <ChevronRight className="h-4 w-4" />
-                  </Link>
-                ) : null}
-                {hasAdminSession ? (
-                  <button
-                    type="button"
-                    className="mt-2 flex min-h-12 w-full items-center justify-between rounded-md px-3 text-left text-base font-black text-red-600 transition hover:bg-red-50"
-                    onClick={handleLogout}
-                  >
-                    <span>Đăng xuất</span>
-                    <LogOut className="h-4 w-4" />
-                  </button>
-                ) : null}
-              </nav>
-
-              <div className="border-t border-slate-200 p-4">
-                <Link
-                  href="/booking"
-                  className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-md bg-amber-400 px-4 text-sm font-black text-slate-950 transition hover:bg-amber-300"
-                >
-                  Đặt lịch kiểm tra
-                </Link>
-              </div>
-            </aside>
-          </div>
+            <Menu />
+          </button>
         </div>
-      </header>
-      <div className="h-16 bg-[#0b172a]" aria-hidden="true" />
-    </>
+      </div>
+      <dialog
+        ref={dialog}
+        className="mn-mobile-dialog"
+        onCancel={() => setOpen(false)}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) setOpen(false);
+        }}
+      >
+        <div className="mn-mobile-menu">
+          <button
+            className="mn-menu-close"
+            aria-label="Đóng menu"
+            onClick={() => {
+              setOpen(false);
+              trigger.current?.focus();
+            }}
+          >
+            <X />
+          </button>
+          <p className="mn-kicker">ĐIỆN LẠNH MINH NHẬT</p>
+          <nav aria-label="Điều hướng di động">
+            {links.map(([label, href]) => (
+              <Link key={href} href={href} aria-current={active(href) ? 'page' : undefined}>
+                {label}
+                <span>›</span>
+              </Link>
+            ))}
+          </nav>
+          <Link className="mn-button" href="/booking">
+            Đặt lịch dịch vụ <CalendarDays size={18} />
+          </Link>
+          {admin && (
+            <>
+              <Link href="/admin/dashboard">Quản trị</Link>
+              <button onClick={logout}>Đăng xuất</button>
+            </>
+          )}
+        </div>
+      </dialog>
+      {admin && (
+        <button className="mn-session-logout" onClick={logout}>
+          Đăng xuất
+        </button>
+      )}
+    </header>
   );
 }

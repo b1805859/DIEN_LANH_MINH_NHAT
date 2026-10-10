@@ -537,7 +537,7 @@ function getServiceImageUrl(record: AdminRecord) {
   if (savedImageUrl) return savedImageUrl;
 
   const slug = textValue(record.slug);
-  return slug ? `/images/services/${slug}.jpg` : '';
+  return slug ? `/images/redesign/${slug}.webp` : '';
 }
 
 function getRecordImageUrls(record: AdminRecord, resource?: string) {

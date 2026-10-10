@@ -5,7 +5,7 @@ import { BLOG_CATEGORIES, BLOG_POSTS, findBlogPost } from '@minhnhat/shared';
 import { JsonLdScript } from '@/components/seo/json-ld-script';
 import { LoadingImage } from '@/components/ui/loading-image';
 import { articleJsonLd, breadcrumbJsonLd } from '@/lib/seo/json-ld';
-import { buildMetadata } from '@/lib/seo/metadata';
+import { absoluteUrl, buildMetadata } from '@/lib/seo/metadata';
 
 export function generateStaticParams() {
   return BLOG_POSTS.map((post) => ({ slug: post.slug }));
@@ -33,7 +33,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
   const relatedPosts = BLOG_POSTS.filter((item) => item.slug !== slug).slice(0, 4);
 
   return (
-    <main className="bg-[#f4f8fb] text-slate-950">
+    <main className="mn-editorial bg-[#f4f8fb] text-slate-950">
       <section className="border-b border-slate-200 bg-white py-8 sm:py-10">
         <div className="container">
           <Link
@@ -123,14 +123,18 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
           <div className="mt-8 flex flex-wrap gap-3 text-sm">
             <a
               className="inline-flex h-10 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 font-bold text-slate-700 transition hover:border-primary/40 hover:text-primary"
-              href={`https://www.facebook.com/sharer/sharer.php?u=/blog/${slug}`}
+              href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(absoluteUrl(`/blog/${slug}`))}`}
+              target="_blank"
+              rel="noreferrer"
             >
               <Share2 className="h-4 w-4" />
               Chia sẻ Facebook
             </a>
             <a
               className="inline-flex h-10 items-center gap-2 rounded-md border border-slate-200 bg-white px-3 font-bold text-slate-700 transition hover:border-primary/40 hover:text-primary"
-              href={`https://zalo.me/share?u=/blog/${slug}`}
+              href={`https://zalo.me/share?u=${encodeURIComponent(absoluteUrl(`/blog/${slug}`))}`}
+              target="_blank"
+              rel="noreferrer"
             >
               <Share2 className="h-4 w-4" />
               Chia sẻ Zalo

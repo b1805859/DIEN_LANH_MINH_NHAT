@@ -1,0 +1,149 @@
+{
+  "date": "2026-10-10",
+  "newAssets": 14,
+  "totalAssets": 18,
+  "totalBytes": 2700402,
+  "assets": [
+    {
+      "path": "/images/redesign/family-morning.webp",
+      "width": 1747,
+      "height": 900,
+      "bytes": 304846
+    },
+    {
+      "path": "/images/redesign/can-tho-night.webp",
+      "width": 2172,
+      "height": 724,
+      "bytes": 228866
+    },
+    {
+      "path": "/images/redesign/technician.webp",
+      "width": 1500,
+      "height": 1000,
+      "bytes": 126636
+    },
+    {
+      "path": "/images/redesign/services-banner.webp",
+      "width": 1920,
+      "height": 640,
+      "bytes": 77170
+    },
+    {
+      "path": "/images/redesign/ve-sinh-may-lanh.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 132894
+    },
+    {
+      "path": "/images/redesign/sua-may-lanh.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 90258
+    },
+    {
+      "path": "/images/redesign/sua-tu-lanh.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 163638
+    },
+    {
+      "path": "/images/redesign/sua-may-giat.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 145876
+    },
+    {
+      "path": "/images/redesign/sua-dien-nuoc.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 167760
+    },
+    {
+      "path": "/images/redesign/thao-lap-may-lanh.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 140630
+    },
+    {
+      "path": "/images/redesign/nap-gas-may-lanh.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 174160
+    },
+    {
+      "path": "/images/redesign/ve-sinh-may-giat.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 148560
+    },
+    {
+      "path": "/images/redesign/sua-lap-may-nuoc-nong-lanh-tam.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 172100
+    },
+    {
+      "path": "/images/redesign/sua-lap-may-nuoc-uong-nong-lanh.webp",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 140992
+    },
+    {
+      "path": "/images/redesign/team.webp",
+      "width": 1536,
+      "height": 614,
+      "bytes": 115336
+    },
+    {
+      "path": "/images/redesign/support.webp",
+      "width": 1536,
+      "height": 614,
+      "bytes": 70772
+    },
+    {
+      "path": "/images/redesign/contact-interior.webp",
+      "width": 1920,
+      "height": 640,
+      "bytes": 157624
+    },
+    {
+      "path": "/images/redesign/editorial-night.webp",
+      "width": 1920,
+      "height": 640,
+      "bytes": 142284
+    }
+  ],
+  "checks": [
+    {
+      "route": "about",
+      "missing": [],
+      "oldServicePhoto": false
+    },
+    {
+      "route": "contact",
+      "missing": [],
+      "oldServicePhoto": false
+    },
+    {
+      "route": "booking",
+      "missing": [],
+      "oldServicePhoto": false
+    },
+    {
+      "route": "projects",
+      "missing": [],
+      "oldServicePhoto": false
+    },
+    {
+      "route": "blog",
+      "missing": [],
+      "oldServicePhoto": false
+    },
+    {
+      "route": "services",
+      "missing": [],
+      "oldServicePhoto": false
+    }
+  ],
+  "browserScreenshotVerification": "Not repeated: browser tool denied localhost access. This report checks saved assets and prerendered HTML only."
+}

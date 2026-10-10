@@ -1,0 +1,19 @@
+{
+  "referenceDimensions": { "width": 1122, "height": 1402 },
+  "coordinates": {
+    "homepagePanel": { "x": 18, "y": 96, "width": 1090, "height": 564 },
+    "navigation": { "x": 61, "y": 139, "width": 1016, "height": 45 },
+    "heroBadge": { "x": 96, "y": 220 },
+    "headline": { "x": 95, "y": 254 },
+    "cta": { "x": 94, "y": 425, "height": 42 },
+    "quickServices": { "x": 51, "y": 557, "width": 1027, "height": 92 },
+    "serviceArea": { "x": 307, "y": 1155, "width": 548, "height": 186 }
+  },
+  "sampledColors": { "background": "#00152a", "card": "#011b36", "navigation": "#093b68", "pageGradient": "#011c37" },
+  "renderViewports": [ { "width": 1122, "height": 900 }, { "width": 1440, "height": 1000 }, { "width": 390, "height": 844 } ],
+  "comparison": "hero-side-by-side.png: reference crop on left, rendered panel at 1122px viewport on right (resized by <1% to align crops). hero-overlay.png: 50% alpha overlay. Desktop full pages reconstruct individual miniature panels at readable browser scale; do not compare the entire board with a single webpage.",
+  "deterministicFrame": "Browser reducedMotion=reduce, screenshot animations disabled; web fonts and decoded images awaited before capture.",
+  "refinements": [ "Corrected mobile photo framing to retain all three family members", "Reduced hero copy and CTA vertical spacing against reference", "Removed gaps at end of service grid", "Replaced oversized service photo crop with generated reference-matched technician banner", "Separated contact street schematic from panoramic area illustration", "Retained actual configured phone; replaced unverified metrics with non-numeric service commitments" ],
+  "remainingDifferences": [ "Original layered photographic source assets were not available: generated hero, bridge, technician and service banner approximate reference but differ in fine detail", "SVG logo, icons and schematic maps are code reconstructions rather than original source artwork", "Vietnamese Be Vietnam Pro font retained; not guaranteed to be the reference typeface", "Actual business phone retained; no invented 5+/1000+/98% statistics or 30-minute guarantee", "No real introduction video supplied: control opens an introduction dialog until a video URL is configured", "Contact form includes area/date required by the existing booking API", "Demo projects labelled explicitly and excluded from indexing" ],
+  "claims": "No assertion of pixel-identical or 100% visual parity."
+}

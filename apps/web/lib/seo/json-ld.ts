@@ -15,7 +15,7 @@ export function localBusinessJsonLd() {
     '@type': ['LocalBusiness', 'HVACBusiness'],
     '@id': absoluteUrl('/#business'),
     name: APP_NAME,
-    image: absoluteUrl('/images/home-hero.jpg'),
+    image: absoluteUrl('/images/redesign/family-morning.webp'),
     telephone: integrationSettings.phone,
     address: {
       '@type': 'PostalAddress',

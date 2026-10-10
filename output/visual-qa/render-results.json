@@ -1,0 +1,125 @@
+{
+  "results": [
+    {
+      "path": "/",
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "path": "/services",
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "path": "/about",
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "path": "/projects",
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "path": "/blog",
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "path": "/booking",
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "path": "/contact",
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "path": "/services/sua-may-lanh",
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "path": "/blog/bao-lau-nen-ve-sinh-may-lanh-mot-lan",
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "path": "/projects/lap-dat-may-lanh-ninh-kieu",
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "path": "/areas/ninh-kieu",
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "path": "/areas/cai-rang/sua-tu-lanh",
+      "status": 200,
+      "overflow": false
+    },
+    {
+      "path": "/",
+      "mobile": true,
+      "overflow": false
+    },
+    {
+      "path": "/services",
+      "mobile": true,
+      "overflow": false
+    },
+    {
+      "path": "/about",
+      "mobile": true,
+      "overflow": false
+    },
+    {
+      "path": "/projects",
+      "mobile": true,
+      "overflow": false
+    },
+    {
+      "path": "/blog",
+      "mobile": true,
+      "overflow": false
+    },
+    {
+      "path": "/booking",
+      "mobile": true,
+      "overflow": false
+    },
+    {
+      "path": "/contact",
+      "mobile": true,
+      "overflow": false
+    },
+    {
+      "path": "/services/sua-may-lanh",
+      "mobile": true,
+      "overflow": false
+    },
+    {
+      "path": "/blog/bao-lau-nen-ve-sinh-may-lanh-mot-lan",
+      "mobile": true,
+      "overflow": false
+    },
+    {
+      "path": "/projects/lap-dat-may-lanh-ninh-kieu",
+      "mobile": true,
+      "overflow": false
+    },
+    {
+      "path": "/areas/ninh-kieu",
+      "mobile": true,
+      "overflow": false
+    },
+    {
+      "path": "/areas/cai-rang/sua-tu-lanh",
+      "mobile": true,
+      "overflow": false
+    }
+  ],
+  "errors": []
+}

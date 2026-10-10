@@ -1,0 +1,18 @@
+{
+  "checks": [
+    "Empty form blocks submission and shows validation",
+    "Invalid phone blocked",
+    "API payload preserved; failed request retains input and displays hotline",
+    "Simulated API success acknowledged only after response and clears form",
+    "Service detail preselects correct booking service",
+    "Project category filter and detail link work",
+    "News tab and empty category state work",
+    "Introduction dialog opens and Escape closes",
+    "Reduced motion disables airflow",
+    "Mobile menu navigates and closes",
+    "No document overflow across five routes at 320, 390, 768, 1024, 1440 px",
+    "Keyboard arrows/Home navigate project/news tabs",
+    "Area forms preselect both location and service; area service links keep district context"
+  ],
+  "bookingMode": "API intercepted: no live booking submitted"
+}
