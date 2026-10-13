@@ -83,7 +83,7 @@ export function Showcase({
           Tin tức hữu ích
         </button>
       </div>
-      {!compact && (
+      {!compact && tab === 'news' && (
         <div className="mn-filters" aria-label="Lọc danh mục">
           <button aria-pressed={category === 'all'} onClick={() => setCategory('all')}>
             Tất cả
@@ -114,7 +114,7 @@ export function Showcase({
               </div>
               <div className="mn-project-copy">
                 <h3>{item.title}</h3>
-                {!compact && <p>{item.excerpt}</p>}
+                {!compact && !item.demo && <p>{item.excerpt}</p>}
                 <div>
                   <span>
                     <MapPin size={14} />

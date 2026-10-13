@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { PageHero, Reasons, SectionHeading } from '@/components/redesign/ui';
+import { Icon, PageHero, Reasons, SectionHeading } from '@/components/redesign/ui';
 import { ServiceArea } from '@/components/redesign/service-area';
 import { siteContent } from '@/lib/content/site-content';
 import { buildMetadata } from '@/lib/seo/metadata';
@@ -10,9 +10,10 @@ export const metadata = buildMetadata({
 });
 export default function AboutPage() {
   return (
-    <main>
+    <main className="mn-reference-page mn-about-page">
       <PageHero
         className="mn-about-hero"
+        showEyebrow
         title="Tận tâm đồng hành"
         accent="cùng người dân Cần Thơ"
         image={siteContent.images.technician}
@@ -20,31 +21,20 @@ export default function AboutPage() {
       />
       <div className="mn-container">
         <div className="mn-about-facts mn-panel">
-          {siteContent.aboutFacts.map(({ value, label }) => (
+          {siteContent.aboutFacts.map(({ value, label }, index) => (
             <div key={label}>
-              <strong>{value}</strong>
-              <span>{label}</span>
+              <span className="mn-fact-icon">
+                <Icon name={['shield', 'users', 'shield'][index]} />
+              </span>
+              <div>
+                <strong>{value}</strong>
+                <span>{label}</span>
+              </div>
             </div>
           ))}
         </div>
-        <section className="mn-section mn-story">
-          <div>
-            <p className="mn-kicker">CÂU CHUYỆN MINH NHẬT</p>
-            <h2>
-              Chăm chút từng thiết bị.
-              <br />
-              <em>An tâm từng mái nhà.</em>
-            </h2>
-          </div>
-          <p>
-            Điện Lạnh Minh Nhật cung cấp dịch vụ sửa chữa, vệ sinh, lắp đặt máy lạnh, máy giặt, tủ
-            lạnh và điện nước gia đình. Mỗi yêu cầu đều bắt đầu bằng việc lắng nghe, kiểm tra thực
-            tế và trao đổi rõ phương án. Chúng tôi hướng đến cách phục vụ gần gũi, làm việc gọn gàng
-            và hỗ trợ khách hàng sau dịch vụ.
-          </p>
-        </section>
         <section>
-          <SectionHeading title="Vì sao chọn" accent="Điện Lạnh Minh Nhật?" />
+          <SectionHeading title="Vì sao chọn Điện Lạnh Minh Nhật?" />
           <Reasons />
           <div className="mn-team-photo">
             <Image

@@ -7,8 +7,9 @@ import { ContactMap } from './service-area';
 import { siteContent } from '@/lib/content/site-content';
 export function ContactPageContent({ contact = false }: { contact?: boolean }) {
   return (
-    <main>
+    <main className="mn-reference-page mn-contact-page">
       <PageHero
+        showEyebrow={false}
         title="Đặt lịch dịch vụ"
         accent="nhanh chóng, tiện lợi"
         description="Chỉ cần điền thông tin, chúng tôi sẽ liên hệ xác nhận trong thời gian sớm nhất."

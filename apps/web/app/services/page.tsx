@@ -11,8 +11,9 @@ export const metadata = buildMetadata({
 });
 export default function ServicesPage() {
   return (
-    <main>
+    <main className="mn-reference-page mn-services-page">
       <PageHero
+        showEyebrow={false}
         title="Dịch vụ điện lạnh"
         accent="toàn diện tại Cần Thơ"
         description="Từ sửa chữa, vệ sinh đến lắp đặt – Minh Nhật đồng hành cùng bạn với giải pháp phù hợp cho từng thiết bị."

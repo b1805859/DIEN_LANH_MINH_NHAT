@@ -16,7 +16,6 @@ const links = [
   ['Trang chủ', '/'],
   ['Giới thiệu', '/about'],
   ['Dịch vụ', '/services'],
-  ['Dự án', '/projects'],
   ['Tin tức', '/blog'],
   ['Liên hệ', '/contact'],
 ];

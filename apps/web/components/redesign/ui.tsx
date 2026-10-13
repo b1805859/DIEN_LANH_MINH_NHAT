@@ -113,6 +113,7 @@ export function PageHero({
   image = siteContent.images.services,
   label = 'Điện lạnh tận nơi tại Cần Thơ',
   className = '',
+  showEyebrow = true,
 }: {
   title: string;
   accent?: string;
@@ -120,6 +121,7 @@ export function PageHero({
   image?: string;
   label?: string;
   className?: string;
+  showEyebrow?: boolean;
 }) {
   return (
     <section className={`mn-page-hero ${className}`}>
@@ -133,7 +135,7 @@ export function PageHero({
       />
       <div className="mn-page-hero-shade" />
       <div className="mn-container">
-        <Eyebrow>{label}</Eyebrow>
+        {showEyebrow && <Eyebrow>{label}</Eyebrow>}
         <h1>
           {title}
           {accent && (
@@ -164,7 +166,7 @@ export function ServiceGrid({
     return service.slug.includes(category);
   });
   return (
-    <div className="mn-service-grid">
+    <div className={`mn-service-grid ${limit === 6 ? 'mn-service-grid-preview' : ''}`}>
       {filteredServices.slice(0, limit).map((service, i) => (
         <Link
           key={service.slug}

@@ -4,60 +4,80 @@ import { MapPin, Navigation } from 'lucide-react';
 import { siteContent } from '@/lib/content/site-content';
 import { integrationSettings } from '@/lib/integrations/settings';
 export function AreaMap({ compact = false }: { compact?: boolean }) {
+  const prefix = compact ? 'area-compact' : 'area';
   return (
     <svg
-      className={`mn-area-map ${compact ? 'mn-area-map-compact' : ''}`}
-      viewBox="0 0 430 340"
+      className={`mn-area-map mn-area-map-native ${compact ? 'mn-area-map-compact' : ''}`}
+      viewBox="0 0 210 188"
       role="img"
       aria-label="Sơ đồ minh họa khu vực phục vụ Cần Thơ"
     >
       <defs>
-        <radialGradient id={compact ? 'map-compact' : 'map-fill'}>
-          <stop stopColor="#09669e" stopOpacity=".9" />
-          <stop offset="1" stopColor="#022343" stopOpacity=".9" />
+        <radialGradient id={`${prefix}-fill`} cx="55%" cy="57%" r="70%">
+          <stop stopColor="#035587" stopOpacity=".94" />
+          <stop offset="1" stopColor="#00243c" stopOpacity=".94" />
         </radialGradient>
-        <filter id={compact ? 'pin-compact' : 'pin-glow'}>
-          <feGaussianBlur stdDeviation="3" />
+        <radialGradient id={`${prefix}-light`}>
+          <stop stopColor="#09bfff" stopOpacity=".9" />
+          <stop offset="1" stopColor="#008aff" stopOpacity="0" />
+        </radialGradient>
+        <filter id={`${prefix}-glow`} x="-100%" y="-100%" width="300%" height="300%">
+          <feGaussianBlur stdDeviation="2" />
         </filter>
+        <clipPath id={`${prefix}-clip`}>
+          <path d="M8 32 13 24Q21 25 27 17L36 20 41 21 48 12 55 8 61 14 65 13 71 21 83 18 88 15 96 19Q104 23 112 20L115 14Q119 7 124 9L132 13 141 16 149 15 155 23 161 20 165 29 177 33Q192 31 198 42L202 52 211 57 212 65 221 74 231 93 229 188H59L62 181 66 176 68 169 64 161 57 157 54 151Q44 154 39 152L32 154 28 153 22 155 14 151Q6 149 6 139L8 128 6 117 9 106 10 97 15 91 17 82 20 78 15 70 13 63 11 58 15 52 11 48Z" />
+        </clipPath>
       </defs>
-      <path
-        d="m56 63 23-23 26 6 20-21 24 9 23-14 23 20 22-3 25 19 26-8 20 26 25 3 18 32 29 10-13 32 23 30-20 25 10 29-29 19-16 34-36-1-23 33-26-14-28 12-19-21-35 2-14-31-27-6 5-34-19-21 8-35-10-24 21-21Z"
-        fill={`url(#${compact ? 'map-compact' : 'map-fill'})`}
-        stroke="#0fbce9"
-        strokeWidth="1.5"
-      />
-      <g stroke="#1385b0" fill="none" strokeWidth=".8" opacity=".8">
-        <path d="m65 82 53 30 25-33 53 17 28-44M91 47l27 65-30 43 29 35-31 42M143 79l23 51 56-11 24 33 60-16 29 17M117 190l41-27 31 30-9 38 46 13 6 51M166 130l-8 33 31 30 45-10 12-31M306 136l-30 59 38 45M180 231l-58 23M226 244l50-49-42-12M276 195l-2 64" />
-        <path d="M60 275 155 190 222 172 322 73" stroke="#54d6ff" strokeWidth="4" opacity=".3" />
-        <path d="m50 132 92 83 78 55 111-88" strokeDasharray="4 6" />
+      <g clipPath={`url(#${prefix}-clip)`}>
+        <rect width="210" height="188" fill={`url(#${prefix}-fill)`} />
+        <g fill="none" stroke="#126284" strokeWidth=".65" opacity=".8">
+          <path d="M26 17 30 34 27 44 37 52 47 58 55 53 55 44 48 32 48 12M61 14 67 32 87 32 89 15M30 34 19 39 11 48M37 52 33 66 18 69M47 58 45 77 27 79 20 78M67 32 60 50 55 53 78 61 87 32 111 35 112 20M111 35 122 48 141 43 149 15M141 43 152 51 160 47 177 33M152 51 147 64 152 75 165 80 180 68 202 52M147 64 125 67 116 84 101 80 96 67 78 61M45 77 58 75 70 84 80 81 96 67M17 82 34 91 52 89 58 75M34 91 28 106 10 97M52 89 62 106 79 103 80 81M28 106 32 121 17 131 8 128M62 106 52 119 39 123 32 121M52 119 63 134 59 147 54 151M79 103 89 118 78 129 63 134M101 80 116 103 135 108 152 75M89 118 105 121 116 103M105 121 118 137 138 139 149 124 135 108M118 137 112 150 93 155 78 148 78 129M78 148 72 163 64 161M93 155 97 177 80 188M112 150 124 160 129 179 119 188M138 139 151 149 147 164 129 179M149 124 170 115 165 99 152 75M170 115 188 126 201 113 205 91 180 68M188 126 188 149 167 151 151 149M188 149 210 159M147 164 167 174 174 188M167 151 167 174M201 113 210 118M59 147 65 151 72 163" />
+        </g>
+        <circle cx="105" cy="109" r="38" fill={`url(#${prefix}-light)`} />
+        <g fill="none" stroke="#00b5ff" strokeWidth="1.3">
+          <path d="m79 103 14 14 23-8 19-1 14 16 21 6M116 109l-5 17 12 15 5 21M93 117l-12 6-8 10-10 5M93 117l-9-19-9-10M116 109l7-20 17-8 12-6" />
+        </g>
+        <g fill="#05c7ff" filter={`url(#${prefix}-glow)`}>
+          <circle cx="105" cy="109" r="9" />
+          <circle cx="128" cy="162" r="3" />
+          <circle cx="170" cy="130" r="3" />
+        </g>
       </g>
+      <path
+        d="M8 32 13 24Q21 25 27 17L36 20 41 21 48 12 55 8 61 14 65 13 71 21 83 18 88 15 96 19Q104 23 112 20L115 14Q119 7 124 9L132 13 141 16 149 15 155 23 161 20 165 29 177 33Q192 31 198 42L202 52 211 57 212 65 221 74 231 93M59 188 62 181 66 176 68 169 64 161 57 157 54 151Q44 154 39 152L32 154 28 153 22 155 14 151Q6 149 6 139L8 128 6 117 9 106 10 97 15 91 17 82 20 78 15 70 13 63 11 58 15 52 11 48 8 32"
+        fill="none"
+        stroke="#23b7d9"
+        strokeWidth="1.1"
+      />
       {[
-        ['Thốt Nốt', 93, 77],
-        ['Vĩnh Thạnh', 133, 124],
-        ['Cờ Đỏ', 244, 88],
-        ['Bình Thủy', 276, 143],
-        ['Ô Môn', 126, 201],
-        ['Phong Điền', 104, 263],
-        ['Cái Răng', 247, 291],
+        ['Thốt Nốt', 33, 42],
+        ['Vĩnh Thạnh', 66, 65],
+        ['Cờ Đỏ', 127, 50],
+        ['Bình Thủy', 135, 78],
+        ['Ô Môn', 53, 109],
+        ['Cái Răng', 108, 157],
       ].map(([name, x, y]) => (
         <g key={name} transform={`translate(${x},${y})`}>
-          <path d="M0 0c-10-11-9-19 0-19S10-11 0 0" fill="#48e7ff" />
-          <circle cy="-12" r="3" fill="#03547b" />
-          <text x="10" y="-6" fill="#d6f5ff" fontSize="12">
+          <path d="M0 0C-11-13-10-19 0-19S11-13 0 0" transform="scale(.58)" fill="#48e7ff" />
+          <circle cy="-7.3" r="2.1" fill="#07516c" />
+          <text x="12" y="-3" fill="#e0f7ff" fontSize="8.2" fontWeight="500">
             {name}
           </text>
         </g>
       ))}
-      <g transform="translate(235 214)">
-        <circle cy="-19" r="30" fill="#0ad4ff" opacity=".2" />
+      <text x="28" y="133" fill="#e0f7ff" fontSize="8.2" fontWeight="500">
+        Phong Điền
+      </text>
+      <g transform="translate(112 107)">
         <path
-          d="M0 0C-31-33-28-57 0-57S31-33 0 0"
-          fill="#16b9f5"
-          stroke="#c1faff"
-          strokeWidth="3"
+          d="M0 0C-27-31-23-41 0-41S27-31 0 0"
+          transform="scale(.65)"
+          fill="#7cddff"
+          stroke="white"
+          strokeWidth="2.5"
         />
-        <circle cy="-35" r="10" fill="white" />
-        <text x="27" y="-8" fill="white" fontSize="24" fontWeight="700">
+        <circle cy="-18.7" r="5.4" fill="#074b78" stroke="#d0f7ff" strokeWidth="1" />
+        <text x="20" y="2" fill="white" fontSize="12" fontWeight="600">
           Cần Thơ
         </text>
       </g>
@@ -80,7 +100,6 @@ export function ServiceArea() {
           <br />
           tại mọi khu vực
         </h2>
-        <p>Hỗ trợ tận nơi tại Cần Thơ và lân cận</p>
         <div className="mn-area-chips">
           {siteContent.areas.map((area) => (
             <Link key={area.name} href={area.slug ? `/areas/${area.slug}` : '/contact'}>
@@ -93,6 +112,15 @@ export function ServiceArea() {
             Và các khu vực lân cận
           </Link>
         </div>
+      </div>
+      <div className="mn-area-map mn-area-map-reference">
+        <Image
+          src="/images/redesign/area-map-reference.webp"
+          fill
+          unoptimized
+          sizes="(max-width: 800px) 80vw, 36vw"
+          alt="Bản đồ Cần Thơ trong thiết kế gốc: Thốt Nốt, Vĩnh Thạnh, Cờ Đỏ, Bình Thủy, Ô Môn, Phong Điền và Cái Răng"
+        />
       </div>
       <AreaMap />
     </section>

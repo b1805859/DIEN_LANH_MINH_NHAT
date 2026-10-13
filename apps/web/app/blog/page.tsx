@@ -9,8 +9,9 @@ export const metadata = buildMetadata({
 });
 export default function BlogPage() {
   return (
-    <main>
+    <main className="mn-reference-page mn-news-page">
       <PageHero
+        showEyebrow={false}
         title="Dự án thực tế"
         accent="& Tin tức hữu ích"
         description="Chia sẻ kinh nghiệm bảo trì, nhận biết lỗi và sử dụng thiết bị điện lạnh trong gia đình."
