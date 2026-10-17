@@ -1,0 +1,60 @@
+/* One navigation frame and sticky behavior for every public page. */
+.header:global(.mn-header) {
+  position: sticky;
+  top: 0;
+  width: calc(100% - var(--mn-content-gutter));
+  max-width: var(--mn-content-max);
+  margin-inline: auto;
+  padding: var(--mn-header-inset) 0 0;
+  background: none;
+  container-type: inline-size;
+}
+.header:global(.mn-header) :global(.mn-nav-shell) {
+  width: 100%;
+  max-width: none;
+  min-height: var(--mn-nav-height);
+  margin: 0;
+  padding: 7px 18px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  gap: 18px;
+  transform: none;
+  border-radius: 12px;
+  background: linear-gradient(110deg, #00213cee, #03284ae8 52%, #00142def);
+  border-color: #00a3d875;
+}
+.header:global(.mn-header) :global(.mn-brand) { justify-self: start; }
+.header:global(.mn-header) :global(.mn-brand .brand-mark) { width: 62px; height: 42px; }
+.header:global(.mn-header) :global(.mn-brand > span) { font-size: 11px; }
+.header:global(.mn-header) :global(.mn-brand strong) { font-size: 17px; }
+.header:global(.mn-header) :global(.mn-desktop-nav) { margin: 0; gap: clamp(16px, 1.6cqw, 27px); }
+.header:global(.mn-header) :global(.mn-desktop-nav a) { font-size: clamp(11px, 1cqw, 14px); }
+.header:global(.mn-header) :global(.mn-header-actions) { justify-self: end; margin: 0; gap: 12px; }
+.header:global(.mn-header) :global(.mn-hotline > span) { width: 34px; height: 34px; }
+.header:global(.mn-header) :global(.mn-hotline small) { font-size: 9px; }
+.header:global(.mn-header) :global(.mn-hotline strong) { font-size: 13px; }
+.header:global(.mn-header) :global(.mn-nav-book) { min-height: 44px; padding: 9px 16px; font-size: 12px; }
+@media (min-width: 801px) and (max-width: 1100px) {
+  .header:global(.mn-header) :global(.mn-nav-shell) { grid-template-columns: auto 1fr auto; gap: 12px; padding-inline: 12px; }
+  .header:global(.mn-header) :global(.mn-brand .brand-mark) { width: 50px; height: 34px; }
+  .header:global(.mn-header) :global(.mn-brand strong) { font-size: 14px; }
+  .header:global(.mn-header) :global(.mn-brand > span) { font-size: 9px; }
+  .header:global(.mn-header) :global(.mn-header-actions) { gap: 8px; }
+}
+@media (max-width: 800px) {
+  .header:global(.mn-header) :global(.mn-nav-shell) {
+    display: flex;
+    padding: 7px 10px;
+    gap: 8px;
+  }
+  .header:global(.mn-header) :global(.mn-brand) { gap: 7px; }
+  .header:global(.mn-header) :global(.mn-brand .brand-mark) { width: 43px; height: 32px; }
+  .header:global(.mn-header) :global(.mn-brand > span) { font-size: 8px; }
+  .header:global(.mn-header) :global(.mn-brand strong) { font-size: 11px; }
+  .header:global(.mn-header) :global(.mn-header-actions) { gap: 4px; }
+  .header:global(.mn-header) :global(.mn-nav-book) { min-height: 44px; padding: 8px; font-size: 10px; }
+}
+@media (max-width: 360px) {
+  .header:global(.mn-header) :global(.mn-brand .brand-mark) { width: 38px; }
+  .header:global(.mn-header) :global(.mn-nav-book) { font-size: 9px; }
+}

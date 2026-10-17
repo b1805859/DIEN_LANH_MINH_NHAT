@@ -3,6 +3,7 @@ import { Icon, PageHero, Reasons, SectionHeading } from '@/components/redesign/u
 import { ServiceArea } from '@/components/redesign/service-area';
 import { siteContent } from '@/lib/content/site-content';
 import { buildMetadata } from '@/lib/seo/metadata';
+import { contentImageSizes } from '@/lib/image-sizes';
 export const metadata = buildMetadata({
   title: 'Giới thiệu Điện Lạnh Minh Nhật',
   description: 'Dịch vụ điện lạnh tận nơi, tận tâm đồng hành cùng người dân Cần Thơ.',
@@ -40,8 +41,8 @@ export default function AboutPage() {
             <Image
               src={siteContent.images.team}
               fill
-              sizes="(max-width: 1280px) 100vw, 1280px"
-              alt="Ảnh minh họa đội bốn kỹ thuật viên Minh Nhật làm việc trong căn hộ"
+              sizes={contentImageSizes}
+              alt="Ảnh minh họa bốn kỹ thuật viên Minh Nhật chuẩn bị dụng cụ và kiểm tra danh sách công việc trong căn hộ"
             />
           </div>
           <p className="mn-image-note">Hình ảnh minh họa dịch vụ.</p>

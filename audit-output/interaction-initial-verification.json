@@ -1,0 +1,142 @@
+{
+  "generatedAt": "2026-10-17T02:57:44.374Z",
+  "target": "http://127.0.0.1:3010",
+  "results": [
+    {
+      "name": "desktop-services-dropdown",
+      "smallTargets": 0,
+      "missingTransitions": 0,
+      "unsafeTransitions": 0,
+      "horizontalOverflow": false,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 110
+        }
+      ]
+    },
+    {
+      "name": "desktop-chat",
+      "smallTargets": 0,
+      "missingTransitions": 0,
+      "unsafeTransitions": 0,
+      "horizontalOverflow": false,
+      "violations": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/color-contrast?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "color-contrast",
+                  "data": {
+                    "fgColor": "#f6faff",
+                    "bgColor": "#ffffff",
+                    "contrastRatio": 1.04,
+                    "fontSize": "10.5pt (14px)",
+                    "fontWeight": "normal",
+                    "messageKey": null,
+                    "expectedContrastRatio": "4.5:1"
+                  },
+                  "relatedNodes": [
+                    {
+                      "html": "<input aria-label=\"Nội dung cần tư vấn\" class=\"h-11 min-w-0 flex-1 rounded-md border border-slate-200 bg-white px-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/10\" placeholder=\"Nhập tình trạng thiết bị...\" value=\"\">",
+                      "target": [
+                        "input"
+                      ]
+                    }
+                  ],
+                  "impact": "serious",
+                  "message": "Element has insufficient color contrast of 1.04 (foreground color: #f6faff, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<input aria-label=\"Nội dung cần tư vấn\" class=\"h-11 min-w-0 flex-1 rounded-md border border-slate-200 bg-white px-3 text-sm outline-none transition placeholder:text-slate-400 focus:border-primary focus:ring-2 focus:ring-primary/10\" placeholder=\"Nhập tình trạng thiết bị...\" value=\"\">",
+              "target": [
+                "input"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.04 (foreground color: #f6faff, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ]
+        },
+        {
+          "id": "scrollable-region-focusable",
+          "impact": "serious",
+          "tags": [
+            "cat.keyboard",
+            "wcag2a",
+            "wcag211",
+            "wcag213",
+            "TTv5",
+            "TT4.a",
+            "EN-301-549",
+            "EN-9.2.1.1",
+            "EN-9.2.1.3",
+            "RGAAv4",
+            "RGAA-7.3.2"
+          ],
+          "description": "Ensure elements that have scrollable content are accessible by keyboard in Safari",
+          "help": "Scrollable region must have keyboard access",
+          "helpUrl": "https://dequeuniversity.com/rules/axe/4.11/scrollable-region-focusable?application=playwright",
+          "nodes": [
+            {
+              "any": [
+                {
+                  "id": "focusable-content",
+                  "data": null,
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element should have focusable content"
+                },
+                {
+                  "id": "focusable-element",
+                  "data": null,
+                  "relatedNodes": [],
+                  "impact": "serious",
+                  "message": "Element should be focusable"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "serious",
+              "html": "<div role=\"log\" aria-label=\"Cuộc trò chuyện tư vấn\" class=\"mn-chat-messages space-y-3 overflow-y-auto bg-slate-50 p-4\">",
+              "target": [
+                ".mn-chat-messages"
+              ],
+              "failureSummary": "Fix any of the following:\n  Element should have focusable content\n  Element should be focusable"
+            }
+          ]
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 110
+        }
+      ]
+    },
+    {
+      "name": "failure",
+      "error": "desktop-chat: Axe violations: color-contrast, scrollable-region-focusable\n\n2 !== 0\n"
+    }
+  ]
+}

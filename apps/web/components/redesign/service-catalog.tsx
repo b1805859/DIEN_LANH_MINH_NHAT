@@ -14,22 +14,27 @@ export function ServiceCatalog() {
   const [expanded, setExpanded] = useState(false);
   return (
     <>
-      {expanded && (
-        <div className="mn-filters mn-service-filters" role="group" aria-label="Lọc dịch vụ">
-          {categories.map(([value, label]) => (
-            <button
-              key={value}
-              aria-pressed={category === value}
-              aria-controls="service-catalog"
-              onClick={() => setCategory(value)}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-      )}
+      <div className="mn-filters mn-service-filters" role="group" aria-label="Lọc dịch vụ">
+        {categories.map(([value, label]) => (
+          <button
+            key={value}
+            aria-pressed={category === value}
+            aria-controls="service-catalog"
+            onClick={() => {
+              setCategory(value);
+              if (value !== 'all') setExpanded(true);
+            }}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
       <div id="service-catalog" aria-live="polite">
-        <ServiceGrid category={expanded ? category : 'all'} limit={expanded ? undefined : 6} />
+        <ServiceGrid
+          key={expanded ? category : 'preview'}
+          category={expanded ? category : 'all'}
+          limit={expanded ? undefined : 6}
+        />
       </div>
       <button
         className="mn-catalog-toggle mn-button mn-button-secondary"

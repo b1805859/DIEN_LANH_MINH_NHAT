@@ -1,0 +1,836 @@
+[
+  {
+    "width": 1440,
+    "slide": 1,
+    "hero": {
+      "x": 18,
+      "y": 16,
+      "w": 1404,
+      "h": 725.953125,
+      "bottom": 741.953125
+    },
+    "copy": {
+      "x": 117.125,
+      "y": 174.8125,
+      "w": 602.859375,
+      "h": 355.75,
+      "bottom": 530.5625
+    },
+    "image": {
+      "x": 201.28125,
+      "y": 182.6953125,
+      "w": 1177.671875,
+      "h": 392.546875,
+      "bottom": 575.2421875
+    },
+    "controls": {
+      "x": 117.125,
+      "y": 554.171875,
+      "w": 1205.75,
+      "h": 42,
+      "bottom": 596.171875
+    },
+    "quick": {
+      "x": 61.046875,
+      "y": 609.9375,
+      "w": 1317.90625,
+      "h": 119.4375,
+      "bottom": 729.375
+    },
+    "descriptionFont": "16.848px",
+    "overflow": false,
+    "headline": "Điện lạnh tận nơi\ntại Cần Thơ",
+    "cta": [
+      "Đặt lịch ngay"
+    ],
+    "imageSource": "http://localhost:3000/_next/image?url=%2Fimages%2Fredesign%2Fcarousel-home-visits-album-v2.webp&w=1920&q=75"
+  },
+  {
+    "width": 1440,
+    "slide": 2,
+    "hero": {
+      "x": 18,
+      "y": 16,
+      "w": 1404,
+      "h": 725.953125,
+      "bottom": 741.953125
+    },
+    "copy": {
+      "x": 117.125,
+      "y": 174.8125,
+      "w": 602.859375,
+      "h": 355.75,
+      "bottom": 530.5625
+    },
+    "image": {
+      "x": 17.3671875,
+      "y": 17,
+      "w": 1405.265625,
+      "h": 723.9375,
+      "bottom": 740.9375
+    },
+    "controls": {
+      "x": 117.125,
+      "y": 554.171875,
+      "w": 1205.75,
+      "h": 42,
+      "bottom": 596.171875
+    },
+    "quick": {
+      "x": 61.046875,
+      "y": 609.9375,
+      "w": 1317.90625,
+      "h": 119.4375,
+      "bottom": 729.375
+    },
+    "descriptionFont": "16.848px",
+    "overflow": false,
+    "headline": "Cho cuộc sống\nthoải mái hơn",
+    "cta": [
+      "Gọi ngay 0939 370 109",
+      "Chat Zalo\ntư vấn nhanh"
+    ],
+    "imageSource": "http://localhost:3000/_next/image?url=%2Fimages%2Fredesign%2Ffamily-morning.webp&w=1920&q=75"
+  },
+  {
+    "width": 1440,
+    "slide": 3,
+    "hero": {
+      "x": 18,
+      "y": 16,
+      "w": 1404,
+      "h": 725.953125,
+      "bottom": 741.953125
+    },
+    "copy": {
+      "x": 117.125,
+      "y": 174.8125,
+      "w": 602.859375,
+      "h": 355.75,
+      "bottom": 530.5625
+    },
+    "image": {
+      "x": -750.859375,
+      "y": 16.9921875,
+      "w": 2171.859375,
+      "h": 723.953125,
+      "bottom": 740.9453125
+    },
+    "controls": {
+      "x": 117.125,
+      "y": 554.171875,
+      "w": 1205.75,
+      "h": 42,
+      "bottom": 596.171875
+    },
+    "quick": {
+      "x": 61.046875,
+      "y": 609.9375,
+      "w": 1317.90625,
+      "h": 119.4375,
+      "bottom": 729.375
+    },
+    "descriptionFont": "16.848px",
+    "overflow": false,
+    "headline": "Chăm sóc thiết bị,\nan tâm mỗi ngày",
+    "cta": [
+      "Khám phá dịch vụ"
+    ],
+    "imageSource": "http://localhost:3000/_next/image?url=%2Fimages%2Fredesign%2Fcarousel-maintenance.webp&w=1920&q=75"
+  },
+  {
+    "width": 1024,
+    "slide": 1,
+    "hero": {
+      "x": 18,
+      "y": 16,
+      "w": 1083.03125,
+      "h": 560,
+      "bottom": 576
+    },
+    "copy": {
+      "x": 78.453125,
+      "y": 138.640625,
+      "w": 508.078125,
+      "h": 274.34375,
+      "bottom": 412.984375
+    },
+    "image": {
+      "x": 159.546875,
+      "y": 144.65625,
+      "w": 908.0625,
+      "h": 302.6875,
+      "bottom": 447.34375
+    },
+    "controls": {
+      "x": 78.453125,
+      "y": 421.40625,
+      "w": 962.125,
+      "h": 42,
+      "bottom": 463.40625
+    },
+    "quick": {
+      "x": 51.421875,
+      "y": 474.015625,
+      "w": 1016.1875,
+      "h": 92.0625,
+      "bottom": 566.078125
+    },
+    "descriptionFont": "12px",
+    "overflow": false,
+    "headline": "Điện lạnh tận nơi\ntại Cần Thơ",
+    "cta": [
+      "Đặt lịch ngay"
+    ],
+    "imageSource": "http://localhost:3000/_next/image?url=%2Fimages%2Fredesign%2Fcarousel-home-visits-album-v2.webp&w=1920&q=75"
+  },
+  {
+    "width": 1024,
+    "slide": 2,
+    "hero": {
+      "x": 18,
+      "y": 16,
+      "w": 1083.03125,
+      "h": 560,
+      "bottom": 576
+    },
+    "copy": {
+      "x": 78.453125,
+      "y": 138.640625,
+      "w": 508.078125,
+      "h": 275.53125,
+      "bottom": 414.171875
+    },
+    "image": {
+      "x": 17.953125,
+      "y": 17.0078125,
+      "w": 1083.125,
+      "h": 557.984375,
+      "bottom": 574.9921875
+    },
+    "controls": {
+      "x": 78.453125,
+      "y": 421.40625,
+      "w": 962.125,
+      "h": 42,
+      "bottom": 463.40625
+    },
+    "quick": {
+      "x": 51.421875,
+      "y": 474.015625,
+      "w": 1016.1875,
+      "h": 92.0625,
+      "bottom": 566.078125
+    },
+    "descriptionFont": "12px",
+    "overflow": false,
+    "headline": "Cho cuộc sống\nthoải mái hơn",
+    "cta": [
+      "Gọi ngay 0939 370 109",
+      "Chat Zalo\ntư vấn nhanh"
+    ],
+    "imageSource": "http://localhost:3000/_next/image?url=%2Fimages%2Fredesign%2Ffamily-morning.webp&w=1920&q=75"
+  },
+  {
+    "width": 1024,
+    "slide": 3,
+    "hero": {
+      "x": 18,
+      "y": 16,
+      "w": 1083.03125,
+      "h": 560,
+      "bottom": 576
+    },
+    "copy": {
+      "x": 78.453125,
+      "y": 138.640625,
+      "w": 508.078125,
+      "h": 274.34375,
+      "bottom": 412.984375
+    },
+    "image": {
+      "x": -573.96875,
+      "y": 17,
+      "w": 1674,
+      "h": 558,
+      "bottom": 575
+    },
+    "controls": {
+      "x": 78.453125,
+      "y": 421.40625,
+      "w": 962.125,
+      "h": 42,
+      "bottom": 463.40625
+    },
+    "quick": {
+      "x": 51.421875,
+      "y": 474.015625,
+      "w": 1016.1875,
+      "h": 92.0625,
+      "bottom": 566.078125
+    },
+    "descriptionFont": "12px",
+    "overflow": false,
+    "headline": "Chăm sóc thiết bị,\nan tâm mỗi ngày",
+    "cta": [
+      "Khám phá dịch vụ"
+    ],
+    "imageSource": "http://localhost:3000/_next/image?url=%2Fimages%2Fredesign%2Fcarousel-maintenance.webp&w=1920&q=75"
+  },
+  {
+    "width": 800,
+    "slide": 1,
+    "hero": {
+      "x": 9,
+      "y": 8,
+      "w": 782,
+      "h": 900,
+      "bottom": 908
+    },
+    "copy": {
+      "x": 56.796875,
+      "y": 115,
+      "w": 686.390625,
+      "h": 285.546875,
+      "bottom": 400.546875
+    },
+    "image": {
+      "x": 26.453125,
+      "y": 393.9921875,
+      "w": 763.546875,
+      "h": 254.515625,
+      "bottom": 648.5078125
+    },
+    "controls": {
+      "x": 56.796875,
+      "y": 659.203125,
+      "w": 686.40625,
+      "h": 89.796875,
+      "bottom": 749
+    },
+    "quick": {
+      "x": 33.390625,
+      "y": 765,
+      "w": 733.21875,
+      "h": 130,
+      "bottom": 895
+    },
+    "descriptionFont": "12px",
+    "overflow": false,
+    "headline": "Điện lạnh tận nơi\ntại Cần Thơ",
+    "cta": [
+      "Đặt lịch ngay"
+    ],
+    "imageSource": "http://localhost:3000/_next/image?url=%2Fimages%2Fredesign%2Fcarousel-home-visits-album-v2.webp&w=1920&q=75"
+  },
+  {
+    "width": 800,
+    "slide": 2,
+    "hero": {
+      "x": 9,
+      "y": 8,
+      "w": 782,
+      "h": 900,
+      "bottom": 908
+    },
+    "copy": {
+      "x": 56.796875,
+      "y": 115,
+      "w": 686.390625,
+      "h": 285.546875,
+      "bottom": 400.546875
+    },
+    "image": {
+      "x": 10,
+      "y": 344.5859375,
+      "w": 780,
+      "h": 401.828125,
+      "bottom": 746.4140625
+    },
+    "controls": {
+      "x": 56.796875,
+      "y": 659.203125,
+      "w": 686.40625,
+      "h": 89.796875,
+      "bottom": 749
+    },
+    "quick": {
+      "x": 33.390625,
+      "y": 765,
+      "w": 733.21875,
+      "h": 130,
+      "bottom": 895
+    },
+    "descriptionFont": "12px",
+    "overflow": false,
+    "headline": "Cho cuộc sống\nthoải mái hơn",
+    "cta": [
+      "Gọi ngay 0939 370 109",
+      "Chat Zalo\ntư vấn nhanh"
+    ],
+    "imageSource": "http://localhost:3000/_next/image?url=%2Fimages%2Fredesign%2Ffamily-morning.webp&w=1920&q=75"
+  },
+  {
+    "width": 800,
+    "slide": 3,
+    "hero": {
+      "x": 9,
+      "y": 8,
+      "w": 782,
+      "h": 900,
+      "bottom": 908
+    },
+    "copy": {
+      "x": 56.796875,
+      "y": 115,
+      "w": 686.390625,
+      "h": 285.546875,
+      "bottom": 400.546875
+    },
+    "image": {
+      "x": -119,
+      "y": 394,
+      "w": 909,
+      "h": 303,
+      "bottom": 697
+    },
+    "controls": {
+      "x": 56.796875,
+      "y": 659.203125,
+      "w": 686.40625,
+      "h": 89.796875,
+      "bottom": 749
+    },
+    "quick": {
+      "x": 33.390625,
+      "y": 765,
+      "w": 733.21875,
+      "h": 130,
+      "bottom": 895
+    },
+    "descriptionFont": "12px",
+    "overflow": false,
+    "headline": "Chăm sóc thiết bị,\nan tâm mỗi ngày",
+    "cta": [
+      "Khám phá dịch vụ"
+    ],
+    "imageSource": "http://localhost:3000/_next/image?url=%2Fimages%2Fredesign%2Fcarousel-maintenance.webp&w=1920&q=75"
+  },
+  {
+    "width": 768,
+    "slide": 1,
+    "hero": {
+      "x": 9,
+      "y": 8,
+      "w": 750,
+      "h": 900,
+      "bottom": 908
+    },
+    "copy": {
+      "x": 54.875,
+      "y": 115,
+      "w": 658.234375,
+      "h": 285.109375,
+      "bottom": 400.109375
+    },
+    "image": {
+      "x": -5.546875,
+      "y": 393.9921875,
+      "w": 763.546875,
+      "h": 254.515625,
+      "bottom": 648.5078125
+    },
+    "controls": {
+      "x": 54.875,
+      "y": 659.203125,
+      "w": 658.25,
+      "h": 89.796875,
+      "bottom": 749
+    },
+    "quick": {
+      "x": 32.4375,
+      "y": 765,
+      "w": 703.125,
+      "h": 130,
+      "bottom": 895
+    },
+    "descriptionFont": "12px",
+    "overflow": false,
+    "headline": "Điện lạnh tận nơi\ntại Cần Thơ",
+    "cta": [
+      "Đặt lịch ngay"
+    ],
+    "imageSource": "http://localhost:3000/_next/image?url=%2Fimages%2Fredesign%2Fcarousel-home-visits-album-v2.webp&w=1920&q=75"
+  },
+  {
+    "width": 768,
+    "slide": 2,
+    "hero": {
+      "x": 9,
+      "y": 8,
+      "w": 750,
+      "h": 900,
+      "bottom": 908
+    },
+    "copy": {
+      "x": 54.875,
+      "y": 115,
+      "w": 658.234375,
+      "h": 285.109375,
+      "bottom": 400.109375
+    },
+    "image": {
+      "x": 10,
+      "y": 352.828125,
+      "w": 748,
+      "h": 385.34375,
+      "bottom": 738.171875
+    },
+    "controls": {
+      "x": 54.875,
+      "y": 659.203125,
+      "w": 658.25,
+      "h": 89.796875,
+      "bottom": 749
+    },
+    "quick": {
+      "x": 32.4375,
+      "y": 765,
+      "w": 703.125,
+      "h": 130,
+      "bottom": 895
+    },
+    "descriptionFont": "12px",
+    "overflow": false,
+    "headline": "Cho cuộc sống\nthoải mái hơn",
+    "cta": [
+      "Gọi ngay 0939 370 109",
+      "Chat Zalo\ntư vấn nhanh"
+    ],
+    "imageSource": "http://localhost:3000/_next/image?url=%2Fimages%2Fredesign%2Ffamily-morning.webp&w=1920&q=75"
+  },
+  {
+    "width": 768,
+    "slide": 3,
+    "hero": {
+      "x": 9,
+      "y": 8,
+      "w": 750,
+      "h": 900,
+      "bottom": 908
+    },
+    "copy": {
+      "x": 54.875,
+      "y": 115,
+      "w": 658.234375,
+      "h": 285.109375,
+      "bottom": 400.109375
+    },
+    "image": {
+      "x": -151,
+      "y": 394,
+      "w": 909,
+      "h": 303,
+      "bottom": 697
+    },
+    "controls": {
+      "x": 54.875,
+      "y": 659.203125,
+      "w": 658.25,
+      "h": 89.796875,
+      "bottom": 749
+    },
+    "quick": {
+      "x": 32.4375,
+      "y": 765,
+      "w": 703.125,
+      "h": 130,
+      "bottom": 895
+    },
+    "descriptionFont": "12px",
+    "overflow": false,
+    "headline": "Chăm sóc thiết bị,\nan tâm mỗi ngày",
+    "cta": [
+      "Khám phá dịch vụ"
+    ],
+    "imageSource": "http://localhost:3000/_next/image?url=%2Fimages%2Fredesign%2Fcarousel-maintenance.webp&w=1920&q=75"
+  },
+  {
+    "width": 390,
+    "slide": 1,
+    "hero": {
+      "x": 9,
+      "y": 8,
+      "w": 372,
+      "h": 885,
+      "bottom": 893
+    },
+    "copy": {
+      "x": 32.1875,
+      "y": 115,
+      "w": 325.59375,
+      "h": 251.609375,
+      "bottom": 366.609375
+    },
+    "image": {
+      "x": -293.390625,
+      "y": 402.7265625,
+      "w": 673.390625,
+      "h": 224.453125,
+      "bottom": 627.1796875
+    },
+    "controls": {
+      "x": 32.1875,
+      "y": 646.203125,
+      "w": 325.625,
+      "h": 87.796875,
+      "bottom": 734
+    },
+    "quick": {
+      "x": 21.09375,
+      "y": 748,
+      "w": 347.8125,
+      "h": 132,
+      "bottom": 880
+    },
+    "descriptionFont": "11px",
+    "overflow": false,
+    "headline": "Điện lạnh tận nơi\ntại Cần Thơ",
+    "cta": [
+      "Đặt lịch ngay"
+    ],
+    "imageSource": "http://localhost:3000/_next/image?url=%2Fimages%2Fredesign%2Fcarousel-home-visits-album-v2.webp&w=1920&q=75"
+  },
+  {
+    "width": 390,
+    "slide": 2,
+    "hero": {
+      "x": 9,
+      "y": -1,
+      "w": 372,
+      "h": 885,
+      "bottom": 884
+    },
+    "copy": {
+      "x": 32.1875,
+      "y": 106,
+      "w": 325.59375,
+      "h": 251.609375,
+      "bottom": 357.609375
+    },
+    "image": {
+      "x": -179.03125,
+      "y": 385.0078125,
+      "w": 559.03125,
+      "h": 287.984375,
+      "bottom": 672.9921875
+    },
+    "controls": {
+      "x": 32.1875,
+      "y": 637.203125,
+      "w": 325.625,
+      "h": 87.796875,
+      "bottom": 725
+    },
+    "quick": {
+      "x": 21.09375,
+      "y": 739,
+      "w": 347.8125,
+      "h": 132,
+      "bottom": 871
+    },
+    "descriptionFont": "11px",
+    "overflow": false,
+    "headline": "Cho cuộc sống\nthoải mái hơn",
+    "cta": [
+      "Gọi ngay 0939 370 109",
+      "Chat Zalo\ntư vấn nhanh"
+    ],
+    "imageSource": "http://localhost:3000/_next/image?url=%2Fimages%2Fredesign%2Ffamily-morning.webp&w=1920&q=75"
+  },
+  {
+    "width": 390,
+    "slide": 3,
+    "hero": {
+      "x": 9,
+      "y": -1,
+      "w": 372,
+      "h": 885,
+      "bottom": 884
+    },
+    "copy": {
+      "x": 32.1875,
+      "y": 106,
+      "w": 325.59375,
+      "h": 251.609375,
+      "bottom": 357.609375
+    },
+    "image": {
+      "x": -484,
+      "y": 385,
+      "w": 864,
+      "h": 288,
+      "bottom": 673
+    },
+    "controls": {
+      "x": 32.1875,
+      "y": 637.203125,
+      "w": 325.625,
+      "h": 87.796875,
+      "bottom": 725
+    },
+    "quick": {
+      "x": 21.09375,
+      "y": 739,
+      "w": 347.8125,
+      "h": 132,
+      "bottom": 871
+    },
+    "descriptionFont": "11px",
+    "overflow": false,
+    "headline": "Chăm sóc thiết bị,\nan tâm mỗi ngày",
+    "cta": [
+      "Khám phá dịch vụ"
+    ],
+    "imageSource": "http://localhost:3000/_next/image?url=%2Fimages%2Fredesign%2Fcarousel-maintenance.webp&w=1920&q=75"
+  },
+  {
+    "width": 320,
+    "slide": 1,
+    "hero": {
+      "x": 9,
+      "y": -1,
+      "w": 302,
+      "h": 885,
+      "bottom": 884
+    },
+    "copy": {
+      "x": 28,
+      "y": 106,
+      "w": 264,
+      "h": 269.1875,
+      "bottom": 375.1875
+    },
+    "image": {
+      "x": -236,
+      "y": 414.953125,
+      "w": 546,
+      "h": 182,
+      "bottom": 596.953125
+    },
+    "controls": {
+      "x": 28,
+      "y": 637.203125,
+      "w": 264,
+      "h": 87.796875,
+      "bottom": 725
+    },
+    "quick": {
+      "x": 19,
+      "y": 739,
+      "w": 282,
+      "h": 132,
+      "bottom": 871
+    },
+    "descriptionFont": "11px",
+    "overflow": false,
+    "headline": "Điện lạnh tận nơi\ntại Cần Thơ",
+    "cta": [
+      "Đặt lịch ngay"
+    ],
+    "imageSource": "http://localhost:3000/_next/image?url=%2Fimages%2Fredesign%2Fcarousel-home-visits-album-v2.webp&w=1920&q=75"
+  },
+  {
+    "width": 320,
+    "slide": 2,
+    "hero": {
+      "x": 9,
+      "y": -1,
+      "w": 302,
+      "h": 885,
+      "bottom": 884
+    },
+    "copy": {
+      "x": 28,
+      "y": 106,
+      "w": 264,
+      "h": 269.1875,
+      "bottom": 375.1875
+    },
+    "image": {
+      "x": -249.03125,
+      "y": 385.0078125,
+      "w": 559.03125,
+      "h": 287.984375,
+      "bottom": 672.9921875
+    },
+    "controls": {
+      "x": 28,
+      "y": 637.203125,
+      "w": 264,
+      "h": 87.796875,
+      "bottom": 725
+    },
+    "quick": {
+      "x": 19,
+      "y": 739,
+      "w": 282,
+      "h": 132,
+      "bottom": 871
+    },
+    "descriptionFont": "11px",
+    "overflow": false,
+    "headline": "Cho cuộc sống\nthoải mái hơn",
+    "cta": [
+      "Gọi ngay 0939 370 109",
+      "Chat Zalo\ntư vấn nhanh"
+    ],
+    "imageSource": "http://localhost:3000/_next/image?url=%2Fimages%2Fredesign%2Ffamily-morning.webp&w=1920&q=75"
+  },
+  {
+    "width": 320,
+    "slide": 3,
+    "hero": {
+      "x": 9,
+      "y": -1,
+      "w": 302,
+      "h": 885,
+      "bottom": 884
+    },
+    "copy": {
+      "x": 28,
+      "y": 106,
+      "w": 264,
+      "h": 302.296875,
+      "bottom": 408.296875
+    },
+    "image": {
+      "x": -554,
+      "y": 385,
+      "w": 864,
+      "h": 288,
+      "bottom": 673
+    },
+    "controls": {
+      "x": 28,
+      "y": 637.203125,
+      "w": 264,
+      "h": 87.796875,
+      "bottom": 725
+    },
+    "quick": {
+      "x": 19,
+      "y": 739,
+      "w": 282,
+      "h": 132,
+      "bottom": 871
+    },
+    "descriptionFont": "11px",
+    "overflow": false,
+    "headline": "Chăm sóc thiết bị,\nan tâm mỗi ngày",
+    "cta": [
+      "Khám phá dịch vụ"
+    ],
+    "imageSource": "http://localhost:3000/_next/image?url=%2Fimages%2Fredesign%2Fcarousel-maintenance.webp&w=1920&q=75"
+  }
+]

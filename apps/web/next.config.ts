@@ -1,12 +1,18 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  // Keep audit/build artifacts separate from an already-running development server.
+  distDir: process.env.UI_AUDIT_DIST_DIR || '.next',
   poweredByHeader: false,
   devIndicators: false,
   reactStrictMode: true,
   output: 'standalone',
   images: {
     formats: ['image/avif', 'image/webp'],
+    localPatterns: [
+      { pathname: '/**', search: '' },
+      { pathname: '/images/redesign/**', search: '?v=20261015-realism' },
+    ],
     remotePatterns: [
       {
         protocol: 'https',

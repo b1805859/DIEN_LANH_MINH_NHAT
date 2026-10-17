@@ -1,0 +1,11 @@
+{
+  "foreground": "rgb(82, 105, 129)",
+  "background": "rgb(234, 244, 251)",
+  "ratio": 5.094632077677792,
+  "before": {
+    "foreground": "rgb(128,159,184)",
+    "background": "rgb(234,244,251)",
+    "ratio": 2.487936078037991
+  },
+  "source": "computed browser styles; solid background only"
+}

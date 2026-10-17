@@ -4,11 +4,14 @@ import Script from 'next/script';
 import { SiteChrome } from '@/components/layout/site-chrome';
 import { JsonLdScript } from '@/components/seo/json-ld-script';
 import { ToastProvider } from '@/components/ui/toast';
+import { MotionProvider } from '@/components/ui/motion-provider';
 import { localBusinessJsonLd, websiteJsonLd } from '@/lib/seo/json-ld';
 import { absoluteUrl } from '@/lib/seo/metadata';
 import { integrationSettings } from '@/lib/integrations/settings';
 import './globals.css';
 import './redesign.css';
+import './motion.css';
+import './ui-interactions.css';
 
 const beVietnamPro = Be_Vietnam_Pro({
   subsets: ['latin', 'vietnamese'],
@@ -39,9 +42,11 @@ export default function RootLayout({
   return (
     <html lang="vi">
       <body className={`${beVietnamPro.variable} flex min-h-dvh flex-col`}>
-        <ToastProvider>
-          <SiteChrome>{children}</SiteChrome>
-        </ToastProvider>
+        <MotionProvider>
+          <ToastProvider>
+            <SiteChrome>{children}</SiteChrome>
+          </ToastProvider>
+        </MotionProvider>
         <JsonLdScript data={localBusinessJsonLd()} />
         <JsonLdScript data={websiteJsonLd()} />
         {integrationSettings.googleAnalyticsId ? (

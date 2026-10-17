@@ -1,0 +1,151 @@
+{
+  "generatedAt": "2026-10-17T03:06:54.842Z",
+  "note": "beforeHash is available for initial web source snapshots; null for new files or files outside that snapshot.",
+  "files": [
+    {
+      "file": ".gitignore",
+      "beforeHash": null,
+      "afterHash": "db79ca9360172bd905dbe896f6e103f80b652407309f453231cc17330e19af34"
+    },
+    {
+      "file": "apps/web/app/layout.tsx",
+      "beforeHash": "d848f9f13b1f1a75d000ab502923b2ea70b5b4e090ecb8d8da047d12f8600400",
+      "afterHash": "9f3581c21db76c23a3e3ec42572109f1a66e74cacd5000315500bd1bb55dc14c"
+    },
+    {
+      "file": "apps/web/app/motion.css",
+      "beforeHash": "8fb20f76b9853199d755254ccaaf7b3b5aebf5d5fe9606b4205a3fa310411b5e",
+      "afterHash": "1398ae278a92d41624a3dee836953ad107048bba62af456fbc19a9ba302b7114"
+    },
+    {
+      "file": "apps/web/app/ui-interactions.css",
+      "beforeHash": null,
+      "afterHash": "6f4083fb12c586f7a323b7a6a83efb2eed458d5892eeae12ae2d1150573273ac"
+    },
+    {
+      "file": "apps/web/components/conversion/floating-actions.tsx",
+      "beforeHash": "2728344f42b42b6ab49fd9771bfb5ed28133ecb054223fd0eeaa451e1f60fa92",
+      "afterHash": "71f9cc0fc3ff967a11f509c9bf3c710c321c20593d11748a4deba4b7ed9d072d"
+    },
+    {
+      "file": "apps/web/components/layout/site-header.module.css",
+      "beforeHash": "8c4da5bf9a1cfb94ffac5d121e86910ba1851cf839f9fa4fc05c230a37d3444a",
+      "afterHash": "1424b36550a7471c19fb7f35076b108f0f0e80e6e039e9bbdeb6e27d2fab754e"
+    },
+    {
+      "file": "apps/web/components/layout/site-header.tsx",
+      "beforeHash": "bb38275de2fb2a6294f8eeec593df6781ae5270e747edd49e8406716ec7c7ed7",
+      "afterHash": "d0e22bc476efcb53cbf4c0e99ab874a1065f03b50d3e5c3b928ceebd1bfb8f46"
+    },
+    {
+      "file": "apps/web/components/layout/use-site-motion.ts",
+      "beforeHash": "a030ad2370ea44d4c87a66efad292ac9ec433058637649431b43962f64d6e065",
+      "afterHash": "7ea1d787eed37ad8f975892b98474015a21b396b62f4ca4a2c44043f989baa03"
+    },
+    {
+      "file": "apps/web/components/ui/button.tsx",
+      "beforeHash": "40e75c7369786cf5c9b590b81d25011e278e6ba8e92d07d9af7c60364b2d53e3",
+      "afterHash": "3bf4487c183291fcd9db619121fec420b491a2a55941e37b38dbe16142b5c0ce"
+    },
+    {
+      "file": "apps/web/components/ui/confirm-dialog.tsx",
+      "beforeHash": "bee6a1b62db4549d63a040f9d600517cdb5776cdaee2e1b2c348f8777911d3d4",
+      "afterHash": "cc84e9562d09a54192b6b7c06e0bf0e402636f62f2a04fc310af6efa371d10cd"
+    },
+    {
+      "file": "apps/web/components/ui/loading-image.tsx",
+      "beforeHash": "28f0bd01fc01ed7c11cc8598b22a9a4fe245cc52aa2d214385df0e86b78bcde6",
+      "afterHash": "87687fe767c74d09bb955712a0085f06c77d5c96b1fc658af3b4d8d29b3e34ff"
+    },
+    {
+      "file": "apps/web/components/ui/motion-provider.tsx",
+      "beforeHash": null,
+      "afterHash": "d934ab6275adbb1a7dd61e56da29f104e24d5e00619598d5da9655ddf0934091"
+    },
+    {
+      "file": "apps/web/components/ui/motion-tokens.ts",
+      "beforeHash": null,
+      "afterHash": "8f5fa92a83db5dd3ff55cb3153c6c12e3cf876982b11a5db6d58fad648dc8f37"
+    },
+    {
+      "file": "apps/web/components/ui/toast.tsx",
+      "beforeHash": "9e1034448fbc0472ecf1625bd6a97aa9d7d3d963eb86a4caf8bae6238b91bf5e",
+      "afterHash": "e16264f69966e9fa11bc159951b996269b64a77bcd28c4508f97dc29416a10c9"
+    },
+    {
+      "file": "apps/web/components/ui/use-modal-focus.ts",
+      "beforeHash": null,
+      "afterHash": "a111c45918dc745f1eb47fb70b3d85ae328f3af3a65f6ae53d1e4f4f2ac4c20e"
+    },
+    {
+      "file": "apps/web/eslint.config.mjs",
+      "beforeHash": null,
+      "afterHash": "11e9b456a5a47736c2b71ccb7a4eb86d7ce0e90ad0bca8de9809d4fb1dd01da1"
+    },
+    {
+      "file": "apps/web/next.config.ts",
+      "beforeHash": null,
+      "afterHash": "f410b53a11c6f85149d3c6611b41cd7590500b50e3bf5dff8a321c9afe21b394"
+    },
+    {
+      "file": "apps/web/package.json",
+      "beforeHash": null,
+      "afterHash": "93d47d73abcc05b288f8635046f68ce4892cba41ded58f2e8bf8d5cda54fef30"
+    },
+    {
+      "file": "package-lock.json",
+      "beforeHash": null,
+      "afterHash": "a9d5282f2c0ab3900cd833356f079dbf1b5780f8be1ede8fee69caa7493293ce"
+    },
+    {
+      "file": "package.json",
+      "beforeHash": null,
+      "afterHash": "a4de5fda71b56e12113e7fa22c8a5f844f5207b8ab5680237c8cd40da03e5ac0"
+    },
+    {
+      "file": "scripts/ui-agent/README.md",
+      "beforeHash": null,
+      "afterHash": "be5f553606cf3b87ce6b222847c2bd7688e90b896e804233cf9772420b6fa809"
+    },
+    {
+      "file": "scripts/ui-agent/auditor.mjs",
+      "beforeHash": null,
+      "afterHash": "2dd336df24cc68296a14a9a1a309f3be71e3d33251eb33de2c85a9a9a94065b8"
+    },
+    {
+      "file": "scripts/ui-agent/auditor.test.mjs",
+      "beforeHash": null,
+      "afterHash": "1d9e23f88a613b969791ca556f4b14ae29e192fa9c50bef39d58d5171cdd439e"
+    },
+    {
+      "file": "scripts/ui-agent/auto-fixer.mjs",
+      "beforeHash": null,
+      "afterHash": "eb41de9b0f701fefc1cd7b23046beff7d683f9de47026fe2e977cdccda21ffe8"
+    },
+    {
+      "file": "scripts/ui-agent/class-repair.mjs",
+      "beforeHash": null,
+      "afterHash": "8c2c3dba477d1b62f7d28176e038736635f61956fd31e67605df6d6b6bef1c88"
+    },
+    {
+      "file": "scripts/ui-agent/class-repair.test.mjs",
+      "beforeHash": null,
+      "afterHash": "5a08f2c2aa21c6696c6ab5aefd0a970c35a3ae3b116c98e00b18bd5b56546782"
+    },
+    {
+      "file": "scripts/ui-agent/templates/ui-interactions.css",
+      "beforeHash": null,
+      "afterHash": "6f4083fb12c586f7a323b7a6a83efb2eed458d5892eeae12ae2d1150573273ac"
+    },
+    {
+      "file": "scripts/ui-agent/ui-motion-skill.md",
+      "beforeHash": null,
+      "afterHash": "514632795b97f0a5af80b072a98c1237e17c9f8d0d0e95027dd4185fb24b8924"
+    },
+    {
+      "file": "scripts/ui-agent/verify-interactions.mjs",
+      "beforeHash": null,
+      "afterHash": "931dbe66f50365204286a3512f88975c3a344904f639b09d8d648e066d478bb0"
+    }
+  ]
+}

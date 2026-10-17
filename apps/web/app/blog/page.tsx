@@ -12,13 +12,13 @@ export default function BlogPage() {
     <main className="mn-reference-page mn-news-page">
       <PageHero
         showEyebrow={false}
-        title="Dự án thực tế"
-        accent="& Tin tức hữu ích"
+        title="Kiến thức điện lạnh"
+        accent="thiết thực cho gia đình"
         description="Chia sẻ kinh nghiệm bảo trì, nhận biết lỗi và sử dụng thiết bị điện lạnh trong gia đình."
         image={siteContent.images.editorial}
       />
       <div className="mn-container mn-projects-content">
-        <Showcase initialTab="news" />
+        <Showcase key="news" initialTab="news" />
       </div>
     </main>
   );

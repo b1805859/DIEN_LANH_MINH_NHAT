@@ -6,6 +6,7 @@ import { JsonLdScript } from '@/components/seo/json-ld-script';
 import { PageHero, Process, Reasons, SectionHeading } from '@/components/redesign/ui';
 import { breadcrumbJsonLd, serviceJsonLd } from '@/lib/seo/json-ld';
 import { buildMetadata } from '@/lib/seo/metadata';
+import { serviceCards } from '@/lib/content/site-content';
 export function generateStaticParams() {
   return SERVICES.flatMap((service) =>
     PRIORITY_DISTRICTS.map((ward) => ({ serviceSlug: service.slug, locationSlug: ward.slug })),
@@ -35,7 +36,7 @@ export default async function ServiceWardPage({ params }: { params: Params }) {
         title={service.name}
         accent={`tại ${ward.name}`}
         description={`Kiểm tra, tư vấn và thi công tận nơi tại ${ward.highlight}. Gửi lịch hẹn để kỹ thuật viên xác nhận trước khi đến.`}
-        image={`/images/redesign/${service.slug}.webp`}
+        image={serviceCards.find((item) => item.slug === service.slug)?.image}
       />
       <div className="mn-container">
         <div className="mn-detail-layout">

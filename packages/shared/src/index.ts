@@ -78,14 +78,14 @@ export const BLOG_POSTS = [
     title: 'Dấu hiệu máy lạnh cần nạp gas',
     slug: 'dau-hieu-may-lanh-can-nap-gas',
     category: 'may-lanh',
-    image: '/images/redesign/nap-gas-may-lanh.webp',
+    image: '/images/redesign/nap-gas-may-lanh.webp?v=20261015-realism',
     excerpt: 'Các biểu hiện thiếu gas, cách kiểm tra ban đầu và thời điểm nên gọi kỹ thuật viên.',
   },
   {
     title: 'Máy lạnh không lạnh nguyên nhân do đâu?',
     slug: 'may-lanh-khong-lanh-nguyen-nhan-do-dau',
     category: 'may-lanh',
-    image: '/images/redesign/sua-may-lanh.webp',
+    image: '/images/redesign/sua-may-lanh-realism-v2.webp',
     excerpt: 'Tổng hợp nguyên nhân khiến máy lạnh chạy nhưng không mát và hướng xử lý an toàn.',
   },
   {

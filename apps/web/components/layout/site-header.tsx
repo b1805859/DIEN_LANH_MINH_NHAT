@@ -1,8 +1,10 @@
 'use client';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import { CalendarDays, ChevronDown, Menu, Phone, X } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { surfaceMotion } from '@/components/ui/motion-tokens';
 import { MinhNhatLogoMark } from '@/components/brand/minh-nhat-logo';
 import { serviceCards, siteContent } from '@/lib/content/site-content';
 import {
@@ -11,7 +13,7 @@ import {
   getStoredAccessToken,
   getStoredRefreshToken,
 } from '@/lib/auth/tokens';
-import { apiClient } from '@/lib/api/client';
+import styles from './site-header.module.css';
 const links = [
   ['Trang chủ', '/'],
   ['Giới thiệu', '/about'],
@@ -19,15 +21,17 @@ const links = [
   ['Tin tức', '/blog'],
   ['Liên hệ', '/contact'],
 ];
-export function SiteHeader() {
+export function SiteHeader({ className = '' }: { className?: string }) {
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const [admin, setAdmin] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const servicesMenu = useRef<HTMLDetailsElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
+  const menuId = useId();
   useEffect(() => {
     const sync = () => setAdmin(Boolean(getStoredAccessToken()));
     sync();
@@ -42,13 +46,19 @@ export function SiteHeader() {
   }, []);
   useEffect(() => {
     setOpen(false);
-    if (servicesMenu.current) servicesMenu.current.open = false;
+    setServicesOpen(false);
   }, [pathname]);
+  useEffect(() => {
+    const desktop = window.matchMedia('(min-width: 801px)');
+    const closeOnDesktop = () => { if (desktop.matches) setOpen(false); };
+    desktop.addEventListener('change', closeOnDesktop);
+    return () => desktop.removeEventListener('change', closeOnDesktop);
+  }, []);
   useEffect(() => {
     const syncScroll = () => setScrolled(window.scrollY > 180);
     const dismiss = (event: PointerEvent) => {
       if (servicesMenu.current && !servicesMenu.current.contains(event.target as Node)) {
-        servicesMenu.current.open = false;
+        setServicesOpen(false);
       }
     };
     syncScroll();
@@ -67,10 +77,7 @@ export function SiteHeader() {
       document.body.style.overflow = 'hidden';
       return () => {
         document.body.style.overflow = old;
-        element?.close();
       };
-    } else {
-      dialog.current?.close();
     }
   }, [open]);
   async function logout() {
@@ -78,6 +85,7 @@ export function SiteHeader() {
     const refreshToken = getStoredRefreshToken();
     if (accessToken && refreshToken) {
       try {
+        const { apiClient } = await import('@/lib/api/client');
         await apiClient.post(
           '/auth/logout',
           { refreshToken },
@@ -95,7 +103,7 @@ export function SiteHeader() {
   const active = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
   return (
     <header
-      className={`mn-header ${pathname === '/' ? 'mn-header-home' : ''} ${scrolled ? 'mn-header-scrolled' : ''}`}
+      className={`mn-header ${styles.header} ${scrolled ? 'mn-header-scrolled' : ''} ${className}`}
     >
       <div className="mn-nav-shell">
         <Link href="/" className="mn-brand" aria-label="Điện Lạnh Minh Nhật – Trang chủ">
@@ -117,21 +125,33 @@ export function SiteHeader() {
                   className="mn-services-menu"
                   onKeyDown={(event) => {
                     if (event.key === 'Escape') {
-                      event.currentTarget.open = false;
+                      setServicesOpen(false);
                       event.currentTarget.querySelector('summary')?.focus();
                     }
                   }}
                 >
-                  <summary aria-label="Mở danh sách dịch vụ">
+                  <summary
+                    aria-label="Mở danh sách dịch vụ"
+                    aria-expanded={servicesOpen}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      if (!servicesOpen && servicesMenu.current) servicesMenu.current.open = true;
+                      setServicesOpen(!servicesOpen);
+                    }}
+                  >
                     <ChevronDown size={13} />
                   </summary>
-                  <div className="mn-services-dropdown">
+                  <AnimatePresence onExitComplete={() => {
+                    if (!servicesOpen && servicesMenu.current) servicesMenu.current.open = false;
+                  }}>
+                  {servicesOpen && <motion.div {...surfaceMotion} className="mn-services-dropdown">
                     {serviceCards.map((service) => (
                       <Link key={service.slug} href={`/services/${service.slug}`}>
                         {service.title}
                       </Link>
                     ))}
-                  </div>
+                  </motion.div>}
+                  </AnimatePresence>
                 </details>
               </div>
             ) : (
@@ -165,6 +185,7 @@ export function SiteHeader() {
             className="mn-menu-button"
             aria-label="Mở menu"
             aria-expanded={open}
+            aria-controls={menuId}
             onClick={() => setOpen(true)}
           >
             <Menu />
@@ -173,13 +194,23 @@ export function SiteHeader() {
       </div>
       <dialog
         ref={dialog}
+        id={menuId}
+        aria-label="Điều hướng di động"
         className="mn-mobile-dialog"
-        onCancel={() => setOpen(false)}
+        onCancel={(event) => {
+          event.preventDefault();
+          setOpen(false);
+        }}
+        onClose={() => setOpen(false)}
         onClick={(e) => {
-          if (e.target === e.currentTarget) setOpen(false);
+          if (e.target === e.currentTarget || (e.target instanceof Element && e.target.closest('a')))
+            setOpen(false);
         }}
       >
-        <div className="mn-mobile-menu">
+        <AnimatePresence onExitComplete={() => {
+          if (!open) dialog.current?.close();
+        }}>
+        {open && <motion.div {...surfaceMotion} className="mn-mobile-menu">
           <button
             className="mn-menu-close"
             aria-label="Đóng menu"
@@ -208,7 +239,8 @@ export function SiteHeader() {
               <button onClick={logout}>Đăng xuất</button>
             </>
           )}
-        </div>
+        </motion.div>}
+        </AnimatePresence>
       </dialog>
       {admin && (
         <button className="mn-session-logout" onClick={logout}>

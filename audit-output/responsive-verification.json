@@ -1,0 +1,38 @@
+[
+  {
+    "width": 320,
+    "smallTouchTargets": 0,
+    "missingTransitions": 0,
+    "horizontalOverflow": false,
+    "header": {
+      "overlaps": []
+    }
+  },
+  {
+    "width": 768,
+    "smallTouchTargets": 0,
+    "missingTransitions": 0,
+    "horizontalOverflow": false,
+    "header": {
+      "overlaps": []
+    }
+  },
+  {
+    "width": 820,
+    "smallTouchTargets": 0,
+    "missingTransitions": 0,
+    "horizontalOverflow": false,
+    "header": {
+      "overlaps": []
+    }
+  },
+  {
+    "width": 1024,
+    "smallTouchTargets": 0,
+    "missingTransitions": 0,
+    "horizontalOverflow": false,
+    "header": {
+      "overlaps": []
+    }
+  }
+]

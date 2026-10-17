@@ -25,7 +25,14 @@
     },
     {
       "path": "/images/redesign/sua-may-lanh.webp",
-      "prompt": "Reference image: approved website board supplied. Use case: photorealistic-natural. Produce ONE clean photographic asset only, recreating the specified photo's composition as closely as possible, not the full board. No UI, captions, text blocks, borders, numbers or watermarks. Only the small specified MN uniform monogram allowed. Premium realistic photography matching reference, not illustration. Landscape 3:2 photograph. Match service card at x29..161,y869..929: white wall mounted air conditioner large at upper LEFT, Vietnamese male technician navy polo seen from behind at RIGHT, lifting his right hand to inspect AC lower cover. Cool bright modern apartment, blurred plant left and window background. Technician short black hair, cyan small MN monogram upper back, no reflective stripes."
+      "prompt": "Use case: precise-object-edit. Edit target is the supplied existing website photograph. Preserve its lighting, realistic Vietnamese subjects, navy uniform, camera viewpoint and overall composition. Correct only implausible equipment/action. Photorealistic, naturally textured, exactly two arms and hands per person, no watermark, no captions, no UI. Landscape 3:2. Keep large white wall-mounted split AC upper LEFT and technician seen from behind on RIGHT, bright window behind him. Replace his fingers poking inside outlet with a realistic service check: ONE raised hand holds a small digital probe thermometer so its thin straight metal probe points horizontally at the outlet air, stopping a few centimeters OUTSIDE the vent; no fingers or tool enter the fan. Other hand holds the air conditioner remote low near waist. AC casing, louvers and blower geometry normal, realistic readable small temperature instrument without giant numbers. Keep plant foreground, navy cyan MN monogram and neutral home.",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a13b3e-7111-7452-9da0-9415bad68556/exec-21d41ffc-48d5-4a4a-baf8-758ec73b6635.png",
+      "revision": "2026-10-15-realism",
+      "tool": "Built-in image_gen.imagegen",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      }
     },
     {
       "path": "/images/redesign/sua-tu-lanh.webp",
@@ -45,7 +52,14 @@
     },
     {
       "path": "/images/redesign/nap-gas-may-lanh.webp",
-      "prompt": "Reference image: approved website board supplied. Use case: photorealistic-natural. Produce ONE clean photographic asset only, recreating the specified photo's composition as closely as possible, not the full board. No UI, captions, text blocks, borders, numbers or watermarks. Only the small specified MN uniform monogram allowed. Premium realistic photography matching reference, not illustration. Landscape 3:2 realistic photograph consistent with service cards in reference panel02. Vietnamese refrigeration technician in navy blue polo cyan piping and small cyan MN monogram on upper back, viewed from side at RIGHT, checking blue/red refrigerant manifold gauges attached to white outdoor AC unit at LEFT on a clean modern balcony. Cool daylight, muted grey background, careful professional pose, no reflective work jacket."
+      "prompt": "Use case: precise-object-edit. Edit the provided existing website photograph to correct physical reality. Retain its photographic quality, natural light, navy technician uniform, Vietnamese subjects, room and overall composition; do not add captions, graphic overlays, watermark or new decorative effects. Realistic anatomy: exactly two arms and two hands per person, physically coherent tools and appliances. Keep landscape 3:2, outdoor residential condenser on LEFT, technician kneeling on RIGHT. Re-stage as a plausible refrigerant service setup. Condenser fan stationary, service valves on lower RIGHT SIDE of condenser, side electrical compartment stays closed. A compact TWO dial brass manifold hangs on a small service stand next to condenser. One BLUE service hose attached to capped-access low-side service port on large insulated suction pipe, YELLOW hose from center of manifold to valve on a small upright refrigerant cylinder standing on a digital weighing scale on ground. Red unused manifold port capped with no stray red hose. Each hose has visible continuous real connections, no loops connecting two condenser ports to one another. Technician has safety glasses and work gloves, one hand on manifold valve and the other resting near scale without obscuring hose fittings. No extra disconnected apparatus, impossible valves or pressure dial numerals as focal point. Ordinary on-site service, not diagram.",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a13b3e-7111-7452-9da0-9415bad68556/exec-c566dab0-afcc-4731-b371-7cf2ee31cedb.png",
+      "revision": "2026-10-15-realism",
+      "tool": "Built-in image_gen.imagegen",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      }
     },
     {
       "path": "/images/redesign/ve-sinh-may-giat.webp",
@@ -53,7 +67,14 @@
     },
     {
       "path": "/images/redesign/sua-lap-may-nuoc-nong-lanh-tam.webp",
-      "prompt": "Reference image: approved website board supplied. Use case: photorealistic-natural. Produce ONE clean photographic asset only, recreating the specified photo's composition as closely as possible, not the full board. No UI, captions, text blocks, borders, numbers or watermarks. Only the small specified MN uniform monogram allowed. Premium realistic photography matching reference, not illustration. Landscape 3:2 photorealistic service photo consistent with reference navy/cyan cards. Compact white wall mounted shower water heater on LEFT, Vietnamese technician at RIGHT viewed from back, using insulated tester to inspect a disconnected heater, navy short sleeve polo cyan piping small cyan MN monogram upper back. Modern grey tiled bathroom, chrome shower head, cool daylight, no reflective stripes."
+      "prompt": "Use case: precise-object-edit. Edit the provided existing website photograph to correct physical reality. Retain its photographic quality, natural light, navy technician uniform, Vietnamese subjects, room and overall composition; do not add captions, graphic overlays, watermark or new decorative effects. Realistic anatomy: exactly two arms and two hands per person, physically coherent tools and appliances. Keep landscape 3:2, white bathroom tiled wall with instant electric shower heater on LEFT and technician on RIGHT. Replace impossible water connection: use a realistic CLOSED plain white instant heater with a single temperature dial and power indicator off, no exposed invented electrical internals. Its water inlet at bottom LEFT connects through an isolation valve to a water supply from the WALL. The separate hot water outlet at bottom RIGHT connects to a flexible silver hose leading to a handheld shower on its wall bracket to the right. The inlet and outlet MUST NOT connect to each other in a U loop. Technician visually inspecting inlet coupling with small flashlight in one hand, other hand holding a closed tool pouch at waist; he does not insert electrical probes or touch live wires. Natural accurate plumbing and two hands, dry tile and floor. No floating gauges or fake wires.",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a13b3e-7111-7452-9da0-9415bad68556/exec-8e8c6349-d473-4a11-90fc-76d25f3dc4ee.png",
+      "revision": "2026-10-15-realism",
+      "tool": "Built-in image_gen.imagegen",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      }
     },
     {
       "path": "/images/redesign/sua-lap-may-nuoc-uong-nong-lanh.webp",
@@ -61,7 +82,14 @@
     },
     {
       "path": "/images/redesign/team.webp",
-      "prompt": "Reference image: approved website board supplied. Use case: photorealistic-natural. Produce ONE clean photographic asset only, recreating the specified photo's composition as closely as possible, not the full board. No UI, captions, text blocks, borders, numbers or watermarks. Only the small specified MN uniform monogram allowed. Premium realistic photography matching reference, not illustration. Wide 2.5:1 photograph. Closely reconstruct ONLY the team photograph in panel03 at x317..565,y1056..1147. FOUR Vietnamese male refrigeration technicians all viewed from behind wearing matching navy blue short-sleeve polos with cyan MN monogram upper back. Left man crouching, center-left standing tall, center-right crouching, far right standing. They work together in bright modern white kitchen with silver refrigerator left, white kitchen cabinets above, large windows and green plants. Camera just behind team, waist height, medium wide. Realistic anatomy, cool daylight. No foreground UI."
+      "prompt": "Use case: precise-object-edit. Edit target is the supplied existing website photograph. Preserve its lighting, realistic Vietnamese subjects, navy uniform, camera viewpoint and overall composition. Correct only implausible equipment/action. Photorealistic, naturally textured, exactly two arms and hands per person, no watermark, no captions, no UI. Wide 2.5:1 panoramic team photograph. Keep FOUR Vietnamese male technicians viewed from behind in same bright white kitchen, navy polos with small cyan MN mark. Remove the invented exposed compressor machinery inside the front of the refrigerator; make the silver double-door refrigerator on LEFT intact and closed, with normal lower freezer drawer. The left crouching technician arranges tools in an open black tool bag on the FLOOR beside fridge. Tall center-left technician reviews an ordinary paper checklist on counter. Center-right crouching technician closes his own tool case on floor in front of CLOSED base cabinets (no fictional open appliance guts). Far right standing technician looks toward checklist colleague, one relaxed hand on counter. Realistic coherent preparation for service visit, exactly four people, no extra limbs. All actual appliance casings remain intact; no fantasy cylinders, internal machinery or dangling wires. Keep sunny kitchen and plants.",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a13b3e-7111-7452-9da0-9415bad68556/exec-ab5b027a-5201-4e3a-88ac-0df7ae74c113.png",
+      "revision": "2026-10-15-realism",
+      "tool": "Built-in image_gen.imagegen",
+      "dimensions": {
+        "width": 1536,
+        "height": 614
+      }
     },
     {
       "path": "/images/redesign/support.webp",
@@ -74,6 +102,82 @@
     {
       "path": "/images/redesign/editorial-night.webp",
       "prompt": "Reference image: approved website board supplied. Use case: photorealistic-natural. Produce ONE clean photographic asset only, recreating the specified photo's composition as closely as possible, not the full board. No UI, captions, text blocks, borders, numbers or watermarks. Only the small specified MN uniform monogram allowed. Premium realistic photography matching reference, not illustration. Panoramic 3:1 photograph reconstructing ONLY background in project/news panel04 x589..847,y724..833. Moody night-time Vietnamese riverside city viewed through modern apartment windows; dark navy interior at LEFT, glass reflections, out-of-focus blue and warm gold high-rise building lights on RIGHT, leafy dark indoor plant near center-right. Deep blue premium grading, predominantly dark image for overlaid white title. No bridge hero, no people, no UI."
+    },
+    {
+      "path": "/images/redesign/home-carousel/cleaning-main.webp",
+      "prompt": "Use case: precise-object-edit. Edit the provided existing website photograph to correct physical reality. Retain its photographic quality, natural light, navy technician uniform, Vietnamese subjects, room and overall composition; do not add captions, graphic overlays, watermark or new decorative effects. Realistic anatomy: exactly two arms and two hands per person, physically coherent tools and appliances. Keep landscape 3:2 framing, masked navy technician in foreground left of center facing wall-mounted split AC high on right, blue wash bag. Correct the extra hands: show exactly TWO gloved hands on ONE wash gun, right hand on trigger and left hand supporting barrel. Remove the extra raised brush and its ghost hand completely. The AC fascia is lifted, both removable mesh filters removed, exposing realistic fine metal evaporator fins (no filter grid covering them). One gentle narrow fan of water aimed at fins, not a huge white cloud. Right electrical compartment dry and covered with a small protective sheet. Blue bag sealed underneath unit catches runoff and funnels via one drain hose downward; dry surrounding wall. Keep face mask, navy Minh Nhat shirt and surrounding scene. This is an equipment service photo, not a UI mockup.",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a13b3e-7111-7452-9da0-9415bad68556/exec-1506efe4-5b33-4d82-9c21-aab8bc24c500.png",
+      "revision": "2026-10-15-realism",
+      "tool": "Built-in image_gen.imagegen",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      }
+    },
+    {
+      "path": "/images/redesign/home-carousel/support-plumbing.webp",
+      "prompt": "Use case: precise-object-edit. Edit the provided existing website photograph to correct physical reality. Retain its photographic quality, natural light, navy technician uniform, Vietnamese subjects, room and overall composition; do not add captions, graphic overlays, watermark or new decorative effects. Realistic anatomy: exactly two arms and two hands per person, physically coherent tools and appliances. Keep landscape 3:2, under-sink cabinet left and center, crouching technician on RIGHT with navy Minh Nhat shirt. Replace impossible branching and multiple loops with ONE ordinary single-bowl stainless kitchen sink and ONE simple white PVC P-trap. Show clear functional path: sink drain at center-left descends straight down a vertical tailpiece to a single U-shaped water-seal bend; the bend's outlet rises on its right side and connects through one horizontal trap arm into a round wall socket at rear of cabinet. Only ONE U bend. No second bowl, no closed plumbing loops, no tees, no hanging disconnected tubes or pipe passing through itself. Technician lightly holds the accessible slip nut with ONE hand and a small adjustable wrench in the other, naturally working without obscuring drain path. Dry cabinet floor, believable fittings and two hands.",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a13b3e-7111-7452-9da0-9415bad68556/exec-b76384a4-321c-48a0-b0da-0e13980b068e.png",
+      "revision": "2026-10-15-realism",
+      "tool": "Built-in image_gen.imagegen",
+      "dimensions": {
+        "width": 768,
+        "height": 512
+      },
+      "refinement": "Removed wrench clamped on smooth PVC tube; technician hand-tightens slip nut and steadies tailpiece."
+    },
+    {
+      "path": "/images/redesign/home-carousel/cleaning-coil.webp",
+      "prompt": "Use case: precise-object-edit. Edit target is the supplied existing website photograph. Preserve its lighting, realistic Vietnamese subjects, navy uniform, camera viewpoint and overall composition. Correct only implausible equipment/action. Photorealistic, naturally textured, exactly two arms and hands per person, no watermark, no captions, no UI. Landscape 3:2 close-up, opened white split air conditioner at upper LEFT, ONE black-gloved hand with short wash nozzle lower RIGHT, blue catch bag below. Both removable black MESH FILTER PANELS MUST BE REMOVED before rinsing. Show real exposed evaporator aluminum fin pack: closely spaced delicate metallic vertical fins with a few thin horizontal refrigerant tubes; no black rectangular mesh filter or plastic lattice covering coil. Gentle low pressure narrow fan spray onto fins at oblique angle, realistic small water droplets runoff caught entirely inside blue bag. Right electrical section closed behind white dry cover. Keep two slim structural supports only if physically needed, not a rectangular mesh panel. A real maintained appliance, no glowing effects, no huge white spray cloud.",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a13b3e-7111-7452-9da0-9415bad68556/exec-fcafc9af-fdc2-4287-b4f8-286acfd1e43a.png",
+      "revision": "2026-10-15-realism",
+      "tool": "Built-in image_gen.imagegen",
+      "dimensions": {
+        "width": 768,
+        "height": 512
+      }
+    },
+    {
+      "path": "/images/redesign/home-carousel/cleaning-angle.webp",
+      "prompt": "Use case: precise-object-edit. Edit target is the supplied existing website photograph. Preserve its lighting, realistic Vietnamese subjects, navy uniform, camera viewpoint and overall composition. Correct only implausible equipment/action. Photorealistic, naturally textured, exactly two arms and hands per person, no watermark, no captions, no UI. Landscape 3:2. Masked Vietnamese technician on RIGHT facing opened white wall AC upperLEFT, navy Minh Nhat shirt, blue wash bag with single drain hose below. Remove both black removable mesh filters before cleaning; show exposed realistic metallic evaporator fine fins without rectangular filter grids. Fix the wash gun plumbing: one short black trigger spray gun with brass nozzle, right hand on its trigger handle, left hand supporting its short straight forward barrel, ONE water hose attached only to bottom of handle descending naturally to floor. Remove the extra hanging hose from under the front barrel. Exactly two arms and two gloved hands. Gentle narrow fan of water onto coil, runoff caught in bag, dry wall beside bag, covered dry electrical compartment. Preserve camera and framing.",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a13b3e-7111-7452-9da0-9415bad68556/exec-be8d0b42-5b4a-4f65-96c5-db6463caf7c4.png",
+      "revision": "2026-10-15-realism",
+      "tool": "Built-in image_gen.imagegen",
+      "dimensions": {
+        "width": 768,
+        "height": 512
+      },
+      "refinement": "Removed all escaping runoff below catch bag; dry wall, water exits via attached drain hose."
+    },
+    {
+      "path": "/images/redesign/sua-may-lanh-realism-v2.webp",
+      "replaces": "/images/redesign/sua-may-lanh.webp",
+      "issue": "Extra raised arm not connected to the technician's two shoulders; three arms visible.",
+      "prompt": "Use case: precise-object-edit. Edit target: provided service photo. CRITICAL TARGETED REMOVAL: this man currently has THREE ARMS. REMOVE the ENTIRE EXTRA RAISED ARM that appears to the LEFT of his head, spanning approximately x54%-64%, y34%-63% of the picture. Remove the hand at x57%, y38%, the raised forearm below it, AND remove the digital black thermometer and long metal probe at x44%-58%, y32%-39%. Inpaint the erased areas with the plain wall, window glass and plant background that belongs there. There must be NO HANDS OR ARMS ABOVE SHOULDER LEVEL and NO THERMOMETER anywhere in the final photo. Keep ONLY the two existing LOWER ARMS: his LEFT arm is bent low at waist height, left hand holding the white remote near x46%,y82%; his RIGHT arm hangs naturally downward along the right edge at x84%,y94%. Both shoulders are LOW, both navy shirt sleeve openings point DOWNWARD, both anatomically correct upper arms connect to the shoulders under those two sleeves. Exactly two arms and two hands total. The technician simply looks up toward the AC while holding its remote, a realistic functional inspection. Keep camera, 3:2 framing, white intact split AC upper left, bright apartment, daylight, green foreground plant, navy polo and cyan MN monogram, normal body proportions. Preserve all other objects and composition. Do not replace the removed third arm with another arm or tool. No added objects, no labels, no UI, no watermarks.",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a13b3e-7111-7452-9da0-9415bad68556/exec-4dcbc60e-ca78-42bd-bfec-9cabc9e6444d.png",
+      "revision": "2026-10-16-realism-v2",
+      "tool": "Built-in image_gen.imagegen",
+      "dimensions": {
+        "width": 1536,
+        "height": 1024
+      }
+    },
+    {
+      "path": "/images/redesign/can-tho-night-realism-v2.webp",
+      "replaces": "/images/redesign/can-tho-night.webp",
+      "issue": "Landmark labelled Can Tho Bridge was depicted with a single invented pylon and an inappropriate high-rise skyline.",
+      "prompt": "Use case: precise-object-edit. Edit target: supplied panoramic website image labelled Can Tho Bridge. Correct the landmark architecture and geographic character while preserving the premium dark navy night palette, wide 3:1 panorama, broad river, warm lights and realistic reflections, quiet foreground trees and riverside houses. This must be an illustrative night photograph of CẦN THƠ BRIDGE across the wide Hau River, NOT a fantasy city bridge or the Thu Thiem/Ba Son bridge in Ho Chi Minh City. The real bridge has TWO matching tall slender concrete INVERTED-Y pylons spaced far apart along the roadway, each pylon has two lower legs meeting into an upright upper shaft. Both separate pylons must be clearly visible in a slightly oblique side panorama, one around x42 percent and one around x68 percent. They are not H frames, not twin towers on one pier, not a single central pylon. Two planes of taut fine stay cables fan from each upper shaft down to a continuous level bridge deck. Main span between the two pylons unobstructed, concrete approach viaducts continue to both banks. Realistic modest low-rise Mekong Delta riverbanks, palm trees and scattered warm lights, NO skyscraper skyline, NO Landmark 81 or invented high-rise towers. Blue-white modest pylon lighting and warm gold deck lights, plausible water reflections. Keep enough dark foreground on left for webpage text, bridge recognizable across middle and right, horizon roughly y40 percent. Photorealistic photographic texture, not a painting, no labels, no watermark, no UI, no people in foreground. The result remains illustrative artwork, not a claimed exact documentary viewpoint.",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a13b3e-7111-7452-9da0-9415bad68556/exec-5af5db84-efcd-4225-912f-572e93a9c166.png",
+      "revision": "2026-10-16-realism-v2",
+      "tool": "Built-in image_gen.imagegen",
+      "dimensions": {
+        "width": 2172,
+        "height": 724
+      },
+      "verificationSources": [
+        "https://old.cantho.gov.vn/wps/portal/home/du-khach/chi-tiet/diem-tham-quan/di-tich/nhung%2Bcong%2Btrinh%2Bco%2Bkien%2Btruc%2Bdac%2Btrung%2Bnhat%2Btai%2Bcan%2Btho?WCM_Page.Menu_TinTucKhac=2",
+        "https://openjicareport.jica.go.jp/pdf/12384244_02.pdf"
+      ]
     }
   ]
 }

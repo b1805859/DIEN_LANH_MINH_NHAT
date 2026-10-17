@@ -1,0 +1,138 @@
+{
+  "date": "2026-10-17",
+  "scope": "Home layout repair only",
+  "deployment": "Not deployed; source changes verified locally",
+  "viewports": [
+    1440,
+    1920,
+    1024,
+    768,
+    375,
+    390
+  ],
+  "extraBreakpoint": 801,
+  "findings": [
+    {
+      "component": "HomeHero",
+      "file": "apps/web/components/redesign/hero.module.css",
+      "issue": "Cleaning slide benefits clipped near desktop/mobile breakpoint",
+      "cause": "Fixed aspect ratio and percentage heights constrained the frame below wrapped copy height; overflow hidden clipped the content",
+      "fix": "Keep the original proportional minimum height, allow intrinsic grid height, place copy and gallery in the same grid row with existing left/right widths",
+      "animation": "No animation timing, easing, carousel JS or airflow changes"
+    },
+    {
+      "component": "About photo",
+      "file": "apps/web/app/home-refinement.css",
+      "issue": "Photo ends above the copy column, leaving an empty band at narrow desktop widths, including 1024",
+      "cause": "Photo aspect ratio computed a smaller height than the text-driven grid row",
+      "fix": "Stretch the photo wrapper to 100% of its row height"
+    },
+    {
+      "component": "VerifiedServiceArea",
+      "file": "apps/web/app/home-refinement.css",
+      "issue": "Last area chip row clipped at 801",
+      "cause": "Fixed 4.25 aspect ratio cannot contain heading, description and three chip rows at narrow desktop width",
+      "fix": "Allow natural height only from 801 to 960; retain existing ratio at larger widths and mobile stack"
+    }
+  ],
+  "inspectionSteps": [
+    {
+      "step": 1,
+      "section": "Header/navigation",
+      "status": "No layout defect reproduced; mobile menu inspected"
+    },
+    {
+      "step": 2,
+      "section": "Hero slider",
+      "status": "Clipping repaired; three slides share stable frame"
+    },
+    {
+      "step": 3,
+      "section": "Hero to Services",
+      "status": "No overlap after repair"
+    },
+    {
+      "step": 4,
+      "section": "Service cards",
+      "status": "Existing 2+3 desktop and mobile reflow preserved"
+    },
+    {
+      "step": 5,
+      "section": "About",
+      "status": "Photo height repaired"
+    },
+    {
+      "step": 6,
+      "section": "Projects/News",
+      "status": "Both tabs inspected; no layout defect reproduced"
+    },
+    {
+      "step": 7,
+      "section": "Service areas",
+      "status": "Narrow desktop clipping repaired"
+    },
+    {
+      "step": 8,
+      "section": "Process",
+      "status": "Scroll reaches final step; no JS changes"
+    },
+    {
+      "step": 9,
+      "section": "Footer",
+      "status": "Existing responsive columns preserved"
+    },
+    {
+      "step": 10,
+      "section": "Floating contact/AI",
+      "status": "Mobile menu and AI panel inspected without submitting data"
+    }
+  ],
+  "sourceInspection": {
+    "container": "1280px maximum; Home responsive gutters 32/48/clamp up to 144px",
+    "breakpoints": "480,800,1100 and desktop; added area correction 801–960",
+    "layout": "Header grid/flex; Hero grid; services six-track 2+3; About two columns then stack; projects four/two columns; areas 63/37 then stack; process five/one; footer three/two",
+    "positioning": "Existing sticky header, fixed contacts, absolute image layers and SVG map retained",
+    "history": "Inspected HEAD 17929ea and targeted history/diff. Current Home CSS modules/refinements are untracked relative to HEAD, so exact introducing commit cannot be identified. No revert."
+  },
+  "preserved": [
+    "Content",
+    "Images",
+    "Typography and colors",
+    "Business logic",
+    "Header/nav",
+    "Services",
+    "Projects/news",
+    "Map data",
+    "Process animation",
+    "Footer",
+    "Floating contact and AI behavior",
+    "Airflow/leaves and slide transitions"
+  ],
+  "limits": [
+    "Local dev uses Be Vietnam Pro fallback while public site loads Be Vietnam Pro; typography settings unchanged",
+    "No Safari/Firefox or physical mobile keyboard verification",
+    "No full automated tests or build, per request",
+    "No post-deployment verification"
+  ],
+  "screenshots": {
+    "before": [
+      "01-before-1440.png",
+      "02-before-1024.png",
+      "03-before-768.png",
+      "04-before-375.png",
+      "05-before-390.png",
+      "08-before-1920.png",
+      "18-live-cleaning-801-stable.png"
+    ],
+    "after": [
+      "final-1440.png",
+      "final-1920.png",
+      "final-1024.png",
+      "final-768.png",
+      "final-375.png",
+      "final-390.png",
+      "final-801.png"
+    ],
+    "proof": "final-hero-801.png"
+  }
+}

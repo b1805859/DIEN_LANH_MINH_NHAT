@@ -1,6 +1,9 @@
 'use client';
 
 import { CheckCircle2, Info, XCircle } from 'lucide-react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { backdropMotion, surfaceMotion } from '@/components/ui/motion-tokens';
+import { useModalFocus } from '@/components/ui/use-modal-focus';
 import {
   createContext,
   ReactNode,
@@ -77,12 +80,15 @@ export function ToastProvider({ children }: { children: ReactNode }) {
   return (
     <ToastContext.Provider value={value}>
       {children}
-      {toasts[0] ? (
-        <NotificationModal
-          toast={toasts[0]}
-          onDismiss={() => dismissToast(toasts[0].id)}
-        />
-      ) : null}
+      <AnimatePresence mode="wait">
+        {toasts[0] ? (
+          <NotificationModal
+            key={toasts[0].id}
+            toast={toasts[0]}
+            onDismiss={() => dismissToast(toasts[0].id)}
+          />
+        ) : null}
+      </AnimatePresence>
     </ToastContext.Provider>
   );
 }
@@ -99,13 +105,10 @@ export function useToast() {
 
 function NotificationModal({ toast, onDismiss }: { toast: ToastItem; onDismiss: () => void }) {
   const Icon = toastIcons[toast.variant];
-  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  useModalFocus(true, panelRef);
 
   useEffect(() => {
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    closeButtonRef.current?.focus();
-
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         onDismiss();
@@ -114,24 +117,27 @@ function NotificationModal({ toast, onDismiss }: { toast: ToastItem; onDismiss: 
 
     window.addEventListener('keydown', handleKeyDown);
     return () => {
-      document.body.style.overflow = previousOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [onDismiss]);
 
   return (
-    <div
+    <motion.div
+      {...backdropMotion}
       className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/60 px-4 py-6 backdrop-blur-[2px]"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onDismiss();
       }}
     >
-      <div
+      <motion.div
+        ref={panelRef}
+        tabIndex={-1}
+        {...surfaceMotion}
         role="alertdialog"
         aria-modal="true"
         aria-labelledby={`notification-title-${toast.id}`}
         aria-describedby={toast.description ? `notification-description-${toast.id}` : undefined}
-        className="w-full max-w-md animate-in rounded-xl border border-slate-200 bg-white p-6 text-center shadow-2xl fade-in zoom-in-95 duration-200"
+        className="w-full max-w-md rounded-xl border border-slate-200 bg-white p-6 text-center shadow-2xl"
       >
         <div
           className={cn(
@@ -155,15 +161,10 @@ function NotificationModal({ toast, onDismiss }: { toast: ToastItem; onDismiss: 
             {toast.description}
           </p>
         ) : null}
-        <Button
-          ref={closeButtonRef}
-          type="button"
-          className="mt-6 h-11 w-full font-black"
-          onClick={onDismiss}
-        >
+        <Button type="button" className="mt-6 h-11 w-full font-black" onClick={onDismiss}>
           Đã hiểu
         </Button>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

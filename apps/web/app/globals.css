@@ -39,7 +39,8 @@
   html,
   body {
     min-width: 0;
-    overflow-x: hidden;
+    /* Clip horizontal spill without creating an ancestor scroller for sticky navigation. */
+    overflow-x: clip;
   }
 
   input,
@@ -59,18 +60,18 @@
 
 @layer utilities {
   .animate-in-soft {
-    animation: in-soft 700ms ease-out both;
+    animation: in-soft 1150ms cubic-bezier(.4,0,.2,1) both;
   }
 
   .animate-float-slow {
-    animation: float-slow 5s ease-in-out infinite;
+    animation: float-slow 9s ease-in-out infinite;
   }
 
   .contact-action {
     transition:
-      transform 180ms ease,
-      box-shadow 180ms ease,
-      filter 180ms ease;
+      transform 450ms ease,
+      box-shadow 450ms ease,
+      filter 450ms ease;
   }
 
   .contact-action:hover {
@@ -83,10 +84,10 @@
     position: relative;
     isolation: isolate;
     transition:
-      transform 200ms ease,
-      box-shadow 200ms ease,
-      background 200ms ease,
-      border-color 200ms ease;
+      transform 450ms ease,
+      box-shadow 450ms ease,
+      background 450ms ease,
+      border-color 450ms ease;
   }
 
   .ai-chat-action::before {
@@ -99,8 +100,8 @@
     opacity: 0;
     filter: blur(9px);
     transition:
-      opacity 200ms ease,
-      transform 200ms ease;
+      opacity 450ms ease,
+      transform 450ms ease;
   }
 
   .ai-chat-action:hover,
@@ -123,16 +124,16 @@
   }
 
   .contact-action-float {
-    animation: contact-action-float 3.2s ease-in-out infinite;
+    animation: contact-action-float 6.4s ease-in-out infinite;
   }
 
   .phone-ring-icon {
-    animation: phone-ring 1.2s ease-in-out infinite;
+    animation: phone-ring 3.6s ease-in-out infinite;
     transform-origin: 50% 50%;
   }
 
   .phone-ring-halo {
-    animation: phone-ring-halo 1.2s ease-out infinite;
+    animation: phone-ring-halo 3.6s ease-out infinite;
   }
 
   .glass-panel {

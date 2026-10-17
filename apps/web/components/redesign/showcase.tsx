@@ -2,17 +2,20 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, MapPin } from 'lucide-react';
+import { ArrowRight, BookOpen, MapPin } from 'lucide-react';
 import { BLOG_CATEGORIES, BLOG_POSTS } from '@minhnhat/shared';
 import { projects } from '@/lib/content/site-content';
+import { halfContentImageSizes } from '@/lib/image-sizes';
 export function Showcase({
   initialTab = 'projects',
   initialCategory = 'all',
   compact = false,
+  projectCovers = {},
 }: {
   initialTab?: 'projects' | 'news';
   initialCategory?: string;
   compact?: boolean;
+  projectCovers?: Record<string, { src: string; alt: string; position?: string }>;
 }) {
   const [tab, setTab] = useState(initialTab);
   const [category, setCategory] = useState(initialCategory);
@@ -67,7 +70,7 @@ export function Showcase({
             setCategory('all');
           }}
         >
-          Dự án thực tế
+          Dự án minh họa
         </button>
         <button
           id="tab-news"
@@ -99,16 +102,29 @@ export function Showcase({
           ))}
         </div>
       )}
-      <div role="tabpanel" id="showcase-panel" aria-labelledby={`tab-${tab}`}>
-        <div className="mn-project-grid">
+      <div role="tabpanel" id="showcase-panel" aria-labelledby={`tab-${tab}`} tabIndex={0}>
+        <div className="mn-project-grid" key={`${tab}-${category}`}>
           {filtered.map((item) => (
             <Link href={item.href} key={item.slug} className="mn-project-card">
               <div className="mn-card-photo">
                 <Image
-                  src={item.image}
-                  alt={`${item.title} – ảnh minh họa`}
+                  src={item.demo ? projectCovers[item.slug]?.src || item.image : item.image}
+                  alt={
+                    item.demo
+                      ? projectCovers[item.slug]?.alt || `${item.title} – ảnh minh họa`
+                      : `${item.title} – ảnh minh họa`
+                  }
+                  style={
+                    item.demo && projectCovers[item.slug]?.position
+                      ? { objectPosition: projectCovers[item.slug].position }
+                      : undefined
+                  }
                   fill
-                  sizes="(max-width: 640px) 100vw, 50vw"
+                  sizes={
+                    compact
+                      ? '(max-width: 480px) 44vw, (max-width: 800px) 45vw, (max-width: 1380px) 22vw, 310px'
+                      : halfContentImageSizes
+                  }
                 />
                 {item.demo && <span className="mn-demo-tag">Dự án minh họa</span>}
               </div>
@@ -117,7 +133,11 @@ export function Showcase({
                 {!compact && !item.demo && <p>{item.excerpt}</p>}
                 <div>
                   <span>
-                    <MapPin size={14} />
+                    {item.demo ? (
+                      <MapPin size={14} aria-hidden="true" />
+                    ) : (
+                      <BookOpen size={14} aria-hidden="true" />
+                    )}
                     {item.meta}
                   </span>
                   <ArrowRight size={19} />

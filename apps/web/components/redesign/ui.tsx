@@ -1,4 +1,9 @@
 import Link from 'next/link';
+import {
+  contentImageSizes,
+  halfContentImageSizes,
+  thirdContentImageSizes,
+} from '@/lib/image-sizes';
 import Image from 'next/image';
 import {
   AirVent,
@@ -21,6 +26,8 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import { processSteps, serviceCards, siteContent } from '@/lib/content/site-content';
+import { ProcessTimeline } from './process-timeline';
+import { ImagePreview } from './image-preview';
 const icons: Record<string, LucideIcon> = {
   snowflake: Snowflake,
   wind: Wind,
@@ -114,6 +121,7 @@ export function PageHero({
   label = 'Điện lạnh tận nơi tại Cần Thơ',
   className = '',
   showEyebrow = true,
+  imagePreview = false,
 }: {
   title: string;
   accent?: string;
@@ -122,15 +130,16 @@ export function PageHero({
   label?: string;
   className?: string;
   showEyebrow?: boolean;
+  imagePreview?: boolean;
 }) {
   return (
-    <section className={`mn-page-hero ${className}`}>
+    <section className={`mn-container mn-page-hero ${className}`}>
       <Image
         src={image}
         fill
         priority
         loading="eager"
-        sizes="100vw"
+        sizes={contentImageSizes}
         alt="Không gian và dịch vụ điện lạnh Minh Nhật – ảnh minh họa"
       />
       <div className="mn-page-hero-shade" />
@@ -147,6 +156,7 @@ export function PageHero({
         </h1>
         {description && <p>{description}</p>}
       </div>
+      {imagePreview && <ImagePreview src={image} title={title} />}
     </section>
   );
 }
@@ -154,11 +164,20 @@ export function ServiceGrid({
   limit,
   areaSlug,
   category = 'all',
+  home = false,
 }: {
   limit?: number;
   areaSlug?: string;
   category?: string;
+  home?: boolean;
 }) {
+  const homeDescriptions: Record<string, string> = {
+    'sua-may-lanh': 'Kiểm tra máy không lạnh, chảy nước, báo lỗi. Tư vấn trước khi sửa.',
+    've-sinh-may-lanh': 'Làm sạch dàn nóng, dàn lạnh và lưới lọc, giúp máy vận hành ổn định.',
+    'sua-may-giat': 'Kiểm tra lỗi không vắt, không xả, rung và tiếng ồn.',
+    'sua-tu-lanh': 'Kiểm tra yếu lạnh, không đông đá, rò nước và tiếng ồn.',
+    'sua-dien-nuoc': 'Kiểm tra điện nước, xử lý rò rỉ và thay thiết bị phù hợp.',
+  };
   const filteredServices = serviceCards.filter((service) => {
     if (category === 'all') return true;
     if (category === 'dien-nuoc')
@@ -171,13 +190,20 @@ export function ServiceGrid({
         <Link
           key={service.slug}
           href={areaSlug ? `/areas/${areaSlug}/${service.slug}` : `/services/${service.slug}`}
-          className={`mn-service-card ${i < 2 ? 'mn-service-featured' : ''}`}
+          className={`mn-service-card ${i < 2 ? 'mn-service-featured' : ''} ${home && service.slug === 'thao-lap-may-lanh' ? 'mn-installation-card' : ''}`}
+          data-service-icon={home ? service.icon : undefined}
         >
           <div className="mn-card-photo">
             <Image
               src={service.image}
               fill
-              sizes="(max-width: 640px) 100vw, (max-width: 900px) 50vw, 40vw"
+              sizes={
+                i < 2
+                  ? `(max-width: 480px) calc(100vw - 32px), ${halfContentImageSizes}`
+                  : i >= 5
+                    ? halfContentImageSizes
+                    : thirdContentImageSizes
+              }
               alt={`${service.title} – ảnh minh họa`}
             />
           </div>
@@ -187,7 +213,16 @@ export function ServiceGrid({
             </span>
             <div>
               <h3>{service.title}</h3>
-              <p>{service.description}</p>
+              <p>
+                {home
+                  ? (homeDescriptions[service.slug] ?? service.description)
+                  : service.description}
+              </p>
+              {home && service.slug === 'thao-lap-may-lanh' && (
+                <span className="mn-installation-cta">
+                  Xem chi tiết dịch vụ <ArrowRight size={17} aria-hidden="true" />
+                </span>
+              )}
             </div>
             <ArrowRight className="mn-card-arrow" size={19} />
           </div>
@@ -200,15 +235,7 @@ export function Process() {
   return (
     <section className="mn-process">
       <SectionHeading title="Quy trình phục vụ" accent="chuyên nghiệp" />
-      <div className="mn-process-grid">
-        {processSteps.map(([title, desc], i) => (
-          <article key={title}>
-            <span>{String(i + 1).padStart(2, '0')}</span>
-            <h3>{title}</h3>
-            <p>{desc}</p>
-          </article>
-        ))}
-      </div>
+      <ProcessTimeline steps={processSteps} />
     </section>
   );
 }
@@ -236,7 +263,7 @@ export function SupportBanner() {
       <Image
         src={siteContent.images.support}
         fill
-        sizes="100vw"
+        sizes={contentImageSizes}
         alt="Kỹ thuật viên điện lạnh – ảnh minh họa"
       />
       <div>

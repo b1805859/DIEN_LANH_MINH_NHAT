@@ -35,7 +35,7 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ s
         image={siteContent.images.editorial}
       />
       <div className="mn-container mn-projects-content">
-        <Showcase initialTab="news" initialCategory={slug} />
+        <Showcase key={slug} initialTab="news" initialCategory={slug} />
       </div>
     </main>
   );

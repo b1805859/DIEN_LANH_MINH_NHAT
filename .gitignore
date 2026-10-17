@@ -15,4 +15,7 @@ Dockerfile.local
 Thumbs.db
 .vercel/
 .vercel
+.next-ui*/
+audit-output/*.log
+audit-output/verification-*.log
 .env*

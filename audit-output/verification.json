@@ -1,0 +1,32 @@
+[
+  {
+    "label": "typecheck",
+    "command": "npm exec --workspace @minhnhat/web -- tsc --noEmit",
+    "passed": true,
+    "exitCode": 0
+  },
+  {
+    "label": "lint",
+    "command": "npm run lint --workspace @minhnhat/web",
+    "passed": true,
+    "exitCode": 0
+  },
+  {
+    "label": "pipeline-tests",
+    "command": "node --test scripts/ui-agent/class-repair.test.mjs scripts/ui-agent/auditor.test.mjs",
+    "passed": true,
+    "exitCode": 0
+  },
+  {
+    "label": "build",
+    "command": "npm run build:web",
+    "passed": true,
+    "exitCode": 0
+  },
+  {
+    "label": "interactions",
+    "command": "node scripts/ui-agent/verify-interactions.mjs",
+    "passed": true,
+    "exitCode": 0
+  }
+]

@@ -10,9 +10,9 @@ export function ContactPageContent({ contact = false }: { contact?: boolean }) {
     <main className="mn-reference-page mn-contact-page">
       <PageHero
         showEyebrow={false}
-        title="Đặt lịch dịch vụ"
-        accent="nhanh chóng, tiện lợi"
-        description="Chỉ cần điền thông tin, chúng tôi sẽ liên hệ xác nhận trong thời gian sớm nhất."
+        title={contact ? 'Liên hệ Minh Nhật' : 'Đặt lịch dịch vụ'}
+        accent={contact ? 'trao đổi nhu cầu của bạn' : 'nhanh chóng, tiện lợi'}
+        description={contact ? 'Gọi điện, nhắn Zalo hoặc gửi yêu cầu để trao đổi tình trạng thiết bị và lịch hỗ trợ tại Cần Thơ.' : 'Chỉ cần điền thông tin, chúng tôi sẽ liên hệ xác nhận trong thời gian sớm nhất.'}
         image={siteContent.images.contact}
       />
       <div className="mn-container mn-contact-layout">

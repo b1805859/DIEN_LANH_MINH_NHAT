@@ -21,6 +21,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
         accent={project.area}
         image={project.image}
         label="Dự án minh họa"
+        imagePreview
       />
       <div className="mn-container">
         <article className="mn-article mn-panel">

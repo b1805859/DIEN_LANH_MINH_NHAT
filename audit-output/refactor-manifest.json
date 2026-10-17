@@ -1,0 +1,43 @@
+{
+  "files": [
+    ".gitignore",
+    "apps/web/app/layout.tsx",
+    "apps/web/app/motion.css",
+    "apps/web/app/ui-interactions.css",
+    "apps/web/components/conversion/floating-actions.tsx",
+    "apps/web/components/layout/site-header.module.css",
+    "apps/web/components/layout/site-header.tsx",
+    "apps/web/components/layout/use-site-motion.ts",
+    "apps/web/components/ui/button.tsx",
+    "apps/web/components/ui/confirm-dialog.tsx",
+    "apps/web/components/ui/loading-image.tsx",
+    "apps/web/components/ui/motion-provider.tsx",
+    "apps/web/components/ui/motion-tokens.ts",
+    "apps/web/components/ui/toast.tsx",
+    "apps/web/components/ui/use-modal-focus.ts",
+    "apps/web/eslint.config.mjs",
+    "apps/web/next.config.ts",
+    "apps/web/package.json",
+    "package-lock.json",
+    "package.json",
+    "scripts/ui-agent/README.md",
+    "scripts/ui-agent/auditor.mjs",
+    "scripts/ui-agent/auditor.test.mjs",
+    "scripts/ui-agent/auto-fixer.mjs",
+    "scripts/ui-agent/class-repair.mjs",
+    "scripts/ui-agent/class-repair.test.mjs",
+    "scripts/ui-agent/templates/ui-interactions.css",
+    "scripts/ui-agent/ui-motion-skill.md",
+    "scripts/ui-agent/verify-interactions.mjs"
+  ],
+  "notes": [
+    "Homepage: 46 lượt target thiếu 44×44px và 54 lượt thiếu transition đã về 0; Axe 0 → 0.",
+    "Chat mở: đã sửa 2 loại vi phạm Axe (color-contrast và scrollable-region-focusable); xem interaction-initial-verification.json.",
+    "Placeholder form đặt lịch: đổi #809fb8 → #526981 trên #eaf4fb; tương phản tăng từ 2.49:1 lên 5.09:1 (giá trị chính xác trong contrast-verification.json).",
+    "Native dialog / details giữ semantics; MotionConfig tôn trọng reduced motion, AnimatePresence cho exit; reveal dùng delay 40ms, thời gian tối đa 400ms.",
+    "Giữ nguyên dữ liệu, tiếng Việt, luồng đặt lịch, quy tắc chatbot, xác thực và handlers nghiệp vụ.",
+    "Build production cô lập cache và đặt NODE_ENV=production để tránh giá trị development từ .env gây lỗi prerender.",
+    "7 regression tests và 12 kiểm tra tương tác; request đăng nhập được mock, không gửi đặt lịch thật.",
+    "Ảnh baseline: dev server ban đầu có log lỗi tải Google Fonts; khác biệt kiểu chữ có thể chịu ảnh hưởng tải font, không quy toàn bộ cho refactor. Lượt After ghi lại trạng thái font trong JSON."
+  ]
+}

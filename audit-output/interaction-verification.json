@@ -1,0 +1,150 @@
+{
+  "generatedAt": "2026-10-17T03:06:37.813Z",
+  "target": "http://127.0.0.1:3010",
+  "results": [
+    {
+      "name": "desktop-services-dropdown",
+      "smallTargets": 0,
+      "missingTransitions": 0,
+      "unsafeTransitions": 0,
+      "horizontalOverflow": false,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 111
+        }
+      ]
+    },
+    {
+      "name": "desktop-chat",
+      "smallTargets": 0,
+      "missingTransitions": 0,
+      "unsafeTransitions": 0,
+      "horizontalOverflow": false,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 111
+        }
+      ]
+    },
+    {
+      "name": "desktop-service-filter",
+      "smallTargets": 0,
+      "missingTransitions": 0,
+      "unsafeTransitions": 0,
+      "horizontalOverflow": false,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 65
+        }
+      ]
+    },
+    {
+      "name": "desktop-booking-validation",
+      "smallTargets": 0,
+      "missingTransitions": 0,
+      "unsafeTransitions": 0,
+      "horizontalOverflow": false,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 40
+        }
+      ]
+    },
+    {
+      "name": "desktop-notification",
+      "smallTargets": 0,
+      "missingTransitions": 0,
+      "unsafeTransitions": 0,
+      "horizontalOverflow": false,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "desktop-keyboard-and-reduced-motion",
+      "passed": true,
+      "runtimeErrors": [],
+      "realMutations": 0,
+      "mockedMutations": 1
+    },
+    {
+      "name": "mobile-navigation",
+      "smallTargets": 0,
+      "missingTransitions": 0,
+      "unsafeTransitions": 0,
+      "horizontalOverflow": false,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 1
+        }
+      ]
+    },
+    {
+      "name": "mobile-chat",
+      "smallTargets": 0,
+      "missingTransitions": 0,
+      "unsafeTransitions": 0,
+      "horizontalOverflow": false,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 101
+        }
+      ]
+    },
+    {
+      "name": "mobile-service-filter",
+      "smallTargets": 0,
+      "missingTransitions": 0,
+      "unsafeTransitions": 0,
+      "horizontalOverflow": false,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 58
+        }
+      ]
+    },
+    {
+      "name": "mobile-booking-validation",
+      "smallTargets": 0,
+      "missingTransitions": 0,
+      "unsafeTransitions": 0,
+      "horizontalOverflow": false,
+      "violations": [],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "nodes": 33
+        }
+      ]
+    },
+    {
+      "name": "mobile-notification",
+      "smallTargets": 0,
+      "missingTransitions": 0,
+      "unsafeTransitions": 0,
+      "horizontalOverflow": false,
+      "violations": [],
+      "incomplete": []
+    },
+    {
+      "name": "mobile-keyboard-and-reduced-motion",
+      "passed": true,
+      "runtimeErrors": [],
+      "realMutations": 0,
+      "mockedMutations": 1
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "checks": [
+    "Family image has priority; only the next slide is preloaded initially",
+    "Seven-second autoplay advances to the service slide with its own heading",
+    "Manual pause persists after mouse/focus leave",
+    "Hover freezes progress and elapsed time; leaving resumes autoplay",
+    "Keyboard focus pauses autoplay and blur resumes it",
+    "Visibility-change handling pauses/resumes the single autoplay timer",
+    "700ms crossfade has both images visible mid-transition and no height jump",
+    "Arrow keys, Home/End and infinite previous/next loop work",
+    "Rapid manual navigation settles on one accessible slide without stale state",
+    "All three slides pass 1440/1280/1024/768/390/375px: no overlap, overflow or cropped family/AC; SVG stays aligned",
+    "All seven moving streams start inside the photographed vent opening",
+    "Reduced motion disables autoplay, airflow and crossfade; manual switching stays usable",
+    "Real touch input swipes forward and backward on 390px mobile",
+    "Existing introduction dialog still works; no background video is downloaded or played",
+    "No browser console or page errors"
+  ],
+  "errors": []
+}

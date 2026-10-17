@@ -2,6 +2,7 @@ import { FAQS } from '@minhnhat/shared';
 import { JsonLdScript } from '@/components/seo/json-ld-script';
 import { faqJsonLd } from '@/lib/seo/json-ld';
 import { buildMetadata } from '@/lib/seo/metadata';
+import { PageHero } from '@/components/redesign/ui';
 
 export const metadata = buildMetadata({
   title: 'Hỏi đáp dịch vụ điện lạnh Cần Thơ',
@@ -11,13 +12,13 @@ export const metadata = buildMetadata({
 
 export default function FaqPage() {
   return (
-    <main className="container py-10 sm:py-12">
-      <h1 className="text-3xl font-black tracking-normal sm:text-4xl">Câu hỏi thường gặp</h1>
-      <div className="mt-8 grid gap-4">
+    <main className="mn-reference-page">
+      <PageHero title="Câu hỏi thường gặp" showEyebrow={false} />
+      <div className="mn-container mn-reading-content mn-faq-cards">
         {FAQS.map((faq) => (
-          <section key={faq.question} className="rounded-md border p-4 sm:p-5">
-            <h2 className="font-semibold">{faq.question}</h2>
-            <p className="mt-2 leading-7 text-slate-700">{faq.answer}</p>
+          <section key={faq.question} className="mn-panel mn-faq-card">
+            <h2>{faq.question}</h2>
+            <p>{faq.answer}</p>
           </section>
         ))}
       </div>

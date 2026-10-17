@@ -13,13 +13,13 @@ export default function ProjectsPage() {
     <main className="mn-reference-page mn-news-page">
       <PageHero
         showEyebrow={false}
-        title="Dự án thực tế"
+        title="Dự án minh họa"
         accent="& Tin tức hữu ích"
         description="Khám phá các hạng mục dịch vụ và chia sẻ thiết thực, giúp bạn sử dụng thiết bị điện lạnh hiệu quả hơn."
         image={siteContent.images.editorial}
       />
       <div className="mn-container mn-projects-content">
-        <Showcase />
+        <Showcase key="projects" />
         <ServiceArea />
       </div>
     </main>

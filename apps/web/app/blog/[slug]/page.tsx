@@ -30,12 +30,14 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
   if (!post) notFound();
 
   const category = BLOG_CATEGORIES.find((item) => item.slug === post.category);
-  const relatedPosts = BLOG_POSTS.filter((item) => item.slug !== slug).slice(0, 4);
+  const relatedPosts = BLOG_POSTS.filter((item) => item.slug !== slug)
+    .sort((a, b) => Number(b.category === post.category) - Number(a.category === post.category))
+    .slice(0, 4);
 
   return (
-    <main className="mn-editorial bg-[#f4f8fb] text-slate-950">
-      <section className="border-b border-slate-200 bg-white py-8 sm:py-10">
-        <div className="container">
+    <main className="mn-editorial">
+      <section className="mn-container mn-editorial-hero mn-panel">
+        <div>
           <Link
             href="/blog"
             className="inline-flex items-center gap-2 text-sm font-black text-primary"
@@ -73,8 +75,8 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
         </div>
       </section>
 
-      <section className="container grid min-w-0 gap-8 py-10 sm:py-12 lg:grid-cols-[220px_minmax(0,1fr)_300px] lg:gap-10">
-        <aside className="hidden text-sm text-slate-600 lg:block">
+      <section className="mn-container mn-editorial-layout">
+        <aside className="mn-editorial-toc text-sm text-slate-600">
           <p className="font-black text-slate-950">Mục lục</p>
           <a className="mt-3 block transition hover:text-primary" href="#dau-hieu">
             Dấu hiệu
@@ -100,16 +102,6 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
             là các dấu hiệu nên kiểm tra sớm. Nếu tình trạng lặp lại nhiều lần, việc tiếp tục sử
             dụng có thể làm hư thêm linh kiện bên trong.
           </p>
-
-          <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-md bg-slate-100">
-            <LoadingImage
-              src={post.image}
-              alt={`Minh họa: ${post.title}`}
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 720px, 100vw"
-            />
-          </div>
 
           <h2 id="xu-ly" className="mt-10 text-2xl font-black">
             Cách xử lý an toàn

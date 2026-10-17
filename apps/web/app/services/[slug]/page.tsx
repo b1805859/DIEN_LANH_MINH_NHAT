@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: localTitle(service.name),
     description: `${service.name} tại Cần Thơ, đặt lịch nhanh và báo giá rõ ràng.`,
     path: `/services/${slug}`,
-    image: `/images/redesign/${slug}.webp`,
+    image: serviceCards.find((item) => item.slug === slug)?.image,
   });
 }
 export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {

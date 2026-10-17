@@ -1,0 +1,15 @@
+[
+  "Delayed image keeps the complete previous slide visible until the new photo is ready",
+  {
+    "failureInjected": false,
+    "heroCls": 0.0002662037037037037,
+    "localLcpMs": 2272
+  },
+  "Failed image returns to the current slide instead of a blank or broken image",
+  {
+    "failureInjected": true,
+    "heroCls": 0.0002662037037037037,
+    "localLcpMs": 144
+  },
+  "An image that failed during preload cannot leave navigation stuck; next skips the unavailable slide"
+]

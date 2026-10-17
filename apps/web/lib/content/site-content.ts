@@ -13,12 +13,14 @@ export const siteContent = {
   video: process.env.NEXT_PUBLIC_INTRO_VIDEO_URL || '',
   images: {
     hero: '/images/redesign/family-morning.webp',
+    carouselMaintenance: '/images/redesign/carousel-maintenance.webp',
+    carouselHomeVisitsAlbum: '/images/redesign/carousel-home-visits-album-v2.webp',
     technician: '/images/redesign/technician.webp',
-    panorama: '/images/redesign/can-tho-night.webp',
+    panorama: '/images/redesign/can-tho-night-realism-v2.webp',
     services: '/images/redesign/services-banner.webp',
     contact: '/images/redesign/contact-interior.webp',
     editorial: '/images/redesign/editorial-night.webp',
-    team: '/images/redesign/team.webp',
+    team: '/images/redesign/team.webp?v=20261015-realism',
     support: '/images/redesign/support.webp',
   },
   assetStatus:
@@ -109,10 +111,16 @@ const order = [
   'sua-lap-may-nuoc-uong-nong-lanh',
   'sua-lap-may-nuoc-nong-lanh-tam',
 ];
+const revisedServiceImages = new Set([
+  'nap-gas-may-lanh',
+  'sua-lap-may-nuoc-nong-lanh-tam',
+]);
 export const serviceCards = order.map((slug) => ({
   ...SERVICES.find((s) => s.slug === slug)!,
   ...details[slug],
-  image: `/images/redesign/${slug}.webp`,
+  image: slug === 'sua-may-lanh'
+    ? '/images/redesign/sua-may-lanh-realism-v2.webp'
+    : `/images/redesign/${slug}.webp${revisedServiceImages.has(slug) ? '?v=20261015-realism' : ''}`,
 }));
 // Demo projects are explicitly labelled in the public UI; no invented clients or completion claims.
 export const projects = [

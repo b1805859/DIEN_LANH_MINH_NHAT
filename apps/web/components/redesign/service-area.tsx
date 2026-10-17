@@ -1,16 +1,49 @@
+'use client';
+
+import { useId, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { MapPin, Navigation } from 'lucide-react';
 import { siteContent } from '@/lib/content/site-content';
 import { integrationSettings } from '@/lib/integrations/settings';
-export function AreaMap({ compact = false }: { compact?: boolean }) {
-  const prefix = compact ? 'area-compact' : 'area';
+import { contentImageSizes } from '@/lib/image-sizes';
+// Reuse the existing schematic coordinates for both labels and the selection path.
+const mapLocations = [
+  ['Thốt Nốt', 33, 42],
+  ['Vĩnh Thạnh', 66, 65],
+  ['Cờ Đỏ', 127, 50],
+  ['Bình Thủy', 135, 78],
+  ['Ô Môn', 53, 109],
+  ['Cái Răng', 108, 157],
+  ['Phong Điền', 28, 137],
+  ['Ninh Kiều', 118, 106],
+] as const;
+
+export function AreaMap({
+  compact = false,
+  activeArea,
+  onSelect,
+  connected = false,
+}: {
+  compact?: boolean;
+  activeArea?: string;
+  onSelect?: (area: string) => void;
+  connected?: boolean;
+}) {
+  const id = useId().replace(/:/g, '');
+  const prefix = `${compact ? 'area-compact' : 'area'}-${id}`;
+  const destination = mapLocations.find(([name]) => name === activeArea);
   return (
     <svg
-      className={`mn-area-map mn-area-map-native ${compact ? 'mn-area-map-compact' : ''}`}
-      viewBox="0 0 210 188"
-      role="img"
-      aria-label="Sơ đồ minh họa khu vực phục vụ Cần Thơ"
+      className={`mn-area-map ${compact ? 'mn-area-map-compact' : ''}`}
+      viewBox="0 0 195 188"
+      data-connected={connected ? 'true' : undefined}
+      role={onSelect ? 'group' : 'img'}
+      aria-label={
+        onSelect
+          ? 'Sơ đồ minh họa Cần Thơ. Chọn tên khu vực để xem hỗ trợ.'
+          : 'Sơ đồ minh họa khu vực phục vụ Cần Thơ'
+      }
     >
       <defs>
         <radialGradient id={`${prefix}-fill`} cx="55%" cy="57%" r="70%">
@@ -29,7 +62,7 @@ export function AreaMap({ compact = false }: { compact?: boolean }) {
         </clipPath>
       </defs>
       <g clipPath={`url(#${prefix}-clip)`}>
-        <rect width="210" height="188" fill={`url(#${prefix}-fill)`} />
+        <rect width="195" height="188" fill={`url(#${prefix}-fill)`} />
         <g fill="none" stroke="#126284" strokeWidth=".65" opacity=".8">
           <path d="M26 17 30 34 27 44 37 52 47 58 55 53 55 44 48 32 48 12M61 14 67 32 87 32 89 15M30 34 19 39 11 48M37 52 33 66 18 69M47 58 45 77 27 79 20 78M67 32 60 50 55 53 78 61 87 32 111 35 112 20M111 35 122 48 141 43 149 15M141 43 152 51 160 47 177 33M152 51 147 64 152 75 165 80 180 68 202 52M147 64 125 67 116 84 101 80 96 67 78 61M45 77 58 75 70 84 80 81 96 67M17 82 34 91 52 89 58 75M34 91 28 106 10 97M52 89 62 106 79 103 80 81M28 106 32 121 17 131 8 128M62 106 52 119 39 123 32 121M52 119 63 134 59 147 54 151M79 103 89 118 78 129 63 134M101 80 116 103 135 108 152 75M89 118 105 121 116 103M105 121 118 137 138 139 149 124 135 108M118 137 112 150 93 155 78 148 78 129M78 148 72 163 64 161M93 155 97 177 80 188M112 150 124 160 129 179 119 188M138 139 151 149 147 164 129 179M149 124 170 115 165 99 152 75M170 115 188 126 201 113 205 91 180 68M188 126 188 149 167 151 151 149M188 149 210 159M147 164 167 174 174 188M167 151 167 174M201 113 210 118M59 147 65 151 72 163" />
         </g>
@@ -38,7 +71,7 @@ export function AreaMap({ compact = false }: { compact?: boolean }) {
           <path d="m79 103 14 14 23-8 19-1 14 16 21 6M116 109l-5 17 12 15 5 21M93 117l-12 6-8 10-10 5M93 117l-9-19-9-10M116 109l7-20 17-8 12-6" />
         </g>
         <g fill="#05c7ff" filter={`url(#${prefix}-glow)`}>
-          <circle cx="105" cy="109" r="9" />
+          <circle className="mn-map-beacon" cx="105" cy="109" r="9" />
           <circle cx="128" cy="162" r="3" />
           <circle cx="170" cy="130" r="3" />
         </g>
@@ -49,60 +82,109 @@ export function AreaMap({ compact = false }: { compact?: boolean }) {
         stroke="#23b7d9"
         strokeWidth="1.1"
       />
-      {[
-        ['Thốt Nốt', 33, 42],
-        ['Vĩnh Thạnh', 66, 65],
-        ['Cờ Đỏ', 127, 50],
-        ['Bình Thủy', 135, 78],
-        ['Ô Môn', 53, 109],
-        ['Cái Răng', 108, 157],
-      ].map(([name, x, y]) => (
-        <g key={name} transform={`translate(${x},${y})`}>
+      {connected && destination && (
+        <path
+          key={activeArea}
+          className="mn-map-connection"
+          aria-hidden="true"
+          d={`M105 109 L${destination[1]} ${destination[2] - 7}`}
+          pathLength="1"
+          fill="none"
+          stroke="#8eeaff"
+          strokeWidth="1"
+        />
+      )}
+      {mapLocations.map(([name, x, y]) => (
+        <g
+          key={name}
+          transform={`translate(${x},${y})`}
+          className="mn-map-area"
+          data-active={activeArea === name}
+          role={onSelect ? 'button' : undefined}
+          tabIndex={onSelect ? 0 : undefined}
+          aria-label={onSelect ? `Xem hỗ trợ tại ${name}` : undefined}
+          aria-pressed={onSelect ? activeArea === name : undefined}
+          onClick={() => onSelect?.(String(name))}
+          onKeyDown={(event) => {
+            if (!onSelect || !['Enter', ' '].includes(event.key)) return;
+            event.preventDefault();
+            onSelect(String(name));
+          }}
+        >
+          <rect
+            className="mn-map-area-target"
+            x="-12"
+            y="-21"
+            width="65"
+            height="23"
+            rx="6"
+            fill="transparent"
+          />
+          {connected && activeArea === name && (
+            <circle
+              className="mn-map-selected-ring"
+              cy="-7"
+              r="6"
+              fill="none"
+              stroke="#a1eeff"
+              strokeWidth=".8"
+              aria-hidden="true"
+            />
+          )}
           <path d="M0 0C-11-13-10-19 0-19S11-13 0 0" transform="scale(.58)" fill="#48e7ff" />
           <circle cy="-7.3" r="2.1" fill="#07516c" />
-          <text x="12" y="-3" fill="#e0f7ff" fontSize="8.2" fontWeight="500">
+          <text x="12" y="-3" fill="#e0f7ff" fontSize="8.2" fontWeight="600">
             {name}
           </text>
         </g>
       ))}
-      <text x="28" y="133" fill="#e0f7ff" fontSize="8.2" fontWeight="500">
-        Phong Điền
-      </text>
-      <g transform="translate(112 107)">
+      <g
+        className="mn-map-hub"
+        transform="translate(105 112)"
+        pointerEvents="none"
+        aria-hidden="true"
+      >
         <path
           d="M0 0C-27-31-23-41 0-41S27-31 0 0"
           transform="scale(.65)"
-          fill="#7cddff"
-          stroke="white"
-          strokeWidth="2.5"
+          fill="#e5f8ff"
+          stroke="#b1f5ff"
+          strokeWidth="1.5"
         />
         <circle cy="-18.7" r="5.4" fill="#074b78" stroke="#d0f7ff" strokeWidth="1" />
-        <text x="20" y="2" fill="white" fontSize="12" fontWeight="600">
-          Cần Thơ
-        </text>
       </g>
     </svg>
   );
 }
-export function ServiceArea() {
+export function ServiceArea({ connected = false }: { connected?: boolean }) {
+  const [selected, setSelected] = useState<string>('Ninh Kiều');
+  const active = siteContent.areas.find((area) => area.name === selected);
   return (
     <section className="mn-service-area" id="khu-vuc">
       <Image
         src={siteContent.images.panorama}
         fill
-        sizes="100vw"
+        sizes={contentImageSizes}
         alt="Phối cảnh cầu Cần Thơ lung linh về đêm – ảnh minh họa"
       />
       <div className="mn-area-shade" />
       <div className="mn-area-copy">
         <h2>
-          Có mặt nhanh chóng
+          Hỗ trợ tận nơi
           <br />
-          tại mọi khu vực
+          tại Cần Thơ
         </h2>
         <div className="mn-area-chips">
           {siteContent.areas.map((area) => (
-            <Link key={area.name} href={area.slug ? `/areas/${area.slug}` : '/contact'}>
+            <Link
+              key={area.name}
+              href={area.slug ? `/areas/${area.slug}` : '/contact'}
+              data-area-active={selected === area.name}
+              onFocus={() => setSelected(area.name)}
+              onPointerEnter={(event) => {
+                if (event.pointerType === 'mouse') setSelected(area.name);
+              }}
+            >
               <MapPin size={17} />
               {area.name}
             </Link>
@@ -112,17 +194,15 @@ export function ServiceArea() {
             Và các khu vực lân cận
           </Link>
         </div>
+        <p className="mn-area-selection" aria-live="polite" aria-atomic="true">
+          <span>{selected} · Cần Thơ</span>
+          <Link href={active?.slug ? `/areas/${active.slug}` : '/contact'}>
+            {active?.slug ? 'Xem dịch vụ' : 'Liên hệ xác nhận'} <span aria-hidden="true">↗</span>
+          </Link>
+        </p>
       </div>
-      <div className="mn-area-map mn-area-map-reference">
-        <Image
-          src="/images/redesign/area-map-reference.webp"
-          fill
-          unoptimized
-          sizes="(max-width: 800px) 80vw, 36vw"
-          alt="Bản đồ Cần Thơ trong thiết kế gốc: Thốt Nốt, Vĩnh Thạnh, Cờ Đỏ, Bình Thủy, Ô Môn, Phong Điền và Cái Răng"
-        />
-      </div>
-      <AreaMap />
+      <AreaMap activeArea={selected} onSelect={setSelected} connected={connected} />
+      <span className="mn-area-map-caption">Sơ đồ minh họa khu vực</span>
     </section>
   );
 }
@@ -215,7 +295,7 @@ export function ContactMap() {
             ))}
           </g>
           <g transform="translate(322 176)">
-            <circle cy="-14" r="29" fill="#0abaff" opacity=".22" />
+            <circle className="mn-map-beacon" cy="-14" r="29" fill="#0abaff" opacity=".22" />
             <path
               d="M0 6C-29-25-26-48 0-48S29-25 0 6"
               fill="#168fee"

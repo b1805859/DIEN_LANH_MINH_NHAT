@@ -39,7 +39,7 @@ export function LoadingImage({
     isSvg;
   const imageClassName = cn(
     className,
-    effectiveReveal !== 'none' && 'transition-[filter,opacity] duration-700 ease-out',
+    effectiveReveal !== 'none' && 'transition-opacity duration-200 [transition-timing-function:cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none',
     effectiveReveal === 'fade' && (loaded && !failed ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'),
     effectiveReveal === 'filter' && (loaded || failed ? 'blur-0' : 'blur-sm'),
   );
@@ -69,7 +69,7 @@ export function LoadingImage({
 
   const fallback = failed ? (
     <span className="pointer-events-none absolute inset-0 z-20 grid place-items-center bg-slate-100 px-3 text-center text-xs font-bold text-slate-500">
-      Khong tai duoc anh
+      Không tải được ảnh
     </span>
   ) : null;
 

@@ -1,0 +1,31 @@
+{
+  "changed_source_files": [
+    "apps/web/components/redesign/hero-airflow.tsx",
+    "apps/web/components/redesign/hero.module.css"
+  ],
+  "css_outside_airflow_unchanged": true,
+  "leaves_markup_and_positions_unchanged": true,
+  "layout_before_after_identical": {
+    "1440": true,
+    "390": true
+  },
+  "visual_checks": [
+    "before-1440.png",
+    "after-1440.png",
+    "before-390.png",
+    "after-390.png"
+  ],
+  "flow": {
+    "ribbons_before": 8,
+    "ribbons_after": 5,
+    "stream_durations_seconds": [
+      17,
+      20,
+      23
+    ],
+    "animation": "Three phase-offset flowing streaks; static base/mist; zero opacity at both loop endpoints",
+    "reduced_motion": "Animation remains gated by prefers-reduced-motion: no-preference",
+    "offscreen": "Existing ambient pause rules retained"
+  },
+  "deployment": "Not deployed"
+}

@@ -1,0 +1,41 @@
+{
+  "results": [
+    {
+      "file": "apps/web/components/conversion/floating-actions.tsx",
+      "function": "normalizeText",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/components/conversion/floating-actions.tsx",
+      "function": "getConsultationAnswer",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/components/conversion/floating-actions.tsx",
+      "function": "sendMessage",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/components/conversion/floating-actions.tsx",
+      "function": "handleSubmit",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/components/layout/site-header.tsx",
+      "function": "logout",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/components/forms/booking-form.tsx",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/lib/auth/tokens.ts",
+      "unchanged": true
+    },
+    {
+      "file": "apps/web/app/admin/login/page.tsx",
+      "unchanged": true
+    }
+  ]
+}

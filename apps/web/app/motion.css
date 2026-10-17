@@ -1,0 +1,148 @@
+/* Progressive motion for the public site; all resting layout values stay intact. */
+@media (prefers-reduced-motion: no-preference) {
+  .mn-site { position: relative; }
+  .mn-site[data-motion-budget='full']::before,
+  .mn-site[data-motion-budget='full']::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+  .mn-site[data-motion-budget='full']::before {
+    background: radial-gradient(ellipse at 8% 24%, #d09b4b18, transparent 48%);
+    opacity: var(--mn-warm-light, .65);
+  }
+  .mn-site[data-motion-budget='full']::after {
+    background: radial-gradient(ellipse at 92% 65%, #00c6ff20, transparent 54%);
+    opacity: var(--mn-cool-light, .2);
+  }
+
+  .mn-site .mn-button {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    transition: transform 180ms cubic-bezier(0.22,1,0.36,1), opacity 180ms ease, box-shadow 180ms ease;
+  }
+  .mn-site .mn-button::before {
+    content: '';
+    position: absolute;
+    inset: -50% -70%;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(110deg, transparent 38%, #e6fcff66 50%, transparent 62%);
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  .mn-site .mn-button:not(:disabled):is(:hover, :focus-visible)::before {
+    animation: mn-button-sheen 1400ms ease-in-out;
+  }
+  .mn-site .mn-button:not(:disabled):active { transform: scale(.97); }
+
+  .mn-site :is(.mn-desktop-nav > a, .mn-nav-services > a)::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 4px;
+    height: 2px;
+    background: #2ad4f3;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 180ms cubic-bezier(0.22,1,0.36,1);
+  }
+  .mn-site :is(.mn-desktop-nav > a, .mn-nav-services > a):is([aria-current], :hover, :focus-visible)::after {
+    transform: scaleX(1);
+  }
+  .mn-site .mn-nav-shell { animation: mn-surface-enter 850ms ease-in-out both; }
+  .mn-site .mn-page-hero h1 { animation: mn-content-enter 240ms cubic-bezier(0.22,1,0.36,1) both; }
+  .mn-site .mn-page-hero p { animation: mn-content-enter 240ms cubic-bezier(0.22,1,0.36,1) 40ms both; }
+  .mn-site .mn-page-hero-shade::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(ellipse at 22% 60%, #00ceff18, transparent 65%);
+  }
+
+  .mn-site :is(.mn-service-card, .mn-project-card) {
+    transition: transform 180ms cubic-bezier(0.22,1,0.36,1), border-color 180ms ease, box-shadow 180ms ease;
+  }
+  .mn-site :is(.mn-icon-box, .mn-process-grid article > span) {
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  }
+  .mn-site :is(.mn-process-grid article, .mn-reasons article, .mn-contact-methods > a) {
+    transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+  }
+  .mn-site :is(.mn-filters button, .mn-tabs > button, .mn-tabs > a) {
+    transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  }
+  .mn-site .mn-card-arrow { transition: transform 180ms ease; }
+  .mn-site :is(.mn-service-card, .mn-project-card):focus-visible {
+    border-color: #39d4f1b0;
+    box-shadow: 0 10px 28px #000e244d, 0 0 20px #00bded1a;
+  }
+  .mn-site .mn-map-beacon {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: mn-map-signal 5s ease-out 2;
+  }
+
+  .mn-site[data-motion-paused='true'],
+  .mn-site[data-motion-paused='true']::before,
+  .mn-site[data-motion-paused='true']::after,
+  .mn-site[data-motion-paused='true'] *,
+  .mn-site[data-motion-paused='true'] *::before,
+  .mn-site[data-motion-paused='true'] *::after,
+  .mn-site [data-motion-visible='false'] *,
+  .mn-site [data-motion-visible='false'] *::before,
+  .mn-site [data-motion-visible='false'] *::after {
+    animation-play-state: paused !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .mn-site .mn-button:not(:disabled):hover { transform: translateY(-1px); }
+  .mn-site :is(.mn-service-card, .mn-project-card):hover {
+    transform: translateY(-1px);
+    border-color: #39d4f1b0;
+    box-shadow: 0 10px 28px #000e244d, 0 0 20px #00bded1a;
+  }
+  .mn-site .mn-service-card:hover .mn-icon-box {
+    transform: rotate(-6deg);
+    border-color: #26d2ed80;
+    box-shadow: 0 0 15px #00c8ef24;
+  }
+  .mn-site .mn-service-card:hover .mn-card-arrow { transform: translateX(3px); }
+  .mn-site :is(.mn-process-grid article, .mn-reasons article, .mn-contact-methods > a):hover {
+    border-color: #32cfe87a;
+    box-shadow: inset 0 1px 0 #66e6ff18, 0 0 18px #00c8ef14;
+  }
+  .mn-site .mn-process-grid article:hover > span { transform: translateY(-3px); }
+}
+
+@media (max-width: 800px) {
+  .mn-site::after { content: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mn-site :is(.mn-service-card, .mn-project-card):hover,
+  .mn-site :is(.mn-service-card, .mn-project-card):hover img { transform: none; }
+}
+
+@keyframes mn-button-sheen {
+  0% { transform: translateX(-100%); opacity: 0; }
+  20% { opacity: .7; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+@keyframes mn-surface-enter {
+  from { opacity: .6; }
+  to { opacity: 1; }
+}
+@keyframes mn-content-enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes mn-map-signal {
+  0% { transform: scale(1); opacity: .28; }
+  75%, 100% { transform: scale(1.8); opacity: 0; }
+}

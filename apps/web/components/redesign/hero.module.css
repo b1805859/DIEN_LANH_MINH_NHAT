@@ -1,0 +1,550 @@
+.carousel:global(.mn-home-hero) {
+  /* Keep the eight shortcuts visible below the taller slide, including wrapped labels. */
+  --hero-shortcuts-space: max(9.8cqw, 120px);
+  --hero-frame-height: max(
+    calc(100cqw / 3.23),
+    calc(
+      100svh - var(--mn-header-inset) - var(--mn-nav-height) - 40px -
+        var(--hero-shortcuts-space) - 4px
+    )
+  );
+  position: relative;
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 4px;
+  height: auto;
+  aspect-ratio: auto;
+  min-height: 0;
+  max-width: var(--mn-content-max);
+  margin: 8px auto 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  container-type: inline-size;
+  overflow: visible;
+}
+.carousel:focus-visible {
+  outline: 2px solid #a1eeff;
+  outline-offset: 4px;
+}
+.viewport {
+  display: grid;
+  width: 100%;
+  /* Fill the remaining screen above the shortcuts, allowing wrapped slide copy. */
+  min-height: var(--hero-frame-height);
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #0885b8a6;
+  border-radius: 8px;
+  background: #00152e;
+  touch-action: pan-y pinch-zoom;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.viewport[data-motion='dragging'] {
+  cursor: grabbing;
+}
+.track {
+  display: grid;
+  width: 100%;
+  height: auto;
+  isolation: isolate;
+}
+.slide {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 1fr;
+  grid-area: 1 / 1;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  padding: 0 1.4% 0 4.5%;
+  isolation: isolate;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, #00142d, #002f55);
+  transition: opacity 760ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.media {
+  position: absolute;
+  inset: 0 0 0 48%;
+  overflow: hidden;
+}
+.stage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  aspect-ratio: 1.5;
+}
+.stage img {
+  object-fit: cover;
+}
+.shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, #00152a33 40%, #001b3420 53%, transparent 70%),
+    linear-gradient(0deg, #002c5866, transparent 35%);
+}
+.copy {
+  grid-area: 1 / 1;
+  align-self: start;
+  position: relative;
+  z-index: 3;
+  width: 48%;
+  max-width: 620px;
+  padding-top: 2.7cqw;
+  padding-bottom: 2cqw;
+  color: #fff;
+}
+.carousel .headline {
+  margin: 0;
+  font-size: clamp(30px, 3.7cqw, 48px);
+  font-weight: 800;
+  line-height: 1.16;
+  letter-spacing: -0.035em;
+  text-wrap: pretty;
+}
+.carousel .headline em {
+  color: #39d9f7;
+}
+.carousel .support .headline {
+  font-size: clamp(27px, 3.35cqw, 44px);
+}
+.description {
+  max-width: 96%;
+  margin-top: 1cqw;
+  font-size: clamp(11px, 1.35cqw, 16px);
+  line-height: 1.55;
+  color: #e0eaf7;
+}
+.carousel .copy .booking {
+  min-height: 36px;
+  margin-top: 1.5cqw;
+  padding: 7px 24px;
+  gap: 10px;
+  border-radius: 100px;
+  border: 1px solid #51dfff;
+  font-size: clamp(11px, 1.25cqw, 15px);
+  font-weight: 750;
+  color: #00213a;
+  background: linear-gradient(180deg, #a6efff, #29d0f4 70%, #10b9e6);
+  box-shadow:
+    inset 0 1px 0 #efffff88,
+    0 3px 12px #00c8f022;
+}
+.booking > svg:first-child {
+  display: none;
+}
+.booking > svg:last-child {
+  width: 16px;
+  height: 16px;
+}
+.benefits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 17px;
+  padding: 0;
+  margin: 1.7cqw 0 0;
+  list-style: none;
+  font-size: clamp(10px, 1.1cqw, 14px);
+}
+.benefits li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.benefits svg {
+  color: #10d5f5;
+  width: 16px;
+  height: 16px;
+}
+.benefits li:first-child svg {
+  color: #8ee95f;
+}
+.gallery {
+  grid-area: 1 / 1;
+  align-self: end;
+  justify-self: end;
+  position: relative;
+  z-index: 4;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 42.5%;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+.thumbnail {
+  position: relative;
+  aspect-ratio: 2.35;
+  overflow: hidden;
+  border: 1px solid #74d6e7a6;
+  border-radius: 5px;
+  background: #082c48;
+}
+.thumbnail img {
+  object-fit: cover;
+}
+.services {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  align-items: stretch;
+  min-width: 0;
+  min-height: 9.8cqw;
+  padding: 5px 1.2%;
+  border: 1px solid #159bce;
+  border-radius: 8px;
+  background: linear-gradient(100deg, #00213b, #001c35);
+}
+.services a {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 3px 4px;
+  min-height: 70px;
+  border-right: 1px solid #2081aa33;
+  color: #eef8ff;
+  text-align: center;
+  font-size: clamp(10px, 1.22cqw, 15px);
+  line-height: 1.4;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+.services a:last-child {
+  border-right: 0;
+}
+.services a:is(:hover, :focus-visible) {
+  color: #a1eeff;
+  background: #0a5a7024;
+}
+.services a:active {
+  background: #07516e;
+}
+.serviceIcon {
+  display: grid;
+  place-items: center;
+  width: clamp(32px, 4cqw, 48px);
+  height: clamp(32px, 4cqw, 48px);
+  border: 1px solid #00bced;
+  border-radius: 50%;
+  color: #12d9ff;
+}
+.serviceIcon svg {
+  width: 60%;
+  height: 60%;
+}
+.airflow {
+  position: absolute;
+  left: 48%;
+  top: 0;
+  width: 52%;
+  height: auto;
+  aspect-ratio: 1.5;
+  z-index: 2;
+  overflow: visible;
+  pointer-events: none;
+  opacity: 1;
+}
+.airflowMist {
+  opacity: 0.55;
+}
+.airflowGlow {
+  opacity: 0.18;
+}
+.airflowRibbons {
+  opacity: 0.75;
+}
+.airflowHighlights path {
+  stroke-dasharray: 220 780;
+  opacity: 0;
+}
+.airflowLeaves {
+  opacity: 0.95;
+}
+.airflowLeaf {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .carousel[data-motion-budget='full'] .active .airflowHighlights path {
+    animation: living-airflow var(--stream-duration, 20s) linear infinite both;
+    animation-delay: var(--stream-delay);
+  }
+  .carousel[data-motion-budget='full'] .active .airflowLeaf {
+    animation: airflow-leaf 8000ms ease-in-out 4;
+    animation-delay: var(--leaf-delay);
+  }
+  .carousel[data-motion-budget='full'] .copy > * {
+    opacity: 0;
+    transform: translateY(6px);
+    transition:
+      opacity 400ms ease,
+      transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .carousel[data-motion-budget='full'] .active .copy > * {
+    opacity: 1;
+    transform: none;
+    transition-delay: 60ms;
+  }
+  .carousel[data-motion-budget='full'] .active .description {
+    transition-delay: 100ms;
+  }
+  .carousel[data-motion-budget='full'] .active .booking {
+    transition-delay: 140ms;
+  }
+  .carousel[data-motion-budget='full'] .active .benefits {
+    transition-delay: 180ms;
+  }
+  .thumbnail {
+    transition:
+      transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 180ms ease;
+    transform: translateY(4px);
+  }
+  .active .thumbnail {
+    transform: none;
+  }
+  .serviceIcon {
+    transition:
+      transform 200ms ease,
+      background-color 200ms ease;
+  }
+}
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .services a:is(:hover, :focus-visible) .serviceIcon {
+    transform: translateY(-2px);
+    background: #007cb633;
+  }
+}
+@keyframes living-airflow {
+  0% {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+  22%,
+  72% {
+    opacity: 0.45;
+  }
+  100% {
+    stroke-dashoffset: -1000;
+    opacity: 0;
+  }
+}
+@keyframes airflow-leaf {
+  0%,
+  100% {
+    transform: none;
+  }
+  45% {
+    transform: translate(-18px, 9px) rotate(-7deg);
+  }
+  75% {
+    transform: translate(-7px, -4px) rotate(4deg);
+  }
+}
+@media (min-width: 801px) {
+  .carousel:global(.mn-home-hero) {
+    /* Desktop: use the stable layout viewport (vh), not svh, so a hidden
+       fullscreen toolbar cannot shorten the hero and reveal the next section. */
+    --hero-frame-height: max(
+      calc(100cqw / 3.23),
+      calc(
+        100vh - var(--mn-header-inset) - var(--mn-nav-height) - 40px -
+          var(--hero-shortcuts-space) - 4px
+      )
+    );
+    min-height: calc(100vh - var(--mn-header-inset) - var(--mn-nav-height) - 8px);
+    /* Slide absorbs any leftover height so the shortcuts strip sits on the
+       bottom edge of the first screen with no empty band below it. */
+    grid-template-rows: minmax(0, 1fr) auto;
+    align-content: stretch;
+  }
+  .stage,
+  .airflow {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+  .stage img {
+    object-position: 80% center;
+  }
+  .support .stage img {
+    object-position: center;
+  }
+  .airflow {
+    /* Match the photo's 80% horizontal crop so wind stays at the AC outlet. */
+    transform: translateX(max(0px, calc((var(--hero-frame-height) * 1.5 - 52cqw) * 0.2)));
+  }
+}
+@media (min-width: 801px) and (max-width: 1100px) {
+  .copy {
+    padding-top: 2.5cqw;
+  }
+  .description {
+    font-size: 12px;
+  }
+  .carousel .copy .booking {
+    margin-top: 1.2cqw;
+    padding: 6px 20px;
+    min-height: 34px;
+  }
+  .benefits {
+    margin-top: 1.5cqw;
+    gap: 12px;
+  }
+  .services a {
+    font-size: 11px;
+    gap: 5px;
+  }
+}
+@media (min-width: 801px) and (max-width: 900px) {
+  /* The compact desktop copy reaches lower here. Keep wind over the photograph
+     and fade its left edge rather than letting the ribbon cross that text. */
+  .airflow {
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 12%);
+  }
+}
+@media (max-width: 800px) {
+  .viewport {
+    aspect-ratio: auto;
+    min-height: 0;
+  }
+  .track {
+    height: auto;
+    align-items: stretch;
+  }
+  .slide {
+    height: auto;
+    grid-template-rows: auto auto 1fr auto;
+    padding: 24px 0 10px;
+    overflow: hidden;
+  }
+  .copy {
+    grid-area: 1 / 1;
+    width: 90%;
+    max-width: none;
+    margin-inline: auto;
+    padding: 0 0 22px;
+  }
+  .carousel .headline {
+    font-size: clamp(28px, 6.6cqw, 42px);
+  }
+  .carousel .support .headline {
+    font-size: clamp(26px, 6.1cqw, 38px);
+  }
+  .description {
+    font-size: 14px;
+    max-width: 520px;
+    line-height: 1.7;
+    margin-top: 14px;
+  }
+  .carousel .copy .booking {
+    min-height: 44px;
+    margin-top: 18px;
+    padding: 10px 23px;
+    font-size: 14px;
+  }
+  .benefits {
+    margin-top: 18px;
+    font-size: 12px;
+    gap: 12px 16px;
+  }
+  .media {
+    position: relative;
+    grid-area: 2 / 1;
+    inset: auto;
+    aspect-ratio: 1.5;
+    width: 100%;
+    max-height: 420px;
+    overflow: hidden;
+  }
+  .stage {
+    width: 100%;
+  }
+  .shade {
+    grid-area: 2 / 1;
+    position: relative;
+    inset: auto;
+    background: linear-gradient(180deg, #00152a, transparent 17%, transparent 83%, #00152a);
+  }
+  .gallery {
+    grid-area: 4 / 1;
+    justify-self: center;
+    width: 90%;
+    margin-top: 8px;
+    gap: 8px;
+  }
+  .thumbnail {
+    aspect-ratio: 1.75;
+  }
+  .airflow {
+    grid-area: 2 / 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  .services {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0;
+    padding: 4px;
+  }
+  .services a {
+    min-height: 88px;
+    padding: 8px 3px;
+    font-size: 12px;
+  }
+  .services a:nth-child(4n) {
+    border-right: 0;
+  }
+  .services a:nth-child(-n + 4) {
+    border-bottom: 1px solid #2081aa33;
+  }
+  .serviceIcon {
+    width: 32px;
+    height: 32px;
+  }
+}
+@media (max-width: 480px) {
+  .description {
+    font-size: 13px;
+  }
+  .services a {
+    font-size: 11px;
+  }
+  .benefits {
+    font-size: 11px;
+    gap: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .slide {
+    transition: none;
+  }
+  .thumbnail {
+    transform: none;
+  }
+}
