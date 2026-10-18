@@ -57,12 +57,12 @@ html { scroll-padding-top: 100px; }
   opacity: 0;
   transition: opacity 220ms ease;
 }
-.mn-service-card:is(:hover, :focus-visible)::after { opacity: 1; }
+.mn-service-card:is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible)::after { opacity: 1; }
 .mn-site :is(.mn-service-card, .mn-project-card):focus-visible img { transform: scale(1.025); }
 .mn-site :is(.mn-service-card, .mn-project-card):active { border-color: var(--mn-ice); }
 .mn-site .mn-card-photo img { filter: none; }
 .mn-text-link { display: inline-flex; align-items: center; gap: 7px; text-underline-offset: 5px; }
-.mn-text-link:is(:hover, :focus-visible) { text-decoration: underline; }
+.mn-text-link:is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible) { text-decoration: underline; }
 
 /* The service journey uses the same cards, linked by a restrained progress line. */
 .mn-process-grid { position: relative; --mn-process-progress: 1; }
@@ -118,7 +118,7 @@ html { scroll-padding-top: 100px; }
 }
 .mn-site .contact-action-float { animation: none; }
 @media (hover: hover) and (pointer: fine) {
-  .mn-site .mn-phone-action:is(:hover, :focus-visible) svg { transform: rotate(-12deg); }
+  .mn-site .mn-phone-action:is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible) svg { transform: rotate(-12deg); }
   .mn-site .mn-phone-action svg { transition: transform 180ms ease; }
 }
 @media (max-width: 800px) {
@@ -146,8 +146,8 @@ html { scroll-padding-top: 100px; }
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
   }
-  .mn-site :is(.mn-service-card, .mn-project-card):is(:hover, :active, :focus-visible),
-  .mn-site :is(.mn-service-card, .mn-project-card):is(:hover, :focus-visible) img { transform: none; }
+  .mn-site :is(.mn-service-card, .mn-project-card):is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :active, :focus-visible),
+  .mn-site :is(.mn-service-card, .mn-project-card):is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible) img { transform: none; }
 }
 .mn-site[data-motion-budget='limited']::before,
 .mn-site[data-motion-budget='limited']::after { content: none; }
@@ -160,7 +160,7 @@ html { scroll-padding-top: 100px; }
 }
 .mn-map-area[role='button'] { cursor: pointer; outline: none; }
 .mn-map-area-target { transition: fill 180ms ease, stroke 180ms ease; }
-.mn-map-area:is([data-active='true'], :hover, :focus-visible) .mn-map-area-target {
+.mn-map-area:is([data-active='true'], :hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible) .mn-map-area-target {
   fill: #07516e;
   stroke: #a1eeff;
   stroke-width: .8;
@@ -177,7 +177,7 @@ html { scroll-padding-top: 100px; }
   font-size: 12px;
 }
 .mn-area-selection a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: #a1eeff; text-underline-offset: 4px; }
-.mn-area-selection a:is(:hover, :focus-visible) { text-decoration: underline; }
+.mn-area-selection a:is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible) { text-decoration: underline; }
 .mn-site .mn-service-area { aspect-ratio: auto; min-height: clamp(350px, 34.3vw, 440px); }
 .mn-site .mn-page-hero .mn-image-preview-trigger {
   position: absolute;
@@ -219,7 +219,7 @@ html { scroll-padding-top: 100px; }
 .mn-editorial-layout article > p { max-width: 70ch; text-wrap: pretty; }
 .mn-site .mn-editorial-layout h2 { line-height: 1.4; }
 .mn-editorial-toc a { display: flex; align-items: center; min-height: 44px; border-left: 1px solid #17658a; padding-left: 12px; }
-.mn-editorial-toc a:is(:hover, :focus-visible) { border-color: #a1eeff; color: #a1eeff; }
+.mn-editorial-toc a:is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible) { border-color: #a1eeff; color: #a1eeff; }
 @media (prefers-reduced-motion: no-preference) {
   .mn-image-preview[open] .mn-image-preview-surface { animation: mn-content-enter 220ms var(--ui-motion-ease); }
   .mn-project-grid { animation: mn-surface-enter 260ms ease both; }

@@ -6,11 +6,13 @@ import { FloatingActions } from '@/components/conversion/floating-actions';
 import { SiteFooter } from '@/components/layout/site-footer';
 import { SiteHeader } from '@/components/layout/site-header';
 import { useSiteMotion } from './use-site-motion';
+import { useHomeMotion } from './use-home-motion';
 
 export function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const site = useRef<HTMLDivElement>(null);
   useSiteMotion(site, pathname, !pathname.startsWith('/admin'));
+  useHomeMotion(site, pathname);
 
   if (pathname.startsWith('/admin')) {
     return <div className="flex-1">{children}</div>;

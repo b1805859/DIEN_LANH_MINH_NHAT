@@ -3,7 +3,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { MapPin } from 'lucide-react';
-import { useId, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
+import { canMotionHover } from '@/components/layout/use-home-motion';
 import { siteContent } from '@/lib/content/site-content';
 import { contentImageSizes } from '@/lib/image-sizes';
 import mapData from '@/lib/content/can-tho-map.json';
@@ -24,7 +25,17 @@ const labels: Record<string, { x: number; y: number; anchor?: 'start' | 'middle'
 export function VerifiedServiceArea() {
   const [selected, setSelected] = useState<string | null>(null);
   const [hovered, setHovered] = useState<string | null>(null);
-  const activeName = hovered ?? selected;
+  const [focused, setFocused] = useState<string | null>(null);
+  const activeName = hovered ?? focused ?? selected;
+  useEffect(() => {
+    const clearHover = () => setHovered(null);
+    window.addEventListener('scroll', clearHover, { passive: true });
+    window.addEventListener('wheel', clearHover, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', clearHover);
+      window.removeEventListener('wheel', clearHover);
+    };
+  }, []);
   const active = siteContent.areas.find((area) => area.name === activeName);
   const titleId = useId();
   const select = (name: string) => setSelected((previous) => (previous === name ? null : name));
@@ -58,10 +69,20 @@ export function VerifiedServiceArea() {
               aria-pressed={selected === area.name}
               data-area-active={activeName === area.name}
               onClick={() => select(area.name)}
-              onFocus={() => setHovered(area.name)}
-              onBlur={() => setHovered(null)}
+              onFocus={(event) => {
+                if (!event.currentTarget.matches(':focus-visible')) return;
+                setHovered(null);
+                setFocused(area.name);
+              }}
+              onBlur={() => setFocused(null)}
+              onPointerDown={() => setFocused(null)}
               onPointerEnter={(event) => {
-                if (event.pointerType === 'mouse') setHovered(area.name);
+                if (event.pointerType === 'mouse' && canMotionHover(event.currentTarget))
+                  setHovered(area.name);
+              }}
+              onPointerMove={(event) => {
+                if (event.pointerType === 'mouse' && canMotionHover(event.currentTarget))
+                  setHovered(area.name);
               }}
               onPointerLeave={() => setHovered(null)}
             >
@@ -118,10 +139,20 @@ export function VerifiedServiceArea() {
                   event.preventDefault();
                   select(area.name);
                 }}
-                onFocus={() => setHovered(area.name)}
-                onBlur={() => setHovered(null)}
+                onFocus={(event) => {
+                  if (!event.currentTarget.matches(':focus-visible')) return;
+                  setHovered(null);
+                  setFocused(area.name);
+                }}
+                onBlur={() => setFocused(null)}
+                onPointerDown={() => setFocused(null)}
                 onPointerEnter={(event) => {
-                  if (event.pointerType === 'mouse') setHovered(area.name);
+                  if (event.pointerType === 'mouse' && canMotionHover(event.currentTarget))
+                    setHovered(area.name);
+                }}
+                onPointerMove={(event) => {
+                  if (event.pointerType === 'mouse' && canMotionHover(event.currentTarget))
+                    setHovered(area.name);
                 }}
                 onPointerLeave={() => setHovered(null)}
               >

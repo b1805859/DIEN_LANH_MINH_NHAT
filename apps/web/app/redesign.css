@@ -99,7 +99,7 @@
   font-size: 13px;
   font-weight: 600;
 }
-.mn-text-link:hover {
+.mn-text-link:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)) {
   color: white;
 }
 .mn-button {
@@ -121,7 +121,7 @@
     filter 0.18s,
     box-shadow 0.18s;
 }
-.mn-button:hover {
+.mn-button:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)) {
   filter: brightness(1.09);
   box-shadow: 0 3px 24px #08b7f556;
 }
@@ -240,7 +240,7 @@
   color: #e1eaf4;
 }
 .mn-desktop-nav a[aria-current],
-.mn-desktop-nav a:hover {
+.mn-desktop-nav a:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)) {
   color: #2ad4f3;
 }
 .mn-desktop-nav a[aria-current]::after {
@@ -351,7 +351,7 @@
   border-radius: 50%;
   background: #012541d9;
 }
-.mn-carousel-controls > button:hover {
+.mn-carousel-controls > button:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)) {
   background: #087099;
 }
 .mn-carousel-controls > button svg {
@@ -526,7 +526,7 @@
   width: 25px;
   margin-left: 3px;
 }
-.mn-play:hover > span {
+.mn-play:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)) > span {
   background: #27c6ed70;
 }
 .mn-quick-services {
@@ -563,7 +563,7 @@
 .mn-quick-services a:last-child {
   border-right: 0;
 }
-.mn-quick-services a:hover {
+.mn-quick-services a:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)) {
   background: #128ac51f;
   border-radius: 10px;
 }
@@ -651,8 +651,8 @@
     box-shadow 0.22s;
   min-width: 0;
 }
-.mn-service-card:hover,
-.mn-project-card:hover {
+.mn-service-card:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)),
+.mn-project-card:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)) {
   transform: translateY(-3px);
   border-color: #35c8edaa;
   box-shadow: 0 8px 22px #00132370;
@@ -713,8 +713,8 @@
   color: var(--mn-cyan);
   margin-top: 2px;
 }
-.mn-service-card:hover img,
-.mn-project-card:hover img {
+.mn-service-card:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)) img,
+.mn-project-card:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)) img {
   transform: scale(1.035);
 }
 .mn-services-content {
@@ -936,7 +936,7 @@
 .mn-area-chips a:last-child {
   width: calc(100% + 6.5cqw);
 }
-.mn-area-chips a:hover {
+.mn-area-chips a:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)) {
   background: #046494;
 }
 .mn-area-chips svg {
@@ -1350,7 +1350,7 @@
   line-height: 1.9;
   margin-top: 18px;
 }
-.mn-footer a:hover {
+.mn-footer a:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)) {
   color: #28d2f6;
 }
 .mn-footer-bottom {
@@ -2700,7 +2700,7 @@
   border-radius: 6px;
   font-size: 13px;
 }
-.mn-services-dropdown a:hover,
+.mn-services-dropdown a:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)),
 .mn-services-dropdown a:focus-visible {
   background: #0b3c58;
 }

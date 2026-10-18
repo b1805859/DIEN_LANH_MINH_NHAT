@@ -32,59 +32,45 @@ export function HomeHero() {
       <div className={styles.viewport}>
         <div className={styles.track}>
           <article className={`${styles.slide} ${styles.family} ${styles.active}`}>
-            {/* Layer 1: Clean Living-Room Background Plate (static airflow removed) */}
-            <div className={styles.media}>
-              <div className={styles.stage}>
+            <div className={styles.scene}>
+              {/* Layer 1: Clean Living-Room Background Plate (static airflow removed) */}
+              <div className={styles.media}>
+                <div className={styles.stage}>
+                  <Image
+                    src="/images/redesign/hero-family-natural-arms.webp"
+                    alt="Không gian phòng khách hiện đại mát mẻ cùng gia đình và kỹ thuật viên Điện Lạnh Minh Nhật tại Cần Thơ"
+                    fill
+                    priority
+                    unoptimized
+                    fetchPriority="high"
+                    sizes="100vw"
+                    draggable={false}
+                  />
+                </div>
+              </div>
+
+              {/* Layer 2: Left gradient overlay for text readability */}
+              <div className={styles.shade} />
+
+              {/* Layers 5, 6, 7: Back airflow, Main curved airflow ribbons, Front mist & micro-particles */}
+              <HeroAirflow />
+
+              {/* Reuse the original plate so the full technician stays pixel-aligned. */}
+              <div
+                className={`${styles.occlusionLayer} ${styles.technicianLayer}`}
+                aria-hidden="true"
+              >
                 <Image
-                  src="/images/redesign/hero-room-clean.webp"
-                  alt="Không gian phòng khách hiện đại mát mẻ cùng gia đình và kỹ thuật viên Điện Lạnh Minh Nhật tại Cần Thơ"
+                  src="/images/redesign/hero-family-natural-arms.webp"
+                  alt=""
                   fill
                   priority
                   unoptimized
-                  fetchPriority="high"
                   sizes="100vw"
                   draggable={false}
                 />
               </div>
             </div>
-
-            {/* Layer 2: Left gradient overlay for text readability */}
-            <div className={styles.shade} />
-
-            {/* Layers 5, 6, 7: Back airflow, Main curved airflow ribbons, Front mist & micro-particles */}
-            <HeroAirflow />
-
-            {/* Layers 3, 4, 8: AC vent lip, Family face protection, and Foreground Technician occlusion */}
-            <div className={styles.occlusionLayer} aria-hidden="true">
-              <Image
-                src="/images/redesign/hero-ac-layer.webp"
-                alt=""
-                fill
-                priority
-                unoptimized
-                sizes="100vw"
-                draggable={false}
-              />
-              <Image
-                src="/images/redesign/hero-family-layer.webp?v=3"
-                alt=""
-                fill
-                priority
-                unoptimized
-                sizes="100vw"
-                draggable={false}
-              />
-              <Image
-                src="/images/redesign/hero-technician-layer.webp?v=4"
-                alt=""
-                fill
-                priority
-                unoptimized
-                sizes="100vw"
-                draggable={false}
-              />
-            </div>
-
             {/* Layer 9: Foreground UI Copy & CTA */}
             <div className={styles.copy}>
               <h1 className={styles.headline}>
@@ -93,8 +79,9 @@ export function HomeHero() {
                 <em>thoải mái hơn</em>
               </h1>
               <p className={styles.description}>
-                Giải pháp điện lạnh toàn diện giúp gia đình bạn tận hưởng không gian mát mẻ, trong
-                lành và tiết kiệm điện năng tại Cần Thơ.
+                Giải pháp điện lạnh cho mái ấm
+                <br />
+                mát lành tại Cần Thơ.
               </p>
               <Link className={`mn-button ${styles.booking}`} href="/booking">
                 Đặt lịch ngay

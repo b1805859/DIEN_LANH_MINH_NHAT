@@ -1,9 +1,6 @@
-/* Approved 16:9 Full-Width Cinematic Home Hero & Header reference calibration */
+/* Home uses the same content frame and navigation insets as inner pages. */
 .mn-site[data-home='true'] {
-  --mn-content-gutter: clamp(48px, 10.2vw, 144px);
-  --mn-nav-height: clamp(56px, 6.94vw, 86px);
-  --mn-header-inset: 0px;
-  --mn-page-gap: 8px;
+  --mn-nav-height: 62px;
   background:
     radial-gradient(ellipse at 82% 42%, #004b7366, transparent 55%),
     linear-gradient(145deg, #001428, #00233b 65%, #00192c);
@@ -14,83 +11,7 @@
 }
 .mn-site[data-home='true'] .mn-floating {
   --mn-fab-edge: max(2px, calc((var(--mn-fab-gutter) - var(--mn-fab-size)) / 2));
-  transition: opacity 220ms ease;
-}
-.mn-site[data-home='true'] .mn-header:not(.mn-header-scrolled) ~ .mn-floating {
-  opacity: 0;
-  pointer-events: none;
-}
-.mn-site[data-home='true'] .mn-header {
-  width: 100%;
-  max-width: none;
-  padding: 0;
-}
-.mn-site[data-home='true'] .mn-header .mn-nav-shell {
-  min-height: var(--mn-nav-height);
-  padding: 0 3.1% 0 4.1%;
-  gap: 16px;
-  border-radius: 0;
-  border: 0;
-  border-bottom: 1px solid rgba(40, 142, 200, 0.36);
-  backdrop-filter: blur(12px);
-  background: linear-gradient(90deg, rgba(0, 26, 51, 0.94) 0%, rgba(2, 43, 76, 0.91) 50%, rgba(1, 28, 54, 0.95) 100%);
-}
-.mn-site[data-home='true'] .mn-header .mn-brand {
-  gap: 9px;
-}
-.mn-site[data-home='true'] .mn-header .brand-mark {
-  width: clamp(42px, 4.6vw, 60px);
-  height: clamp(28px, 3.2vw, 42px);
-}
-.mn-site[data-home='true'] .mn-header .mn-brand > span {
-  font-size: clamp(8px, 0.92vw, 12px);
-}
-.mn-site[data-home='true'] .mn-header .mn-brand strong {
-  font-size: clamp(13px, 1.55vw, 20px);
-}
-.mn-site[data-home='true'] .mn-header .mn-brand small {
-  font-size: clamp(6.5px, 0.68vw, 9px);
-  margin-top: 2px;
-}
-.mn-site[data-home='true'] .mn-header .mn-desktop-nav {
-  gap: clamp(16px, 2.3vw, 32px);
-}
-.mn-site[data-home='true'] .mn-header .mn-desktop-nav a {
-  font-size: clamp(10.5px, 1.15vw, 15px);
-}
-.mn-site[data-home='true'] .mn-header .mn-header-actions {
-  gap: clamp(10px, 1.4vw, 18px);
-}
-.mn-site[data-home='true'] .mn-header .mn-hotline {
-  display: flex;
-  gap: 8px;
-}
-.mn-site[data-home='true'] .mn-header .mn-hotline > span {
-  width: clamp(26px, 2.5vw, 34px);
-  height: clamp(26px, 2.5vw, 34px);
-}
-.mn-site[data-home='true'] .mn-header .mn-hotline svg {
-  width: 15px;
-  height: 15px;
-}
-.mn-site[data-home='true'] .mn-header .mn-hotline small {
-  font-size: clamp(7.5px, 0.78vw, 10px);
-}
-.mn-site[data-home='true'] .mn-header .mn-hotline strong {
-  font-size: clamp(10px, 1.15vw, 15px);
-}
-.mn-site[data-home='true'] .mn-header .mn-nav-book {
-  min-height: clamp(32px, 3.3vw, 44px);
-  padding: 6px clamp(16px, 1.9vw, 24px);
-  border-radius: 100px;
-  font-size: clamp(10px, 1.12vw, 15px);
-}
-.mn-site[data-home='true'] .mn-header .mn-nav-book svg {
-  display: none;
-}
-.mn-site[data-home='true'] .mn-header .mn-nav-book::after {
-  content: '→';
-  margin-left: 5px;
+  --mn-fab-bottom: max(72px, calc(env(safe-area-inset-bottom, 0px) + 60px));
 }
 .mn-home .mn-section {
   padding-block: 16px 0;
@@ -657,7 +578,7 @@
   height: 13px;
   color: #4bdcf7;
 }
-.mn-site[data-home='true'] .mn-footer a:is(:hover, :focus-visible) {
+.mn-site[data-home='true'] .mn-footer a:is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible) {
   color: #a1eeff;
   text-decoration: underline;
   text-underline-offset: 4px;
@@ -689,17 +610,17 @@
   }
 }
 @media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
-  .mn-site .mn-home :is(.mn-service-card, .mn-project-card):is(:hover, :focus-visible) {
+  .mn-site .mn-home :is(.mn-service-card, .mn-project-card):is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible) {
     transform: translateY(-2px);
     border-color: #70e5f7;
     box-shadow: 0 6px 18px #00132255;
   }
-  .mn-home .mn-service-card:is(:hover, :focus-visible) .mn-icon-box {
+  .mn-home .mn-service-card:is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible) .mn-icon-box {
     transform: translateY(-1px);
     box-shadow: none;
   }
-  .mn-home .mn-service-card:is(:hover, :focus-visible) .mn-card-arrow,
-  .mn-home .mn-project-card:is(:hover, :focus-visible) .mn-project-copy > div > svg {
+  .mn-home .mn-service-card:is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible) .mn-card-arrow,
+  .mn-home .mn-project-card:is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible) .mn-project-copy > div > svg {
     transform: translateX(2px);
   }
 }
@@ -724,13 +645,6 @@
   }
 }
 @media (max-width: 1100px) and (min-width: 801px) {
-  .mn-site[data-home='true'] .mn-header .mn-nav-shell {
-    grid-template-columns: auto 1fr auto;
-    gap: 10px;
-  }
-  .mn-site[data-home='true'] .mn-header .mn-header-actions {
-    gap: 8px;
-  }
   .mn-home .mn-home-about > div:last-child {
     padding-left: 18px;
     padding-right: 12px;
@@ -755,17 +669,8 @@
 @media (max-width: 800px) {
   .mn-site[data-home='true'] {
     --mn-content-gutter: 48px;
-    --mn-header-inset: 10px;
-    --mn-nav-height: 54px;
+    --mn-nav-height: 60px;
     padding-bottom: calc(68px + env(safe-area-inset-bottom, 0px));
-  }
-  .mn-site[data-home='true'] .mn-header .mn-hotline {
-    display: none;
-  }
-  .mn-site[data-home='true'] .mn-header .mn-nav-book {
-    min-height: 44px;
-    font-size: 12px;
-    padding-inline: 12px;
   }
   .mn-home .mn-section {
     padding-top: 30px;
@@ -997,7 +902,7 @@
   .mn-site[data-home='true'] .mn-floating {
     position: fixed;
     z-index: 50;
-    inset: auto 0 0;
+    inset: auto 0 24px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1035,16 +940,6 @@
 @media (max-width: 480px) {
   .mn-site[data-home='true'] {
     --mn-content-gutter: 32px;
-  }
-  .mn-site[data-home='true'] .mn-header .mn-brand strong {
-    font-size: 12px;
-  }
-  .mn-site[data-home='true'] .mn-header .brand-mark {
-    width: 40px;
-  }
-  .mn-site[data-home='true'] .mn-header .mn-nav-book {
-    padding-inline: 10px;
-    font-size: 11px;
   }
   .mn-home .mn-section-heading h2 {
     font-size: 22px;
@@ -1115,31 +1010,6 @@
     grid-column: 1 / -1;
   }
 }
-@media (max-width: 360px) {
-  .mn-site[data-home='true'] .mn-header .mn-nav-shell {
-    padding-inline: 8px;
-    gap: 6px;
-  }
-  .mn-site[data-home='true'] .mn-header .mn-brand {
-    gap: 5px;
-  }
-  .mn-site[data-home='true'] .mn-header .brand-mark {
-    width: 32px;
-  }
-  .mn-site[data-home='true'] .mn-header .mn-brand strong {
-    font-size: 10px;
-  }
-  .mn-site[data-home='true'] .mn-header .mn-nav-book {
-    flex-shrink: 0;
-    padding-inline: 8px;
-    font-size: 10px;
-    white-space: nowrap;
-    gap: 6px;
-  }
-  .mn-site[data-home='true'] .mn-header .mn-nav-book::after {
-    margin-left: 0;
-  }
-}
 @media (prefers-reduced-motion: reduce) {
   .mn-location-pulse {
     display: none;
@@ -1156,17 +1026,14 @@
 
 .mn-home-services .mn-section-heading h2 .mn-heading-title {
   display: inline-block;
-  will-change: transform, opacity;
 }
 
 .mn-home-services .mn-section-heading h2 em {
   display: inline-block;
-  will-change: transform, opacity, clip-path;
 }
 
 .mn-home-services .mn-service-card {
   position: relative;
-  will-change: transform, box-shadow;
   transition:
     transform 340ms cubic-bezier(0.16, 1, 0.3, 1),
     border-color 280ms ease,
@@ -1178,12 +1045,10 @@
 }
 
 .mn-home-services .mn-card-photo img {
-  will-change: transform;
   transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .mn-home-services .mn-card-arrow {
-  will-change: transform;
   transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -1195,21 +1060,21 @@
 }
 
 @media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
-  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover, :focus-visible) {
-    transform: translateY(-4px) !important;
+  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible) {
+    transform: translateY(-4px);
     border-color: #5fe6fa;
     box-shadow: 0 12px 30px rgba(0, 14, 36, 0.48), 0 0 24px rgba(0, 189, 237, 0.18);
   }
 
-  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover, :focus-visible) .mn-card-photo img {
+  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible) .mn-card-photo img {
     transform: scale(1.025);
   }
 
-  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover, :focus-visible) .mn-card-arrow {
+  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible) .mn-card-arrow {
     transform: translateX(3px);
   }
 
-  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover, :focus-visible) .mn-icon-box {
+  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible) .mn-icon-box {
     transform: translateY(-1px) scale(1.03);
     border-color: #38d3f1;
     box-shadow: 0 0 16px rgba(0, 200, 239, 0.28);
@@ -1231,15 +1096,15 @@
   transition: opacity 320ms cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-.mn-home-services .mn-service-card:is(:hover, :focus-visible)::after {
+.mn-home-services .mn-service-card:is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible)::after {
   opacity: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover, :focus-visible),
-  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover, :focus-visible) .mn-card-photo img,
-  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover, :focus-visible) .mn-card-arrow,
-  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover, :focus-visible) .mn-icon-box {
+  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible),
+  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible) .mn-card-photo img,
+  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible) .mn-card-arrow,
+  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible) .mn-icon-box {
     transform: none !important;
   }
 }

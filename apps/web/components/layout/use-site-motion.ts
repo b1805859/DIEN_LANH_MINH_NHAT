@@ -85,39 +85,6 @@ export function useSiteMotion(
             )
               continue;
 
-            // One coordinated entrance on Home; never move or continuously animate the person.
-            if (pathname === '/' && element.matches('.mn-home-about')) {
-              const photo = element.querySelector<HTMLElement>('.mn-home-about-photo');
-              if (photo)
-                playEntrance(
-                  photo,
-                  budget === 'full'
-                    ? [
-                        { opacity: 0.55, clipPath: 'inset(0 5% 0 0)' },
-                        { opacity: 1, clipPath: 'inset(0 0 0 0)' },
-                      ]
-                    : [{ opacity: 0.7 }, { opacity: 1 }],
-                  budget === 'full' ? 560 : 250,
-                );
-              const copy = element.querySelector<HTMLElement>(':scope > div:last-child');
-              copy
-                ?.querySelectorAll<HTMLElement>(
-                  ':scope > .mn-kicker, :scope > h2, :scope > p, .mn-reasons > article, :scope > .mn-text-link',
-                )
-                .forEach((target, index) =>
-                  playEntrance(
-                    target,
-                    [
-                      { opacity: 0.4, transform: 'translateY(8px)' },
-                      { opacity: 1, transform: 'translateY(0)' },
-                    ],
-                    budget === 'full' ? 480 : 250,
-                    Math.min(index, 6) * (budget === 'full' ? 45 : 20),
-                  ),
-                );
-              continue;
-            }
-
             const siblings = Array.from(element.parentElement?.children || []).filter((sibling) =>
               sibling.matches(revealTargets),
             );
@@ -147,7 +114,7 @@ export function useSiteMotion(
       const register = (node: HTMLElement) => {
         const candidates = [node, ...node.querySelectorAll<HTMLElement>(revealTargets)];
         for (const element of candidates) {
-          if (known.has(element) || !element.matches(revealTargets)) continue;
+          if (pathname === '/' || known.has(element) || !element.matches(revealTargets)) continue;
           known.add(element);
           // A parent panel already supplies the entrance for its nested content.
           if (element.parentElement?.closest(revealTargets) || element.closest('[data-custom-motion="true"]')) continue;

@@ -30,7 +30,7 @@ import styles from './hero.module.css';
  *      through a divergence-free 2D curl-noise velocity field inside the cooling volume.
  */
 
-const IMAGE_ASPECT = 16 / 9;
+const IMAGE_ASPECT = 1661 / 947;
 
 // ---------------------------------------------------------------------------
 // 1. Divergence-Free 2D Curl Noise for Subtle Atmospheric Micro-Motes (`particle-system`)
@@ -119,7 +119,7 @@ float sdSegment(vec2 p, vec2 a, vec2 b) {
 
 // Protects the entire family on the sofa (zero airflow over any part of the family),
 // preserves coffee table details, and protects UI readability while allowing the cooling
-// volume to flow continuously behind the foreground technician (hero-technician-layer.webp).
+// volume to flow continuously behind the foreground technician (hero-technician-focus-mask.svg).
 float subjectMask(vec2 imgUv) {
   float nx = imgUv.x;
   float ny = 1.0 - imgUv.y; // top-down y [0..1]
@@ -129,13 +129,13 @@ float subjectMask(vec2 imgUv) {
   //    mother's extended arm on sofa backrest, laps, trousers, legs, and bare feet).
   //    Note: Technician is NOT masked out here so the airflow volume passes continuously
   //    right behind his head, hair, ear, neck, and right shoulder, and is naturally
-  //    occluded by hero-technician-layer.webp (z-index: 8).
-  float dFatherHead  = length((p - vec2(0.353, 0.562)) / vec2(0.023, 0.038));
-  float dMotherHead  = length((p - vec2(0.414, 0.580)) / vec2(0.024, 0.034));
-  float dFamTorsos   = length((p - vec2(0.398, 0.658)) / vec2(0.068, 0.068));
-  float dMotherArm   = sdSegment(p, vec2(0.425, 0.608), vec2(0.495, 0.612)) / 0.016;
-  float dFatherLegs  = sdSegment(p, vec2(0.415, 0.715), vec2(0.482, 0.798)) / 0.044;
-  float dMotherLegs  = sdSegment(p, vec2(0.468, 0.688), vec2(0.548, 0.762)) / 0.036;
+  //    occluded by hero-technician-focus-mask.svg (z-index: 8).
+  float dFatherHead  = length((p - vec2(0.316, 0.554)) / vec2(0.027, 0.047));
+  float dMotherHead  = length((p - vec2(0.373, 0.576)) / vec2(0.030, 0.045));
+  float dFamTorsos   = length((p - vec2(0.368, 0.665)) / vec2(0.080, 0.085));
+  float dMotherArm   = sdSegment(p, vec2(0.398, 0.605), vec2(0.457, 0.596)) / 0.016;
+  float dFatherLegs  = sdSegment(p, vec2(0.393, 0.720), vec2(0.478, 0.795)) / 0.044;
+  float dMotherLegs  = sdSegment(p, vec2(0.440, 0.687), vec2(0.512, 0.758)) / 0.036;
 
   float dFamily = min(
     min(min(dFatherHead, dMotherHead), min(dFamTorsos, dMotherArm)),
@@ -203,14 +203,14 @@ void main() {
   }
 
   // AC louver slot segment in bottom-up UV: A(0.836, 0.730) -> B(0.916, 0.775)
-  vec2 ventA = vec2(0.836, 0.730);
-  vec2 ventB = vec2(0.916, 0.775);
+  vec2 ventA = vec2(0.867, 0.799);
+  vec2 ventB = vec2(0.965, 0.850);
 
   // Smooth ceiling mask along the AC louver slot so airflow never bleeds onto the upper white AC casing
-  float ventLineY = 0.732 + (imgUv.x - 0.836) * (0.045 / 0.080);
-  float ventCeilingMask = 1.0 - smoothstep(0.815, 0.842, imgUv.x) * smoothstep(ventLineY - 0.002, ventLineY + 0.015, imgUv.y);
+  float ventLineY = 0.799 + (imgUv.x - 0.867) * (0.051 / 0.098);
+  float ventCeilingMask = 1.0 - smoothstep(0.846, 0.873, imgUv.x) * smoothstep(ventLineY - 0.002, ventLineY + 0.015, imgUv.y);
   // Prevent bleeding to the right of the AC vent while allowing downward expansion behind technician
-  float rightWallMask = smoothstep(0.942, 0.902, imgUv.x - (0.775 - imgUv.y) * 0.08);
+  float rightWallMask = smoothstep(0.992, 0.952, imgUv.x - (0.850 - imgUv.y) * 0.08);
   if (ventCeilingMask * rightWallMask < 0.002) {
     discard;
   }
@@ -222,8 +222,8 @@ void main() {
   float distToVent = length((imgUv - closestVent) * vec2(1.0, 1.35));
 
   // Progression distance s from the AC vent across the room [0 at vent -> 1 at far left/floor]
-  float dxVent = max(0.0, 0.905 - imgUv.x);
-  float dyVent = max(0.0, 0.768 - imgUv.y);
+  float dxVent = max(0.0, 0.958 - imgUv.x);
+  float dyVent = max(0.0, 0.846 - imgUv.y);
   float radialDist = length(vec2(dxVent * 0.88, dyVent * 0.92));
   float s = clamp(radialDist / 0.78, 0.0001, 1.0);
 
@@ -238,16 +238,16 @@ void main() {
   // - For x in [0.836..0.916], follows the exact AC louver slot line A(0.836, 0.732) -> B(0.916, 0.775)
   // - For x < 0.836, sweeps smoothly across the upper curtain (0.78, 0.715), window panes (0.62, 0.665),
   //   and indoor tree foliage (0.46, 0.615), then slopes gently down on the left.
-  float dxFromA = max(0.0, 0.836 - imgUv.x);
-  float louverTopY = 0.732 + clamp(imgUv.x - 0.836, 0.0, 0.085) * 0.54;
+  float dxFromA = max(0.0, 0.867 - imgUv.x);
+  float louverTopY = 0.799 + clamp(imgUv.x - 0.867, 0.0, 0.098) * 0.52;
   float leftDropX = max(0.0001, 0.44 - imgUv.x);
   float yHigh = louverTopY - 0.30 * dxFromA - 0.34 * pow(leftDropX, 1.45) * step(imgUv.x, 0.44);
 
   // Lower boundary of the fan: plunges steeply from the right end of the AC louver B(0.916, 0.775)
   // straight down behind the technician's head, hair, ear, neck, and shoulders (x = 0.78..0.91,
   // ny_topdown = 0.35..0.65 -> imgUv.y = 0.35..0.65) so the technician clearly blocks the airflow!
-  float dxBot = max(0.0001, 0.926 - imgUv.x);
-  float yLow  = 0.135 + 0.635 * exp(-18.5 * pow(dxBot, 1.38));
+  float dxBot = max(0.0001, 0.975 - imgUv.x);
+  float yLow  = 0.135 + 0.715 * exp(-18.5 * pow(dxBot, 1.38));
 
   float span = max(0.042, yHigh - yLow);
   float v = (imgUv.y - yLow) / span; // 0 at lower boundary -> 1 at upper boundary
@@ -267,7 +267,7 @@ void main() {
 
   // Longitudinal density falloff: compact & controlled near the AC vent, broad in the mid-room,
   // and softly diffusing toward the far left
-  float ventStart = smoothstep(-0.015, 0.022, 0.922 - imgUv.x);
+  float ventStart = smoothstep(-0.015, 0.022, 0.975 - imgUv.x);
   float roomDecay = 1.0 - smoothstep(0.42, 0.98, s) * 0.48;
   float primaryFanVolume = fanCrossSection * ventStart * roomDecay;
 
@@ -275,7 +275,7 @@ void main() {
   // Ensures the cyan airflow behind the technician's head, ear, neck, and right shoulder
   // (x: 0.77..0.90, ny_topdown: 0.36..0.62 -> imgUv.y: 0.38..0.64) is unmistakably visible
   // so the technician clearly occludes the flow in front of it.
-  float behindTechX = smoothstep(0.72, 0.81, imgUv.x) * smoothstep(0.915, 0.855, imgUv.x);
+  float behindTechX = smoothstep(0.72, 0.81, imgUv.x) * smoothstep(0.965, 0.905, imgUv.x);
   float behindTechY = smoothstep(0.32, 0.44, imgUv.y) * smoothstep(0.74, 0.60, imgUv.y);
   float behindTechBoost = behindTechX * behindTechY * 0.32;
 
@@ -283,12 +283,12 @@ void main() {
   // Cold air settles gently around the lower sofa base, coffee table, and rug/floor
   float poolX = smoothstep(0.17, 0.30, imgUv.x) * smoothstep(0.78, 0.52, imgUv.x);
   float poolY = smoothstep(0.138, 0.182, imgUv.y) * smoothstep(0.46, 0.22, imgUv.y);
-  float floorDiffusionPool = poolX * poolY * 0.68;
+  float floorDiffusionPool = poolX * poolY * 0.08;
 
   // Controlled, subtle emission right at the AC louver mouth (no harsh white hotspot)
   float louverEmission = exp(-distToVent * distToVent * 260.0) *
-                         smoothstep(0.825, 0.840, imgUv.x) *
-                         smoothstep(0.924, 0.908, imgUv.x) * 0.26;
+                         smoothstep(0.855, 0.870, imgUv.x) *
+                         smoothstep(0.980, 0.964, imgUv.x) * 0.26;
 
   // Seamlessly unify the primary fan volume, behind-technician flow, and lower-room floor diffusion
   float unifiedEnvelope = clamp(
@@ -327,7 +327,12 @@ void main() {
   float internalDensity = 0.76 + 0.16 * layerMist + currentWeight * layerCurrents + 0.08 * layerDeep;
 
   // Final volumetric alpha with family & UI occlusion mask
-  float rawAlpha = unifiedEnvelope * internalDensity * ventCeilingMask * rightWallMask * subjectMask(imgUv);
+  // Keep the sofa fabric, coffee table and family as the visual focus. Only the
+  // volumetric mist thins here; the independent micro-particle pass stays visible.
+  float furnitureClarity = mix(0.025, 1.0, smoothstep(0.32, 0.60, imgUv.y));
+  float windowFocus = mix(0.20, 1.0, smoothstep(0.30, 0.70, imgUv.x));
+  float rawAlpha = unifiedEnvelope * internalDensity * ventCeilingMask * rightWallMask * subjectMask(imgUv)
+                 * furnitureClarity * windowFocus;
   float alpha = clamp(rawAlpha * 0.76, 0.0, 0.66);
 
   if (alpha < 0.002) {
@@ -342,7 +347,7 @@ void main() {
   vec3 softIceMist     = vec3(0.58, 0.91, 1.00); // Gentle internal vapor highlight (never overexposed white)
 
   // Over the lower sofa & rug (imgUv.y < 0.36), lift cyan luminance so dark fabrics glow softly
-  float lowerRoomLift = (1.0 - smoothstep(0.16, 0.38, imgUv.y)) * 0.36;
+  float lowerRoomLift = (1.0 - smoothstep(0.16, 0.38, imgUv.y)) * 0.05;
   float highlightMix = clamp(
     layerCurrents * (1.0 - 0.45 * s) * 0.55 + layerMist * 0.32 + lowerRoomLift,
     0.0,
@@ -394,7 +399,11 @@ void main() {
 }
 `;
 
-function compileShader(gl: WebGLRenderingContext, type: number, source: string): WebGLShader | null {
+function compileShader(
+  gl: WebGLRenderingContext,
+  type: number,
+  source: string,
+): WebGLShader | null {
   const shader = gl.createShader(type);
   if (!shader) return null;
   gl.shaderSource(shader, source);
@@ -458,7 +467,7 @@ export function HeroAirflow() {
     if (modeParam === 'off') return;
 
     const fixedTimeParam = params.get('t');
-    const hasFixedTime = fixedTimeParam !== null && !Number.isNaN( parseFloat(fixedTimeParam) );
+    const hasFixedTime = fixedTimeParam !== null && !Number.isNaN(parseFloat(fixedTimeParam));
     const fixedTimeValue = hasFixedTime ? parseFloat(fixedTimeParam!) : 0;
 
     const reducedMotion =
@@ -509,28 +518,23 @@ export function HeroAirflow() {
     };
 
     // 1. Fullscreen Quad for Unified Volumetric Cooling Field
-    const quadData = new Float32Array([
-      -1, -1, 0, 0,
-       1, -1, 1, 0,
-      -1,  1, 0, 1,
-       1,  1, 1, 1,
-    ]);
+    const quadData = new Float32Array([-1, -1, 0, 0, 1, -1, 1, 0, -1, 1, 0, 1, 1, 1, 1, 1]);
     const quadBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, quadData, gl.STATIC_DRAW);
 
     // 2. Abundant Fine Cooling Micro-Motes (`particle-system`)
-    const PARTICLE_COUNT = 360;
+    const PARTICLE_COUNT = 1080;
     const particleData = new Float32Array(PARTICLE_COUNT * 4);
     const particleBuffer = gl.createBuffer();
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const particles = Array.from({ length: PARTICLE_COUNT }, (_, i) => {
-      // Low-discrepancy Halton-like sequence for even, non-clumped distribution
-      const h1 = ((i * 73 + 19) % 359) / 359;
-      const h2 = ((i * 151 + 43) % 349) / 349;
-      const h3 = ((i * 211 + 61) % 337) / 337;
-      const h4 = ((i * 97 + 29) % 331) / 331;
+      // Deterministic low-discrepancy samples stay spread out as density increases.
+      const h1 = (0.19 + i * 0.61803398875) % 1;
+      const h2 = (0.43 + i * 0.75487766625) % 1;
+      const h3 = (0.61 + i * 0.56984029099) % 1;
+      const h4 = (0.29 + i * 0.43844718719) % 1;
       return {
         u0: h1,
         vBand: 0.03 + h2 * 0.92, // Spans the entire unified cooling volume including behind technician
@@ -549,14 +553,14 @@ export function HeroAirflow() {
         const s = Math.pow(linearS, 0.86);
 
         // Map (s, vBand) into the unified cooling volume in image UV
-        const imgX = 0.908 - s * 0.68;
-        const dxVent = Math.max(0.0, 0.905 - imgX);
-        const yHigh = 0.768 - 0.28 * dxVent - 0.34 * Math.pow(Math.max(0.0, 0.44 - imgX), 1.45);
-        const dxBot = Math.max(0.0, 0.924 - imgX);
-        const yLow = 0.142 + 0.625 * Math.exp(-16.5 * Math.pow(dxBot, 1.36));
+        const imgX = 0.96 - s * 0.73;
+        const dxVent = Math.max(0.0, 0.958 - imgX);
+        const yHigh = 0.842 - 0.28 * dxVent - 0.34 * Math.pow(Math.max(0.0, 0.44 - imgX), 1.45);
+        const dxBot = Math.max(0.0, 0.977 - imgX);
+        const yLow = 0.142 + 0.708 * Math.exp(-16.5 * Math.pow(dxBot, 1.36));
         const baseImgY = yLow + (yHigh - yLow) * p.vBand;
 
-        const [curlX, curlY] = curlNoise2D(imgX * 4.5 - t * 0.20, baseImgY * 4.5 + i * 0.37);
+        const [curlX, curlY] = curlNoise2D(imgX * 4.5 - t * 0.2, baseImgY * 4.5 + i * 0.37);
         const eddy = 0.014 * Math.min(1.0, s * 2.2);
         const imgXFinal = imgX + curlX * eddy;
         const imgYFinal = baseImgY + curlY * eddy;
@@ -565,21 +569,19 @@ export function HeroAirflow() {
         // Particles behind the technician are allowed so the foreground technician layer occludes them naturally!
         const ny = 1.0 - imgYFinal;
         const inFamily =
-          Math.hypot((imgXFinal - 0.353) / 0.028, (ny - 0.562) / 0.044) < 1.0 ||
-          Math.hypot((imgXFinal - 0.414) / 0.028, (ny - 0.580) / 0.040) < 1.0 ||
-          Math.hypot((imgXFinal - 0.398) / 0.074, (ny - 0.658) / 0.074) < 1.0 ||
-          distToSegment2D(imgXFinal, ny, 0.425, 0.608, 0.495, 0.612) < 0.020 ||
-          distToSegment2D(imgXFinal, ny, 0.415, 0.715, 0.482, 0.798) < 0.048 ||
-          distToSegment2D(imgXFinal, ny, 0.468, 0.688, 0.548, 0.762) < 0.040;
+          Math.hypot((imgXFinal - 0.316) / 0.032, (ny - 0.554) / 0.052) < 1.0 ||
+          Math.hypot((imgXFinal - 0.373) / 0.035, (ny - 0.576) / 0.05) < 1.0 ||
+          Math.hypot((imgXFinal - 0.368) / 0.085, (ny - 0.665) / 0.09) < 1.0 ||
+          distToSegment2D(imgXFinal, ny, 0.398, 0.605, 0.457, 0.596) < 0.02 ||
+          distToSegment2D(imgXFinal, ny, 0.393, 0.72, 0.478, 0.795) < 0.048 ||
+          distToSegment2D(imgXFinal, ny, 0.44, 0.687, 0.512, 0.758) < 0.04;
 
         // Subtle twinkle modulation so micro-motes feel suspended in cool air
         const twinkle = 0.78 + 0.22 * Math.sin(t * 2.1 + i * 1.73);
 
         const clipX = ((imgXFinal - coverOffset[0]) / coverScale[0]) * 2.0 - 1.0;
         const clipY = ((imgYFinal - coverOffset[1]) / coverScale[1]) * 2.0 - 1.0;
-        const envelope = inFamily
-          ? 0.0
-          : Math.sin(s * Math.PI) * Math.min(1.0, s * 6.5) * twinkle;
+        const envelope = inFamily ? 0.0 : Math.sin(s * Math.PI) * Math.min(1.0, s * 6.5) * twinkle;
 
         const base = i * 4;
         particleData[base] = clipX;
@@ -708,5 +710,7 @@ export function HeroAirflow() {
     };
   }, []);
 
-  return <div ref={containerRef} className={`mn-hero-airflow ${styles.airflow}`} aria-hidden="true" />;
+  return (
+    <div ref={containerRef} className={`mn-hero-airflow ${styles.airflow}`} aria-hidden="true" />
+  );
 }
