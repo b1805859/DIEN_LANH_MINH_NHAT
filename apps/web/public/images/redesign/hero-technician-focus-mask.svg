@@ -1,10 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1661 947">
-  <!-- Foreground contour in the approved family-focused photograph. -->
-  <path fill="white" transform="translate(1250 300)" d="
-    M 113 98
-    C 110 83 117 67 128 53
-    C 140 38 156 29 174 24
-    C 191 18 206 23 214 44
+<svg xmlns="http://www.w3.org/2000/svg" width="1661" height="947" viewBox="0 0 1661 947">
+  <defs>
+    <filter id="contour-edge" x="-1%" y="-1%" width="102%" height="102%" color-interpolation-filters="sRGB">
+      <feMorphology in="SourceAlpha" operator="erode" radius="0.6" />
+      <feGaussianBlur stdDeviation="0.35" />
+    </filter>
+  </defs>
+  <!-- Foreground contour aligned to hero-family-natural-arms.webp in source image pixels. -->
+  <path fill="white" filter="url(#contour-edge)" transform="translate(1250 300)" d="
+    M 114 98
+    C 113 83 121 66 132 53
+    C 143 40 160 31 179 25
+    C 193 21 210 26 217 45
     C 227 40 240 45 250 55
     C 264 69 266 88 261 110
     C 265 115 263 131 259 139
@@ -29,11 +35,14 @@
     L 36 370 L 44 347 L 49 337
     L 47 322 L 54 302 L 57 294
     L 78 275
-    C 98 264 125 254 151 245
-    L 155 231 L 162 216
-    C 162 209 164 202 161 195
-    C 153 188 146 180 140 170
-    C 133 160 128 150 128 137
-    C 121 126 116 111 113 98 Z
+    C 102 261 128 252 153 244
+    L 157 234
+    C 159 226 164 220 170 218
+    L 167 199
+    C 155 193 144 183 138 171
+    C 132 161 129 151 128 143
+    C 126 138 128 133 130 136
+    C 126 129 119 119 116 110
+    C 113 105 112 101 114 98 Z
   "/>
 </svg>

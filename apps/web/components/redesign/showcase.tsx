@@ -10,11 +10,13 @@ export function Showcase({
   initialTab = 'projects',
   initialCategory = 'all',
   compact = false,
+  home = false,
   projectCovers = {},
 }: {
   initialTab?: 'projects' | 'news';
   initialCategory?: string;
   compact?: boolean;
+  home?: boolean;
   projectCovers?: Record<string, { src: string; alt: string; position?: string }>;
 }) {
   const [tab, setTab] = useState(initialTab);
@@ -37,8 +39,7 @@ export function Showcase({
   const filtered = items
     .filter((p) => category === 'all' || p.category === category)
     .slice(0, compact ? 4 : undefined);
-  return (
-    <div className="mn-showcase">
+  const tabs = (
       <div
         className="mn-tabs"
         role="tablist"
@@ -86,6 +87,18 @@ export function Showcase({
           Tin tức hữu ích
         </button>
       </div>
+  );
+  return (
+    <div className="mn-showcase">
+      {home ? (
+        <div className="mn-home-showcase-heading">
+          <h2>Dự án minh họa & <em>Tin tức hữu ích</em></h2>
+          {tabs}
+          <Link href={tab === 'projects' ? '/projects' : '/blog'} className="mn-text-link">
+            Xem tất cả <ArrowRight size={18} aria-hidden="true" />
+          </Link>
+        </div>
+      ) : tabs}
       {!compact && tab === 'news' && (
         <div className="mn-filters" aria-label="Lọc danh mục">
           <button aria-pressed={category === 'all'} onClick={() => setCategory('all')}>
@@ -122,7 +135,9 @@ export function Showcase({
                   fill
                   sizes={
                     compact
-                      ? '(max-width: 480px) 44vw, (max-width: 800px) 45vw, (max-width: 1380px) 22vw, 310px'
+                      ? home
+                        ? '(max-width: 600px) calc(100vw - 40px), (max-width: 1000px) 46vw, 310px'
+                        : '(max-width: 480px) 44vw, (max-width: 800px) 45vw, (max-width: 1380px) 22vw, 310px'
                       : halfContentImageSizes
                   }
                 />

@@ -5,8 +5,10 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useMotionBudget } from '@/components/ui/use-motion-budget';
 
-// Reveal each visible detail at its own position, including content near the
-// bottom of tall cards. Replay in either scroll direction at a readable pace.
+// Each detail has its own short scroll range. Scrolling back through that
+// range reverses only that detail, in the opposite order to its entrance.
+// Structural and interactive surfaces only fade:
+// adding/removing transforms there can change an absolute child's containing block.
 type MotionElement = HTMLElement | SVGElement;
 const homeTargets = [
   '.mn-home .mn-section-heading .mn-kicker',
@@ -14,20 +16,20 @@ const homeTargets = [
   '.mn-home .mn-heading-title',
   '.mn-home .mn-section-heading h2 em:is(.mn-home-services *)',
   '.mn-home .mn-section-heading > .mn-text-link',
+  '.mn-home-services-intro > :is(p, .mn-text-link)',
+  '.mn-home-service-controls',
+  '.mn-home-showcase-heading > :is(h2, .mn-text-link)',
   '.mn-home .mn-service-card',
   '.mn-home :is(.mn-service-card, .mn-project-card) .mn-card-photo > img',
   '.mn-home .mn-service-card .mn-card-copy :is(.mn-icon-box, h3, p, .mn-card-arrow)',
   '.mn-home .mn-project-card :is(.mn-demo-tag, .mn-project-copy > h3, .mn-project-copy > p, .mn-project-copy > div)',
-  '.mn-home-about',
   '.mn-home-about-photo',
-  '.mn-home-about-photo > img',
   '.mn-about-brand-badge',
   '.mn-home-about > div:last-child > :is(p, h2, .mn-text-link)',
   '.mn-home .mn-reasons > article',
   '.mn-home .mn-reasons > article > :is(svg, h3, p)',
   '.mn-home .mn-tabs',
   '.mn-home .mn-project-card',
-  '.mn-home .mn-service-area',
   '.mn-home .mn-area-copy > :is(h2, p)',
   '.mn-home .mn-area-chips > *',
   '.mn-home .mn-area-selection',
@@ -35,11 +37,12 @@ const homeTargets = [
   '.mn-home .mn-verified-map',
   '.mn-home .mn-map-source',
   '.mn-home .mn-process-grid > article',
-  '.mn-home .mn-process-grid > article > :is(span, h3, p)',
-  '.mn-home .mn-process-grid',
-  '.mn-footer',
+  '.mn-home .mn-process-illustration',
+  '.mn-home .mn-journey-connector',
+  '.mn-home .mn-journey-milestone',
+  '.mn-home-process-journey .mn-section-heading h2 em',
+  '.mn-home .mn-process-grid > article > :is(span, h3, p, .mn-home-process-icon)',
   '.mn-footer-grid > div > *',
-  '.mn-footer-bottom',
   '.mn-footer-bottom > span',
   '.mn-footer-bottom a',
 ].join(',');
@@ -53,7 +56,7 @@ export function useHomeMotion(root: RefObject<HTMLDivElement | null>, pathname: 
 
   useEffect(() => {
     const site = root.current;
-    if (pathname !== '/' || !site) return;
+    if (pathname !== '/' || !site || budget === 'reduced') return;
     gsap.registerPlugin(ScrollTrigger);
 
     let disposed = false;
@@ -85,26 +88,36 @@ export function useHomeMotion(root: RefObject<HTMLDivElement | null>, pathname: 
     const context = gsap.context(() => {}, site);
     const register = (node: MotionElement) => {
       const targets = [node, ...node.querySelectorAll<MotionElement>(homeTargets)].filter(
-        (element) => element.matches(homeTargets) && !tweens.has(element),
+        (element) =>
+          element.matches(homeTargets) &&
+          !tweens.has(element),
       );
       context.add(() => {
         for (const element of targets) {
           const siblings = Array.from(element.parentElement?.children ?? []).filter((sibling) =>
-            sibling.matches(homeTargets),
+            sibling.matches(homeTargets) && !sibling.matches('.mn-journey-connector, .mn-journey-milestone'),
           );
-          const index = siblings.indexOf(element);
-          const stagger = Math.min(Math.max(index, 0), 4) * 0.04;
-          const reduced = budget === 'reduced';
+          const index = element.matches('.mn-journey-milestone')
+            ? Number(element.dataset.stepIndex)
+            : siblings.indexOf(element);
+          // Offset siblings slightly in scroll space, so a row also unfolds in order.
+          const process = !!element.closest('.mn-home-process-journey');
+          const processCard = process ? element.closest<HTMLElement>('.mn-process-grid > article') : null;
+          const processCards = processCard
+            ? Array.from(processCard.parentElement?.querySelectorAll(':scope > article') ?? [])
+            : [];
+          const scrollOffset = processCard
+            ? processCards.indexOf(processCard) * 16 +
+              (element === processCard ? 0 : Math.min(Math.max(index, 0), 4) * 16)
+            : Math.min(Math.max(index, 0), 4) * (process ? 24 : 12);
           const surface = element.matches(
-            '.mn-home-about, .mn-home-about-photo, .mn-service-area, .mn-verified-map-wrap, .mn-process-grid, .mn-service-card, .mn-project-card, .mn-reasons > article, .mn-process-grid > article, .mn-tabs, .mn-footer, .mn-footer-bottom',
+            '.mn-home-about, .mn-home-about-photo, .mn-service-area, .mn-verified-map-wrap, .mn-process-grid, .mn-service-card, .mn-project-card, .mn-reasons > article, .mn-process-grid > article, .mn-tabs, .mn-footer, .mn-footer-bottom, .mn-home-service-controls, .mn-home-process-icon, .mn-icon-box, .mn-card-arrow, .mn-card-photo > img, .mn-project-copy > div, .mn-process-illustration, .mn-journey-connector, .mn-journey-milestone, .mn-home-process-journey h2 em',
           );
-          const footer = !!element.closest('.mn-footer');
-          const distance = reduced || surface ? 0 : budget === 'limited' ? 12 : 24;
+          const distance = surface ? 0 : budget === 'limited' ? 10 : 22;
           const from = {
             opacity: 0,
-            y: distance,
+            ...(distance ? { y: distance } : {}),
           };
-          if (reduced) from.y = 0;
           element.dataset.mnReveal = 'pending';
           element.setAttribute('data-mn-hover-blocked', '');
           const setReady = (ready: boolean) => {
@@ -121,38 +134,46 @@ export function useHomeMotion(root: RefObject<HTMLDivElement | null>, pathname: 
                   !!card.querySelector('[data-mn-reveal="pending"]'),
               );
           };
-          const position = (edge: 'enter' | 'leave') => {
-            const max = Math.max(1, site.offsetTop + site.offsetHeight - window.innerHeight);
+          const position = (edge: 'start' | 'end') => {
+            const max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+            // Start all details from their card's entrance. Tall cartoons must
+            // not postpone the description until it is already on screen.
+            const anchor = processCard ?? element;
             const top =
-              element.getBoundingClientRect().top +
+              anchor.getBoundingClientRect().top +
               window.scrollY -
-              Number(gsap.getProperty(element, 'y'));
-            // Every footer item must trigger before the page reaches its end.
-            const start = Math.max(0, Math.min(top - window.innerHeight * 0.96, max - 1));
-            const header = site.querySelector('.mn-header')?.getBoundingClientRect().height ?? 64;
-            return edge === 'enter'
-              ? start
-              : Math.max(start + 1, top + element.getBoundingClientRect().height - header);
+              Number(gsap.getProperty(anchor, 'y'));
+            const range = Math.min(
+              max,
+              process
+                ? Math.max(100, Math.min(180, window.innerHeight * 0.2))
+                : Math.max(64, Math.min(120, window.innerHeight * 0.14)),
+            );
+            // Reserve the full range for the last footer details before the page ends.
+            const start = Math.max(
+              0,
+              Math.min(top - window.innerHeight * 0.92 + scrollOffset, max - range),
+            );
+            return edge === 'start' ? start : start + range;
           };
 
           const tween = gsap.fromTo(element, from, {
             opacity: 1,
-            y: 0,
-            duration: reduced ? 0.18 : footer ? 0.85 : budget === 'limited' ? 0.6 : 0.7,
-            delay: reduced || surface ? 0 : stagger,
-            ease: reduced ? 'power1.out' : 'sine.out',
+            ...(distance ? { y: 0 } : {}),
+            duration: 1,
+            ease: 'none',
             onUpdate() {
               setReady(this.progress() >= 0.999);
             },
             onComplete: () => setReady(true),
             onReverseComplete: () => setReady(false),
-            // Release the transform at rest so CSS hover can take over cleanly.
-            clearProps: 'opacity,transform',
+            // Keep the end values so reverse can retrace the same tween reliably.
+            // Hoverable surfaces animate opacity only, leaving CSS transforms free.
             scrollTrigger: {
               trigger: element,
-              start: () => position('enter'),
-              end: () => position('leave'),
-              toggleActions: 'play reverse play reverse',
+              start: () => position('start'),
+              end: () => position('end'),
+              scrub: process ? 0.35 : budget === 'limited' ? 0.12 : 0.2,
             },
           });
           tweens.set(element, tween);
@@ -168,7 +189,7 @@ export function useHomeMotion(root: RefObject<HTMLDivElement | null>, pathname: 
       const element = event.target.closest<MotionElement>('[data-mn-reveal]');
       if (!element) return;
       for (const [target, tween] of tweens)
-        if (target.contains(element) || element.contains(target)) tween.progress(1);
+        if (target.contains(element) || element.contains(target)) tween.progress(1).pause();
     };
     site.addEventListener('focusin', revealFocused);
 

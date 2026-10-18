@@ -2,13 +2,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { HomeHero } from '@/components/redesign/hero';
 import { HomeServicesSection } from '@/components/redesign/home-services-section';
-import { Process, Reasons, SectionHeading } from '@/components/redesign/ui';
+import { Process, Reasons } from '@/components/redesign/ui';
 import { VerifiedServiceArea } from '@/components/redesign/verified-service-area';
 import { Showcase } from '@/components/redesign/showcase';
 import { siteContent } from '@/lib/content/site-content';
 import { buildMetadata } from '@/lib/seo/metadata';
 import { halfContentImageSizes } from '@/lib/image-sizes';
 import './home-refinement.css';
+import './home-approved.css';
 import { ShieldCheck } from 'lucide-react';
 export const metadata = buildMetadata({
   title: 'Điện lạnh tận nơi tại Cần Thơ',
@@ -20,9 +21,10 @@ export default function HomePage() {
   return (
     <main className="mn-home">
       <HomeHero />
-      <div className="mn-container">
+      <div className="mn-home-content">
         <HomeServicesSection />
-        <section className="mn-home-about mn-panel">
+        <div className="mn-home-about-band">
+        <section className="mn-home-about mn-home-frame">
           <div className="mn-home-about-photo">
             <Image
               src={siteContent.images.technician}
@@ -48,7 +50,7 @@ export default function HomePage() {
             </h2>
             <p>
               Minh Nhật chăm chút từng công việc, từ kiểm tra, tư vấn đến thi công và bàn giao, để
-              thiết bị trong nhà vận hành ổn định.
+              thiết bị trong nhà vận hành ổn định, bền bỉ.
             </p>
             <Reasons />
             <Link href="/about" className="mn-text-link">
@@ -56,9 +58,11 @@ export default function HomePage() {
             </Link>
           </div>
         </section>
-        <section className="mn-section">
-          <SectionHeading title="Dự án minh họa" accent="& Tin tức hữu ích" href="/projects" />
+        </div>
+        <section className="mn-section mn-home-projects mn-home-light" aria-label="Dự án minh họa và tin tức hữu ích">
+          <div className="mn-home-frame">
           <Showcase
+            home
             compact
             projectCovers={{
               'lap-dat-may-lanh-ninh-kieu': {
@@ -76,9 +80,14 @@ export default function HomePage() {
               },
             }}
           />
+          </div>
         </section>
-        <VerifiedServiceArea />
-        <Process />
+        <div className="mn-home-coverage-band">
+          <VerifiedServiceArea />
+        </div>
+        <div className="mn-home-process-band mn-home-light">
+          <div className="mn-home-frame"><Process home /></div>
+        </div>
       </div>
     </main>
   );

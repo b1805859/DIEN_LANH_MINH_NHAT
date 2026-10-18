@@ -1,14 +1,15 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { HomeProcessJourney } from './home-process-journey';
 import { useMotionBudget } from '@/components/ui/use-motion-budget';
 
-export function ProcessTimeline({ steps }: { steps: string[][] }) {
+export function ProcessTimeline({ steps, home = false }: { steps: string[][]; home?: boolean }) {
   const root = useRef<HTMLDivElement>(null);
   const budget = useMotionBudget();
   useEffect(() => {
     const element = root.current;
-    if (!element || budget === 'reduced' || !('IntersectionObserver' in window)) return;
+    if (home || !element || budget === 'reduced' || !('IntersectionObserver' in window)) return;
     const cards = Array.from(element.querySelectorAll<HTMLElement>('article'));
     let visible = false;
     let frame = 0;
@@ -62,7 +63,8 @@ export function ProcessTimeline({ steps }: { steps: string[][] }) {
         delete card.dataset.stepState;
       });
     };
-  }, [budget, steps.length]);
+  }, [budget, steps.length, home]);
+  if (home) return <HomeProcessJourney steps={steps} />;
   return (
     <div className="mn-process-grid" ref={root} role="list" aria-label="Các bước phục vụ">
       {steps.map(([title, description], index) => (

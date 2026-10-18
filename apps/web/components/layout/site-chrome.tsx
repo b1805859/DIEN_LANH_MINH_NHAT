@@ -4,6 +4,7 @@ import { ReactNode, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { FloatingActions } from '@/components/conversion/floating-actions';
 import { SiteFooter } from '@/components/layout/site-footer';
+import { HomeFooter } from '@/components/layout/home-footer';
 import { SiteHeader } from '@/components/layout/site-header';
 import { useSiteMotion } from './use-site-motion';
 import { useHomeMotion } from './use-home-motion';
@@ -23,7 +24,7 @@ export function SiteChrome({ children }: { children: ReactNode }) {
       <a className="mn-skip-link" href="#mn-main-content">Bỏ qua menu, đến nội dung</a>
       <SiteHeader />
       <div className="flex-1" id="mn-main-content" tabIndex={-1}>{children}</div>
-      <SiteFooter />
+      {pathname === '/' ? <HomeFooter /> : <SiteFooter />}
       <div className="mn-floating">
         <FloatingActions />
       </div>

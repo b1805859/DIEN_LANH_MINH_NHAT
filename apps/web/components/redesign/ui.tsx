@@ -231,11 +231,12 @@ export function ServiceGrid({
     </div>
   );
 }
-export function Process() {
+export function Process({ home = false }: { home?: boolean }) {
   return (
-    <section className="mn-process">
+    <section className={home ? 'mn-process mn-home-process-journey' : 'mn-process'}
+      data-custom-motion={home ? 'true' : undefined}>
       <SectionHeading title="Quy trình phục vụ" accent="chuyên nghiệp" />
-      <ProcessTimeline steps={processSteps} />
+      <ProcessTimeline steps={processSteps} home={home} />
     </section>
   );
 }

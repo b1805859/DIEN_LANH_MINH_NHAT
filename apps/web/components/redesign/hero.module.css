@@ -123,7 +123,7 @@
 
 /* Match the room plate's cover projection; keep the complete person above all airflow. */
 .technicianLayer {
-  mask-image: url('/images/redesign/hero-technician-focus-mask.svg');
+  mask-image: url('/images/redesign/hero-technician-focus-mask.svg?v=20261018-contour-2');
   mask-size: cover;
   mask-position: center center;
   mask-repeat: no-repeat;
