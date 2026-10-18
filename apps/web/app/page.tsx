@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { HomeHero } from '@/components/redesign/hero';
-import { Process, Reasons, SectionHeading, ServiceGrid } from '@/components/redesign/ui';
+import { HomeServicesSection } from '@/components/redesign/home-services-section';
+import { Process, Reasons, SectionHeading } from '@/components/redesign/ui';
 import { VerifiedServiceArea } from '@/components/redesign/verified-service-area';
 import { Showcase } from '@/components/redesign/showcase';
 import { siteContent } from '@/lib/content/site-content';
@@ -20,15 +21,7 @@ export default function HomePage() {
     <main className="mn-home">
       <HomeHero />
       <div className="mn-container">
-        <section className="mn-section">
-          <SectionHeading
-            label="DỊCH VỤ ĐIỆN LẠNH MINH NHẬT"
-            title="Dịch vụ điện lạnh"
-            accent="toàn diện tại Cần Thơ"
-            href="/services"
-          />
-          <ServiceGrid limit={5} home />
-        </section>
+        <HomeServicesSection />
         <section className="mn-home-about mn-panel">
           <div className="mn-home-about-photo">
             <Image

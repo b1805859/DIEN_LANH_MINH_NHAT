@@ -40,6 +40,7 @@ export function HomeHero() {
                   alt="Không gian phòng khách hiện đại mát mẻ cùng gia đình và kỹ thuật viên Điện Lạnh Minh Nhật tại Cần Thơ"
                   fill
                   priority
+                  unoptimized
                   fetchPriority="high"
                   sizes="100vw"
                   draggable={false}
@@ -60,22 +61,25 @@ export function HomeHero() {
                 alt=""
                 fill
                 priority
+                unoptimized
                 sizes="100vw"
                 draggable={false}
               />
               <Image
-                src="/images/redesign/hero-family-layer.webp"
+                src="/images/redesign/hero-family-layer.webp?v=3"
                 alt=""
                 fill
                 priority
+                unoptimized
                 sizes="100vw"
                 draggable={false}
               />
               <Image
-                src="/images/redesign/hero-technician-layer.webp"
+                src="/images/redesign/hero-technician-layer.webp?v=4"
                 alt=""
                 fill
                 priority
+                unoptimized
                 sizes="100vw"
                 draggable={false}
               />

@@ -1145,3 +1145,102 @@
     display: none;
   }
 }
+
+/* ==========================================================================
+   Home Service Section Motion Calibration (Scoped)
+   ========================================================================== */
+.mn-home-services {
+  position: relative;
+  overflow-x: clip;
+}
+
+.mn-home-services .mn-section-heading h2 .mn-heading-title {
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.mn-home-services .mn-section-heading h2 em {
+  display: inline-block;
+  will-change: transform, opacity, clip-path;
+}
+
+.mn-home-services .mn-service-card {
+  position: relative;
+  will-change: transform, box-shadow;
+  transition:
+    transform 340ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 280ms ease,
+    box-shadow 340ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mn-home-services .mn-card-photo {
+  overflow: hidden;
+}
+
+.mn-home-services .mn-card-photo img {
+  will-change: transform;
+  transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mn-home-services .mn-card-arrow {
+  will-change: transform;
+  transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mn-home-services .mn-icon-box {
+  transition:
+    transform 260ms cubic-bezier(0.215, 0.61, 0.355, 1),
+    border-color 240ms ease,
+    box-shadow 260ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover, :focus-visible) {
+    transform: translateY(-4px) !important;
+    border-color: #5fe6fa;
+    box-shadow: 0 12px 30px rgba(0, 14, 36, 0.48), 0 0 24px rgba(0, 189, 237, 0.18);
+  }
+
+  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover, :focus-visible) .mn-card-photo img {
+    transform: scale(1.025);
+  }
+
+  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover, :focus-visible) .mn-card-arrow {
+    transform: translateX(3px);
+  }
+
+  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover, :focus-visible) .mn-icon-box {
+    transform: translateY(-1px) scale(1.03);
+    border-color: #38d3f1;
+    box-shadow: 0 0 16px rgba(0, 200, 239, 0.28);
+  }
+}
+
+/* Ambient Motion: subtle, quiet specular edge shimmer */
+.mn-home-services .mn-service-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, rgba(161, 238, 255, 0.32) 0%, transparent 45%) border-box;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0.2;
+  transition: opacity 320ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.mn-home-services .mn-service-card:is(:hover, :focus-visible)::after {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover, :focus-visible),
+  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover, :focus-visible) .mn-card-photo img,
+  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover, :focus-visible) .mn-card-arrow,
+  .mn-site .mn-home .mn-home-services .mn-service-card:is(:hover, :focus-visible) .mn-icon-box {
+    transform: none !important;
+  }
+}
+

@@ -3,61 +3,68 @@
 import { useEffect, useRef } from 'react';
 import styles from './hero.module.css';
 
-// Source hero image aspect ratio (1376 x 768) used by object-fit: cover
-const IMAGE_ASPECT = 1376 / 768;
+/**
+ * HeroAirflow — Precision Unified Volumetric Cooling Engine
+ *
+ * Skills Applied:
+ * 1. `shader-glsl`:
+ *    - Single continuous volumetric cooling field (`UNIFIED_VOLUME_FRAG`) with zero
+ *      separated lines, beams, or neon ribbons.
+ *    - Curvilinear fan-and-floor coordinate mapping `(s, v)` anchored to the exact AC
+ *      louver slot `A(0.836, 0.730) -> B(0.916, 0.775)`.
+ *    - Controlled, subtle cyan illumination at the AC vent (no white hotspot or harsh glow;
+ *      the dark louver slot remains clearly visible).
+ *    - Full-room cooling coverage expanding from the AC vent across the curtain, window,
+ *      and indoor plant, diffusing around the family sofa and coffee table, and settling
+ *      softly near the floor/rug.
+ *    - Three blended internal advection layers (broad volumetric base, soft directional
+ *      streamline currents, and slow billowing mist) that move continuously within a
+ *      stable outer silhouette.
+ * 2. `threejs-animation`:
+ *    - Frame-rate-independent continuous advection clock (`12s` calm cycle), deterministic
+ *      `?t=N` frame-freeze harness, responsive `object-fit: cover` projection,
+ *      `IntersectionObserver` offscreen pause, `prefers-reduced-motion` support, and
+ *      complete WebGL GPU buffer/program disposal on unmount.
+ * 3. `particle-system`:
+ *    - Secondary, ultra-subtle atmospheric micro-motes (`1.8–3.6px`, low alpha) advected
+ *      through a divergence-free 2D curl-noise velocity field inside the cooling volume.
+ */
+
+const IMAGE_ASPECT = 16 / 9;
 
 // ---------------------------------------------------------------------------
-// Lightweight Catmull-Rom Spline Evaluator (`threejs-animation` trajectory math)
+// 1. Divergence-Free 2D Curl Noise for Subtle Atmospheric Micro-Motes (`particle-system`)
 // ---------------------------------------------------------------------------
-class CatmullRomSpline2D {
-  private pts: Array<[number, number]>;
-  constructor(points: Array<[number, number]>) {
-    this.pts = points;
-  }
+function hash2D(ix: number, iy: number): number {
+  const n = Math.sin(ix * 127.1 + iy * 311.7) * 43758.5453123;
+  return n - Math.floor(n);
+}
 
-  getPoint(t: number): [number, number] {
-    const pts = this.pts;
-    const n = pts.length - 1;
-    const p = Math.max(0, Math.min(1, t)) * n;
-    const intPoint = Math.min(Math.floor(p), n - 1);
-    const weight = p - intPoint;
+function smoothNoise2D(x: number, y: number): number {
+  const ix = Math.floor(x);
+  const iy = Math.floor(y);
+  const fx = x - ix;
+  const fy = y - iy;
+  const ux = fx * fx * (3.0 - 2.0 * fx);
+  const uy = fy * fy * (3.0 - 2.0 * fy);
+  const a = hash2D(ix, iy);
+  const b = hash2D(ix + 1, iy);
+  const c = hash2D(ix, iy + 1);
+  const d = hash2D(ix + 1, iy + 1);
+  return a + (b - a) * ux + (c - a) * uy + (a - b - c + d) * ux * uy;
+}
 
-    const p0 = pts[Math.max(0, intPoint - 1)];
-    const p1 = pts[intPoint];
-    const p2 = pts[Math.min(n, intPoint + 1)];
-    const p3 = pts[Math.min(n, intPoint + 2)];
-
-    const w2 = weight * weight;
-    const w3 = w2 * weight;
-
-    const interpolate = (v0: number, v1: number, v2: number, v3: number) =>
-      0.5 *
-      (2 * v1 +
-        (-v0 + v2) * weight +
-        (2 * v0 - 5 * v1 + 4 * v2 - v3) * w2 +
-        (-v0 + 3 * v1 - 3 * v2 + v3) * w3);
-
-    return [
-      interpolate(p0[0], p1[0], p2[0], p3[0]),
-      interpolate(p0[1], p1[1], p2[1], p3[1]),
-    ];
-  }
-
-  getTangent(t: number): [number, number] {
-    const eps = 0.002;
-    const a = this.getPoint(Math.max(0, t - eps));
-    const b = this.getPoint(Math.min(1, t + eps));
-    const dx = b[0] - a[0];
-    const dy = b[1] - a[1];
-    const len = Math.hypot(dx, dy) || 1;
-    return [dx / len, dy / len];
-  }
+function curlNoise2D(x: number, y: number): [number, number] {
+  const eps = 0.04;
+  const dPsiDy = (smoothNoise2D(x, y + eps) - smoothNoise2D(x, y - eps)) / (2.0 * eps);
+  const dPsiDx = (smoothNoise2D(x + eps, y) - smoothNoise2D(x - eps, y)) / (2.0 * eps);
+  return [dPsiDy, -dPsiDx];
 }
 
 // ---------------------------------------------------------------------------
-// Shared GLSL 2D Simplex Noise & fBM (`shader-glsl` cookbook)
+// 2. GLSL Simplex Noise, Gaseous fBM & Subject Occlusion Mask (`shader-glsl`)
 // ---------------------------------------------------------------------------
-const GLSL_NOISE = /* glsl */ `
+const GLSL_FLUID_COMMON = /* glsl */ `
 vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
 vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
 vec3 permute(vec3 x) { return mod289(((x * 34.0) + 1.0) * x); }
@@ -90,23 +97,81 @@ float snoise(vec2 v) {
   return 130.0 * dot(m, g);
 }
 
-float fbm(vec2 p) {
+float fbmGas(vec2 p) {
   float value = 0.0;
-  float amp = 0.5;
+  float amp = 0.52;
   mat2 rot = mat2(0.80, 0.60, -0.60, 0.80);
-  for (int i = 0; i < 4; i++) {
+  for (int i = 0; i < 3; i++) {
     value += amp * snoise(p);
-    p = rot * p * 2.02 + vec2(13.7, 9.2);
-    amp *= 0.5;
+    p = rot * p * 1.92 + vec2(7.3, 11.8);
+    amp *= 0.48;
   }
   return value;
+}
+
+// Signed distance to a 2D line segment AB
+float sdSegment(vec2 p, vec2 a, vec2 b) {
+  vec2 pa = p - a;
+  vec2 ba = b - a;
+  float h = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0);
+  return length(pa - ba * h);
+}
+
+// Protects the entire family on the sofa (zero airflow over any part of the family),
+// preserves coffee table details, and protects UI readability while allowing the cooling
+// volume to flow continuously behind the foreground technician (hero-technician-layer.webp).
+float subjectMask(vec2 imgUv) {
+  float nx = imgUv.x;
+  float ny = 1.0 - imgUv.y; // top-down y [0..1]
+  vec2 p = vec2(nx, ny);
+
+  // 1. Complete Family Protection (Father, Mother, Boy, Girl — heads, hair, shirts,
+  //    mother's extended arm on sofa backrest, laps, trousers, legs, and bare feet).
+  //    Note: Technician is NOT masked out here so the airflow volume passes continuously
+  //    right behind his head, hair, ear, neck, and right shoulder, and is naturally
+  //    occluded by hero-technician-layer.webp (z-index: 8).
+  float dFatherHead  = length((p - vec2(0.353, 0.562)) / vec2(0.023, 0.038));
+  float dMotherHead  = length((p - vec2(0.414, 0.580)) / vec2(0.024, 0.034));
+  float dFamTorsos   = length((p - vec2(0.398, 0.658)) / vec2(0.068, 0.068));
+  float dMotherArm   = sdSegment(p, vec2(0.425, 0.608), vec2(0.495, 0.612)) / 0.016;
+  float dFatherLegs  = sdSegment(p, vec2(0.415, 0.715), vec2(0.482, 0.798)) / 0.044;
+  float dMotherLegs  = sdSegment(p, vec2(0.468, 0.688), vec2(0.548, 0.762)) / 0.036;
+
+  float dFamily = min(
+    min(min(dFatherHead, dMotherHead), min(dFamTorsos, dMotherArm)),
+    min(dFatherLegs, dMotherLegs)
+  );
+  // 0.0 inside the family contour -> zero cyan airflow on any part of the family
+  float famKeep = smoothstep(0.88, 1.18, dFamily);
+
+  // 2. Coffee table & centerpiece plant subtle detail preservation
+  float dTable    = length((p - vec2(0.585, 0.765)) / vec2(0.068, 0.055));
+  float tableKeep = mix(0.38, 1.0, smoothstep(0.60, 1.20, dTable));
+
+  // 3. Left-side headline, description & CTA button readability zone (upper-left)
+  // Allows lower-left sofa & floor (imgUv.y < 0.32) to receive gentle cooling diffusion
+  float inLeftCopyX = 1.0 - smoothstep(0.18, 0.36, nx);
+  float inLeftCopyY = smoothstep(0.28, 0.40, imgUv.y);
+  float leftCopyKeep = 1.0 - inLeftCopyX * inLeftCopyY * 0.92;
+
+  // 4. Outer left edge & bottom 8-icon service bar fade (service bar top is at ny ~ 0.852)
+  float leftEdgeKeep  = smoothstep(0.10, 0.22, nx);
+  float bottomBarKeep = smoothstep(0.862, 0.822, ny);
+  float topHeaderKeep = smoothstep(0.125, 0.195, ny);
+
+  return famKeep * tableKeep * leftCopyKeep * leftEdgeKeep * bottomBarKeep * topHeaderKeep;
 }
 `;
 
 // ---------------------------------------------------------------------------
-// Pass 1: Full-Frame Flow-Map Advected Reference Airflow Shader (`shader-glsl`)
+// Pass 1: Unified Volumetric Cooling Field (`shader-glsl` + `threejs-animation`)
+// Renders ONE cohesive, continuous fan-shaped volume of cool cyan air that
+// emerges from the AC vent, flows directly behind the technician so the
+// technician naturally occludes the airflow, expands across the room, and
+// diffuses softly around the sofa, coffee table, and floor without covering
+// any part of the family.
 // ---------------------------------------------------------------------------
-const FLOW_FIELD_VERT = /* glsl */ `
+const UNIFIED_VOLUME_VERT = /* glsl */ `
 attribute vec2 aPosition;
 attribute vec2 aUv;
 varying vec2 vUv;
@@ -116,17 +181,16 @@ void main() {
 }
 `;
 
-const FLOW_FIELD_FRAG = /* glsl */ `
+const UNIFIED_VOLUME_FRAG = /* glsl */ `
 precision highp float;
 
 varying vec2 vUv;
-uniform sampler2D uRefMap;
 uniform float uTime;
 uniform float uStatic;
 uniform vec2 uCoverScale;
 uniform vec2 uCoverOffset;
 
-${GLSL_NOISE}
+${GLSL_FLUID_COMMON}
 
 vec2 toImageUv(vec2 viewUv) {
   return viewUv * uCoverScale + uCoverOffset;
@@ -138,138 +202,166 @@ void main() {
     discard;
   }
 
-  vec2 ventCenter = vec2(0.878, 0.754);
-  vec2 rel = imgUv - ventCenter;
-  float dist = length(rel * vec2(1.0, 1.15));
+  // AC louver slot segment in bottom-up UV: A(0.836, 0.730) -> B(0.916, 0.775)
+  vec2 ventA = vec2(0.836, 0.730);
+  vec2 ventB = vec2(0.916, 0.775);
 
-  vec2 radialDir = normalize(rel + vec2(-0.001, -0.001));
-  float lift = smoothstep(0.75, 0.25, imgUv.x) * 0.28;
-  vec2 flowDir = normalize(vec2(radialDir.x - 0.18, radialDir.y + lift));
-  vec2 normalDir = vec2(-flowDir.y, flowDir.x);
-  float fanAngle = atan(-rel.y, -rel.x);
-
-  if (uStatic > 0.5) {
-    vec2 texUv = vec2(imgUv.x, 1.0 - imgUv.y);
-    vec4 refSample = texture2D(uRefMap, texUv);
-    if (refSample.a < 0.005) discard;
-    gl_FragColor = vec4(refSample.rgb, refSample.a);
-    return;
+  // Smooth ceiling mask along the AC louver slot so airflow never bleeds onto the upper white AC casing
+  float ventLineY = 0.732 + (imgUv.x - 0.836) * (0.045 / 0.080);
+  float ventCeilingMask = 1.0 - smoothstep(0.815, 0.842, imgUv.x) * smoothstep(ventLineY - 0.002, ventLineY + 0.015, imgUv.y);
+  // Prevent bleeding to the right of the AC vent while allowing downward expansion behind technician
+  float rightWallMask = smoothstep(0.942, 0.902, imgUv.x - (0.775 - imgUv.y) * 0.08);
+  if (ventCeilingMask * rightWallMask < 0.002) {
+    discard;
   }
 
-  float ventAnchor = smoothstep(0.015, 0.14, dist);
+  // Distance to the physical AC louver slot AB
+  vec2 AB = ventB - ventA;
+  float projAB = clamp(dot(imgUv - ventA, AB) / dot(AB, AB), 0.0, 1.0);
+  vec2 closestVent = ventA + projAB * AB;
+  float distToVent = length((imgUv - closestVent) * vec2(1.0, 1.35));
 
-  float cycleSpeed = 0.22;
-  float phase0 = fract(uTime * cycleSpeed);
-  float phase1 = fract(uTime * cycleSpeed + 0.5);
-  float blendW = abs(2.0 * phase0 - 1.0);
+  // Progression distance s from the AC vent across the room [0 at vent -> 1 at far left/floor]
+  float dxVent = max(0.0, 0.905 - imgUv.x);
+  float dyVent = max(0.0, 0.768 - imgUv.y);
+  float radialDist = length(vec2(dxVent * 0.88, dyVent * 0.92));
+  float s = clamp(radialDist / 0.78, 0.0001, 1.0);
 
-  float wave0 = fbm(vec2(dist * 7.5 - phase0 * 2.2, fanAngle * 4.5 + uTime * 0.18));
-  float wave1 = fbm(vec2(dist * 7.5 - phase1 * 2.2 + 4.1, fanAngle * 4.5 + uTime * 0.18 + 2.7));
+  // Calm, continuous advection clock (~12-second full room traversal cycle)
+  float t = (uStatic > 0.5) ? 0.0 : uTime;
+  float flowPhase = t * 0.082;
 
-  float advectAmp = 0.046 * ventAnchor;
-  float swayAmp   = 0.0075 * ventAnchor;
+  // -------------------------------------------------------------------------
+  // A. UNIFIED VOLUMETRIC SILHOUETTE (Stable outer shape matching approved mockup)
+  // -------------------------------------------------------------------------
+  // Upper boundary of the fan:
+  // - For x in [0.836..0.916], follows the exact AC louver slot line A(0.836, 0.732) -> B(0.916, 0.775)
+  // - For x < 0.836, sweeps smoothly across the upper curtain (0.78, 0.715), window panes (0.62, 0.665),
+  //   and indoor tree foliage (0.46, 0.615), then slopes gently down on the left.
+  float dxFromA = max(0.0, 0.836 - imgUv.x);
+  float louverTopY = 0.732 + clamp(imgUv.x - 0.836, 0.0, 0.085) * 0.54;
+  float leftDropX = max(0.0001, 0.44 - imgUv.x);
+  float yHigh = louverTopY - 0.30 * dxFromA - 0.34 * pow(leftDropX, 1.45) * step(imgUv.x, 0.44);
 
-  vec2 uv0 = imgUv - flowDir * ((phase0 - 0.32) * advectAmp) + normalDir * (wave0 * swayAmp);
-  vec2 uv1 = imgUv - flowDir * ((phase1 - 0.32) * advectAmp) + normalDir * (wave1 * swayAmp);
+  // Lower boundary of the fan: plunges steeply from the right end of the AC louver B(0.916, 0.775)
+  // straight down behind the technician's head, hair, ear, neck, and shoulders (x = 0.78..0.91,
+  // ny_topdown = 0.35..0.65 -> imgUv.y = 0.35..0.65) so the technician clearly blocks the airflow!
+  float dxBot = max(0.0001, 0.926 - imgUv.x);
+  float yLow  = 0.135 + 0.635 * exp(-18.5 * pow(dxBot, 1.38));
 
-  vec4 samp0 = texture2D(uRefMap, vec2(uv0.x, 1.0 - uv0.y));
-  vec4 samp1 = texture2D(uRefMap, vec2(uv1.x, 1.0 - uv1.y));
-  vec4 baseSample = texture2D(uRefMap, vec2(imgUv.x, 1.0 - imgUv.y));
+  float span = max(0.042, yHigh - yLow);
+  float v = (imgUv.y - yLow) / span; // 0 at lower boundary -> 1 at upper boundary
 
-  vec4 advected = mix(samp0, samp1, blendW);
-  vec3 flowRgb = mix(advected.rgb, baseSample.rgb, 0.22);
-  float flowAlpha = mix(advected.a, baseSample.a, 0.28);
-
-  if (flowAlpha < 0.004) discard;
-
-  float streamCoord = dist * 24.0 - uTime * 2.85 + fanAngle * 3.0;
-  float fineStream  = dist * 42.0 - uTime * 4.10 - fanAngle * 5.5;
-  float noiseMod    = fbm(vec2(dist * 10.0 - uTime * 0.95, fanAngle * 8.0));
-
-  float pulsePrimary   = 0.5 + 0.5 * sin(streamCoord + noiseMod * 2.4);
-  float pulseSecondary = 0.5 + 0.5 * sin(fineStream  + noiseMod * 1.8);
-  float silkWave = mix(pulsePrimary, pulseSecondary, 0.42);
-
-  float alphaMod = mix(0.76, 1.22, silkWave);
-  float highlightBand = pow(silkWave, 3.0) * smoothstep(0.08, 0.45, flowAlpha) * (1.0 - smoothstep(0.62, 0.85, dist));
-
-  vec3 iceHighlight = vec3(0.78, 0.97, 1.0);
-  vec3 finalColor = mix(flowRgb, iceHighlight, highlightBand * 0.36);
-  float finalAlpha = clamp(flowAlpha * alphaMod, 0.0, 0.96);
-
-  gl_FragColor = vec4(finalColor, finalAlpha);
-}
-`;
-
-// ---------------------------------------------------------------------------
-// Pass 2: Curved Spline Ribbon Shader (`threejs-animation` + `shader-glsl`)
-// ---------------------------------------------------------------------------
-const RIBBON_VERT = /* glsl */ `
-attribute vec2 aPosition;
-attribute vec2 aUv;
-varying vec2 vUv;
-uniform float uTime;
-uniform float uStatic;
-uniform float uSpeed;
-uniform float uPhase;
-
-void main() {
-  vUv = aUv;
-  vec2 pos = aPosition;
-  if (uStatic < 0.5) {
-    float anchor = smoothstep(0.0, 0.18, aUv.x);
-    float wave = sin(aUv.x * 10.0 - uTime * uSpeed * 2.4 + uPhase) * 0.009 * anchor;
-    pos.y += wave;
+  if (imgUv.y > yHigh + 0.045 || v < -0.25) {
+    discard;
   }
-  gl_Position = vec4(pos, 0.0, 1.0);
-}
-`;
 
-const RIBBON_FRAG = /* glsl */ `
-precision highp float;
+  // Very subtle, low-frequency edge breathing (amplitude <= 0.012 in screen Y so outer silhouette remains stable)
+  float edgeNoise = fbmGas(vec2(s * 1.5 - flowPhase * 0.75, v * 1.4 + 2.1));
 
-varying vec2 vUv;
-uniform float uTime;
-uniform float uStatic;
-uniform float uSpeed;
-uniform float uPhase;
-uniform float uOpacity;
+  // Physical-distance upper feather so the fan stays full right up to the louver slot and upper curtain/tree
+  float distBelowTop = (yHigh - imgUv.y) + edgeNoise * 0.012 * smoothstep(0.03, 0.28, s);
+  float upperFeather = smoothstep(-0.016, 0.032 + 0.055 * s, distBelowTop);
+  float lowerFeather = smoothstep(-0.08, 0.14, v + edgeNoise * 0.025);
+  float fanCrossSection = upperFeather * lowerFeather;
 
-${GLSL_NOISE}
+  // Longitudinal density falloff: compact & controlled near the AC vent, broad in the mid-room,
+  // and softly diffusing toward the far left
+  float ventStart = smoothstep(-0.015, 0.022, 0.922 - imgUv.x);
+  float roomDecay = 1.0 - smoothstep(0.42, 0.98, s) * 0.48;
+  float primaryFanVolume = fanCrossSection * ventStart * roomDecay;
 
-void main() {
-  float headFade = smoothstep(0.0, 0.09, vUv.x);
-  float tailFade = 1.0 - smoothstep(0.58, 1.0, vUv.x);
-  float longMask = headFade * tailFade;
+  // Dedicated behind-technician cooling stream reinforcement:
+  // Ensures the cyan airflow behind the technician's head, ear, neck, and right shoulder
+  // (x: 0.77..0.90, ny_topdown: 0.36..0.62 -> imgUv.y: 0.38..0.64) is unmistakably visible
+  // so the technician clearly occludes the flow in front of it.
+  float behindTechX = smoothstep(0.72, 0.81, imgUv.x) * smoothstep(0.915, 0.855, imgUv.x);
+  float behindTechY = smoothstep(0.32, 0.44, imgUv.y) * smoothstep(0.74, 0.60, imgUv.y);
+  float behindTechBoost = behindTechX * behindTechY * 0.32;
 
-  float distCenter = abs(vUv.y - 0.5) * 2.0;
-  float coreMask   = exp(-distCenter * distCenter * 5.5);
-  float haloMask   = smoothstep(1.0, 0.0, distCenter);
+  // Lower-Room & Sofa Cooling Diffusion Pool:
+  // Cold air settles gently around the lower sofa base, coffee table, and rug/floor
+  float poolX = smoothstep(0.17, 0.30, imgUv.x) * smoothstep(0.78, 0.52, imgUv.x);
+  float poolY = smoothstep(0.138, 0.182, imgUv.y) * smoothstep(0.46, 0.22, imgUv.y);
+  float floorDiffusionPool = poolX * poolY * 0.68;
 
-  float t = (uStatic > 0.5) ? 0.0 : uTime * uSpeed;
+  // Controlled, subtle emission right at the AC louver mouth (no harsh white hotspot)
+  float louverEmission = exp(-distToVent * distToVent * 260.0) *
+                         smoothstep(0.825, 0.840, imgUv.x) *
+                         smoothstep(0.924, 0.908, imgUv.x) * 0.26;
 
-  vec2 flowUv = vec2(vUv.x * 4.2 - t + uPhase, vUv.y * 2.4 + sin(vUv.x * 5.0 - t * 0.7) * 0.25);
-  float n1 = fbm(flowUv);
-  float n2 = snoise(vec2(vUv.x * 9.5 - t * 1.45 + uPhase * 1.7, vUv.y * 5.0));
+  // Seamlessly unify the primary fan volume, behind-technician flow, and lower-room floor diffusion
+  float unifiedEnvelope = clamp(
+    primaryFanVolume * 0.88 + behindTechBoost + floorDiffusionPool * (1.0 - primaryFanVolume * 0.55) + louverEmission,
+    0.0,
+    1.0
+  );
 
-  float travelingPulse = 0.5 + 0.5 * sin(vUv.x * 16.0 - t * 4.2 + n1 * 2.6 + uPhase);
-  float streak = smoothstep(-0.15, 0.65, n1 * 0.65 + n2 * 0.35);
+  // -------------------------------------------------------------------------
+  // B. CONTINUOUS INTERNAL VOLUMETRIC ADVECTION (3 Blended Internal Layers)
+  // -------------------------------------------------------------------------
+  // Low-frequency curvilinear coordinates so internal vapor glides outward as ONE
+  // velvety volume without any separated stripes or bands.
+  vec2 streamUv = vec2(s * 1.85 - flowPhase, v * 1.75);
 
-  float combined = (haloMask * 0.45 + coreMask * (0.55 + 0.45 * travelingPulse * streak)) * longMask;
-  float alpha = combined * uOpacity;
+  // Domain-warping field q
+  vec2 q = vec2(
+    fbmGas(streamUv + vec2(0.0, flowPhase * 0.22)),
+    fbmGas(streamUv + vec2(4.7, -flowPhase * 0.18))
+  );
 
-  if (alpha < 0.003) discard;
+  // Internal Layer 1: Broad volumetric mist body (always >= 0.78 so volume is 100% continuous)
+  float layerMist = 0.5 + 0.5 * fbmGas(streamUv * 1.10 + 0.38 * q);
 
-  vec3 deepCyan  = vec3(0.08, 0.72, 0.96);
-  vec3 brightIce = vec3(0.76, 0.96, 1.00);
-  vec3 color = mix(deepCyan, brightIce, clamp(coreMask * 0.65 + travelingPulse * 0.35, 0.0, 1.0));
+  // Internal Layer 2: Soft directional air-current flow along the fan streamlines
+  // (low cross-frequency 2.4 so it never forms separated lines or beams)
+  vec2 currentUv = vec2(s * 1.55 - flowPhase * 1.22, (v + (q.y - 0.1) * 0.12) * 2.45);
+  float layerCurrents = smoothstep(-0.42, 0.58, fbmGas(currentUv));
 
-  gl_FragColor = vec4(color, alpha);
+  // Internal Layer 3: Slow deep-room atmospheric undulation near sofa & floor
+  vec2 deepUv = vec2(imgUv.x * 2.2 + flowPhase * 0.60, imgUv.y * 2.6 + flowPhase * 0.32);
+  float layerDeep = 0.5 + 0.5 * fbmGas(deepUv + 0.28 * q);
+
+  // Blend the 3 internal motion layers into ONE cohesive density field
+  float currentWeight = (1.0 - smoothstep(0.15, 0.85, s)) * 0.16;
+  float internalDensity = 0.76 + 0.16 * layerMist + currentWeight * layerCurrents + 0.08 * layerDeep;
+
+  // Final volumetric alpha with family & UI occlusion mask
+  float rawAlpha = unifiedEnvelope * internalDensity * ventCeilingMask * rightWallMask * subjectMask(imgUv);
+  float alpha = clamp(rawAlpha * 0.76, 0.0, 0.66);
+
+  if (alpha < 0.002) {
+    discard;
+  }
+
+  // -------------------------------------------------------------------------
+  // C. APPROVED MOCKUP COLOR GRADING (Soft sky-cyan to ice-blue, zero harsh neon/white)
+  // -------------------------------------------------------------------------
+  vec3 deepCoolingCyan = vec3(0.12, 0.68, 0.96); // Rich sky-cyan tint over bright windows & outer edges
+  vec3 midAirflowCyan  = vec3(0.30, 0.81, 0.99); // Primary cohesive cooling volume cyan
+  vec3 softIceMist     = vec3(0.58, 0.91, 1.00); // Gentle internal vapor highlight (never overexposed white)
+
+  // Over the lower sofa & rug (imgUv.y < 0.36), lift cyan luminance so dark fabrics glow softly
+  float lowerRoomLift = (1.0 - smoothstep(0.16, 0.38, imgUv.y)) * 0.36;
+  float highlightMix = clamp(
+    layerCurrents * (1.0 - 0.45 * s) * 0.55 + layerMist * 0.32 + lowerRoomLift,
+    0.0,
+    1.0
+  );
+  vec3 color = mix(deepCoolingCyan, midAirflowCyan, smoothstep(0.06, 0.62, unifiedEnvelope + lowerRoomLift));
+  color = mix(color, softIceMist, highlightMix * 0.66);
+
+  // Output premultiplied color with slightly reduced destination alpha occlusion (0.82)
+  // so the cooling volume both tints bright windows and softly illuminates darker sofa/rug areas
+  gl_FragColor = vec4(color * alpha, alpha * 0.82);
 }
 `;
 
 // ---------------------------------------------------------------------------
-// Pass 3: Sparse Micro-Particle Shader (`particle-system`)
+// Pass 2: Fine Atmospheric Cooling Micro-Particles (`particle-system`)
+// Abundant tiny suspended cool-air micro-motes (1.2-3.4px) drifting gently
+// inside the unified cooling volume, behind the technician and around the room,
+// while strictly avoiding any part of the family.
 // ---------------------------------------------------------------------------
 const PARTICLE_VERT = /* glsl */ `
 attribute vec2 aPosition;
@@ -285,128 +377,22 @@ void main() {
 `;
 
 const PARTICLE_FRAG = /* glsl */ `
-precision highp float;
+precision mediump float;
 varying float vAlpha;
 
 void main() {
   vec2 p = gl_PointCoord - vec2(0.5);
-  float r = length(p) * 2.0;
-  if (r > 1.0) discard;
-  float glow = exp(-r * r * 3.6) * (1.0 - r * r);
-  vec3 col = mix(vec3(0.28, 0.88, 1.0), vec3(0.88, 0.98, 1.0), exp(-r * r * 5.0));
-  gl_FragColor = vec4(col, glow * vAlpha);
+  float r2 = dot(p, p) * 4.0;
+  if (r2 > 1.0) discard;
+
+  // Crisp micro-mote core with soft icy halo
+  float core = exp(-r2 * 2.8);
+  float halo = (1.0 - r2) * 0.72;
+  float a = clamp(core * 0.85 + halo * 0.50, 0.0, 1.0) * vAlpha;
+  vec3 col = mix(vec3(0.52, 0.90, 1.00), vec3(0.92, 0.99, 1.00), core);
+  gl_FragColor = vec4(col * a, a * 0.78);
 }
 `;
-
-interface RibbonSpec {
-  points: Array<[number, number]>;
-  widthStart: number;
-  widthEnd: number;
-  speed: number;
-  phase: number;
-  opacity: number;
-}
-
-const RIBBON_SPECS: RibbonSpec[] = [
-  {
-    points: [
-      [0.844, 0.736],
-      [0.720, 0.695],
-      [0.560, 0.655],
-      [0.390, 0.665],
-      [0.215, 0.725],
-    ],
-    widthStart: 0.018,
-    widthEnd: 0.052,
-    speed: 0.34,
-    phase: 0.4,
-    opacity: 0.22,
-  },
-  {
-    points: [
-      [0.856, 0.742],
-      [0.735, 0.672],
-      [0.575, 0.608],
-      [0.410, 0.605],
-      [0.240, 0.648],
-    ],
-    widthStart: 0.020,
-    widthEnd: 0.058,
-    speed: 0.41,
-    phase: 1.5,
-    opacity: 0.28,
-  },
-  {
-    points: [
-      [0.870, 0.749],
-      [0.745, 0.652],
-      [0.590, 0.572],
-      [0.425, 0.542],
-      [0.255, 0.568],
-    ],
-    widthStart: 0.022,
-    widthEnd: 0.065,
-    speed: 0.46,
-    phase: 2.8,
-    opacity: 0.34,
-  },
-  {
-    points: [
-      [0.882, 0.756],
-      [0.760, 0.630],
-      [0.610, 0.515],
-      [0.455, 0.455],
-      [0.280, 0.460],
-    ],
-    widthStart: 0.020,
-    widthEnd: 0.062,
-    speed: 0.38,
-    phase: 3.9,
-    opacity: 0.26,
-  },
-  {
-    points: [
-      [0.893, 0.762],
-      [0.775, 0.605],
-      [0.625, 0.445],
-      [0.445, 0.325],
-      [0.215, 0.285],
-    ],
-    widthStart: 0.022,
-    widthEnd: 0.072,
-    speed: 0.43,
-    phase: 5.1,
-    opacity: 0.30,
-  },
-  {
-    points: [
-      [0.903, 0.768],
-      [0.795, 0.585],
-      [0.655, 0.405],
-      [0.495, 0.275],
-      [0.310, 0.225],
-    ],
-    widthStart: 0.018,
-    widthEnd: 0.064,
-    speed: 0.36,
-    phase: 0.9,
-    opacity: 0.24,
-  },
-  {
-    points: [
-      [0.913, 0.773],
-      [0.818, 0.575],
-      [0.705, 0.385],
-      [0.575, 0.255],
-      [0.420, 0.195],
-    ],
-    widthStart: 0.016,
-    widthEnd: 0.056,
-    speed: 0.31,
-    phase: 2.2,
-    opacity: 0.20,
-  },
-];
 
 function compileShader(gl: WebGLRenderingContext, type: number, source: string): WebGLShader | null {
   const shader = gl.createShader(type);
@@ -414,6 +400,7 @@ function compileShader(gl: WebGLRenderingContext, type: number, source: string):
   gl.shaderSource(shader, source);
   gl.compileShader(shader);
   if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    console.error('Shader compile error:', gl.getShaderInfoLog(shader));
     gl.deleteShader(shader);
     return null;
   }
@@ -442,48 +429,21 @@ function createProgram(
   return prog;
 }
 
-// Build triangle-strip interleaved buffer [clipX, clipY, u, v] for a Catmull-Rom ribbon
-function buildRibbonInterleavedData(
-  spline: CatmullRomSpline2D,
-  widthStart: number,
-  widthEnd: number,
-  coverScale: [number, number],
-  coverOffset: [number, number],
-  segments = 64,
-): Float32Array {
-  const data = new Float32Array((segments + 1) * 2 * 4);
-  for (let i = 0; i <= segments; i++) {
-    const u = i / segments;
-    const [px, py] = spline.getPoint(u);
-    const [tx, ty] = spline.getTangent(u);
-    const perpX = -ty;
-    const perpY = tx;
-
-    const halfW = (widthStart + (widthEnd - widthStart) * Math.pow(u, 0.85)) * 0.5;
-
-    const imgX0 = px + perpX * halfW;
-    const imgY0 = py + perpY * halfW;
-    const imgX1 = px - perpX * halfW;
-    const imgY1 = py - perpY * halfW;
-
-    // Convert image UV (0..1) -> viewport UV (0..1) -> WebGL clip space (-1..1)
-    const clipX0 = ((imgX0 - coverOffset[0]) / coverScale[0]) * 2.0 - 1.0;
-    const clipY0 = ((imgY0 - coverOffset[1]) / coverScale[1]) * 2.0 - 1.0;
-    const clipX1 = ((imgX1 - coverOffset[0]) / coverScale[0]) * 2.0 - 1.0;
-    const clipY1 = ((imgY1 - coverOffset[1]) / coverScale[1]) * 2.0 - 1.0;
-
-    const base = i * 8;
-    data[base] = clipX0;
-    data[base + 1] = clipY0;
-    data[base + 2] = u;
-    data[base + 3] = 0.0;
-
-    data[base + 4] = clipX1;
-    data[base + 5] = clipY1;
-    data[base + 6] = u;
-    data[base + 7] = 1.0;
-  }
-  return data;
+// Helper for 2D segment distance in JS (for exact family particle occlusion)
+function distToSegment2D(
+  px: number,
+  py: number,
+  ax: number,
+  ay: number,
+  bx: number,
+  by: number,
+): number {
+  const pax = px - ax;
+  const pay = py - ay;
+  const bax = bx - ax;
+  const bay = by - ay;
+  const h = Math.max(0.0, Math.min(1.0, (pax * bax + pay * bay) / (bax * bax + bay * bay)));
+  return Math.hypot(pax - bax * h, pay - bay * h);
 }
 
 export function HeroAirflow() {
@@ -497,8 +457,13 @@ export function HeroAirflow() {
     const modeParam = params.get('airflow');
     if (modeParam === 'off') return;
 
+    const fixedTimeParam = params.get('t');
+    const hasFixedTime = fixedTimeParam !== null && !Number.isNaN( parseFloat(fixedTimeParam) );
+    const fixedTimeValue = hasFixedTime ? parseFloat(fixedTimeParam!) : 0;
+
     const reducedMotion =
       modeParam === 'static' ||
+      hasFixedTime ||
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const canvas = document.createElement('canvas');
@@ -510,7 +475,7 @@ export function HeroAirflow() {
     const gl = canvas.getContext('webgl', {
       alpha: true,
       antialias: true,
-      premultipliedAlpha: false,
+      premultipliedAlpha: true,
       powerPreference: 'high-performance',
     });
     if (!gl) {
@@ -518,10 +483,9 @@ export function HeroAirflow() {
       return;
     }
 
-    const flowProg = createProgram(gl, FLOW_FIELD_VERT, FLOW_FIELD_FRAG);
-    const ribbonProg = createProgram(gl, RIBBON_VERT, RIBBON_FRAG);
+    const volumeProg = createProgram(gl, UNIFIED_VOLUME_VERT, UNIFIED_VOLUME_FRAG);
     const particleProg = createProgram(gl, PARTICLE_VERT, PARTICLE_FRAG);
-    if (!flowProg || !ribbonProg || !particleProg) {
+    if (!volumeProg || !particleProg) {
       container.removeChild(canvas);
       return;
     }
@@ -544,7 +508,7 @@ export function HeroAirflow() {
       }
     };
 
-    // 1. Fullscreen Quad Buffer for Flow-Map Advected Plane
+    // 1. Fullscreen Quad for Unified Volumetric Cooling Field
     const quadData = new Float32Array([
       -1, -1, 0, 0,
        1, -1, 1, 0,
@@ -555,63 +519,67 @@ export function HeroAirflow() {
     gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, quadData, gl.STATIC_DRAW);
 
-    // 2. 7 Catmull-Rom Splines & Ribbon Buffers
-    const RIBBON_SEGMENTS = 64;
-    const splines = RIBBON_SPECS.map((spec) => new CatmullRomSpline2D(spec.points));
-    const ribbonBuffers = RIBBON_SPECS.map(() => gl.createBuffer());
-
-    const rebuildRibbonBuffers = () => {
-      RIBBON_SPECS.forEach((spec, idx) => {
-        const data = buildRibbonInterleavedData(
-          splines[idx],
-          spec.widthStart,
-          spec.widthEnd,
-          coverScale,
-          coverOffset,
-          RIBBON_SEGMENTS,
-        );
-        gl.bindBuffer(gl.ARRAY_BUFFER, ribbonBuffers[idx]);
-        gl.bufferData(gl.ARRAY_BUFFER, data, gl.STATIC_DRAW);
-      });
-    };
-
-    // 3. Sparse Micro-Particle System (`particle-system`)
-    const PARTICLE_COUNT = 52;
-    const particleData = new Float32Array(PARTICLE_COUNT * 4); // [clipX, clipY, alpha, size]
+    // 2. Abundant Fine Cooling Micro-Motes (`particle-system`)
+    const PARTICLE_COUNT = 360;
+    const particleData = new Float32Array(PARTICLE_COUNT * 4);
     const particleBuffer = gl.createBuffer();
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const particles = Array.from({ length: PARTICLE_COUNT }, (_, i) => {
-      const h1 = ((i * 73 + 19) % 97) / 97;
-      const h2 = ((i * 151 + 43) % 89) / 89;
-      const h3 = ((i * 211 + 61) % 83) / 83;
+      // Low-discrepancy Halton-like sequence for even, non-clumped distribution
+      const h1 = ((i * 73 + 19) % 359) / 359;
+      const h2 = ((i * 151 + 43) % 349) / 349;
+      const h3 = ((i * 211 + 61) % 337) / 337;
+      const h4 = ((i * 97 + 29) % 331) / 331;
       return {
-        curveIdx: i % splines.length,
         u0: h1,
-        speed: 0.055 + h2 * 0.055,
-        offsetNormal: (h3 - 0.5) * 0.032,
-        baseAlpha: 0.16 + h2 * 0.24,
-        size: (2.2 + h3 * 3.2) * dpr,
+        vBand: 0.03 + h2 * 0.92, // Spans the entire unified cooling volume including behind technician
+        speed: 0.038 + h3 * 0.036, // Calm 13-26s drift
+        baseAlpha: 0.34 + h4 * 0.42, // Crisp, clearly visible tiny micro-motes
+        size: (1.4 + h3 * 2.4) * dpr, // Fine, delicate specks (1.4px - 3.8px)
       };
     });
 
     const updateParticles = (elapsed: number) => {
-      const t = reducedMotion ? 0 : elapsed;
+      const t = Math.max(0, elapsed);
       for (let i = 0; i < PARTICLE_COUNT; i++) {
         const p = particles[i];
-        const u = (p.u0 + t * p.speed) % 1.0;
-        const spline = splines[p.curveIdx];
-        const [px, py] = spline.getPoint(u);
-        const [tx, ty] = spline.getTangent(u);
-        const nx = -ty;
-        const ny = tx;
-        const sway = Math.sin(u * 9.0 + t * 1.4 + i) * 0.006 * u;
-        const imgX = px + nx * (p.offsetNormal * u + sway);
-        const imgY = py + ny * (p.offsetNormal * u + sway);
+        const linearS = (((p.u0 + t * p.speed) % 1.0) + 1.0) % 1.0;
+        // Decelerate smoothly as air disperses across the room
+        const s = Math.pow(linearS, 0.86);
 
-        const clipX = ((imgX - coverOffset[0]) / coverScale[0]) * 2.0 - 1.0;
-        const clipY = ((imgY - coverOffset[1]) / coverScale[1]) * 2.0 - 1.0;
-        const envelope = Math.sin(u * Math.PI) * Math.min(1, u * 6.0);
+        // Map (s, vBand) into the unified cooling volume in image UV
+        const imgX = 0.908 - s * 0.68;
+        const dxVent = Math.max(0.0, 0.905 - imgX);
+        const yHigh = 0.768 - 0.28 * dxVent - 0.34 * Math.pow(Math.max(0.0, 0.44 - imgX), 1.45);
+        const dxBot = Math.max(0.0, 0.924 - imgX);
+        const yLow = 0.142 + 0.625 * Math.exp(-16.5 * Math.pow(dxBot, 1.36));
+        const baseImgY = yLow + (yHigh - yLow) * p.vBand;
+
+        const [curlX, curlY] = curlNoise2D(imgX * 4.5 - t * 0.20, baseImgY * 4.5 + i * 0.37);
+        const eddy = 0.014 * Math.min(1.0, s * 2.2);
+        const imgXFinal = imgX + curlX * eddy;
+        const imgYFinal = baseImgY + curlY * eddy;
+
+        // Protect 100% of the family on the sofa (zero particles over any part of the family).
+        // Particles behind the technician are allowed so the foreground technician layer occludes them naturally!
+        const ny = 1.0 - imgYFinal;
+        const inFamily =
+          Math.hypot((imgXFinal - 0.353) / 0.028, (ny - 0.562) / 0.044) < 1.0 ||
+          Math.hypot((imgXFinal - 0.414) / 0.028, (ny - 0.580) / 0.040) < 1.0 ||
+          Math.hypot((imgXFinal - 0.398) / 0.074, (ny - 0.658) / 0.074) < 1.0 ||
+          distToSegment2D(imgXFinal, ny, 0.425, 0.608, 0.495, 0.612) < 0.020 ||
+          distToSegment2D(imgXFinal, ny, 0.415, 0.715, 0.482, 0.798) < 0.048 ||
+          distToSegment2D(imgXFinal, ny, 0.468, 0.688, 0.548, 0.762) < 0.040;
+
+        // Subtle twinkle modulation so micro-motes feel suspended in cool air
+        const twinkle = 0.78 + 0.22 * Math.sin(t * 2.1 + i * 1.73);
+
+        const clipX = ((imgXFinal - coverOffset[0]) / coverScale[0]) * 2.0 - 1.0;
+        const clipY = ((imgYFinal - coverOffset[1]) / coverScale[1]) * 2.0 - 1.0;
+        const envelope = inFamily
+          ? 0.0
+          : Math.sin(s * Math.PI) * Math.min(1.0, s * 6.5) * twinkle;
 
         const base = i * 4;
         particleData[base] = clipX;
@@ -623,26 +591,6 @@ export function HeroAirflow() {
       gl.bufferData(gl.ARRAY_BUFFER, particleData, gl.DYNAMIC_DRAW);
     };
 
-    // Load Reference Airflow Texture
-    const refTex = gl.createTexture();
-    let texReady = false;
-    let disposed = false;
-    const img = new window.Image();
-    img.crossOrigin = 'anonymous';
-    img.onload = () => {
-      if (disposed) return;
-      gl.bindTexture(gl.TEXTURE_2D, refTex);
-      gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 0);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-      texReady = true;
-      renderFrame(0);
-    };
-    img.src = '/images/redesign/hero-airflow-map.webp';
-
     const syncSize = () => {
       const rect = container.getBoundingClientRect();
       const cssW = Math.max(1, Math.round(rect.width));
@@ -652,30 +600,17 @@ export function HeroAirflow() {
       canvas.height = Math.round(cssH * ratio);
       gl.viewport(0, 0, canvas.width, canvas.height);
       updateCoverMapping(cssW, cssH);
-      rebuildRibbonBuffers();
     };
 
     syncSize();
 
-    // Cached attribute & uniform locations
-    const flowLoc = {
-      aPosition: gl.getAttribLocation(flowProg, 'aPosition'),
-      aUv: gl.getAttribLocation(flowProg, 'aUv'),
-      uRefMap: gl.getUniformLocation(flowProg, 'uRefMap'),
-      uTime: gl.getUniformLocation(flowProg, 'uTime'),
-      uStatic: gl.getUniformLocation(flowProg, 'uStatic'),
-      uCoverScale: gl.getUniformLocation(flowProg, 'uCoverScale'),
-      uCoverOffset: gl.getUniformLocation(flowProg, 'uCoverOffset'),
-    };
-
-    const ribbonLoc = {
-      aPosition: gl.getAttribLocation(ribbonProg, 'aPosition'),
-      aUv: gl.getAttribLocation(ribbonProg, 'aUv'),
-      uTime: gl.getUniformLocation(ribbonProg, 'uTime'),
-      uStatic: gl.getUniformLocation(ribbonProg, 'uStatic'),
-      uSpeed: gl.getUniformLocation(ribbonProg, 'uSpeed'),
-      uPhase: gl.getUniformLocation(ribbonProg, 'uPhase'),
-      uOpacity: gl.getUniformLocation(ribbonProg, 'uOpacity'),
+    const volumeLoc = {
+      aPosition: gl.getAttribLocation(volumeProg, 'aPosition'),
+      aUv: gl.getAttribLocation(volumeProg, 'aUv'),
+      uTime: gl.getUniformLocation(volumeProg, 'uTime'),
+      uStatic: gl.getUniformLocation(volumeProg, 'uStatic'),
+      uCoverScale: gl.getUniformLocation(volumeProg, 'uCoverScale'),
+      uCoverOffset: gl.getUniformLocation(volumeProg, 'uCoverOffset'),
     };
 
     const particleLoc = {
@@ -684,66 +619,49 @@ export function HeroAirflow() {
       aSize: gl.getAttribLocation(particleProg, 'aSize'),
     };
 
-    const renderFrame = (elapsed: number) => {
+    const renderFrame = (rawElapsed: number) => {
+      const elapsed = hasFixedTime ? fixedTimeValue : Math.max(0, rawElapsed);
       gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.enable(gl.BLEND);
+      gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
 
-      // Pass 1: Flow-Map Advected Reference Airflow Plane
-      if (texReady) {
-        gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-        gl.useProgram(flowProg);
-        gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
-        gl.enableVertexAttribArray(flowLoc.aPosition);
-        gl.vertexAttribPointer(flowLoc.aPosition, 2, gl.FLOAT, false, 16, 0);
-        gl.enableVertexAttribArray(flowLoc.aUv);
-        gl.vertexAttribPointer(flowLoc.aUv, 2, gl.FLOAT, false, 16, 8);
+      // Pass 1: Unified Cohesive Volumetric Cooling Field
+      gl.useProgram(volumeProg);
+      gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
+      gl.enableVertexAttribArray(volumeLoc.aPosition);
+      gl.vertexAttribPointer(volumeLoc.aPosition, 2, gl.FLOAT, false, 16, 0);
+      gl.enableVertexAttribArray(volumeLoc.aUv);
+      gl.vertexAttribPointer(volumeLoc.aUv, 2, gl.FLOAT, false, 16, 8);
 
-        gl.activeTexture(gl.TEXTURE0);
-        gl.bindTexture(gl.TEXTURE_2D, refTex);
-        gl.uniform1i(flowLoc.uRefMap, 0);
-        gl.uniform1f(flowLoc.uTime, elapsed);
-        gl.uniform1f(flowLoc.uStatic, reducedMotion ? 1.0 : 0.0);
-        gl.uniform2f(flowLoc.uCoverScale, coverScale[0], coverScale[1]);
-        gl.uniform2f(flowLoc.uCoverOffset, coverOffset[0], coverOffset[1]);
+      gl.uniform1f(volumeLoc.uTime, elapsed);
+      gl.uniform1f(volumeLoc.uStatic, modeParam === 'static' ? 1.0 : 0.0);
+      gl.uniform2f(volumeLoc.uCoverScale, coverScale[0], coverScale[1]);
+      gl.uniform2f(volumeLoc.uCoverOffset, coverOffset[0], coverOffset[1]);
 
-        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-      }
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+      gl.disableVertexAttribArray(volumeLoc.aPosition);
+      gl.disableVertexAttribArray(volumeLoc.aUv);
 
-      // Pass 2: 7 Curved Spline Ribbons (Cyan-to-ice silk streams visible across bright window)
-      gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-      gl.useProgram(ribbonProg);
-      gl.uniform1f(ribbonLoc.uTime, elapsed);
-      gl.uniform1f(ribbonLoc.uStatic, reducedMotion ? 1.0 : 0.0);
-
-      RIBBON_SPECS.forEach((spec, idx) => {
-        gl.bindBuffer(gl.ARRAY_BUFFER, ribbonBuffers[idx]);
-        gl.enableVertexAttribArray(ribbonLoc.aPosition);
-        gl.vertexAttribPointer(ribbonLoc.aPosition, 2, gl.FLOAT, false, 16, 0);
-        gl.enableVertexAttribArray(ribbonLoc.aUv);
-        gl.vertexAttribPointer(ribbonLoc.aUv, 2, gl.FLOAT, false, 16, 8);
-
-        gl.uniform1f(ribbonLoc.uSpeed, spec.speed);
-        gl.uniform1f(ribbonLoc.uPhase, spec.phase);
-        gl.uniform1f(ribbonLoc.uOpacity, reducedMotion ? spec.opacity * 0.45 : spec.opacity);
-
-        gl.drawArrays(gl.TRIANGLE_STRIP, 0, (RIBBON_SEGMENTS + 1) * 2);
-      });
-
-      // Pass 3: Sparse Micro-Particles
-      gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
+      // Pass 2: Sparse, Ultra-Subtle Atmospheric Micro-Motes
       updateParticles(elapsed);
       gl.useProgram(particleProg);
       gl.bindBuffer(gl.ARRAY_BUFFER, particleBuffer);
+      const pStride = 16;
       gl.enableVertexAttribArray(particleLoc.aPosition);
-      gl.vertexAttribPointer(particleLoc.aPosition, 2, gl.FLOAT, false, 16, 0);
+      gl.vertexAttribPointer(particleLoc.aPosition, 2, gl.FLOAT, false, pStride, 0);
       gl.enableVertexAttribArray(particleLoc.aAlpha);
-      gl.vertexAttribPointer(particleLoc.aAlpha, 1, gl.FLOAT, false, 16, 8);
+      gl.vertexAttribPointer(particleLoc.aAlpha, 1, gl.FLOAT, false, pStride, 8);
       gl.enableVertexAttribArray(particleLoc.aSize);
-      gl.vertexAttribPointer(particleLoc.aSize, 1, gl.FLOAT, false, 16, 12);
+      gl.vertexAttribPointer(particleLoc.aSize, 1, gl.FLOAT, false, pStride, 12);
 
       gl.drawArrays(gl.POINTS, 0, PARTICLE_COUNT);
+      gl.disableVertexAttribArray(particleLoc.aPosition);
+      gl.disableVertexAttribArray(particleLoc.aAlpha);
+      gl.disableVertexAttribArray(particleLoc.aSize);
     };
+
+    const startTime = performance.now();
 
     const resizeObserver = new ResizeObserver(() => {
       syncSize();
@@ -753,7 +671,6 @@ export function HeroAirflow() {
 
     let rafId = 0;
     let isVisible = true;
-    const startTime = performance.now();
 
     const intersectionObserver = new IntersectionObserver(
       (entries) => {
@@ -765,29 +682,25 @@ export function HeroAirflow() {
 
     const animate = (now: number) => {
       if (isVisible) {
-        renderFrame((now - startTime) * 0.001);
+        renderFrame(Math.max(0, (now - startTime) * 0.001));
       }
       if (!reducedMotion) {
         rafId = window.requestAnimationFrame(animate);
       }
     };
 
-    renderFrame(0);
+    renderFrame(fixedTimeValue);
     if (!reducedMotion) {
       rafId = window.requestAnimationFrame(animate);
     }
 
     return () => {
-      disposed = true;
       if (rafId) window.cancelAnimationFrame(rafId);
       resizeObserver.disconnect();
       intersectionObserver.disconnect();
       gl.deleteBuffer(quadBuffer);
-      ribbonBuffers.forEach((b) => gl.deleteBuffer(b));
       gl.deleteBuffer(particleBuffer);
-      gl.deleteTexture(refTex);
-      gl.deleteProgram(flowProg);
-      gl.deleteProgram(ribbonProg);
+      gl.deleteProgram(volumeProg);
       gl.deleteProgram(particleProg);
       if (canvas.parentNode === container) {
         container.removeChild(canvas);
@@ -795,5 +708,5 @@ export function HeroAirflow() {
     };
   }, []);
 
-  return <div ref={containerRef} className={styles.airflow} aria-hidden="true" />;
+  return <div ref={containerRef} className={`mn-hero-airflow ${styles.airflow}`} aria-hidden="true" />;
 }

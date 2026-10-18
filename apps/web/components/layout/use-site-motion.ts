@@ -81,7 +81,7 @@ export function useSiteMotion(
               disposed ||
               document.hidden ||
               !element.animate ||
-              element.closest('[inert], [aria-hidden="true"]')
+              element.closest('[inert], [aria-hidden="true"], [data-custom-motion="true"]')
             )
               continue;
 
@@ -150,7 +150,7 @@ export function useSiteMotion(
           if (known.has(element) || !element.matches(revealTargets)) continue;
           known.add(element);
           // A parent panel already supplies the entrance for its nested content.
-          if (element.parentElement?.closest(revealTargets)) continue;
+          if (element.parentElement?.closest(revealTargets) || element.closest('[data-custom-motion="true"]')) continue;
           reveal.observe(element);
         }
         const decorative = [node, ...node.querySelectorAll<HTMLElement>(ambientTargets)];
