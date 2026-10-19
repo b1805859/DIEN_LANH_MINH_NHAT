@@ -47,16 +47,75 @@ const homeTargets = [
   '.mn-footer-bottom a',
 ].join(',');
 
+// Inner pages follow the same reversible scroll rhythm as Home. Keep forms,
+// maps and cards free of transforms so sticky positioning and hover still work.
+const innerTargets = [
+  'main .mn-section-heading .mn-kicker',
+  'main .mn-section-heading h2',
+  'main .mn-section-heading > .mn-text-link',
+  'main .mn-service-card',
+  'main .mn-service-card .mn-card-photo > img',
+  'main .mn-service-card .mn-card-copy :is(.mn-icon-box, h3, p, .mn-card-arrow)',
+  'main .mn-project-card',
+  'main .mn-project-card .mn-card-photo > img',
+  'main .mn-project-copy > :is(h3, p, div)',
+  'main :is(.mn-tabs, .mn-filters, .mn-catalog-toggle)',
+  'main .mn-process-grid > article',
+  'main .mn-process-illustration',
+  'main .mn-home-process-icon',
+  'main .mn-journey-connector',
+  'main .mn-journey-milestone',
+  'main .mn-home-process-journey h2 em',
+  'main .mn-process-grid > article > :is(span, h3, p)',
+  'main .mn-reasons > article',
+  'main .mn-reasons > article > :is(svg, h3, p)',
+  'main .mn-about-facts > div',
+  'main .mn-team-photo',
+  'main .mn-image-note',
+  'main .mn-service-area',
+  'main .mn-area-copy > :is(h2, p)',
+  'main .mn-area-chips > *',
+  'main .mn-area-selection',
+  'main .mn-verified-map-wrap',
+  'main .mn-verified-map',
+  'main .mn-support',
+  'main .mn-support > div > :is(h2, p, a)',
+  'main :is(.mn-booking-shell, .mn-detail-booking, .mn-contact-map)',
+  'main .mn-contact-methods > a',
+  'main :is(.mn-contact-email, .mn-contact-hint)',
+  'main .mn-faq-card',
+  'main .mn-faq-card > :is(h2, p)',
+  'main .mn-detail-layout > article > :is(.mn-text-link, .mn-detail-description, .mn-faq-heading, .mn-actions)',
+  'main .mn-service-symptoms > li',
+  'main .mn-faq-list > details',
+  'main .mn-article > :is(a, p, h2, .mn-actions)',
+  'main .mn-editorial-layout > article > :is(p, h2, div)',
+  'main .mn-editorial-layout > aside:last-child > p',
+  'main .mn-editorial-layout > aside:last-child > div > a',
+  '.mn-footer-grid > div > *',
+  '.mn-footer-bottom > span',
+  '.mn-footer-bottom a',
+].join(',');
+
 export function canMotionHover(element: Element) {
   return !element.closest('[data-mn-hover-blocked]');
 }
 
 export function useHomeMotion(root: RefObject<HTMLDivElement | null>, pathname: string) {
+  usePageScrollMotion(root, pathname, true);
+}
+
+export function useInnerPageMotion(root: RefObject<HTMLDivElement | null>, pathname: string) {
+  usePageScrollMotion(root, pathname, false);
+}
+
+function usePageScrollMotion(root: RefObject<HTMLDivElement | null>, pathname: string, home: boolean) {
   const budget = useMotionBudget();
 
   useEffect(() => {
     const site = root.current;
-    if (pathname !== '/' || !site || budget === 'reduced') return;
+    if ((pathname === '/') !== home || pathname.startsWith('/admin') || !site || budget === 'reduced') return;
+    const revealTargets = home ? homeTargets : innerTargets;
     gsap.registerPlugin(ScrollTrigger);
 
     let disposed = false;
@@ -87,15 +146,16 @@ export function useHomeMotion(root: RefObject<HTMLDivElement | null>, pathname: 
 
     const context = gsap.context(() => {}, site);
     const register = (node: MotionElement) => {
-      const targets = [node, ...node.querySelectorAll<MotionElement>(homeTargets)].filter(
+      const targets = [node, ...node.querySelectorAll<MotionElement>(revealTargets)].filter(
         (element) =>
-          element.matches(homeTargets) &&
-          !tweens.has(element),
+          element.matches(revealTargets) &&
+          !tweens.has(element) &&
+          (home || !element.closest('[inert], dialog')),
       );
       context.add(() => {
         for (const element of targets) {
           const siblings = Array.from(element.parentElement?.children ?? []).filter((sibling) =>
-            sibling.matches(homeTargets) && !sibling.matches('.mn-journey-connector, .mn-journey-milestone'),
+            sibling.matches(revealTargets) && !sibling.matches('.mn-journey-connector, .mn-journey-milestone'),
           );
           const index = element.matches('.mn-journey-milestone')
             ? Number(element.dataset.stepIndex)
@@ -112,7 +172,9 @@ export function useHomeMotion(root: RefObject<HTMLDivElement | null>, pathname: 
             : Math.min(Math.max(index, 0), 4) * (process ? 24 : 12);
           const surface = element.matches(
             '.mn-home-about, .mn-home-about-photo, .mn-service-area, .mn-verified-map-wrap, .mn-process-grid, .mn-service-card, .mn-project-card, .mn-reasons > article, .mn-process-grid > article, .mn-tabs, .mn-footer, .mn-footer-bottom, .mn-home-service-controls, .mn-home-process-icon, .mn-icon-box, .mn-card-arrow, .mn-card-photo > img, .mn-project-copy > div, .mn-process-illustration, .mn-journey-connector, .mn-journey-milestone, .mn-home-process-journey h2 em',
-          );
+          ) || (!home && element.matches(
+            '.mn-booking-shell, .mn-detail-booking, .mn-contact-map, .mn-contact-email, .mn-contact-methods > a, .mn-support, .mn-service-area, .mn-team-photo, .mn-tabs, .mn-filters, .mn-faq-card, .mn-faq-list > details, .mn-service-symptoms > li, .mn-project-copy > div, .mn-about-facts > div, .mn-editorial-layout > aside:last-child > div > a',
+          ));
           const distance = surface ? 0 : budget === 'limited' ? 10 : 22;
           const from = {
             opacity: 0,
@@ -157,11 +219,16 @@ export function useHomeMotion(root: RefObject<HTMLDivElement | null>, pathname: 
             return edge === 'start' ? start : start + range;
           };
 
+          // Visible content (including freshly filtered cards and short pages)
+          // enters immediately instead of requiring an extra scroll to read it.
+          const bounds = element.getBoundingClientRect();
+          const enterNow = !home && bounds.top < window.innerHeight && bounds.bottom > 0;
           const tween = gsap.fromTo(element, from, {
             opacity: 1,
             ...(distance ? { y: 0 } : {}),
-            duration: 1,
-            ease: 'none',
+            duration: enterNow ? 0.42 : 1,
+            delay: enterNow ? Math.min(Math.max(index, 0), 4) * 0.04 : 0,
+            ease: home ? 'none' : 'power1.out',
             onUpdate() {
               setReady(this.progress() >= 0.999);
             },
@@ -169,7 +236,7 @@ export function useHomeMotion(root: RefObject<HTMLDivElement | null>, pathname: 
             onReverseComplete: () => setReady(false),
             // Keep the end values so reverse can retrace the same tween reliably.
             // Hoverable surfaces animate opacity only, leaving CSS transforms free.
-            scrollTrigger: {
+            scrollTrigger: enterNow ? undefined : {
               trigger: element,
               start: () => position('start'),
               end: () => position('end'),
@@ -253,5 +320,5 @@ export function useHomeMotion(root: RefObject<HTMLDivElement | null>, pathname: 
       tweens.clear();
       site.removeAttribute('data-mn-hover-blocked');
     };
-  }, [budget, pathname, root]);
+  }, [budget, pathname, root, home]);
 }

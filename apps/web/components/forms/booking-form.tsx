@@ -80,7 +80,7 @@ function BookingFormContent({
     mode: 'onTouched',
     defaultValues: {
       serviceId: serviceSlug || '',
-      locationId: locationSlug || PRIORITY_DISTRICTS[0].slug,
+      locationId: locationSlug || '',
       date: '',
       address: '',
       customerName: '',
@@ -125,7 +125,6 @@ function BookingFormContent({
     <form
       noValidate
       aria-busy={mutation.isPending}
-      aria-describedby={`${formId}-help`}
       className="mn-booking-form grid min-w-0 gap-3"
       onChange={() => {
         if (mutation.isSuccess || mutation.isError) mutation.reset();
@@ -136,9 +135,6 @@ function BookingFormContent({
         mutation.mutate(values);
       })}
     >
-      <p className="mn-form-help" id={`${formId}-help`}>
-        Các mục có dấu * cần được điền. Lịch hẹn được xác nhận sau khi Minh Nhật liên hệ với bạn.
-      </p>
       <fieldset disabled={mutation.isPending} className="grid min-w-0 gap-4">
         <legend className="sr-only">Yêu cầu đặt lịch dịch vụ</legend>
         <fieldset className={`mn-form-fields grid gap-3 ${compact ? '' : 'sm:grid-cols-2'}`}>
@@ -148,7 +144,7 @@ function BookingFormContent({
             <input
               className={fieldClass}
               autoComplete="name"
-              placeholder="Nguyễn Văn An"
+              placeholder="Nhập họ tên của bạn"
               required
               aria-invalid={Boolean(errors.customerName)}
               aria-describedby={errors.customerName ? `${formId}-customerName-error` : undefined}
@@ -166,7 +162,7 @@ function BookingFormContent({
               inputMode="tel"
               type="tel"
               autoComplete="tel"
-              placeholder={siteContent.phoneDisplay}
+              placeholder="Nhập số điện thoại của bạn"
               required
               aria-invalid={Boolean(errors.customerPhone)}
               aria-describedby={errors.customerPhone ? `${formId}-customerPhone-error` : undefined}
@@ -209,6 +205,7 @@ function BookingFormContent({
               aria-describedby={errors.locationId ? `${formId}-locationId-error` : undefined}
               {...form.register('locationId')}
             >
+              <option value="">Chọn khu vực cần hỗ trợ</option>
               {PRIORITY_DISTRICTS.map((district) => (
                 <option key={district.slug} value={district.slug}>
                   {district.name}
@@ -236,7 +233,7 @@ function BookingFormContent({
           <input
             className={fieldClass}
             autoComplete="street-address"
-            placeholder="Số nhà, đường, phường tại Cần Thơ"
+            placeholder="Nhập số nhà, đường và phường"
             required
             aria-invalid={Boolean(errors.address)}
             aria-describedby={errors.address ? `${formId}-address-error` : undefined}
@@ -248,7 +245,7 @@ function BookingFormContent({
           <span className="text-xs font-black uppercase text-slate-500">Nội dung yêu cầu</span>
           <textarea
             className="min-h-24 w-full min-w-0 rounded-md border border-slate-200 bg-slate-50 px-3 py-3 text-sm text-slate-950 outline-none transition placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
-            placeholder="Mô tả nhanh tình trạng thiết bị"
+            placeholder="Mô tả lỗi hoặc việc bạn cần hỗ trợ"
             {...form.register('notes')}
           />
         </label>

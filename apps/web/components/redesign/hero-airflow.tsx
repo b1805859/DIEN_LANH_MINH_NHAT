@@ -457,10 +457,12 @@ function distToSegment2D(
 
 export function HeroAirflow() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const container = containerRef.current;
-    if (!container) return;
+    const canvas = canvasRef.current;
+    if (!container || !canvas) return;
 
     const params = new URLSearchParams(window.location.search);
     const modeParam = params.get('airflow');
@@ -475,12 +477,6 @@ export function HeroAirflow() {
       hasFixedTime ||
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    const canvas = document.createElement('canvas');
-    canvas.style.width = '100%';
-    canvas.style.height = '100%';
-    canvas.style.display = 'block';
-    container.appendChild(canvas);
-
     const gl = canvas.getContext('webgl', {
       alpha: true,
       antialias: true,
@@ -488,14 +484,14 @@ export function HeroAirflow() {
       powerPreference: 'high-performance',
     });
     if (!gl) {
-      container.removeChild(canvas);
       return;
     }
 
     const volumeProg = createProgram(gl, UNIFIED_VOLUME_VERT, UNIFIED_VOLUME_FRAG);
     const particleProg = createProgram(gl, PARTICLE_VERT, PARTICLE_FRAG);
     if (!volumeProg || !particleProg) {
-      container.removeChild(canvas);
+      if (volumeProg) gl.deleteProgram(volumeProg);
+      if (particleProg) gl.deleteProgram(particleProg);
       return;
     }
 
@@ -704,13 +700,12 @@ export function HeroAirflow() {
       gl.deleteBuffer(particleBuffer);
       gl.deleteProgram(volumeProg);
       gl.deleteProgram(particleProg);
-      if (canvas.parentNode === container) {
-        container.removeChild(canvas);
-      }
     };
   }, []);
 
   return (
-    <div ref={containerRef} className={`mn-hero-airflow ${styles.airflow}`} aria-hidden="true" />
+    <div ref={containerRef} className={`mn-hero-airflow ${styles.airflow}`} aria-hidden="true">
+      <canvas ref={canvasRef} style={{ width: '100%', height: '100%', display: 'block' }} />
+    </div>
   );
 }

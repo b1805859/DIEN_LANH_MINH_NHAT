@@ -3,30 +3,9 @@
 import { useEffect, type RefObject } from 'react';
 import { useMotionBudget } from '@/components/ui/use-motion-budget';
 
-const revealTargets = [
-  '.mn-section-heading',
-  '.mn-service-card',
-  '.mn-project-card',
-  '.mn-process-grid > article',
-  '.mn-reasons > article',
-  '.mn-home-about',
-  '.mn-service-area',
-  '.mn-support',
-  '.mn-about-facts',
-  '.mn-team-photo',
-  '.mn-faq-card',
-  '.mn-contact-map',
-  '.mn-booking-shell',
-  '.mn-detail-booking',
-  '.mn-contact-methods > a',
-  '.mn-contact-email',
-  '.mn-article',
-  '.mn-editorial-hero',
-  '.mn-editorial-layout > article',
-].join(',');
 const ambientTargets = '.mn-home-hero, .mn-page-hero, .mn-service-area, .mn-contact-map';
 
-// Animate the existing DOM without inserting wrappers or hiding content in CSS.
+// Ambient visibility is separate from the shared Home/inner-page scroll reveals.
 export function useSiteMotion(
   root: RefObject<HTMLDivElement | null>,
   pathname: string,
@@ -43,66 +22,8 @@ export function useSiteMotion(
       disposeMotion();
       if (budget === 'reduced') return;
 
-      const known = new WeakSet<HTMLElement>();
       const ambientElements = new Set<HTMLElement>();
-      const animations = new Set<Animation>();
-      const pausedAnimations = new Set<Animation>();
       let disposed = false;
-
-      const playEntrance = (
-        element: HTMLElement,
-        frames: Keyframe[],
-        duration: number,
-        delay = 0,
-      ) => {
-        if (!element.animate) return;
-        const animation = element.animate(frames, {
-          duration,
-          delay,
-          easing: 'cubic-bezier(0.22,1,0.36,1)',
-          fill: 'backwards',
-        });
-        animations.add(animation);
-        const release = () => {
-          animations.delete(animation);
-          pausedAnimations.delete(animation);
-        };
-        animation.finished.then(release, release);
-      };
-
-      const reveal = new IntersectionObserver(
-        (entries) => {
-          if (disposed) return;
-          for (const entry of entries) {
-            if (!entry.isIntersecting) continue;
-            const element = entry.target as HTMLElement;
-            reveal.unobserve(element);
-            if (
-              disposed ||
-              document.hidden ||
-              !element.animate ||
-              element.closest('[inert], [aria-hidden="true"], [data-custom-motion="true"]')
-            )
-              continue;
-
-            const siblings = Array.from(element.parentElement?.children || []).filter((sibling) =>
-              sibling.matches(revealTargets),
-            );
-            const delay = Math.min(Math.max(siblings.indexOf(element), 0), 4) * 40;
-            const isCard = element.matches('.mn-service-card, .mn-project-card');
-            playEntrance(
-              element,
-              [
-                { opacity: 0.35, transform: `translateY(${isCard ? 6 : 12}px)` },
-                { opacity: 1, transform: 'translateY(0)' },
-              ],
-              isCard ? 280 : 420,
-              delay,
-            );
-          }
-        },
-        { threshold: 0, rootMargin: '0px 0px -24px 0px' },
-      );
 
       const ambient = new IntersectionObserver((entries) => {
         if (disposed) return;
@@ -112,14 +33,6 @@ export function useSiteMotion(
       });
 
       const register = (node: HTMLElement) => {
-        const candidates = [node, ...node.querySelectorAll<HTMLElement>(revealTargets)];
-        for (const element of candidates) {
-          if (pathname === '/' || known.has(element) || !element.matches(revealTargets)) continue;
-          known.add(element);
-          // A parent panel already supplies the entrance for its nested content.
-          if (element.parentElement?.closest(revealTargets) || element.closest('[data-custom-motion="true"]')) continue;
-          reveal.observe(element);
-        }
         const decorative = [node, ...node.querySelectorAll<HTMLElement>(ambientTargets)];
         for (const element of decorative) {
           if (!element.matches(ambientTargets) || ambientElements.has(element)) continue;
@@ -150,7 +63,7 @@ export function useSiteMotion(
       };
       const size =
         budget === 'full' && 'ResizeObserver' in window ? new ResizeObserver(measure) : null;
-      if (budget === 'full') {
+      if (budget === 'full' && pathname === '/') {
         size?.observe(site);
         window.addEventListener('scroll', scheduleTemperature, { passive: true });
         window.addEventListener('resize', measure, { passive: true });
@@ -169,33 +82,17 @@ export function useSiteMotion(
           ambient.unobserve(element);
           ambientElements.delete(element);
         }
-        for (const node of records.flatMap((record) => Array.from(record.removedNodes))) {
-          if (!(node instanceof HTMLElement) || site.contains(node)) continue;
-          reveal.unobserve(node);
-          node.querySelectorAll(revealTargets).forEach((element) => reveal.unobserve(element));
-        }
       });
       changes.observe(site, { childList: true, subtree: true });
 
       const visibility = () => {
         site.dataset.motionPaused = String(document.hidden);
-        if (document.hidden) {
-          for (const animation of animations) {
-            if (animation.playState !== 'running') continue;
-            animation.pause();
-            pausedAnimations.add(animation);
-          }
-        } else {
-          for (const animation of pausedAnimations) animation.play();
-          pausedAnimations.clear();
-          scheduleTemperature();
-        }
+        if (!document.hidden) scheduleTemperature();
       };
       visibility();
       document.addEventListener('visibilitychange', visibility);
       disposeMotion = () => {
         disposed = true;
-        reveal.disconnect();
         ambient.disconnect();
         changes.disconnect();
         size?.disconnect();
@@ -205,9 +102,6 @@ export function useSiteMotion(
         site.style.removeProperty('--mn-warm-light');
         site.style.removeProperty('--mn-cool-light');
         document.removeEventListener('visibilitychange', visibility);
-        for (const animation of animations) animation.cancel();
-        animations.clear();
-        pausedAnimations.clear();
         for (const element of ambientElements) delete element.dataset.motionVisible;
         ambientElements.clear();
         delete site.dataset.motionPaused;

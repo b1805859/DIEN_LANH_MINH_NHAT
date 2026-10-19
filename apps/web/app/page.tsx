@@ -5,11 +5,10 @@ import { HomeServicesSection } from '@/components/redesign/home-services-section
 import { Process, Reasons } from '@/components/redesign/ui';
 import { VerifiedServiceArea } from '@/components/redesign/verified-service-area';
 import { Showcase } from '@/components/redesign/showcase';
+import { sharedProjectCovers } from '@/lib/content/shared-project-covers';
 import { siteContent } from '@/lib/content/site-content';
 import { buildMetadata } from '@/lib/seo/metadata';
 import { halfContentImageSizes } from '@/lib/image-sizes';
-import './home-refinement.css';
-import './home-approved.css';
 import { ShieldCheck } from 'lucide-react';
 export const metadata = buildMetadata({
   title: 'Điện lạnh tận nơi tại Cần Thơ',
@@ -35,22 +34,22 @@ export default function HomePage() {
             <div className="mn-about-brand-badge">
               <ShieldCheck size={34} aria-hidden="true" />
               <span>
-                <strong>Tận tâm</strong>
-                <span>Chuyên nghiệp</span>
-                <span>Vì khách hàng Cần Thơ</span>
+                <strong>Kiểm tra</strong>
+                <span>Báo giá</span>
+                <span>Rồi mới sửa</span>
               </span>
             </div>
           </div>
           <div>
             <p className="mn-kicker">GIỚI THIỆU MINH NHẬT</p>
             <h2>
-              Tận tâm đồng hành
+              Sửa điện lạnh tại nhà
               <br />
-              <em>cùng người dân Cần Thơ</em>
+              <em>ở Cần Thơ</em>
             </h2>
             <p>
-              Minh Nhật chăm chút từng công việc, từ kiểm tra, tư vấn đến thi công và bàn giao, để
-              thiết bị trong nhà vận hành ổn định, bền bỉ.
+              Bạn cho biết máy đang gặp lỗi gì, Minh Nhật hẹn giờ đến kiểm tra. Thợ sẽ trao đổi
+              cách sửa và báo giá trước khi làm.
             </p>
             <Reasons />
             <Link href="/about" className="mn-text-link">
@@ -59,26 +58,12 @@ export default function HomePage() {
           </div>
         </section>
         </div>
-        <section className="mn-section mn-home-projects mn-home-light" aria-label="Dự án minh họa và tin tức hữu ích">
+        <section className="mn-section mn-home-projects mn-home-light" aria-label="Dự án và bài viết">
           <div className="mn-home-frame">
           <Showcase
             home
             compact
-            projectCovers={{
-              'lap-dat-may-lanh-ninh-kieu': {
-                src: '/images/redesign/carousel-maintenance.webp',
-                position: 'right center',
-                alt: 'Kỹ thuật viên kiểm tra dàn lạnh trong nhà – ảnh minh họa hạng mục máy lạnh',
-              },
-              'sua-tu-lanh-binh-thuy': {
-                src: '/images/redesign/home-carousel/support-fridge.webp',
-                alt: 'Kỹ thuật viên kiểm tra tủ lạnh tại nhà – ảnh minh họa',
-              },
-              'dien-nuoc-nha-pho': {
-                src: '/images/redesign/home-carousel/support-plumbing.webp?v=20261015-realism',
-                alt: 'Kỹ thuật viên kiểm tra ống nước dưới bồn rửa – ảnh minh họa',
-              },
-            }}
+            projectCovers={sharedProjectCovers}
           />
           </div>
         </section>

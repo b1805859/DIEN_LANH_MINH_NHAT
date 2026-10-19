@@ -35,16 +35,16 @@ export default async function ServiceWardPage({ params }: { params: Params }) {
       <PageHero
         title={service.name}
         accent={`tại ${ward.name}`}
-        description={`Kiểm tra, tư vấn và thi công tận nơi tại ${ward.highlight}. Gửi lịch hẹn để kỹ thuật viên xác nhận trước khi đến.`}
+        description={`Nhận kiểm tra và sửa chữa tại ${ward.highlight}. Bạn gửi địa chỉ và giờ muốn hẹn, Minh Nhật sẽ liên hệ xác nhận.`}
         image={serviceCards.find((item) => item.slug === service.slug)?.image}
       />
       <div className="mn-container">
-        <div className="mn-detail-layout">
+        <div className="mn-detail-layout mn-tone-section mn-tone-light">
           <article>
             <Link href={`/areas/${ward.slug}`} className="mn-text-link">
               ← Dịch vụ tại {ward.shortName}
             </Link>
-            <SectionHeading title="Tư vấn rõ ràng," accent="thi công cẩn thận" />
+            <SectionHeading title="Kiểm tra máy," accent="báo giá trước khi sửa" />
             <Reasons />
           </article>
           <aside className="mn-detail-booking mn-panel">

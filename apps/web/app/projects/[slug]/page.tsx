@@ -24,6 +24,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
         imagePreview
       />
       <div className="mn-container">
+        <div className="mn-tone-section mn-tone-light">
         <article className="mn-article mn-panel">
           <Link className="mn-text-link" href="/projects">
             ← Tất cả dự án
@@ -41,6 +42,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
           </p>
           <Actions booking />
         </article>
+        </div>
         <Process />
       </div>
     </main>

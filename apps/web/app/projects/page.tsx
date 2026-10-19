@@ -5,7 +5,7 @@ import { siteContent } from '@/lib/content/site-content';
 import { buildMetadata } from '@/lib/seo/metadata';
 export const metadata = buildMetadata({
   title: 'Dự án & Tin tức điện lạnh Cần Thơ',
-  description: 'Khám phá các hạng mục thi công minh họa và kiến thức sử dụng thiết bị điện lạnh.',
+  description: 'Các hạng mục sửa chữa, lắp đặt minh họa và bài viết về cách dùng thiết bị điện lạnh.',
   path: '/projects',
 });
 export default function ProjectsPage() {
@@ -14,13 +14,17 @@ export default function ProjectsPage() {
       <PageHero
         showEyebrow={false}
         title="Dự án minh họa"
-        accent="& Tin tức hữu ích"
-        description="Khám phá các hạng mục dịch vụ và chia sẻ thiết thực, giúp bạn sử dụng thiết bị điện lạnh hiệu quả hơn."
+        accent="& Bài viết"
+        description="Xem các hạng mục sửa chữa, lắp đặt và bài viết về cách dùng thiết bị. Hình ảnh dự án dùng để minh họa."
         image={siteContent.images.editorial}
       />
       <div className="mn-container mn-projects-content">
-        <Showcase key="projects" />
-        <ServiceArea />
+        <section className="mn-tone-section mn-tone-light" aria-label="Dự án và tin tức">
+          <Showcase key="projects" />
+        </section>
+        <div className="mn-tone-section mn-tone-deep mn-shared-coverage-section">
+          <ServiceArea />
+        </div>
       </div>
     </main>
   );

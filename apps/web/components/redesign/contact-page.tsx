@@ -11,11 +11,11 @@ export function ContactPageContent({ contact = false }: { contact?: boolean }) {
       <PageHero
         showEyebrow={false}
         title={contact ? 'Liên hệ Minh Nhật' : 'Đặt lịch dịch vụ'}
-        accent={contact ? 'trao đổi nhu cầu của bạn' : 'nhanh chóng, tiện lợi'}
-        description={contact ? 'Gọi điện, nhắn Zalo hoặc gửi yêu cầu để trao đổi tình trạng thiết bị và lịch hỗ trợ tại Cần Thơ.' : 'Chỉ cần điền thông tin, chúng tôi sẽ liên hệ xác nhận trong thời gian sớm nhất.'}
+        accent={contact ? 'gọi điện hoặc nhắn Zalo' : 'để thợ đến kiểm tra'}
+        description={contact ? 'Cho Minh Nhật biết máy đang gặp lỗi gì và địa chỉ của bạn. Bạn có thể gọi điện, nhắn Zalo hoặc để lại thông tin bên dưới.' : 'Bạn chọn dịch vụ, điền địa chỉ và giờ muốn hẹn. Minh Nhật sẽ gọi lại để xác nhận.'}
         image={siteContent.images.contact}
       />
-      <div className="mn-container mn-contact-layout">
+      <div className="mn-container mn-contact-layout mn-tone-section mn-tone-light">
         <section className="mn-booking-shell mn-panel">
           <nav className="mn-tabs" aria-label="Liên hệ và đặt lịch">
             <Link href="/booking" aria-current={!contact ? 'page' : undefined}>
@@ -64,10 +64,6 @@ export function ContactPageContent({ contact = false }: { contact?: boolean }) {
             </div>
           )}
           <ContactMap />
-          <p className="mn-contact-hint">
-            Gửi hình ảnh và mô tả tình trạng thiết bị qua Zalo để kỹ thuật viên tư vấn thuận tiện
-            hơn.
-          </p>
         </aside>
       </div>
     </main>

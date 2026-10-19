@@ -8,6 +8,7 @@ Tài liệu này ghi nhận hiện trạng giữa **dữ liệu kinh doanh đã 
 
 - **Tên cơ sở:** Điện Lạnh Minh Nhật
 - **Thành phố hoạt động chính:** TP. Cần Thơ, Việt Nam
+- **Địa chỉ hiển thị:** XP8W+263, Unnamed, Road, Cái Răng, Cần Thơ, Việt Nam — theo [Google Maps do chủ cơ sở cung cấp](https://maps.app.goo.gl/bxgjSHcq7YArXPxH6).
 - **Số điện thoại hotline:** `0939 370 109` (hoặc `0939370109`)
 - **Tài khoản Zalo:** `https://zalo.me/0939370109`
 - **Khu vực phục vụ trọng tâm:** Các quận, huyện tại Cần Thơ (Ninh Kiều, Cái Răng, Bình Thủy, Ô Môn, Thốt Nốt, Phong Điền, Thới Lai, Cờ Đỏ, Vĩnh Thạnh).
@@ -30,7 +31,6 @@ Tài liệu này ghi nhận hiện trạng giữa **dữ liệu kinh doanh đã 
 
 | Hạng mục | Giá trị mặc định hiện tại | Nguồn / Ghi chú |
 | :--- | :--- | :--- |
-| **Địa chỉ trụ sở / cửa hàng vật lý** | `Cần Thơ, Việt Nam` (chưa có số nhà, tên đường cụ thể) | Có thể cấu hình qua biến môi trường `NEXT_PUBLIC_BUSINESS_ADDRESS` khi có địa chỉ đăng ký kinh doanh chính thức. |
 | **Giờ làm việc / trực điện thoại** | `08:00 – 20:00 (T2 – CN)` | Cấu hình qua `NEXT_PUBLIC_BUSINESS_OPENING_HOURS`. Cần xác nhận xem có làm việc ngày lễ hoặc hỗ trợ ngoài giờ hay không. |
 | **Email liên hệ** | `dienlanhminhnhat@gmail.com` | Cần xác nhận hòm thư này có đang hoạt động và nhận thư thường xuyên hay không. |
 | **Trang Facebook Fanpage** | `https://www.facebook.com/le.qui.16718` | Cần xác nhận URL trang cá nhân/fanpage chính thức của cơ sở. |

@@ -34,7 +34,7 @@ export default async function BlogCategoryPage({ params }: { params: Promise<{ s
         description={`Kinh nghiệm sử dụng, bảo trì và nhận biết lỗi ${category.name.toLowerCase()}.`}
         image={siteContent.images.editorial}
       />
-      <div className="mn-container mn-projects-content">
+      <div className="mn-container mn-projects-content mn-tone-section mn-tone-light">
         <Showcase key={slug} initialTab="news" initialCategory={slug} />
       </div>
     </main>

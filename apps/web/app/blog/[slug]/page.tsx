@@ -75,7 +75,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
         </div>
       </section>
 
-      <section className="mn-container mn-editorial-layout">
+      <section className="mn-container mn-editorial-layout mn-tone-section mn-tone-light">
         <aside className="mn-editorial-toc text-sm text-slate-600">
           <p className="font-black text-slate-950">Mục lục</p>
           <a className="mt-3 block transition hover:text-primary" href="#dau-hieu">
@@ -88,19 +88,17 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
 
         <article className="min-w-0 rounded-md border border-slate-200 bg-white p-4 shadow-sm sm:p-5 md:p-8">
           <p className="leading-8 text-slate-700">
-            Bài viết cung cấp hướng dẫn thực tế cho khách hàng tại Cần Thơ, giúp nhận biết vấn đề và
-            chọn thời điểm gọi kỹ thuật viên phù hợp. Các dấu hiệu dưới đây chỉ nên dùng để tham
-            khảo ban đầu, những lỗi liên quan điện, gas hoặc rò nước nên được kiểm tra bằng dụng cụ
-            chuyên môn.
+            Khi thiết bị có dấu hiệu khác thường, bạn nên ghi lại hiện tượng và mã lỗi nếu có.
+            Những thông tin dưới đây giúp bạn nhận biết ban đầu. Với lỗi điện, gas hoặc rò nước,
+            hãy để thợ kiểm tra bằng dụng cụ chuyên dụng.
           </p>
 
           <h2 id="dau-hieu" className="mt-10 text-2xl font-black">
             Dấu hiệu cần chú ý
           </h2>
           <p className="mt-3 leading-8 text-slate-700">
-            Thiết bị giảm hiệu suất, phát tiếng ồn, rò nước, báo lỗi hoặc tiêu thụ điện bất thường
-            là các dấu hiệu nên kiểm tra sớm. Nếu tình trạng lặp lại nhiều lần, việc tiếp tục sử
-            dụng có thể làm hư thêm linh kiện bên trong.
+            Máy chạy yếu hơn trước, kêu lớn, rò nước, báo lỗi hoặc tốn điện hơn là những dấu hiệu
+            cần kiểm tra. Nếu tình trạng lặp lại, bạn nên gọi thợ để tìm nguyên nhân.
           </p>
 
           <h2 id="xu-ly" className="mt-10 text-2xl font-black">

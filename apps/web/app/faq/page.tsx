@@ -14,7 +14,7 @@ export default function FaqPage() {
   return (
     <main className="mn-reference-page">
       <PageHero title="Câu hỏi thường gặp" showEyebrow={false} />
-      <div className="mn-container mn-reading-content mn-faq-cards">
+      <div className="mn-container mn-reading-content mn-faq-cards mn-tone-section mn-tone-light">
         {FAQS.map((faq) => (
           <section key={faq.question} className="mn-panel mn-faq-card">
             <h2>{faq.question}</h2>

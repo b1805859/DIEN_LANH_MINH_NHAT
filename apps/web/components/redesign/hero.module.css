@@ -36,11 +36,22 @@
   flex: 1;
   min-height: 0;
   overflow: hidden;
-  border: 1px solid rgba(0, 163, 216, 0.46);
+  border: 1px solid #00aeef;
   border-radius: 12px;
   background: #00152e;
   container-type: size;
   isolation: isolate;
+}
+
+/* Paint the frame above the image and WebGL layers, including rounded corners. */
+.track::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: 10;
+  border: 1px solid #00aeef;
+  border-radius: inherit;
+  pointer-events: none;
 }
 
 .slide {
@@ -86,13 +97,13 @@
   background:
     linear-gradient(
       90deg,
-      rgba(1, 14, 29, 0.32) 0%,
-      rgba(1, 18, 36, 0.16) 24%,
-      rgba(1, 22, 42, 0.04) 42%,
-      transparent 56%
-    ),
-    linear-gradient(180deg, rgba(0, 21, 42, 0.18) 0%, transparent 48%);
-  mask-image: linear-gradient(180deg, #000 0%, #000 34%, transparent 64%);
+      rgba(1, 14, 29, 0.68) 0%,
+      rgba(1, 18, 36, 0.50) 20%,
+      rgba(1, 22, 42, 0.22) 38%,
+      rgba(1, 22, 42, 0.06) 48%,
+      transparent 58%
+    );
+  mask-image: linear-gradient(180deg, #000 0%, #000 42%, rgba(0, 0, 0, 0.8) 50%, transparent 66%);
 }
 
 /* Layers 5, 6, 7: WebGL Airflow Canvas (Back flow, Main curved ribbons, Front mist & particles) */
@@ -123,7 +134,7 @@
 
 /* Match the room plate's cover projection; keep the complete person above all airflow. */
 .technicianLayer {
-  mask-image: url('/images/redesign/hero-technician-focus-mask.svg?v=20261018-contour-2');
+  mask-image: url('/images/redesign/hero-technician-focus-mask.svg?v=20261019-complete-head-7');
   mask-size: cover;
   mask-position: center center;
   mask-repeat: no-repeat;
@@ -144,10 +155,15 @@
   margin: 0;
   font-size: clamp(32px, min(4.2cqw, 8cqh), 64px);
   font-weight: 800;
-  line-height: 1.06;
-  letter-spacing: -0.032em;
+  line-height: 1.1;
+  letter-spacing: -0.028em;
   color: #ffffff;
-  text-shadow: 0 2px 16px rgba(0, 14, 28, 0.35);
+  text-shadow: 0 2px 4px rgba(0, 14, 28, 0.3);
+}
+
+.headlineLine {
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .carousel .headline em {
@@ -157,11 +173,19 @@
 
 .description {
   max-width: 28cqw;
-  margin: 0.6cqw 0 0;
+  margin: clamp(10px, 1.1cqw, 18px) 0 0;
   font-size: clamp(14px, min(1.6cqw, 3.2cqh), 24px);
-  line-height: 1.4;
-  color: #e2edf8;
-  text-shadow: 0 1px 10px rgba(0, 12, 24, 0.45);
+  line-height: 1.5;
+  color: #f2f7fc;
+  text-shadow: 0 1px 3px rgba(0, 12, 24, 0.35);
+}
+
+/* Animate the wrapper so the button keeps its existing hover/press transforms. */
+.ctaEntrance {
+  align-self: flex-start;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: clamp(16px, 1.4cqw, 24px);
 }
 
 .carousel .copy .booking {
@@ -169,7 +193,7 @@
   align-items: center;
   justify-content: center;
   min-height: clamp(42px, min(3.75cqw, 8cqh), 56px);
-  margin-top: 1.1cqw;
+  margin-top: 0;
   padding: 0 clamp(24px, 2.6cqw, 38px);
   gap: 10px;
   border-radius: 999px;
@@ -194,7 +218,7 @@
   align-items: center;
   gap: 10px 1.1cqw;
   padding: 0;
-  margin: min(1.9cqw, 3cqh) 0 0;
+  margin: clamp(16px, min(1.7cqw, 3cqh), 24px) 0 0;
   list-style: none;
   font-size: clamp(12px, min(1.25cqw, 2.2dvh), 18px);
   font-weight: 500;
@@ -297,6 +321,13 @@
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .copy [data-hero-enter] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 @media (max-width: 900px) {
   .carousel:global(.mn-home-hero) {
     margin-top: var(--mn-page-gap);
@@ -356,10 +387,13 @@
     margin-top: 8px;
   }
 
+  .ctaEntrance {
+    margin-top: 12px;
+  }
+
   .carousel .copy .booking {
     align-self: flex-start;
     min-height: 38px;
-    margin-top: 12px;
     padding: 0 18px;
     font-size: 13px;
   }
@@ -416,9 +450,12 @@
     line-height: 1.35;
   }
 
+  .ctaEntrance {
+    margin-top: 8px;
+  }
+
   .carousel .copy .booking {
     min-height: 34px;
-    margin-top: 8px;
   }
 
   .benefits {

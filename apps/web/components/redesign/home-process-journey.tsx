@@ -94,7 +94,7 @@ export function HomeProcessJourney({ steps }: { steps: string[][] }) {
         timeline.set([...cards, ...milestones], { attr: { 'data-journey-step-state': 'pending' } }, 0);
         if (reduced) {
           // Keep a short orientation cue, without movement, stagger, or icon scaling.
-          timeline.fromTo([heading, ...cards], { opacity: 0 }, { opacity: 1, duration: 0.15 }, 0);
+          timeline.fromTo([heading, ...cards], { opacity: 0 }, { opacity: 1, duration: 0.15, immediateRender: false }, 0);
         } else {
           // The shared homepage reveal owns opacity/translation for each card,
           // cartoon and text detail, including reversing them on upward scroll.
@@ -168,7 +168,7 @@ export function HomeProcessJourney({ steps }: { steps: string[][] }) {
                   sizes="(max-width: 440px) calc(100vw - 88px), (max-width: 700px) 40vw, (max-width: 1000px) 28vw, 230px" />
               </div>}
               <div className="mn-home-process-icon"><StepIcon size={30} strokeWidth={1.7} aria-hidden="true" /></div>
-              <span className="mn-journey-step-number" aria-label={`Bước ${index + 1}`}>
+              <span className="mn-journey-step-number" role="img" aria-label={`Bước ${index + 1}`}>
                 <small aria-hidden="true">BƯỚC</small><strong aria-hidden="true">{String(index + 1).padStart(2, '0')}</strong>
               </span>
               <h3>{title}</h3>

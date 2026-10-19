@@ -1,11 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, Settings } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { serviceCards } from '@/lib/content/site-content';
-import { Icon } from './ui';
+import { ServiceCard } from './ui';
 
 const homeServices = [
   ...serviceCards.slice(0, 5).map((service) => ({
@@ -15,7 +14,7 @@ const homeServices = [
   {
     slug: 'bao-duong-dinh-ky',
     title: 'Bảo dưỡng định kỳ',
-    description: 'Kiểm tra tổng thể, vệ sinh, giúp thiết bị hoạt động bền bỉ và tiết kiệm điện.',
+    description: 'Vệ sinh máy, kiểm tra các bộ phận và chạy thử sau khi bảo dưỡng.',
     icon: 'maintenance',
     image: '/images/redesign/home-carousel/support-condenser.webp',
     href: '/services',
@@ -34,13 +33,13 @@ export function HomeServicesSection() {
             <p className="mn-kicker">DỊCH VỤ CỦA CHÚNG TÔI</p>
             <h2 id="home-services-title">
               <span className="mn-heading-title">Dịch vụ điện lạnh</span>{' '}
-              <em>toàn diện tại Cần Thơ</em>
+              <em>tại Cần Thơ</em>
             </h2>
           </div>
           <div className="mn-home-services-intro">
             <p>
-              Minh Nhật cung cấp đầy đủ các dịch vụ điện lạnh từ sửa chữa, vệ sinh, lắp đặt đến
-              bảo dưỡng định kỳ, phục vụ nhanh chóng tại các khu vực ở Cần Thơ.
+              Nhận sửa, vệ sinh và lắp máy lạnh, máy giặt, tủ lạnh; sửa điện nước tại nhà
+              ở Cần Thơ.
             </p>
             <Link href="/services" className="mn-text-link">
               Xem tất cả dịch vụ <ArrowRight size={18} aria-hidden="true" />
@@ -59,22 +58,7 @@ export function HomeServicesSection() {
         </div>
         <div className="mn-service-grid" id="home-service-grid" aria-live="polite">
           {services.map((service) => (
-            <Link key={service.slug} href={service.href} className="mn-service-card">
-              <div className="mn-card-photo">
-                <Image src={service.image} fill
-                  sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1000px) 46vw, 420px"
-                  alt={`${service.title} – ảnh minh họa`} />
-              </div>
-              <div className="mn-card-copy">
-                <span className="mn-icon-box">
-                  {service.icon === 'maintenance'
-                    ? <Settings strokeWidth={1.65} aria-hidden="true" />
-                    : <Icon name={service.icon} />}
-                </span>
-                <div><h3>{service.title}</h3><p>{service.description}</p></div>
-                <ArrowRight className="mn-card-arrow" aria-hidden="true" />
-              </div>
-            </Link>
+            <ServiceCard key={service.slug} service={service} href={service.href} />
           ))}
         </div>
       </div>

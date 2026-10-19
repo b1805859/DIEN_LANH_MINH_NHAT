@@ -7,10 +7,11 @@ export const TARGET_CITY = 'Cần Thơ';
 export const BUSINESS = {
   name: APP_NAME,
   phone: '0939370109',
-  address: 'Cần Thơ, Việt Nam',
+  address: 'XP8W+263, Unnamed, Road, Cái Răng, Cần Thơ, Việt Nam',
   zaloUrl: 'https://zalo.me/0939370109',
-  googleMapsUrl: '',
-  googleMapsEmbedUrl: '',
+  googleMapsUrl: 'https://maps.app.goo.gl/bxgjSHcq7YArXPxH6',
+  googleMapsEmbedUrl:
+    'https://maps.google.com/maps?ll=9.9650142,105.7455554&z=18&hl=vi&output=embed',
 };
 
 export const PRIORITY_DISTRICTS = [
@@ -72,21 +73,21 @@ export const BLOG_POSTS = [
     category: 'may-lanh',
     image: '/images/redesign/ve-sinh-may-lanh.webp',
     excerpt:
-      'Mốc thời gian vệ sinh máy lạnh phù hợp cho gia đình, phòng trọ và cửa hàng sử dụng thường xuyên.',
+      'Bao lâu nên vệ sinh máy lạnh ở nhà, phòng trọ hoặc cửa hàng? Lịch vệ sinh còn tùy mức độ sử dụng.',
   },
   {
     title: 'Dấu hiệu máy lạnh cần nạp gas',
     slug: 'dau-hieu-may-lanh-can-nap-gas',
     category: 'may-lanh',
     image: '/images/redesign/nap-gas-may-lanh.webp?v=20261015-realism',
-    excerpt: 'Các biểu hiện thiếu gas, cách kiểm tra ban đầu và thời điểm nên gọi kỹ thuật viên.',
+    excerpt: 'Máy lạnh yếu có phải do thiếu gas? Những dấu hiệu cần để thợ kiểm tra trước khi nạp.',
   },
   {
     title: 'Máy lạnh không lạnh nguyên nhân do đâu?',
     slug: 'may-lanh-khong-lanh-nguyen-nhan-do-dau',
     category: 'may-lanh',
     image: '/images/redesign/sua-may-lanh-realism-v2.webp',
-    excerpt: 'Tổng hợp nguyên nhân khiến máy lạnh chạy nhưng không mát và hướng xử lý an toàn.',
+    excerpt: 'Máy vẫn chạy nhưng phòng không mát: những nguyên nhân thường gặp và cách kiểm tra ban đầu.',
   },
   {
     title: 'Máy lạnh chảy nước phải làm sao?',
@@ -129,9 +130,9 @@ export const FAQS = [
     answer: 'Có. Kỹ thuật viên kiểm tra, tư vấn nguyên nhân và báo giá trước khi thực hiện.',
   },
   {
-    question: 'Khu vực nào được hỗ trợ nhanh?',
+    question: 'Minh Nhật nhận sửa ở đâu?',
     answer:
-      'Ưu tiên các phường Ninh Kiều, Cái Răng, Bình Thủy, Ô Môn và các khu vực lân cận tại Cần Thơ.',
+      'Minh Nhật nhận sửa tại Ninh Kiều, Cái Răng, Bình Thủy, Ô Môn và các khu vực lân cận ở Cần Thơ. Bạn gửi địa chỉ để xác nhận lịch đến.',
   },
 ] as const;
 

@@ -36,16 +36,15 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         image={service.image}
       />
       <div className="mn-container">
-        <div className="mn-detail-layout">
+        <div className="mn-detail-layout mn-tone-section mn-tone-light">
           <article>
             <Link className="mn-text-link" href="/services">
               ← Tất cả dịch vụ
             </Link>
-            <SectionHeading title="Kiểm tra kỹ lưỡng," accent="tư vấn rõ ràng" />
+            <SectionHeading title="Kiểm tra máy," accent="báo giá trước khi sửa" />
             <p className="mn-detail-description">
-              {service.description} Minh Nhật tiếp nhận thông tin, xác nhận địa chỉ và khung giờ phù
-              hợp trước khi cử kỹ thuật viên đến kiểm tra. Mọi công việc được trao đổi và thống nhất
-              với bạn trước khi thực hiện.
+              Bạn cho biết tình trạng máy, địa chỉ và giờ muốn hẹn. Minh Nhật sẽ liên hệ xác nhận
+              trước khi đến. Thợ kiểm tra và báo giá để bạn quyết định có sửa hay không.
             </p>
             <h2 className="mn-faq-heading">Các tình trạng thường gặp</h2>
             <ul className="mn-service-symptoms">

@@ -28,18 +28,18 @@ export default async function WardPage({ params }: { params: Promise<{ locationS
       <PageHero
         title="Dịch vụ điện lạnh"
         accent={`tại ${ward.name}`}
-        description={`Minh Nhật hỗ trợ sửa chữa, vệ sinh và lắp đặt tận nơi tại ${ward.highlight}. Liên hệ để được xác nhận lịch phù hợp.`}
+        description={`Minh Nhật hỗ trợ sửa chữa, vệ sinh và lắp đặt tận nơi tại ${ward.highlight}. Gửi địa chỉ để Minh Nhật xác nhận lịch đến.`}
         image={ward.image}
         label="Khu vực phục vụ Cần Thơ"
       />
       <div className="mn-container">
-        <section className="mn-section">
+        <section className="mn-section mn-tone-section mn-tone-light">
           <SectionHeading title="Chọn dịch vụ" accent="cần hỗ trợ" />
           <ServiceGrid areaSlug={ward.slug} />
         </section>
-        <div className="mn-detail-layout mn-area-booking">
+        <div className="mn-detail-layout mn-area-booking mn-tone-section mn-tone-deep">
           <article>
-            <SectionHeading title="Tận nơi," accent="tận tâm" />
+            <SectionHeading title="Đặt lịch" accent="để thợ đến nhà" />
             <Reasons />
           </article>
           <aside className="mn-detail-booking mn-panel">

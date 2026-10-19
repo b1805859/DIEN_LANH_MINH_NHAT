@@ -15,13 +15,17 @@ export default function ServicesPage() {
       <PageHero
         showEyebrow={false}
         title="Dịch vụ điện lạnh"
-        accent="toàn diện tại Cần Thơ"
-        description="Từ sửa chữa, vệ sinh đến lắp đặt – Minh Nhật đồng hành cùng bạn với giải pháp phù hợp cho từng thiết bị."
+        accent="tại Cần Thơ"
+        description="Chọn dịch vụ bạn cần bên dưới. Thợ sẽ kiểm tra máy và báo giá trước khi sửa."
       />
       <div className="mn-container mn-services-content">
-        <ServiceCatalog />
+        <section className="mn-tone-section mn-tone-light" aria-label="Danh mục dịch vụ">
+          <ServiceCatalog />
+        </section>
         <Process />
-        <SupportBanner />
+        <div className="mn-tone-section mn-tone-light">
+          <SupportBanner />
+        </div>
       </div>
       <JsonLdScript
         data={breadcrumbJsonLd([

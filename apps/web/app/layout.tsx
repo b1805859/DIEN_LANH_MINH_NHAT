@@ -12,6 +12,10 @@ import './globals.css';
 import './redesign.css';
 import './motion.css';
 import './ui-interactions.css';
+import './inner-pages.css';
+import './home-refinement.css';
+import './home-approved.css';
+import './shared-home-components.css';
 
 const beVietnamPro = Be_Vietnam_Pro({
   subsets: ['latin', 'vietnamese'],

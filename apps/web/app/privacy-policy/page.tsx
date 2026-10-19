@@ -11,7 +11,7 @@ export default function PrivacyPolicyPage() {
   return (
     <main className="mn-reference-page">
       <PageHero title="Chính sách bảo mật" showEyebrow={false} />
-      <div className="mn-container mn-reading-content">
+      <div className="mn-container mn-reading-content mn-tone-section mn-tone-light">
         <article className="mn-article mn-panel">
           <p>
             Thông tin khách hàng được sử dụng để tư vấn, đặt lịch, báo giá và chăm sóc dịch vụ.

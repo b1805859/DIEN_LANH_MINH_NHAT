@@ -5,13 +5,14 @@ import Link from 'next/link';
 import { ArrowRight, BookOpen, MapPin } from 'lucide-react';
 import { BLOG_CATEGORIES, BLOG_POSTS } from '@minhnhat/shared';
 import { projects } from '@/lib/content/site-content';
+import { sharedProjectCovers } from '@/lib/content/shared-project-covers';
 import { halfContentImageSizes } from '@/lib/image-sizes';
 export function Showcase({
   initialTab = 'projects',
   initialCategory = 'all',
   compact = false,
   home = false,
-  projectCovers = {},
+  projectCovers = sharedProjectCovers,
 }: {
   initialTab?: 'projects' | 'news';
   initialCategory?: string;
@@ -71,7 +72,7 @@ export function Showcase({
             setCategory('all');
           }}
         >
-          Dự án minh họa
+          Dự án
         </button>
         <button
           id="tab-news"
@@ -84,7 +85,7 @@ export function Showcase({
             setCategory('all');
           }}
         >
-          Tin tức hữu ích
+          Bài viết
         </button>
       </div>
   );
@@ -92,7 +93,7 @@ export function Showcase({
     <div className="mn-showcase">
       {home ? (
         <div className="mn-home-showcase-heading">
-          <h2>Dự án minh họa & <em>Tin tức hữu ích</em></h2>
+          <h2>Dự án & <em>Bài viết</em></h2>
           {tabs}
           <Link href={tab === 'projects' ? '/projects' : '/blog'} className="mn-text-link">
             Xem tất cả <ArrowRight size={18} aria-hidden="true" />
@@ -141,7 +142,7 @@ export function Showcase({
                       : halfContentImageSizes
                   }
                 />
-                {item.demo && <span className="mn-demo-tag">Dự án minh họa</span>}
+                {item.demo && !home && <span className="mn-demo-tag">Dự án minh họa</span>}
               </div>
               <div className="mn-project-copy">
                 <h3>{item.title}</h3>

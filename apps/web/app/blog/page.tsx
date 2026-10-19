@@ -12,13 +12,15 @@ export default function BlogPage() {
     <main className="mn-reference-page mn-news-page">
       <PageHero
         showEyebrow={false}
-        title="Kiến thức điện lạnh"
-        accent="thiết thực cho gia đình"
-        description="Chia sẻ kinh nghiệm bảo trì, nhận biết lỗi và sử dụng thiết bị điện lạnh trong gia đình."
+        title="Cách dùng, vệ sinh"
+        accent="và nhận biết lỗi máy"
+        description="Các bài viết về máy lạnh, máy giặt và tủ lạnh: khi nào cần vệ sinh, lỗi nào thường gặp và lúc nào nên gọi thợ."
         image={siteContent.images.editorial}
       />
       <div className="mn-container mn-projects-content">
-        <Showcase key="news" initialTab="news" />
+        <section className="mn-tone-section mn-tone-light" aria-label="Kiến thức điện lạnh">
+          <Showcase key="news" initialTab="news" />
+        </section>
       </div>
     </main>
   );

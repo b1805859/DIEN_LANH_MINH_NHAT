@@ -31,7 +31,7 @@ export const siteContent = {
   aboutFacts: [
     { value: String(SERVICES.length), label: 'nhóm dịch vụ' },
     { value: 'Tận nơi', label: 'tại Cần Thơ' },
-    { value: 'Rõ ràng', label: 'từ tư vấn đến bàn giao' },
+    { value: 'Báo giá', label: 'trước khi sửa' },
   ],
   areas: [
     { name: 'Ninh Kiều', slug: 'ninh-kieu' },
@@ -54,7 +54,7 @@ const details: Record<string, { title: string; description: string; icon: string
   },
   've-sinh-may-lanh': {
     title: 'Vệ sinh máy lạnh',
-    description: 'Làm sạch dàn nóng, dàn lạnh và lưới lọc. Cho không khí trong lành, mát dễ chịu.',
+    description: 'Làm sạch dàn nóng, dàn lạnh và lưới lọc. Kiểm tra đường thoát nước sau khi vệ sinh.',
     icon: 'wind',
   },
   'thao-lap-may-lanh': {
@@ -75,12 +75,12 @@ const details: Record<string, { title: string; description: string; icon: string
   },
   'sua-dien-nuoc': {
     title: 'Điện nước dân dụng',
-    description: 'Kiểm tra điện nước gia đình, xử lý rò rỉ và thay thế thiết bị phù hợp.',
+    description: 'Kiểm tra điện nước trong nhà, sửa chỗ rò rỉ, thay vòi, van, ổ cắm và công tắc.',
     icon: 'plug',
   },
   'nap-gas-may-lanh': {
     title: 'Nạp gas máy lạnh',
-    description: 'Đo áp suất, kiểm tra rò rỉ và tư vấn lượng gas phù hợp với thiết bị.',
+    description: 'Đo áp suất và kiểm tra rò rỉ. Báo loại gas và chi phí trước khi nạp.',
     icon: 'gauge',
   },
   've-sinh-may-giat': {
@@ -131,7 +131,7 @@ export const projects = [
     category: 'may-lanh',
     image: '/images/redesign/thao-lap-may-lanh.webp',
     description:
-      'Minh họa phương án lắp đặt máy lạnh trong không gian nhà phố, đi đường ống gọn và kiểm tra vận hành.',
+      'Minh họa lắp máy lạnh tại nhà phố: chọn vị trí, đi đường ống và chạy thử máy.',
   },
   {
     slug: 'sua-tu-lanh-binh-thuy',
@@ -149,7 +149,7 @@ export const projects = [
     category: 'may-giat',
     image: '/images/redesign/ve-sinh-may-giat.webp',
     description:
-      'Minh họa vệ sinh lồng giặt, kiểm tra lọc cặn và chạy thử chu trình trước khi bàn giao.',
+      'Minh họa vệ sinh lồng giặt, làm sạch lọc cặn và chạy thử máy.',
   },
   {
     slug: 'dien-nuoc-nha-pho',
@@ -158,13 +158,13 @@ export const projects = [
     category: 'dien-nuoc',
     image: '/images/redesign/sua-dien-nuoc.webp',
     description:
-      'Minh họa kiểm tra đường nước, xử lý rò rỉ và sắp xếp thiết bị cho không gian gia đình.',
+      'Minh họa kiểm tra đường nước và sửa chỗ rò rỉ trong nhà.',
   },
 ];
 export const processSteps = [
-  ['Tiếp nhận thông tin', 'Lắng nghe nhu cầu, ghi nhận tình trạng thiết bị.'],
-  ['Kiểm tra tận nơi', 'Xác định nguyên nhân và phương án phù hợp.'],
-  ['Báo giá rõ ràng', 'Thống nhất công việc và chi phí trước khi sửa.'],
-  ['Thi công nhanh chóng', 'Thực hiện cẩn thận, chạy thử và bàn giao.'],
-  ['Hỗ trợ sau dịch vụ', 'Hướng dẫn sử dụng và trao đổi bảo hành cụ thể.'],
+  ['Nhận yêu cầu', 'Bạn cho biết máy bị lỗi gì và địa chỉ cần đến.'],
+  ['Đến kiểm tra', 'Thợ kiểm tra máy, tìm nguyên nhân gây lỗi.'],
+  ['Báo giá', 'Trao đổi cách sửa và chi phí để bạn quyết định.'],
+  ['Sửa và chạy thử', 'Làm phần việc đã thống nhất rồi chạy thử máy.'],
+  ['Hướng dẫn sau sửa', 'Trao đổi cách sử dụng và bảo hành theo phần việc.'],
 ];

@@ -24,6 +24,7 @@ export function localBusinessJsonLd() {
       ...(integrationSettings.address ? { streetAddress: integrationSettings.address } : {}),
     },
     areaServed: TARGET_CITY,
+    ...(integrationSettings.googleMapsUrl ? { hasMap: integrationSettings.googleMapsUrl } : {}),
     url: absoluteUrl('/'),
     ...(sameAs.length ? { sameAs } : {}),
   };

@@ -4,9 +4,10 @@ import { ServiceArea } from '@/components/redesign/service-area';
 import { siteContent } from '@/lib/content/site-content';
 import { buildMetadata } from '@/lib/seo/metadata';
 import { contentImageSizes } from '@/lib/image-sizes';
+import { CountUp } from '@/components/ui/count-up';
 export const metadata = buildMetadata({
   title: 'Giới thiệu Điện Lạnh Minh Nhật',
-  description: 'Dịch vụ điện lạnh tận nơi, tận tâm đồng hành cùng người dân Cần Thơ.',
+  description: 'Minh Nhật nhận sửa máy lạnh, máy giặt, tủ lạnh và điện nước tại nhà ở Cần Thơ.',
   path: '/about',
 });
 export default function AboutPage() {
@@ -15,28 +16,32 @@ export default function AboutPage() {
       <PageHero
         className="mn-about-hero"
         showEyebrow
-        title="Tận tâm đồng hành"
-        accent="cùng người dân Cần Thơ"
+        title="Thợ điện lạnh tại nhà"
+        accent="ở Cần Thơ"
         image={siteContent.images.technician}
-        description="Chúng tôi hiểu cuộc sống thoải mái đến từ những dịch vụ điện lạnh chất lượng, cùng một người thợ chu đáo, đáng tin cậy."
+        description="Minh Nhật nhận sửa máy lạnh, máy giặt, tủ lạnh và điện nước. Thợ đến kiểm tra, báo giá và chỉ làm khi bạn đồng ý."
       />
       <div className="mn-container">
-        <div className="mn-about-facts mn-panel">
-          {siteContent.aboutFacts.map(({ value, label }, index) => (
-            <div key={label}>
-              <span className="mn-fact-icon">
-                <Icon name={['shield', 'users', 'shield'][index]} />
-              </span>
-              <div>
-                <strong>{value}</strong>
-                <span>{label}</span>
+        <div className="mn-tone-section mn-tone-light" aria-label="Điểm nổi bật của Minh Nhật">
+          <div className="mn-about-facts mn-panel">
+            {siteContent.aboutFacts.map(({ value, label }, index) => (
+              <div key={label}>
+                <span className="mn-fact-icon">
+                  <Icon name={['shield', 'users', 'shield'][index]} />
+                </span>
+                <div>
+                  <strong><CountUp value={value} /></strong>
+                  <span>{label}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-        <section>
-          <SectionHeading title="Vì sao chọn Điện Lạnh Minh Nhật?" />
+        <section className="mn-tone-section mn-tone-content">
+          <SectionHeading title="Cách Minh Nhật làm việc" />
           <Reasons />
+        </section>
+        <section className="mn-tone-section mn-tone-light mn-team-section" aria-label="Đội ngũ Minh Nhật">
           <div className="mn-team-photo">
             <Image
               src={siteContent.images.team}
@@ -47,7 +52,9 @@ export default function AboutPage() {
           </div>
           <p className="mn-image-note">Hình ảnh minh họa dịch vụ.</p>
         </section>
-        <ServiceArea />
+        <div className="mn-tone-section mn-tone-deep mn-shared-coverage-section">
+          <ServiceArea />
+        </div>
       </div>
     </main>
   );

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, CalendarDays, ChevronRight, Facebook, Mail, MapPin, Phone, Youtube } from 'lucide-react';
+import { ArrowRight, ChevronRight, Facebook, Mail, MapPin, Phone, Users, Youtube } from 'lucide-react';
 import { MinhNhatLogoMark } from '@/components/brand/minh-nhat-logo';
 import { serviceCards, siteContent } from '@/lib/content/site-content';
 import { integrationSettings } from '@/lib/integrations/settings';
@@ -24,8 +24,7 @@ export function HomeFooter() {
               <MinhNhatLogoMark idPrefix="home-footer" />
               <span>ĐIỆN LẠNH<strong>MINH NHẬT</strong><small>CẦN THƠ</small></span>
             </Link>
-            <p>Sửa chữa, vệ sinh và lắp đặt điện lạnh tận nơi. Tận tâm trong từng công việc,
-              an tâm từng mái nhà tại Cần Thơ.</p>
+            <p>Nhận sửa máy lạnh, máy giặt, tủ lạnh và điện nước tại nhà ở Cần Thơ.</p>
             <div className="mn-home-footer-socials" aria-label="Kết nối với Minh Nhật">
               {integrationSettings.facebookUrl && <a href={integrationSettings.facebookUrl}
                 target="_blank" rel="noreferrer" aria-label="Facebook Minh Nhật"><Facebook size={19} /></a>}
@@ -54,7 +53,9 @@ export function HomeFooter() {
           <div className="mn-home-footer-contact">
             <h2>Thông tin liên hệ</h2>
             <a href={siteContent.phoneHref}><Phone size={18} aria-hidden="true" /><strong>{siteContent.phoneDisplay}</strong></a>
-            <p><MapPin size={18} aria-hidden="true" />{siteContent.address}</p>
+            <a href={integrationSettings.googleMapsUrl} target="_blank" rel="noreferrer">
+              <MapPin size={18} aria-hidden="true" />{siteContent.address}
+            </a>
             {siteContent.email && <a href={`mailto:${siteContent.email}`}>
               <Mail size={18} aria-hidden="true" />{siteContent.email}
             </a>}
@@ -65,11 +66,11 @@ export function HomeFooter() {
               <Facebook size={18} aria-hidden="true" />Facebook
             </a>}
           </div>
-          <div className="mn-home-footer-booking">
-            <div><span className="mn-home-footer-calendar"><CalendarDays size={32} aria-hidden="true" /></span>
-              <div><h2>Đặt lịch hẹn ngay</h2><p>Đội ngũ Minh Nhật sẵn sàng hỗ trợ bạn tại Cần Thơ.</p></div>
+          <div className="mn-home-footer-about">
+            <div><span className="mn-home-footer-about-icon"><Users size={32} aria-hidden="true" /></span>
+              <div><h2>Về chúng tôi</h2><p>Thợ kiểm tra, báo giá trước khi sửa và chạy thử máy sau khi làm.</p></div>
             </div>
-            <Link className="mn-button" href="/booking">Đặt lịch ngay <ArrowRight size={20} aria-hidden="true" /></Link>
+            <Link className="mn-button" href="/about">Tìm hiểu thêm <ArrowRight size={20} aria-hidden="true" /></Link>
           </div>
         </div>
         <div className="mn-footer-bottom">

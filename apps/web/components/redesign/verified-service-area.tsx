@@ -8,6 +8,7 @@ import { canMotionHover } from '@/components/layout/use-home-motion';
 import { siteContent } from '@/lib/content/site-content';
 import { contentImageSizes } from '@/lib/image-sizes';
 import mapData from '@/lib/content/can-tho-map.json';
+import { integrationSettings } from '@/lib/integrations/settings';
 
 // Label offsets are cartographic callouts only. The pins remain at the verified
 // source polygon centroids recorded with their longitude/latitude in the data.
@@ -36,7 +37,6 @@ export function VerifiedServiceArea() {
       window.removeEventListener('wheel', clearHover);
     };
   }, []);
-  const active = siteContent.areas.find((area) => area.name === activeName);
   const titleId = useId();
   const select = (name: string) => setSelected((previous) => (previous === name ? null : name));
   const areas = siteContent.areas.filter((area) =>
@@ -54,12 +54,12 @@ export function VerifiedServiceArea() {
       <div className="mn-area-shade" />
       <div className="mn-area-copy">
         <h2 id={titleId}>
-          Hỗ trợ tận nơi
+          Nhận sửa tại nhà
           <br />
-          tại Cần Thơ
+          ở Cần Thơ
         </h2>
         <p className="mn-area-description">
-          Hỗ trợ tại các khu vực dưới đây. Liên hệ để xác nhận lịch.
+          Bạn chọn khu vực bên dưới hoặc gửi địa chỉ để Minh Nhật hẹn giờ đến.
         </p>
         <div className="mn-area-chips" role="group" aria-label="Chọn khu vực phục vụ">
           {areas.map((area) => (
@@ -95,12 +95,18 @@ export function VerifiedServiceArea() {
             Khu vực lân cận
           </Link>
         </div>
-        <div className="mn-area-selection" aria-live="polite" aria-atomic="true">
-          <span>{activeName ? `${activeName} · Cần Thơ` : 'Chọn khu vực cần hỗ trợ'}</span>
-          <Link href={active?.slug ? `/areas/${active.slug}` : '/contact'}>
-            {active?.slug ? 'Xem dịch vụ' : 'Liên hệ xác nhận'} <span aria-hidden="true">↗</span>
-          </Link>
-        </div>
+        <address className="mn-area-address">
+          <MapPin size={20} aria-hidden="true" />
+          <div>
+            <span>Địa chỉ Minh Nhật</span>
+            <a href={integrationSettings.googleMapsUrl} target="_blank" rel="noreferrer">
+              {siteContent.address}
+            </a>
+            <a href={integrationSettings.googleMapsUrl} target="_blank" rel="noreferrer">
+              Xem trên Google Maps ↗
+            </a>
+          </div>
+        </address>
       </div>
       <div className="mn-verified-map-wrap">
         <svg
@@ -110,6 +116,9 @@ export function VerifiedServiceArea() {
           aria-label="Bản đồ các khu vực phục vụ theo ranh giới tham khảo năm 2020. Không phải vị trí cơ sở kinh doanh."
         >
           <title>Các khu vực phục vụ Cần Thơ theo tên quen dùng</title>
+          <desc>
+            Nguồn bản đồ: geoBoundaries / OCHA · Ranh giới {mapData.source.year} · {mapData.source.license}. {mapData.source.url}
+          </desc>
           <g className="mn-map-boundaries">
             {mapData.regions.map((region) => (
               <path
@@ -190,14 +199,6 @@ export function VerifiedServiceArea() {
             );
           })}
         </svg>
-        <p className="mn-map-source">
-          Khu vực theo tên quen dùng · Ranh giới {mapData.source.year}
-          <br />
-          <a href={mapData.source.url} target="_blank" rel="noreferrer">
-            geoBoundaries / OCHA
-          </a>{' '}
-          · {mapData.source.license}
-        </p>
       </div>
     </section>
   );

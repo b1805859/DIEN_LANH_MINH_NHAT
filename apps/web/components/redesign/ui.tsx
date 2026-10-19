@@ -1,9 +1,5 @@
 import Link from 'next/link';
-import {
-  contentImageSizes,
-  halfContentImageSizes,
-  thirdContentImageSizes,
-} from '@/lib/image-sizes';
+import { contentImageSizes } from '@/lib/image-sizes';
 import Image from 'next/image';
 import {
   AirVent,
@@ -16,6 +12,7 @@ import {
   Phone,
   Plug,
   Refrigerator,
+  Settings,
   ShieldCheck,
   Snowflake,
   Users,
@@ -160,24 +157,38 @@ export function PageHero({
     </section>
   );
 }
+type ServiceCardContent = { title: string; description: string; image: string; icon: string };
+
+export function ServiceCard({ service, href }: { service: ServiceCardContent; href: string }) {
+  return (
+    <Link href={href} className="mn-service-card">
+      <div className="mn-card-photo">
+        <Image src={service.image} fill
+          sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1000px) 46vw, 420px"
+          alt={`${service.title} – ảnh minh họa`} />
+      </div>
+      <div className="mn-card-copy">
+        <span className="mn-icon-box">
+          {service.icon === 'maintenance'
+            ? <Settings strokeWidth={1.65} aria-hidden="true" />
+            : <Icon name={service.icon} />}
+        </span>
+        <div><h3>{service.title}</h3><p>{service.description}</p></div>
+        <ArrowRight className="mn-card-arrow" aria-hidden="true" />
+      </div>
+    </Link>
+  );
+}
+
 export function ServiceGrid({
   limit,
   areaSlug,
   category = 'all',
-  home = false,
 }: {
   limit?: number;
   areaSlug?: string;
   category?: string;
-  home?: boolean;
 }) {
-  const homeDescriptions: Record<string, string> = {
-    'sua-may-lanh': 'Kiểm tra máy không lạnh, chảy nước, báo lỗi. Tư vấn trước khi sửa.',
-    've-sinh-may-lanh': 'Làm sạch dàn nóng, dàn lạnh và lưới lọc, giúp máy vận hành ổn định.',
-    'sua-may-giat': 'Kiểm tra lỗi không vắt, không xả, rung và tiếng ồn.',
-    'sua-tu-lanh': 'Kiểm tra yếu lạnh, không đông đá, rò nước và tiếng ồn.',
-    'sua-dien-nuoc': 'Kiểm tra điện nước, xử lý rò rỉ và thay thiết bị phù hợp.',
-  };
   const filteredServices = serviceCards.filter((service) => {
     if (category === 'all') return true;
     if (category === 'dien-nuoc')
@@ -186,57 +197,19 @@ export function ServiceGrid({
   });
   return (
     <div className={`mn-service-grid ${limit === 6 ? 'mn-service-grid-preview' : ''}`}>
-      {filteredServices.slice(0, limit).map((service, i) => (
-        <Link
-          key={service.slug}
-          href={areaSlug ? `/areas/${areaSlug}/${service.slug}` : `/services/${service.slug}`}
-          className={`mn-service-card ${i < 2 ? 'mn-service-featured' : ''} ${home && service.slug === 'thao-lap-may-lanh' ? 'mn-installation-card' : ''}`}
-          data-service-icon={home ? service.icon : undefined}
-        >
-          <div className="mn-card-photo">
-            <Image
-              src={service.image}
-              fill
-              sizes={
-                i < 2
-                  ? `(max-width: 480px) calc(100vw - 32px), ${halfContentImageSizes}`
-                  : i >= 5
-                    ? halfContentImageSizes
-                    : thirdContentImageSizes
-              }
-              alt={`${service.title} – ảnh minh họa`}
-            />
-          </div>
-          <div className="mn-card-copy">
-            <span className="mn-icon-box">
-              <Icon name={service.icon} />
-            </span>
-            <div>
-              <h3>{service.title}</h3>
-              <p>
-                {home
-                  ? (homeDescriptions[service.slug] ?? service.description)
-                  : service.description}
-              </p>
-              {home && service.slug === 'thao-lap-may-lanh' && (
-                <span className="mn-installation-cta">
-                  Xem chi tiết dịch vụ <ArrowRight size={17} aria-hidden="true" />
-                </span>
-              )}
-            </div>
-            <ArrowRight className="mn-card-arrow" size={19} />
-          </div>
-        </Link>
+      {filteredServices.slice(0, limit).map((service) => (
+        <ServiceCard key={service.slug} service={service}
+          href={areaSlug ? `/areas/${areaSlug}/${service.slug}` : `/services/${service.slug}`} />
       ))}
     </div>
   );
 }
 export function Process({ home = false }: { home?: boolean }) {
   return (
-    <section className={home ? 'mn-process mn-home-process-journey' : 'mn-process'}
-      data-custom-motion={home ? 'true' : undefined}>
-      <SectionHeading title="Quy trình phục vụ" accent="chuyên nghiệp" />
-      <ProcessTimeline steps={processSteps} home={home} />
+    <section className={home ? 'mn-process mn-home-process-journey' : 'mn-process mn-home-process-journey mn-tone-section mn-tone-content'}
+      data-custom-motion="true">
+      <SectionHeading title="Các bước" accent="đặt lịch và sửa chữa" />
+      <ProcessTimeline steps={processSteps} />
     </section>
   );
 }
@@ -244,10 +217,10 @@ export function Reasons() {
   return (
     <div className="mn-reasons">
       {[
-        ['users', 'Đội ngũ tận tâm', 'Trao đổi rõ ràng, làm việc cẩn thận'],
-        ['clock', 'Có mặt nhanh', 'Xác nhận thời gian khi đặt lịch'],
-        ['shield', 'Giá cả minh bạch', 'Thống nhất trước khi thực hiện'],
-        ['wrench', 'Hỗ trợ sau dịch vụ', 'Tư vấn sử dụng và bảo trì'],
+        ['users', 'Hỏi rõ tình trạng máy', 'Bạn mô tả lỗi đang gặp trước khi hẹn thợ'],
+        ['clock', 'Hẹn giờ trước', 'Xác nhận địa chỉ và giờ đến với bạn'],
+        ['shield', 'Báo giá trước khi sửa', 'Bạn đồng ý chi phí rồi thợ mới làm'],
+        ['wrench', 'Hỗ trợ sau khi sửa', 'Liên hệ lại nếu máy còn gặp lỗi'],
       ].map(([icon, title, desc]) => (
         <article key={title}>
           <Icon name={icon} />
@@ -272,7 +245,7 @@ export function SupportBanner() {
         <h2>
           Gọi <a href={siteContent.phoneHref}>{siteContent.phoneDisplay}</a>
         </h2>
-        <p>Trao đổi tình trạng thiết bị, hẹn lịch phù hợp tại Cần Thơ.</p>
+        <p>Cho Minh Nhật biết máy bị lỗi gì và địa chỉ cần đến.</p>
         <Link className="mn-button" href="/booking">
           Đặt lịch ngay <ArrowRight size={17} />
         </Link>
