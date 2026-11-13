@@ -1,0 +1,56 @@
+[
+  {
+    "name": "before",
+    "run": 1,
+    "lcp": 7392,
+    "cls": 0.3222748815165877,
+    "longTaskMs": 816,
+    "fcp": 1084,
+    "transferBytes": 3019793
+  },
+  {
+    "name": "before",
+    "run": 2,
+    "lcp": 6652,
+    "cls": 0.3222748815165877,
+    "longTaskMs": 660,
+    "fcp": 1068,
+    "transferBytes": 3019793
+  },
+  {
+    "name": "before",
+    "run": 3,
+    "lcp": 6624,
+    "cls": 0.3222748815165877,
+    "longTaskMs": 896,
+    "fcp": 1060,
+    "transferBytes": 3019793
+  },
+  {
+    "name": "after",
+    "run": 1,
+    "lcp": 2476,
+    "cls": 0,
+    "longTaskMs": 43,
+    "fcp": 1048,
+    "transferBytes": 633712
+  },
+  {
+    "name": "after",
+    "run": 2,
+    "lcp": 2612,
+    "cls": 0,
+    "longTaskMs": 93,
+    "fcp": 1048,
+    "transferBytes": 633712
+  },
+  {
+    "name": "after",
+    "run": 3,
+    "lcp": 2460,
+    "cls": 0,
+    "longTaskMs": 42,
+    "fcp": 1052,
+    "transferBytes": 633712
+  }
+]

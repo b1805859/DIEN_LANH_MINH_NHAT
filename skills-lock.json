@@ -109,6 +109,12 @@
       "skillPath": "skills/particle-system/SKILL.md",
       "computedHash": "33e9c87a68ed4591c265cf2b88409ddd7026c7ca9ca3dbdc72113ac5144b5761"
     },
+    "responsive_design": {
+      "source": "vuralserhat86/antigravity-agentic-skills",
+      "sourceType": "github",
+      "skillPath": "skills/responsive_design/SKILL.md",
+      "computedHash": "f08f9db03cd6bdb92b1751cca8ab317ecff04642f5690ea0b852a21970207e2c"
+    },
     "shader-glsl": {
       "source": "iart-ai/webgl-animation-skills",
       "sourceType": "github",

@@ -1,0 +1,13 @@
+{
+  "mobileCases": 15,
+  "overflowFailures": 0,
+  "interactionViewports": 5,
+  "airflowViewports": 4,
+  "desktopCases": 6,
+  "desktopElementsCompared": 250,
+  "desktopIdentical": true,
+  "home390Before": 9046,
+  "home390After": 3006,
+  "home390ReductionPercent": 66.8,
+  "sixServicesInFirst390Viewport": true
+}

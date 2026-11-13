@@ -25,7 +25,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ slug
       />
       <div className="mn-container">
         <div className="mn-tone-section mn-tone-light">
-        <article className="mn-article mn-panel">
+        <article className="mn-article mn-panel" data-reveal="">
           <Link className="mn-text-link" href="/projects">
             ← Tất cả dự án
           </Link>

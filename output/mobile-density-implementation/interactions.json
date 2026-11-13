@@ -1,0 +1,73 @@
+[
+  {
+    "width": 320,
+    "disclosures": true,
+    "footerLinks": true,
+    "menu": true,
+    "serviceNavigation": true,
+    "tabs": true,
+    "touchDrag": true,
+    "desktopResize": true,
+    "pageErrors": []
+  },
+  {
+    "width": 375,
+    "disclosures": true,
+    "footerLinks": true,
+    "menu": true,
+    "serviceNavigation": true,
+    "tabs": true,
+    "touchDrag": true,
+    "desktopResize": true,
+    "pageErrors": []
+  },
+  {
+    "width": 390,
+    "disclosures": true,
+    "footerLinks": true,
+    "menu": true,
+    "serviceNavigation": true,
+    "tabs": true,
+    "touchDrag": true,
+    "desktopResize": true,
+    "pageErrors": []
+  },
+  {
+    "width": 430,
+    "disclosures": true,
+    "footerLinks": true,
+    "menu": true,
+    "serviceNavigation": true,
+    "tabs": true,
+    "touchDrag": true,
+    "desktopResize": true,
+    "pageErrors": []
+  },
+  {
+    "width": 768,
+    "disclosures": true,
+    "footerLinks": true,
+    "menu": true,
+    "serviceNavigation": true,
+    "tabs": true,
+    "touchDrag": true,
+    "desktopResize": true,
+    "pageErrors": []
+  },
+  {
+    "width": 320,
+    "airflow": true
+  },
+  {
+    "width": 390,
+    "airflow": true
+  },
+  {
+    "width": 768,
+    "airflow": true
+  },
+  {
+    "width": 1440,
+    "airflow": true
+  }
+]

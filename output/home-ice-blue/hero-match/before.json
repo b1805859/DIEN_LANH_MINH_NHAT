@@ -1,0 +1,156 @@
+[
+  {
+    "tag": "HEADER",
+    "cls": "mn-header site-header_header__ongH5 site-header_iceHome__1pulu  ",
+    "text": "MINH NHẬTĐIỆN LẠNH · SỬA CHỮA · LẮP ĐẶT TẠI NHÀTrang chủDịch vụGiới th",
+    "x": 0,
+    "y": 0,
+    "w": 1122,
+    "h": 64,
+    "font": "14px",
+    "lineHeight": "23.1px"
+  },
+  {
+    "tag": "DIV",
+    "cls": "mn-header-actions",
+    "text": "Hotline tư vấn0939 370 109Đặt lịch ngay",
+    "x": 918.109375,
+    "y": 13,
+    "w": 153.390625,
+    "h": 38,
+    "font": "14px",
+    "lineHeight": "23.1px"
+  },
+  {
+    "tag": "DIV",
+    "cls": "home_heroCopy__R3GW0",
+    "text": "A / ICE BLUEĐiện lạnh Cần Thơ.Chăm sóc ngôi nhà bạn.Sửa chữa · Vệ sinh",
+    "x": 53.84375,
+    "y": 139.859375,
+    "w": 549.765625,
+    "h": 344.34375,
+    "font": "14px",
+    "lineHeight": "23.1px"
+  },
+  {
+    "tag": "H1",
+    "cls": "",
+    "text": "Điện lạnh Cần Thơ.Chăm sóc ngôi nhà bạn.",
+    "x": 53.84375,
+    "y": 175.203125,
+    "w": 549.765625,
+    "h": 103.03125,
+    "font": "46.002px",
+    "lineHeight": "51.5222px"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "",
+    "text": "Chăm sóc ngôi nhà bạn.",
+    "x": 53.84375,
+    "y": 222.71875,
+    "w": 512.171875,
+    "h": 58,
+    "font": "46.002px",
+    "lineHeight": "51.5222px"
+  },
+  {
+    "tag": "P",
+    "cls": "home_subtitle__W8LXh",
+    "text": "Sửa chữa · Vệ sinh · Lắp đặt tại nhà",
+    "x": 53.84375,
+    "y": 293.375,
+    "w": 549.765625,
+    "h": 34.328125,
+    "font": "22.8888px",
+    "lineHeight": "34.3332px"
+  },
+  {
+    "tag": "UL",
+    "cls": "home_promises__fbjjM",
+    "text": " Hẹn giờ trước Báo giá trước Chạy thử sau sửa",
+    "x": 53.84375,
+    "y": 364.71875,
+    "w": 549.765625,
+    "h": 23,
+    "font": "14px",
+    "lineHeight": "23.1px"
+  },
+  {
+    "tag": "DIV",
+    "cls": "home_actions__rMoUQ",
+    "text": "Đặt lịch ngayGọi tư vấn",
+    "x": 53.84375,
+    "y": 426.984375,
+    "w": 549.765625,
+    "h": 57.21875,
+    "font": "14px",
+    "lineHeight": "23.1px"
+  },
+  {
+    "tag": "SPAN",
+    "cls": "home_referenceArt__pMYZ2 home_heroSource__foQgX",
+    "text": "",
+    "x": 429.9375,
+    "y": 40,
+    "w": 692.046875,
+    "h": 574.03125,
+    "font": "14px",
+    "lineHeight": "23.1px"
+  },
+  {
+    "tag": "DIV",
+    "cls": "floating-actions_floatingSupport__Y39z6 ",
+    "text": "Mình giúp nhé!",
+    "x": 1106,
+    "y": 590,
+    "w": 0,
+    "h": 0,
+    "font": "14px",
+    "lineHeight": "23.1px"
+  },
+  {
+    "tag": "BUTTON",
+    "cls": "floating-actions_launcher__8EnZR",
+    "text": "Mình giúp nhé!",
+    "x": 1002,
+    "y": 498,
+    "w": 104,
+    "h": 92,
+    "font": "14px",
+    "lineHeight": "23.1px"
+  },
+  {
+    "tag": "IMG",
+    "cls": "floating-actions_launcherMascot__5v1hA",
+    "text": "",
+    "x": 1007,
+    "y": 476.5,
+    "w": 94,
+    "h": 87,
+    "font": "14px",
+    "lineHeight": "23.1px"
+  },
+  {
+    "tag": "A",
+    "cls": "floating-actions_zalo__HEKAp",
+    "text": "",
+    "x": 1032,
+    "y": 424,
+    "w": 44,
+    "h": 44,
+    "font": "14px",
+    "lineHeight": "23.1px"
+  },
+  {
+    "tag": "IMG",
+    "cls": "floating-actions_zaloImage__6BO_E",
+    "text": "",
+    "x": 1036,
+    "y": 428,
+    "w": 36,
+    "h": 36,
+    "font": "14px",
+    "lineHeight": "23.1px"
+  }
+]

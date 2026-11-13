@@ -5,6 +5,11 @@ import { ContentService } from './content.service';
 export class ContentController {
   constructor(private readonly contentService: ContentService) {}
 
+  @Get('website-content')
+  getWebsiteContent() {
+    return this.contentService.getWebsiteContent();
+  }
+
   @Get('services')
   listServices() {
     return this.contentService.listServices();

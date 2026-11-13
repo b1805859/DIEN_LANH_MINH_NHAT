@@ -1,0 +1,87 @@
+[
+  {
+    "width": 1024,
+    "route": "dashboard",
+    "geometryEqual": true,
+    "elements": 14,
+    "changedPixels": 2250,
+    "diffBounds": {
+      "minX": 99,
+      "minY": 0,
+      "maxX": 1023,
+      "maxY": 999
+    },
+    "maxChannelDifference": 2,
+    "channelsDifferingByMoreThan1": 1
+  },
+  {
+    "width": 1024,
+    "route": "bookings",
+    "geometryEqual": true,
+    "elements": 8,
+    "changedPixels": 2930,
+    "diffBounds": {
+      "minX": 97,
+      "minY": 0,
+      "maxX": 1023,
+      "maxY": 998
+    },
+    "maxChannelDifference": 2,
+    "channelsDifferingByMoreThan1": 1
+  },
+  {
+    "width": 1024,
+    "route": "services",
+    "geometryEqual": true,
+    "elements": 82,
+    "changedPixels": 5400,
+    "diffBounds": {
+      "minX": 109,
+      "minY": 0,
+      "maxX": 1023,
+      "maxY": 999
+    },
+    "maxChannelDifference": 1,
+    "channelsDifferingByMoreThan1": 0
+  },
+  {
+    "width": 1440,
+    "route": "dashboard",
+    "geometryEqual": true,
+    "elements": 14,
+    "changedPixels": 4380,
+    "diffBounds": {
+      "minX": 289,
+      "minY": 0,
+      "maxX": 1439,
+      "maxY": 999
+    },
+    "maxChannelDifference": 2,
+    "channelsDifferingByMoreThan1": 12
+  },
+  {
+    "width": 1440,
+    "route": "bookings",
+    "geometryEqual": true,
+    "elements": 8,
+    "changedPixels": 0,
+    "diffBounds": null,
+    "maxChannelDifference": 0,
+    "channelsDifferingByMoreThan1": 0
+  },
+  {
+    "width": 1440,
+    "route": "services",
+    "geometryEqual": true,
+    "elements": 82,
+    "changedPixels": 5757,
+    "diffBounds": {
+      "minX": 180,
+      "minY": 0,
+      "maxX": 1439,
+      "maxY": 999
+    },
+    "maxChannelDifference": 2,
+    "channelsDifferingByMoreThan1": 1
+  }
+]

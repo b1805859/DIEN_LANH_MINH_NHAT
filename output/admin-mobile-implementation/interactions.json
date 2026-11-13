@@ -1,0 +1,61 @@
+{
+  "checks": [
+    "Bottom navigation, drawer, Escape and focus restoration",
+    "Service counts, visibility filters and search",
+    "Native service action sheet traps focus and restores focus",
+    "Service view and edit retain existing handlers with fixture PATCH",
+    "Delete cancellation and confirmation (disposable fixture only)",
+    "Create form keeps required-field validation and cancel",
+    "Crossing desktop breakpoint restores table and dismisses mobile sheet",
+    "42-day calendar, month controls, Today, daily view and booking filters",
+    "Booking details disclosure and existing status update handler",
+    "No browser JavaScript errors"
+  ],
+  "errors": [],
+  "apiCalls": [
+    {
+      "method": "GET",
+      "path": "/admin/dashboard"
+    },
+    {
+      "method": "GET",
+      "path": "/admin/services"
+    },
+    {
+      "method": "PATCH",
+      "path": "/admin/services/service-0"
+    },
+    {
+      "method": "GET",
+      "path": "/admin/services"
+    },
+    {
+      "method": "DELETE",
+      "path": "/admin/services/service-0"
+    },
+    {
+      "method": "GET",
+      "path": "/admin/services"
+    },
+    {
+      "method": "GET",
+      "path": "/bookings/schedule"
+    },
+    {
+      "method": "GET",
+      "path": "/bookings/schedule"
+    },
+    {
+      "method": "GET",
+      "path": "/bookings/schedule"
+    },
+    {
+      "method": "PATCH",
+      "path": "/admin/bookings/booking-fixture-1"
+    },
+    {
+      "method": "GET",
+      "path": "/bookings/schedule"
+    }
+  ]
+}

@@ -1,8 +1,23 @@
 {
+  "uniformConsistencyManifest": "output/uniform-consistency/manifest.json",
   "tool": "Built-in image_gen.imagegen (not CLI)",
   "reference": "Trang Điện Lạnh Minh Nhật Cần Thơ.png — approved 1122 × 1402 presentation board",
   "status": "Illustrative generated artwork; not documentary photographs of staff, completed jobs or exact geography. Optimized to WebP with sharp after generation.",
   "assets": [
+    {
+      "path": "/images/redesign/ve-sinh-may-lanh-hold-bag-v3.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-8ef0accf-6947-4607-8ea1-59d76d50fb29.png",
+      "prompt": "Precise edit of wash-bag-v2: preserve AC, technician, room and bucket. Right hand alone operates pressure spray gun washing fins; left hand visibly grips reinforced front lip of blue waterproof cover and pulls outward to catch falling water. Exactly two hands with separate roles, no hand supporting gun barrel. Preserve drain hose into bucket, realistic fabric tension and water droplets.",
+      "status": "AI-generated service illustration revised to user-specified hand positions."
+    },
+    {
+      "path": "/images/redesign/sua-tu-lanh-rear-repair.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-ae758b28-9497-4038-9e3a-9567777434d8.png",
+      "prompt": "Photorealistic landscape 3:2 illustration: Vietnamese technician crouching at the rear of a domestic refrigerator, lower access panel removed, repairing a bracket/relay housing next to the visible black hermetic compressor with an insulated screwdriver. Rear condenser and copper tubing visible, disconnected mains plug, navy work polo, natural daylight, correct anatomy, no text or logos.",
+      "status": "AI-generated illustration of rear refrigerator repair; not an actual completed job."
+    },
     {
       "path": "/images/redesign/family-morning.webp",
       "prompt": "Use case: precise-object-edit. Create a clean website photographic background by extracting and reconstructing ONLY the large upper homepage photo inside panel 01 of this reference board. Output wide landscape 1.94:1 at high resolution. The original photo occupies x18..1107,y96..659 in the 1122x1402 board. Reproduce that EXACT camera, geometry, family pose and composition: floor to ceiling windows across left/center with clear daytime blue sky and Can Tho riverside skyline/bridge; green plants at left edge, gray curtains, modern gray paneled wall at right, white wall-mounted air conditioner at x77%, y27%; Vietnamese father in blue polo sitting at x61%, y67%, daughter holding teddy at x70%, y75%, mother in white at x80%, y68%, gray sofa right bottom. Coffee table with plant around x47%,y80%. Cool bright morning lighting, photorealistic, same crop. Remove ALL lettering, badges, logo, header navigation, buttons, play icon, service cards, UI overlays, frames and presentation labels; reconstruct the natural room behind them. Keep cyan luminous air flowing from AC toward center-left as in reference. Left half remains actual glass windows/plants/city view, not blank wall. No other panels. No text anywhere. Do not change family position or substitute a technician. Keep top 14% as windows/wall as the reference."
@@ -178,6 +193,291 @@
         "https://old.cantho.gov.vn/wps/portal/home/du-khach/chi-tiet/diem-tham-quan/di-tich/nhung%2Bcong%2Btrinh%2Bco%2Bkien%2Btruc%2Bdac%2Btrung%2Bnhat%2Btai%2Bcan%2Btho?WCM_Page.Menu_TinTucKhac=2",
         "https://openjicareport.jica.go.jp/pdf/12384244_02.pdf"
       ]
+    },
+    {
+      "path": "/images/redesign/hero-family-service-finder-v5.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a19617-1bff-7102-8b3f-c4f11e09966d/exec-2a1cd400-f5fc-47a1-aca1-e6274796bf67.png",
+      "reference": "/images/redesign/hero-family-service-finder-v4.webp",
+      "prompt": "Use case: precise-object-edit. Edit target: attached website hero room photograph, 1660 x 947 wide composition. Correct ONLY the seated woman's lower body, legs, ankles and slippers at approximately x1040–1150, y620–765. Her existing legs look anatomically twisted and uneven. Give her a relaxed natural seated pose, two anatomically correct knees under the cream trousers, two proportional lower legs, ankles not bent or twisted, both feet comfortably resting on the rug in matching light beige house slippers. Natural fabric folds and contact shadows. Her knees together, feet slightly apart, shins descend naturally from the knees. Keep woman's face, head, torso and arms unchanged. CRITICAL: preserve exact original composition, room, perspective, positions and sizes of ALL people, sofa, coffee table, air conditioner and technician. Keep original crop and aspect ratio and full image. Change only the woman's trouser legs and feet in the small specified area. Do not add airflow, particles, text, graphics or watermarks. Photorealistic anatomy, same warm daylight, same image colors. Output full edited photograph.",
+      "processing": "Only the 127×165 region at (1033,615) was composited over the original v4 with a 9px feather using sharp, then encoded as WebP quality 96. Faces, technician, vent and room retain the original image content.",
+      "status": "AI-generated illustrative hero image; localized anatomy correction requested by user."
+    },
+    {
+      "path": "/images/redesign/thao-may-lanh-khoi-gia-v1.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-4fc27066-7938-4de7-9a72-4440d098f951.png",
+      "description": "Side view of a wall-mounted indoor AC being carried clear of its exposed bracket.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "path": "/images/redesign/lap-may-lanh-len-gia-v1.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-67c10f17-e59d-4c21-ab83-c02c9ab06910.png",
+      "description": "Front-right close view of a technician raising a new indoor AC into place on a sage wall.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "path": "/images/redesign/sua-may-lanh-kiem-tra-bo-mach-v1.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-d7c6136e-f60e-4002-bfab-b47b547613cb.png",
+      "description": "Close view of a technician measuring a disconnected indoor AC circuit board.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "path": "/images/redesign/boc-bao-ve-may-lanh-v1.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-46facb58-d48d-49ff-a47d-a05aefb4118d.png",
+      "description": "Overhead view of a removed indoor AC wrapped in a padded moving blanket.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "path": "/images/redesign/chay-thu-may-lanh-v1.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-32122930-f6e2-4769-9e6c-7b843f6f517d.png",
+      "description": "Side view of a technician using a handheld airflow meter after installation.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "path": "/images/redesign/kiem-tra-o-cam-dan-dung-v1.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-30fa28e5-6fa7-4fbd-a4f2-1094967fcc45.png",
+      "description": "Close view of a technician inspecting a disconnected wall outlet.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "path": "/images/redesign/lap-may-nuoc-uong-nong-lanh-v1.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-7e1b409d-db3d-453d-bade-4d787fe47627.png",
+      "description": "Three-quarter view of a technician preparing a freestanding drinking-water dispenser for installation.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "path": "/images/redesign/lap-may-nuoc-nong-tam-v1.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-5bd26d37-988c-4b74-8961-6d1489d90043.png",
+      "description": "Side view of a technician positioning an instant shower water heater on a tiled wall.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "path": "/images/redesign/thao-may-lanh-khoi-gia-uniform-v1.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-5d2cb713-8969-45d2-9bf2-dadf732a9527.png",
+      "editTarget": "/images/redesign/thao-may-lanh-khoi-gia-v1.webp",
+      "uniformReferences": [
+        "/images/redesign/ve-sinh-may-lanh-hold-bag-v3-uniform-v1.webp",
+        "/images/redesign/technician-uniform-v1.webp"
+      ],
+      "prompt": "Edit only the technician work shirts. Match the reference navy button-front shirt, cyan shoulder panel, rolled sleeves, flap pockets, and the MN embroidery in perspective. Preserve camera, face, gloves, hands, appliance, tools and background.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "path": "/images/redesign/lap-may-lanh-len-gia-uniform-v1.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-3cbec327-5cfa-4f0a-88c1-9416c136583e.png",
+      "editTarget": "/images/redesign/lap-may-lanh-len-gia-v1.webp",
+      "uniformReferences": [
+        "/images/redesign/ve-sinh-may-lanh-hold-bag-v3-uniform-v1.webp",
+        "/images/redesign/technician-uniform-v1.webp"
+      ],
+      "prompt": "Edit only the technician work shirts. Match the reference navy button-front shirt, cyan shoulder panel, rolled sleeves, flap pockets, and the MN embroidery in perspective. Preserve camera, face, gloves, hands, appliance, tools and background.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "path": "/images/redesign/sua-may-lanh-kiem-tra-bo-mach-uniform-v1.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-39162eda-1c15-4690-96c5-8fad5238108a.png",
+      "editTarget": "/images/redesign/sua-may-lanh-kiem-tra-bo-mach-v1.webp",
+      "uniformReferences": [
+        "/images/redesign/ve-sinh-may-lanh-hold-bag-v3-uniform-v1.webp",
+        "/images/redesign/technician-uniform-v1.webp"
+      ],
+      "prompt": "Edit only the technician work shirts. Match the reference navy button-front shirt, cyan shoulder panel, rolled sleeves, flap pockets, and the MN embroidery in perspective. Preserve camera, face, gloves, hands, appliance, tools and background.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "path": "/images/redesign/boc-bao-ve-may-lanh-uniform-v1.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-89e053c2-8406-4765-9fae-26de173d0fc8.png",
+      "editTarget": "/images/redesign/boc-bao-ve-may-lanh-v1.webp",
+      "uniformReferences": [
+        "/images/redesign/ve-sinh-may-lanh-hold-bag-v3-uniform-v1.webp",
+        "/images/redesign/technician-uniform-v1.webp"
+      ],
+      "prompt": "Edit only the technician work shirts. Match the reference navy button-front shirt, cyan shoulder panel, rolled sleeves, flap pockets, and the MN embroidery in perspective. Preserve camera, face, gloves, hands, appliance, tools and background.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "path": "/images/redesign/chay-thu-may-lanh-uniform-v1.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-d62a9217-c902-4003-9449-20039c6bc9b7.png",
+      "editTarget": "/images/redesign/chay-thu-may-lanh-v1.webp",
+      "uniformReferences": [
+        "/images/redesign/ve-sinh-may-lanh-hold-bag-v3-uniform-v1.webp",
+        "/images/redesign/technician-uniform-v1.webp"
+      ],
+      "prompt": "Edit only the technician work shirts. Match the reference navy button-front shirt, cyan shoulder panel, rolled sleeves, flap pockets, and the MN embroidery in perspective. Preserve camera, face, gloves, hands, appliance, tools and background.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "path": "/images/redesign/kiem-tra-o-cam-dan-dung-uniform-v1.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-c685014b-7f1a-4df9-9939-9a9f4f9033a5.png",
+      "editTarget": "/images/redesign/kiem-tra-o-cam-dan-dung-v1.webp",
+      "uniformReferences": [
+        "/images/redesign/ve-sinh-may-lanh-hold-bag-v3-uniform-v1.webp",
+        "/images/redesign/technician-uniform-v1.webp"
+      ],
+      "prompt": "Edit only the technician work shirts. Match the reference navy button-front shirt, cyan shoulder panel, rolled sleeves, flap pockets, and the MN embroidery in perspective. Preserve camera, face, gloves, hands, appliance, tools and background.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "path": "/images/redesign/lap-may-nuoc-uong-nong-lanh-uniform-v1.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-21ec4490-8f49-427b-833e-c860ee3dbc6b.png",
+      "editTarget": "/images/redesign/lap-may-nuoc-uong-nong-lanh-v1.webp",
+      "uniformReferences": [
+        "/images/redesign/ve-sinh-may-lanh-hold-bag-v3-uniform-v1.webp",
+        "/images/redesign/technician-uniform-v1.webp"
+      ],
+      "prompt": "Edit only the technician work shirts. Match the reference navy button-front shirt, cyan shoulder panel, rolled sleeves, flap pockets, and the MN embroidery in perspective. Preserve camera, face, gloves, hands, appliance, tools and background.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "path": "/images/redesign/lap-may-nuoc-nong-tam-uniform-v1.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-007852c7-80c4-4634-b951-27ed3f4b5324.png",
+      "editTarget": "/images/redesign/lap-may-nuoc-nong-tam-v1.webp",
+      "uniformReferences": [
+        "/images/redesign/ve-sinh-may-lanh-hold-bag-v3-uniform-v1.webp",
+        "/images/redesign/technician-uniform-v1.webp"
+      ],
+      "prompt": "Edit only the technician work shirts. Match the reference navy button-front shirt, cyan shoulder panel, rolled sleeves, flap pockets, and the MN embroidery in perspective. Preserve camera, face, gloves, hands, appliance, tools and background.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "path": "/images/redesign/lap-may-lanh-len-gia-uniform-v2.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-b8ca5d4f-e28c-4459-bfc3-9710269dd332.png",
+      "editTarget": "/images/redesign/lap-may-lanh-len-gia-uniform-v1.webp",
+      "prompt": "Show a powered-off newly installed indoor split unit with its lower air outlet flap fully CLOSED, no visible air slot. Keep white appliance sage wall and same technician in uniform, both gloved hands support the rigid bottom corners, not the flap. Show the unit a small distance from the wall during fitting and a discreet visible edge of the mounting plate behind it. The appliance does not float; same framing and technician with wide cyan shoulder panel.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "path": "/images/redesign/kiem-tra-o-cam-dan-dung-uniform-v2.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-ebb7615b-739b-4caa-a583-f016498a1b04.png",
+      "editTarget": "/images/redesign/kiem-tra-o-cam-dan-dung-uniform-v1.webp",
+      "prompt": "Edit position of tool only as needed to produce realistic safe scene. Technician's insulated screwdriver tip must touch the upper mounting screw head on the white faceplate mounting flange, clearly above and separated from the plug openings. Faceplate is nearly seated on the wall, held steady by the second hand on a plastic edge; no visible bare wiring, energized displays, sparks, or tools inside a socket opening. Preserve overall composition, existing exact navy and cyan Minh Nhat uniform and face. Make screwdriver shaft and single screw contact unambiguous.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "path": "/images/redesign/lap-may-nuoc-nong-tam-uniform-v2.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-d3723ec3-23bd-45f0-bf07-e49e6135c049.png",
+      "editTarget": "/images/redesign/lap-may-nuoc-nong-tam-uniform-v1.webp",
+      "prompt": "This is the dry-mounting stage before connections. Keep white compact closed electric shower heater and technician mounting it, same two hands and position, wall tile and brand uniform. Remove the connected silver braided lines and plumbing valves immediately beneath the heater. At the bottom of the appliance show only two small distinct bare threaded water ports, neither connected. Keep wall-mounted handheld shower head on the right, but hose detached from appliance and hanging entirely on the right, or omit that hose so the dry stage reads clearly. No visible power cable or exposed wiring.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "path": "/images/redesign/lap-may-nuoc-uong-nong-lanh-uniform-v2.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-a5677ef4-9fef-4eff-a4a1-1e031f1adfcc.png",
+      "editTarget": "/images/redesign/lap-may-nuoc-uong-nong-lanh-uniform-v1.webp",
+      "prompt": "Show the technician positioning this freestanding two-tap drinking water dispenser at its final location on a flat floor, rather than peeling plastic: remove loose packaging film, retain package in background; the technician's two hands are gripping the rigid exterior sides to straighten the appliance, keep realistic hand anatomy. Show both taps and drip tray clearly. Preserve kitchen, navy and wide cyan Minh Nhat brand uniform, natural lighting and composition. Appliance stays upright; no wires or water connections.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
+    },
+    {
+      "path": "/images/redesign/nap-gas-may-lanh-uniform-v2.webp",
+      "tool": "Built-in image_gen.imagegen",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1c5d9-d2f2-7be3-9650-29a17a8db42b/exec-42a994e4-661a-4b05-b8b3-39d0c3fc7930.png",
+      "editTarget": "/images/redesign/nap-gas-may-lanh-uniform-v1.webp",
+      "prompt": "The technician's lower gloved hand currently touches and partially covers the weighing platform. Move only that hand and forearm naturally onto his own knee or thigh, clear of the weighing scale, so that the scale platform supports the cylinder alone. Keep the other hand, uniform, goggles, camera, cylinder, entire scale, gauges, their hoses and every connection unchanged. No new fingers, hoses, gauges, text or invented display values. Preserve photorealism and the same 3:2 composition.",
+      "status": "AI-generated service illustration; technical sign-off pending.",
+      "dimensions": {
+        "width": 1440,
+        "height": 960
+      }
     }
   ]
 }

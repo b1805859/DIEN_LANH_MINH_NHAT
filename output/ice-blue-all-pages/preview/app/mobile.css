@@ -1,0 +1,216 @@
+/* Public mobile layouts. Keep desktop rules in their component stylesheets. */
+@media (max-width: 900px) {
+  .mn-site { --mn-content-gutter: 32px; --mn-nav-height: 56px; --mn-header-inset: 8px; --mn-page-gap: 8px; padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px)); }
+  .mn-site #mn-main-content { scroll-margin-top: 80px; }
+  .mn-site main { overflow-wrap: break-word; }
+  .mn-site main :is(p, li) { line-height: 1.7; }
+  .mn-site main :is(input, select, textarea), .mn-site .mn-chat-panel input { font-size: 16px; }
+  .mn-site main :is(input, select) { min-height: 48px; }
+  .mn-site main textarea { min-height: 112px; }
+  .mn-site .mn-desktop-nav { display: none; }
+  .mn-site .mn-menu-button { display: grid; place-items: center; }
+  .mn-site .mn-header-actions { margin-left: auto; }
+  .mn-site .mn-menu-button, .mn-site .mn-menu-close { width: 44px; height: 44px; flex-shrink: 0; }
+  .mn-site .mn-mobile-dialog { padding-top: env(safe-area-inset-top, 0px); overflow-y: auto; overscroll-behavior: contain; }
+  .mn-site .mn-mobile-menu { padding-bottom: max(28px, env(safe-area-inset-bottom, 0px)); }
+  .mn-site .mn-mobile-menu nav a { min-height: 48px; }
+  .mn-site .mn-floating { inset: auto 0 0; min-height: 76px; padding: 10px 16px max(10px, env(safe-area-inset-bottom, 0px)); }
+  .mn-site .mn-floating:has(.mn-chat-panel) { min-height: 0; }
+  .mn-site .mn-chat-panel { left: 12px; right: 12px; bottom: max(var(--mn-chat-bottom, 12px), env(safe-area-inset-bottom, 0px)); width: auto; max-width: none; max-height: var(--mn-chat-available-height, calc(100dvh - 24px)); }
+  .mn-site .mn-chat-panel button { min-height: 44px; }
+  .mn-site .mn-chat-messages { flex: 1 1 260px; }
+  .mn-site .mn-filters { gap: 8px; }
+  .mn-site .mn-filters :is(button, a), .mn-site .mn-tabs > :is(a, button) { min-height: 44px; font-size: 13px; }
+  .mn-site .mn-contact-layout { gap: 24px; }
+  .mn-site[data-inner-page] main .mn-contact-methods strong { font-size: 16px; }
+  .mn-site[data-inner-page] main .mn-contact-methods small { font-size: 12px; }
+  .mn-site .mn-booking-form label > span { font-size: 14px; }
+  .mn-site .mn-booking-form .mn-button { min-height: 48px; font-size: 15px; white-space: normal; }
+  .mn-site .mn-booking-form :is(input, select, textarea) { width: 100%; min-width: 0; }
+  .mn-site:is([data-home], [data-inner-page]) .mn-home-footer .mn-footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 16px; }
+  .mn-site:is([data-home], [data-inner-page]) .mn-home-footer .mn-footer-grid > :is(.mn-home-footer-brand, .mn-home-footer-contact, .mn-home-footer-about) { grid-column: 1 / -1; grid-row: auto; }
+  .mn-site:is([data-home], [data-inner-page]) .mn-home-footer .mn-footer-grid h2 { font-size: 16px; }
+  .mn-site:is([data-home], [data-inner-page]) .mn-home-footer .mn-footer-grid > div > a:not(.mn-brand) { font-size: 14px; min-height: 44px; }
+  .mn-site:is([data-home], [data-inner-page]) .mn-home-footer .mn-footer-bottom { font-size: 12px; line-height: 1.7; }
+  .mn-site:is([data-home], [data-inner-page]) .mn-home-footer .mn-footer-bottom > div { flex-wrap: wrap; }
+}
+@media (max-width: 600px) {
+  .mn-site[data-inner-page='true'] main .mn-page-hero { min-height: 280px; }
+  .mn-site[data-inner-page='true'] main .mn-page-hero h1 { font-size: clamp(28px, 7.7vw, 36px); line-height: 1.22; letter-spacing: -.8px; }
+  .mn-site[data-inner-page='true'] main .mn-page-hero p { font-size: 15px; max-width: 100%; }
+  .mn-site[data-inner-page='true'] main .mn-about-hero .mn-container > p { max-width: 100%; }
+  .mn-site[data-inner-page='true'] main .mn-page-hero .mn-container { padding-block: 32px; }
+  .mn-site[data-inner-page='true'] main .mn-page-hero-shade { background: linear-gradient(90deg, #00243bf5, #00243bbd 70%, #00243b66); }
+  .mn-site[data-inner-page='true'] main .mn-about-facts { padding: 20px 10px; }
+  .mn-site[data-inner-page='true'] main .mn-about-facts strong { font-size: clamp(17px, 5vw, 22px); }
+  .mn-site[data-inner-page='true'] main .mn-about-facts span { font-size: 12px; }
+  .mn-site main .mn-form-fields { grid-template-columns: minmax(0, 1fr); }
+  .mn-site main .mn-form-fields > * { grid-column: 1; }
+  .mn-site main .mn-form-panel { padding: 18px 14px; }
+  .mn-site .mn-contact-methods { grid-template-columns: 1fr; }
+  .mn-site .mn-contact-map iframe { height: 300px; }
+  .mn-site[data-home='true'] .mn-home-content .mn-home-services-heading { grid-template-columns: minmax(0, 1fr); }
+  .mn-site[data-home='true'] .mn-home-content .mn-home-service-controls { grid-column: 1; grid-row: 3; flex-direction: row; justify-content: flex-start; }
+  .mn-site[data-home='true'] .mn-home-content .mn-card-copy p,
+  .mn-site[data-inner-page='true'] .mn-home-reuse .mn-card-copy p,
+  .mn-site[data-home='true'] .mn-home-content .mn-reasons p,
+  .mn-site[data-inner-page='true'] .mn-home-reuse .mn-reasons p { font-size: 14px; }
+  .mn-site .mn-editorial-hero .aspect-\[16\/11\] { width: 100%; min-width: 0; min-height: 0; }
+  .mn-site main .mn-article { padding: 24px 16px; font-size: 16px; }
+  .mn-site main .mn-article :is(table, pre) { display: block; max-width: 100%; overflow-x: auto; }
+}
+@media (max-width: 360px) {
+  .mn-site .mn-nav-book { white-space: nowrap; }
+  .mn-site .mn-nav-book svg { display: none; }
+}
+
+/* Approved mobile journey: all five steps share the available viewport. */
+.mn-process-booking { display: none; }
+@media (max-width: 700px) {
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey {
+    --mn-step-size: 32px;
+    --mn-section-bg: #f3faff;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr) 44px;
+    gap: 12px;
+    height: min(740px, calc(100svh - 148px - env(safe-area-inset-bottom, 0px)));
+    margin: 0;
+    padding: 12px 0;
+    scroll-margin-top: 66px;
+    color: #071e42;
+    background: #f3faff;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey > .mn-section-heading {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey h2 {
+    margin: 0;
+    font-size: clamp(25px, 6.8vw, 32px);
+    line-height: 1.14;
+    letter-spacing: -.65px;
+    color: #071e42;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey h2 em { display: block; color: #00aeef; }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: repeat(5, minmax(0, 1fr));
+    gap: 0;
+    padding: 0;
+    min-height: 0;
+    isolation: isolate;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-grid article {
+    display: grid;
+    grid-template-columns: var(--mn-step-size) minmax(0, 1fr) 78px;
+    grid-template-rows: auto auto;
+    align-content: center;
+    align-items: center;
+    gap: 4px 12px;
+    min-width: 0;
+    min-height: 0;
+    padding: 8px 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-grid article:not(:last-of-type)::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: calc(var(--mn-step-size) / 2 - 1px);
+    top: 50%;
+    width: 2px;
+    height: 100%;
+    background: #00aeef;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-grid article:not(:last-of-type)::after {
+    content: '';
+    position: absolute;
+    left: calc(var(--mn-step-size) + 12px);
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: #c9eafa;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-grid article > .mn-journey-step-number {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    display: grid;
+    place-items: center;
+    align-self: center;
+    width: var(--mn-step-size);
+    height: var(--mn-step-size);
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #00aeef;
+    color: #002b46;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-journey-step-number strong { font-size: 16px; line-height: 1; }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey :is(.mn-journey-step-number small, .mn-home-process-icon, .mn-journey-highlight, .mn-journey-milestone, .mn-journey-connector) { display: none !important; }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-grid h3 {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.25;
+    font-weight: 800;
+    color: #071e42;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-grid p {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.45;
+    color: #385776;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-illustration {
+    grid-column: 3;
+    grid-row: 1 / 3;
+    width: 78px;
+    height: 82px;
+    aspect-ratio: auto;
+    margin: 0;
+    border-radius: 12px;
+    background: #f3faff;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-illustration img { object-fit: contain; object-position: center; }
+  /* These details must remain readable together, including before scroll reveals finish. */
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey :is(h2, h2 *, article, article > *, .mn-process-illustration img) {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-booking {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 44px;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+}
+@media (max-width: 700px) and (max-height: 700px) {
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey { --mn-step-size: 28px; gap: 8px; padding-block: 8px; }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey h2 { font-size: 24px; }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-grid article { grid-template-columns: var(--mn-step-size) minmax(0, 1fr); gap: 2px 10px; padding-block: 4px; }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-illustration { display: none; }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-grid h3 { font-size: 15px; }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-grid p { font-size: 13px; line-height: 1.35; }
+}
+@media (max-width: 700px) and (min-height: 601px) and (max-height: 700px) {
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-grid article { grid-template-columns: var(--mn-step-size) minmax(0, 1fr) 62px; }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-illustration { display: block; width: 62px; height: 62px; }
+}

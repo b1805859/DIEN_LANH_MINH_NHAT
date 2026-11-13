@@ -1,0 +1,58 @@
+{
+  "data": [
+    {
+      "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fareas%2Fninh-kieu-hd.webp&w=3840&q=92",
+      "naturalWidth": 1920,
+      "sizes": "100vw",
+      "complete": true
+    },
+    {
+      "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fareas%2Fbinh-thuy-hd.webp&w=3840&q=92",
+      "naturalWidth": 1536,
+      "sizes": "100vw",
+      "complete": true
+    },
+    {
+      "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fareas%2Fcai-rang-hd.webp&w=3840&q=92",
+      "naturalWidth": 1920,
+      "sizes": "100vw",
+      "complete": true
+    },
+    {
+      "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fareas%2Fo-mon-hd.webp&w=3840&q=92",
+      "naturalWidth": 1920,
+      "sizes": "100vw",
+      "complete": true
+    },
+    {
+      "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fareas%2Fthot-not-hd.webp&w=3840&q=92",
+      "naturalWidth": 1920,
+      "sizes": "100vw",
+      "complete": true
+    },
+    {
+      "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fareas%2Fphong-dien-hd.webp&w=3840&q=92",
+      "naturalWidth": 1920,
+      "sizes": "100vw",
+      "complete": true
+    },
+    {
+      "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fareas%2Fvinh-thanh-hd.webp&w=3840&q=92",
+      "naturalWidth": 1920,
+      "sizes": "100vw",
+      "complete": true
+    },
+    {
+      "src": "http://localhost:3000/_next/image?url=%2Fimages%2Fareas%2Fco-do-hd.webp&w=3840&q=92",
+      "naturalWidth": 1000,
+      "sizes": "100vw",
+      "complete": true
+    }
+  ],
+  "failures": []
+}
+mobile {
+  src: 'http://localhost:3000/_next/image?url=%2Fimages%2Fareas%2Fco-do-hd.webp&w=1200&q=92',
+  width: 390,
+  loaded: true
+}

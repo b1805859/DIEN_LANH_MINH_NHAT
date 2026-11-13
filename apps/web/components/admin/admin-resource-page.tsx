@@ -1,7 +1,17 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { ChevronLeft, ChevronRight, RefreshCw, Search } from 'lucide-react';
+import serviceImages from '@minhnhat/shared/service-images.json';
+import {
+  ChevronLeft,
+  ChevronRight,
+  Eye,
+  Pencil,
+  Trash2,
+  MoreVertical,
+  RefreshCw,
+  Search,
+} from 'lucide-react';
 import {
   type ChangeEvent,
   type FormEvent,
@@ -10,13 +20,15 @@ import {
   useMemo,
   useState,
 } from 'react';
+import { AdminServiceActions } from './admin-service-actions';
+import { useAdminMobile } from './use-admin-mobile';
 import { QueryBoundary } from '@/components/layout/query-boundary';
 import { Button } from '@/components/ui/button';
 import { ConfirmDialog } from '@/components/ui/confirm-dialog';
 import { LoadingImage } from '@/components/ui/loading-image';
 import { useToast } from '@/components/ui/toast';
 import { apiClient } from '@/lib/api/client';
-import { getStoredAccessToken } from '@/lib/auth/tokens';
+import { AUTH_TOKEN_CHANGE_EVENT, getStoredAccessToken } from '@/lib/auth/tokens';
 
 type FieldType =
   | 'text'
@@ -537,7 +549,7 @@ function getServiceImageUrl(record: AdminRecord) {
   if (savedImageUrl) return savedImageUrl;
 
   const slug = textValue(record.slug);
-  return slug ? `/images/redesign/${slug}.webp` : '';
+  return (serviceImages as Record<string, { src: string } | undefined>)[slug]?.src ?? '';
 }
 
 function getRecordImageUrls(record: AdminRecord, resource?: string) {
@@ -717,7 +729,9 @@ function RecordThumbnail({
   record,
   resource,
   label,
+  large = false,
 }: {
+  large?: boolean;
   record: AdminRecord;
   resource: string;
   label: string;
@@ -727,20 +741,20 @@ function RecordThumbnail({
 
   if (!imageUrl) {
     return (
-      <span className="flex h-12 w-16 items-center justify-center rounded-md border border-dashed bg-slate-50 text-[10px] font-black uppercase text-slate-400">
+      <span className="mn-admin-record-thumbnail flex h-12 w-16 items-center justify-center rounded-md border border-dashed bg-slate-50 text-[10px] font-black uppercase text-slate-400">
         Không ảnh
       </span>
     );
   }
 
   return (
-    <span className="relative block h-12 w-16 overflow-hidden rounded-md bg-slate-100">
+    <span className="mn-admin-record-thumbnail relative block h-12 w-16 overflow-hidden rounded-md bg-slate-100">
       <LoadingImage
         src={imageUrl}
         alt={record.featuredImage?.altText || textValue(record.altText) || label}
         fill
         className="object-cover"
-        sizes="64px"
+        sizes={large ? '(min-width: 1600px) 300px, (min-width: 1280px) 25vw, 33vw' : '64px'}
         unoptimized={imageUrl.startsWith('data:')}
       />
       {imageUrls.length > 1 ? (
@@ -759,6 +773,8 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
   const canUpdate = !config.readOnly && updateFields.length > 0;
   const canDelete = !config.readOnly && (config.allowDelete ?? true);
   const { toast } = useToast();
+  const mobile = useAdminMobile();
+  const [serviceVisibility, setServiceVisibility] = useState<'all' | 'active' | 'hidden'>('all');
   const [token, setToken] = useState<string | null>(null);
   const [form, setForm] = useState<FormState>(() => createInitialForm(config));
   const [fieldErrors, setFieldErrors] = useState<FormErrors>({});
@@ -772,7 +788,10 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    setToken(getStoredAccessToken());
+    const syncToken = () => setToken(getStoredAccessToken());
+    syncToken();
+    window.addEventListener(AUTH_TOKEN_CHANGE_EVENT, syncToken);
+    return () => window.removeEventListener(AUTH_TOKEN_CHANGE_EVENT, syncToken);
   }, []);
 
   useEffect(() => {
@@ -788,17 +807,29 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
   const { data, isError, isFetching, isLoading, refetch } = useQuery({
     queryKey: ['admin', resource],
     queryFn: async () => {
-      const response = await apiClient.get(`/admin/${resource}`, {
-        headers: token ? { Authorization: `Bearer ${token}` } : undefined,
-      });
-      return response.data as { items: AdminRecord[]; total: number };
+      const pageSize = 100;
+      const items: AdminRecord[] = [];
+      let total = 0;
+      for (let page = 1; ; page += 1) {
+        const { data } = await apiClient.get<{ items: AdminRecord[]; total: number }>(
+          `/admin/${resource}`,
+          {
+            params: { page, pageSize },
+            headers: token ? { Authorization: `Bearer ${token}` } : undefined,
+          },
+        );
+        items.push(...data.items);
+        total = data.total;
+        if (items.length >= total || data.items.length < pageSize) break;
+      }
+      return { items, total };
     },
     enabled: Boolean(token),
   });
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [searchTerm, data?.items.length]);
+  }, [searchTerm, serviceVisibility, data?.items.length]);
 
   const updateField = (name: string, value: string | number | boolean) => {
     setForm((current) => ({ ...current, [name]: value }));
@@ -965,10 +996,14 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
     : [];
   const filteredRecords = useMemo(
     () =>
-      (data?.items ?? []).filter((record, index) =>
-        recordMatchesSearch(record, index, config, searchTerm),
+      (data?.items ?? []).filter(
+        (record, index) =>
+          recordMatchesSearch(record, index, config, searchTerm) &&
+          (resource !== 'services' ||
+            serviceVisibility === 'all' ||
+            (serviceVisibility === 'active' ? Boolean(record.isActive) : !record.isActive)),
       ),
-    [config, data?.items, searchTerm],
+    [config, data?.items, searchTerm, resource, serviceVisibility],
   );
   const pageCount = Math.max(1, Math.ceil(filteredRecords.length / PAGE_SIZE));
   const safeCurrentPage = Math.min(currentPage, pageCount);
@@ -979,8 +1014,12 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
   const hasSearch = searchTerm.trim().length > 0;
 
   return (
-    <main className="flex min-h-full w-full flex-col px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <main
+      data-resource={resource}
+      data-screen={screenMode}
+      className="mn-admin-resource-page flex min-h-full w-full flex-col px-4 py-6 sm:px-6 lg:px-8 lg:py-8"
+    >
+      <div className="mn-admin-resource-heading flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-xs font-black uppercase tracking-wide text-primary">
             Quản trị dữ liệu
@@ -1109,7 +1148,7 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
           ) : null}
 
           {token ? (
-            <div className="border-b border-slate-200 bg-white px-4 py-4">
+            <div className="mn-admin-resource-toolbar border-b border-slate-200 bg-white px-4 py-4">
               <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
                 <div>
                   <p className="text-sm font-black text-slate-900">
@@ -1123,30 +1162,62 @@ function AdminResourcePageContent({ title, resource }: { title: string; resource
                     </p>
                   ) : null}
                 </div>
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+                <div className="mn-admin-resource-tools flex flex-col gap-2 sm:flex-row sm:items-center">
                   <label className="relative block min-w-0 sm:w-80">
                     <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
                     <input
                       className="h-11 w-full rounded-md border border-slate-200 bg-slate-50 pl-9 pr-3 text-sm font-semibold text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-primary focus:bg-white focus:ring-4 focus:ring-primary/10"
                       value={searchTerm}
-                      placeholder="Tìm theo tên, slug, email..."
+                      aria-label="Tìm dữ liệu quản trị"
+                      placeholder={
+                        mobile && resource === 'services'
+                          ? 'Tìm dịch vụ...'
+                          : 'Tìm theo tên, slug, email...'
+                      }
                       onChange={(event) => setSearchTerm(event.target.value)}
                     />
                   </label>
                   <Button
                     type="button"
                     variant="outline"
-                    className="h-11 gap-2 font-black"
+                    className="mn-admin-reload h-11 gap-2 font-black"
+                    aria-label="Tải lại dữ liệu"
                     disabled={isFetching}
                     onClick={() => refetch()}
                   >
                     <RefreshCw className={isFetching ? 'h-4 w-4 animate-spin' : 'h-4 w-4'} />
-                    Tải lại
+                    <span className="mn-admin-desktop-only">Tải lại</span>
                   </Button>
                 </div>
               </div>
             </div>
           ) : null}
+
+          {resource === 'services' && data && (
+            <div className="mn-admin-service-filters" aria-label="Lọc hiển thị dịch vụ">
+              {(
+                [
+                  ['all', 'Tất cả', data.items.length],
+                  [
+                    'active',
+                    'Đang hiển thị',
+                    data.items.filter((record) => Boolean(record.isActive)).length,
+                  ],
+                  ['hidden', 'Đang ẩn', data.items.filter((record) => !record.isActive).length],
+                ] as const
+              ).map(([value, label, count]) => (
+                <button
+                  key={value}
+                  type="button"
+                  aria-pressed={serviceVisibility === value}
+                  onClick={() => setServiceVisibility(value)}
+                >
+                  {label}
+                  <span>{count}</span>
+                </button>
+              ))}
+            </div>
+          )}
 
           {isLoading ? <LoadingRows /> : null}
 
@@ -1235,68 +1306,194 @@ function AdminRecordsTable({
   onEdit: (record: AdminRecord) => void;
   onDelete: (record: AdminRecord) => void;
 }) {
+  const [activeRecord, setActiveRecord] = useState<AdminRecord | null>(null);
+  const mobile = useAdminMobile();
+  useEffect(() => {
+    if (!mobile) setActiveRecord(null);
+  }, [mobile]);
+  const act = (callback: (record: AdminRecord) => void) => {
+    if (!activeRecord) return;
+    const record = activeRecord;
+    setActiveRecord(null);
+    callback(record);
+  };
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full min-w-[980px] border-collapse text-left text-sm">
-        <thead className="bg-slate-50 text-xs font-black uppercase text-slate-500">
-          <tr>
-            {config.listColumns.map((column) => (
-              <th key={column.key} className={`px-4 py-3 ${column.className ?? ''}`}>
-                {column.label}
-              </th>
-            ))}
-            <th className="px-4 py-3 text-right">Hành động</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-slate-200">
-          {records.map((record, index) => (
-            <tr
-              key={record.id ?? `${resource}-${index}`}
-              className="align-middle transition hover:bg-slate-50"
-            >
-              {config.listColumns.map((column) => (
-                <td key={column.key} className="px-4 py-3">
-                  {column.render(record, index)}
-                </td>
-              ))}
-              <td className="px-4 py-3">
-                {record.id ? (
-                  <div className="flex justify-end gap-2">
-                    <Button
-                      type="button"
-                      variant="outline"
-                      size="sm"
-                      onClick={() => onView(record)}
-                    >
-                      Xem
-                    </Button>
-                    {canUpdate ? (
-                      <Button type="button" size="sm" onClick={() => onEdit(record)}>
-                        Cập nhật
-                      </Button>
-                    ) : null}
-                    {canDelete ? (
-                      <Button
+    <>
+      {resource === 'services' && (
+        <div className="mn-admin-service-gallery">
+          {records.map((record, index) => {
+            const label = config.primaryLabel(record, index);
+            return (
+              <article className="mn-admin-service-card" key={record.id ?? index}>
+                <button
+                  type="button"
+                  className="mn-admin-service-cover"
+                  aria-label={`Xem ${label}`}
+                  onClick={() => onView(record)}
+                >
+                  <RecordThumbnail record={record} resource={resource} label={label} large />
+                  <span className="mn-admin-service-status" data-active={Boolean(record.isActive)}>
+                    <span />
+                    {record.isActive ? 'Đang hiển thị' : 'Đang ẩn'}
+                  </span>
+                </button>
+                <div className="mn-admin-service-card-body">
+                  <p className="mn-admin-service-index">
+                    DỊCH VỤ ĐIỆN LẠNH · #{String(record.displayOrder ?? index + 1)}
+                  </p>
+                  <button
+                    type="button"
+                    className="mn-admin-service-title"
+                    onClick={() => onView(record)}
+                  >
+                    {label}
+                  </button>
+                  <p className="mn-admin-service-description">
+                    {textValue(record.summary) ||
+                      textValue(record.description) ||
+                      'Quản lý thông tin và hình ảnh dịch vụ.'}
+                  </p>
+                  <div className="mn-admin-service-card-actions">
+                    <button type="button" onClick={() => onView(record)}>
+                      <Eye size={14} />
+                      Chi tiết
+                    </button>
+                    {canUpdate && record.id && (
+                      <button type="button" className="is-primary" onClick={() => onEdit(record)}>
+                        <Pencil size={14} />
+                        Chỉnh sửa
+                      </button>
+                    )}
+                    {canDelete && record.id && (
+                      <button
                         type="button"
-                        variant="destructive"
-                        size="sm"
+                        className="is-delete"
+                        aria-label={`Xóa ${label}`}
                         onClick={() => onDelete(record)}
                       >
-                        Xóa
-                      </Button>
-                    ) : null}
+                        <Trash2 size={14} />
+                      </button>
+                    )}
                   </div>
-                ) : (
-                  <span className="block text-right text-sm font-semibold text-slate-500">
-                    Không có
-                  </span>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      )}
+      {resource === 'services' && (
+        <div className="mn-admin-mobile-records">
+          {records.map((record, index) => {
+            const label = config.primaryLabel(record, index);
+            return (
+              <article className="mn-admin-mobile-record" key={record.id ?? index}>
+                <button
+                  type="button"
+                  className="mn-admin-mobile-record-photo"
+                  aria-label={`Xem ảnh ${label}`}
+                  onClick={() => onView(record)}
+                >
+                  <RecordThumbnail record={record} resource={resource} label={label} />
+                </button>
+                <div className="mn-admin-mobile-record-copy">
+                  <button
+                    type="button"
+                    className="mn-admin-mobile-record-title"
+                    onClick={() => onView(record)}
+                  >
+                    {label}
+                  </button>
+                  <div className="mn-admin-mobile-record-meta">
+                    <span className={record.isActive ? 'is-active' : 'is-hidden'}>
+                      {record.isActive ? 'Đang hiển thị' : 'Đang ẩn'}
+                    </span>
+                    <span>#{String(record.displayOrder ?? '—')}</span>
+                  </div>
+                </div>
+                {record.id && (
+                  <button
+                    type="button"
+                    className="mn-admin-record-more"
+                    aria-label={`Thao tác ${label}`}
+                    onClick={() => setActiveRecord(record)}
+                  >
+                    <MoreVertical size={21} />
+                  </button>
                 )}
-              </td>
+              </article>
+            );
+          })}
+          <AdminServiceActions
+            title={activeRecord ? config.primaryLabel(activeRecord, 0) : null}
+            onClose={() => setActiveRecord(null)}
+            onView={() => act(onView)}
+            onEdit={canUpdate ? () => act(onEdit) : undefined}
+            onDelete={canDelete ? () => act(onDelete) : undefined}
+          />
+        </div>
+      )}
+      <div className="mn-admin-records-table overflow-x-auto">
+        <table className="w-full min-w-[980px] border-collapse text-left text-sm">
+          <thead className="bg-slate-50 text-xs font-black uppercase text-slate-500">
+            <tr>
+              {config.listColumns.map((column) => (
+                <th key={column.key} className={`px-4 py-3 ${column.className ?? ''}`}>
+                  {column.label}
+                </th>
+              ))}
+              <th className="px-4 py-3 text-right">Hành động</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody className="divide-y divide-slate-200">
+            {records.map((record, index) => (
+              <tr
+                key={record.id ?? `${resource}-${index}`}
+                className="align-middle transition hover:bg-slate-50"
+              >
+                {config.listColumns.map((column) => (
+                  <td key={column.key} className="px-4 py-3">
+                    {column.render(record, index)}
+                  </td>
+                ))}
+                <td className="px-4 py-3">
+                  {record.id ? (
+                    <div className="flex justify-end gap-2">
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => onView(record)}
+                      >
+                        Xem
+                      </Button>
+                      {canUpdate ? (
+                        <Button type="button" size="sm" onClick={() => onEdit(record)}>
+                          Cập nhật
+                        </Button>
+                      ) : null}
+                      {canDelete ? (
+                        <Button
+                          type="button"
+                          variant="destructive"
+                          size="sm"
+                          onClick={() => onDelete(record)}
+                        >
+                          Xóa
+                        </Button>
+                      ) : null}
+                    </div>
+                  ) : (
+                    <span className="block text-right text-sm font-semibold text-slate-500">
+                      Không có
+                    </span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 }
 

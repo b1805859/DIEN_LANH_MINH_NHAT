@@ -1,0 +1,51 @@
+.u228 {
+  --ux-accent: var(--mn-ice, #0759c7);
+  --ux-accent-2: var(--ice-blue, #007dc5);
+  --u228-opacity: 0;
+}
+
+:global(:root[data-theme='dark']) .u228 {
+  --ux-accent: #845ef7;
+  --ux-accent-2: #4dabf7;
+}
+
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme='light'])) .u228 {
+    --ux-accent: #845ef7;
+    --ux-accent-2: #4dabf7;
+  }
+}
+
+@media (any-hover: hover) and (any-pointer: fine) {
+  .u228 > [data-u228-card]::before,
+  .u228 > [data-u228-card]::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: var(--u228-opacity);
+    pointer-events: none;
+  }
+
+  .u228 > [data-u228-card]::before {
+    z-index: 0;
+    background: radial-gradient(
+      220px circle at var(--u228-x, -500px) var(--u228-y, -500px),
+      color-mix(in srgb, var(--ux-accent) 14%, transparent),
+      transparent 60%
+    );
+  }
+
+  .u228 > [data-u228-card]::after {
+    z-index: 2;
+    padding: 1.5px;
+    background: radial-gradient(
+      160px circle at var(--u228-x, -500px) var(--u228-y, -500px),
+      var(--ux-accent),
+      color-mix(in srgb, var(--ux-accent-2) 50%, transparent) 40%,
+      transparent 70%
+    );
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+  }
+}

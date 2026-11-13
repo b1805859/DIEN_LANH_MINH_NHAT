@@ -43,32 +43,9 @@ export function useSiteMotion(
 
       register(site);
 
-      // One scroll listener and one frame for the warm-to-cool page lighting.
-      // No scroll work on touch/low-power devices, and no image color changes.
-      let frame = 0;
-      let scrollRange = 1;
-      const paintTemperature = () => {
-        frame = 0;
-        const progress = Math.max(0, Math.min(1, window.scrollY / scrollRange));
-        site.style.setProperty('--mn-warm-light', String((1 - progress) * 0.65));
-        site.style.setProperty('--mn-cool-light', String(0.2 + progress * 0.65));
-      };
-      const scheduleTemperature = () => {
-        if (budget !== 'full' || frame || document.hidden) return;
-        frame = requestAnimationFrame(paintTemperature);
-      };
-      const measure = () => {
-        scrollRange = Math.max(1, site.scrollHeight - window.innerHeight);
-        scheduleTemperature();
-      };
-      const size =
-        budget === 'full' && 'ResizeObserver' in window ? new ResizeObserver(measure) : null;
-      if (budget === 'full' && pathname === '/') {
-        size?.observe(site);
-        window.addEventListener('scroll', scheduleTemperature, { passive: true });
-        window.addEventListener('resize', measure, { passive: true });
-        measure();
-      }
+      // Stable lighting avoids repainting the full page on every scroll frame.
+      site.style.setProperty('--mn-warm-light', '0.18');
+      site.style.setProperty('--mn-cool-light', '0.4');
       const changes = new MutationObserver((records) => {
         if (disposed) return;
         for (const record of records) {
@@ -87,7 +64,6 @@ export function useSiteMotion(
 
       const visibility = () => {
         site.dataset.motionPaused = String(document.hidden);
-        if (!document.hidden) scheduleTemperature();
       };
       visibility();
       document.addEventListener('visibilitychange', visibility);
@@ -95,10 +71,6 @@ export function useSiteMotion(
         disposed = true;
         ambient.disconnect();
         changes.disconnect();
-        size?.disconnect();
-        cancelAnimationFrame(frame);
-        window.removeEventListener('scroll', scheduleTemperature);
-        window.removeEventListener('resize', measure);
         site.style.removeProperty('--mn-warm-light');
         site.style.removeProperty('--mn-cool-light');
         document.removeEventListener('visibilitychange', visibility);

@@ -1,0 +1,3 @@
+import {chromium} from 'playwright';
+const b=await chromium.launch();const p=await b.newPage({viewport:{width:390,height:844},reducedMotion:'reduce'});
+for(const route of ['/services/sua-may-lanh','/areas/ninh-kieu','/areas/ninh-kieu/sua-may-lanh']){await p.goto('http://localhost:3000'+route,{waitUntil:'networkidle'});console.log(route,await p.evaluate(()=>[...document.querySelectorAll('main *')].filter(e=> e.childNodes.length && [...e.childNodes].some(n=>n.nodeType===3&&n.textContent.trim()) && e.scrollWidth>e.clientWidth+2 && !['inline','contents'].includes(getComputedStyle(e).display)).map(e=>({cls:e.className,text:e.textContent.trim().slice(0,100),w:e.clientWidth,sw:e.scrollWidth}))));}await b.close();

@@ -1,0 +1,27 @@
+ĐÃ TRIỂN KHAI MOBILE: MOCKUP 2 + MỤC MỞ RỘNG TỪ MOCKUP 3
+
+8 FILE MÃ NGUỒN ĐÃ CHỈNH/TẠO:
+1. apps/web/app/page.tsx: sử dụng bố cục nội dung theo breakpoint, bọc phần giới thiệu/quy trình vào mục mở rộng.
+2. apps/web/app/layout.tsx: import mobile-density.css.
+3. apps/web/app/mobile-density.css (mới): bố cục mobile/tablet, card dịch vụ gọn, bài viết có thumbnail ngang, Footer rút gọn và styling disclosure.
+4. apps/web/components/redesign/mobile-disclosure.tsx (mới): nút mở rộng có aria-expanded/aria-controls, nhóm liên kết Footer, thứ tự DOM đúng theo breakpoint.
+5. apps/web/components/redesign/home-services-section.tsx: nhãn tiêu đề và link ngắn cho mobile, giữ nguyên bản desktop và slider.
+6. apps/web/components/redesign/hero.module.css: Hero mobile gọn, CTA không che mặt người, photo/mask/canvas dùng cùng projection; không sửa rule desktop.
+7. apps/web/components/redesign/hero.tsx: mô tả ngắn riêng mobile, giữ mô tả desktop và toàn bộ logic animation.
+8. apps/web/components/layout/home-footer.tsx: nhóm liên kết mở rộng trên mobile, desktop vẫn hiển thị đầy đủ.
+
+Báo cáo QA được thêm vào cuối design-qa.md; không đọc/ghi đè phần báo cáo đã có. Bản riêng của lượt này: output/mobile-density-implementation/design-qa.md.
+
+Ở 390x844, trang chủ giảm từ 9046px xuống 3006px (~66,8%), khoảng 10,7 xuống 3,6 màn hình khi các mục phụ đóng mặc định. Cả 6 tên dịch vụ xuất hiện trong khung đầu. Trang dịch vụ từ 5297 xuống 2652px; blog từ 4665 xuống 2267px. Đây là chiều dài hiển thị mặc định; mở nội dung phụ sẽ tăng chiều dài tương ứng.
+
+KIỂM THỬ:
+- Playwright Chromium: 15 tổ hợp trang chủ/dịch vụ/blog x 320/375/390/430/768px; không tràn ngang.
+- 5 bộ tương tác: menu, phần mở rộng, liên kết Footer, trang chi tiết dịch vụ, tabs, bong bóng kéo được và chat, chuyển lại desktop. Đạt, không có pageerror JavaScript.
+- 4 kiểm tra WebGL: 320/390/768/1440, drawArrays tiếp tục tăng khi không bật reduced motion.
+- 6 đối chiếu desktop (3 trang x 1024/1440), 250 phần tử: vị trí/kích thước/font/display/margin/padding giống trước khi sửa.
+- TypeScript --noEmit --incremental false: đạt.
+- ESLint các TSX đã chỉnh: đạt.
+- HeroAirflow, hook kéo và FloatingActions: SHA-256 không thay đổi.
+- QA đối chiếu ảnh mockup 2 và ảnh chạy cùng 390x844: passed, không còn P0/P1/P2.
+
+Không thêm overflow:hidden/clip để che lỗi. Không thay màu sắc, backend, đường dẫn hoặc nghiệp vụ. Ảnh/video/animation gốc giữ nguyên. Chưa deploy Vercel; chưa kiểm tra trên thiết bị Safari/iOS thật.

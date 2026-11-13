@@ -1,0 +1,190 @@
+/* Approved homepage composition. Every rule is confined below HomeHero or to HomeFooter. */
+.mn-site[data-home='true'] .mn-home-content {
+  --mn-cyan: #00aeef;
+  --mn-ice: #007eaf;
+  --mn-home-muted: #385776;
+  color: #071e42;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-home-light {
+  background: #f3faff;
+  color: #071e42;
+}
+.mn-site[data-home='true'] .mn-home-content :is(.mn-section, .mn-process) {
+  padding-block: 80px;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-section-heading {
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 36px;
+}
+.mn-site[data-home='true'] .mn-home-content h2 {
+  font-size: clamp(28px, 2.8vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -1px;
+  font-weight: 800;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-kicker {
+  margin: 0 0 12px !important;
+  color: #008cce;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 1.7px;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-text-link {
+  min-height: 44px;
+  font-size: 14px;
+  color: #008bc7;
+  background: none;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-home-services-heading {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr auto;
+  gap: 48px;
+  align-items: end;
+  margin-bottom: 32px;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-home-services-heading h2 em {
+  display: block;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-home-services-intro > p {
+  max-width: 48ch;
+  color: #294b6c;
+  font-size: 15px;
+  line-height: 1.7;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-home-service-controls {
+  display: flex;
+  gap: 10px;
+  padding-bottom: 8px;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-home-service-controls button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #bceaff;
+  border-radius: 50%;
+  background: #fff;
+  color: #00a9ef;
+  box-shadow: 0 4px 12px #0078b00d;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-home-about-band {
+  padding-block: 64px;
+  background: #00243b;
+  border-block: 1px solid #0083b5;
+  color: #f7fbff;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-home-about {
+  grid-template-columns: 1fr 1.03fr;
+  align-items: stretch;
+  gap: 56px;
+  margin-block: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  overflow: visible;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-home-about-photo {
+  min-height: 460px;
+  height: auto;
+  aspect-ratio: auto;
+  border: 1px solid #13617a;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-home-about-photo img {
+  object-position: 70% center;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-home-about > div:last-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8px 0;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-home-about .mn-kicker {
+  color: #00d4f2;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-home-about h2 em {
+  color: #00d4f2;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-home-about p:not(.mn-kicker) {
+  margin-top: 18px;
+  color: #d0e1ed;
+  font-size: 16px;
+  line-height: 1.75;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-about-brand-badge {
+  left: 18px;
+  bottom: 18px;
+  padding: 18px 20px;
+  gap: 16px;
+  font-size: 15px;
+  line-height: 1.5;
+  border-color: #2cbce1;
+  background: #002b46e8;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-about-brand-badge svg {
+  width: 40px;
+  height: 40px;
+  color: #00dbf2;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-home-about .mn-text-link {
+  color: #00d4f2;
+  align-self: flex-start;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-home-showcase-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-home-showcase-heading h2 {
+  flex: 1;
+  font-size: clamp(27px, 2.6vw, 36px);
+}
+/* Keep the arrow in normal flow: a reveal transform must not change its anchor. */
+.mn-site[data-home='true'] .mn-home-content .mn-home-coverage-band {
+  background: #001c36;
+}
+.mn-site[data-home='true'] .mn-home-content .mn-process > .mn-section-heading {
+  margin-bottom: 32px;
+}
+@media (max-width: 1200px) {
+  .mn-site[data-home='true'] .mn-home-content .mn-home-services-heading { gap: 28px; }
+  .mn-site[data-home='true'] .mn-home-content .mn-home-about { gap: 36px; }
+  .mn-site[data-home='true'] .mn-home-content .mn-home-showcase-heading { flex-wrap: wrap; }
+  .mn-site[data-home='true'] .mn-home-content .mn-home-showcase-heading h2 { flex-basis: 100%; }
+}
+@media (max-width: 1000px) {
+  .mn-site[data-home='true'] .mn-home-content .mn-home-services-heading { grid-template-columns: 1fr auto; }
+  .mn-site[data-home='true'] .mn-home-content .mn-home-services-intro { grid-column: 1; grid-row: 2; }
+  .mn-site[data-home='true'] .mn-home-content .mn-home-service-controls { grid-column: 2; grid-row: 2; }
+  .mn-site[data-home='true'] .mn-home-content .mn-home-about { grid-template-columns: 1fr; gap: 32px; }
+  .mn-site[data-home='true'] .mn-home-content .mn-home-about-photo { height: auto; min-height: 440px; aspect-ratio: 1.6; }
+  .mn-site[data-home='true'] .mn-home-content .mn-home-about > div:last-child { padding: 0; }
+}
+@media (max-width: 700px) {
+  .mn-site[data-home='true'] .mn-home-content :is(.mn-section, .mn-process) { padding-block: 52px; }
+  .mn-site[data-home='true'] .mn-home-content .mn-home-services-heading { gap: 20px; margin-bottom: 28px; }
+  .mn-site[data-home='true'] .mn-home-content .mn-home-services-heading > div:first-child { grid-column: 1 / -1; }
+  .mn-site[data-home='true'] .mn-home-content .mn-home-services-intro > p { font-size: 14px; }
+  .mn-site[data-home='true'] .mn-home-content .mn-home-service-controls { flex-direction: column; align-self: center; gap: 8px; }
+  .mn-site[data-home='true'] .mn-home-content .mn-home-about-band { padding-block: 48px; }
+  .mn-site[data-home='true'] .mn-home-content .mn-home-about-photo { min-height: 360px; }
+  .mn-site[data-home='true'] .mn-home-content .mn-home-about p:not(.mn-kicker) { font-size: 15px; }
+  .mn-site[data-home='true'] .mn-home-content .mn-home-showcase-heading { gap: 14px; }
+}
+@media (max-width: 440px) {
+  .mn-site[data-home='true'] .mn-home-content .mn-home-about-photo { min-height: 330px; aspect-ratio: auto; }
+  .mn-site[data-home='true'] .mn-home-content .mn-about-brand-badge { left: 12px; bottom: 12px; padding: 14px; font-size: 13px; }
+}
+
+/* Homepage process journey: motion and gap-only connectors, with geometry preserved. */
+
+/* Existing cartoon artwork adds context to each homepage journey step. */
+
+/* Readable journey rail: numbered milestones and directional links in the gaps. */
+
+/* A separate, spacious rail keeps the process sequence clear of card content. */

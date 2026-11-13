@@ -1,0 +1,282 @@
+[
+  {
+    "file": "apps/web/app/mobile.css",
+    "width": 901,
+    "reducedMotion": "reduce",
+    "activeRules": 1,
+    "identical": true
+  },
+  {
+    "file": "apps/web/app/palette-preview.css",
+    "width": 901,
+    "reducedMotion": "reduce",
+    "activeRules": 297,
+    "identical": true
+  },
+  {
+    "file": "apps/web/components/redesign/hero.module.css",
+    "width": 901,
+    "reducedMotion": "reduce",
+    "activeRules": 43,
+    "identical": true
+  },
+  {
+    "file": "apps/web/components/layout/site-header.module.css",
+    "width": 901,
+    "reducedMotion": "reduce",
+    "activeRules": 18,
+    "identical": true
+  },
+  {
+    "file": "apps/web/app/mobile.css",
+    "width": 901,
+    "reducedMotion": "no-preference",
+    "activeRules": 1,
+    "identical": true
+  },
+  {
+    "file": "apps/web/app/palette-preview.css",
+    "width": 901,
+    "reducedMotion": "no-preference",
+    "activeRules": 328,
+    "identical": true
+  },
+  {
+    "file": "apps/web/components/redesign/hero.module.css",
+    "width": 901,
+    "reducedMotion": "no-preference",
+    "activeRules": 43,
+    "identical": true
+  },
+  {
+    "file": "apps/web/components/layout/site-header.module.css",
+    "width": 901,
+    "reducedMotion": "no-preference",
+    "activeRules": 18,
+    "identical": true
+  },
+  {
+    "file": "apps/web/app/mobile.css",
+    "width": 1024,
+    "reducedMotion": "reduce",
+    "activeRules": 1,
+    "identical": true
+  },
+  {
+    "file": "apps/web/app/palette-preview.css",
+    "width": 1024,
+    "reducedMotion": "reduce",
+    "activeRules": 288,
+    "identical": true
+  },
+  {
+    "file": "apps/web/components/redesign/hero.module.css",
+    "width": 1024,
+    "reducedMotion": "reduce",
+    "activeRules": 43,
+    "identical": true
+  },
+  {
+    "file": "apps/web/components/layout/site-header.module.css",
+    "width": 1024,
+    "reducedMotion": "reduce",
+    "activeRules": 18,
+    "identical": true
+  },
+  {
+    "file": "apps/web/app/mobile.css",
+    "width": 1024,
+    "reducedMotion": "no-preference",
+    "activeRules": 1,
+    "identical": true
+  },
+  {
+    "file": "apps/web/app/palette-preview.css",
+    "width": 1024,
+    "reducedMotion": "no-preference",
+    "activeRules": 319,
+    "identical": true
+  },
+  {
+    "file": "apps/web/components/redesign/hero.module.css",
+    "width": 1024,
+    "reducedMotion": "no-preference",
+    "activeRules": 43,
+    "identical": true
+  },
+  {
+    "file": "apps/web/components/layout/site-header.module.css",
+    "width": 1024,
+    "reducedMotion": "no-preference",
+    "activeRules": 18,
+    "identical": true
+  },
+  {
+    "file": "apps/web/app/mobile.css",
+    "width": 1280,
+    "reducedMotion": "reduce",
+    "activeRules": 1,
+    "identical": true
+  },
+  {
+    "file": "apps/web/app/palette-preview.css",
+    "width": 1280,
+    "reducedMotion": "reduce",
+    "activeRules": 288,
+    "identical": true
+  },
+  {
+    "file": "apps/web/components/redesign/hero.module.css",
+    "width": 1280,
+    "reducedMotion": "reduce",
+    "activeRules": 33,
+    "identical": true
+  },
+  {
+    "file": "apps/web/components/layout/site-header.module.css",
+    "width": 1280,
+    "reducedMotion": "reduce",
+    "activeRules": 13,
+    "identical": true
+  },
+  {
+    "file": "apps/web/app/mobile.css",
+    "width": 1280,
+    "reducedMotion": "no-preference",
+    "activeRules": 1,
+    "identical": true
+  },
+  {
+    "file": "apps/web/app/palette-preview.css",
+    "width": 1280,
+    "reducedMotion": "no-preference",
+    "activeRules": 319,
+    "identical": true
+  },
+  {
+    "file": "apps/web/components/redesign/hero.module.css",
+    "width": 1280,
+    "reducedMotion": "no-preference",
+    "activeRules": 33,
+    "identical": true
+  },
+  {
+    "file": "apps/web/components/layout/site-header.module.css",
+    "width": 1280,
+    "reducedMotion": "no-preference",
+    "activeRules": 13,
+    "identical": true
+  },
+  {
+    "file": "apps/web/app/mobile.css",
+    "width": 1440,
+    "reducedMotion": "reduce",
+    "activeRules": 1,
+    "identical": true
+  },
+  {
+    "file": "apps/web/app/palette-preview.css",
+    "width": 1440,
+    "reducedMotion": "reduce",
+    "activeRules": 288,
+    "identical": true
+  },
+  {
+    "file": "apps/web/components/redesign/hero.module.css",
+    "width": 1440,
+    "reducedMotion": "reduce",
+    "activeRules": 33,
+    "identical": true
+  },
+  {
+    "file": "apps/web/components/layout/site-header.module.css",
+    "width": 1440,
+    "reducedMotion": "reduce",
+    "activeRules": 13,
+    "identical": true
+  },
+  {
+    "file": "apps/web/app/mobile.css",
+    "width": 1440,
+    "reducedMotion": "no-preference",
+    "activeRules": 1,
+    "identical": true
+  },
+  {
+    "file": "apps/web/app/palette-preview.css",
+    "width": 1440,
+    "reducedMotion": "no-preference",
+    "activeRules": 319,
+    "identical": true
+  },
+  {
+    "file": "apps/web/components/redesign/hero.module.css",
+    "width": 1440,
+    "reducedMotion": "no-preference",
+    "activeRules": 33,
+    "identical": true
+  },
+  {
+    "file": "apps/web/components/layout/site-header.module.css",
+    "width": 1440,
+    "reducedMotion": "no-preference",
+    "activeRules": 13,
+    "identical": true
+  },
+  {
+    "file": "apps/web/app/mobile.css",
+    "width": 1920,
+    "reducedMotion": "reduce",
+    "activeRules": 1,
+    "identical": true
+  },
+  {
+    "file": "apps/web/app/palette-preview.css",
+    "width": 1920,
+    "reducedMotion": "reduce",
+    "activeRules": 288,
+    "identical": true
+  },
+  {
+    "file": "apps/web/components/redesign/hero.module.css",
+    "width": 1920,
+    "reducedMotion": "reduce",
+    "activeRules": 33,
+    "identical": true
+  },
+  {
+    "file": "apps/web/components/layout/site-header.module.css",
+    "width": 1920,
+    "reducedMotion": "reduce",
+    "activeRules": 13,
+    "identical": true
+  },
+  {
+    "file": "apps/web/app/mobile.css",
+    "width": 1920,
+    "reducedMotion": "no-preference",
+    "activeRules": 1,
+    "identical": true
+  },
+  {
+    "file": "apps/web/app/palette-preview.css",
+    "width": 1920,
+    "reducedMotion": "no-preference",
+    "activeRules": 319,
+    "identical": true
+  },
+  {
+    "file": "apps/web/components/redesign/hero.module.css",
+    "width": 1920,
+    "reducedMotion": "no-preference",
+    "activeRules": 33,
+    "identical": true
+  },
+  {
+    "file": "apps/web/components/layout/site-header.module.css",
+    "width": 1920,
+    "reducedMotion": "no-preference",
+    "activeRules": 13,
+    "identical": true
+  }
+]

@@ -12,7 +12,7 @@ export default function TermsPage() {
     <main className="mn-reference-page">
       <PageHero title="Điều khoản dịch vụ" showEyebrow={false} />
       <div className="mn-container mn-reading-content mn-tone-section mn-tone-light">
-        <article className="mn-article mn-panel">
+        <article className="mn-article mn-panel" data-reveal="">
           <p>
             Khách hàng được báo giá trước khi thực hiện. Chi phí thực tế phụ thuộc tình trạng thiết bị
             và phạm vi công việc.

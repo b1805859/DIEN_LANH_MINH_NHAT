@@ -1,0 +1,870 @@
+[
+  {
+    "width": 320,
+    "height": 700,
+    "overflow": false,
+    "types": {
+      "h1": [
+        {
+          "text": "Điện lạnh Cần Thơ.Chăm sóc ngôi nhà bạn.",
+          "x": 19.1875,
+          "y": 122.6875,
+          "w": 281.625,
+          "h": 97.40625,
+          "font": "29px"
+        }
+      ],
+      "main h2": [
+        {
+          "text": "Bạn cần hỗ trợ gì?",
+          "x": 29.875,
+          "y": 701.265625,
+          "w": 260.25,
+          "h": 31.1875,
+          "font": "26px"
+        },
+        {
+          "text": "Dịch vụ máy lạnh",
+          "x": 12.71875,
+          "y": 1359.546875,
+          "w": 283.203125,
+          "h": 31.1875,
+          "font": "26px"
+        },
+        {
+          "text": "Quy trình phục vụ",
+          "x": 31.875,
+          "y": 2203.78125,
+          "w": 256.25,
+          "h": 31.1875,
+          "font": "26px"
+        },
+        {
+          "text": "Nhận sửa tại nhàở Cần Thơ",
+          "x": 16,
+          "y": 2640.421875,
+          "w": 288,
+          "h": 56.15625,
+          "font": "26px"
+        }
+      ],
+      "#services-air-conditioner article h3": [
+        {
+          "text": "Sửa chữa máy lạnh",
+          "x": 28.234375,
+          "y": 1544.46875,
+          "w": 154.625,
+          "h": 21.71875,
+          "font": "17.3826px"
+        },
+        {
+          "text": "Vệ sinh máy lạnh",
+          "x": 28.234375,
+          "y": 1763.46875,
+          "w": 137.671875,
+          "h": 21.71875,
+          "font": "17.3826px"
+        },
+        {
+          "text": "Lắp đặt máy lạnh",
+          "x": 28.234375,
+          "y": 1982.46875,
+          "w": 143.5,
+          "h": 21.71875,
+          "font": "17.3826px"
+        }
+      ],
+      "#services-air-conditioner article p": [
+        {
+          "text": "Xử lý nhanh các lỗi máy lạnh không lạnh, chảy nước, kêu ồn..",
+          "x": 28.234375,
+          "y": 1577.28125,
+          "w": 187.09375,
+          "h": 38.96875,
+          "font": "11.4677px"
+        },
+        {
+          "text": "Làm sạch dàn lạnh, dàn nóng, giúp máy hoạt động hiệu quả.",
+          "x": 28.234375,
+          "y": 1796.28125,
+          "w": 187.09375,
+          "h": 38.96875,
+          "font": "11.4677px"
+        },
+        {
+          "text": "Tư vấn vị trí, lắp đặt đúng kỹ thuật, thẩm mỹ cao.",
+          "x": 28.234375,
+          "y": 2015.28125,
+          "w": 156.921875,
+          "h": 38.96875,
+          "font": "11.4677px"
+        }
+      ],
+      ".mn-desktop-nav": []
+    }
+  },
+  {
+    "width": 390,
+    "height": 844,
+    "overflow": false,
+    "types": {
+      "h1": [
+        {
+          "text": "Điện lạnh Cần Thơ.Chăm sóc ngôi nhà bạn.",
+          "x": 23.390625,
+          "y": 122.6875,
+          "w": 343.21875,
+          "h": 64.9375,
+          "font": "29px"
+        }
+      ],
+      "main h2": [
+        {
+          "text": "Bạn cần hỗ trợ gì?",
+          "x": 32.25,
+          "y": 726.890625,
+          "w": 325.5,
+          "h": 31.1875,
+          "font": "26px"
+        },
+        {
+          "text": "Dịch vụ máy lạnh",
+          "x": 15.515625,
+          "y": 1385.171875,
+          "w": 283.203125,
+          "h": 31.1875,
+          "font": "26px"
+        },
+        {
+          "text": "Quy trình phục vụ",
+          "x": 34.25,
+          "y": 2250.9375,
+          "w": 321.5,
+          "h": 31.1875,
+          "font": "26px"
+        },
+        {
+          "text": "Nhận sửa tại nhàở Cần Thơ",
+          "x": 16,
+          "y": 2652.703125,
+          "w": 358,
+          "h": 56.15625,
+          "font": "26px"
+        }
+      ],
+      "#services-air-conditioner article h3": [
+        {
+          "text": "Sửa chữa máy lạnh",
+          "x": 34.421875,
+          "y": 1571.703125,
+          "w": 188.421875,
+          "h": 26.484375,
+          "font": "21.1842px"
+        },
+        {
+          "text": "Vệ sinh máy lạnh",
+          "x": 34.421875,
+          "y": 1797.671875,
+          "w": 167.765625,
+          "h": 26.484375,
+          "font": "21.1842px"
+        },
+        {
+          "text": "Lắp đặt máy lạnh",
+          "x": 34.421875,
+          "y": 2023.640625,
+          "w": 174.875,
+          "h": 26.484375,
+          "font": "21.1842px"
+        }
+      ],
+      "#services-air-conditioner article p": [
+        {
+          "text": "Xử lý nhanh các lỗi máy lạnh không lạnh, chảy nước, kêu ồn..",
+          "x": 34.421875,
+          "y": 1605.609375,
+          "w": 228.015625,
+          "h": 47.46875,
+          "font": "13.9757px"
+        },
+        {
+          "text": "Làm sạch dàn lạnh, dàn nóng, giúp máy hoạt động hiệu quả.",
+          "x": 34.421875,
+          "y": 1831.578125,
+          "w": 228.015625,
+          "h": 47.46875,
+          "font": "13.9757px"
+        },
+        {
+          "text": "Tư vấn vị trí, lắp đặt đúng kỹ thuật, thẩm mỹ cao.",
+          "x": 34.421875,
+          "y": 2057.546875,
+          "w": 191.234375,
+          "h": 47.46875,
+          "font": "13.9757px"
+        }
+      ],
+      ".mn-desktop-nav": []
+    }
+  },
+  {
+    "width": 768,
+    "height": 1024,
+    "overflow": false,
+    "types": {
+      "h1": [
+        {
+          "text": "Điện lạnh Cần Thơ.Chăm sóc ngôi nhà bạn.",
+          "x": 46.078125,
+          "y": 122.6875,
+          "w": 675.84375,
+          "h": 86,
+          "font": "38.4px"
+        }
+      ],
+      "main h2": [
+        {
+          "text": "Bạn cần hỗ trợ gì?",
+          "x": 45.109375,
+          "y": 1039.453125,
+          "w": 677.78125,
+          "h": 31.1875,
+          "font": "26px"
+        },
+        {
+          "text": "Dịch vụ máy lạnh",
+          "x": 30.5625,
+          "y": 1515.734375,
+          "w": 283.203125,
+          "h": 31.1875,
+          "font": "26px"
+        },
+        {
+          "text": "Quy trình phục vụ",
+          "x": 47.109375,
+          "y": 2585.046875,
+          "w": 673.78125,
+          "h": 31.1875,
+          "font": "26px"
+        },
+        {
+          "text": "Nhận sửa tại nhàở Cần Thơ",
+          "x": 24,
+          "y": 2956.875,
+          "w": 387.1875,
+          "h": 56.15625,
+          "font": "26px"
+        }
+      ],
+      "#services-air-conditioner article h3": [
+        {
+          "text": "Sửa chữa máy lạnh",
+          "x": 54.828125,
+          "y": 1654.890625,
+          "w": 266.4375,
+          "h": 37.4375,
+          "font": "29.952px"
+        },
+        {
+          "text": "Vệ sinh máy lạnh",
+          "x": 54.828125,
+          "y": 1968.59375,
+          "w": 237.234375,
+          "h": 37.4375,
+          "font": "29.952px"
+        },
+        {
+          "text": "Lắp đặt máy lạnh",
+          "x": 54.828125,
+          "y": 2282.296875,
+          "w": 247.28125,
+          "h": 37.4375,
+          "font": "29.952px"
+        }
+      ],
+      "#services-air-conditioner article p": [
+        {
+          "text": "Xử lý nhanh các lỗi máy lạnh không lạnh, chảy nước, kêu ồn..",
+          "x": 54.828125,
+          "y": 1702.84375,
+          "w": 322.390625,
+          "h": 67.1875,
+          "font": "19.76px"
+        },
+        {
+          "text": "Làm sạch dàn lạnh, dàn nóng, giúp máy hoạt động hiệu quả.",
+          "x": 54.828125,
+          "y": 2016.546875,
+          "w": 322.390625,
+          "h": 67.1875,
+          "font": "19.76px"
+        },
+        {
+          "text": "Tư vấn vị trí, lắp đặt đúng kỹ thuật, thẩm mỹ cao.",
+          "x": 54.828125,
+          "y": 2330.25,
+          "w": 270.390625,
+          "h": 67.1875,
+          "font": "19.76px"
+        }
+      ],
+      ".mn-desktop-nav": []
+    }
+  },
+  {
+    "width": 901,
+    "height": 700,
+    "overflow": false,
+    "types": {
+      "h1": [
+        {
+          "text": "Điện lạnh Cần Thơ.Chăm sóc ngôi nhà bạn.",
+          "x": 43.234375,
+          "y": 153.28125,
+          "w": 441.484375,
+          "h": 85.84375,
+          "font": "37.9771px"
+        }
+      ],
+      "main h2": [
+        {
+          "text": "Bạn cần hỗ trợ gì?",
+          "x": 49.625,
+          "y": 530.78125,
+          "w": 197.734375,
+          "h": 25.9375,
+          "font": "21.624px"
+        },
+        {
+          "text": "Dịch vụ máy lạnh",
+          "x": 35.859375,
+          "y": 707.625,
+          "w": 235.5,
+          "h": 28.640625,
+          "font": "23.8765px"
+        },
+        {
+          "text": "Quy trình phục vụ",
+          "x": 50.53125,
+          "y": 986.546875,
+          "w": 799.9375,
+          "h": 25.9375,
+          "font": "21.624px"
+        },
+        {
+          "text": "Nhận sửa tại nhàở Cần Thơ",
+          "x": 70,
+          "y": 1190.890625,
+          "w": 403.140625,
+          "h": 64.78125,
+          "font": "30px"
+        }
+      ],
+      "#services-air-conditioner article h3": [
+        {
+          "text": "Sửa chữa máy lạnh",
+          "x": 43.28125,
+          "y": 811.8125,
+          "w": 142.34375,
+          "h": 20,
+          "font": "16.002px"
+        },
+        {
+          "text": "Vệ sinh máy lạnh",
+          "x": 329.1875,
+          "y": 811.8125,
+          "w": 126.75,
+          "h": 20,
+          "font": "16.0029px"
+        },
+        {
+          "text": "Lắp đặt máy lạnh",
+          "x": 615.109375,
+          "y": 811.8125,
+          "w": 132.109375,
+          "h": 20,
+          "font": "16.002px"
+        }
+      ],
+      "#services-air-conditioner article p": [
+        {
+          "text": "Xử lý nhanh các lỗi máy lạnh không lạnh, chảy nước, kêu ồn..",
+          "x": 43.28125,
+          "y": 837.4375,
+          "w": 172.234375,
+          "h": 30.625,
+          "font": "10.5569px"
+        },
+        {
+          "text": "Làm sạch dàn lạnh, dàn nóng, giúp máy hoạt động hiệu quả.",
+          "x": 329.1875,
+          "y": 837.4375,
+          "w": 172.25,
+          "h": 30.625,
+          "font": "10.5575px"
+        },
+        {
+          "text": "Tư vấn vị trí, lắp đặt đúng kỹ thuật, thẩm mỹ cao.",
+          "x": 615.109375,
+          "y": 837.4375,
+          "w": 144.453125,
+          "h": 30.625,
+          "font": "10.5569px"
+        }
+      ],
+      ".mn-desktop-nav": [
+        {
+          "text": "Trang chủDịch vụGiới thiệuLiên hệ",
+          "x": 304.515625,
+          "y": 10,
+          "w": 337.4375,
+          "h": 44,
+          "font": "14px"
+        }
+      ]
+    }
+  },
+  {
+    "width": 1024,
+    "height": 768,
+    "overflow": false,
+    "types": {
+      "h1": [
+        {
+          "text": "Điện lạnh Cần Thơ.Chăm sóc ngôi nhà bạn.",
+          "x": 49.140625,
+          "y": 165.484375,
+          "w": 501.75,
+          "h": 97.53125,
+          "font": "43.1616px"
+        }
+      ],
+      "main h2": [
+        {
+          "text": "Bạn cần hỗ trợ gì?",
+          "x": 56.28125,
+          "y": 594.375,
+          "w": 224.78125,
+          "h": 29.484375,
+          "font": "24.576px"
+        },
+        {
+          "text": "Dịch vụ máy lạnh",
+          "x": 40.75,
+          "y": 794.984375,
+          "w": 267.53125,
+          "h": 32.5625,
+          "font": "27.136px"
+        },
+        {
+          "text": "Quy trình phục vụ",
+          "x": 57.3125,
+          "y": 1111.84375,
+          "w": 909.375,
+          "h": 29.484375,
+          "font": "24.576px"
+        },
+        {
+          "text": "Nhận sửa tại nhàở Cần Thơ",
+          "x": 70,
+          "y": 1333.390625,
+          "w": 468.59375,
+          "h": 66.34375,
+          "font": "30.72px"
+        }
+      ],
+      "#services-air-conditioner article h3": [
+        {
+          "text": "Sửa chữa máy lạnh",
+          "x": 49.1875,
+          "y": 913.390625,
+          "w": 161.734375,
+          "h": 22.734375,
+          "font": "18.1872px"
+        },
+        {
+          "text": "Vệ sinh máy lạnh",
+          "x": 374.140625,
+          "y": 913.390625,
+          "w": 144,
+          "h": 22.734375,
+          "font": "18.1872px"
+        },
+        {
+          "text": "Lắp đặt máy lạnh",
+          "x": 699.09375,
+          "y": 913.390625,
+          "w": 150.09375,
+          "h": 22.734375,
+          "font": "18.1872px"
+        }
+      ],
+      "#services-air-conditioner article p": [
+        {
+          "text": "Xử lý nhanh các lỗi máy lạnh không lạnh, chảy nước, kêu ồn..",
+          "x": 49.1875,
+          "y": 942.515625,
+          "w": 195.75,
+          "h": 34.78125,
+          "font": "11.9985px"
+        },
+        {
+          "text": "Làm sạch dàn lạnh, dàn nóng, giúp máy hoạt động hiệu quả.",
+          "x": 374.140625,
+          "y": 942.515625,
+          "w": 195.75,
+          "h": 34.78125,
+          "font": "11.9985px"
+        },
+        {
+          "text": "Tư vấn vị trí, lắp đặt đúng kỹ thuật, thẩm mỹ cao.",
+          "x": 699.09375,
+          "y": 942.515625,
+          "w": 164.1875,
+          "h": 34.78125,
+          "font": "11.9985px"
+        }
+      ],
+      ".mn-desktop-nav": [
+        {
+          "text": "Trang chủDịch vụGiới thiệuLiên hệ",
+          "x": 343.625,
+          "y": 10,
+          "w": 337.4375,
+          "h": 44,
+          "font": "14px"
+        }
+      ]
+    }
+  },
+  {
+    "width": 1440,
+    "height": 900,
+    "overflow": false,
+    "types": {
+      "h1": [
+        {
+          "text": "Điện lạnh Cần Thơ.Chăm sóc ngôi nhà bạn.",
+          "x": 69.109375,
+          "y": 224.796875,
+          "w": 705.59375,
+          "h": 137.1875,
+          "font": "60.696px"
+        }
+      ],
+      "main h2": [
+        {
+          "text": "Bạn cần hỗ trợ gì?",
+          "x": 78.734375,
+          "y": 827.53125,
+          "w": 316.3125,
+          "h": 41.46875,
+          "font": "34.56px"
+        },
+        {
+          "text": "Dịch vụ máy lạnh",
+          "x": 57.3125,
+          "y": 1108.390625,
+          "w": 376.4375,
+          "h": 45.78125,
+          "font": "38.16px"
+        },
+        {
+          "text": "Quy trình phục vụ",
+          "x": 80.1875,
+          "y": 1553.59375,
+          "w": 1279.625,
+          "h": 41.46875,
+          "font": "34.56px"
+        },
+        {
+          "text": "Nhận sửa tại nhàở Cần Thơ",
+          "x": 120,
+          "y": 1858.765625,
+          "w": 642.390625,
+          "h": 90.71875,
+          "font": "42px"
+        }
+      ],
+      "#services-air-conditioner article h3": [
+        {
+          "text": "Sửa chữa máy lạnh",
+          "x": 69.171875,
+          "y": 1274.921875,
+          "w": 227.46875,
+          "h": 31.96875,
+          "font": "25.5744px"
+        },
+        {
+          "text": "Vệ sinh máy lạnh",
+          "x": 526.125,
+          "y": 1274.921875,
+          "w": 202.546875,
+          "h": 31.96875,
+          "font": "25.5753px"
+        },
+        {
+          "text": "Lắp đặt máy lạnh",
+          "x": 983.09375,
+          "y": 1274.921875,
+          "w": 211.109375,
+          "h": 31.96875,
+          "font": "25.5744px"
+        }
+      ],
+      "#services-air-conditioner article p": [
+        {
+          "text": "Xử lý nhanh các lỗi máy lạnh không lạnh, chảy nước, kêu ồn..",
+          "x": 69.171875,
+          "y": 1315.875,
+          "w": 275.265625,
+          "h": 48.9375,
+          "font": "16.872px"
+        },
+        {
+          "text": "Làm sạch dàn lạnh, dàn nóng, giúp máy hoạt động hiệu quả.",
+          "x": 526.125,
+          "y": 1315.875,
+          "w": 275.28125,
+          "h": 48.9375,
+          "font": "16.8726px"
+        },
+        {
+          "text": "Tư vấn vị trí, lắp đặt đúng kỹ thuật, thẩm mỹ cao.",
+          "x": 983.09375,
+          "y": 1315.875,
+          "w": 230.875,
+          "h": 48.9375,
+          "font": "16.872px"
+        }
+      ],
+      ".mn-desktop-nav": [
+        {
+          "text": "Trang chủDịch vụGiới thiệuLiên hệ",
+          "x": 475.90625,
+          "y": 17.78125,
+          "w": 410,
+          "h": 46.5,
+          "font": "14px"
+        }
+      ]
+    }
+  },
+  {
+    "width": 2560,
+    "height": 1440,
+    "overflow": false,
+    "types": {
+      "h1": [
+        {
+          "text": "Điện lạnh Cần Thơ.Chăm sóc ngôi nhà bạn.",
+          "x": 556.796875,
+          "y": 250.578125,
+          "w": 784,
+          "h": 152.40625,
+          "font": "67.44px"
+        }
+      ],
+      "main h2": [
+        {
+          "text": "Bạn cần hỗ trợ gì?",
+          "x": 567.375,
+          "y": 920.1875,
+          "w": 351.53125,
+          "h": 46.078125,
+          "font": "38.4px"
+        },
+        {
+          "text": "Dịch vụ máy lạnh",
+          "x": 543.6875,
+          "y": 1231.96875,
+          "w": 418.265625,
+          "h": 50.875,
+          "font": "42.4px"
+        },
+        {
+          "text": "Quy trình phục vụ",
+          "x": 568.984375,
+          "y": 1726.5625,
+          "w": 1422.03125,
+          "h": 46.078125,
+          "font": "38.4px"
+        },
+        {
+          "text": "Nhận sửa tại nhàở Cần Thơ",
+          "x": 320,
+          "y": 2178.21875,
+          "w": 1038.390625,
+          "h": 90.71875,
+          "font": "42px"
+        }
+      ],
+      "#services-air-conditioner article h3": [
+        {
+          "text": "Sửa chữa máy lạnh",
+          "x": 556.859375,
+          "y": 1417.03125,
+          "w": 252.734375,
+          "h": 35.515625,
+          "font": "28.4166px"
+        },
+        {
+          "text": "Vệ sinh máy lạnh",
+          "x": 1064.59375,
+          "y": 1417.03125,
+          "w": 225.046875,
+          "h": 35.515625,
+          "font": "28.4166px"
+        },
+        {
+          "text": "Lắp đặt máy lạnh",
+          "x": 1572.328125,
+          "y": 1417.03125,
+          "w": 234.5625,
+          "h": 35.515625,
+          "font": "28.4166px"
+        }
+      ],
+      "#services-air-conditioner article p": [
+        {
+          "text": "Xử lý nhanh các lỗi máy lạnh không lạnh, chảy nước, kêu ồn..",
+          "x": 556.859375,
+          "y": 1462.53125,
+          "w": 305.859375,
+          "h": 54.375,
+          "font": "18.7471px"
+        },
+        {
+          "text": "Làm sạch dàn lạnh, dàn nóng, giúp máy hoạt động hiệu quả.",
+          "x": 1064.59375,
+          "y": 1462.53125,
+          "w": 305.859375,
+          "h": 54.375,
+          "font": "18.7471px"
+        },
+        {
+          "text": "Tư vấn vị trí, lắp đặt đúng kỹ thuật, thẩm mỹ cao.",
+          "x": 1572.328125,
+          "y": 1462.53125,
+          "w": 256.53125,
+          "h": 54.375,
+          "font": "18.7471px"
+        }
+      ],
+      ".mn-desktop-nav": [
+        {
+          "text": "Trang chủDịch vụGiới thiệuLiên hệ",
+          "x": 1006.796875,
+          "y": 22.15625,
+          "w": 422.203125,
+          "h": 47.6875,
+          "font": "14px"
+        }
+      ]
+    }
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "overflow": false,
+    "types": {
+      "h1": [
+        {
+          "text": "Điện lạnh Cần Thơ.Chăm sóc ngôi nhà bạn.",
+          "x": 50.625,
+          "y": 122.6875,
+          "w": 742.75,
+          "h": 94.53125,
+          "font": "42.2px"
+        }
+      ],
+      "main h2": [
+        {
+          "text": "Bạn cần hỗ trợ gì?",
+          "x": 47.6875,
+          "y": 1111.125,
+          "w": 748.625,
+          "h": 31.1875,
+          "font": "26px"
+        },
+        {
+          "text": "Dịch vụ máy lạnh",
+          "x": 33.59375,
+          "y": 1587.40625,
+          "w": 283.203125,
+          "h": 31.1875,
+          "font": "26px"
+        },
+        {
+          "text": "Quy trình phục vụ",
+          "x": 49.6875,
+          "y": 2657.109375,
+          "w": 744.625,
+          "h": 31.1875,
+          "font": "26px"
+        },
+        {
+          "text": "Nhận sửa tại nhàở Cần Thơ",
+          "x": 16,
+          "y": 3030.1875,
+          "w": 437.796875,
+          "h": 56.15625,
+          "font": "26px"
+        }
+      ],
+      "#services-air-conditioner article h3": [
+        {
+          "text": "Sửa chữa máy lạnh",
+          "x": 57,
+          "y": 1726.953125,
+          "w": 266.4375,
+          "h": 37.4375,
+          "font": "29.952px"
+        },
+        {
+          "text": "Vệ sinh máy lạnh",
+          "x": 57,
+          "y": 2040.65625,
+          "w": 237.234375,
+          "h": 37.4375,
+          "font": "29.952px"
+        },
+        {
+          "text": "Lắp đặt máy lạnh",
+          "x": 57,
+          "y": 2354.359375,
+          "w": 247.28125,
+          "h": 37.4375,
+          "font": "29.952px"
+        }
+      ],
+      "#services-air-conditioner article p": [
+        {
+          "text": "Xử lý nhanh các lỗi máy lạnh không lạnh, chảy nước, kêu ồn..",
+          "x": 57,
+          "y": 1774.90625,
+          "w": 322.390625,
+          "h": 67.1875,
+          "font": "19.76px"
+        },
+        {
+          "text": "Làm sạch dàn lạnh, dàn nóng, giúp máy hoạt động hiệu quả.",
+          "x": 57,
+          "y": 2088.609375,
+          "w": 322.390625,
+          "h": 67.1875,
+          "font": "19.76px"
+        },
+        {
+          "text": "Tư vấn vị trí, lắp đặt đúng kỹ thuật, thẩm mỹ cao.",
+          "x": 57,
+          "y": 2402.3125,
+          "w": 270.390625,
+          "h": 67.1875,
+          "font": "19.76px"
+        }
+      ],
+      ".mn-desktop-nav": []
+    }
+  }
+]

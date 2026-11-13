@@ -1,0 +1,20 @@
+SỬA DẢI TRẮNG FOOTER VÀ BONG BÓNG MOBILE
+
+Đã bỏ dock liên hệ và khoảng padding đáy dành cho dock, xử lý nguyên nhân của dải trắng bên dưới Footer. Mobile/tablet <=900px dùng hai bong bóng 48px nổi bên phải, mỗi bong bóng có thể kéo riêng. Không thêm overflow để che lỗi.
+
+Kéo bằng Pointer Events, dùng translate trong khi kéo và chốt tọa độ khi thả. Giữ nút trong viewport, điều chỉnh khi thay đổi kích thước, không mở chat/Zalo sau thao tác kéo. Chạm bình thường giữ hành động cũ. AI giữ vị trí sau khi đóng/mở khung chat. Vị trí lưu trong phiên component hiện tại, không lưu qua reload.
+
+File chỉnh sửa:
+- apps/web/app/mobile.css: bỏ khoảng đệm dock, định vị các bong bóng riêng trên mobile.
+- apps/web/app/shared-home-components.css: bỏ rule dock mobile cũ.
+- apps/web/app/palette-preview.css: bỏ nền/border/shadow thanh trắng mobile.
+- apps/web/components/conversion/floating-actions.tsx: gắn sự kiện kéo vào AI và Zalo.
+- apps/web/components/conversion/use-draggable-bubble.ts: hook mới quản lý kéo và giới hạn vị trí; trả lại định vị CSS nguyên bản khi lên desktop.
+
+Playwright Chromium: kiểm tra cảm ứng tại 320/375/390/393/430/768px trên /blog. Cả 6 đều đạt: kéo riêng AI/Zalo, không kích hoạt nhầm khi kéo, mở/đóng chat, khôi phục vị trí, giữ trong màn hình, không tràn ngang, Footer chạm đáy viewport (khoảng trắng 0px), bỏ tọa độ mobile khi chuyển sang desktop.
+Thử thêm kéo chuột trong viewport mobile: đạt, chạm mở AI sau khi kéo vẫn đạt.
+CSS desktop: 30 phép đối chiếu rule có hiệu lực trên 3 file CSS ở 901/1024/1280/1440/1920px, với cả reduce/no-preference, giống hoàn toàn trước/sau.
+TypeScript và ESLint hai component: đạt.
+
+Ảnh xác minh: blog-footer-default-393.png; ảnh từng kích thước: blog-footer-*.png.
+Chưa triển khai lên Vercel. Chưa thử Safari/thiết bị thật. Không sửa màu sắc hoặc HeroAirflow.

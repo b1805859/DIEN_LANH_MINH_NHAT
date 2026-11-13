@@ -15,7 +15,6 @@ export class SeoService {
       { path: '/', changeFrequency: 'weekly', priority: 1 },
       { path: '/services', changeFrequency: 'weekly', priority: 0.9 },
       { path: '/blog', changeFrequency: 'weekly', priority: 0.8 },
-      { path: '/booking', changeFrequency: 'monthly', priority: 0.8 },
       { path: '/contact', changeFrequency: 'monthly', priority: 0.8 },
       ...services.map((service) => ({
         path: `/services/${service.slug}`,

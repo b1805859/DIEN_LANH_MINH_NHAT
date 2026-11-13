@@ -126,9 +126,9 @@ try {
     );
     await inspect(page, `${device}-service-filter`);
 
-    await page.goto(new URL('/booking', target).href, { waitUntil: 'networkidle' });
+    await page.goto(new URL('/contact#tu-van', target).href, { waitUntil: 'networkidle' });
     let mutations = 0;
-    // Fail closed: these checks must never submit a real booking or log into an account.
+    // Fail closed: these checks must never submit a real request or log into an account.
     await page.route('**/*', async (route) => {
       if (route.request().method() !== 'GET' && route.request().method() !== 'HEAD') {
         mutations++;
@@ -139,10 +139,12 @@ try {
         });
       } else await route.continue();
     });
-    await page.getByRole('button', { name: 'Gửi yêu cầu đặt lịch', exact: true }).click();
-    await page.getByText('Vui lòng nhập họ tên.', { exact: true }).waitFor();
-    assert.equal(mutations, 0, 'Invalid booking is rejected locally');
-    await inspect(page, `${device}-booking-validation`);
+    await page.getByLabel('Họ tên', { exact: true }).fill('Khách kiểm tra');
+    await page.getByLabel('Số điện thoại', { exact: true }).fill('00000000');
+    await page.getByRole('button', { name: 'Gửi yêu cầu tư vấn', exact: true }).click();
+    await page.getByText('Số điện thoại chưa hợp lệ.', { exact: true }).waitFor();
+    assert.equal(mutations, 0, 'Invalid consultation is rejected locally');
+    await inspect(page, `${device}-consultation-validation`);
 
     await page.goto(new URL('/admin/login', target).href, { waitUntil: 'networkidle' });
     await page

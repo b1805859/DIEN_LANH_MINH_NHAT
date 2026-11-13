@@ -1,0 +1,12 @@
+[
+  {
+    "name": "desktop",
+    "changedPixelsPercent": 0.9983333333333333,
+    "meanChannelDifference": 0.5284886574074074
+  },
+  {
+    "name": "mobile",
+    "changedPixelsPercent": 0,
+    "meanChannelDifference": 0.02860641975308642
+  }
+]

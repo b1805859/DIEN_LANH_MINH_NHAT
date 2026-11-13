@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { ConfirmDialog } from '@/components/ui/confirm-dialog';
 import { useToast } from '@/components/ui/toast';
 import { apiClient } from '@/lib/api/client';
-import { getStoredAccessToken } from '@/lib/auth/tokens';
+import { AUTH_TOKEN_CHANGE_EVENT, getStoredAccessToken } from '@/lib/auth/tokens';
 
 type HistoryAction = 'UPDATE' | 'DELETE';
 
@@ -286,7 +286,10 @@ function AdminHistoryPageContent() {
   const [pendingRevert, setPendingRevert] = useState<AdminHistoryItem | null>(null);
 
   useEffect(() => {
-    setToken(getStoredAccessToken());
+    const syncToken = () => setToken(getStoredAccessToken());
+    syncToken();
+    window.addEventListener(AUTH_TOKEN_CHANGE_EVENT, syncToken);
+    return () => window.removeEventListener(AUTH_TOKEN_CHANGE_EVENT, syncToken);
   }, []);
 
   const queryParams = useMemo(

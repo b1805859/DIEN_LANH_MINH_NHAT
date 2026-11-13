@@ -124,7 +124,7 @@ function NotificationModal({ toast, onDismiss }: { toast: ToastItem; onDismiss: 
   return (
     <motion.div
       {...backdropMotion}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/60 px-4 py-6 backdrop-blur-[2px]"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/60 pt-[max(1.5rem,calc(var(--mn-safe-top)+0.75rem))] pr-[max(1rem,calc(var(--mn-safe-right)+0.75rem))] pb-[max(1.5rem,calc(var(--mn-safe-bottom)+0.75rem))] pl-[max(1rem,calc(var(--mn-safe-left)+0.75rem))] backdrop-blur-[2px]"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onDismiss();
       }}
@@ -137,7 +137,7 @@ function NotificationModal({ toast, onDismiss }: { toast: ToastItem; onDismiss: 
         aria-modal="true"
         aria-labelledby={`notification-title-${toast.id}`}
         aria-describedby={toast.description ? `notification-description-${toast.id}` : undefined}
-        className="w-full max-w-md rounded-xl border border-slate-200 bg-white p-6 text-center shadow-2xl"
+        className="max-h-full w-full max-w-md overflow-y-auto rounded-xl border border-slate-200 bg-white p-5 text-center shadow-2xl sm:p-6"
       >
         <div
           className={cn(

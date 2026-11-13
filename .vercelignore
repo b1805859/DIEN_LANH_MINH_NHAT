@@ -6,6 +6,8 @@
 output/
 **/node_modules/
 **/.next/
+# Custom Next.js distDir folders used by local builds and visual audits.
+**/.next-*/
 **/dist/
 **/coverage/
 **/test-results/

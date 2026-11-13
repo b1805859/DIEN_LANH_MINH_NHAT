@@ -13,16 +13,24 @@ import {
   Wrench,
 } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
+import { AdminBookingDetails } from './admin-booking-details';
+import { useAdminMobile } from './use-admin-mobile';
 import { QueryBoundary } from '@/components/layout/query-boundary';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/toast';
 import { apiClient } from '@/lib/api/client';
-import { getStoredAccessToken } from '@/lib/auth/tokens';
+import { AUTH_TOKEN_CHANGE_EVENT, getStoredAccessToken } from '@/lib/auth/tokens';
 import { cn } from '@/lib/utils';
 
 const BOOKING_STATUSES = ['PENDING', 'CONFIRMED', 'IN_PROGRESS', 'COMPLETED', 'CANCELLED'] as const;
 type BookingStatus = (typeof BOOKING_STATUSES)[number];
 type ScheduleView = 'calendar' | 'list';
+type ConsultationRequest = {
+  id: string;
+  customerName: string;
+  customerPhone: string;
+  notes: string;
+};
 
 type Booking = {
   id: string;
@@ -128,9 +136,51 @@ function bookingDate(booking: Booking) {
   return booking.scheduledDate.slice(0, 10);
 }
 
+function ConsultationInbox({ token }: { token: string | null }) {
+  const queryClient = useQueryClient();
+  const queryKey = ['consultations', token];
+  const requests = useQuery({
+    queryKey,
+    enabled: Boolean(token),
+    queryFn: async () => (await apiClient.get<ConsultationRequest[]>('/consultations')).data,
+  });
+  const markContacted = useMutation({
+    mutationFn: (id: string) => apiClient.patch(`/consultations/${id}/contacted`),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey }),
+  });
+
+  return (
+    <section id="yeu-cau-tu-van" aria-labelledby="consultation-inbox" className="mt-5 grid gap-3 rounded-xl border border-slate-200 bg-white p-4">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <h2 id="consultation-inbox" className="text-lg font-black">Yêu cầu tư vấn chờ gọi lại</h2>
+        <Button type="button" variant="outline" disabled={requests.isFetching} onClick={() => requests.refetch()}>
+          Tải lại yêu cầu
+        </Button>
+      </div>
+      {requests.isFetching && !requests.data && <p role="status">Đang tải yêu cầu…</p>}
+      {requests.isError && <p role="alert">Không tải được yêu cầu tư vấn.</p>}
+      {markContacted.isError && <p role="alert">Chưa cập nhật được trạng thái. Vui lòng thử lại.</p>}
+      {requests.data?.length === 0 && <p>Chưa có yêu cầu đang chờ.</p>}
+      {requests.data?.map((request) => (
+        <article key={request.id} className="grid gap-2 rounded-lg border border-slate-200 p-3 sm:grid-cols-[minmax(0,1fr)_auto]">
+          <div className="min-w-0 break-words">
+            <h3 className="font-bold">{request.customerName}</h3>
+            <a className="text-primary underline" href={`tel:${request.customerPhone}`}>{request.customerPhone}</a>
+            {request.notes && <p className="whitespace-pre-wrap">{request.notes}</p>}
+          </div>
+          <Button type="button" variant="outline" disabled={markContacted.isPending} onClick={() => markContacted.mutate(request.id)}>
+            Đánh dấu đã liên hệ
+          </Button>
+        </article>
+      ))}
+    </section>
+  );
+}
+
 function AdminBookingsPageContent() {
   const queryClient = useQueryClient();
   const { toast } = useToast();
+  const mobile = useAdminMobile();
   const today = getTodayKey();
   const [token, setToken] = useState<string | null>(null);
   const [month, setMonth] = useState(today.slice(0, 7));
@@ -141,7 +191,10 @@ function AdminBookingsPageContent() {
   const range = useMemo(() => getCalendarRange(month), [month]);
 
   useEffect(() => {
-    setToken(getStoredAccessToken());
+    const syncToken = () => setToken(getStoredAccessToken());
+    syncToken();
+    window.addEventListener(AUTH_TOKEN_CHANGE_EVENT, syncToken);
+    return () => window.removeEventListener(AUTH_TOKEN_CHANGE_EVENT, syncToken);
   }, []);
 
   const scheduleQuery = useQuery({
@@ -229,39 +282,44 @@ function AdminBookingsPageContent() {
   };
 
   return (
-    <main className="w-full px-3 py-5 sm:px-6 lg:px-8 lg:py-8">
-      <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
+    <main className="mn-admin-bookings-page w-full px-3 py-5 sm:px-6 lg:px-8 lg:py-8">
+      <div className="mn-admin-bookings-heading flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
         <div>
-          <p className="text-xs font-black uppercase tracking-wide text-primary">Điều phối công việc</p>
-          <h1 className="mt-1 text-3xl font-black tracking-tight text-slate-950">
+          <p className="text-xs font-black uppercase tracking-wide">
+            Điều phối công việc
+          </p>
+          <h1 className="mt-1 text-3xl font-black tracking-tight">
             Quản lý lịch hẹn
           </h1>
-          <p className="mt-2 text-sm font-semibold text-slate-500">
+          <p className="mt-2 text-sm font-semibold">
             Theo dõi số lịch từng ngày và cập nhật trạng thái xử lý khách hàng.
           </p>
         </div>
         <Button
           type="button"
           variant="outline"
-          className="h-11 gap-2 self-start font-black"
+          className="mn-admin-reload h-11 gap-2 self-start font-black"
+          aria-label="Tải lại lịch hẹn"
           disabled={scheduleQuery.isFetching}
           onClick={() => scheduleQuery.refetch()}
         >
           <RefreshCw className={cn('h-4 w-4', scheduleQuery.isFetching && 'animate-spin')} />
-          Tải lại
+          <span className="mn-admin-desktop-only">Tải lại</span>
         </Button>
       </div>
 
-      <section className="mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+      <ConsultationInbox token={token} />
+
+      <section className="mn-admin-booking-stats mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         <SummaryCard label="Lịch trong tháng" value={monthActiveCount} tone="primary" />
         <SummaryCard label="Ngày có lịch" value={activeDayCount} tone="sky" />
         <SummaryCard label="Đang chờ xử lý" value={monthPendingCount} tone="amber" />
         <SummaryCard label="Đã hủy" value={monthCancelledCount} tone="slate" />
       </section>
 
-      <section className="mt-5 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
-        <div className="flex flex-col gap-4 border-b border-slate-200 p-4 lg:flex-row lg:items-center lg:justify-between">
-          <div className="flex items-center gap-2">
+      <section className="mn-admin-schedule-panel mt-5 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+        <div className="mn-admin-schedule-toolbar flex flex-col gap-4 border-b border-slate-200 p-4 lg:flex-row lg:items-center lg:justify-between">
+          <div className="mn-admin-month-nav flex items-center gap-2">
             <Button
               type="button"
               variant="outline"
@@ -292,7 +350,7 @@ function AdminBookingsPageContent() {
               Hôm nay
             </Button>
           </div>
-          <div className="inline-flex self-start rounded-lg bg-slate-100 p-1">
+          <div className="mn-admin-view-toggle inline-flex self-start rounded-lg bg-slate-100 p-1">
             <ViewButton
               active={view === 'calendar'}
               icon={CalendarDays}
@@ -308,22 +366,24 @@ function AdminBookingsPageContent() {
           </div>
         </div>
 
-        <div className="grid gap-3 border-b border-slate-200 bg-slate-50/70 p-4 md:grid-cols-[minmax(0,1fr)_220px]">
+        <div className="mn-admin-schedule-filters grid gap-3 border-b border-slate-200 bg-slate-50/70 p-4 md:grid-cols-[minmax(0,1fr)_220px]">
           <label className="relative block">
             <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
             <input
               className="h-11 w-full rounded-md border border-slate-200 bg-white pl-9 pr-3 text-sm font-semibold outline-none focus:border-primary focus:ring-4 focus:ring-primary/10"
               value={search}
+              aria-label="Tìm tên hoặc số điện thoại"
               placeholder="Tìm tên hoặc số điện thoại"
               onChange={(event) => setSearch(event.target.value)}
             />
           </label>
           <select
             className="h-11 rounded-md border border-slate-200 bg-white px-3 text-sm font-semibold outline-none focus:border-primary focus:ring-4 focus:ring-primary/10"
+            aria-label="Lọc trạng thái lịch hẹn"
             value={statusFilter}
             onChange={(event) => setStatusFilter(event.target.value as 'ALL' | BookingStatus)}
           >
-            <option value="ALL">Tất cả trạng thái</option>
+            <option value="ALL">{mobile ? 'Tất cả' : 'Tất cả trạng thái'}</option>
             {BOOKING_STATUSES.map((status) => (
               <option key={status} value={status}>
                 {statusLabels[status]}
@@ -368,7 +428,7 @@ function AdminBookingsPageContent() {
         ) : null}
 
         {scheduleQuery.data && view === 'list' ? (
-          <div className="grid gap-5 p-4 sm:p-5">
+          <div className="mn-admin-schedule-list grid gap-5 p-4 sm:p-5">
             {groupedBookings.length ? (
               groupedBookings.map(([date, bookings]) => (
                 <DaySection
@@ -399,15 +459,19 @@ function SummaryCard({
   value: number;
   tone: 'primary' | 'sky' | 'amber' | 'slate';
 }) {
-  const tones = {
-    primary: 'border-primary/20 bg-primary/5 text-primary',
-    sky: 'border-sky-200 bg-sky-50 text-sky-700',
-    amber: 'border-amber-200 bg-amber-50 text-amber-700',
-    slate: 'border-slate-200 bg-white text-slate-700',
-  };
   return (
-    <div className={cn('rounded-xl border p-4 shadow-sm', tones[tone])}>
-      <p className="text-xs font-black uppercase tracking-wide opacity-75">{label}</p>
+    <div className="mn-admin-schedule-metric rounded-xl border p-4" data-tone={tone}>
+      <p className="text-xs font-black uppercase tracking-wide">
+        <span className="mn-admin-desktop-only">{label}</span>
+        <span className="mn-admin-mobile-only">
+          {{
+            'Lịch trong tháng': 'Trong tháng',
+            'Ngày có lịch': 'Ngày có lịch',
+            'Đang chờ xử lý': 'Chờ xử lý',
+            'Đã hủy': 'Đã hủy',
+          }[label] ?? label}
+        </span>
+      </p>
       <p className="mt-2 text-3xl font-black">{value}</p>
     </div>
   );
@@ -427,6 +491,7 @@ function ViewButton({
   return (
     <button
       type="button"
+      aria-pressed={active}
       className={cn(
         'inline-flex h-9 items-center gap-2 rounded-md px-3 text-sm font-black transition',
         active ? 'bg-white text-primary shadow-sm' : 'text-slate-500 hover:text-slate-900',
@@ -455,8 +520,8 @@ function CalendarGrid({
   onSelectDate: (date: string) => void;
 }) {
   return (
-    <div className="border-b border-slate-200 p-2 sm:p-4">
-      <div className="grid grid-cols-7 overflow-hidden rounded-lg border border-slate-200">
+    <div className="mn-admin-calendar border-b border-slate-200 p-2 sm:p-4">
+      <div className="mn-admin-calendar-grid grid grid-cols-7 overflow-hidden rounded-lg border border-slate-200">
         {weekDays.map((day) => (
           <div
             key={day}
@@ -475,7 +540,7 @@ function CalendarGrid({
               key={date}
               type="button"
               className={cn(
-                'min-h-20 border-b border-r border-slate-200 p-1 text-left transition last:border-r-0 sm:min-h-28 sm:p-2',
+                'mn-admin-calendar-day min-h-20 border-b border-r border-slate-200 p-1 text-left transition last:border-r-0 sm:min-h-28 sm:p-2',
                 isCurrentMonth ? 'bg-white' : 'bg-slate-50 text-slate-400',
                 isSelected && 'relative z-10 bg-primary/5 ring-2 ring-inset ring-primary',
                 !isSelected && 'hover:bg-sky-50',
@@ -523,7 +588,7 @@ function DaySection({
   onStatusChange: (id: string, status: BookingStatus) => void;
 }) {
   return (
-    <section className="p-4 sm:p-5">
+    <section className="mn-admin-day-section p-4 sm:p-5">
       <div className="flex flex-col gap-1 border-b border-slate-200 pb-3 sm:flex-row sm:items-center sm:justify-between">
         <h3 className="font-black capitalize text-slate-950">{formatFullDate(date)}</h3>
         <p className="text-sm font-bold text-slate-500">
@@ -559,7 +624,7 @@ function BookingCard({
   onStatusChange: (id: string, status: BookingStatus) => void;
 }) {
   return (
-    <article className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+    <article className="mn-admin-booking-card rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div className="min-w-0">
           <h4 className="truncate text-base font-black text-slate-950">{booking.customerName}</h4>
@@ -580,44 +645,50 @@ function BookingCard({
           {statusLabels[booking.status]}
         </span>
       </div>
-      <div className="mt-4 grid gap-2 text-sm font-semibold leading-5 text-slate-600">
-        <p className="flex items-start gap-2">
-          <Wrench className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
-          {booking.service?.name ?? 'Chưa xác định dịch vụ'}
-        </p>
-        <p className="flex items-start gap-2">
-          <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
-          <span>
-            {booking.address}
-            {booking.location?.name ? ` · ${booking.location.name}` : ''}
-          </span>
-        </p>
-        {booking.notes ? (
-          <p className="rounded-md bg-slate-50 p-2.5 text-slate-700">{booking.notes}</p>
-        ) : null}
-      </div>
-      <label className="mt-4 grid gap-1.5 border-t border-slate-100 pt-3 text-xs font-black uppercase text-slate-500">
-        Cập nhật trạng thái
-        <select
-          className="h-10 rounded-md border border-slate-200 bg-white px-3 text-sm font-bold normal-case text-slate-900 outline-none focus:border-primary focus:ring-4 focus:ring-primary/10"
-          value={booking.status}
-          disabled={isUpdating}
-          onChange={(event) => onStatusChange(booking.id, event.target.value as BookingStatus)}
-        >
-          {BOOKING_STATUSES.map((status) => (
-            <option key={status} value={status}>
-              {statusLabels[status]}
-            </option>
-          ))}
-        </select>
-      </label>
+      <p className="mn-admin-mobile-booking-summary">
+        {booking.service?.name ?? 'Chưa xác định dịch vụ'}
+        {booking.location?.name ? ` · ${booking.location.name}` : ''}
+      </p>
+      <AdminBookingDetails>
+        <div className="mt-4 grid gap-2 text-sm font-semibold leading-5 text-slate-600">
+          <p className="flex items-start gap-2">
+            <Wrench className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
+            {booking.service?.name ?? 'Chưa xác định dịch vụ'}
+          </p>
+          <p className="flex items-start gap-2">
+            <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-slate-400" />
+            <span>
+              {booking.address}
+              {booking.location?.name ? ` · ${booking.location.name}` : ''}
+            </span>
+          </p>
+          {booking.notes ? (
+            <p className="rounded-md bg-slate-50 p-2.5 text-slate-700">{booking.notes}</p>
+          ) : null}
+        </div>
+        <label className="mt-4 grid gap-1.5 border-t border-slate-100 pt-3 text-xs font-black uppercase text-slate-500">
+          Cập nhật trạng thái
+          <select
+            className="h-10 rounded-md border border-slate-200 bg-white px-3 text-sm font-bold normal-case text-slate-900 outline-none focus:border-primary focus:ring-4 focus:ring-primary/10"
+            value={booking.status}
+            disabled={isUpdating}
+            onChange={(event) => onStatusChange(booking.id, event.target.value as BookingStatus)}
+          >
+            {BOOKING_STATUSES.map((status) => (
+              <option key={status} value={status}>
+                {statusLabels[status]}
+              </option>
+            ))}
+          </select>
+        </label>
+      </AdminBookingDetails>
     </article>
   );
 }
 
 function EmptyBookings({ filtered }: { filtered: boolean }) {
   return (
-    <div className="grid min-h-28 place-items-center rounded-lg border border-dashed border-slate-200 bg-slate-50 p-5 text-center">
+    <div className="mn-admin-empty-bookings grid min-h-28 place-items-center rounded-lg border border-dashed border-slate-200 bg-slate-50 p-5 text-center">
       <p className="text-sm font-semibold text-slate-500">
         {filtered ? 'Không có lịch hẹn phù hợp.' : 'Chưa có lịch hẹn trong tháng này.'}
       </p>

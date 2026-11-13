@@ -1,0 +1,27 @@
+{
+  "targetCount": 25,
+  "routes": [
+    "/services/sua-may-lanh",
+    "/services/ve-sinh-may-lanh",
+    "/services/sua-may-giat",
+    "/services/sua-tu-lanh",
+    "/services/sua-dien-nuoc",
+    "/services/thao-lap-may-lanh",
+    "/services/nap-gas-may-lanh",
+    "/services/ve-sinh-may-giat",
+    "/services/sua-lap-may-nuoc-uong-nong-lanh",
+    "/services/sua-lap-may-nuoc-nong-lanh-tam"
+  ],
+  "checks": [
+    "Desktop: whole-card entrances finish after scrolling stops; upward scroll keeps content readable; transforms released for hover.",
+    "All category filters and expand/collapse return readable cards.",
+    "Keyboard focus reveals a below-fold service card immediately.",
+    "All 10 service details and one area-service page load; booking panels stay visible and free of transforms.",
+    "FAQ works with keyboard; desktop process emphasis completes within 2.2 seconds.",
+    "Client navigation cleans up old reveals; changing reduced-motion preference restores static content.",
+    "Touch mobile uses shorter entrances without image zoom; form and compact process stay immediately available.",
+    "No horizontal overflow at 320, 390, 768 or 1440px.",
+    "Homepage and About retain their existing motion scope."
+  ],
+  "errors": []
+}

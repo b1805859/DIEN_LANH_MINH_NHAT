@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST="{\"components/layout/site-header.tsx -> @/lib/api/client\":{\"id\":\"components/layout/site-header.tsx -> @/lib/api/client\",\"files\":[\"static/chunks/_app-pages-browser_lib_api_client_ts.js\"]}}"

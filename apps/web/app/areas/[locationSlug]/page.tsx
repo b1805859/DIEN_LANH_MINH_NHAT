@@ -1,8 +1,8 @@
+import { getWebsiteContent } from '@/lib/content/website-content';
 import { notFound } from 'next/navigation';
 import { PRIORITY_DISTRICTS, findDistrict } from '@minhnhat/shared';
-import { BookingForm } from '@/components/forms/booking-form';
 import { JsonLdScript } from '@/components/seo/json-ld-script';
-import { PageHero, Reasons, SectionHeading, ServiceGrid } from '@/components/redesign/ui';
+import { Actions, PageHero, Reasons, SectionHeading, ServiceGrid } from '@/components/redesign/ui';
 import { breadcrumbJsonLd } from '@/lib/seo/json-ld';
 import { buildMetadata } from '@/lib/seo/metadata';
 export function generateStaticParams() {
@@ -23,6 +23,7 @@ export default async function WardPage({ params }: { params: Promise<{ locationS
   const { locationSlug } = await params;
   const ward = findDistrict(locationSlug);
   if (!ward) notFound();
+  const { services } = await getWebsiteContent();
   return (
     <main>
       <PageHero
@@ -35,19 +36,17 @@ export default async function WardPage({ params }: { params: Promise<{ locationS
       <div className="mn-container">
         <section className="mn-section mn-tone-section mn-tone-light">
           <SectionHeading title="Chọn dịch vụ" accent="cần hỗ trợ" />
-          <ServiceGrid areaSlug={ward.slug} />
+          <ServiceGrid areaSlug={ward.slug} services={services} />
         </section>
         <div className="mn-detail-layout mn-area-booking mn-tone-section mn-tone-deep">
           <article>
-            <SectionHeading title="Đặt lịch" accent="để thợ đến nhà" />
+            <SectionHeading title="Tư vấn" accent="dịch vụ tại nhà" />
             <Reasons />
           </article>
-          <aside className="mn-detail-booking mn-panel">
-            <h2>Đặt lịch tại {ward.shortName}</h2>
-            <p>Minh Nhật sẽ liên hệ xác nhận trước khi đến.</p>
-            <div className="mn-form-panel">
-              <BookingForm locationSlug={ward.slug} />
-            </div>
+          <aside className="mn-detail-booking mn-panel" data-reveal="" style={{ '--d': '0.12s' } as React.CSSProperties}>
+            <h2>Cần tư vấn?</h2>
+            <p>Để lại số điện thoại hoặc nhắn Zalo để Minh Nhật hỗ trợ.</p>
+            <Actions booking />
           </aside>
         </div>
       </div>

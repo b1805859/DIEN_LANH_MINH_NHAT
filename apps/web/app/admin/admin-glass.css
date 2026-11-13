@@ -1,0 +1,544 @@
+/* Reference-inspired ocean glass. Scoped to the authenticated admin workspace. */
+html .mn-admin-glass-theme {
+  --admin-ink: #15394b;
+  --admin-border: rgb(218 246 255 / 32%);
+  --admin-surface: rgb(232 241 246 / 74%);
+  --admin-control: rgb(224 239 247 / 48%);
+  color: var(--admin-ink);
+  background:
+    radial-gradient(ellipse at 8% 5%, #14718a 0, transparent 42%),
+    radial-gradient(ellipse at 95% 95%, #14737b 0, transparent 48%),
+    linear-gradient(125deg, #123449, #062c4a 65%, #10445a);
+}
+.mn-admin-glass-theme .mn-admin-aurora-bg {
+  display: none;
+}
+html .mn-admin-glass-theme > .mn-admin-sidebar {
+  background: linear-gradient(
+    165deg,
+    rgb(54 167 194 / 48%),
+    rgb(21 69 91 / 55%) 50%,
+    rgb(26 43 65 / 82%)
+  );
+  border: 1px solid var(--admin-border);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 12%),
+    0 12px 32px rgb(0 20 35 / 12%);
+  backdrop-filter: blur(20px);
+  scrollbar-width: none;
+}
+html .mn-admin-glass-theme > .mn-admin-sidebar::-webkit-scrollbar {
+  display: none;
+}
+.mn-admin-glass-theme .mn-admin-nav-link {
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 10px;
+  min-height: 38px;
+}
+.mn-admin-glass-theme .mn-admin-nav-link-active {
+  background: linear-gradient(100deg, #14617a, #09647f) !important;
+  color: #fff !important;
+  border-color: rgb(198 241 255 / 32%) !important;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 16%);
+  transform: none;
+}
+.mn-admin-glass-theme .mn-admin-nav-badge {
+  flex-shrink: 0;
+  white-space: nowrap;
+  font-size: 9px;
+  padding: 1px 5px;
+}
+.mn-admin-glass-theme .mn-admin-nav-badge-active {
+  color: #fff;
+}
+.mn-admin-glass-theme .mn-admin-logo-orb {
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  box-shadow: none;
+}
+.mn-admin-glass-theme .mn-admin-logo-orb svg {
+  width: 32px;
+  height: 32px;
+}
+.mn-admin-glass-theme .mn-admin-sidebar-card {
+  padding: 10px;
+  border-radius: 12px;
+}
+html .mn-admin-glass-theme .mn-admin-topbar {
+  background: linear-gradient(
+    100deg,
+    rgb(69 130 154 / 40%),
+    rgb(27 48 69 / 82%) 40%,
+    rgb(46 88 130 / 58%)
+  );
+  border: 1px solid var(--admin-border);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 10%);
+  color: #e7f8ff;
+}
+.mn-admin-glass-theme .mn-admin-topbar :is(.text-slate-900, .text-slate-500) {
+  color: #e7f8ff;
+}
+.mn-admin-glass-theme .mn-admin-live-pill {
+  color: #b9eaf4;
+  background: none;
+  border: 0;
+  padding: 0;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+.mn-admin-glass-theme .mn-admin-user-pill {
+  background: transparent;
+  border: 0;
+}
+.mn-admin-glass-theme .mn-admin-user-pill .text-cyan-700 {
+  color: #b9dce8;
+}
+.mn-admin-glass-theme .mn-admin-quick-btn {
+  color: #e7f8ff;
+  border-color: var(--admin-border);
+  background: rgb(180 230 244 / 12%);
+  border-radius: 999px;
+}
+.mn-admin-glass-theme .mn-admin-main-scroll {
+  background:
+    radial-gradient(ellipse at 0% 0%, #51aacb 0%, transparent 58%),
+    radial-gradient(ellipse at 100% 100%, #2f8e98 0%, transparent 58%),
+    linear-gradient(110deg, #357f98, #4b617a 52%, #3775b0);
+  border: 1px solid var(--admin-border);
+  scrollbar-width: none;
+}
+.mn-admin-glass-theme .mn-admin-main-scroll::-webkit-scrollbar {
+  display: none;
+}
+.mn-admin-glass-theme :is(.mn-admin-glass-panel, .mn-admin-bento-card) {
+  background: var(--admin-surface);
+  border: 1px solid rgb(216 241 250 / 28%);
+  box-shadow:
+    0 4px 14px rgb(16 53 74 / 5%),
+    inset 0 1px 0 rgb(255 255 255 / 18%);
+  backdrop-filter: none;
+}
+.mn-admin-glass-theme .mn-admin-bento-card:hover {
+  background: rgb(232 241 246 / 76%);
+  transform: translateY(-2px);
+}
+.mn-admin-glass-theme .mn-admin-hero-banner {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  padding: 0 0 8px;
+  color: var(--admin-ink);
+}
+.mn-admin-glass-theme .mn-admin-hero-aurora {
+  display: none;
+}
+.mn-admin-glass-theme .mn-admin-hero-banner h1 {
+  color: #15394b;
+  font-size: clamp(24px, 2.2vw, 34px);
+}
+.mn-admin-glass-theme .mn-admin-hero-banner p {
+  color: #35586a;
+  font-size: 13px;
+  max-width: 640px;
+}
+.mn-admin-glass-theme .mn-admin-hero-banner > div > div:first-child > span,
+.mn-admin-glass-theme .mn-admin-hero-banner > div > div:first-child > div {
+  display: none;
+}
+.mn-admin-glass-theme .mn-admin-hero-banner > div {
+  gap: 18px;
+}
+.mn-admin-glass-theme .mn-admin-hero-banner :is(a, button) {
+  background: #214c61;
+  color: #fff;
+  border: 1px solid rgb(255 255 255 / 30%);
+  border-radius: 999px;
+  box-shadow: none;
+  font-weight: 600;
+}
+.mn-admin-glass-theme .mn-admin-overview-metric {
+  background: var(--admin-surface);
+  box-shadow: none;
+  border-color: rgb(216 241 250 / 28%);
+}
+.mn-admin-glass-theme main h1 {
+  letter-spacing: -0.035em;
+}
+.mn-admin-glass-theme :is(input:not([type='checkbox']), select, textarea) {
+  border-color: #9fbfcd;
+}
+.mn-admin-glass-theme :is(a, button, input, select, textarea):focus-visible {
+  outline: 3px solid #09617c;
+  outline-offset: 3px;
+}
+.mn-admin-glass-theme .mn-admin-sidebar :is(a, button):focus-visible {
+  outline-color: #b3f1ff;
+}
+.mn-admin-service-gallery {
+  display: none;
+}
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+  html .mn-admin-glass-theme {
+    grid-template-columns: 232px minmax(0, 1fr);
+    gap: 16px;
+    padding: 16px;
+  }
+  html .mn-admin-glass-theme > .mn-admin-sidebar {
+    height: calc(100dvh - 32px);
+    margin: 0;
+    border-radius: 20px;
+    overflow-y: auto;
+  }
+  .mn-admin-glass-theme > .mn-admin-sidebar + div {
+    height: calc(100dvh - 32px);
+  }
+  .mn-admin-glass-theme .mn-admin-sidebar > div:first-of-type > div:first-child {
+    padding: 18px 12px;
+  }
+  .mn-admin-glass-theme .mn-admin-sidebar > div:first-of-type > div:first-child a {
+    gap: 9px;
+  }
+  .mn-admin-glass-theme .mn-admin-sidebar .text-sm {
+    font-size: 11px;
+  }
+  .mn-admin-glass-theme .mn-admin-grouped-nav {
+    padding-inline: 8px;
+  }
+  .mn-admin-glass-theme .mn-admin-grouped-nav > div > p {
+    font-size: 9px;
+    letter-spacing: 0.09em;
+    color: #b0d7e2;
+  }
+  html .mn-admin-glass-theme .mn-admin-topbar {
+    position: relative;
+    flex-shrink: 0;
+    min-height: 58px;
+    margin: 0 0 14px;
+    padding: 8px 16px;
+    border-radius: 999px;
+  }
+  .mn-admin-glass-theme .mn-admin-main-scroll {
+    border-radius: 24px;
+  }
+  .mn-admin-glass-theme main {
+    padding: 24px;
+  }
+  .mn-admin-glass-theme .mn-admin-hero-banner > div {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+@media (min-width: 1024px) {
+  .mn-admin-glass-theme [data-resource='services'] .mn-admin-records-table {
+    display: none;
+  }
+  .mn-admin-glass-theme .mn-admin-service-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    padding: 18px;
+  }
+  .mn-admin-glass-theme .mn-admin-service-filters {
+    display: flex;
+    gap: 6px;
+    padding: 12px 18px;
+    border-bottom: 1px solid #bad5df;
+  }
+  .mn-admin-service-filters button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 36px;
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: #365b6b;
+    background: #d3e9f0;
+  }
+  .mn-admin-service-filters button[aria-pressed='true'] {
+    background: #214c61;
+    color: white;
+  }
+  .mn-admin-service-filters button span {
+    border-radius: 999px;
+    padding: 1px 6px;
+    background: rgb(255 255 255 / 20%);
+    font-size: 10px;
+  }
+}
+.mn-admin-service-card {
+  min-width: 0;
+  overflow: hidden;
+  padding: 7px;
+  border: 1px solid rgb(216 241 250 / 35%);
+  border-radius: 18px;
+  background: var(--admin-surface);
+  box-shadow: 0 5px 14px rgb(28 69 91 / 8%);
+}
+.mn-admin-service-cover {
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+.mn-admin-service-cover .mn-admin-record-thumbnail {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+}
+.mn-admin-service-status {
+  position: absolute;
+  top: 9px;
+  left: 9px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 8px;
+  border-radius: 999px;
+  background: rgb(19 46 62 / 88%);
+  color: white;
+  font-size: 10px;
+}
+.mn-admin-service-status > span {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #f7cc71;
+}
+.mn-admin-service-status[data-active='true'] > span {
+  background: #8bedc2;
+}
+.mn-admin-service-card-body {
+  padding: 12px 6px 3px;
+}
+.mn-admin-service-index {
+  color: #496978;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.mn-admin-service-title {
+  display: block;
+  min-height: 46px;
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.5;
+  text-align: left;
+  color: #143548;
+}
+.mn-admin-service-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 36px;
+  margin-top: 6px;
+  color: #3d5e6e;
+  font-size: 11px;
+  line-height: 18px;
+}
+.mn-admin-service-card-actions {
+  display: flex;
+  gap: 5px;
+  margin-top: 14px;
+}
+.mn-admin-service-card-actions button {
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  min-height: 36px;
+  border-radius: 999px;
+  background: var(--admin-control);
+  font-size: 11px;
+  font-weight: 600;
+}
+.mn-admin-service-card-actions .is-primary {
+  color: white;
+  background: #214c61;
+}
+.mn-admin-service-card-actions .is-delete {
+  flex: 0 0 32px;
+  color: #9a334b;
+}
+@media (min-width: 1280px) {
+  .mn-admin-glass-theme .mn-admin-service-gallery {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 1023px) {
+  .mn-admin-glass-theme .mn-admin-main-scroll {
+    margin: 10px 8px 0;
+    border-radius: 20px;
+  }
+  .mn-admin-glass-theme .mn-admin-mobile-page-heading h1 {
+    color: #15394b;
+  }
+  .mn-admin-glass-theme .mn-admin-mobile-nav {
+    background: #173c50;
+    border-color: #466e7e;
+    color: #c5e2eb;
+  }
+  .mn-admin-glass-theme .mn-admin-mobile-nav [aria-current='page'] {
+    color: white;
+    background: #2f6478;
+  }
+  .mn-admin-glass-theme .mn-admin-menu-toggle {
+    color: #e7f8ff;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mn-admin-glass-theme *,
+  .mn-admin-glass-theme *::before,
+  .mn-admin-glass-theme *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Let the shared glass workspace remain visible around the service gallery. */
+.mn-admin-glass-theme .mn-admin-resource-page[data-resource='services'] > div.bg-white {
+  background: rgb(202 233 241 / 22%) !important;
+  border-color: rgb(235 250 255 / 28%) !important;
+  box-shadow: none !important;
+}
+.mn-admin-glass-theme .mn-admin-resource-toolbar {
+  background: rgb(226 243 248 / 36%);
+}
+.mn-admin-glass-theme .mn-admin-resource-heading > button {
+  background: #214c61;
+  border-radius: 999px;
+}
+@media (max-width: 1023px) {
+  .mn-admin-glass-theme .mn-admin-menu-toggle {
+    color: #d9f3fc;
+    background: rgb(177 224 239 / 12%);
+    border-color: rgb(211 242 252 / 28%);
+  }
+  .mn-admin-glass-theme .mn-admin-mobile-nav > :is(a, button) {
+    color: #c3dce7;
+  }
+  .mn-admin-glass-theme .mn-admin-mobile-nav > [aria-current='page'] {
+    color: #fff;
+  }
+}
+
+/* All cards share the reference's translucent blue-grey material. */
+html .mn-admin-glass-theme main :is(section.bg-white, div.bg-white, form.bg-white) {
+  background: var(--admin-surface) !important;
+  border-color: rgb(216 241 250 / 28%) !important;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 16%) !important;
+  backdrop-filter: none;
+}
+html .mn-admin-glass-theme .mn-admin-resource-page[data-resource='services'] div.bg-white {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.mn-admin-glass-theme .mn-admin-resource-toolbar,
+.mn-admin-glass-theme .mn-admin-service-filters {
+  border-color: rgb(213 237 248 / 20%);
+}
+.mn-admin-glass-theme .mn-admin-service-filters button:not([aria-pressed='true']),
+.mn-admin-glass-theme :is(input:not([type='checkbox']), select, textarea),
+.mn-admin-glass-theme .mn-admin-reload {
+  background: var(--admin-control);
+  border-color: rgb(213 237 248 / 30%);
+  color: #17384b;
+}
+.mn-admin-glass-theme input::placeholder {
+  color: #38576b;
+}
+.mn-admin-glass-theme .mn-admin-dashboard > .mn-admin-glass-panel {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+}
+.mn-admin-glass-theme .mn-admin-overview-heading {
+  border-color: rgb(213 237 248 / 20%);
+}
+.mn-admin-glass-theme .mn-admin-hero-banner p {
+  color: #183e53;
+}
+.mn-admin-glass-theme .mn-admin-mobile-schedule-summary,
+.mn-admin-glass-theme .mn-admin-resources-grid,
+.mn-admin-glass-theme .mn-admin-mobile-shortcuts a {
+  background: var(--admin-surface);
+}
+@media (min-width: 1024px) {
+  .mn-admin-glass-theme .mn-admin-resources-grid {
+    background: transparent;
+  }
+}
+
+.mn-admin-glass-theme .mn-admin-overview-heading > div > div > p,
+.mn-admin-glass-theme .mn-admin-resource-heading > div > p {
+  color: #163b50;
+}
+.mn-admin-glass-theme .mn-admin-overview-heading > a {
+  background: var(--admin-control);
+  color: #15394b;
+}
+
+.mn-admin-glass-theme .mn-admin-bookings-heading {
+  color: #082536;
+}
+.mn-admin-glass-theme .mn-admin-schedule-metric {
+  background: var(--admin-surface);
+  border-color: var(--admin-border);
+  color: #173849;
+  box-shadow: none;
+}
+.mn-admin-glass-theme .mn-admin-schedule-metric[data-tone='primary'] {
+  color: #114982;
+}
+.mn-admin-glass-theme .mn-admin-schedule-metric[data-tone='sky'] {
+  color: #09526b;
+}
+.mn-admin-glass-theme .mn-admin-schedule-metric[data-tone='amber'] {
+  color: #79400f;
+}
+.mn-admin-glass-theme .mn-admin-schedule-filters {
+  background: rgb(228 242 248 / 35%);
+}
+.mn-admin-glass-theme
+  .mn-admin-bookings-page
+  :is(.mn-admin-month-nav, #yeu-cau-tu-van > div:first-child)
+  button,
+.mn-admin-glass-theme .mn-admin-bookings-heading .mn-admin-reload {
+  background: #e2eff5;
+  border-color: #a9c5d4;
+  color: #173849;
+}
+.mn-admin-glass-theme
+  .mn-admin-bookings-page
+  :is(.mn-admin-month-nav, #yeu-cau-tu-van > div:first-child)
+  button:hover:not(:disabled),
+.mn-admin-glass-theme .mn-admin-bookings-heading .mn-admin-reload:hover:not(:disabled) {
+  background: #f0f7fa;
+}
+.mn-admin-glass-theme .mn-admin-view-toggle {
+  background: rgb(228 242 248 / 50%);
+}
+.mn-admin-glass-theme .mn-admin-view-toggle button {
+  color: #294b5e;
+}
+.mn-admin-glass-theme .mn-admin-view-toggle button[aria-pressed='true'] {
+  background: #214c61;
+  color: #fff;
+}
+@media (min-width: 1024px) and (max-height: 820px) and (hover: hover) and (pointer: fine) {
+  .mn-admin-glass-theme .mn-admin-sidebar > div:first-of-type > div:first-child {
+    padding-block: 12px;
+  }
+  .mn-admin-glass-theme .mn-admin-sidebar .mn-admin-nav-link {
+    min-height: 34px;
+  }
+}

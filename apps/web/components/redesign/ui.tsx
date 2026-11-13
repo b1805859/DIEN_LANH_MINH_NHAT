@@ -1,8 +1,10 @@
+import { HeroWords } from '@/components/home-ice-blue/hero-words';
 import Link from 'next/link';
 import { contentImageSizes } from '@/lib/image-sizes';
 import Image from 'next/image';
 import {
   AirVent,
+  Headset,
   ArrowRight,
   ClipboardList,
   Clock3,
@@ -25,6 +27,7 @@ import {
 import { processSteps, serviceCards, siteContent } from '@/lib/content/site-content';
 import { ProcessTimeline } from './process-timeline';
 import { ImagePreview } from './image-preview';
+import { PageHeroAtmosphere } from './page-hero-atmosphere';
 const icons: Record<string, LucideIcon> = {
   snowflake: Snowflake,
   wind: Wind,
@@ -46,9 +49,9 @@ export function Icon({ name, className = '' }: { name: string; className?: strin
   const Component = icons[name] || Snowflake;
   return <Component className={className} strokeWidth={1.65} aria-hidden="true" />;
 }
-export function Eyebrow({ children }: { children: React.ReactNode }) {
+export function Eyebrow({ children, entrance }: { children: React.ReactNode; entrance?: boolean }) {
   return (
-    <span className="mn-eyebrow">
+    <span className="mn-eyebrow" data-u216={entrance ? 'badge' : undefined}>
       <Snowflake size={17} />
       {children}
       <span>›</span>
@@ -59,8 +62,8 @@ export function Actions({ booking = false }: { booking?: boolean }) {
   return (
     <div className="mn-actions">
       {booking ? (
-        <Link className="mn-button" href="/booking">
-          Đặt lịch dịch vụ <ArrowRight size={18} />
+        <Link className="mn-button" href="/contact#tu-van">
+          Nhận tư vấn <ArrowRight size={18} />
         </Link>
       ) : (
         <a className="mn-button" href={siteContent.phoneHref}>
@@ -75,7 +78,7 @@ export function Actions({ booking = false }: { booking?: boolean }) {
         rel="noreferrer"
         className="mn-button mn-button-secondary"
       >
-        <Image src="/icons/zalo.svg" width={32} height={32} alt="Zalo" />
+        <Image loading="eager" src="/icons/zalo.svg" width={32} height={32} alt="Zalo" />
         <span>
           Chat Zalo<small>tư vấn nhanh</small>
         </span>
@@ -95,7 +98,7 @@ export function SectionHeading({
   href?: string;
 }) {
   return (
-    <div className="mn-section-heading">
+    <div className="mn-section-heading" data-reveal="">
       <div>
         {label && <p className="mn-kicker">{label}</p>}
         <h2>
@@ -115,81 +118,121 @@ export function PageHero({
   accent,
   description,
   image = siteContent.images.services,
+  imageAlt = 'Không gian và dịch vụ điện lạnh Minh Nhật – ảnh minh họa',
+  imagePosition,
+  insetImage = false,
   label = 'Điện lạnh tận nơi tại Cần Thơ',
   className = '',
   showEyebrow = true,
+  showAtmosphere = true,
   imagePreview = false,
 }: {
   title: string;
   accent?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
+  imagePosition?: string;
+  insetImage?: boolean;
   label?: string;
   className?: string;
   showEyebrow?: boolean;
+  showAtmosphere?: boolean;
   imagePreview?: boolean;
 }) {
   return (
-    <section className={`mn-container mn-page-hero ${className}`}>
+    <section className={`mn-container mn-page-hero ${className}`} data-u216-hero data-inset-image={insetImage || undefined}>
       <Image
         src={image}
+        data-u216="backdrop"
         fill
         priority
         loading="eager"
+        quality={92}
         sizes={contentImageSizes}
-        alt="Không gian và dịch vụ điện lạnh Minh Nhật – ảnh minh họa"
+        alt={imageAlt}
+        style={imagePosition ? { objectPosition: imagePosition } : undefined}
       />
+      {showAtmosphere && <PageHeroAtmosphere image={image} heroClassName={className} />}
       <div className="mn-page-hero-shade" />
       <div className="mn-container">
-        {showEyebrow && <Eyebrow>{label}</Eyebrow>}
-        <h1>
-          {title}
+        {showEyebrow && <Eyebrow entrance>{label}</Eyebrow>}
+        <h1 aria-label={accent ? `${title} ${accent}` : title}>
+          <HeroWords text={title} />
           {accent && (
             <>
               <br />
-              <em>{accent}</em>
+              <em><HeroWords text={accent} start={title.trim().split(/\s+/).length} /></em>
             </>
           )}
         </h1>
-        {description && <p>{description}</p>}
+        {description && <p data-u216="description">{description}</p>}
       </div>
       {imagePreview && <ImagePreview src={image} title={title} />}
     </section>
   );
 }
-type ServiceCardContent = { title: string; description: string; image: string; icon: string };
+type ServiceCardContent = Pick<(typeof serviceCards)[number], 'title' | 'description' | 'icon' | 'imagery'>;
 
-export function ServiceCard({ service, href }: { service: ServiceCardContent; href: string }) {
+export function ServiceCard({
+  service,
+  href,
+  index = 0,
+}: {
+  service: ServiceCardContent;
+  href: string;
+  index?: number;
+}) {
   return (
-    <Link href={href} className="mn-service-card">
+    <Link
+      href={href}
+      className="mn-service-card"
+      data-reveal=""
+      style={{ '--d': `${(index % 4) * 80}ms` } as React.CSSProperties}
+    >
       <div className="mn-card-photo">
-        <Image src={service.image} fill
-          sizes="(max-width: 600px) calc(100vw - 40px), (max-width: 1000px) 46vw, 420px"
-          alt={`${service.title} – ảnh minh họa`} />
+        <Image
+          loading="lazy"
+          src={service.imagery.src}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (min-width: 1920px) 360px, 25vw"
+          alt={service.imagery.alt}
+          style={{ objectPosition: service.imagery.cardPosition }}
+        />
+        <span className="mn-card-icon-badge" aria-hidden="true">
+          {service.icon === 'maintenance' ? (
+            <Settings size={18} strokeWidth={1.8} />
+          ) : (
+            <Icon name={service.icon} />
+          )}
+        </span>
       </div>
       <div className="mn-card-copy">
-        <span className="mn-icon-box">
-          {service.icon === 'maintenance'
-            ? <Settings strokeWidth={1.65} aria-hidden="true" />
-            : <Icon name={service.icon} />}
-        </span>
-        <div><h3>{service.title}</h3><p>{service.description}</p></div>
-        <ArrowRight className="mn-card-arrow" aria-hidden="true" />
+        <div className="mn-card-body">
+          <h3>{service.title}</h3>
+          <p>{service.description}</p>
+        </div>
+        <div className="mn-card-action">
+          <span>Xem chi tiết</span>
+          <ArrowRight className="mn-card-arrow" aria-hidden="true" size={14} />
+        </div>
       </div>
     </Link>
   );
 }
 
 export function ServiceGrid({
+  services = serviceCards,
   limit,
   areaSlug,
   category = 'all',
 }: {
+  services?: Array<ServiceCardContent & { slug: string }>;
   limit?: number;
   areaSlug?: string;
   category?: string;
 }) {
-  const filteredServices = serviceCards.filter((service) => {
+  const filteredServices = services.filter((service) => {
     if (category === 'all') return true;
     if (category === 'dien-nuoc')
       return !['may-lanh', 'may-giat', 'tu-lanh'].some((group) => service.slug.includes(group));
@@ -197,8 +240,8 @@ export function ServiceGrid({
   });
   return (
     <div className={`mn-service-grid ${limit === 6 ? 'mn-service-grid-preview' : ''}`}>
-      {filteredServices.slice(0, limit).map((service) => (
-        <ServiceCard key={service.slug} service={service}
+      {filteredServices.slice(0, limit).map((service, idx) => (
+        <ServiceCard key={service.slug} service={service} index={idx}
           href={areaSlug ? `/areas/${areaSlug}/${service.slug}` : `/services/${service.slug}`} />
       ))}
     </div>
@@ -210,6 +253,9 @@ export function Process({ home = false }: { home?: boolean }) {
       data-custom-motion="true">
       <SectionHeading title="Các bước" accent="đặt lịch và sửa chữa" />
       <ProcessTimeline steps={processSteps} />
+      <Link className="mn-button mn-process-booking" href="/contact#tu-van">
+        <Headset size={20} aria-hidden="true" /> Nhận tư vấn
+      </Link>
     </section>
   );
 }
@@ -221,8 +267,12 @@ export function Reasons() {
         ['clock', 'Hẹn giờ trước', 'Xác nhận địa chỉ và giờ đến với bạn'],
         ['shield', 'Báo giá trước khi sửa', 'Bạn đồng ý chi phí rồi thợ mới làm'],
         ['wrench', 'Hỗ trợ sau khi sửa', 'Liên hệ lại nếu máy còn gặp lỗi'],
-      ].map(([icon, title, desc]) => (
-        <article key={title}>
+      ].map(([icon, title, desc], idx) => (
+        <article
+          key={title}
+          data-reveal=""
+          style={{ '--d': `${idx * 0.08}s` } as React.CSSProperties}
+        >
           <Icon name={icon} />
           <h3>{title}</h3>
           <p>{desc}</p>
@@ -233,21 +283,22 @@ export function Reasons() {
 }
 export function SupportBanner() {
   return (
-    <section className="mn-support">
-      <Image
+    <section className="mn-support" data-reveal="">
+      <Image loading="lazy"
         src={siteContent.images.support}
         fill
         sizes={contentImageSizes}
         alt="Kỹ thuật viên điện lạnh – ảnh minh họa"
       />
+      <PageHeroAtmosphere mode="dispatch-radar" />
       <div>
         <p>Cần hỗ trợ ngay?</p>
         <h2>
           Gọi <a href={siteContent.phoneHref}>{siteContent.phoneDisplay}</a>
         </h2>
         <p>Cho Minh Nhật biết máy bị lỗi gì và địa chỉ cần đến.</p>
-        <Link className="mn-button" href="/booking">
-          Đặt lịch ngay <ArrowRight size={17} />
+        <Link className="mn-button" href="/contact#tu-van">
+          Nhận tư vấn <ArrowRight size={17} />
         </Link>
       </div>
     </section>

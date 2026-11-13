@@ -1,0 +1,118 @@
+/* Review copy only: selected Trắng băng – Xanh tin cậy palette. */
+:root { --primary: 214.6 93.1% 40.4%; --foreground: 206 61% 16%; --background: 204 54% 97%; }
+html body { background:#f5f9fc; color:#102a43; }
+html .mn-site, html .mn-site[data-home], html .mn-site[data-inner-page], html .mn-site main, html .mn-site .mn-home-content {
+  --mn-bg:#f5f9fc; --mn-surface:#fff; --mn-elevated:#eaf4fa; --mn-text:#102a43;
+  --mn-cyan:#007e96; --mn-ice:#0759c7; --mn-muted:#42556b; --mn-home-muted:#42556b;
+  --mn-border:#d9e4ec; --mn-section-bg:#f5f9fc; color:#102a43; background:#f5f9fc;
+}
+html .mn-site::before, html .mn-site::after { display:none; }
+html .mn-site *, html .mn-site *::before, html .mn-site *::after { animation:none!important; transition:none!important; text-shadow:none!important; }
+html .mn-site [data-mn-reveal], html .mn-site [data-hero-enter] { opacity:1!important; transform:none!important; }
+html .mn-site .mn-header { position:relative; top:0; }
+html .mn-site .mn-nav-shell { background:#fff!important; border-color:#d9e4ec!important; box-shadow:0 5px 24px #102a4305!important; }
+html .mn-site .mn-brand, html .mn-site .mn-hotline, html .mn-site .mn-hotline strong { color:#102a43!important; }
+html .mn-site .mn-brand small, html .mn-site .mn-hotline > span { color:#007e96!important; }
+html .mn-site .mn-hotline small { color:#42556b!important; }
+html .mn-site .mn-desktop-nav a { color:#102a43!important; }
+html .mn-site .mn-desktop-nav a[aria-current='page'] { color:#0759c7!important; }
+html .mn-site .mn-desktop-nav a::after { background:#0759c7!important; }
+html .mn-site .mn-button, html .mn-site .mn-nav-book, html .mn-site .mn-home-hero a.mn-button,
+html .mn-site .mn-home-footer .mn-button, html .mn-site .mn-booking-form button[type='submit'] {
+  color:#fff!important; background:#0759c7!important; border-color:#0759c7!important;
+  box-shadow:0 5px 14px #0759c718!important; font-weight:700;
+}
+html .mn-site .mn-button-secondary { color:#0759c7!important; background:#fff!important; border-color:#d9e4ec!important; box-shadow:none!important; }
+html .mn-site .mn-button-secondary small { color:#42556b!important; }
+html .mn-site .mn-text-link { color:#0759c7!important; }
+html .mn-site :is(h1,h2,h3,h4), html .mn-site :is(h1,h2,h3,h4) span { color:#102a43; }
+html .mn-site em, html .mn-site :is(h1,h2) em, html .mn-site .mn-kicker { color:#007e96!important; }
+html .mn-site p { color:#42556b; }
+html .mn-site .mn-panel, html .mn-site :is(.mn-tone-light,.mn-tone-deep,.mn-tone-content,.mn-home-about-band,.mn-home-coverage-band,.mn-shared-coverage-section) {
+  background:#fff!important; border-color:#d9e4ec!important; color:#102a43!important;
+}
+html .mn-site :is(.mn-home-light,.mn-home-process-band,.mn-home-projects) { background:#f5f9fc!important; }
+html .mn-site :is(.mn-home-about-band,.mn-home-coverage-band) { border-block:1px solid #d9e4ec!important; }
+html .mn-site .mn-home-hero { height:630px!important; }
+html .mn-site .mn-home-hero [class*='track'] { border-color:#d9e4ec!important; background:#fff!important; }
+html .mn-site .mn-home-hero [class*='shade'] {
+  background:linear-gradient(90deg,#fff 0%,#fffffff7 27%,#ffffffc7 37%,#ffffff28 51%,transparent 62%)!important;
+  mask-image:none!important;
+}
+html .mn-site .mn-home-hero [class*='airflow'], html .mn-site .mn-home-hero [class*='occlusionLayer'] { display:none!important; }
+html .mn-site .mn-home-hero [class*='copy'] { top:12%!important; left:5.5%!important; width:46%!important; color:#102a43!important; }
+html .mn-site .mn-home-hero h1 { color:#102a43!important; font-size:52px!important; }
+html .mn-site .mn-home-hero p { color:#42556b!important; font-size:20px!important; }
+html .mn-site .mn-home-hero ul { color:#102a43!important; font-size:13px!important; }
+html .mn-site .mn-home-hero ul svg { color:#007e96!important; }
+html .mn-site .mn-home-hero nav { height:108px!important; background:#fff!important; border-color:#d9e4ec!important; box-shadow:none!important; }
+html .mn-site .mn-home-hero nav a { color:#102a43!important; border-color:#d9e4ec!important; }
+html .mn-site .mn-home-hero nav a > span:first-child { color:#0759c7!important; background:#f5f9fc!important; border-color:#d9e4ec!important; }
+html .mn-site .mn-page-hero { background:#fff!important; border-color:#d9e4ec!important; }
+html .mn-site .mn-page-hero-shade { background:linear-gradient(90deg,#fff 0%,#fffffffa 24%,#ffffffcf 43%,#ffffff1a 75%,transparent)!important; }
+html .mn-site .mn-page-hero :is(h1,p) { color:#102a43!important; }
+html .mn-site .mn-page-hero p { color:#42556b!important; }
+html .mn-site .mn-page-hero .mn-eyebrow, html .mn-site .mn-eyebrow { background:#eaf4fa!important; color:#007e96!important; border-color:#d9e4ec!important; box-shadow:none!important; }
+html .mn-site :is(.mn-card-copy,.mn-project-copy,.mn-service-card,.mn-project-card,.mn-reasons article,.mn-detail-booking,.mn-booking-shell,.mn-faq-card,.mn-contact-methods > a,.mn-contact-email) {
+  color:#102a43!important; background:#fff!important; border-color:#d9e4ec!important; box-shadow:none!important;
+}
+html .mn-site :is(.mn-card-copy,.mn-project-copy,.mn-reasons article) :is(h3,strong) { color:#102a43!important; }
+html .mn-site :is(.mn-card-copy,.mn-project-copy,.mn-reasons article) p { color:#42556b!important; opacity:1!important; }
+html .mn-site :is(.mn-icon-box,.mn-fact-icon,.mn-home-footer-about-icon) { color:#007e96!important; background:#f5f9fc!important; border-color:#d9e4ec!important; box-shadow:none!important; }
+html .mn-site .mn-card-arrow { background:#eaf4fa!important; color:#0759c7!important; }
+html .mn-site :is(.mn-reasons svg,.mn-contact-methods svg,.mn-contact-email svg) { color:#007e96!important; border-color:#d9e4ec!important; }
+html .mn-site .mn-home-about :is(p,h2,h3), html .mn-site .mn-about-brand-badge { color:#102a43!important; }
+html .mn-site .mn-about-brand-badge { background:#fffffff0!important; border-color:#d9e4ec!important; }
+html .mn-site .mn-about-brand-badge svg { color:#007e96!important; }
+html .mn-site :is(.mn-about-facts,.mn-form-panel,.mn-form-fields) { background:#f5f9fc!important; color:#102a43!important; border-color:#d9e4ec!important; }
+html .mn-site .mn-about-facts strong { color:#0759c7!important; }
+html .mn-site :is(.mn-tabs,.mn-filters) { background:transparent!important; border-color:#d9e4ec!important; }
+html .mn-site :is(.mn-tabs > a,.mn-tabs > button,.mn-filters > button,.mn-filters > a) { color:#42556b!important; background:#fff!important; border-color:#d9e4ec!important; box-shadow:none!important; }
+html .mn-site :is(.mn-tabs,.mn-filters) :is([aria-current='page'],[aria-selected='true'],[aria-pressed='true']) { color:#fff!important; background:#0759c7!important; border-color:#0759c7!important; }
+html .mn-site :is(input,select,textarea) { color:#102a43!important; background:#fff!important; border-color:#b9cbd8!important; }
+html .mn-site :is(label,legend), html .mn-site .mn-booking-form label > span { color:#102a43!important; }
+html .mn-site :is(.mn-contact-methods strong,.mn-contact-email) { color:#102a43!important; }
+html .mn-site :is(.mn-contact-methods small,.mn-contact-email small,.mn-contact-hint) { color:#42556b!important; }
+html .mn-site :is(.mn-contact-map,.mn-contact-map h2) { background:#fff!important; color:#102a43!important; border-color:#d9e4ec!important; }
+html .mn-site .mn-contact-map iframe { filter:none!important; }
+html .mn-site .mn-service-area { background:#fff!important; border-color:#d9e4ec!important; }
+html .mn-site .mn-area-shade { background:linear-gradient(90deg,#fffffff7,#ffffffdc 48%,#ffffff70)!important; }
+html .mn-site .mn-area-copy :is(h2,p), html .mn-site .mn-area-selection, html .mn-site .mn-area-address { color:#102a43!important; }
+html .mn-site .mn-area-chips :is(a,button) { background:#fff!important; color:#007e96!important; border-color:#d9e4ec!important; }
+html .mn-site .mn-area-chips button[aria-pressed='true'] { background:#0759c7!important; color:#fff!important; }
+html .mn-site .mn-verified-map-wrap { background:#ffffffea!important; border-color:#d9e4ec!important; box-shadow:0 8px 32px #102a4308!important; }
+html .mn-site .mn-map-source { color:#42556b!important; }
+html .mn-site .mn-support { background:#eaf4fa!important; border-color:#d9e4ec!important; color:#102a43!important; }
+html .mn-site .mn-support :is(h2,p) { color:#102a43!important; }
+html .mn-site :is(.mn-service-symptoms li,.mn-faq-list details,.mn-article,.mn-notice) { color:#42556b!important; background:#fff!important; border-color:#d9e4ec!important; }
+html .mn-site .mn-faq-list summary { color:#102a43!important; }
+html .mn-site .mn-notice { background:#eaf4fa!important; }
+html .mn-site .mn-home-footer { background:#eaf2f8!important; color:#102a43!important; border-top:1px solid #d9e4ec!important; }
+html .mn-site .mn-home-footer :is(h2,strong,a) { color:#102a43!important; }
+html .mn-site .mn-home-footer :is(p,small,.mn-footer-bottom) { color:#42556b!important; }
+html .mn-site .mn-home-footer .mn-footer-bottom { border-color:#d9e4ec!important; }
+html .mn-site .mn-floating { background:transparent!important; }
+html .mn-site .mn-process { background:#f5f9fc!important; color:#102a43!important; }
+html .mn-site .mn-process :is(h3,p) { color:#102a43!important; }
+html .mn-site .mn-journey-step-number, html .mn-site .mn-journey-milestone { background:#0759c7!important; color:#fff!important; border-color:#0759c7!important; }
+html .mn-site .mn-journey-milestone small { color:#fff!important; background:#0759c7!important; }
+html .mn-site .mn-process-grid { --mn-section-bg:#f5f9fc; }
+html .mn-site .mn-geographic-region, html .mn-site .mn-verified-map > g:first-of-type path { fill:#dcecf5!important; stroke:#90bacb!important; }
+html .mn-site .mn-geographic-location text { fill:#102a43!important; stroke:#fff!important; stroke-width:3px!important; paint-order:stroke fill; }
+html .mn-site .mn-verified-pin path { fill:#0759c7!important; }
+html .mn-site .mn-verified-pin circle { fill:#fff!important; }
+html .mn-site .mn-journey-milestone { background:transparent!important; border:0!important; }
+html .mn-site .mn-journey-milestone strong { background:#0759c7!important; color:#fff!important; }
+html .mn-site .mn-journey-milestone small { background:transparent!important; color:#0759c7!important; }
+html .mn-site .mn-area-photo-sources { color:#42556b!important; }
+html .mn-site .mn-area-photo-sources summary { background:#ffffffe8!important; border:1px solid #d9e4ec; }
+@media(max-width:900px) {
+  html .mn-site .mn-home-hero { height:auto!important; }
+  html .mn-site .mn-home-hero [class*='copy'] { position:relative!important; width:100%!important; left:auto!important; top:auto!important; padding:32px 20px!important; }
+  html .mn-site .mn-home-hero h1 { font-size:34px!important; }
+  html .mn-site .mn-home-hero p { font-size:17px!important; }
+  html .mn-site .mn-home-hero nav { height:auto!important; }
+  html .mn-site .mn-home-hero [class*='shade'] { background:#fff!important; }
+  html .mn-site .mn-home-hero [class*='slide'] { background:#fff!important; }
+  html .mn-site .mn-floating { background:#ffffffef!important; border-color:#d9e4ec!important; }
+}

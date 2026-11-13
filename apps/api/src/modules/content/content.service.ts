@@ -1,9 +1,56 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, ServiceUnavailableException } from '@nestjs/common';
 import { PrismaService } from '../../prisma/prisma.service';
 
 @Injectable()
 export class ContentService {
   constructor(private readonly prisma: PrismaService) {}
+
+  async getWebsiteContent() {
+    const initialized = await this.prisma.setting.findUnique({ where: { key: 'website-content-v1' } });
+    if (!initialized) throw new ServiceUnavailableException('Website content has not been imported.');
+
+    const [services, posts, categories, faqs] = await Promise.all([
+      this.prisma.service.findMany({
+        where: { isActive: true },
+        orderBy: [{ displayOrder: 'asc' }, { name: 'asc' }],
+        select: {
+          slug: true, name: true, summary: true, description: true, imageUrl: true, imageAlt: true,
+          faqs: {
+            where: { isActive: true },
+            orderBy: { createdAt: 'asc' },
+            select: { question: true, answer: true },
+          },
+        },
+      }),
+      this.prisma.blogPost.findMany({
+        where: { status: 'PUBLISHED' },
+        orderBy: [{ publishedAt: 'desc' }, { createdAt: 'desc' }],
+        select: {
+          slug: true, title: true, excerpt: true, content: true,
+          category: { select: { slug: true } },
+          featuredImage: { select: { url: true, altText: true, visibility: true } },
+        },
+      }),
+      this.prisma.category.findMany({
+        orderBy: { createdAt: 'asc' },
+        select: { slug: true, name: true, description: true },
+      }),
+      this.prisma.fAQ.findMany({
+        where: { isActive: true, serviceId: null, locationId: null, blogPostId: null },
+        orderBy: { createdAt: 'asc' },
+        select: { question: true, answer: true },
+      }),
+    ]);
+
+    return {
+      services, categories, faqs,
+      posts: posts.map(({ featuredImage, ...post }) => ({
+        ...post,
+        image: featuredImage?.visibility === 'PUBLIC' ? featuredImage.url : null,
+        imageAlt: featuredImage?.visibility === 'PUBLIC' ? featuredImage.altText : null,
+      })),
+    };
+  }
 
   listServices() {
     return this.prisma.service.findMany({

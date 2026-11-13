@@ -1,0 +1,86 @@
+[
+  {
+    "width": 1440,
+    "time": 0,
+    "canvas": 1343,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "time": 3,
+    "canvas": 1343,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "time": 6,
+    "canvas": 1343,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1920,
+    "time": 0,
+    "canvas": 1343,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1920,
+    "time": 3,
+    "canvas": 1343,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1920,
+    "time": 6,
+    "canvas": 1343,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "time": 0,
+    "canvas": 882,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "time": 3,
+    "canvas": 882,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "time": 6,
+    "canvas": 882,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "time": 0,
+    "canvas": 356,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "time": 3,
+    "canvas": 356,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 390,
+    "time": 6,
+    "canvas": 356,
+    "overflow": false,
+    "errors": []
+  }
+]

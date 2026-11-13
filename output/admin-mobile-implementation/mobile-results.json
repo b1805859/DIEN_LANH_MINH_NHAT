@@ -1,0 +1,122 @@
+[
+  {
+    "viewport": 320,
+    "route": "dashboard",
+    "height": 853,
+    "width": 320,
+    "scrollWidth": 320,
+    "overflow": []
+  },
+  {
+    "viewport": 320,
+    "route": "bookings",
+    "height": 934,
+    "width": 320,
+    "scrollWidth": 320,
+    "overflow": []
+  },
+  {
+    "viewport": 320,
+    "route": "services",
+    "height": 1324,
+    "width": 320,
+    "scrollWidth": 320,
+    "overflow": []
+  },
+  {
+    "viewport": 375,
+    "route": "dashboard",
+    "height": 853,
+    "width": 375,
+    "scrollWidth": 375,
+    "overflow": []
+  },
+  {
+    "viewport": 375,
+    "route": "bookings",
+    "height": 877,
+    "width": 375,
+    "scrollWidth": 375,
+    "overflow": []
+  },
+  {
+    "viewport": 375,
+    "route": "services",
+    "height": 1316,
+    "width": 375,
+    "scrollWidth": 375,
+    "overflow": []
+  },
+  {
+    "viewport": 390,
+    "route": "dashboard",
+    "height": 853,
+    "width": 390,
+    "scrollWidth": 390,
+    "overflow": []
+  },
+  {
+    "viewport": 390,
+    "route": "bookings",
+    "height": 877,
+    "width": 390,
+    "scrollWidth": 390,
+    "overflow": []
+  },
+  {
+    "viewport": 390,
+    "route": "services",
+    "height": 1316,
+    "width": 390,
+    "scrollWidth": 390,
+    "overflow": []
+  },
+  {
+    "viewport": 430,
+    "route": "dashboard",
+    "height": 853,
+    "width": 430,
+    "scrollWidth": 430,
+    "overflow": []
+  },
+  {
+    "viewport": 430,
+    "route": "bookings",
+    "height": 859,
+    "width": 430,
+    "scrollWidth": 430,
+    "overflow": []
+  },
+  {
+    "viewport": 430,
+    "route": "services",
+    "height": 1316,
+    "width": 430,
+    "scrollWidth": 430,
+    "overflow": []
+  },
+  {
+    "viewport": 768,
+    "route": "dashboard",
+    "height": 853,
+    "width": 768,
+    "scrollWidth": 768,
+    "overflow": []
+  },
+  {
+    "viewport": 768,
+    "route": "bookings",
+    "height": 859,
+    "width": 768,
+    "scrollWidth": 768,
+    "overflow": []
+  },
+  {
+    "viewport": 768,
+    "route": "services",
+    "height": 1284,
+    "width": 768,
+    "scrollWidth": 768,
+    "overflow": []
+  }
+]

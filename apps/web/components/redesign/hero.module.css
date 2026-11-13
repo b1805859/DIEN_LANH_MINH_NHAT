@@ -9,6 +9,8 @@
   margin: var(--mn-page-gap) auto 0;
   padding: 0;
   border: 0;
+  /* The image and service bar own their corners; do not clip either frame here. */
+  border-radius: 0;
   background: transparent;
   container-type: inline-size;
   overflow: hidden;
@@ -43,21 +45,12 @@
   isolation: isolate;
 }
 
-/* Paint the frame above the image and WebGL layers, including rounded corners. */
-.track::after {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  z-index: 10;
-  border: 1px solid #00aeef;
-  border-radius: inherit;
-  pointer-events: none;
-}
-
 .slide {
   position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden;
+  border-radius: 11px;
   isolation: isolate;
 }
 
@@ -328,63 +321,31 @@
   }
 }
 
-@media (max-width: 900px) {
+/* Preserve the existing laptop composition above the mobile navigation breakpoint. */
+@media (min-width: 901px) and (max-width: 1024px) {
   .carousel:global(.mn-home-hero) {
+    height: calc(100svh - var(--mn-nav-height) - var(--mn-header-inset) - var(--mn-page-gap));
+    max-height: 820px;
     margin-top: var(--mn-page-gap);
-    min-height: 0;
-  }
-
-  .viewport {
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .track {
-    flex: 1;
-    min-height: 0;
-  }
-
-  .slide {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .scene {
-    flex: none;
-    height: auto;
-    aspect-ratio: 16 / 9;
-  }
-
-  .shade {
-    display: none;
   }
 
   .copy {
-    position: relative;
-    order: -1;
-    left: auto;
-    top: auto;
-    width: 100%;
-    max-width: none;
-    flex: 1;
-    min-height: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: clamp(12px, 3dvh, 24px) 5%;
-    background: #002139;
+    left: 4.5%;
+    top: 5.5%;
+    width: 48%;
+    max-width: 420px;
   }
 
   .carousel .headline {
-    font-size: clamp(28px, 6.2cqw, 42px);
+    font-size: clamp(24px, 3.6vw, 36px);
+    line-height: 1.15;
   }
 
   .description {
-    max-width: 420px;
-    font-size: 14px;
-    line-height: 1.48;
-    margin-top: 8px;
+    max-width: 340px;
+    font-size: clamp(12.5px, 1.5vw, 15px);
+    line-height: 1.45;
+    margin-top: 10px;
   }
 
   .ctaEntrance {
@@ -392,42 +353,27 @@
   }
 
   .carousel .copy .booking {
-    align-self: flex-start;
-    min-height: 38px;
-    padding: 0 18px;
-    font-size: 13px;
+    min-height: 40px;
+    padding: 0 20px;
+    font-size: 13.5px;
   }
 
   .benefits {
     margin-top: 12px;
     font-size: 11px;
-    gap: 8px 12px;
+    gap: 6px 12px;
   }
 
   .services {
-    position: relative;
-    left: auto;
-    right: auto;
-    bottom: auto;
-    height: auto;
-    flex: none;
-    min-height: 0;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    padding: 6px 4px;
+    height: clamp(76px, 10dvh, 88px);
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    padding: 4px 6px;
   }
 
   .services a {
-    min-height: 64px;
-    padding: 4px 3px;
+    padding: 4px 2px;
     font-size: 11px;
-  }
-
-  .services a:nth-child(4n) {
-    border-right: 0;
-  }
-
-  .services a:nth-child(-n + 4) {
-    border-bottom: 1px solid rgba(32, 129, 170, 0.22);
+    line-height: 1.25;
   }
 
   .serviceIcon {
@@ -436,42 +382,41 @@
   }
 }
 
-@media (max-width: 900px) and (max-height: 740px) {
+/* Mobile composition uses the existing cover projection for both photo and airflow. */
+@media (max-width: 900px) {
+  .carousel:global(.mn-home-hero) { height: auto; margin-bottom: 0; }
+  .viewport { height: auto; gap: 0; padding-bottom: 0; }
+  .track { flex: none; min-height: 0; container-type: inline-size; }
+  .slide { height: auto; padding-bottom: 40px; }
+  .scene { height: auto; aspect-ratio: 2.2; margin-top: 108px; }
   .copy {
-    padding-block: 12px;
+    position: absolute; top: 16px; left: 16px;
+    width: calc(100% - 32px); max-width: none;
   }
-
-  .carousel .headline {
-    font-size: 26px;
-  }
-
-  .description {
-    font-size: 13px;
-    line-height: 1.35;
-  }
-
-  .ctaEntrance {
-    margin-top: 8px;
-  }
-
-  .carousel .copy .booking {
-    min-height: 34px;
-  }
-
+  .carousel .headline { font-size: 26px; line-height: 1.1; }
+  .headlineLine { white-space: normal; }
+  .description { max-width: 100%; margin-top: 6px; font-size: 14px; line-height: 1.45; }
+  .ctaEntrance { margin-top: 10px; }
+  .carousel .copy .booking { min-height: 44px; padding-inline: 18px; font-size: 14px; }
   .benefits {
-    margin-top: 8px;
-    font-size: 10px;
+    position: absolute; top: calc(108px + 45.45455cqw - 8px); left: 0;
+    width: 100%; margin: 0; gap: 4px 10px; font-size: 14px;
   }
+  .benefits li { gap: 5px; }
+  .benefits li:nth-child(3) { display: none; }
+  .benefits svg { width: 16px; height: 16px; flex: none; }
+  /* The adjacent service grid replaces this repeated navigation on mobile. */
+  .services { display: none; }
+}
+@media (min-width: 681px) and (max-width: 900px) {
+  .carousel .headline { font-size: 32px; }
+  .description { font-size: 16px; }
+  .benefits { font-size: 14px; }
+}
 
-  .services a {
-    min-height: 64px;
-    gap: 6px;
-    padding-block: 4px;
-    font-size: 10.5px;
-  }
-
-  .serviceIcon {
-    width: 28px;
-    height: 28px;
-  }
+/* Leave room for the service shortcuts in the first phone viewport. */
+@media (max-width: 900px) {
+  .slide { padding-bottom: 32px; }
+  .scene { margin-top: 104px; height: clamp(88px, 17svh, 142px); aspect-ratio: auto; }
+  .benefits { top: calc(104px + clamp(88px, 17svh, 142px) - 8px); }
 }

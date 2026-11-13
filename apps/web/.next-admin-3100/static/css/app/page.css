@@ -1,0 +1,570 @@
+/*!***************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ../../node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[5].use[2]!../../node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[5].use[3]!./components/redesign/hero.module.css ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************/
+.hero_carousel__pXLyZ.mn-home-hero {
+  position: relative;
+  width: calc(100% - var(--mn-content-gutter));
+  max-width: var(--mn-content-max);
+  height: calc(100vh - var(--mn-nav-height) - var(--mn-header-inset) - var(--mn-page-gap));
+  height: calc(100dvh - var(--mn-nav-height) - var(--mn-header-inset) - var(--mn-page-gap));
+  min-height: 0;
+  aspect-ratio: auto;
+  margin: var(--mn-page-gap) auto 0;
+  padding: 0;
+  border: 0;
+  /* The image and service bar own their corners; do not clip either frame here. */
+  border-radius: 0;
+  background: transparent;
+  container-type: inline-size;
+  overflow: hidden;
+}
+
+.hero_viewport__i7ZN1 {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--mn-page-gap);
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  padding-bottom: var(--mn-page-gap);
+  background: transparent;
+}
+
+.hero_track__dQsL4 {
+  position: relative;
+  width: 100%;
+  height: auto;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid #00aeef;
+  border-radius: 12px;
+  background: #00152e;
+  container-type: size;
+  isolation: isolate;
+}
+
+.hero_slide__oCv2u {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 11px;
+  isolation: isolate;
+}
+
+.hero_scene__nM7xQ {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Layer 1: Background living-room image */
+.hero_media__89s8D {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero_stage__X6wU7 {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero_stage__X6wU7 img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+/* Layer 2: Subtle left gradient overlay for text readability */
+.hero_shade__zVfwL {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(1, 14, 29, 0.68) 0%,
+      rgba(1, 18, 36, 0.50) 20%,
+      rgba(1, 22, 42, 0.22) 38%,
+      rgba(1, 22, 42, 0.06) 48%,
+      transparent 58%
+    );
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 42%, rgba(0, 0, 0, 0.8) 50%, transparent 66%);
+          mask-image: linear-gradient(180deg, #000 0%, #000 42%, rgba(0, 0, 0, 0.8) 50%, transparent 66%);
+}
+
+/* Layers 5, 6, 7: WebGL Airflow Canvas (Back flow, Main curved ribbons, Front mist & particles) */
+.hero_airflow__xa2pW {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 1;
+}
+
+/* Layers 3, 4, 8: AC upper lip, Family face protection, and Foreground Technician cutout */
+.hero_occlusionLayer__DF12U {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 8;
+  pointer-events: none;
+}
+
+.hero_occlusionLayer__DF12U img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+/* Match the room plate's cover projection; keep the complete person above all airflow. */
+.hero_technicianLayer__X7_uY {
+  -webkit-mask-image: url('/images/redesign/hero-technician-focus-mask.svg?v=20261019-complete-head-7');
+          mask-image: url('/images/redesign/hero-technician-focus-mask.svg?v=20261019-complete-head-7');
+  -webkit-mask-size: cover;
+          mask-size: cover;
+  -webkit-mask-position: center center;
+          mask-position: center center;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+}
+
+/* Layer 9: Foreground Hero Copy Block */
+.hero_copy___BJgx {
+  position: absolute;
+  left: 6.1%;
+  top: 6.8%;
+  z-index: 9;
+  width: 46%;
+  max-width: 660px;
+  color: #ffffff;
+}
+
+.hero_carousel__pXLyZ .hero_headline__RbsI5 {
+  margin: 0;
+  font-size: clamp(32px, min(4.2cqw, 8cqh), 64px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.028em;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 14, 28, 0.3);
+}
+
+.hero_headlineLine__WYFM5 {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.hero_carousel__pXLyZ .hero_headline__RbsI5 em {
+  color: #35d7f8;
+  font-style: normal;
+}
+
+.hero_description__NYlk8 {
+  max-width: 28cqw;
+  margin: clamp(10px, 1.1cqw, 18px) 0 0;
+  font-size: clamp(14px, min(1.6cqw, 3.2cqh), 24px);
+  line-height: 1.5;
+  color: #f2f7fc;
+  text-shadow: 0 1px 3px rgba(0, 12, 24, 0.35);
+}
+
+/* Animate the wrapper so the button keeps its existing hover/press transforms. */
+.hero_ctaEntrance__XsNn_ {
+  align-self: flex-start;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: clamp(16px, 1.4cqw, 24px);
+}
+
+.hero_carousel__pXLyZ .hero_copy___BJgx .hero_booking__W03w6 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(42px, min(3.75cqw, 8cqh), 56px);
+  margin-top: 0;
+  padding: 0 clamp(24px, 2.6cqw, 38px);
+  gap: 10px;
+  border-radius: 999px;
+  border: 1px solid #6be5ff;
+  font-size: clamp(14px, 1.4cqw, 21px);
+  font-weight: 750;
+  color: #001f38;
+  background: linear-gradient(180deg, #7ce8ff 0%, #24ccf5 55%, #04bbe8 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.55),
+    0 4px 16px rgba(0, 198, 245, 0.28);
+}
+
+.hero_booking__W03w6 svg {
+  width: clamp(14px, 1.35cqw, 18px);
+  height: clamp(14px, 1.35cqw, 18px);
+}
+
+.hero_benefits__c4gsE {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 1.1cqw;
+  padding: 0;
+  margin: clamp(16px, min(1.7cqw, 3cqh), 24px) 0 0;
+  list-style: none;
+  font-size: clamp(12px, min(1.25cqw, 2.2dvh), 18px);
+  font-weight: 500;
+  color: #eef7ff;
+  text-shadow: 0 1px 8px rgba(0, 12, 24, 0.5);
+}
+
+.hero_benefits__c4gsE li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero_benefits__c4gsE svg {
+  color: #24d5f6;
+  width: clamp(16px, 1.5cqw, 22px);
+  height: clamp(16px, 1.5cqw, 22px);
+}
+
+.hero_benefits__c4gsE li:first-child svg {
+  color: #24d5f6;
+}
+
+/* Separate service panel; its gap and height stay inside the first viewport. */
+.hero_services__IUKnj {
+  position: relative;
+  flex: none;
+  z-index: 9;
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  align-items: stretch;
+  height: clamp(96px, 12dvh, 108px);
+  padding: 4px 0.8%;
+  border: 1px solid rgba(26, 148, 204, 0.44);
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(1, 33, 60, 0.92) 0%, rgba(0, 22, 43, 0.96) 100%);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 16px rgba(0, 12, 26, 0.18);
+}
+
+.hero_services__IUKnj a {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 4px 4px;
+  border-right: 1px solid rgba(36, 134, 180, 0.22);
+  color: #eef8ff;
+  text-align: center;
+  font-size: clamp(11px, 1cqw, 14px);
+  line-height: 1.34;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.hero_services__IUKnj a:last-child {
+  border-right: 0;
+}
+
+.hero_services__IUKnj a:is(:hover, :focus-visible) {
+  color: #a1eeff;
+  background: rgba(10, 90, 112, 0.16);
+}
+
+.hero_serviceIcon__k9RZu {
+  display: grid;
+  place-items: center;
+  width: clamp(30px, 2.5cqw, 36px);
+  height: clamp(30px, 2.5cqw, 36px);
+  border: 1px solid rgba(14, 186, 236, 0.78);
+  border-radius: 50%;
+  color: #1ad7fb;
+  background: rgba(0, 42, 74, 0.42);
+}
+
+.hero_serviceIcon__k9RZu svg {
+  width: 56%;
+  height: 56%;
+}
+
+.hero_srOnly__agU2H {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  .hero_services__IUKnj a:is(:hover, :focus-visible) .hero_serviceIcon__k9RZu {
+    transform: translateY(-2px);
+    background: rgba(0, 124, 182, 0.24);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero_copy___BJgx [data-hero-enter] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Tablet viewports (681px - 1024px, including iPads in portrait & landscape) */
+@media (min-width: 681px) and (max-width: 1024px) {
+  .hero_carousel__pXLyZ.mn-home-hero {
+    height: calc(100svh - var(--mn-nav-height) - var(--mn-header-inset) - var(--mn-page-gap));
+    max-height: 820px;
+    margin-top: var(--mn-page-gap);
+  }
+
+  .hero_copy___BJgx {
+    left: 4.5%;
+    top: 5.5%;
+    width: 48%;
+    max-width: 420px;
+  }
+
+  .hero_carousel__pXLyZ .hero_headline__RbsI5 {
+    font-size: clamp(24px, 3.6vw, 36px);
+    line-height: 1.15;
+  }
+
+  .hero_description__NYlk8 {
+    max-width: 340px;
+    font-size: clamp(12.5px, 1.5vw, 15px);
+    line-height: 1.45;
+    margin-top: 10px;
+  }
+
+  .hero_ctaEntrance__XsNn_ {
+    margin-top: 12px;
+  }
+
+  .hero_carousel__pXLyZ .hero_copy___BJgx .hero_booking__W03w6 {
+    min-height: 40px;
+    padding: 0 20px;
+    font-size: 13.5px;
+  }
+
+  .hero_benefits__c4gsE {
+    margin-top: 12px;
+    font-size: 11px;
+    gap: 6px 12px;
+  }
+
+  .hero_services__IUKnj {
+    height: clamp(76px, 10dvh, 88px);
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    padding: 4px 6px;
+  }
+
+  .hero_services__IUKnj a {
+    padding: 4px 2px;
+    font-size: 11px;
+    line-height: 1.25;
+  }
+
+  .hero_serviceIcon__k9RZu {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Smartphone mobile viewports (<= 680px) */
+@media (max-width: 680px) {
+  .hero_carousel__pXLyZ.mn-home-hero {
+    height: auto;
+    margin-top: var(--mn-page-gap);
+    margin-bottom: 16px;
+  }
+
+  .hero_viewport__i7ZN1 {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-bottom: 0;
+  }
+
+  .hero_track__dQsL4 {
+    flex: none;
+    min-height: 0;
+    container-type: inline-size;
+    border-radius: 12px;
+  }
+
+  .hero_slide__oCv2u {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+
+  .hero_scene__nM7xQ {
+    flex: none;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .hero_shade__zVfwL {
+    display: none;
+  }
+
+  .hero_copy___BJgx {
+    position: relative;
+    order: -1;
+    left: auto;
+    top: auto;
+    width: 100%;
+    max-width: none;
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 16px 14px 12px;
+    background: #002139;
+  }
+
+  .hero_carousel__pXLyZ .hero_headline__RbsI5 {
+    font-size: clamp(22px, 6vw, 28px);
+    line-height: 1.18;
+  }
+
+  .hero_headlineLine__WYFM5 {
+    display: inline;
+    white-space: normal;
+  }
+
+  .hero_description__NYlk8 {
+    max-width: 100%;
+    font-size: 13px;
+    line-height: 1.42;
+    margin-top: 6px;
+  }
+
+  .hero_ctaEntrance__XsNn_ {
+    margin-top: 10px;
+  }
+
+  .hero_carousel__pXLyZ .hero_copy___BJgx .hero_booking__W03w6 {
+    align-self: flex-start;
+    min-height: 40px;
+    padding: 0 20px;
+    font-size: 13.5px;
+  }
+
+  .hero_benefits__c4gsE {
+    margin-top: 8px;
+    font-size: 11px;
+    gap: 6px 10px;
+    flex-wrap: wrap;
+  }
+
+  .hero_services__IUKnj {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    height: auto;
+    min-height: 0;
+    flex: none;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: 4px;
+    border-radius: 12px;
+  }
+
+  .hero_services__IUKnj a {
+    min-height: 54px;
+    padding: 5px 2px;
+    font-size: 10.5px;
+    line-height: 1.22;
+    gap: 4px;
+  }
+
+  .hero_services__IUKnj a:nth-child(4n) {
+    border-right: 0;
+  }
+
+  .hero_services__IUKnj a:nth-child(-n + 4) {
+    border-bottom: 1px solid rgba(32, 129, 170, 0.22);
+  }
+
+  .hero_serviceIcon__k9RZu {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 680px) and (max-height: 720px) {
+  .hero_copy___BJgx {
+    padding: 12px 12px 10px;
+  }
+
+  .hero_carousel__pXLyZ .hero_headline__RbsI5 {
+    font-size: 21px;
+  }
+
+  .hero_description__NYlk8 {
+    font-size: 12px;
+    line-height: 1.36;
+    margin-top: 4px;
+  }
+
+  .hero_ctaEntrance__XsNn_ {
+    margin-top: 8px;
+  }
+
+  .hero_carousel__pXLyZ .hero_copy___BJgx .hero_booking__W03w6 {
+    min-height: 36px;
+    font-size: 13px;
+    padding: 0 16px;
+  }
+
+  .hero_benefits__c4gsE {
+    margin-top: 6px;
+    font-size: 10px;
+    gap: 4px 8px;
+  }
+
+  .hero_scene__nM7xQ {
+    aspect-ratio: 18 / 9;
+    max-height: 155px;
+  }
+
+  .hero_services__IUKnj a {
+    min-height: 48px;
+    padding: 4px 1px;
+    font-size: 10px;
+    line-height: 1.18;
+  }
+
+  .hero_serviceIcon__k9RZu {
+    width: 22px;
+    height: 22px;
+  }
+}
+

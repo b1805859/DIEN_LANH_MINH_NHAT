@@ -1,0 +1,18 @@
+[
+  {
+    "width": 390,
+    "aiOpenClose": true,
+    "zaloHref": true,
+    "phoneHref": true,
+    "bookingNavigation": true,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "aiOpenClose": true,
+    "zaloHref": true,
+    "phoneHref": true,
+    "bookingNavigation": true,
+    "errors": []
+  }
+]

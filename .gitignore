@@ -16,6 +16,8 @@ Thumbs.db
 .vercel/
 .vercel
 .next-ui*/
+.next-seo-build/
+.next-ice-blue*/
 audit-output/*.log
 audit-output/verification-*.log
 .env*

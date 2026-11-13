@@ -1,0 +1,74 @@
+{
+  "layoutCases": 130,
+  "mainCases": 98,
+  "supplementalCases": 32,
+  "httpErrors": [],
+  "layoutFailures": [],
+  "interactionViewports": [
+    {
+      "width": 320,
+      "menu": true,
+      "slider": true,
+      "tabs": true,
+      "filters": true,
+      "form": true
+    },
+    {
+      "width": 375,
+      "menu": true,
+      "slider": true,
+      "tabs": true,
+      "filters": true,
+      "form": true
+    },
+    {
+      "width": 390,
+      "menu": true,
+      "slider": true,
+      "tabs": true,
+      "filters": true,
+      "form": true
+    },
+    {
+      "width": 430,
+      "menu": true,
+      "slider": true,
+      "tabs": true,
+      "filters": true,
+      "form": true
+    },
+    {
+      "width": 768,
+      "menu": true,
+      "slider": true,
+      "tabs": true,
+      "filters": true,
+      "form": true
+    }
+  ],
+  "airflow": [
+    {
+      "width": 320,
+      "airflow": true,
+      "draws": 72
+    },
+    {
+      "width": 390,
+      "airflow": true,
+      "draws": 72
+    },
+    {
+      "width": 768,
+      "airflow": true,
+      "draws": 32
+    },
+    {
+      "width": 1440,
+      "airflow": true,
+      "draws": 22
+    }
+  ],
+  "desktopActiveCssChecks": 40,
+  "desktopActiveCssIdentical": true,
+  "sourceLintErrors": 0
+}

@@ -1,3 +1,4 @@
+import { getWebsiteContent } from '@/lib/content/website-content';
 import { PageHero } from '@/components/redesign/ui';
 import { Showcase } from '@/components/redesign/showcase';
 import { ServiceArea } from '@/components/redesign/service-area';
@@ -8,7 +9,8 @@ export const metadata = buildMetadata({
   description: 'Các hạng mục sửa chữa, lắp đặt minh họa và bài viết về cách dùng thiết bị điện lạnh.',
   path: '/projects',
 });
-export default function ProjectsPage() {
+export default async function ProjectsPage() {
+  const { posts, categories } = await getWebsiteContent();
   return (
     <main className="mn-reference-page mn-news-page">
       <PageHero
@@ -20,7 +22,7 @@ export default function ProjectsPage() {
       />
       <div className="mn-container mn-projects-content">
         <section className="mn-tone-section mn-tone-light" aria-label="Dự án và tin tức">
-          <Showcase key="projects" />
+          <Showcase posts={posts} categories={categories} key="projects" />
         </section>
         <div className="mn-tone-section mn-tone-deep mn-shared-coverage-section">
           <ServiceArea />

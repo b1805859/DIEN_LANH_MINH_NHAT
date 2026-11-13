@@ -10,7 +10,7 @@ import { QueryBoundary } from '@/components/layout/query-boundary';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/components/ui/toast';
 import { apiClient } from '@/lib/api/client';
-import { clearStoredAuthTokens, getStoredAccessToken } from '@/lib/auth/tokens';
+import { AUTH_TOKEN_CHANGE_EVENT, clearStoredAuthTokens, getStoredAccessToken } from '@/lib/auth/tokens';
 
 const changePasswordSchema = z
   .object({
@@ -31,7 +31,10 @@ function ChangePasswordPageContent() {
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
-    setToken(getStoredAccessToken());
+    const syncToken = () => setToken(getStoredAccessToken());
+    syncToken();
+    window.addEventListener(AUTH_TOKEN_CHANGE_EVENT, syncToken);
+    return () => window.removeEventListener(AUTH_TOKEN_CHANGE_EVENT, syncToken);
   }, []);
 
   const form = useForm<ChangePasswordInput>({

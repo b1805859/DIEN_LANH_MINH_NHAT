@@ -1,0 +1,51 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>
+  body { margin: 0; background: #000; }
+  .clip { position: absolute; width: 1660px; height: 947px; transform-origin: 0 0; }
+</style>
+<div class="clip" id="clip">
+  <img src="v4.png" style="position:absolute;width:1660px;height:947px;">
+  <svg style="position:absolute" width="1660" height="947" viewBox="0 0 1660 947">
+    <g fill="none" stroke="rgba(255,0,0,0.95)" stroke-width="2">
+      <path transform="translate(1250 300) scale(0.6666667)" d="
+        M 180 151 Q 170 110 200 83 Q 220 48 270 39 Q 312 25 331 56
+        Q 365 62 391 81 Q 410 113 400 151 L 390 169
+        Q 404 164 404 184 Q 400 222 382 228 L 378 259 L 375 271
+        L 385 290 L 399 287 L 420 324 L 492 349
+        Q 539 359 550 392 Q 565 439 568 480
+        L 554 535 L 540 590 L 519 647 L 518 683 L 522 735
+        L 524 807 L 513 863 L 521 899 L 513 926 L 515 980
+        L 109 980 L 123 916 L 121 892 L 133 840 L 137 782 L 144 738
+        Q 91 738 58 721 Q 38 710 35 685 L 32 670 L 36 646
+        L 43 624 L 48 589 L 58 552 L 75 518 L 84 470 L 96 431
+        L 110 411 L 131 396 L 168 383 L 205 367 L 236 352
+        L 242 336 L 254 326 L 252 302 Q 219 290 208 265
+        L 195 233 Q 182 217 190 198 L 195 186 Z"/>
+    </g>
+    <g id="edges"></g>
+    <g id="grid" stroke="rgba(0,220,255,0.4)" stroke-width="1"></g>
+    <g id="labels" fill="#00b4ff" font-size="16" font-weight="bold"></g>
+    <circle id="probe" r="3" fill="lime"/>
+  </svg>
+</div>
+<script>
+  const q = new URLSearchParams(location.search);
+  const sx = +q.get('x') || 1330, sy = +q.get('y') || 290, sc = +q.get('s') || 3;
+  const probeX = +q.get('px'), probeY = +q.get('py');
+  if (!Number.isNaN(probeX)) document.getElementById('probe').setAttribute('cx', probeX),
+    document.getElementById('probe').setAttribute('cy', probeY);
+  document.getElementById('clip').style.transform = `scale(${sc}) translate(${-sx}px, ${-sy}px)`;
+  const g = document.getElementById('grid'), lb = document.getElementById('labels');
+  const step = 25;
+  let s = '', t = '';
+  for (let x = Math.ceil((sx - 20) / step) * step; x <= sx + 900 / sc + 20; x += step) {
+    s += `<line x1="${x}" y1="0" x2="${x}" y2="947"/>`;
+    t += `<text x="${x + 2}" y="${sy + 26}">${x}</text>`;
+  }
+  for (let y = Math.ceil((sy - 20) / step) * step; y <= sy + 700 / sc + 20; y += step) {
+    s += `<line x1="0" y1="${y}" x2="1660" y2="${y}"/>`;
+    t += `<text x="${sx + 26}" y="${y + 5}">${y}</text>`;
+  }
+  g.innerHTML = s; lb.innerHTML = t;
+</script>

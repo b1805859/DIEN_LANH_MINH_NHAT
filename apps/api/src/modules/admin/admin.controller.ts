@@ -15,16 +15,25 @@ import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 import { RolesGuard } from '../../common/guards/roles.guard';
 import { RequestUser } from '../../common/types/request-user';
 import { AdminService } from './admin.service';
+import { AnalyticsService } from '../analytics/analytics.service';
 
 @UseGuards(JwtAuthGuard, RolesGuard)
 @Roles('SUPER_ADMIN', 'ADMIN', 'EDITOR', 'STAFF')
 @Controller('admin')
 export class AdminController {
-  constructor(private readonly adminService: AdminService) {}
+  constructor(
+    private readonly adminService: AdminService,
+    private readonly analytics: AnalyticsService,
+  ) {}
 
   @Get('dashboard')
   dashboard(@CurrentUser() user: RequestUser) {
     return this.adminService.getDashboard(user.role);
+  }
+
+  @Get('analytics/trends')
+  trends(@Query('days') days?: string) {
+    return this.analytics.getTrends(days);
   }
 
   @Get('history')
@@ -47,7 +56,11 @@ export class AdminController {
   }
 
   @Get(':resource/:id')
-  get(@CurrentUser() user: RequestUser, @Param('resource') resource: string, @Param('id') id: string) {
+  get(
+    @CurrentUser() user: RequestUser,
+    @Param('resource') resource: string,
+    @Param('id') id: string,
+  ) {
     return this.adminService.get(resource, id, user.role);
   }
 
@@ -71,7 +84,11 @@ export class AdminController {
   }
 
   @Delete(':resource/:id')
-  remove(@CurrentUser() user: RequestUser, @Param('resource') resource: string, @Param('id') id: string) {
+  remove(
+    @CurrentUser() user: RequestUser,
+    @Param('resource') resource: string,
+    @Param('id') id: string,
+  ) {
     return this.adminService.remove(resource, id, user);
   }
 }

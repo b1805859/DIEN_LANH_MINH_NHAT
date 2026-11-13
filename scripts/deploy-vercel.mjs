@@ -9,10 +9,10 @@ const projects = [
   { project: 'dien-lanh-minh-nhat', label: 'website' },
 ];
 
-function runVercel(args, label) {
+function runVercel(args, label, retries = 1) {
   const result = spawnSync(
     'npx',
-    ['--yes', 'vercel@62.2.0', ...args, '--scope', scope],
+    ['--yes', 'vercel', ...args, '--scope', scope],
     { cwd: repoRoot, stdio: 'inherit' },
   );
 
@@ -22,6 +22,10 @@ function runVercel(args, label) {
   }
 
   if (result.status !== 0) {
+    if (retries > 0) {
+      console.warn(`\n[Retry] Thử lại ${label}...`);
+      return runVercel(args, label, retries - 1);
+    }
     console.error(`${label} thất bại; dừng deploy để tránh báo thành công khi chưa hoàn tất.`);
     process.exit(result.status ?? 1);
   }

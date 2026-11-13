@@ -1,70 +1,64 @@
-import Link from 'next/link';
 import Image from 'next/image';
-import { Mail, Phone } from 'lucide-react';
-import { BookingForm } from '@/components/forms/booking-form';
+import { Headset, Mail, Phone } from 'lucide-react';
+import { ConsultationForm } from '@/components/forms/consultation-form';
+import { siteContent } from '@/lib/content/site-content';
 import { PageHero } from './ui';
 import { ContactMap } from './service-area';
-import { siteContent } from '@/lib/content/site-content';
-export function ContactPageContent({ contact = false }: { contact?: boolean }) {
+import styles from './contact-page.module.css';
+
+export function ContactPageContent() {
   return (
     <main className="mn-reference-page mn-contact-page">
       <PageHero
+        className="mn-contact-hero"
         showEyebrow={false}
-        title={contact ? 'Liên hệ Minh Nhật' : 'Đặt lịch dịch vụ'}
-        accent={contact ? 'gọi điện hoặc nhắn Zalo' : 'để thợ đến kiểm tra'}
-        description={contact ? 'Cho Minh Nhật biết máy đang gặp lỗi gì và địa chỉ của bạn. Bạn có thể gọi điện, nhắn Zalo hoặc để lại thông tin bên dưới.' : 'Bạn chọn dịch vụ, điền địa chỉ và giờ muốn hẹn. Minh Nhật sẽ gọi lại để xác nhận.'}
+        title="Liên hệ"
+        accent="và tư vấn"
+        description="Gọi, nhắn Zalo hoặc để lại thông tin để nhân viên Minh Nhật gọi lại tư vấn."
         image={siteContent.images.contact}
       />
-      <div className="mn-container mn-contact-layout mn-tone-section mn-tone-light">
-        <section className="mn-booking-shell mn-panel">
-          <nav className="mn-tabs" aria-label="Liên hệ và đặt lịch">
-            <Link href="/booking" aria-current={!contact ? 'page' : undefined}>
-              Đặt lịch dịch vụ
-            </Link>
-            <Link href="/contact" aria-current={contact ? 'page' : undefined}>
-              Liên hệ tư vấn
-            </Link>
-          </nav>
-          <div className="mn-form-panel">
-            <BookingForm />
-          </div>
-        </section>
-        <aside className="mn-contact-aside">
-          <div className="mn-contact-methods">
-            <a href={siteContent.phoneHref}>
-              <Phone />
-              <span>
-                <small>Hotline tư vấn</small>
-                <strong>{siteContent.phoneDisplay}</strong>
-                <small>Liên hệ để xác nhận lịch</small>
-              </span>
-            </a>
-            <a href={siteContent.zalo} target="_blank" rel="noreferrer">
-              <Image src="/icons/zalo.svg" alt="Zalo" width={35} height={35} />
-              <span>
-                <strong>Chat Zalo</strong>
-                <small>Tư vấn nhanh</small>
-              </span>
-            </a>
-          </div>
-          {siteContent.email ? (
-            <a className="mn-contact-email" href={`mailto:${siteContent.email}`}>
-              <Mail />
-              <span>
-                <small>Email</small>
-                {siteContent.email}
-              </span>
-            </a>
-          ) : (
-            <div className="mn-contact-email">
-              <Mail />
-              <span>
-                <small>Email</small>Đang cập nhật
-              </span>
+      <div className={`mn-container mn-contact-layout mn-tone-section mn-tone-light ${styles.layout}`}>
+        <div className={styles.contactStack}>
+          <section
+            id="tu-van"
+            className={`mn-booking-shell mn-panel ${styles.booking}`}
+            aria-labelledby="consultation-heading"
+            tabIndex={-1}
+          >
+            <span id="dat-lich" className={styles.legacyAnchor} aria-hidden="true" />
+            <div className="mn-form-panel">
+              <header className={styles.heading}>
+                <Headset aria-hidden="true" />
+                <div>
+                  <h2 id="consultation-heading">Để lại thông tin tư vấn</h2>
+                  <p>Nhân viên Minh Nhật sẽ gọi lại để trao đổi về tình trạng máy và giải đáp thắc mắc của bạn.</p>
+                </div>
+              </header>
+              <ConsultationForm />
             </div>
-          )}
-          <ContactMap />
-        </aside>
+          </section>
+          <section className={`mn-panel ${styles.help}`} aria-labelledby="contact-heading">
+            <h2 id="contact-heading">Muốn trao đổi ngay?</h2>
+            <p>Gọi để trao đổi hoặc gửi ảnh tình trạng máy qua Zalo.</p>
+            <div className={styles.actions}>
+              <a className="mn-button" href={siteContent.phoneHref}>
+                <Phone size={18} aria-hidden="true" />
+                Gọi {siteContent.phoneDisplay}
+              </a>
+              <a className="mn-button mn-button-secondary" href={siteContent.zalo} target="_blank" rel="noreferrer">
+                <Image src="/icons/zalo.svg" alt="" width={22} height={22} />
+                Nhắn Zalo
+              </a>
+            </div>
+            {siteContent.email && (
+              <a className={styles.email} href={`mailto:${siteContent.email}`}>
+                <Mail size={18} aria-hidden="true" />
+                {siteContent.email}
+              </a>
+            )}
+          </section>
+        </div>
+        <ContactMap />
       </div>
     </main>
   );

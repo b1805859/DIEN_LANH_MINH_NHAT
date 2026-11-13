@@ -1,0 +1,467 @@
+[
+  {
+    "route": "/",
+    "cards": [
+      {
+        "class": "hero_track__dQsL4",
+        "shadow": "none",
+        "bg": "rgb(0, 21, 46)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-project-card",
+        "shadow": "rgba(0, 107, 157, 0.03) 0px 6px 20px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-project-card",
+        "shadow": "rgba(0, 107, 157, 0.03) 0px 6px 20px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-project-card",
+        "shadow": "rgba(0, 107, 157, 0.03) 0px 6px 20px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-project-card",
+        "shadow": "rgba(0, 107, 157, 0.03) 0px 6px 20px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-process-illustration",
+        "shadow": "none",
+        "bg": "rgb(243, 250, 255)"
+      },
+      {
+        "class": "mn-journey-highlight",
+        "shadow": "none",
+        "bg": "rgba(0, 175, 240, 0.03)"
+      },
+      {
+        "class": "mn-process-illustration",
+        "shadow": "none",
+        "bg": "rgb(243, 250, 255)"
+      },
+      {
+        "class": "mn-journey-highlight",
+        "shadow": "none",
+        "bg": "rgba(0, 175, 240, 0.03)"
+      },
+      {
+        "class": "mn-process-illustration",
+        "shadow": "none",
+        "bg": "rgb(243, 250, 255)"
+      },
+      {
+        "class": "mn-journey-highlight",
+        "shadow": "none",
+        "bg": "rgba(0, 175, 240, 0.03)"
+      },
+      {
+        "class": "mn-process-illustration",
+        "shadow": "none",
+        "bg": "rgb(243, 250, 255)"
+      },
+      {
+        "class": "mn-journey-highlight",
+        "shadow": "none",
+        "bg": "rgba(0, 175, 240, 0.03)"
+      },
+      {
+        "class": "mn-process-illustration",
+        "shadow": "none",
+        "bg": "rgb(243, 250, 255)"
+      },
+      {
+        "class": "mn-journey-highlight",
+        "shadow": "none",
+        "bg": "rgba(0, 175, 240, 0.03)"
+      }
+    ]
+  },
+  {
+    "route": "/about",
+    "cards": [
+      {
+        "class": "mn-container mn-page-hero mn-about-hero",
+        "shadow": "none",
+        "bg": "rgb(0, 36, 59)"
+      },
+      {
+        "class": "mn-about-facts mn-panel",
+        "shadow": "rgba(0, 13, 26, 0.094) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      }
+    ]
+  },
+  {
+    "route": "/services",
+    "cards": [
+      {
+        "class": "mn-container mn-page-hero ",
+        "shadow": "none",
+        "bg": "rgb(0, 36, 59)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-process-illustration",
+        "shadow": "none",
+        "bg": "rgb(243, 250, 255)"
+      },
+      {
+        "class": "mn-journey-highlight",
+        "shadow": "none",
+        "bg": "rgba(0, 175, 240, 0.03)"
+      },
+      {
+        "class": "mn-process-illustration",
+        "shadow": "none",
+        "bg": "rgb(243, 250, 255)"
+      },
+      {
+        "class": "mn-journey-highlight",
+        "shadow": "none",
+        "bg": "rgba(0, 175, 240, 0.03)"
+      },
+      {
+        "class": "mn-process-illustration",
+        "shadow": "none",
+        "bg": "rgb(243, 250, 255)"
+      },
+      {
+        "class": "mn-journey-highlight",
+        "shadow": "none",
+        "bg": "rgba(0, 175, 240, 0.03)"
+      },
+      {
+        "class": "mn-process-illustration",
+        "shadow": "none",
+        "bg": "rgb(243, 250, 255)"
+      },
+      {
+        "class": "mn-journey-highlight",
+        "shadow": "none",
+        "bg": "rgba(0, 175, 240, 0.03)"
+      },
+      {
+        "class": "mn-process-illustration",
+        "shadow": "none",
+        "bg": "rgb(243, 250, 255)"
+      },
+      {
+        "class": "mn-journey-highlight",
+        "shadow": "none",
+        "bg": "rgba(0, 175, 240, 0.03)"
+      },
+      {
+        "class": "mn-support",
+        "shadow": "none",
+        "bg": "rgb(0, 36, 59)"
+      }
+    ]
+  },
+  {
+    "route": "/projects",
+    "cards": [
+      {
+        "class": "mn-container mn-page-hero ",
+        "shadow": "none",
+        "bg": "rgb(0, 36, 59)"
+      },
+      {
+        "class": "mn-project-card",
+        "shadow": "rgba(0, 107, 157, 0.03) 0px 6px 20px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-project-card",
+        "shadow": "rgba(0, 107, 157, 0.03) 0px 6px 20px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-project-card",
+        "shadow": "rgba(0, 107, 157, 0.03) 0px 6px 20px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-project-card",
+        "shadow": "rgba(0, 107, 157, 0.03) 0px 6px 20px 0px",
+        "bg": "rgb(255, 255, 255)"
+      }
+    ]
+  },
+  {
+    "route": "/blog",
+    "cards": [
+      {
+        "class": "mn-container mn-page-hero ",
+        "shadow": "none",
+        "bg": "rgb(0, 36, 59)"
+      },
+      {
+        "class": "mn-project-card",
+        "shadow": "rgba(0, 107, 157, 0.03) 0px 6px 20px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-project-card",
+        "shadow": "rgba(0, 107, 157, 0.03) 0px 6px 20px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-project-card",
+        "shadow": "rgba(0, 107, 157, 0.03) 0px 6px 20px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-project-card",
+        "shadow": "rgba(0, 107, 157, 0.03) 0px 6px 20px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-project-card",
+        "shadow": "rgba(0, 107, 157, 0.03) 0px 6px 20px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-project-card",
+        "shadow": "rgba(0, 107, 157, 0.03) 0px 6px 20px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-project-card",
+        "shadow": "rgba(0, 107, 157, 0.03) 0px 6px 20px 0px",
+        "bg": "rgb(255, 255, 255)"
+      }
+    ]
+  },
+  {
+    "route": "/faq",
+    "cards": [
+      {
+        "class": "mn-container mn-page-hero ",
+        "shadow": "none",
+        "bg": "rgb(0, 36, 59)"
+      }
+    ]
+  },
+  {
+    "route": "/contact",
+    "cards": [
+      {
+        "class": "mn-container mn-page-hero ",
+        "shadow": "none",
+        "bg": "rgb(0, 36, 59)"
+      },
+      {
+        "class": "mn-booking-shell mn-panel",
+        "shadow": "rgba(0, 13, 26, 0.094) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-form-panel",
+        "shadow": "none",
+        "bg": "rgb(243, 250, 255)"
+      },
+      {
+        "class": "mn-contact-email",
+        "shadow": "rgba(0, 13, 26, 0.094) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-contact-map",
+        "shadow": "none",
+        "bg": "rgb(255, 255, 255)"
+      }
+    ]
+  },
+  {
+    "route": "/booking",
+    "cards": [
+      {
+        "class": "mn-container mn-page-hero ",
+        "shadow": "none",
+        "bg": "rgb(0, 36, 59)"
+      },
+      {
+        "class": "mn-booking-shell mn-panel",
+        "shadow": "rgba(0, 13, 26, 0.094) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-form-panel",
+        "shadow": "none",
+        "bg": "rgb(243, 250, 255)"
+      },
+      {
+        "class": "mn-contact-email",
+        "shadow": "rgba(0, 13, 26, 0.094) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-contact-map",
+        "shadow": "none",
+        "bg": "rgb(255, 255, 255)"
+      }
+    ]
+  },
+  {
+    "route": "/privacy-policy",
+    "cards": [
+      {
+        "class": "mn-container mn-page-hero ",
+        "shadow": "none",
+        "bg": "rgb(0, 36, 59)"
+      }
+    ]
+  },
+  {
+    "route": "/terms-of-service",
+    "cards": [
+      {
+        "class": "mn-container mn-page-hero ",
+        "shadow": "none",
+        "bg": "rgb(0, 36, 59)"
+      }
+    ]
+  },
+  {
+    "route": "/areas/ninh-kieu",
+    "cards": [
+      {
+        "class": "mn-container mn-page-hero ",
+        "shadow": "none",
+        "bg": "rgb(0, 36, 59)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-service-card",
+        "shadow": "rgba(0, 106, 170, 0.043) 0px 8px 22px 0px",
+        "bg": "rgb(255, 255, 255)"
+      },
+      {
+        "class": "mn-detail-booking mn-panel",
+        "shadow": "rgba(0, 13, 26, 0.094) 0px 8px 22px 0px",
+        "bg": "rgb(5, 44, 67)"
+      },
+      {
+        "class": "mn-form-panel",
+        "shadow": "none",
+        "bg": "rgb(243, 250, 255)"
+      }
+    ]
+  },
+  {
+    "route": "/admin/login",
+    "cards": [
+      {
+        "class": "admin-login-panel",
+        "shadow": "rgba(16, 92, 169, 0.145) 0px 24px 70px 0px",
+        "bg": "rgba(247, 253, 255, 0.96)"
+      }
+    ]
+  }
+]

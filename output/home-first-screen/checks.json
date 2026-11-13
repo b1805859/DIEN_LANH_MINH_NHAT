@@ -1,0 +1,50 @@
+[
+  {
+    "benefitsBottom": 734.6015625,
+    "bookingBottom": 704.609375,
+    "clipped": [],
+    "count": 11,
+    "height": 768,
+    "heroBottom": 752,
+    "heroHeight": 658,
+    "heroWidth": 1200,
+    "horizontalOverflow": false,
+    "width": 1366
+  },
+  {
+    "benefitsBottom": 570.8046875,
+    "bookingBottom": 541.3046875,
+    "clipped": [],
+    "count": 11,
+    "height": 600,
+    "heroBottom": 584,
+    "heroHeight": 490,
+    "heroWidth": 1200,
+    "horizontalOverflow": false,
+    "width": 1440
+  },
+  {
+    "benefitsBottom": 841.8515625,
+    "bookingBottom": 810.1015625,
+    "clipped": [],
+    "count": 11,
+    "height": 1080,
+    "heroBottom": 862,
+    "heroHeight": 768,
+    "heroWidth": 1200,
+    "horizontalOverflow": false,
+    "width": 1440
+  },
+  {
+    "benefitsBottom": 765.8046875,
+    "bookingBottom": 735.296875,
+    "clipped": [],
+    "count": 11,
+    "height": 800,
+    "heroBottom": 784,
+    "heroHeight": 690,
+    "heroWidth": 1200,
+    "horizontalOverflow": false,
+    "width": 1440
+  }
+]

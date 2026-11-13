@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { APP_NAME, TARGET_CITY } from '@minhnhat/shared';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+import { siteUrl, isPreviewDeployment } from './site-url';
 const defaultSocialImage = '/images/redesign/family-morning.webp';
 
 export function absoluteUrl(path: string) {
@@ -13,13 +13,17 @@ export function buildMetadata({
   description,
   path,
   image = defaultSocialImage,
+  imageAlt = title,
   type = 'website',
+  index = true,
 }: {
   title: string;
   description: string;
   path: string;
   image?: string;
+  imageAlt?: string;
   type?: 'website' | 'article';
+  index?: boolean;
 }): Metadata {
   const url = absoluteUrl(path);
   const imageUrl = absoluteUrl(image);
@@ -35,7 +39,7 @@ export function buildMetadata({
       siteName: APP_NAME,
       locale: 'vi_VN',
       type,
-      images: [{ url: imageUrl, alt: title }],
+      images: [{ url: imageUrl, alt: imageAlt }],
     },
     twitter: {
       card: 'summary_large_image',
@@ -44,10 +48,10 @@ export function buildMetadata({
       images: [imageUrl],
     },
     robots: {
-      index: true,
+      index: index && !isPreviewDeployment,
       follow: true,
       googleBot: {
-        index: true,
+        index: index && !isPreviewDeployment,
         follow: true,
         'max-image-preview': 'large',
         'max-snippet': -1,

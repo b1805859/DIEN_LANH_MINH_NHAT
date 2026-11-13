@@ -1,0 +1,581 @@
+[
+  {
+    "width": 320,
+    "route": "/",
+    "height": 8835,
+    "screens": 10.5,
+    "sections": [
+      {
+        "cls": "mn-home-hero hero_carousel__pXLyZ",
+        "y": 76,
+        "h": 625,
+        "text": "Sửa điện lạnhngay tại nhàMáy lạnh, máy giặt, tủ lạnhvà điện nước tại Cần Thơ.Đặt"
+      },
+      {
+        "cls": "mn-home-about-band",
+        "y": 717,
+        "h": 1142,
+        "text": "Kiểm traBáo giáRồi mới sửaGIỚI THIỆU MINH NHẬTSửa điện lạnh tại nhàở Cần ThơBạn "
+      },
+      {
+        "cls": "mn-home-process-band mn-home-light",
+        "y": 1859,
+        "h": 682,
+        "text": "Các bước đặt lịch và sửa chữaBƯỚC01Nhận yêu cầuBạn cho biết máy bị lỗi gì và địa"
+      },
+      {
+        "cls": "mn-section mn-home-services mn-home-light",
+        "y": 2541,
+        "h": 2781,
+        "text": "DỊCH VỤ CỦA CHÚNG TÔIDịch vụ điện lạnh tại Cần ThơNhận sửa, vệ sinh và lắp máy l"
+      },
+      {
+        "cls": "mn-service-grid",
+        "y": 2928,
+        "h": 2342,
+        "text": "Sửa chữa máy lạnhKiểm tra máy không lạnh, chảy nước, báo lỗi. Tư vấn rõ nguyên n"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 2928,
+        "h": 375,
+        "text": "Sửa chữa máy lạnhKiểm tra máy không lạnh, chảy nước, báo lỗi. Tư vấn rõ nguyên n"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 3327,
+        "h": 375,
+        "text": "Vệ sinh máy lạnhLàm sạch dàn nóng, dàn lạnh và lưới lọc. Kiểm tra đường thoát nư"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 3726,
+        "h": 375,
+        "text": "Sửa chữa máy giặtKiểm tra lỗi không vắt, không xả, rung và tiếng ồn. Hỗ trợ ngay"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 4124,
+        "h": 348,
+        "text": "Sửa chữa tủ lạnhXử lý yếu lạnh, không đông đá, rò nước và tiếng ồn bất thường."
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 4497,
+        "h": 375,
+        "text": "Điện nước dân dụngKiểm tra điện nước trong nhà, sửa chỗ rò rỉ, thay vòi, van, ổ "
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 4896,
+        "h": 375,
+        "text": "Bảo dưỡng định kỳVệ sinh máy, kiểm tra các bộ phận và chạy thử sau khi bảo dưỡng"
+      },
+      {
+        "cls": "mn-home-coverage-band",
+        "y": 5322,
+        "h": 829,
+        "text": "Nhận sửa tại nhàở Cần ThơBạn chọn khu vực bên dưới hoặc gửi địa chỉ để Minh Nhật"
+      },
+      {
+        "cls": "mn-section mn-home-projects mn-home-light",
+        "y": 6151,
+        "h": 1408,
+        "text": "Dự án & Bài viếtDự ánBài viếtXem tất cả Lắp đặt máy lạnh tại nhà phốNinh Kiều, C"
+      },
+      {
+        "cls": "mn-project-grid",
+        "y": 6320,
+        "h": 1187,
+        "text": "Lắp đặt máy lạnh tại nhà phốNinh Kiều, Cần ThơKiểm tra và sửa chữa tủ lạnhBình T"
+      },
+      {
+        "cls": "mn-footer mn-home-footer",
+        "y": 7559,
+        "h": 1275,
+        "text": "ĐIỆN LẠNHMINH NHẬTCẦN THƠNhận sửa máy lạnh, máy giặt, tủ lạnh và điện nước tại n"
+      }
+    ]
+  },
+  {
+    "width": 320,
+    "route": "/services",
+    "height": 5250,
+    "screens": 6.2,
+    "sections": [
+      {
+        "cls": "mn-container mn-page-hero ",
+        "y": 76,
+        "h": 280,
+        "text": "Dịch vụ điện lạnhtại Cần ThơChọn dịch vụ bạn cần bên dưới. Thợ sẽ kiểm tra máy v"
+      },
+      {
+        "cls": "mn-service-grid mn-service-grid-preview",
+        "y": 588,
+        "h": 2282,
+        "text": "Sửa chữa máy lạnhKiểm tra máy không lạnh, chảy nước, báo lỗi. Tư vấn rõ nguyên n"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 588,
+        "h": 365,
+        "text": "Sửa chữa máy lạnhKiểm tra máy không lạnh, chảy nước, báo lỗi. Tư vấn rõ nguyên n"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 977,
+        "h": 365,
+        "text": "Vệ sinh máy lạnhLàm sạch dàn nóng, dàn lạnh và lưới lọc. Kiểm tra đường thoát nư"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 1366,
+        "h": 365,
+        "text": "Sửa chữa máy giặtKiểm tra lỗi không vắt, không xả, rung và tiếng ồn. Hỗ trợ ngay"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 1754,
+        "h": 338,
+        "text": "Sửa chữa tủ lạnhXử lý yếu lạnh, không đông đá, rò nước và tiếng ồn bất thường."
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 2117,
+        "h": 365,
+        "text": "Điện nước dân dụngKiểm tra điện nước trong nhà, sửa chỗ rò rỉ, thay vòi, van, ổ "
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 2506,
+        "h": 365,
+        "text": "Lắp đặt máy lạnhKhảo sát vị trí, tháo lắp và di dời thiết bị. Thi công gọn gàng,"
+      },
+      {
+        "cls": "mn-footer mn-home-footer",
+        "y": 3974,
+        "h": 1275,
+        "text": "ĐIỆN LẠNHMINH NHẬTCẦN THƠNhận sửa máy lạnh, máy giặt, tủ lạnh và điện nước tại n"
+      }
+    ]
+  },
+  {
+    "width": 320,
+    "route": "/blog",
+    "height": 4764,
+    "screens": 5.6,
+    "sections": [
+      {
+        "cls": "mn-container mn-page-hero ",
+        "y": 76,
+        "h": 322,
+        "text": "Cách dùng, vệ sinhvà nhận biết lỗi máyCác bài viết về máy lạnh, máy giặt và tủ l"
+      },
+      {
+        "cls": "mn-project-grid",
+        "y": 676,
+        "h": 2773,
+        "text": "Bao lâu nên vệ sinh máy lạnh một lần?Bao lâu nên vệ sinh máy lạnh ở nhà, phòng t"
+      },
+      {
+        "cls": "mn-footer mn-home-footer",
+        "y": 3489,
+        "h": 1275,
+        "text": "ĐIỆN LẠNHMINH NHẬTCẦN THƠNhận sửa máy lạnh, máy giặt, tủ lạnh và điện nước tại n"
+      }
+    ]
+  },
+  {
+    "width": 320,
+    "route": "/contact",
+    "height": 844,
+    "screens": 1,
+    "sections": []
+  },
+  {
+    "width": 390,
+    "route": "/",
+    "height": 9046,
+    "screens": 10.7,
+    "sections": [
+      {
+        "cls": "mn-home-hero hero_carousel__pXLyZ",
+        "y": 76,
+        "h": 668,
+        "text": "Sửa điện lạnhngay tại nhàMáy lạnh, máy giặt, tủ lạnhvà điện nước tại Cần Thơ.Đặt"
+      },
+      {
+        "cls": "mn-home-about-band",
+        "y": 760,
+        "h": 1133,
+        "text": "Kiểm traBáo giáRồi mới sửaGIỚI THIỆU MINH NHẬTSửa điện lạnh tại nhàở Cần ThơBạn "
+      },
+      {
+        "cls": "mn-home-process-band mn-home-light",
+        "y": 1893,
+        "h": 687,
+        "text": "Các bước đặt lịch và sửa chữaBƯỚC01Nhận yêu cầuBạn cho biết máy bị lỗi gì và địa"
+      },
+      {
+        "cls": "mn-section mn-home-services mn-home-light",
+        "y": 2580,
+        "h": 2906,
+        "text": "DỊCH VỤ CỦA CHÚNG TÔIDịch vụ điện lạnh tại Cần ThơNhận sửa, vệ sinh và lắp máy l"
+      },
+      {
+        "cls": "mn-service-grid",
+        "y": 2943,
+        "h": 2491,
+        "text": "Sửa chữa máy lạnhKiểm tra máy không lạnh, chảy nước, báo lỗi. Tư vấn rõ nguyên n"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 2943,
+        "h": 391,
+        "text": "Sửa chữa máy lạnhKiểm tra máy không lạnh, chảy nước, báo lỗi. Tư vấn rõ nguyên n"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 3357,
+        "h": 417,
+        "text": "Vệ sinh máy lạnhLàm sạch dàn nóng, dàn lạnh và lưới lọc. Kiểm tra đường thoát nư"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 3799,
+        "h": 391,
+        "text": "Sửa chữa máy giặtKiểm tra lỗi không vắt, không xả, rung và tiếng ồn. Hỗ trợ ngay"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 4213,
+        "h": 391,
+        "text": "Sửa chữa tủ lạnhXử lý yếu lạnh, không đông đá, rò nước và tiếng ồn bất thường."
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 4628,
+        "h": 391,
+        "text": "Điện nước dân dụngKiểm tra điện nước trong nhà, sửa chỗ rò rỉ, thay vòi, van, ổ "
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 5043,
+        "h": 391,
+        "text": "Bảo dưỡng định kỳVệ sinh máy, kiểm tra các bộ phận và chạy thử sau khi bảo dưỡng"
+      },
+      {
+        "cls": "mn-home-coverage-band",
+        "y": 5486,
+        "h": 829,
+        "text": "Nhận sửa tại nhàở Cần ThơBạn chọn khu vực bên dưới hoặc gửi địa chỉ để Minh Nhật"
+      },
+      {
+        "cls": "mn-section mn-home-projects mn-home-light",
+        "y": 6315,
+        "h": 1538,
+        "text": "Dự án & Bài viếtDự ánBài viếtXem tất cả Lắp đặt máy lạnh tại nhà phốNinh Kiều, C"
+      },
+      {
+        "cls": "mn-project-grid",
+        "y": 6484,
+        "h": 1317,
+        "text": "Lắp đặt máy lạnh tại nhà phốNinh Kiều, Cần ThơKiểm tra và sửa chữa tủ lạnhBình T"
+      },
+      {
+        "cls": "mn-footer mn-home-footer",
+        "y": 7853,
+        "h": 1193,
+        "text": "ĐIỆN LẠNHMINH NHẬTCẦN THƠNhận sửa máy lạnh, máy giặt, tủ lạnh và điện nước tại n"
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "route": "/services",
+    "height": 5297,
+    "screens": 6.3,
+    "sections": [
+      {
+        "cls": "mn-container mn-page-hero ",
+        "y": 76,
+        "h": 280,
+        "text": "Dịch vụ điện lạnhtại Cần ThơChọn dịch vụ bạn cần bên dưới. Thợ sẽ kiểm tra máy v"
+      },
+      {
+        "cls": "mn-service-grid mn-service-grid-preview",
+        "y": 536,
+        "h": 2458,
+        "text": "Sửa chữa máy lạnhKiểm tra máy không lạnh, chảy nước, báo lỗi. Tư vấn rõ nguyên n"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 536,
+        "h": 381,
+        "text": "Sửa chữa máy lạnhKiểm tra máy không lạnh, chảy nước, báo lỗi. Tư vấn rõ nguyên n"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 941,
+        "h": 407,
+        "text": "Vệ sinh máy lạnhLàm sạch dàn nóng, dàn lạnh và lưới lọc. Kiểm tra đường thoát nư"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 1372,
+        "h": 381,
+        "text": "Sửa chữa máy giặtKiểm tra lỗi không vắt, không xả, rung và tiếng ồn. Hỗ trợ ngay"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 1777,
+        "h": 381,
+        "text": "Sửa chữa tủ lạnhXử lý yếu lạnh, không đông đá, rò nước và tiếng ồn bất thường."
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 2182,
+        "h": 381,
+        "text": "Điện nước dân dụngKiểm tra điện nước trong nhà, sửa chỗ rò rỉ, thay vòi, van, ổ "
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 2587,
+        "h": 407,
+        "text": "Lắp đặt máy lạnhKhảo sát vị trí, tháo lắp và di dời thiết bị. Thi công gọn gàng,"
+      },
+      {
+        "cls": "mn-footer mn-home-footer",
+        "y": 4104,
+        "h": 1193,
+        "text": "ĐIỆN LẠNHMINH NHẬTCẦN THƠNhận sửa máy lạnh, máy giặt, tủ lạnh và điện nước tại n"
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "route": "/blog",
+    "height": 4665,
+    "screens": 5.5,
+    "sections": [
+      {
+        "cls": "mn-container mn-page-hero ",
+        "y": 76,
+        "h": 280,
+        "text": "Cách dùng, vệ sinhvà nhận biết lỗi máyCác bài viết về máy lạnh, máy giặt và tủ l"
+      },
+      {
+        "cls": "mn-project-grid",
+        "y": 582,
+        "h": 2850,
+        "text": "Bao lâu nên vệ sinh máy lạnh một lần?Bao lâu nên vệ sinh máy lạnh ở nhà, phòng t"
+      },
+      {
+        "cls": "mn-footer mn-home-footer",
+        "y": 3472,
+        "h": 1193,
+        "text": "ĐIỆN LẠNHMINH NHẬTCẦN THƠNhận sửa máy lạnh, máy giặt, tủ lạnh và điện nước tại n"
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "route": "/contact",
+    "height": 844,
+    "screens": 1,
+    "sections": []
+  },
+  {
+    "width": 430,
+    "route": "/",
+    "height": 9261,
+    "screens": 11,
+    "sections": [
+      {
+        "cls": "mn-home-hero hero_carousel__pXLyZ",
+        "y": 76,
+        "h": 668,
+        "text": "Sửa điện lạnhngay tại nhàMáy lạnh, máy giặt, tủ lạnhvà điện nước tại Cần Thơ.Đặt"
+      },
+      {
+        "cls": "mn-home-about-band",
+        "y": 760,
+        "h": 1133,
+        "text": "Kiểm traBáo giáRồi mới sửaGIỚI THIỆU MINH NHẬTSửa điện lạnh tại nhàở Cần ThơBạn "
+      },
+      {
+        "cls": "mn-home-process-band mn-home-light",
+        "y": 1893,
+        "h": 693,
+        "text": "Các bước đặt lịch và sửa chữaBƯỚC01Nhận yêu cầuBạn cho biết máy bị lỗi gì và địa"
+      },
+      {
+        "cls": "mn-section mn-home-services mn-home-light",
+        "y": 2586,
+        "h": 3025,
+        "text": "DỊCH VỤ CỦA CHÚNG TÔIDịch vụ điện lạnh tại Cần ThơNhận sửa, vệ sinh và lắp máy l"
+      },
+      {
+        "cls": "mn-service-grid",
+        "y": 2949,
+        "h": 2610,
+        "text": "Sửa chữa máy lạnhKiểm tra máy không lạnh, chảy nước, báo lỗi. Tư vấn rõ nguyên n"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 2949,
+        "h": 415,
+        "text": "Sửa chữa máy lạnhKiểm tra máy không lạnh, chảy nước, báo lỗi. Tư vấn rõ nguyên n"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 3388,
+        "h": 415,
+        "text": "Vệ sinh máy lạnhLàm sạch dàn nóng, dàn lạnh và lưới lọc. Kiểm tra đường thoát nư"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 3827,
+        "h": 415,
+        "text": "Sửa chữa máy giặtKiểm tra lỗi không vắt, không xả, rung và tiếng ồn. Hỗ trợ ngay"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 4266,
+        "h": 415,
+        "text": "Sửa chữa tủ lạnhXử lý yếu lạnh, không đông đá, rò nước và tiếng ồn bất thường."
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 4705,
+        "h": 415,
+        "text": "Điện nước dân dụngKiểm tra điện nước trong nhà, sửa chỗ rò rỉ, thay vòi, van, ổ "
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 5145,
+        "h": 415,
+        "text": "Bảo dưỡng định kỳVệ sinh máy, kiểm tra các bộ phận và chạy thử sau khi bảo dưỡng"
+      },
+      {
+        "cls": "mn-home-coverage-band",
+        "y": 5612,
+        "h": 829,
+        "text": "Nhận sửa tại nhàở Cần ThơBạn chọn khu vực bên dưới hoặc gửi địa chỉ để Minh Nhật"
+      },
+      {
+        "cls": "mn-section mn-home-projects mn-home-light",
+        "y": 6441,
+        "h": 1627,
+        "text": "Dự án & Bài viếtDự ánBài viếtXem tất cả Lắp đặt máy lạnh tại nhà phốNinh Kiều, C"
+      },
+      {
+        "cls": "mn-project-grid",
+        "y": 6610,
+        "h": 1406,
+        "text": "Lắp đặt máy lạnh tại nhà phốNinh Kiều, Cần ThơKiểm tra và sửa chữa tủ lạnhBình T"
+      },
+      {
+        "cls": "mn-footer mn-home-footer",
+        "y": 8068,
+        "h": 1193,
+        "text": "ĐIỆN LẠNHMINH NHẬTCẦN THƠNhận sửa máy lạnh, máy giặt, tủ lạnh và điện nước tại n"
+      }
+    ]
+  },
+  {
+    "width": 430,
+    "route": "/services",
+    "height": 5399,
+    "screens": 6.4,
+    "sections": [
+      {
+        "cls": "mn-container mn-page-hero ",
+        "y": 76,
+        "h": 280,
+        "text": "Dịch vụ điện lạnhtại Cần ThơChọn dịch vụ bạn cần bên dưới. Thợ sẽ kiểm tra máy v"
+      },
+      {
+        "cls": "mn-service-grid mn-service-grid-preview",
+        "y": 536,
+        "h": 2550,
+        "text": "Sửa chữa máy lạnhKiểm tra máy không lạnh, chảy nước, báo lỗi. Tư vấn rõ nguyên n"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 536,
+        "h": 405,
+        "text": "Sửa chữa máy lạnhKiểm tra máy không lạnh, chảy nước, báo lỗi. Tư vấn rõ nguyên n"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 965,
+        "h": 405,
+        "text": "Vệ sinh máy lạnhLàm sạch dàn nóng, dàn lạnh và lưới lọc. Kiểm tra đường thoát nư"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 1394,
+        "h": 405,
+        "text": "Sửa chữa máy giặtKiểm tra lỗi không vắt, không xả, rung và tiếng ồn. Hỗ trợ ngay"
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 1823,
+        "h": 405,
+        "text": "Sửa chữa tủ lạnhXử lý yếu lạnh, không đông đá, rò nước và tiếng ồn bất thường."
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 2252,
+        "h": 405,
+        "text": "Điện nước dân dụngKiểm tra điện nước trong nhà, sửa chỗ rò rỉ, thay vòi, van, ổ "
+      },
+      {
+        "cls": "mn-service-card",
+        "y": 2681,
+        "h": 405,
+        "text": "Lắp đặt máy lạnhKhảo sát vị trí, tháo lắp và di dời thiết bị. Thi công gọn gàng,"
+      },
+      {
+        "cls": "mn-footer mn-home-footer",
+        "y": 4205,
+        "h": 1193,
+        "text": "ĐIỆN LẠNHMINH NHẬTCẦN THƠNhận sửa máy lạnh, máy giặt, tủ lạnh và điện nước tại n"
+      }
+    ]
+  },
+  {
+    "width": 430,
+    "route": "/blog",
+    "height": 4722,
+    "screens": 5.6,
+    "sections": [
+      {
+        "cls": "mn-container mn-page-hero ",
+        "y": 76,
+        "h": 280,
+        "text": "Cách dùng, vệ sinhvà nhận biết lỗi máyCác bài viết về máy lạnh, máy giặt và tủ l"
+      },
+      {
+        "cls": "mn-project-grid",
+        "y": 582,
+        "h": 2907,
+        "text": "Bao lâu nên vệ sinh máy lạnh một lần?Bao lâu nên vệ sinh máy lạnh ở nhà, phòng t"
+      },
+      {
+        "cls": "mn-footer mn-home-footer",
+        "y": 3529,
+        "h": 1193,
+        "text": "ĐIỆN LẠNHMINH NHẬTCẦN THƠNhận sửa máy lạnh, máy giặt, tủ lạnh và điện nước tại n"
+      }
+    ]
+  },
+  {
+    "width": 430,
+    "route": "/contact",
+    "height": 844,
+    "screens": 1,
+    "sections": []
+  }
+]

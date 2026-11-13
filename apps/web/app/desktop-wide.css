@@ -1,0 +1,43 @@
+/* Larger content frames need readable copy as well as larger surfaces. */
+@media (min-width: 1536px) {
+  html .mn-site main :is(.mn-section-heading, .mn-home-services-heading) h2 {
+    font-size: clamp(2rem, 1.5rem + 0.6vw, 2.5rem);
+    line-height: 1.2;
+  }
+  html .mn-site main :is(.mn-section-heading, .mn-home-services-heading) p {
+    max-width: 65ch;
+    font-size: clamp(1rem, 0.875rem + 0.15vw, 1.125rem);
+    line-height: 1.6;
+  }
+  html .mn-site main .mn-card-copy h3 {
+    font-size: clamp(1.125rem, 1rem + 0.15vw, 1.375rem);
+  }
+  html .mn-site main .mn-card-copy p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  html .mn-site[data-inner-page] main :is(.mn-page-hero, .mn-services-catalog-hero) h1 {
+    font-size: clamp(2.75rem, 2rem + 0.8vw, 3.5rem);
+    max-width: 24ch;
+  }
+  html .mn-site[data-inner-page] main .mn-page-hero p {
+    max-width: 65ch;
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+  html .mn-site main .mn-article p {
+    max-width: 75ch;
+  }
+  html .mn-site main .mn-service-grid {
+    gap: clamp(1.5rem, 1.25vw, 2rem);
+  }
+}
+
+/* Four catalogue columns on desktop */
+@media (min-width: 1024px) {
+  html .mn-site .mn-services-page #service-catalog .mn-service-grid,
+  html .mn-site .mn-services-page .mn-service-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+  }
+}

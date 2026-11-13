@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-31",
+  "targetViewport": {
+    "width": 390,
+    "height": 844
+  },
+  "data": "synthetic",
+  "sourceScreenshot": "/Users/macbookprom1/develop/DIEN_LANH_MINH_NHAT/output/admin-aurora-exact-review/dashboard-mobile-390.jpg",
+  "sourceType": "saved workspace visual reference + current admin code, not an authenticated live audit",
+  "options": [
+    {
+      "displayOrder": 1,
+      "direction": "Tổng quan cân bằng",
+      "image": "/Users/macbookprom1/.codex/generated_images/01a18ffe-5ef3-7560-a7e0-f7df7db4a2ba/exec-9ffb4ecd-6798-489a-9a48-4d7a90e8c3e0.png",
+      "focus": "4 KPI, lịch hẹn hôm nay và truy cập nhanh"
+    },
+    {
+      "displayOrder": 2,
+      "direction": "Điều phối lịch hẹn trước",
+      "image": "/Users/macbookprom1/.codex/generated_images/01a18ffe-5ef3-7560-a7e0-f7df7db4a2ba/exec-570ad0ea-acd2-47bd-a1cb-e769ed264839.png",
+      "focus": "Ngày, bộ lọc, danh sách lịch hẹn và mở chi tiết"
+    },
+    {
+      "displayOrder": 3,
+      "direction": "Trung tâm quản trị gọn",
+      "image": "/Users/macbookprom1/.codex/generated_images/01a18ffe-5ef3-7560-a7e0-f7df7db4a2ba/exec-2cf62327-dc21-429c-8bb2-f192261ea79f.png",
+      "focus": "KPI, yêu cầu chờ xử lý và phân hệ quản trị dạng hàng"
+    }
+  ]
+}

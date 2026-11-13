@@ -1,0 +1,234 @@
+--- before/apps/web/app/mobile.css
++++ apps/web/app/mobile.css
+@@ -59,6 +59,10 @@
+   .mn-site[data-inner-page='true'] main .mn-about-facts { padding: 20px 10px; }
+   .mn-site[data-inner-page='true'] main .mn-about-facts strong { font-size: clamp(17px, 5vw, 22px); }
+   .mn-site[data-inner-page='true'] main .mn-about-facts span { font-size: 12px; }
++  /* Reserve enough width for the complete phone number instead of clipping it. */
++  .mn-site main .mn-support > div { width: 80%; min-width: 0; padding: 20px; }
++  .mn-site main .mn-support h2 a { display: block; font-size: clamp(22px, 6vw, 28px); }
++  .mn-site main .mn-support .mn-button { min-height: 48px; white-space: normal; }
+   .mn-site main .mn-form-fields { grid-template-columns: minmax(0, 1fr); }
+   .mn-site main .mn-form-fields > * { grid-column: 1; }
+   .mn-site main .mn-form-panel { padding: 18px 14px; }
+@@ -227,3 +231,30 @@
+     line-height: 1.2;
+   }
+ }
++
++/* On compact cards, text uses the full card width below the icon and arrow. */
++@media (max-width: 900px) {
++  .mn-site:is([data-home], [data-inner-page]) main .mn-service-grid .mn-service-card .mn-card-copy {
++    grid-template-columns: minmax(0, 1fr) auto;
++    gap: 12px;
++    padding: 20px 16px;
++  }
++  .mn-site:is([data-home], [data-inner-page]) main .mn-service-grid .mn-card-copy > .mn-icon-box {
++    grid-column: 1;
++    grid-row: 1;
++  }
++  .mn-site:is([data-home], [data-inner-page]) main .mn-service-grid .mn-card-copy > div {
++    grid-column: 1 / -1;
++    grid-row: 2;
++    min-width: 0;
++  }
++  .mn-site:is([data-home], [data-inner-page]) main .mn-service-grid .mn-card-copy > .mn-card-arrow {
++    grid-column: 2;
++    grid-row: 1;
++    justify-self: end;
++  }
++  .mn-site:is([data-home], [data-inner-page]) main .mn-service-grid .mn-card-copy p { font-size: 16px; }
++  .mn-site:is([data-home], [data-inner-page]) .mn-home-footer p { font-size: 14px; }
++  .mn-site .mn-home-footer .mn-home-footer-socials a { min-width: 44px; min-height: 44px; }
++  .mn-site .mn-home-footer .mn-footer-bottom a { display: inline-flex; align-items: center; min-height: 44px; }
++}
+--- before/apps/web/app/palette-preview.css
++++ apps/web/app/palette-preview.css
+@@ -1448,19 +1448,19 @@
+     padding: 4px !important;
+   }
+   html .mn-site .mn-home-hero nav a {
+-    min-height: 54px !important;
+-    padding: 5px 2px !important;
+-    font-size: 10.5px !important;
+-    line-height: 1.22 !important;
++    min-height: 72px !important;
++    padding: 8px 2px !important;
++    font-size: 12px !important;
++    line-height: 1.35 !important;
+     gap: 4px !important;
+   }
+   html .mn-site .mn-home-hero nav a > span:first-child {
+-    width: 24px !important;
+-    height: 24px !important;
++    width: 28px !important;
++    height: 28px !important;
+   }
+   html .mn-site .mn-home-hero nav a > span:first-child svg {
+-    width: 13px !important;
+-    height: 13px !important;
++    width: 16px !important;
++    height: 16px !important;
+   }
+   html .mn-site .mn-floating {
+     background: rgba(255, 255, 255, 0.95) !important;
+--- before/apps/web/components/redesign/hero.module.css
++++ apps/web/components/redesign/hero.module.css
+@@ -321,8 +321,8 @@
+   }
+ }
+ 
+-/* Tablet viewports (681px - 1024px, including iPads in portrait & landscape) */
+-@media (min-width: 681px) and (max-width: 1024px) {
++/* Preserve the existing laptop composition above the mobile navigation breakpoint. */
++@media (min-width: 901px) and (max-width: 1024px) {
+   .carousel:global(.mn-home-hero) {
+     height: calc(100svh - var(--mn-nav-height) - var(--mn-header-inset) - var(--mn-page-gap));
+     max-height: 820px;
+@@ -382,8 +382,8 @@
+   }
+ }
+ 
+-/* Smartphone mobile viewports (<= 680px) */
+-@media (max-width: 680px) {
++/* Phones and portrait tablets: let copy size naturally above the complete room scene. */
++@media (max-width: 900px) {
+   .carousel:global(.mn-home-hero) {
+     height: auto;
+     margin-top: var(--mn-page-gap);
+@@ -432,12 +432,12 @@
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+-    padding: 16px 14px 12px;
++    padding: 20px 16px 16px;
+     background: #002139;
+   }
+ 
+   .carousel .headline {
+-    font-size: clamp(22px, 6vw, 28px);
++    font-size: clamp(26px, 7vw, 32px);
+     line-height: 1.18;
+   }
+ 
+@@ -448,26 +448,26 @@
+ 
+   .description {
+     max-width: 100%;
+-    font-size: 13px;
+-    line-height: 1.42;
++    font-size: 16px;
++    line-height: 1.5;
+     margin-top: 6px;
+   }
+ 
+   .ctaEntrance {
+-    margin-top: 10px;
++    margin-top: 16px;
+   }
+ 
+   .carousel .copy .booking {
+     align-self: flex-start;
+-    min-height: 40px;
+-    padding: 0 20px;
+-    font-size: 13.5px;
++    min-height: 48px;
++    padding: 0 24px;
++    font-size: 16px;
+   }
+ 
+   .benefits {
+-    margin-top: 8px;
+-    font-size: 11px;
+-    gap: 6px 10px;
++    margin-top: 12px;
++    font-size: 12px;
++    gap: 8px 12px;
+     flex-wrap: wrap;
+   }
+ 
+@@ -506,51 +506,15 @@
+   }
+ }
+ 
+-@media (max-width: 680px) and (max-height: 720px) {
+-  .copy {
+-    padding: 12px 12px 10px;
+-  }
+-
+-  .carousel .headline {
+-    font-size: 21px;
+-  }
+-
+-  .description {
+-    font-size: 12px;
+-    line-height: 1.36;
+-    margin-top: 4px;
+-  }
+-
+-  .ctaEntrance {
+-    margin-top: 8px;
+-  }
+-
+-  .carousel .copy .booking {
+-    min-height: 36px;
+-    font-size: 13px;
+-    padding: 0 16px;
+-  }
+-
+-  .benefits {
+-    margin-top: 6px;
+-    font-size: 10px;
+-    gap: 4px 8px;
+-  }
+-
+-  .scene {
+-    aspect-ratio: 18 / 9;
+-    max-height: 155px;
+-  }
+-
+-  .services a {
+-    min-height: 48px;
+-    padding: 4px 1px;
+-    font-size: 10px;
+-    line-height: 1.18;
+-  }
+-
+-  .serviceIcon {
+-    width: 22px;
+-    height: 22px;
+-  }
+-}
++/* Tablet spacing uses the same stacked scene without stretching/cropping the artwork. */
++@media (min-width: 681px) and (max-width: 900px) {
++  .copy { padding: 24px; }
++  .carousel .headline { font-size: 36px; }
++  .benefits { font-size: 14px; }
++  .services { grid-template-columns: repeat(8, minmax(0, 1fr)); padding: 6px; }
++  .services a { min-height: 88px; padding: 6px 2px; font-size: 12px; }
++  .services a:nth-child(4n) { border-right: 1px solid rgba(36, 134, 180, 0.22); }
++  .services a:last-child { border-right: 0; }
++  .services a:nth-child(-n + 4) { border-bottom: 0; }
++  .serviceIcon { width: 30px; height: 30px; }
++}
+--- before/apps/web/components/layout/site-header.module.css
++++ apps/web/components/layout/site-header.module.css
+@@ -48,14 +48,14 @@
+     padding: 7px 10px;
+     gap: 8px;
+   }
+-  .header:global(.mn-header) :global(.mn-brand) { gap: 7px; }
++  .header:global(.mn-header) :global(.mn-brand) { gap: 7px; min-width: 0; min-height: 44px; }
+   .header:global(.mn-header) :global(.mn-brand .brand-mark) { width: 43px; height: 32px; }
+   .header:global(.mn-header) :global(.mn-brand > span) { font-size: 8px; }
+-  .header:global(.mn-header) :global(.mn-brand strong) { font-size: 11px; }
++  .header:global(.mn-header) :global(.mn-brand strong) { font-size: 12px; }
+   .header:global(.mn-header) :global(.mn-header-actions) { gap: 4px; }
+-  .header:global(.mn-header) :global(.mn-nav-book) { min-height: 44px; padding: 8px; font-size: 10px; }
++  .header:global(.mn-header) :global(.mn-nav-book) { min-height: 44px; padding: 8px 10px; font-size: 12px; }
+ }
+ @media (max-width: 360px) {
+   .header:global(.mn-header) :global(.mn-brand .brand-mark) { width: 38px; }
+-  .header:global(.mn-header) :global(.mn-nav-book) { font-size: 9px; }
++  .header:global(.mn-header) :global(.mn-nav-book) { font-size: 11px; padding-inline: 8px; }
+ }

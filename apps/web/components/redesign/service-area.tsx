@@ -1,6 +1,6 @@
 'use client';
 
-import { ExternalLink, MapPin } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { siteContent } from '@/lib/content/site-content';
 import { integrationSettings } from '@/lib/integrations/settings';
 
@@ -9,11 +9,7 @@ export { VerifiedServiceArea as ServiceArea } from './verified-service-area';
 
 export function ContactMap() {
   return (
-    <section className="mn-contact-map">
-      <h2>
-        <MapPin size={20} />
-        Địa chỉ · Khu vực phục vụ
-      </h2>
+    <section className="mn-contact-map" aria-label="Bản đồ Điện Lạnh Minh Nhật">
       <div className="mn-contact-map-art">
         <iframe
           src={integrationSettings.googleMapsEmbedUrl}

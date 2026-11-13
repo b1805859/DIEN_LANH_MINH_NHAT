@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import type { MotionBudget } from '@/components/ui/use-motion-budget';
 import styles from './hero.module.css';
 
 /**
@@ -30,7 +31,33 @@ import styles from './hero.module.css';
  *      through a divergence-free 2D curl-noise velocity field inside the cooling volume.
  */
 
-const IMAGE_ASPECT = 1661 / 947;
+const LEGACY_IMAGE_ASPECT = 1661 / 947;
+const FINDER_IMAGE_ASPECT = 1660 / 947;
+
+// Match the outlet tangent before gradually turning into the room.
+// The shader and particles use the same upper boundary.
+const FINDER_TURN = { slope: (0.8543 - 0.7656) / (0.9494 - 0.8638), downstream: 0.22, length: 0.065 };
+function finderUpperEdge(x: number) {
+  const distance = Math.max(0, 0.8638 - x);
+  return x >= 0.8638
+    ? 0.7656 + (x - 0.8638) * FINDER_TURN.slope
+    : 0.7656 - FINDER_TURN.downstream * distance
+      - (FINDER_TURN.slope - FINDER_TURN.downstream) * FINDER_TURN.length
+      * (1 - Math.exp(-distance / FINDER_TURN.length));
+}
+
+// Shared continuous lower edge for the finder mist and particle streamlines.
+// Broaden the room-side fan without moving its origin or the upper vent tangent.
+// Both the mist shader and particle paths consume this same expansion.
+const FINDER_FAN = { slope: 0.96, spread: 0.78, expansion: 5.2, floor: 0.035 };
+function finderLowerEdge(x: number) {
+  const distance = Math.max(0, 0.9494 - x);
+  return Math.max(
+    FINDER_FAN.floor,
+    0.8268 - FINDER_FAN.slope * distance -
+      FINDER_FAN.spread * (1 - Math.exp(-FINDER_FAN.expansion * distance)),
+  );
+}
 
 // ---------------------------------------------------------------------------
 // 1. Divergence-Free 2D Curl Noise for Subtle Atmospheric Micro-Motes (`particle-system`)
@@ -121,6 +148,11 @@ float sdSegment(vec2 p, vec2 a, vec2 b) {
 // preserves coffee table details, and protects UI readability while allowing the cooling
 // volume to flow continuously behind the foreground technician (hero-technician-focus-mask.svg).
 float subjectMask(vec2 imgUv) {
+  // Finder subjects are protected by the source-aligned foreground contour.
+  // Do not retain the legacy family's invisible holes or bottom service-bar fade.
+  if (uFinder > 0.5) {
+    return smoothstep(0.0, 0.025, imgUv.x) * smoothstep(0.0, 0.025, imgUv.y);
+  }
   float nx = imgUv.x;
   float ny = 1.0 - imgUv.y; // top-down y [0..1]
   vec2 p = vec2(nx, ny);
@@ -156,7 +188,7 @@ float subjectMask(vec2 imgUv) {
 
   // 4. Outer left edge & bottom 8-icon service bar fade (service bar top is at ny ~ 0.852)
   float leftEdgeKeep  = smoothstep(0.10, 0.22, nx);
-  float bottomBarKeep = smoothstep(0.862, 0.822, ny);
+  float bottomBarKeep = (1.0 - smoothstep(0.822, 0.862, ny));
   float topHeaderKeep = smoothstep(0.125, 0.195, ny);
 
   return famKeep * tableKeep * leftCopyKeep * leftEdgeKeep * bottomBarKeep * topHeaderKeep;
@@ -187,6 +219,7 @@ precision highp float;
 varying vec2 vUv;
 uniform float uTime;
 uniform float uStatic;
+uniform float uFinder;
 uniform vec2 uCoverScale;
 uniform vec2 uCoverOffset;
 
@@ -202,97 +235,131 @@ void main() {
     discard;
   }
 
-  // AC louver slot segment in bottom-up UV: A(0.836, 0.730) -> B(0.916, 0.775)
-  vec2 ventA = vec2(0.867, 0.799);
-  vec2 ventB = vec2(0.965, 0.850);
+  // AC louver slot segment in bottom-up UV:
+  // Top lip of black louver: A(0.8638, 0.7656) -> B(0.9494, 0.8543)
+  // Bottom lip of black louver: C(0.8735, 0.7381) -> D(0.9542, 0.8268)
+  vec2 topA = vec2(0.8638, 0.7656);
+  vec2 topB = vec2(0.9494, 0.8543);
+  vec2 botA = vec2(0.8735, 0.7381);
+  vec2 botB = vec2(0.9542, 0.8268);
+  float louverSlope = (topB.y - topA.y) / (topB.x - topA.x);
 
-  // Smooth ceiling mask along the AC louver slot so airflow never bleeds onto the upper white AC casing
-  float ventLineY = 0.799 + (imgUv.x - 0.867) * (0.051 / 0.098);
-  float ventCeilingMask = 1.0 - smoothstep(0.846, 0.873, imgUv.x) * smoothstep(ventLineY - 0.002, ventLineY + 0.015, imgUv.y);
-  // Prevent bleeding to the right of the AC vent while allowing downward expansion behind technician
-  float rightWallMask = smoothstep(0.992, 0.952, imgUv.x - (0.850 - imgUv.y) * 0.08);
+  // Right boundary of the jet: emerges strictly from topB and angles down-left
+  // so airflow never touches or bleeds onto the right wall beside the AC
+  float rightEdgeX = topB.x - (topB.y - min(topB.y, imgUv.y)) * 0.09;
+  float rightWallMask = 1.0 - smoothstep(rightEdgeX - 0.010, rightEdgeX + 0.012, imgUv.x);
+
+  // Upper boundary of the jet:
+  // - Along the AC unit (imgUv.x >= topA.x): strictly adheres to top lip of louver
+  // - Across the room (imgUv.x < topA.x): smooth aerodynamic descent across curtain and window
+  float dxFromA = max(0.0, topA.x - imgUv.x);
+  float yHigh = (imgUv.x >= topA.x)
+    ? (topA.y + (imgUv.x - topA.x) * louverSlope)
+    : (topA.y - 0.22 * pow(dxFromA, 0.88));
+
+  // Continue the vent lip with a matching tangent, then turn gradually.
+  // The old piecewise power curve made a visible elbow at the vent's left end.
+  if (uFinder > 0.5 && imgUv.x < topA.x) {
+    yHigh = topA.y - ${FINDER_TURN.downstream} * dxFromA
+      - (${FINDER_TURN.slope} - ${FINDER_TURN.downstream}) * ${FINDER_TURN.length}
+      * (1.0 - exp(-dxFromA / ${FINDER_TURN.length}));
+  }
+
+  // Upper ceiling boundary feather
+  float ventCeilingMask = 1.0 - smoothstep(yHigh, yHigh + mix(0.015, 0.001, uFinder), imgUv.y);
   if (ventCeilingMask * rightWallMask < 0.002) {
     discard;
   }
 
-  // Distance to the physical AC louver slot AB
-  vec2 AB = ventB - ventA;
-  float projAB = clamp(dot(imgUv - ventA, AB) / dot(AB, AB), 0.0, 1.0);
-  vec2 closestVent = ventA + projAB * AB;
-  float distToVent = length((imgUv - closestVent) * vec2(1.0, 1.35));
+  // Lower boundary of the jet:
+  // - At the AC (imgUv.x >= topA.x): emerges from the bottom lip of the louver
+  // - Across the room: smoothly expands down towards floor and living room behind technician
+  float tVent = clamp((imgUv.x - topA.x) / (topB.x - topA.x), 0.0, 1.0);
+  float louverBotY = mix(botA.y, botB.y, tVent);
+  float floorY = 0.05;
+  float yLow = (imgUv.x >= topA.x)
+    ? (louverBotY - (1.0 - tVent) * 0.40)
+    : (floorY + (botA.y - 0.40 - floorY) * exp(-8.5 * dxFromA));
+
+  if (uFinder > 0.5) {
+    float distance = max(0.0, topB.x - imgUv.x);
+    yLow = max(${FINDER_FAN.floor}, botB.y - ${FINDER_FAN.slope} * distance
+      - ${FINDER_FAN.spread} * (1.0 - exp(-${FINDER_FAN.expansion.toFixed(1)} * distance)));
+  }
+  float span = max(0.042, yHigh - yLow);
+  float v = (imgUv.y - yLow) / span; // 0 at lower boundary -> 1 at upper boundary
+
+  if (imgUv.y > yHigh + 0.015 || v < -0.25) {
+    discard;
+  }
 
   // Progression distance s from the AC vent across the room [0 at vent -> 1 at far left/floor]
-  float dxVent = max(0.0, 0.958 - imgUv.x);
-  float dyVent = max(0.0, 0.846 - imgUv.y);
+  float dxVent = max(0.0, topB.x - imgUv.x);
+  float dyVent = max(0.0, topB.y - imgUv.y);
   float radialDist = length(vec2(dxVent * 0.88, dyVent * 0.92));
-  float s = clamp(radialDist / 0.78, 0.0001, 1.0);
+  float s = clamp(radialDist / 0.85, 0.0001, 1.0);
+
+  // Centerline of the physical AC louver slot for the core jet
+  vec2 midA = (topA + botA) * 0.5;
+  vec2 midB = (topB + botB) * 0.5;
+  vec2 ab = midB - midA;
+  float h = clamp(dot(imgUv - midA, ab) / dot(ab, ab), 0.0, 1.0);
+  vec2 proj = midA + h * ab;
+  float distFromSlot = length((imgUv - proj) * vec2(1.0, 1.30));
 
   // Calm, continuous advection clock (~12-second full room traversal cycle)
   float t = (uStatic > 0.5) ? 0.0 : uTime;
   float flowPhase = t * 0.082;
-
-  // -------------------------------------------------------------------------
-  // A. UNIFIED VOLUMETRIC SILHOUETTE (Stable outer shape matching approved mockup)
-  // -------------------------------------------------------------------------
-  // Upper boundary of the fan:
-  // - For x in [0.836..0.916], follows the exact AC louver slot line A(0.836, 0.732) -> B(0.916, 0.775)
-  // - For x < 0.836, sweeps smoothly across the upper curtain (0.78, 0.715), window panes (0.62, 0.665),
-  //   and indoor tree foliage (0.46, 0.615), then slopes gently down on the left.
-  float dxFromA = max(0.0, 0.867 - imgUv.x);
-  float louverTopY = 0.799 + clamp(imgUv.x - 0.867, 0.0, 0.098) * 0.52;
-  float leftDropX = max(0.0001, 0.44 - imgUv.x);
-  float yHigh = louverTopY - 0.30 * dxFromA - 0.34 * pow(leftDropX, 1.45) * step(imgUv.x, 0.44);
-
-  // Lower boundary of the fan: plunges steeply from the right end of the AC louver B(0.916, 0.775)
-  // straight down behind the technician's head, hair, ear, neck, and shoulders (x = 0.78..0.91,
-  // ny_topdown = 0.35..0.65 -> imgUv.y = 0.35..0.65) so the technician clearly blocks the airflow!
-  float dxBot = max(0.0001, 0.975 - imgUv.x);
-  float yLow  = 0.135 + 0.715 * exp(-18.5 * pow(dxBot, 1.38));
-
-  float span = max(0.042, yHigh - yLow);
-  float v = (imgUv.y - yLow) / span; // 0 at lower boundary -> 1 at upper boundary
-
-  if (imgUv.y > yHigh + 0.045 || v < -0.25) {
-    discard;
-  }
 
   // Very subtle, low-frequency edge breathing (amplitude <= 0.012 in screen Y so outer silhouette remains stable)
   float edgeNoise = fbmGas(vec2(s * 1.5 - flowPhase * 0.75, v * 1.4 + 2.1));
 
   // Physical-distance upper feather so the fan stays full right up to the louver slot and upper curtain/tree
   float distBelowTop = (yHigh - imgUv.y) + edgeNoise * 0.012 * smoothstep(0.03, 0.28, s);
-  float upperFeather = smoothstep(-0.016, 0.032 + 0.055 * s, distBelowTop);
-  float lowerFeather = smoothstep(-0.08, 0.14, v + edgeNoise * 0.025);
-  float fanCrossSection = upperFeather * lowerFeather;
+  float upperFeather = smoothstep(mix(-0.012, 0.0, uFinder), mix(0.030, 0.055, uFinder), distBelowTop);
+  float lowerFeather = smoothstep(mix(-0.06, 0.0, uFinder), mix(0.12, 0.24, uFinder), v + edgeNoise * 0.025);
+  float crossSection = sqrt(max(0.0, 4.0 * v * (1.0 - v)));
+  float fanCrossSection = upperFeather * lowerFeather * mix(1.0, crossSection, uFinder);
 
-  // Longitudinal density falloff: compact & controlled near the AC vent, broad in the mid-room,
-  // and softly diffusing toward the far left
-  float ventStart = smoothstep(-0.015, 0.022, 0.975 - imgUv.x);
-  float roomDecay = 1.0 - smoothstep(0.42, 0.98, s) * 0.48;
-  float primaryFanVolume = fanCrossSection * ventStart * roomDecay;
+  // Longitudinal density falloff: retain the visible cooling field farther across the room.
+  float roomDecay = mix(
+    1.0 - smoothstep(0.40, 0.98, s) * 0.30,
+    exp(-0.62 * s) * (1.0 - smoothstep(0.84, 1.0, s) * 0.86), uFinder);
+  float primaryFanVolume = fanCrossSection * roomDecay;
+
+  // Dedicated core jet emission right inside and emerging from the louver mouth
+  float louverJet = exp(-distFromSlot * distFromSlot * mix(320.0, 1200.0, uFinder)) * (1.0 - smoothstep(topB.x - 0.015, topB.x + 0.005, imgUv.x));
+
+  // Keep the vent highlight inside the same feathered envelope, so it cannot
+  // leave a hard curved ledge where the free airflow meets the outlet.
+  louverJet *= mix(1.0, upperFeather * lowerFeather, uFinder);
+
+  // Broad living room & curtain cooling mist:
+  // Fills the space behind technician and across the curtain & sofa without creating hard cuts
+  float livingRoomMist = smoothstep(0.40, 0.65, imgUv.x) * (1.0 - smoothstep(0.80, 0.92, imgUv.x))
+                       * smoothstep(0.10, 0.28, imgUv.y) * (1.0 - smoothstep(0.48, 0.72, imgUv.y)) * 0.35 * rightWallMask;
 
   // Dedicated behind-technician cooling stream reinforcement:
-  // Ensures the cyan airflow behind the technician's head, ear, neck, and right shoulder
-  // (x: 0.77..0.90, ny_topdown: 0.36..0.62 -> imgUv.y: 0.38..0.64) is unmistakably visible
-  // so the technician clearly occludes the flow in front of it.
-  float behindTechX = smoothstep(0.72, 0.81, imgUv.x) * smoothstep(0.965, 0.905, imgUv.x);
-  float behindTechY = smoothstep(0.32, 0.44, imgUv.y) * smoothstep(0.74, 0.60, imgUv.y);
-  float behindTechBoost = behindTechX * behindTechY * 0.32;
+  // Visible behind the technician's head, ear, and neck (x: 0.78..0.915)
+  // strictly contained by rightWallMask so it never spills onto the blank right wall
+  float behindTechX = smoothstep(0.78, 0.83, imgUv.x) * (1.0 - smoothstep(0.905, 0.925, imgUv.x));
+  float behindTechY = smoothstep(0.35, 0.45, imgUv.y) * (1.0 - smoothstep(0.58, 0.70, imgUv.y));
+  float behindTechBoost = behindTechX * behindTechY * 0.22 * rightWallMask;
 
   // Lower-Room & Sofa Cooling Diffusion Pool:
   // Cold air settles gently around the lower sofa base, coffee table, and rug/floor
-  float poolX = smoothstep(0.17, 0.30, imgUv.x) * smoothstep(0.78, 0.52, imgUv.x);
-  float poolY = smoothstep(0.138, 0.182, imgUv.y) * smoothstep(0.46, 0.22, imgUv.y);
-  float floorDiffusionPool = poolX * poolY * 0.08;
+  float poolX = smoothstep(0.12, 0.26, imgUv.x) * (1.0 - smoothstep(0.55, 0.75, imgUv.x));
+  float poolY = smoothstep(0.02, 0.08, imgUv.y) * (1.0 - smoothstep(0.16, 0.24, imgUv.y));
+  float floorDiffusionPool = poolX * poolY * 0.12;
 
-  // Controlled, subtle emission right at the AC louver mouth (no harsh white hotspot)
-  float louverEmission = exp(-distToVent * distToVent * 260.0) *
-                         smoothstep(0.855, 0.870, imgUv.x) *
-                         smoothstep(0.980, 0.964, imgUv.x) * 0.26;
-
-  // Seamlessly unify the primary fan volume, behind-technician flow, and lower-room floor diffusion
+  // Seamlessly unify the primary fan volume, louver jet, living room mist, and floor pool
+  // Finder air disperses from the vent; avoid disconnected bright patches
+  // behind the head and an artificial glowing pool on the rug.
+  livingRoomMist *= 1.0 - uFinder;
+  behindTechBoost *= 1.0 - uFinder;
+  floorDiffusionPool *= 1.0 - uFinder;
   float unifiedEnvelope = clamp(
-    primaryFanVolume * 0.88 + behindTechBoost + floorDiffusionPool * (1.0 - primaryFanVolume * 0.55) + louverEmission,
+    primaryFanVolume * 0.88 + louverJet * 0.72 + livingRoomMist + behindTechBoost + floorDiffusionPool,
     0.0,
     1.0
   );
@@ -327,13 +394,13 @@ void main() {
   float internalDensity = 0.76 + 0.16 * layerMist + currentWeight * layerCurrents + 0.08 * layerDeep;
 
   // Final volumetric alpha with family & UI occlusion mask
-  // Keep the sofa fabric, coffee table and family as the visual focus. Only the
-  // volumetric mist thins here; the independent micro-particle pass stays visible.
-  float furnitureClarity = mix(0.025, 1.0, smoothstep(0.32, 0.60, imgUv.y));
-  float windowFocus = mix(0.20, 1.0, smoothstep(0.30, 0.70, imgUv.x));
+  // Finder composition uses the pixel-accurate human foreground layer so the
+  // volumetric airflow stays continuous without axis-aligned rectangular cuts.
+  float furnitureClarity = mix(mix(0.025, 1.0, uFinder), 1.0, smoothstep(0.32, 0.60, imgUv.y));
+  float windowFocus = mix(mix(0.20, 1.0, uFinder), 1.0, smoothstep(0.30, 0.70, imgUv.x));
   float rawAlpha = unifiedEnvelope * internalDensity * ventCeilingMask * rightWallMask * subjectMask(imgUv)
                  * furnitureClarity * windowFocus;
-  float alpha = clamp(rawAlpha * 0.76, 0.0, 0.66);
+  float alpha = clamp(rawAlpha * mix(0.76, 0.72, uFinder), 0.0, mix(0.66, 0.50, uFinder));
 
   if (alpha < 0.002) {
     discard;
@@ -349,16 +416,17 @@ void main() {
   // Over the lower sofa & rug (imgUv.y < 0.36), lift cyan luminance so dark fabrics glow softly
   float lowerRoomLift = (1.0 - smoothstep(0.16, 0.38, imgUv.y)) * 0.05;
   float highlightMix = clamp(
-    layerCurrents * (1.0 - 0.45 * s) * 0.55 + layerMist * 0.32 + lowerRoomLift,
+    layerCurrents * (1.0 - 0.45 * s) * 0.55 + layerMist * 0.32 + lowerRoomLift + louverJet * 0.45,
     0.0,
     1.0
   );
   vec3 color = mix(deepCoolingCyan, midAirflowCyan, smoothstep(0.06, 0.62, unifiedEnvelope + lowerRoomLift));
-  color = mix(color, softIceMist, highlightMix * 0.66);
+  color = mix(color, softIceMist, highlightMix * mix(0.72, 0.50, uFinder));
+  color = mix(color, vec3(0.42, 0.88, 0.98), uFinder * 0.14);
 
-  // Output premultiplied color with slightly reduced destination alpha occlusion (0.82)
-  // so the cooling volume both tints bright windows and softly illuminates darker sofa/rug areas
-  gl_FragColor = vec4(color * alpha, alpha * 0.82);
+  // Premultiplied RGB and alpha must use the same coverage. The old
+  // reduced alpha added light to the furniture and washed out the vent.
+  gl_FragColor = vec4(color * alpha, alpha * mix(0.82, 1.0, uFinder));
 }
 `;
 
@@ -384,6 +452,7 @@ void main() {
 const PARTICLE_FRAG = /* glsl */ `
 precision mediump float;
 varying float vAlpha;
+uniform float uFinder;
 
 void main() {
   vec2 p = gl_PointCoord - vec2(0.5);
@@ -393,7 +462,10 @@ void main() {
   // Crisp micro-mote core with soft icy halo
   float core = exp(-r2 * 2.8);
   float halo = (1.0 - r2) * 0.72;
-  float a = clamp(core * 0.85 + halo * 0.50, 0.0, 1.0) * vAlpha;
+  float rays = exp(-abs(p.x) * 36.0 - abs(p.y) * 5.0)
+             + exp(-abs(p.y) * 36.0 - abs(p.x) * 5.0);
+  float sparkle = rays * uFinder * smoothstep(0.45, 0.85, vAlpha) * 0.38;
+  float a = clamp(core * 0.85 + halo * 0.50 + sparkle, 0.0, 1.0) * vAlpha;
   vec3 col = mix(vec3(0.52, 0.90, 1.00), vec3(0.92, 0.99, 1.00), core);
   gl_FragColor = vec4(col * a, a * 0.78);
 }
@@ -455,7 +527,16 @@ function distToSegment2D(
   return Math.hypot(pax - bax * h, pay - bay * h);
 }
 
-export function HeroAirflow() {
+export function HeroAirflow({ composition = 'legacy', budget = 'reduced', showToggle = true, compactFinder = false }: {
+  composition?: 'legacy' | 'finder';
+  budget?: MotionBudget;
+  showToggle?: boolean;
+  compactFinder?: boolean;
+}) {
+  const [paused, setPaused] = useState(false);
+  const [automaticStatic, setAutomaticStatic] = useState(false);
+  const finder = composition === 'finder';
+  const canAnimate = budget === 'full' || (finder && compactFinder && budget === 'limited');
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -473,15 +554,16 @@ export function HeroAirflow() {
     const fixedTimeValue = hasFixedTime ? parseFloat(fixedTimeParam!) : 0;
 
     const reducedMotion =
+      !canAnimate || paused || automaticStatic ||
       modeParam === 'static' ||
       hasFixedTime ||
       window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const gl = canvas.getContext('webgl', {
       alpha: true,
-      antialias: true,
+      antialias: false,
       premultipliedAlpha: true,
-      powerPreference: 'high-performance',
+      powerPreference: 'low-power',
     });
     if (!gl) {
       return;
@@ -497,18 +579,24 @@ export function HeroAirflow() {
 
     const coverScale: [number, number] = [1, 1];
     const coverOffset: [number, number] = [0, 0];
+    const compactViewport = window.matchMedia('(max-width: 800px)');
+    const limited = budget === 'limited' && canAnimate;
 
     const updateCoverMapping = (width: number, height: number) => {
       const viewAspect = width / Math.max(height, 1);
-      if (viewAspect > IMAGE_ASPECT) {
+      const imageAspect = finder ? FINDER_IMAGE_ASPECT : LEGACY_IMAGE_ASPECT;
+      if (viewAspect > imageAspect) {
         coverScale[0] = 1.0;
-        coverScale[1] = IMAGE_ASPECT / viewAspect;
+        coverScale[1] = imageAspect / viewAspect;
         coverOffset[0] = 0.0;
         coverOffset[1] = (1.0 - coverScale[1]) * 0.5;
       } else {
-        coverScale[0] = viewAspect / IMAGE_ASPECT;
+        coverScale[0] = viewAspect / imageAspect;
         coverScale[1] = 1.0;
-        coverOffset[0] = (1.0 - coverScale[0]) * 0.5;
+        const mobileFocus = compactFinder && compactViewport.matches
+          ? parseFloat(getComputedStyle(container).getPropertyValue('--finder-mobile-focus')) / 100
+          : 0.5;
+        coverOffset[0] = (1.0 - coverScale[0]) * (Number.isFinite(mobileFocus) ? mobileFocus : 0.5);
         coverOffset[1] = 0.0;
       }
     };
@@ -519,81 +607,135 @@ export function HeroAirflow() {
     gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, quadData, gl.STATIC_DRAW);
 
-    // 2. Abundant Fine Cooling Micro-Motes (`particle-system`)
-    const PARTICLE_COUNT = 1080;
-    const particleData = new Float32Array(PARTICLE_COUNT * 4);
+    // 2. Area-scaled cooling micro-motes
+    const MAX_PARTICLES = 620;
+    const REFERENCE_AREA = 1280 * 666;
+    let particleCount = MAX_PARTICLES;
+    let particleSizeScale = 1;
+    let pixelRatio = 1;
+    const particleData = new Float32Array(MAX_PARTICLES * 4);
     const particleBuffer = gl.createBuffer();
 
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const particles = Array.from({ length: PARTICLE_COUNT }, (_, i) => {
-      // Deterministic low-discrepancy samples stay spread out as density increases.
+    const particles = Array.from({ length: MAX_PARTICLES }, (_, i) => {
+      // Deterministic samples; independent finder bands/speeds avoid rows of dots.
       const h1 = (0.19 + i * 0.61803398875) % 1;
-      const h2 = (0.43 + i * 0.75487766625) % 1;
-      const h3 = (0.61 + i * 0.56984029099) % 1;
+      const h2 = finder ? hash2D(i, 53) : (0.43 + i * 0.75487766625) % 1;
+      const h3 = finder ? hash2D(i, 97) : (0.61 + i * 0.56984029099) % 1;
       const h4 = (0.29 + i * 0.43844718719) % 1;
       return {
         u0: h1,
         vBand: 0.03 + h2 * 0.92, // Spans the entire unified cooling volume including behind technician
         speed: 0.038 + h3 * 0.036, // Calm 13-26s drift
-        baseAlpha: 0.34 + h4 * 0.42, // Crisp, clearly visible tiny micro-motes
-        size: (1.4 + h3 * 2.4) * dpr, // Fine, delicate specks (1.4px - 3.8px)
+        baseAlpha: finder ? 0.72 + h4 * 0.28 : 0.58 + h4 * 0.36,
+        size: finder ? 2.3 + h3 * 2.7 : 2.0 + h3 * 2.5, // CSS pixels
       };
     });
 
     const updateParticles = (elapsed: number) => {
       const t = Math.max(0, elapsed);
-      for (let i = 0; i < PARTICLE_COUNT; i++) {
+      for (let i = 0; i < particleCount; i++) {
         const p = particles[i];
         const linearS = (((p.u0 + t * p.speed) % 1.0) + 1.0) % 1.0;
         // Decelerate smoothly as air disperses across the room
         const s = Math.pow(linearS, 0.86);
 
         // Map (s, vBand) into the unified cooling volume in image UV
-        const imgX = 0.96 - s * 0.73;
-        const dxVent = Math.max(0.0, 0.958 - imgX);
-        const yHigh = 0.842 - 0.28 * dxVent - 0.34 * Math.pow(Math.max(0.0, 0.44 - imgX), 1.45);
-        const dxBot = Math.max(0.0, 0.977 - imgX);
-        const yLow = 0.142 + 0.708 * Math.exp(-16.5 * Math.pow(dxBot, 1.36));
+        // AC louver slot in bottom-up UV:
+        const topAx = 0.8638, topAy = 0.7656;
+        const topBx = 0.9494, topBy = 0.8543;
+        const botAy = 0.7381;
+        const botBy = 0.8268;
+        const louverSlope = (topBy - topAy) / (topBx - topAx);
+
+        const imgX = topBx - s * (finder ? 0.95 : 0.78);
+        let yHigh = topBy;
+        let yLow = 0.05;
+
+        if (imgX >= topAx) {
+          yHigh = topAy + (imgX - topAx) * louverSlope;
+          const tVent = Math.min(1.0, Math.max(0.0, (imgX - topAx) / (topBx - topAx)));
+          const louverBotY = botAy + tVent * (botBy - botAy);
+          yLow = louverBotY - (1.0 - tVent) * 0.40;
+        } else {
+          const dxFromA = topAx - imgX;
+          yHigh = topAy - 0.22 * Math.pow(dxFromA, 0.88);
+          yLow = 0.05 + (botAy - 0.40 - 0.05) * Math.exp(-8.5 * dxFromA);
+        }
+        if (finder) {
+          yHigh = finderUpperEdge(imgX);
+          yLow = finderLowerEdge(imgX);
+        }
         const baseImgY = yLow + (yHigh - yLow) * p.vBand;
 
         const [curlX, curlY] = curlNoise2D(imgX * 4.5 - t * 0.2, baseImgY * 4.5 + i * 0.37);
-        const eddy = 0.014 * Math.min(1.0, s * 2.2);
+        const eddy = (finder ? 0.004 : 0.014) * Math.min(1.0, s * 2.2);
         const imgXFinal = imgX + curlX * eddy;
         const imgYFinal = baseImgY + curlY * eddy;
+
+        const rightEdgeX = topBx - (topBy - Math.min(topBy, imgYFinal)) * 0.10;
+        const outsideRight = imgXFinal > rightEdgeX + 0.005;
 
         // Protect 100% of the family on the sofa (zero particles over any part of the family).
         // Particles behind the technician are allowed so the foreground technician layer occludes them naturally!
         const ny = 1.0 - imgYFinal;
         const inFamily =
-          Math.hypot((imgXFinal - 0.316) / 0.032, (ny - 0.554) / 0.052) < 1.0 ||
-          Math.hypot((imgXFinal - 0.373) / 0.035, (ny - 0.576) / 0.05) < 1.0 ||
-          Math.hypot((imgXFinal - 0.368) / 0.085, (ny - 0.665) / 0.09) < 1.0 ||
-          distToSegment2D(imgXFinal, ny, 0.398, 0.605, 0.457, 0.596) < 0.02 ||
-          distToSegment2D(imgXFinal, ny, 0.393, 0.72, 0.478, 0.795) < 0.048 ||
-          distToSegment2D(imgXFinal, ny, 0.44, 0.687, 0.512, 0.758) < 0.04;
+          !finder &&
+          (Math.hypot((imgXFinal - 0.316) / 0.032, (ny - 0.554) / 0.052) < 1.0 ||
+            Math.hypot((imgXFinal - 0.373) / 0.035, (ny - 0.576) / 0.05) < 1.0 ||
+            Math.hypot((imgXFinal - 0.368) / 0.085, (ny - 0.665) / 0.09) < 1.0 ||
+            distToSegment2D(imgXFinal, ny, 0.398, 0.605, 0.457, 0.596) < 0.02 ||
+            distToSegment2D(imgXFinal, ny, 0.393, 0.72, 0.478, 0.795) < 0.048 ||
+            distToSegment2D(imgXFinal, ny, 0.44, 0.687, 0.512, 0.758) < 0.04);
 
         // Subtle twinkle modulation so micro-motes feel suspended in cool air
-        const twinkle = 0.78 + 0.22 * Math.sin(t * 2.1 + i * 1.73);
+        const pulse = 0.5 + 0.5 * Math.sin(t * (1.4 + (i % 7) * 0.12) + i * 1.73);
+        const twinkle = finder
+          ? 0.65 + 0.35 * Math.pow(pulse, 3)
+          : 0.88 + 0.12 * Math.sin(t * 2.1 + i * 1.73);
 
         const clipX = ((imgXFinal - coverOffset[0]) / coverScale[0]) * 2.0 - 1.0;
         const clipY = ((imgYFinal - coverOffset[1]) / coverScale[1]) * 2.0 - 1.0;
-        const envelope = inFamily ? 0.0 : Math.sin(s * Math.PI) * Math.min(1.0, s * 6.5) * twinkle;
+        // Start particle visibility immediately at the louver mouth (s >= 0.005)
+        const entryFade = Math.min(1.0, s * 22.0);
+        const exitFade = finder
+          ? 1.0 - Math.min(1.0, Math.max(0.0, (s - 0.95) / 0.05))
+          : 1.0 - Math.min(1.0, Math.max(0.0, (s - 0.65) / 0.32));
+        // Fade at both fan edges, so curl never leaves stray dots outside the mist.
+        const band = (imgYFinal - yLow) / Math.max(0.042, yHigh - yLow);
+        const edgeFade = finder
+          ? Math.max(0, Math.min(1, band / 0.16, (1 - band) / 0.16))
+          : 1;
+        const dispersion = finder ? Math.exp(-0.20 * s) : 1;
+        const envelope = (inFamily || outsideRight) ? 0.0
+          : entryFade * exitFade * twinkle * edgeFade * dispersion;
 
         const base = i * 4;
         particleData[base] = clipX;
         particleData[base + 1] = clipY;
-        particleData[base + 2] = p.baseAlpha * envelope;
-        particleData[base + 3] = p.size;
+        particleData[base + 2] = Math.min(1, p.baseAlpha * envelope * (finder ? 2.05 : 1));
+        particleData[base + 3] =
+          p.size * pixelRatio * particleSizeScale * (finder ? 1.05 : 1);
       }
       gl.bindBuffer(gl.ARRAY_BUFFER, particleBuffer);
-      gl.bufferData(gl.ARRAY_BUFFER, particleData, gl.DYNAMIC_DRAW);
+      gl.bufferData(gl.ARRAY_BUFFER, particleData.subarray(0, particleCount * 4), gl.DYNAMIC_DRAW);
     };
 
     const syncSize = () => {
       const rect = container.getBoundingClientRect();
       const cssW = Math.max(1, Math.round(rect.width));
       const cssH = Math.max(1, Math.round(rect.height));
-      const ratio = Math.min(window.devicePixelRatio || 1, 2);
+      // The mist is deliberately soft: a bounded render surface avoids spending
+      // millions of fragment-shader invocations on high-DPI and ultrawide screens.
+      const maxPixels = limited ? 85_000 : 450_000;
+      const ratio = Math.min(window.devicePixelRatio || 1, 1, Math.sqrt(maxPixels / (cssW * cssH)));
+      pixelRatio = ratio;
+      // Keep particle density tied to visible CSS area, not device resolution.
+      // The small mobile room must not squeeze the desktop's entire particle field into it.
+      particleCount = Math.max(
+        1,
+        Math.min(MAX_PARTICLES, Math.round((MAX_PARTICLES * cssW * cssH) / REFERENCE_AREA)),
+      );
+      particleSizeScale = Math.max(0.8, Math.min(1, cssW / 1280));
       canvas.width = Math.round(cssW * ratio);
       canvas.height = Math.round(cssH * ratio);
       gl.viewport(0, 0, canvas.width, canvas.height);
@@ -607,6 +749,7 @@ export function HeroAirflow() {
       aUv: gl.getAttribLocation(volumeProg, 'aUv'),
       uTime: gl.getUniformLocation(volumeProg, 'uTime'),
       uStatic: gl.getUniformLocation(volumeProg, 'uStatic'),
+      uFinder: gl.getUniformLocation(volumeProg, 'uFinder'),
       uCoverScale: gl.getUniformLocation(volumeProg, 'uCoverScale'),
       uCoverOffset: gl.getUniformLocation(volumeProg, 'uCoverOffset'),
     };
@@ -615,6 +758,7 @@ export function HeroAirflow() {
       aPosition: gl.getAttribLocation(particleProg, 'aPosition'),
       aAlpha: gl.getAttribLocation(particleProg, 'aAlpha'),
       aSize: gl.getAttribLocation(particleProg, 'aSize'),
+      uFinder: gl.getUniformLocation(particleProg, 'uFinder'),
     };
 
     const renderFrame = (rawElapsed: number) => {
@@ -633,6 +777,7 @@ export function HeroAirflow() {
       gl.vertexAttribPointer(volumeLoc.aUv, 2, gl.FLOAT, false, 16, 8);
 
       gl.uniform1f(volumeLoc.uTime, elapsed);
+      gl.uniform1f(volumeLoc.uFinder, finder ? 1 : 0);
       gl.uniform1f(volumeLoc.uStatic, modeParam === 'static' ? 1.0 : 0.0);
       gl.uniform2f(volumeLoc.uCoverScale, coverScale[0], coverScale[1]);
       gl.uniform2f(volumeLoc.uCoverOffset, coverOffset[0], coverOffset[1]);
@@ -641,9 +786,10 @@ export function HeroAirflow() {
       gl.disableVertexAttribArray(volumeLoc.aPosition);
       gl.disableVertexAttribArray(volumeLoc.aUv);
 
-      // Pass 2: Sparse, Ultra-Subtle Atmospheric Micro-Motes
+      // Pass 2: Atmospheric micro-motes following the same fan bounds
       updateParticles(elapsed);
       gl.useProgram(particleProg);
+      gl.uniform1f(particleLoc.uFinder, finder ? 1 : 0);
       gl.bindBuffer(gl.ARRAY_BUFFER, particleBuffer);
       const pStride = 16;
       gl.enableVertexAttribArray(particleLoc.aPosition);
@@ -653,59 +799,90 @@ export function HeroAirflow() {
       gl.enableVertexAttribArray(particleLoc.aSize);
       gl.vertexAttribPointer(particleLoc.aSize, 1, gl.FLOAT, false, pStride, 12);
 
-      gl.drawArrays(gl.POINTS, 0, PARTICLE_COUNT);
+      gl.drawArrays(gl.POINTS, 0, particleCount);
       gl.disableVertexAttribArray(particleLoc.aPosition);
       gl.disableVertexAttribArray(particleLoc.aAlpha);
       gl.disableVertexAttribArray(particleLoc.aSize);
     };
 
-    const startTime = performance.now();
-
-    const resizeObserver = new ResizeObserver(() => {
-      syncSize();
-      renderFrame((performance.now() - startTime) * 0.001);
-    });
-    resizeObserver.observe(container);
-
     let rafId = 0;
     let isVisible = true;
-
-    const intersectionObserver = new IntersectionObserver(
-      (entries) => {
-        isVisible = entries[0]?.isIntersecting ?? true;
-      },
-      { threshold: 0.02 },
-    );
-    intersectionObserver.observe(container);
-
+    let elapsed = fixedTimeValue;
+    let previous = 0;
+    let lastRender = 0;
+    let samples = 0;
+    let slowFrames = 0;
     const animate = (now: number) => {
-      if (isVisible) {
-        renderFrame(Math.max(0, (now - startTime) * 0.001));
+      rafId = 0;
+      if (!isVisible || document.hidden || reducedMotion) return;
+      if (previous) {
+        const delta = now - previous;
+        elapsed += Math.min(delta, 50) * 0.001;
+        samples++;
+        if (delta > (limited ? 50 : 28)) slowFrames++;
+        if (samples >= 30) {
+          if (slowFrames > 8) {
+            setAutomaticStatic(true);
+            return;
+          }
+          samples = 0;
+          slowFrames = 0;
+        }
       }
-      if (!reducedMotion) {
-        rafId = window.requestAnimationFrame(animate);
+      previous = now;
+      if (!limited || now - lastRender >= 32) {
+        renderFrame(elapsed);
+        lastRender = now;
       }
-    };
-
-    renderFrame(fixedTimeValue);
-    if (!reducedMotion) {
       rafId = window.requestAnimationFrame(animate);
-    }
+    };
+    const syncPlayback = () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = 0;
+      previous = 0;
+      if (isVisible && !document.hidden && !reducedMotion) rafId = requestAnimationFrame(animate);
+    };
+    const updateCrop = () => {
+      syncSize();
+      renderFrame(elapsed);
+    };
+    const resizeObserver = new ResizeObserver(updateCrop);
+    resizeObserver.observe(container);
+    if (compactFinder) compactViewport.addEventListener('change', updateCrop);
+    const intersectionObserver = new IntersectionObserver((entries) => {
+      isVisible = entries[0]?.isIntersecting ?? true;
+      syncPlayback();
+    }, { threshold: 0.02 });
+    intersectionObserver.observe(container);
+    document.addEventListener('visibilitychange', syncPlayback);
+    renderFrame(fixedTimeValue);
+    syncPlayback();
 
     return () => {
       if (rafId) window.cancelAnimationFrame(rafId);
       resizeObserver.disconnect();
+      if (compactFinder) compactViewport.removeEventListener('change', updateCrop);
       intersectionObserver.disconnect();
+      document.removeEventListener('visibilitychange', syncPlayback);
       gl.deleteBuffer(quadBuffer);
       gl.deleteBuffer(particleBuffer);
       gl.deleteProgram(volumeProg);
       gl.deleteProgram(particleProg);
     };
-  }, []);
+  }, [finder, budget, paused, automaticStatic, canAnimate, compactFinder]);
 
   return (
-    <div ref={containerRef} className={`mn-hero-airflow ${styles.airflow}`} aria-hidden="true">
-      <canvas ref={canvasRef} style={{ width: '100%', height: '100%', display: 'block' }} />
-    </div>
+    <>
+      <div ref={containerRef} className={`mn-hero-airflow ${styles.airflow}`} aria-hidden="true"
+        data-quality={!canAnimate || paused || automaticStatic ? 'static' : 'animated'}>
+        <canvas ref={canvasRef} style={{ width: '100%', height: '100%', display: 'block' }} />
+      </div>
+      {showToggle && budget === 'full' && !automaticStatic && (
+        <button type="button" className="mn-airflow-toggle" aria-pressed={paused}
+          onClick={() => setPaused(value => !value)}>
+          {paused ? 'Bật hiệu ứng' : 'Dừng hiệu ứng'}
+        </button>
+      )}
+    </>
   );
 }

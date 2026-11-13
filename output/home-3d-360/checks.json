@@ -1,0 +1,118 @@
+{
+  "sizes": [
+    {
+      "width": 360,
+      "height": 800,
+      "canvas": {
+        "x": 13,
+        "y": 106.953125,
+        "width": 334,
+        "height": 410
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "canvas": {
+        "x": 13,
+        "y": 151.109375,
+        "width": 364,
+        "height": 410
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "canvas": {
+        "x": 21,
+        "y": 304.203125,
+        "width": 726,
+        "height": 520
+      }
+    },
+    {
+      "width": 1440,
+      "height": 1000,
+      "canvas": {
+        "x": 507.1875,
+        "y": 102,
+        "width": 896,
+        "height": 680
+      }
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "canvas": {
+        "x": 747.1875,
+        "y": 102,
+        "width": 896,
+        "height": 734
+      }
+    }
+  ],
+  "angles": [
+    {
+      "degrees": 0,
+      "renderCount": 4,
+      "auto": false,
+      "drawCalls": 23,
+      "triangles": 51562,
+      "memory": {
+        "geometries": 23,
+        "textures": 2
+      }
+    },
+    {
+      "degrees": 90,
+      "renderCount": 6,
+      "auto": false,
+      "drawCalls": 23,
+      "triangles": 51562,
+      "memory": {
+        "geometries": 23,
+        "textures": 2
+      }
+    },
+    {
+      "degrees": 180,
+      "renderCount": 8,
+      "auto": false,
+      "drawCalls": 23,
+      "triangles": 51562,
+      "memory": {
+        "geometries": 23,
+        "textures": 2
+      }
+    },
+    {
+      "degrees": 270,
+      "renderCount": 10,
+      "auto": false,
+      "drawCalls": 23,
+      "triangles": 51562,
+      "memory": {
+        "geometries": 23,
+        "textures": 2
+      }
+    }
+  ],
+  "errors": [],
+  "mouseDrag": true,
+  "fullRotation": true,
+  "keyboard": true,
+  "idleDoesNotRender": true,
+  "autoStartStop": true,
+  "export": {
+    "bytes": 1663656,
+    "meshes": 22,
+    "materials": 22,
+    "reimported": true
+  },
+  "disposedMemory": {
+    "geometries": 0,
+    "textures": 0
+  },
+  "touchDrag": true,
+  "offlineFallback": true
+}

@@ -1,0 +1,10 @@
+{
+  "tool": "built-in image_gen",
+  "reference": "/Users/macbookprom1/.codex/generated_images/01a1976c-a0b2-7d90-aaee-fff25976850e/exec-fde7bda2-0b2b-4635-bea8-7d4665f80dd2.png",
+  "files": {
+    "house": "exec-02980760-735a-4479-bdd6-5ea6d58aecf2.png",
+    "devices": "exec-b4df5ad6-a9b5-4238-afca-3b91df5f718f.png",
+    "services": "exec-59d8b829-b170-4d7c-af0d-2cd39288f54e.png"
+  },
+  "note": "AI-generated illustrations, not staff photos. WebP encoding only; sprites displayed in CSS. Original prompts recorded in conversation."
+}

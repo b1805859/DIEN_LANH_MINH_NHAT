@@ -1,0 +1,58 @@
+[
+  {
+    "width": 360,
+    "overflow": false,
+    "errors": [],
+    "groups": 6,
+    "catalogueUrls": 11
+  },
+  {
+    "width": 390,
+    "overflow": false,
+    "errors": [],
+    "groups": 6,
+    "catalogueUrls": 11
+  },
+  {
+    "width": 768,
+    "overflow": false,
+    "errors": [],
+    "groups": 6,
+    "catalogueUrls": 11
+  },
+  {
+    "width": 901,
+    "overflow": false,
+    "errors": [],
+    "groups": 6,
+    "catalogueUrls": 11
+  },
+  {
+    "width": 1122,
+    "overflow": false,
+    "errors": [],
+    "groups": 6,
+    "catalogueUrls": 11
+  },
+  {
+    "width": 1440,
+    "overflow": false,
+    "errors": [],
+    "groups": 6,
+    "catalogueUrls": 11
+  },
+  {
+    "width": 1920,
+    "overflow": false,
+    "errors": [],
+    "groups": 6,
+    "catalogueUrls": 11
+  },
+  {
+    "width": 2560,
+    "overflow": false,
+    "errors": [],
+    "groups": 6,
+    "catalogueUrls": 11
+  }
+]

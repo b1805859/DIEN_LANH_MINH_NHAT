@@ -46,10 +46,10 @@ export const PRIORITY_DISTRICTS = [
 ] as const;
 
 export const SERVICES = [
-  { name: 'Tháo Lắp Máy Lạnh', slug: 'thao-lap-may-lanh' },
+  { name: 'Tháo dỡ, di dời máy lạnh', slug: 'thao-di-doi-may-lanh' },
+  { name: 'Lắp đặt máy lạnh', slug: 'lap-dat-may-lanh' },
   { name: 'Vệ Sinh Máy Lạnh', slug: 've-sinh-may-lanh' },
   { name: 'Sửa Máy Lạnh', slug: 'sua-may-lanh' },
-  { name: 'Nạp Gas Máy Lạnh', slug: 'nap-gas-may-lanh' },
   { name: 'Sửa Tủ Lạnh', slug: 'sua-tu-lanh' },
   { name: 'Sửa Máy Giặt', slug: 'sua-may-giat' },
   { name: 'Vệ Sinh Máy Giặt', slug: 've-sinh-may-giat' },
@@ -71,7 +71,7 @@ export const BLOG_POSTS = [
     title: 'Bao lâu nên vệ sinh máy lạnh một lần?',
     slug: 'bao-lau-nen-ve-sinh-may-lanh-mot-lan',
     category: 'may-lanh',
-    image: '/images/redesign/ve-sinh-may-lanh.webp',
+    image: '/images/redesign/ve-sinh-may-lanh-hold-bag-v3-uniform-v1.webp',
     excerpt:
       'Bao lâu nên vệ sinh máy lạnh ở nhà, phòng trọ hoặc cửa hàng? Lịch vệ sinh còn tùy mức độ sử dụng.',
   },
@@ -79,28 +79,28 @@ export const BLOG_POSTS = [
     title: 'Dấu hiệu máy lạnh cần nạp gas',
     slug: 'dau-hieu-may-lanh-can-nap-gas',
     category: 'may-lanh',
-    image: '/images/redesign/nap-gas-may-lanh.webp?v=20261015-realism',
+    image: '/images/redesign/nap-gas-may-lanh-uniform-v1.webp',
     excerpt: 'Máy lạnh yếu có phải do thiếu gas? Những dấu hiệu cần để thợ kiểm tra trước khi nạp.',
   },
   {
     title: 'Máy lạnh không lạnh nguyên nhân do đâu?',
     slug: 'may-lanh-khong-lanh-nguyen-nhan-do-dau',
     category: 'may-lanh',
-    image: '/images/redesign/sua-may-lanh-realism-v2.webp',
+    image: '/images/redesign/sua-may-lanh-realism-v2-uniform-v1.webp',
     excerpt: 'Máy vẫn chạy nhưng phòng không mát: những nguyên nhân thường gặp và cách kiểm tra ban đầu.',
   },
   {
     title: 'Máy lạnh chảy nước phải làm sao?',
     slug: 'may-lanh-chay-nuoc-phai-lam-sao',
     category: 'may-lanh',
-    image: '/images/redesign/ve-sinh-may-lanh.webp',
+    image: '/images/redesign/ve-sinh-may-lanh-hold-bag-v3-uniform-v1.webp',
     excerpt: 'Nhận biết nguyên nhân máy lạnh rò nước, nghẹt ống thoát và các bước xử lý ban đầu.',
   },
   {
     title: 'Các lỗi thường gặp ở tủ lạnh',
     slug: 'cac-loi-thuong-gap-o-tu-lanh',
     category: 'tu-lanh',
-    image: '/images/redesign/sua-tu-lanh.webp',
+    image: '/images/redesign/sua-tu-lanh-rear-repair-v2-uniform-v1.webp',
     excerpt:
       'Những lỗi tủ lạnh thường gặp như yếu lạnh, đóng tuyết, rò nước và tiếng ồn bất thường.',
   },
@@ -108,14 +108,14 @@ export const BLOG_POSTS = [
     title: 'Khi nào cần vệ sinh máy giặt?',
     slug: 'khi-nao-can-ve-sinh-may-giat',
     category: 'may-giat',
-    image: '/images/redesign/ve-sinh-may-giat.webp',
+    image: '/images/redesign/ve-sinh-may-giat-uniform-v1.webp',
     excerpt: 'Dấu hiệu lồng giặt bám cặn, có mùi và lịch vệ sinh giúp quần áo sạch hơn.',
   },
   {
     title: 'Mẹo tiết kiệm điện khi sử dụng máy lạnh',
     slug: 'meo-tiet-kiem-dien-khi-su-dung-may-lanh',
     category: 'tiet-kiem-dien',
-    image: '/images/redesign/ve-sinh-may-lanh.webp',
+    image: '/images/redesign/ve-sinh-may-lanh-hold-bag-v3-uniform-v1.webp',
     excerpt: 'Cách cài đặt nhiệt độ, vệ sinh định kỳ và dùng máy lạnh hợp lý để giảm hao điện.',
   },
 ] as const;

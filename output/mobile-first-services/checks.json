@@ -1,0 +1,174 @@
+[
+  {
+    "height": 568,
+    "links": [
+      {
+        "bottom": 410.5546875,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Máy lạnh"
+      },
+      {
+        "bottom": 410.5546875,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Máy giặt"
+      },
+      {
+        "bottom": 468.5546875,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Tủ lạnh"
+      },
+      {
+        "bottom": 468.5546875,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Điện nước dân dụng"
+      },
+      {
+        "bottom": 526.5546875,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Nước uống nóng lạnh"
+      },
+      {
+        "bottom": 526.5546875,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Nước nóng lạnh tắm"
+      }
+    ],
+    "overflow": false,
+    "width": 320
+  },
+  {
+    "height": 600,
+    "links": [
+      {
+        "bottom": 416,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Máy lạnh"
+      },
+      {
+        "bottom": 416,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Máy giặt"
+      },
+      {
+        "bottom": 474,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Tủ lạnh"
+      },
+      {
+        "bottom": 474,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Điện nước dân dụng"
+      },
+      {
+        "bottom": 532,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Nước uống nóng lạnh"
+      },
+      {
+        "bottom": 532,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Nước nóng lạnh tắm"
+      }
+    ],
+    "overflow": false,
+    "width": 375
+  },
+  {
+    "height": 700,
+    "links": [
+      {
+        "bottom": 433,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Máy lạnh"
+      },
+      {
+        "bottom": 433,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Máy giặt"
+      },
+      {
+        "bottom": 491,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Tủ lạnh"
+      },
+      {
+        "bottom": 491,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Điện nước dân dụng"
+      },
+      {
+        "bottom": 549,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Nước uống nóng lạnh"
+      },
+      {
+        "bottom": 549,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Nước nóng lạnh tắm"
+      }
+    ],
+    "overflow": false,
+    "width": 390
+  },
+  {
+    "height": 780,
+    "links": [
+      {
+        "bottom": 446.59375,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Máy lạnh"
+      },
+      {
+        "bottom": 446.59375,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Máy giặt"
+      },
+      {
+        "bottom": 504.59375,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Tủ lạnh"
+      },
+      {
+        "bottom": 504.59375,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Điện nước dân dụng"
+      },
+      {
+        "bottom": 562.59375,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Nước uống nóng lạnh"
+      },
+      {
+        "bottom": 562.59375,
+        "centerClear": true,
+        "inFirstView": true,
+        "label": "Nước nóng lạnh tắm"
+      }
+    ],
+    "overflow": false,
+    "width": 430
+  }
+]

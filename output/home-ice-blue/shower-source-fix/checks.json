@@ -1,0 +1,32 @@
+[
+  {
+    "width": 390,
+    "roi": {
+      "left": 274.71875,
+      "right": 380.921875,
+      "baseLeft": 0,
+      "baseWidth": 390
+    },
+    "errors": []
+  },
+  {
+    "width": 1122,
+    "roi": {
+      "left": 917.421875,
+      "right": 1105.875,
+      "baseLeft": 429.9375,
+      "baseWidth": 692.046875
+    },
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "roi": {
+      "left": 1177.453125,
+      "right": 1419.328125,
+      "baseLeft": 551.796875,
+      "baseWidth": 888.1875
+    },
+    "errors": []
+  }
+]

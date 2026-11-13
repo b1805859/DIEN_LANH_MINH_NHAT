@@ -1,4 +1,6 @@
 import { ReactNode } from 'react';
+import './admin-mobile.css';
+import './admin-glass.css';
 import type { Metadata } from 'next';
 import { AdminShell } from '@/components/admin/admin-shell';
 

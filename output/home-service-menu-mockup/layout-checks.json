@@ -1,0 +1,22 @@
+[
+  {
+    "width": 375,
+    "scrollWidth": 375,
+    "imagesMissing": 0
+  },
+  {
+    "width": 768,
+    "scrollWidth": 768,
+    "imagesMissing": 0
+  },
+  {
+    "width": 1024,
+    "scrollWidth": 1024,
+    "imagesMissing": 0
+  },
+  {
+    "width": 1440,
+    "scrollWidth": 1440,
+    "imagesMissing": 0
+  }
+]

@@ -1,0 +1,28 @@
+REVIEW ADMIN MOBILE TỪ PHIÊN ĐĂNG NHẬP THẬT — 31/10/2026
+
+Đã xem website production qua tab Chrome người dùng cung cấp:
+https://dien-lanh-minh-nhat.vercel.app/admin/dashboard
+Viewport thử nghiệm: 390x844. Không truy cập token/cookie, không đăng xuất, không tạo/xóa/cập nhật bản ghi. Sau review đã trở lại dashboard và reset viewport về kích thước cũ.
+
+1. Dashboard — truy cập hoạt động, mật độ thông tin thấp.
+Ảnh: 01-dashboard-390.png, đã mở và kiểm tra.
+Đo từ DOM: banner cao 484px ở y=93; phần tóm tắt cao 735px ở y=601; khối phân hệ quản trị bắt đầu y=1360, cao 1400px. Tổng chiều cao trang 2784px.
+Số liệu quan sát: 10 dịch vụ, 0 lịch hẹn, 0 bài viết, 0 danh mục, 0 FAQ; lịch hôm nay/7 ngày/chờ xác nhận đều 0, chưa có ngày lịch gần nhất.
+Đề xuất: bỏ banner giới thiệu lớn khỏi mobile; KPI 2x2 hoặc 1 dải gọn; đưa danh sách phân hệ lên khung đầu; trạng thái chưa có lịch chỉ chiếm một hàng ngắn.
+
+2. Lịch hẹn — chức năng và chế độ theo ngày hoạt động; phần thống kê chiếm nhiều chiều cao.
+Ảnh: 02-bookings-390.png, đã mở và kiểm tra.
+Màn hình hiện xếp 4 card thống kê dọc; phần đầu lịch tháng chỉ vừa xuất hiện ở cuối khung. Đã chuyển thử Theo ngày, hiện đúng trạng thái chưa có lịch hẹn trong tháng; không có lỗi cần gán thành dữ liệu hỏng. Chế độ danh sách có tổng chiều cao 1157px trong lần đo.
+Đề xuất: 4 số liệu trên một dải; tìm kiếm và lọc trạng thái gọn; lịch tháng compact, có chế độ Theo ngày; chọn ngày 31/10/2026 (Thứ Bảy) và trạng thái 0 lịch cùng nhìn được trong một khung. Khi chưa có dữ liệu, dùng thông báo ngắn, không tạo khách/lịch giả.
+
+3. Dịch vụ — dữ liệu tải thành công, bảng desktop gây khó thao tác mobile.
+Ảnh: 03-services-390.png, đã mở và kiểm tra.
+Bảng rộng 980px, root content rộng 375px trong window.innerWidth 390px. Cột hành động nằm ngoài phần nhìn ban đầu và phải cuộn ngang; không phải tràn toàn trang. Bảng bắt đầu y=387, tổng trang 1313px. Có 10 bản ghi, các hàng hiển thị trạng thái Đang hiển thị.
+Đề xuất: mỗi bản ghi thành hàng gọn gồm ảnh 44–48px, tên đầy đủ, trạng thái, thứ tự và nút thao tác. Xem/Cập nhật/Xóa đặt trong menu hiện có cho từng hàng; slug, mô tả, thời gian cập nhật đặt ở chi tiết. Không dùng overflow:hidden để che bảng hoặc làm mất nút.
+
+ẢNH MOCKUP MỚI
+Ba ảnh mới là các màn bổ sung trong cùng một bộ: Tổng quan, Lịch hẹn, Dịch vụ. Ánh xạ đúng thứ tự hiển thị trong mockups.json. Chúng được Image Gen dựng từ cả 3 ảnh chụp hiện tại, dùng số liệu và tên dịch vụ quan sát được. Không dùng số liệu 4/9/2 hoặc khách minh họa của bộ mockup cũ cho các ảnh mới.
+Các ảnh là concept, chưa phải code đã triển khai; khả năng chứa dữ liệu, font 14–16px và vùng chạm 44px là mục tiêu thiết kế, chưa được xác nhận bằng browser test ở runtime. Các ảnh/thu nhỏ và vài chi tiết icon được dựng lại; khi triển khai dùng asset và dữ liệu gốc.
+
+GIỚI HẠN
+Chỉ review 3 màn và menu, không kiểm tra luồng lưu/xóa/phân quyền hoặc sửa mật khẩu. Không chứng nhận accessibility từ screenshot. Chưa kiểm tra trên thiết bị iOS/Safari thật. Chưa sửa mã nguồn hoặc deploy.

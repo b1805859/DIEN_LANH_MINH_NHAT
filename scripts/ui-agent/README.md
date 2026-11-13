@@ -52,7 +52,7 @@ Từ thư mục gốc:
 ```sh
 TARGET_URL=http://127.0.0.1:3010 npm run ui:audit
 TARGET_URL=http://127.0.0.1:3010 npm run ui:fix
-TARGET_URL=http://127.0.0.1:3010 AUDIT_PHASE=after-routes UI_AUDIT_PATHS=/booking,/services,/contact,/faq,/admin/login npm run ui:audit
+TARGET_URL=http://127.0.0.1:3010 AUDIT_PHASE=after-routes UI_AUDIT_PATHS=/services,/contact,/faq,/admin/login npm run ui:audit
 ```
 
 Fixer build với `NODE_ENV=production` và `.next-ui-build`, sau đó phục hồi `next-env.d.ts` / `tsconfig.json` vì Next có thể tự ghi các file này. Điều này tránh việc `.env` đặt `NODE_ENV=development` làm hỏng prerender production.

@@ -1,0 +1,335 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 47.4% 11.2%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 47.4% 11.2%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 47.4% 11.2%;
+    --primary: 211 100% 36%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 211 100% 36%;
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-be-vietnam-pro), Helvetica, sans-serif;
+    text-rendering: optimizeLegibility;
+  }
+
+  html,
+  body {
+    min-width: 0;
+    /* Clip horizontal spill without creating an ancestor scroller for sticky navigation. */
+    overflow-x: clip;
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    min-width: 0;
+  }
+
+  img,
+  video,
+  canvas,
+  svg {
+    max-width: 100%;
+  }
+}
+
+@layer utilities {
+  .animate-in-soft {
+    animation: in-soft 1150ms cubic-bezier(.4,0,.2,1) both;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 9s ease-in-out infinite;
+  }
+
+  .contact-action {
+    transition:
+      transform 450ms ease,
+      box-shadow 450ms ease,
+      filter 450ms ease;
+  }
+
+  .contact-action:hover {
+    filter: brightness(1.05);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 18px 34px rgb(15 23 42 / 0.22);
+  }
+
+  .ai-chat-action {
+    position: relative;
+    isolation: isolate;
+    transition:
+      transform 450ms ease,
+      box-shadow 450ms ease,
+      background 450ms ease,
+      border-color 450ms ease;
+  }
+
+  .ai-chat-action::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    z-index: -1;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, rgb(34 211 238 / 0.8), rgb(250 204 21 / 0.45));
+    opacity: 0;
+    filter: blur(9px);
+    transition:
+      opacity 450ms ease,
+      transform 450ms ease;
+  }
+
+  .ai-chat-action:hover,
+  .ai-chat-action:focus-visible {
+    background: #10243a;
+    box-shadow:
+      0 18px 40px rgb(2 6 23 / 0.34),
+      0 0 0 2px rgb(103 232 249 / 0.38);
+    transform: translateY(-3px);
+  }
+
+  .ai-chat-action:hover::before,
+  .ai-chat-action:focus-visible::before {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+
+  .ai-chat-action:focus-visible {
+    outline: none;
+  }
+
+  .contact-action-float {
+    animation: contact-action-float 6.4s ease-in-out infinite;
+  }
+
+  .phone-ring-icon {
+    animation: phone-ring 3.6s ease-in-out infinite;
+    transform-origin: 50% 50%;
+  }
+
+  .phone-ring-halo {
+    animation: phone-ring-halo 3.6s ease-out infinite;
+  }
+
+  .glass-panel {
+    background: rgb(255 255 255 / 0.82);
+    box-shadow: 0 24px 80px rgb(15 23 42 / 0.18);
+    backdrop-filter: blur(18px);
+  }
+
+  .hero-fade-image {
+    animation: hero-fade 72s ease-in-out infinite;
+    animation-fill-mode: both;
+    backface-visibility: hidden;
+    opacity: 0;
+    transform: scale(1.025);
+    will-change: opacity, transform;
+  }
+
+  .area-fade-image {
+    animation-fill-mode: both;
+    backface-visibility: hidden;
+    opacity: 0;
+    transform: scale(1.02);
+    will-change: opacity, transform;
+  }
+
+  .area-fade-image-single {
+    opacity: 1;
+    transform: scale(1.01);
+  }
+
+  .area-fade-image-two {
+    animation: area-fade-two var(--area-fade-duration, 14s) ease-in-out infinite;
+  }
+
+  .area-fade-image-three {
+    animation: area-fade-three var(--area-fade-duration, 24s) ease-in-out infinite;
+  }
+}
+
+@keyframes in-soft {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes hero-fade {
+  0% {
+    opacity: 1;
+    transform: scale(1.01);
+  }
+
+  15% {
+    opacity: 1;
+    transform: scale(1.01);
+  }
+
+  21%,
+  90% {
+    opacity: 0;
+    transform: scale(1.045);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.045);
+  }
+}
+
+@keyframes area-fade-two {
+  0% {
+    opacity: 1;
+    transform: scale(1.01);
+  }
+
+  55% {
+    opacity: 1;
+    transform: scale(1.01);
+  }
+
+  65%,
+  100% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes area-fade-three {
+  0% {
+    opacity: 1;
+    transform: scale(1.01);
+  }
+
+  36% {
+    opacity: 1;
+    transform: scale(1.01);
+  }
+
+  44%,
+  100% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade-image {
+    animation: none;
+    opacity: 0;
+  }
+
+  .hero-fade-image:first-child {
+    opacity: 1;
+  }
+
+  .hero-fade-image:first-of-type {
+    opacity: 1;
+  }
+
+  .area-fade-image {
+    animation: none;
+    opacity: 0;
+  }
+
+  .area-fade-image:first-child {
+    opacity: 1;
+  }
+
+  .area-fade-image:first-of-type {
+    opacity: 1;
+  }
+}
+
+@keyframes contact-action-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes phone-ring {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  7%,
+  21%,
+  35% {
+    transform: rotate(-20deg) scale(1.08);
+  }
+
+  14%,
+  28%,
+  42% {
+    transform: rotate(20deg) scale(1.08);
+  }
+
+  50% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes phone-ring-halo {
+  0% {
+    opacity: 0.65;
+    transform: translate(-50%, -50%) scale(0.72);
+  }
+
+  65% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.85);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.85);
+  }
+}

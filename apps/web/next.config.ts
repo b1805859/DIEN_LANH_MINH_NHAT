@@ -7,8 +7,20 @@ const nextConfig: NextConfig = {
   devIndicators: false,
   reactStrictMode: true,
   output: 'standalone',
+  async redirects() {
+    return [
+      { source: '/services/thao-lap-may-lanh', destination: '/services/thao-di-doi-may-lanh', permanent: true },
+      { source: '/areas/:locationSlug/thao-lap-may-lanh', destination: '/areas/:locationSlug/thao-di-doi-may-lanh', permanent: true },
+    ];
+  },
+  async rewrites() {
+    // Browsers use the website origin, including when opened from a phone on LAN.
+    const apiUrl = (process.env.API_INTERNAL_URL || 'http://127.0.0.1:4000/api').replace(/\/$/, '');
+    return [{ source: '/api/:path*', destination: `${apiUrl}/:path*` }];
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
+    qualities: [75, 92],
     localPatterns: [
       { pathname: '/**', search: '' },
       { pathname: '/images/redesign/**', search: '?v=20261015-realism' },

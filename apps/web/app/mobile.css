@@ -1,0 +1,249 @@
+/* Public mobile & tablet layouts. Keep desktop rules in their component stylesheets. */
+@media (max-width: 900px) {
+  .mn-site { --mn-content-gutter: 32px; --mn-nav-height: 56px; --mn-header-inset: 8px; --mn-page-gap: 8px; padding-bottom: 0; }
+  .mn-site #mn-main-content { scroll-margin-top: 80px; }
+  .mn-site main { overflow-wrap: break-word; }
+  .mn-site main :is(p, li) { line-height: 1.7; }
+  .mn-site main :is(input, select, textarea), .mn-site .mn-chat-panel input { font-size: 16px; }
+  .mn-site main :is(input, select) { min-height: 48px; }
+  .mn-site main textarea { min-height: 112px; }
+  .mn-site .mn-desktop-nav { display: none; }
+  .mn-site .mn-menu-button { display: grid; place-items: center; }
+  .mn-site .mn-header-actions { margin-left: auto; }
+  .mn-site .mn-menu-button, .mn-site .mn-menu-close { width: 44px; height: 44px; flex-shrink: 0; }
+  .mn-site .mn-mobile-dialog { padding-top: env(safe-area-inset-top, 0px); overflow-y: auto; overscroll-behavior: contain; }
+  .mn-site .mn-mobile-menu { padding-bottom: max(28px, env(safe-area-inset-bottom, 0px)); }
+  .mn-site .mn-mobile-menu nav a { min-height: 48px; }
+  .mn-site .mn-chat-panel { left: 12px; right: 12px; bottom: max(var(--mn-chat-bottom, 12px), env(safe-area-inset-bottom, 0px)); width: auto; max-width: none; max-height: var(--mn-chat-available-height, calc(100dvh - 24px)); }
+  .mn-site .mn-chat-panel button { min-height: 44px; }
+  .mn-site .mn-chat-messages { flex: 1 1 260px; }
+  .mn-site .mn-filters { gap: 8px; }
+  .mn-site .mn-filters :is(button, a), .mn-site .mn-tabs > :is(a, button) { min-height: 44px; font-size: 13px; }
+  .mn-site .mn-contact-layout { gap: 24px; }
+  .mn-site[data-inner-page] main .mn-contact-methods strong { font-size: 16px; }
+  .mn-site[data-inner-page] main .mn-contact-methods small { font-size: 12px; }
+  .mn-site .mn-booking-form label > span { font-size: 14px; }
+  .mn-site .mn-booking-form .mn-button { min-height: 48px; font-size: 15px; white-space: normal; }
+  .mn-site .mn-booking-form :is(input, select, textarea) { width: 100%; min-width: 0; }
+  .mn-site:is([data-home], [data-inner-page]) .mn-home-footer .mn-footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 16px; }
+  .mn-site:is([data-home], [data-inner-page]) .mn-home-footer .mn-footer-grid > :is(.mn-home-footer-brand, .mn-home-footer-contact, .mn-home-footer-about) { grid-column: 1 / -1; grid-row: auto; }
+  .mn-site:is([data-home], [data-inner-page]) .mn-home-footer .mn-footer-grid h2 { font-size: 16px; }
+  .mn-site:is([data-home], [data-inner-page]) .mn-home-footer .mn-footer-grid > div > a:not(.mn-brand) { font-size: 14px; min-height: 44px; }
+  .mn-site:is([data-home], [data-inner-page]) .mn-home-footer .mn-footer-bottom { font-size: 12px; line-height: 1.7; }
+  .mn-site:is([data-home], [data-inner-page]) .mn-home-footer .mn-footer-bottom > div { flex-wrap: wrap; }
+}
+
+/* Mobile contact actions float independently; no footer dock or reserved strip. */
+@media (max-width: 900px) {
+  .mn-site .mn-floating { --mn-fab-size: 48px; }
+  .mn-site .mn-floating-support { display: contents; }
+  .mn-site .mn-floating-support .contact-action-float {
+    position: fixed;
+    z-index: 50;
+    right: max(16px, env(safe-area-inset-right, 0px));
+    bottom: calc(max(16px, env(safe-area-inset-bottom, 0px)) + 24px);
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: grab;
+    transform: none;
+  }
+  .mn-site .mn-floating-support .ai-chat-action {
+    bottom: calc(max(16px, env(safe-area-inset-bottom, 0px)) + 84px);
+  }
+  .mn-site .mn-floating-support [data-dragging='true'] { cursor: grabbing; }
+  .mn-site .mn-floating:has(.mn-chat-panel) .mn-floating-support { display: none; }
+}
+@media (max-width: 600px) {
+  .mn-site[data-inner-page='true'] main .mn-page-hero { min-height: 280px; }
+  .mn-site[data-inner-page='true'] main :is(.mn-page-hero, .mn-services-catalog-hero) h1 { font-size: clamp(28px, 7.7vw, 36px); line-height: 1.22; letter-spacing: -.8px; }
+  .mn-site[data-inner-page='true'] main .mn-page-hero p { font-size: 15px; max-width: 100%; }
+  .mn-site[data-inner-page='true'] main .mn-about-hero .mn-container > p { max-width: 100%; }
+  .mn-site[data-inner-page='true'] main .mn-page-hero .mn-container { padding-block: 32px; }
+  .mn-site[data-inner-page='true'] main .mn-page-hero-shade { background: linear-gradient(90deg, #00243bf5, #00243bbd 70%, #00243b66); }
+  .mn-site[data-inner-page='true'] main .mn-about-facts { padding: 20px 10px; }
+  .mn-site[data-inner-page='true'] main .mn-about-facts strong { font-size: clamp(17px, 5vw, 22px); }
+  .mn-site[data-inner-page='true'] main .mn-about-facts span { font-size: 12px; }
+  /* Reserve enough width for the complete phone number instead of clipping it. */
+  .mn-site main .mn-support > div { width: 80%; min-width: 0; padding: 20px; }
+  .mn-site main .mn-support h2 a { display: block; font-size: clamp(22px, 6vw, 28px); }
+  .mn-site main .mn-support .mn-button { min-height: 48px; white-space: normal; }
+  .mn-site main .mn-form-fields { grid-template-columns: minmax(0, 1fr); }
+  .mn-site main .mn-form-fields > * { grid-column: 1; }
+  .mn-site main .mn-form-panel { padding: 18px 14px; }
+  .mn-site .mn-contact-methods { grid-template-columns: 1fr; }
+  .mn-site .mn-contact-map iframe { height: 300px; }
+  .mn-site[data-home='true'] .mn-home-content .mn-home-services-heading { grid-template-columns: minmax(0, 1fr); }
+  .mn-site[data-home='true'] .mn-home-content .mn-home-service-controls { grid-column: 1; grid-row: 3; flex-direction: row; justify-content: flex-start; }
+  .mn-site[data-home='true'] .mn-home-content .mn-card-copy p,
+  .mn-site[data-inner-page='true'] .mn-home-reuse .mn-card-copy p,
+  .mn-site[data-home='true'] .mn-home-content .mn-reasons p,
+  .mn-site[data-inner-page='true'] .mn-home-reuse .mn-reasons p { font-size: 14px; }
+  .mn-site .mn-editorial-hero .aspect-\[16\/11\] { width: 100%; min-width: 0; min-height: 0; }
+  .mn-site main .mn-article { padding: 24px 16px; font-size: 16px; }
+  .mn-site main .mn-article :is(table, pre) { display: block; max-width: 100%; overflow-x: auto; }
+}
+@media (max-width: 360px) {
+  .mn-site .mn-nav-book { white-space: nowrap; }
+  .mn-site .mn-nav-book svg { display: none; }
+}
+
+/* Approved mobile journey: all five steps flow naturally with crisp cartoon illustrations */
+.mn-process-booking { display: none; }
+@media (max-width: 700px) {
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey {
+    --mn-step-size: 32px;
+    --mn-section-bg: #f3faff;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    height: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 24px 0 54px;
+    scroll-margin-top: 66px;
+    color: #071e42;
+    background: #f3faff;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey > .mn-section-heading {
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey h2 {
+    margin: 0;
+    font-size: clamp(23px, 6.4vw, 30px);
+    line-height: 1.16;
+    letter-spacing: -.65px;
+    color: #071e42;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey h2 em { display: block; color: #00aeef; }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    min-height: 0;
+    isolation: isolate;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-grid article {
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--mn-step-size) minmax(0, 1fr) 72px;
+    grid-template-rows: auto auto;
+    align-content: center;
+    align-items: center;
+    gap: 4px 12px;
+    min-width: 0;
+    min-height: 72px;
+    padding: 10px 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-grid article:not(:last-of-type)::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    left: calc(var(--mn-step-size) / 2 - 1px);
+    top: 50%;
+    width: 2px;
+    height: 100%;
+    background: #00aeef;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-grid article:not(:last-of-type)::after {
+    content: '';
+    position: absolute;
+    left: calc(var(--mn-step-size) + 12px);
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: #c9eafa;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-grid article > .mn-journey-step-number {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    display: grid;
+    place-items: center;
+    align-self: center;
+    width: var(--mn-step-size);
+    height: var(--mn-step-size);
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: #00aeef;
+    color: #002b46;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-journey-step-number strong { font-size: 15px; line-height: 1; }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey :is(.mn-journey-step-number small, .mn-home-process-icon, .mn-journey-highlight, .mn-journey-milestone, .mn-journey-connector) { display: none !important; }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-grid h3 {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.25;
+    font-weight: 800;
+    color: #071e42;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-grid p {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: start;
+    margin: 0;
+    font-size: 12.5px;
+    line-height: 1.45;
+    color: #385776;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-illustration {
+    grid-column: 3;
+    grid-row: 1 / 3;
+    width: 72px;
+    height: 72px;
+    aspect-ratio: 1;
+    margin: 0;
+    border-radius: 10px;
+    background: #f3faff;
+    display: block !important;
+    overflow: hidden;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-illustration img {
+    object-fit: contain !important;
+    object-position: center !important;
+    transform: none !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  /* These details must remain readable together, including before scroll reveals finish. */
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey :is(h2, h2 *, article, article > *, .mn-process-illustration img) {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+  }
+  .mn-site:is([data-home='true'], [data-inner-page='true']) :is(.mn-home-content, .mn-home-reuse) .mn-home-process-journey .mn-process-booking {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 44px;
+    margin-top: 10px;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 15px;
+    line-height: 1.2;
+  }
+}
+
+/* Compact cards keep clean padding and typography on smaller screens. */
+@media (max-width: 900px) {
+  .mn-site:is([data-home], [data-inner-page]) main .mn-service-grid .mn-service-card .mn-card-copy {
+    padding: 12px 14px 14px;
+    gap: 8px;
+  }
+  .mn-site:is([data-home], [data-inner-page]) .mn-home-footer p { font-size: 14px; }
+  .mn-site .mn-home-footer .mn-home-footer-socials a { min-width: 44px; min-height: 44px; }
+  .mn-site .mn-home-footer .mn-footer-bottom a { display: inline-flex; align-items: center; min-height: 44px; }
+}

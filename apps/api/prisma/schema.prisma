@@ -143,6 +143,7 @@ model Booking {
 
   @@index([status])
   @@index([scheduledDate])
+  @@index([createdAt])
   @@map("bookings")
 }
 
@@ -291,4 +292,24 @@ model AdminAuditLog {
   @@index([action])
   @@index([createdAt])
   @@map("admin_audit_logs")
+}
+
+// Anonymous daily totals only: no IPs, cookies, visitor IDs or browsing paths.
+model WebsiteDailyMetric {
+  date      DateTime @id @db.Date
+  pageViews Int      @default(0)
+
+  @@map("website_daily_metrics")
+}
+
+model ConsultationRequest {
+  id            String    @id @default(cuid())
+  customerName  String
+  customerPhone String
+  notes         String
+  createdAt     DateTime  @default(now())
+  contactedAt   DateTime?
+
+  @@index([contactedAt, createdAt])
+  @@map("consultation_requests")
 }

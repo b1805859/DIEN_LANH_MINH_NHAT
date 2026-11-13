@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Máy lạnh",
+    "panel": "Dịch vụ máy lạnh\nSửa chữa máy lạnh\nVệ sinh máy lạnh\nDi dời máy lạnh\nLắp đặt máy lạnh\nNạp gas máy lạnh",
+    "links": 5
+  },
+  {
+    "name": "Máy giặt",
+    "panel": "Dịch vụ máy giặt\nSửa chữa máy giặt\nVệ sinh máy giặt",
+    "links": 2
+  },
+  {
+    "name": "Tủ lạnh",
+    "panel": "Dịch vụ tủ lạnh\nSửa chữa tủ lạnh",
+    "links": 1
+  },
+  {
+    "name": "Điện nước dân dụng",
+    "panel": "Dịch vụ điện nước\nĐiện nước dân dụng",
+    "links": 1
+  },
+  {
+    "name": "Máy nước uống nóng lạnh",
+    "panel": "Máy nước uống nóng lạnh\nSửa chữa · Lắp đặt",
+    "links": 1
+  },
+  {
+    "name": "Máy nước nóng lạnh tắm",
+    "panel": "Máy nước nóng lạnh tắm\nSửa chữa · Lắp đặt",
+    "links": 1
+  },
+  {
+    "keyboardHome": "true"
+  }
+]

@@ -1,0 +1,342 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		10010001 /* MinhNhatAdminApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20010001 /* MinhNhatAdminApp.swift */; };
+		10010002 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20010002 /* AppEnvironment.swift */; };
+		10010003 /* AuthModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20010003 /* AuthModels.swift */; };
+		10010004 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20010004 /* KeychainManager.swift */; };
+		10010005 /* BiometricAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20010005 /* BiometricAuthService.swift */; };
+		10010006 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20010006 /* APIService.swift */; };
+		10010007 /* AuroraGlassCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20010007 /* AuroraGlassCard.swift */; };
+		10010008 /* BrandLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20010008 /* BrandLogoView.swift */; };
+		10010009 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20010009 /* LoginView.swift */; };
+		10010010 /* AdminWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20010010 /* AdminWebView.swift */; };
+		10010011 /* SettingsSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20010011 /* SettingsSheetView.swift */; };
+		10010012 /* QuickBookingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20010012 /* QuickBookingsView.swift */; };
+		10010013 /* MainAdminContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20010013 /* MainAdminContainerView.swift */; };
+		10010014 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20010014 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		30010001 /* MinhNhatAdmin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MinhNhatAdmin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		20010001 /* MinhNhatAdminApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinhNhatAdminApp.swift; sourceTree = "<group>"; };
+		20010002 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		20010003 /* AuthModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModels.swift; sourceTree = "<group>"; };
+		20010004 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		20010005 /* BiometricAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthService.swift; sourceTree = "<group>"; };
+		20010006 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		20010007 /* AuroraGlassCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuroraGlassCard.swift; sourceTree = "<group>"; };
+		20010008 /* BrandLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandLogoView.swift; sourceTree = "<group>"; };
+		20010009 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		20010010 /* AdminWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminWebView.swift; sourceTree = "<group>"; };
+		20010011 /* SettingsSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsSheetView.swift; sourceTree = "<group>"; };
+		20010012 /* QuickBookingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickBookingsView.swift; sourceTree = "<group>"; };
+		20010013 /* MainAdminContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainAdminContainerView.swift; sourceTree = "<group>"; };
+		20010014 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		20010015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		40010001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		50010001 = {
+			isa = PBXGroup;
+			children = (
+				50010002 /* MinhNhatAdmin */,
+				50010003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		50010002 /* MinhNhatAdmin */ = {
+			isa = PBXGroup;
+			children = (
+				50010004 /* App */,
+				50010005 /* Models */,
+				50010006 /* Services */,
+				50010007 /* Components */,
+				50010008 /* Views */,
+				20010014 /* Assets.xcassets */,
+				20010015 /* Info.plist */,
+			);
+			path = MinhNhatAdmin;
+			sourceTree = "<group>";
+		};
+		50010003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				30010001 /* MinhNhatAdmin.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		50010004 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				20010001 /* MinhNhatAdminApp.swift */,
+				20010002 /* AppEnvironment.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		50010005 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				20010003 /* AuthModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		50010006 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				20010004 /* KeychainManager.swift */,
+				20010005 /* BiometricAuthService.swift */,
+				20010006 /* APIService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		50010007 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				20010007 /* AuroraGlassCard.swift */,
+				20010008 /* BrandLogoView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		50010008 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				20010009 /* LoginView.swift */,
+				20010010 /* AdminWebView.swift */,
+				20010011 /* SettingsSheetView.swift */,
+				20010012 /* QuickBookingsView.swift */,
+				20010013 /* MainAdminContainerView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		60010001 /* MinhNhatAdmin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 70010001 /* Build configuration list for PBXNativeTarget "MinhNhatAdmin" */;
+			buildPhases = (
+				80010001 /* Sources */,
+				40010001 /* Frameworks */,
+				90010001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MinhNhatAdmin;
+			productName = MinhNhatAdmin;
+			productReference = 30010001 /* MinhNhatAdmin.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		00010001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					60010001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 70010002 /* Build configuration list for PBXProject "MinhNhatAdmin" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = vi;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				vi,
+				en,
+				Base,
+			);
+			mainGroup = 50010001;
+			productRefGroup = 50010003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				60010001 /* MinhNhatAdmin */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		90010001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10010014 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		80010001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10010001 /* MinhNhatAdminApp.swift in Sources */,
+				10010002 /* AppEnvironment.swift in Sources */,
+				10010003 /* AuthModels.swift in Sources */,
+				10010004 /* KeychainManager.swift in Sources */,
+				10010005 /* BiometricAuthService.swift in Sources */,
+				10010006 /* APIService.swift in Sources */,
+				10010007 /* AuroraGlassCard.swift in Sources */,
+				10010008 /* BrandLogoView.swift in Sources */,
+				10010009 /* LoginView.swift in Sources */,
+				10010010 /* AdminWebView.swift in Sources */,
+				10010011 /* SettingsSheetView.swift in Sources */,
+				10010012 /* QuickBookingsView.swift in Sources */,
+				10010013 /* MainAdminContainerView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		70010003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		70010004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		70010005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = MinhNhatAdmin/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.dienlanhminhnhat.admin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		70010006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = MinhNhatAdmin/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = vn.dienlanhminhnhat.admin;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		70010001 /* Build configuration list for PBXNativeTarget "MinhNhatAdmin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70010005 /* Debug */,
+				70010006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		70010002 /* Build configuration list for PBXProject "MinhNhatAdmin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				70010003 /* Debug */,
+				70010004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = 00010001 /* Project object */;
+}

@@ -1,0 +1,812 @@
+[
+  {
+    "width": 360,
+    "dpr": 2,
+    "images": [
+      {
+        "src": "/images/home-ice-blue/hd/house.webp",
+        "naturalWidth": 1377,
+        "renderedWidth": 360,
+        "effectiveScale": 0.5228758169934641
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 922.9375,
+        "effectiveScale": 0.8471202386415787
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 922.9375,
+        "effectiveScale": 0.8471202386415787
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 932.078125,
+        "effectiveScale": 0.8555099816429554
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 922.9375,
+        "effectiveScale": 0.8471202386415787
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 922.9375,
+        "effectiveScale": 0.8471202386415787
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 922.9375,
+        "effectiveScale": 0.8471202386415787
+      },
+      {
+        "src": "/images/home-ice-blue/hd/repair.webp",
+        "naturalWidth": 1652,
+        "renderedWidth": 339.5,
+        "effectiveScale": 0.4110169491525424
+      },
+      {
+        "src": "/images/home-ice-blue/hd/clean.webp",
+        "naturalWidth": 1652,
+        "renderedWidth": 339.5,
+        "effectiveScale": 0.4110169491525424
+      },
+      {
+        "src": "/images/home-ice-blue/hd/install.webp",
+        "naturalWidth": 1653,
+        "renderedWidth": 339.5,
+        "effectiveScale": 0.4107683000604961
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fredesign%2Fcan-tho-night-realism-v2.webp&w=3840&q=75",
+        "naturalWidth": 328,
+        "renderedWidth": 360,
+        "effectiveScale": 2.1951219512195124
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fninh-kieu-hd.webp&w=3840&q=92",
+        "naturalWidth": 360,
+        "renderedWidth": 360,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fbinh-thuy-hd.webp&w=3840&q=92",
+        "naturalWidth": 360,
+        "renderedWidth": 360,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fcai-rang-hd.webp&w=3840&q=92",
+        "naturalWidth": 360,
+        "renderedWidth": 360,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fo-mon-hd.webp&w=3840&q=92",
+        "naturalWidth": 360,
+        "renderedWidth": 360,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fthot-not-hd.webp&w=3840&q=92",
+        "naturalWidth": 360,
+        "renderedWidth": 360,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fphong-dien-hd.webp&w=3840&q=92",
+        "naturalWidth": 360,
+        "renderedWidth": 360,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fvinh-thanh-hd.webp&w=3840&q=92",
+        "naturalWidth": 360,
+        "renderedWidth": 360,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fco-do-hd.webp&w=3840&q=92",
+        "naturalWidth": 284,
+        "renderedWidth": 360,
+        "effectiveScale": 2.535211267605634
+      }
+    ],
+    "cards": [
+      {
+        "titleGap": 8.359375,
+        "buttonGap": 35.125
+      },
+      {
+        "titleGap": 8.359375,
+        "buttonGap": 35.125
+      },
+      {
+        "titleGap": 8.359375,
+        "buttonGap": 35.125
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 390,
+    "dpr": 2,
+    "images": [
+      {
+        "src": "/images/home-ice-blue/hd/house.webp",
+        "naturalWidth": 1377,
+        "renderedWidth": 390,
+        "effectiveScale": 0.5664488017429193
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 922.9375,
+        "effectiveScale": 0.8471202386415787
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 922.9375,
+        "effectiveScale": 0.8471202386415787
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 932.078125,
+        "effectiveScale": 0.8555099816429554
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 922.9375,
+        "effectiveScale": 0.8471202386415787
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 922.9375,
+        "effectiveScale": 0.8471202386415787
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 922.9375,
+        "effectiveScale": 0.8471202386415787
+      },
+      {
+        "src": "/images/home-ice-blue/hd/repair.webp",
+        "naturalWidth": 1652,
+        "renderedWidth": 367.78125,
+        "effectiveScale": 0.44525575060532685
+      },
+      {
+        "src": "/images/home-ice-blue/hd/clean.webp",
+        "naturalWidth": 1652,
+        "renderedWidth": 367.78125,
+        "effectiveScale": 0.44525575060532685
+      },
+      {
+        "src": "/images/home-ice-blue/hd/install.webp",
+        "naturalWidth": 1653,
+        "renderedWidth": 367.78125,
+        "effectiveScale": 0.444986388384755
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fredesign%2Fcan-tho-night-realism-v2.webp&w=3840&q=75",
+        "naturalWidth": 357,
+        "renderedWidth": 390,
+        "effectiveScale": 2.1848739495798317
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fninh-kieu-hd.webp&w=3840&q=92",
+        "naturalWidth": 390,
+        "renderedWidth": 390,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fbinh-thuy-hd.webp&w=3840&q=92",
+        "naturalWidth": 390,
+        "renderedWidth": 390,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fcai-rang-hd.webp&w=3840&q=92",
+        "naturalWidth": 390,
+        "renderedWidth": 390,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fo-mon-hd.webp&w=3840&q=92",
+        "naturalWidth": 390,
+        "renderedWidth": 390,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fthot-not-hd.webp&w=3840&q=92",
+        "naturalWidth": 390,
+        "renderedWidth": 390,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fphong-dien-hd.webp&w=3840&q=92",
+        "naturalWidth": 390,
+        "renderedWidth": 390,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fvinh-thanh-hd.webp&w=3840&q=92",
+        "naturalWidth": 390,
+        "renderedWidth": 390,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fco-do-hd.webp&w=3840&q=92",
+        "naturalWidth": 278,
+        "renderedWidth": 390,
+        "effectiveScale": 2.805755395683453
+      }
+    ],
+    "cards": [
+      {
+        "titleGap": 7.421875,
+        "buttonGap": 35.734375
+      },
+      {
+        "titleGap": 7.421875,
+        "buttonGap": 35.734375
+      },
+      {
+        "titleGap": 7.421875,
+        "buttonGap": 35.734375
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 768,
+    "dpr": 2,
+    "images": [
+      {
+        "src": "/images/home-ice-blue/hd/house.webp",
+        "naturalWidth": 1377,
+        "renderedWidth": 729.59375,
+        "effectiveScale": 1.0596859114015977
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 922.9375,
+        "effectiveScale": 0.8471202386415787
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 922.9375,
+        "effectiveScale": 0.8471202386415787
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 932.078125,
+        "effectiveScale": 0.8555099816429554
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 922.9375,
+        "effectiveScale": 0.8471202386415787
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 922.9375,
+        "effectiveScale": 0.8471202386415787
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 922.9375,
+        "effectiveScale": 0.8471202386415787
+      },
+      {
+        "src": "/images/home-ice-blue/hd/repair.webp",
+        "naturalWidth": 1652,
+        "renderedWidth": 520,
+        "effectiveScale": 0.6295399515738499
+      },
+      {
+        "src": "/images/home-ice-blue/hd/clean.webp",
+        "naturalWidth": 1652,
+        "renderedWidth": 520,
+        "effectiveScale": 0.6295399515738499
+      },
+      {
+        "src": "/images/home-ice-blue/hd/install.webp",
+        "naturalWidth": 1653,
+        "renderedWidth": 520,
+        "effectiveScale": 0.6291591046581972
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fredesign%2Fcan-tho-night-realism-v2.webp&w=3840&q=75",
+        "naturalWidth": 720,
+        "renderedWidth": 768,
+        "effectiveScale": 2.1333333333333333
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fninh-kieu-hd.webp&w=3840&q=92",
+        "naturalWidth": 768,
+        "renderedWidth": 768,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fbinh-thuy-hd.webp&w=3840&q=92",
+        "naturalWidth": 768,
+        "renderedWidth": 768,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fcai-rang-hd.webp&w=3840&q=92",
+        "naturalWidth": 768,
+        "renderedWidth": 768,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fo-mon-hd.webp&w=3840&q=92",
+        "naturalWidth": 768,
+        "renderedWidth": 768,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fthot-not-hd.webp&w=3840&q=92",
+        "naturalWidth": 768,
+        "renderedWidth": 768,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fphong-dien-hd.webp&w=3840&q=92",
+        "naturalWidth": 768,
+        "renderedWidth": 768,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fvinh-thanh-hd.webp&w=3840&q=92",
+        "naturalWidth": 768,
+        "renderedWidth": 768,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fco-do-hd.webp&w=3840&q=92",
+        "naturalWidth": 768,
+        "renderedWidth": 768,
+        "effectiveScale": 2
+      }
+    ],
+    "cards": [
+      {
+        "titleGap": 10.515625,
+        "buttonGap": 68.640625
+      },
+      {
+        "titleGap": 10.515625,
+        "buttonGap": 68.640625
+      },
+      {
+        "titleGap": 10.515625,
+        "buttonGap": 68.640625
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 1122,
+    "dpr": 2,
+    "images": [
+      {
+        "src": "/images/home-ice-blue/hd/house.webp",
+        "naturalWidth": 1377,
+        "renderedWidth": 692.046875,
+        "effectiveScale": 1.0051515976761074
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 1074.03125,
+        "effectiveScale": 0.9858019733822855
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 1074.03125,
+        "effectiveScale": 0.9858019733822855
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 1084.671875,
+        "effectiveScale": 0.9955684947223497
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 1074.03125,
+        "effectiveScale": 0.9858019733822855
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 1074.03125,
+        "effectiveScale": 0.9858019733822855
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 1074.03125,
+        "effectiveScale": 0.9858019733822855
+      },
+      {
+        "src": "/images/home-ice-blue/hd/repair.webp",
+        "naturalWidth": 1652,
+        "renderedWidth": 345.953125,
+        "effectiveScale": 0.4188294491525424
+      },
+      {
+        "src": "/images/home-ice-blue/hd/clean.webp",
+        "naturalWidth": 1652,
+        "renderedWidth": 345.953125,
+        "effectiveScale": 0.4188294491525424
+      },
+      {
+        "src": "/images/home-ice-blue/hd/install.webp",
+        "naturalWidth": 1653,
+        "renderedWidth": 345.96875,
+        "effectiveScale": 0.4185949788263763
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fredesign%2Fcan-tho-night-realism-v2.webp&w=3840&q=75",
+        "naturalWidth": 678,
+        "renderedWidth": 1122,
+        "effectiveScale": 3.309734513274336
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fninh-kieu-hd.webp&w=3840&q=92",
+        "naturalWidth": 1122,
+        "renderedWidth": 1122,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fbinh-thuy-hd.webp&w=3840&q=92",
+        "naturalWidth": 897,
+        "renderedWidth": 1122,
+        "effectiveScale": 2.5016722408026757
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fcai-rang-hd.webp&w=3840&q=92",
+        "naturalWidth": 1122,
+        "renderedWidth": 1122,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fo-mon-hd.webp&w=3840&q=92",
+        "naturalWidth": 1122,
+        "renderedWidth": 1122,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fthot-not-hd.webp&w=3840&q=92",
+        "naturalWidth": 1122,
+        "renderedWidth": 1122,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fphong-dien-hd.webp&w=3840&q=92",
+        "naturalWidth": 1122,
+        "renderedWidth": 1122,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fvinh-thanh-hd.webp&w=3840&q=92",
+        "naturalWidth": 1122,
+        "renderedWidth": 1122,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fco-do-hd.webp&w=3840&q=92",
+        "naturalWidth": 584,
+        "renderedWidth": 1122,
+        "effectiveScale": 3.8424657534246576
+      }
+    ],
+    "cards": [
+      {
+        "titleGap": 7.015625,
+        "buttonGap": 38.03125
+      },
+      {
+        "titleGap": 7.015625,
+        "buttonGap": 38.03125
+      },
+      {
+        "titleGap": 7.015625,
+        "buttonGap": 38.03125
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "dpr": 2,
+    "images": [
+      {
+        "src": "/images/home-ice-blue/hd/house.webp",
+        "naturalWidth": 1377,
+        "renderedWidth": 888.1875,
+        "effectiveScale": 1.2900326797385622
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 1384.890625,
+        "effectiveScale": 1.271124942634236
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 1385.046875,
+        "effectiveScale": 1.2712683570445158
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 1398.765625,
+        "effectiveScale": 1.283860142267095
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 1385.046875,
+        "effectiveScale": 1.2712683570445158
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 1385.046875,
+        "effectiveScale": 1.2712683570445158
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 1384.890625,
+        "effectiveScale": 1.271124942634236
+      },
+      {
+        "src": "/images/home-ice-blue/hd/repair.webp",
+        "naturalWidth": 1652,
+        "renderedWidth": 444,
+        "effectiveScale": 0.5375302663438256
+      },
+      {
+        "src": "/images/home-ice-blue/hd/clean.webp",
+        "naturalWidth": 1652,
+        "renderedWidth": 444.015625,
+        "effectiveScale": 0.5375491828087167
+      },
+      {
+        "src": "/images/home-ice-blue/hd/install.webp",
+        "naturalWidth": 1653,
+        "renderedWidth": 444,
+        "effectiveScale": 0.5372050816696915
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fredesign%2Fcan-tho-night-realism-v2.webp&w=3840&q=75",
+        "naturalWidth": 760,
+        "renderedWidth": 1440,
+        "effectiveScale": 3.789473684210526
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fninh-kieu-hd.webp&w=3840&q=92",
+        "naturalWidth": 1440,
+        "renderedWidth": 1440,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fbinh-thuy-hd.webp&w=3840&q=92",
+        "naturalWidth": 1152,
+        "renderedWidth": 1440,
+        "effectiveScale": 2.5
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fcai-rang-hd.webp&w=3840&q=92",
+        "naturalWidth": 1440,
+        "renderedWidth": 1440,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fo-mon-hd.webp&w=3840&q=92",
+        "naturalWidth": 1440,
+        "renderedWidth": 1440,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fthot-not-hd.webp&w=3840&q=92",
+        "naturalWidth": 1440,
+        "renderedWidth": 1440,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fphong-dien-hd.webp&w=3840&q=92",
+        "naturalWidth": 1440,
+        "renderedWidth": 1440,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fvinh-thanh-hd.webp&w=3840&q=92",
+        "naturalWidth": 1440,
+        "renderedWidth": 1440,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fco-do-hd.webp&w=3840&q=92",
+        "naturalWidth": 750,
+        "renderedWidth": 1440,
+        "effectiveScale": 3.84
+      }
+    ],
+    "cards": [
+      {
+        "titleGap": 8.984375,
+        "buttonGap": 48.75
+      },
+      {
+        "titleGap": 8.984375,
+        "buttonGap": 48.75
+      },
+      {
+        "titleGap": 8.984375,
+        "buttonGap": 48.75
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 2560,
+    "dpr": 2,
+    "images": [
+      {
+        "src": "/images/home-ice-blue/hd/house.webp",
+        "naturalWidth": 1377,
+        "renderedWidth": 986.875,
+        "effectiveScale": 1.4333696441539578
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 1541.265625,
+        "effectiveScale": 1.4146540844424047
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 1541.4375,
+        "effectiveScale": 1.4148118402937127
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 1556.6875,
+        "effectiveScale": 1.4288090867370353
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 1541.265625,
+        "effectiveScale": 1.4146540844424047
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 1541.4375,
+        "effectiveScale": 1.4148118402937127
+      },
+      {
+        "src": "/images/home-ice-blue/hd/equipment.webp",
+        "naturalWidth": 2179,
+        "renderedWidth": 1541.4375,
+        "effectiveScale": 1.4148118402937127
+      },
+      {
+        "src": "/images/home-ice-blue/hd/repair.webp",
+        "naturalWidth": 1652,
+        "renderedWidth": 493.34375,
+        "effectiveScale": 0.5972684624697336
+      },
+      {
+        "src": "/images/home-ice-blue/hd/clean.webp",
+        "naturalWidth": 1652,
+        "renderedWidth": 493.34375,
+        "effectiveScale": 0.5972684624697336
+      },
+      {
+        "src": "/images/home-ice-blue/hd/install.webp",
+        "naturalWidth": 1653,
+        "renderedWidth": 493.34375,
+        "effectiveScale": 0.5969071385359952
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fredesign%2Fcan-tho-night-realism-v2.webp&w=3840&q=75",
+        "naturalWidth": 1086,
+        "renderedWidth": 2560,
+        "effectiveScale": 4.714548802946593
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fninh-kieu-hd.webp&w=3840&q=92",
+        "naturalWidth": 2560,
+        "renderedWidth": 2560,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fbinh-thuy-hd.webp&w=3840&q=92",
+        "naturalWidth": 2048,
+        "renderedWidth": 2560,
+        "effectiveScale": 2.5
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fcai-rang-hd.webp&w=3840&q=92",
+        "naturalWidth": 2560,
+        "renderedWidth": 2560,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fo-mon-hd.webp&w=3840&q=92",
+        "naturalWidth": 2560,
+        "renderedWidth": 2560,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fthot-not-hd.webp&w=3840&q=92",
+        "naturalWidth": 2560,
+        "renderedWidth": 2560,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fphong-dien-hd.webp&w=3840&q=92",
+        "naturalWidth": 2560,
+        "renderedWidth": 2560,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fvinh-thanh-hd.webp&w=3840&q=92",
+        "naturalWidth": 2560,
+        "renderedWidth": 2560,
+        "effectiveScale": 2
+      },
+      {
+        "src": "/_next/image?url=%2Fimages%2Fareas%2Fco-do-hd.webp&w=3840&q=92",
+        "naturalWidth": 1333,
+        "renderedWidth": 2560,
+        "effectiveScale": 3.840960240060015
+      }
+    ],
+    "cards": [
+      {
+        "titleGap": 9.984375,
+        "buttonGap": 54.171875
+      },
+      {
+        "titleGap": 9.984375,
+        "buttonGap": 54.171875
+      },
+      {
+        "titleGap": 9.984375,
+        "buttonGap": 54.171875
+      }
+    ],
+    "errors": []
+  }
+]

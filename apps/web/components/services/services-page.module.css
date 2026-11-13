@@ -1,0 +1,306 @@
+:global(html .mn-site):has(.pageRoot) {
+  background: #e5f3fc;
+}
+
+.pageRoot {
+  padding: var(--mn-page-gap) 0 40px;
+  color: #102c50;
+  background: radial-gradient(ellipse at 46% 32%, #eaf6fd, #e3f2fb 80%);
+}
+
+.heroSection {
+  display: grid;
+  overflow: hidden;
+  isolation: isolate;
+  container-type: inline-size;
+  border-radius: 18px;
+  background: linear-gradient(112deg, #eef9fd, #c8e5f7);
+}
+
+.heroHeader {
+  padding: 20px clamp(20px, 4.2vw, 64px);
+}
+
+.badgePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #d3effb;
+  color: #0e3154;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.badgeIcon {
+  color: #008ccf;
+  flex: none;
+}
+
+.heroSection .heroTitle {
+  margin: 16px 0 0;
+  color: #102c50;
+}
+
+.heroSection .heroTitle .cyanHighlight {
+  display: block;
+  color: #008ee2;
+  letter-spacing: 0;
+}
+
+.heroArt {
+  position: relative;
+  min-height: clamp(118px, 29vw, 190px);
+}
+
+.heroImg {
+  object-fit: cover;
+}
+
+.filterBarWrapper {
+  margin-block: 16px;
+}
+
+.filterBar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 2px;
+}
+
+.filterPill {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex: none;
+  gap: 8px;
+  padding: 8px 14px;
+  min-height: 44px;
+  border: 1px solid #9fcfff;
+  border-radius: 999px;
+  background: #f9fbfd;
+  color: #102c50;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.filterPill:hover {
+  border-color: #0087ec;
+}
+
+.filterPillActive {
+  background: #004ec8;
+  border-color: #004ec8;
+  color: white;
+}
+
+.pillIcon {
+  flex: none;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+
+.gridWrapperMore {
+  margin-top: 24px;
+}
+
+.serviceCard {
+  --mn-card-hover-offset: -3px;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  aspect-ratio: 3 / 2;
+  border: 1.5px solid #0085ff;
+  border-radius: 16px;
+  background: #102844;
+}
+
+.serviceCard:focus-visible,
+.filterPill:focus-visible {
+  outline: 3px solid #004ec8;
+  outline-offset: 2px;
+}
+
+.cardImg {
+  object-fit: cover;
+}
+
+.cardCaption {
+  position: absolute;
+  inset: auto 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 24px 12px 12px 14px;
+  background: linear-gradient(transparent, #102541e0 55%, #0b223e);
+}
+
+:global(.mn-site[data-inner-page]) .serviceCard .cardTitle {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(16px, 1.2vw, 20px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.028em;
+  overflow-wrap: anywhere;
+}
+
+.cardArrow {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  aspect-ratio: 1;
+  border: 1.5px solid #fff9;
+  border-radius: 50%;
+  color: white;
+  background: #ffffff25;
+}
+
+.serviceCard:is(:hover, :focus-visible) .cardArrow {
+  background: #005ad6;
+}
+
+
+/* A keyboard user can reach these controls before the reveal observer. */
+:global(html.js) :is(.serviceCard:focus-visible, .filterBarWrapper:focus-within)[data-reveal]:not([data-reveal="in"]) {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .cardImg {
+    transition: transform 450ms var(--mn-page-ease);
+  }
+
+  .serviceCard[data-reveal="in"]:is(:hover, :focus-visible) .cardImg {
+    transform: scale(1.015);
+  }
+}
+
+.benefitsSection {
+  margin-top: 24px;
+}
+
+.benefitsBar {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid #d3eaff;
+  border-radius: 18px;
+  background: #fbfdff;
+  box-shadow: 0 9px 25px #2275b11a;
+}
+
+.benefitItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding-inline: 6px;
+}
+
+.benefitIcon {
+  color: #008ed4;
+  flex: none;
+}
+
+.benefitLabel {
+  color: #102c50;
+  font-size: clamp(14px, 1vw, 16px);
+  font-weight: 600;
+}
+
+@media (max-width: 680px) {
+  .pageRoot > :global(.mn-container) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .heroHeader { padding-block: 14px; }
+  .heroSection .heroTitle { margin-top: 10px; }
+  .heroArt { min-height: clamp(88px, 24vw, 140px); }
+
+  .filterBarWrapper { margin-block: 12px; }
+  .filterBar { flex-wrap: wrap; gap: 6px; overflow: visible; }
+  .filterPill { gap: 6px; padding-inline: 8px; }
+  .pillIcon { width: 16px; height: 16px; }
+
+  .cardsGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .serviceCard { aspect-ratio: 1; border-radius: 12px; }
+  .cardCaption { padding: 30px 10px 10px; }
+  :global(.mn-site[data-inner-page]) .serviceCard .cardTitle { font-size: 14px; }
+  .cardArrow { display: none; }
+  .gridWrapperMore { margin-top: 12px; }
+  .benefitsSection { order: 1; }
+}
+
+@media (min-width: 681px) {
+  .heroSection {
+    grid-template-columns: 51% 49%;
+  }
+
+  .heroHeader {
+    padding-block: 22px 34px;
+  }
+
+  .heroSection .heroTitle {
+    margin-top: 24px;
+  }
+
+  .heroImg {
+    object-position: 70% center;
+  }
+
+  .cardsGrid,
+  .benefitsBar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .filterBar {
+    display: grid;
+    grid-template-columns: 1.2fr repeat(3, 1fr) 1.56fr;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .cardsGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  .benefitsBar {
+    grid-template-columns: 1.12fr 1fr 1.04fr 1.05fr .94fr;
+    align-items: center;
+    gap: 0;
+    padding: 14px 12px;
+  }
+
+  .benefitItem {
+    justify-content: center;
+    padding-inline: 12px;
+    min-height: 32px;
+  }
+
+  .benefitItem + .benefitItem {
+    border-left: 1px solid #d8e7f4;
+  }
+}

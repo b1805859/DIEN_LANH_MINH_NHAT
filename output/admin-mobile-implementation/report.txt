@@ -1,0 +1,83 @@
+BÁO CÁO TRIỂN KHAI ADMIN MOBILE — 31/10/2026
+Kết quả: PASSED. Đã triển khai trong mã nguồn local, chưa deploy Vercel.
+
+PHẠM VI
+Ba màn đã duyệt: Tổng quan, Lịch hẹn, Dịch vụ; kèm thanh điều hướng admin dùng chung.
+Áp dụng responsive dưới 1024px. Giữ palette/gradient/icon/assets hiện có, giao diện desktop, API và handler nghiệp vụ.
+Không đọc file .md/.doc của dự án; chỉ dùng skill theo yêu cầu. Không sửa màn login hoặc file public trong đợt admin này.
+Không che lỗi bằng overflow-x:hidden. Bảng desktop được thay bằng view danh sách riêng trên mobile, giữ nguyên bảng desktop.
+
+KẾT QUẢ HIỂN THỊ
+390x844: tổng quan chứa đủ 4 KPI, 6 phân hệ và 3 lối tắt trong phần nội dung nhìn thấy phía trên điều hướng đáy. Trang cao 853px.
+Dịch vụ hiện đủ sáu dòng đầu với tên đầy đủ và vùng bấm thao tác 44px; dữ liệu còn lại truy cập bằng cuộn/phân trang hiện có.
+Lịch giữ 42 ngày để bảo toàn khoảng ngày của ứng dụng. 320px dùng KPI 2x2 để chữ dễ đọc; từ 375px dùng 4 cột.
+Chi tiết booking thu gọn trên mobile, trạng thái vẫn sửa được sau khi mở chi tiết. Input 16px tránh zoom tự động trên iOS.
+Thanh đáy có safe-area và khoảng đệm nội dung, không che các thao tác ở cuối trang.
+
+FILE NGUỒN ĐÃ CHỈNH SỬA/THÊM
+- /Users/macbookprom1/develop/DIEN_LANH_MINH_NHAT/apps/web/app/admin/admin-mobile.css
+  CSS responsive giới hạn dưới 1024px; KPI, lịch, danh sách dịch vụ, bottom navigation, vùng bấm và safe area.
+- /Users/macbookprom1/develop/DIEN_LANH_MINH_NHAT/apps/web/app/admin/layout.tsx
+  Nạp stylesheet admin mobile.
+- /Users/macbookprom1/develop/DIEN_LANH_MINH_NHAT/apps/web/app/admin/dashboard/page.tsx
+  Thêm tổng quan mobile, KPI gọn, sáu phân hệ dạng dòng và lối tắt Media/SEO/Tài khoản; dùng dữ liệu hiện có.
+- /Users/macbookprom1/develop/DIEN_LANH_MINH_NHAT/apps/web/components/admin/admin-shell.tsx
+  Tiêu đề mobile, nút menu/tài khoản và thanh điều hướng đáy; nối vào drawer hiện có.
+- /Users/macbookprom1/develop/DIEN_LANH_MINH_NHAT/apps/web/components/admin/admin-bookings-page.tsx
+  Hook CSS cho lịch và bộ lọc gọn; tóm tắt booking mobile; giữ lịch 42 ngày và handler cập nhật trạng thái.
+- /Users/macbookprom1/develop/DIEN_LANH_MINH_NHAT/apps/web/components/admin/admin-resource-page.tsx
+  Danh sách dịch vụ mobile có ảnh/tên đầy đủ/trạng thái/thứ tự; bộ lọc hiển thị; nối xem/sửa/xóa vào handler hiện có.
+- /Users/macbookprom1/develop/DIEN_LANH_MINH_NHAT/apps/web/components/admin/admin-service-actions.tsx
+  Action sheet native dialog có focus containment, Escape và khôi phục focus.
+- /Users/macbookprom1/develop/DIEN_LANH_MINH_NHAT/apps/web/components/admin/admin-booking-details.tsx
+  Thu gọn/mở chi tiết và trạng thái booking trên mobile; desktop display:contents.
+- /Users/macbookprom1/develop/DIEN_LANH_MINH_NHAT/apps/web/components/admin/use-admin-mobile.ts
+  Theo dõi breakpoint bằng useSyncExternalStore; không áp bộ lọc mobile vào bảng desktop.
+
+KIỂM THỬ
+- Playwright Chromium: 15 trường hợp (3 màn x 320/375/390/430/768px), viewport cao 844px. Không tràn ngang cả document lẫn phần tử nội dung/header/nav.
+- Desktop: 3 màn x 1024/1440px, cao 1000px; mọi phần tử đo được giữ nguyên vị trí/kích thước/font/padding/margin/display. So ảnh sau khi font và ảnh tải xong: chênh lệch tối đa 2/255 mỗi kênh màu tại nền gradient, không có dịch chuyển layout. Chênh lệch raster nhỏ không phải thay đổi CSS desktop.
+- Desktop có hai booking: ảnh 1440px khớp từng pixel (0 khác biệt), bao gồm chi tiết và select trạng thái.
+- 10 nhóm kiểm tra tương tác thành công:
+  • Bottom navigation, drawer, Escape and focus restoration
+  • Service counts, visibility filters and search
+  • Native service action sheet traps focus and restores focus
+  • Service view and edit retain existing handlers with fixture PATCH
+  • Delete cancellation and confirmation (disposable fixture only)
+  • Create form keeps required-field validation and cancel
+  • Crossing desktop breakpoint restores table and dismisses mobile sheet
+  • 42-day calendar, month controls, Today, daily view and booking filters
+  • Booking details disclosure and existing status update handler
+  • No browser JavaScript errors
+- ESLint trên tám file TS/TSX liên quan: exit 0.
+- TypeScript: npx tsc --project apps/web/tsconfig.json --noEmit --incremental false — exit 0.
+- git diff --check cho admin: đạt.
+- SHA-256 của Hero airflow, floating actions, draggable bubble, public mobile.css và mobile-density.css: giữ nguyên so với lúc bắt đầu đợt admin.
+
+AN TOÀN DỮ LIỆU VÀ GIỚI HẠN
+Kiểm thử dùng browser context local riêng, token giả không có quyền truy cập, mọi /api/** đều bị intercept bằng fixture. Sửa/xóa/đổi trạng thái chỉ tác động fixture, không cập nhật dữ liệu thật. Fixture có 10 dịch vụ, 0 lịch ở ảnh chính; kiểm thử bổ sung có 2 booking mẫu.
+Chưa chạy trên điện thoại vật lý/Safari và chưa deploy. Không thay đổi backend hoặc kiểm chứng tích hợp API production bằng mutation.
+
+ĐỐI CHIẾU THIẾT KẾ
+- dashboard: nguồn /Users/macbookprom1/.codex/generated_images/01a18ffe-5ef3-7560-a7e0-f7df7db4a2ba/exec-7c891000-163c-4a3d-a17e-296d98b0f5df.png
+  Đối chiếu /Users/macbookprom1/develop/DIEN_LANH_MINH_NHAT/output/admin-mobile-implementation/comparison-dashboard.png
+  Reference 853x1844 resampled to390x844; implementation at native390x844 CSS pixels. Reference left, implementation right.
+- bookings: nguồn /Users/macbookprom1/.codex/generated_images/01a18ffe-5ef3-7560-a7e0-f7df7db4a2ba/exec-997e0049-ac08-4b48-a868-275a3b82eb53.png
+  Đối chiếu /Users/macbookprom1/develop/DIEN_LANH_MINH_NHAT/output/admin-mobile-implementation/comparison-bookings.png
+  Reference 853x1844 resampled to390x844; implementation at native390x844 CSS pixels. Reference left, implementation right.
+- services: nguồn /Users/macbookprom1/.codex/generated_images/01a18ffe-5ef3-7560-a7e0-f7df7db4a2ba/exec-ef4108b6-51b0-4884-9a5c-6f580836450f.png
+  Đối chiếu /Users/macbookprom1/develop/DIEN_LANH_MINH_NHAT/output/admin-mobile-implementation/comparison-services.png
+  Reference 853x1844 resampled to390x844; implementation at native390x844 CSS pixels. Reference left, implementation right.
+Khác biệt chủ đích: tái sử dụng palette/icon/ảnh gốc; giữ lịch 42 ngày thay vì 35 ô minh họa; giữ cỡ chữ dễ đọc và nút 44px; bộ lọc trạng thái trực tiếp thay cho nút bộ lọc mở thêm một bước. Chức năng và hướng thiết kế mật độ thông tin được bảo toàn.
+Đã xem trực tiếp nguồn, ảnh thực thi, ảnh ghép của cả ba màn và ảnh 320px/768px. Không còn lỗi P0/P1/P2 trong phạm vi đã kiểm tra.
+
+BẰNG CHỨNG
+Ảnh after/: 15 viewport và booking có dữ liệu; admin-mobile-preview.png: ba màn 390px.
+mobile-results.json; desktop-results.json; desktop-populated-results.json; interactions.json.
+Các script fixture.mjs, mobile.mjs, desktop.mjs, interactions.mjs và final-visuals.mjs lưu tại cùng thư mục để chạy lại khi cần.
+
+CẬP NHẬT SIDEBAR ADMIN — 31/10/2026
+Theo yêu cầu tiếp theo, sidebar desktop/laptop được kéo sát cả mép trái, trên và dưới; bỏ bo góc để không còn hở ở bốn góc và dùng đủ chiều cao viewport. Trên màn hình cao tối đa 820px, khoảng cách nhóm và chiều cao mục menu được thu gọn để hạn chế cuộn nội bộ khi toàn bộ danh mục có thể vừa màn hình. Thay đổi nằm trong apps/web/components/admin/admin-shell.tsx và apps/web/app/admin/admin-mobile.css. Không chạy lại Playwright hoặc bộ kiểm thử cho cập nhật nhỏ này.
+
+CẬP NHẬT SIDEBAR LẦN 2 — 31/10/2026
+Tinh chỉnh thêm sidebar ở desktop/laptop: dưới 820px chiều cao, giảm padding đầu menu, khoảng cách giữa các nhóm và chiều cao từng mục; từ 700px trở lên nội dung sidebar không cuộn nội bộ. Dưới 700px vẫn giữ khả năng cuộn để người dùng truy cập đủ mục trên cửa sổ thấp. Chỉnh sửa tiếp tục nằm trong apps/web/app/admin/admin-mobile.css. Chưa chạy kiểm thử theo yêu cầu phiên hiện tại.

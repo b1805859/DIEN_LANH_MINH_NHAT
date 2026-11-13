@@ -1,0 +1,9 @@
+{
+  "pages": {
+    "/favicon.ico/route": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/favicon.ico/route.js"
+    ]
+  }
+}

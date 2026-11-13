@@ -11,6 +11,7 @@ import { z } from 'zod';
 import { apiClient } from '@/lib/api/client';
 import { Button } from '@/components/ui/button';
 import { QueryBoundary } from '@/components/layout/query-boundary';
+import { trackEvent } from '@/lib/analytics';
 import { useToast } from '@/components/ui/toast';
 
 function getToday() {
@@ -47,6 +48,7 @@ const bookingSchema = z.object({
       'Số điện thoại chưa hợp lệ.',
     ),
   notes: z.string().optional(),
+  preferredTime: z.enum(['', 'Buổi sáng', 'Buổi chiều', 'Trao đổi qua điện thoại']).optional(),
 });
 
 type BookingInput = z.infer<typeof bookingSchema>;
@@ -86,20 +88,23 @@ function BookingFormContent({
       customerName: '',
       customerPhone: '',
       notes: '',
+      preferredTime: '',
     },
   });
 
   const mutation = useMutation({
     mutationFn: (input: BookingInput) => {
-      const { date, ...booking } = input;
+      const { date, preferredTime, ...booking } = input;
 
       return apiClient.post('/bookings', {
         ...booking,
+        notes: [preferredTime && `Khung giờ mong muốn: ${preferredTime}`, booking.notes].filter(Boolean).join('\n'),
         customerPhone: booking.customerPhone.replace(/[\s.-]/g, ''),
         scheduledDate: date,
       });
     },
     onSuccess: () => {
+      trackEvent('booking_success');
       toast({
         title: 'Đã gửi lịch hẹn',
         description: 'Minh Nhật sẽ liên hệ xác nhận sớm.',
@@ -108,6 +113,7 @@ function BookingFormContent({
       form.reset();
     },
     onError: () => {
+      trackEvent('booking_error');
       toast({
         title: 'Không gửi được lịch hẹn',
         description: 'Vui lòng thử lại hoặc gọi hotline.',
@@ -132,6 +138,7 @@ function BookingFormContent({
       onSubmit={form.handleSubmit((values) => {
         if (submitting.current) return;
         submitting.current = true;
+        trackEvent('booking_submit');
         mutation.mutate(values);
       })}
     >
@@ -226,6 +233,16 @@ function BookingFormContent({
               {...form.register('date')}
             />
             <FieldError id={`${formId}-date-error`} message={errors.date?.message} />
+          </label>
+          <label className="grid gap-1.5">
+            <span className="text-xs font-black uppercase text-slate-500">Khung giờ mong muốn</span>
+            <select className={fieldClass} {...form.register('preferredTime')}>
+              <option value="">Chưa chọn khung giờ</option>
+              <option>Buổi sáng</option>
+              <option>Buổi chiều</option>
+              <option>Trao đổi qua điện thoại</option>
+            </select>
+            <span className="text-sm text-slate-600">Minh Nhật sẽ gọi lại để thống nhất giờ đến.</span>
           </label>
         </fieldset>
         <label className="grid gap-1.5">

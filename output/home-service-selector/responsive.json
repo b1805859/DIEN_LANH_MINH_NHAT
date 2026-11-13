@@ -1,0 +1,47 @@
+[
+  {
+    "canvasCount": 1,
+    "desktopFinder": true,
+    "height": 900,
+    "overflow": false,
+    "overlap": false,
+    "tabs": 6,
+    "width": 1440
+  },
+  {
+    "canvasCount": 1,
+    "desktopFinder": true,
+    "height": 900,
+    "overflow": false,
+    "overlap": false,
+    "tabs": 6,
+    "width": 1024
+  },
+  {
+    "canvasCount": 1,
+    "desktopFinder": false,
+    "height": 844,
+    "overflow": false,
+    "overlap": false,
+    "tabs": 0,
+    "width": 390
+  },
+  {
+    "canvasCount": 1,
+    "desktopFinder": false,
+    "height": 1024,
+    "overflow": false,
+    "overlap": false,
+    "tabs": 0,
+    "width": 768
+  },
+  {
+    "canvasCount": 1,
+    "desktopFinder": true,
+    "height": 1080,
+    "overflow": false,
+    "overlap": true,
+    "tabs": 6,
+    "width": 1920
+  }
+]

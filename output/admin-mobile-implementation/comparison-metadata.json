@@ -1,0 +1,23 @@
+[
+  {
+    "screen": "dashboard",
+    "source": "/Users/macbookprom1/.codex/generated_images/01a18ffe-5ef3-7560-a7e0-f7df7db4a2ba/exec-7c891000-163c-4a3d-a17e-296d98b0f5df.png",
+    "implementation": "output/admin-mobile-implementation/after/390-dashboard.png",
+    "comparison": "output/admin-mobile-implementation/comparison-dashboard.png",
+    "normalization": "Reference 853x1844 resampled to390x844; implementation at native390x844 CSS pixels. Reference left, implementation right."
+  },
+  {
+    "screen": "bookings",
+    "source": "/Users/macbookprom1/.codex/generated_images/01a18ffe-5ef3-7560-a7e0-f7df7db4a2ba/exec-997e0049-ac08-4b48-a868-275a3b82eb53.png",
+    "implementation": "output/admin-mobile-implementation/after/390-bookings.png",
+    "comparison": "output/admin-mobile-implementation/comparison-bookings.png",
+    "normalization": "Reference 853x1844 resampled to390x844; implementation at native390x844 CSS pixels. Reference left, implementation right."
+  },
+  {
+    "screen": "services",
+    "source": "/Users/macbookprom1/.codex/generated_images/01a18ffe-5ef3-7560-a7e0-f7df7db4a2ba/exec-ef4108b6-51b0-4884-9a5c-6f580836450f.png",
+    "implementation": "output/admin-mobile-implementation/after/390-services.png",
+    "comparison": "output/admin-mobile-implementation/comparison-services.png",
+    "normalization": "Reference 853x1844 resampled to390x844; implementation at native390x844 CSS pixels. Reference left, implementation right."
+  }
+]

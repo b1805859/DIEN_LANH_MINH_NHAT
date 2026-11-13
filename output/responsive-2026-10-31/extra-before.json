@@ -1,0 +1,151 @@
+[
+  {
+    "width": 320,
+    "route": "/blog/bao-lau-nen-ve-sinh-may-lanh-mot-lan",
+    "sw": 320,
+    "over": []
+  },
+  {
+    "width": 320,
+    "route": "/blog/category/may-lanh",
+    "sw": 320,
+    "over": []
+  },
+  {
+    "width": 320,
+    "route": "/admin/login",
+    "sw": 320,
+    "over": [
+      "mn-login-orb mn-login-orb-1",
+      "mn-login-orb mn-login-orb-2",
+      "mn-login-orb mn-login-orb-3"
+    ]
+  },
+  {
+    "width": 375,
+    "route": "/blog/bao-lau-nen-ve-sinh-may-lanh-mot-lan",
+    "sw": 375,
+    "over": []
+  },
+  {
+    "width": 375,
+    "route": "/blog/category/may-lanh",
+    "sw": 375,
+    "over": []
+  },
+  {
+    "width": 375,
+    "route": "/admin/login",
+    "sw": 375,
+    "over": [
+      "mn-login-orb mn-login-orb-1",
+      "mn-login-orb mn-login-orb-2",
+      "mn-login-orb mn-login-orb-3"
+    ]
+  },
+  {
+    "width": 390,
+    "route": "/blog/bao-lau-nen-ve-sinh-may-lanh-mot-lan",
+    "sw": 390,
+    "over": []
+  },
+  {
+    "width": 390,
+    "route": "/blog/category/may-lanh",
+    "sw": 390,
+    "over": []
+  },
+  {
+    "width": 390,
+    "route": "/admin/login",
+    "sw": 390,
+    "over": [
+      "mn-login-orb mn-login-orb-1",
+      "mn-login-orb mn-login-orb-2",
+      "mn-login-orb mn-login-orb-3"
+    ]
+  },
+  {
+    "width": 430,
+    "route": "/blog/bao-lau-nen-ve-sinh-may-lanh-mot-lan",
+    "sw": 430,
+    "over": []
+  },
+  {
+    "width": 430,
+    "route": "/blog/category/may-lanh",
+    "sw": 430,
+    "over": []
+  },
+  {
+    "width": 430,
+    "route": "/admin/login",
+    "sw": 430,
+    "over": [
+      "mn-login-orb mn-login-orb-1",
+      "mn-login-orb mn-login-orb-2",
+      "mn-login-orb mn-login-orb-3"
+    ]
+  },
+  {
+    "width": 768,
+    "route": "/blog/bao-lau-nen-ve-sinh-may-lanh-mot-lan",
+    "sw": 768,
+    "over": []
+  },
+  {
+    "width": 768,
+    "route": "/blog/category/may-lanh",
+    "sw": 768,
+    "over": []
+  },
+  {
+    "width": 768,
+    "route": "/admin/login",
+    "sw": 768,
+    "over": [
+      "mn-login-orb mn-login-orb-2",
+      "mn-login-orb mn-login-orb-3"
+    ]
+  },
+  {
+    "width": 1024,
+    "route": "/blog/bao-lau-nen-ve-sinh-may-lanh-mot-lan",
+    "sw": 1024,
+    "over": []
+  },
+  {
+    "width": 1024,
+    "route": "/blog/category/may-lanh",
+    "sw": 1024,
+    "over": []
+  },
+  {
+    "width": 1024,
+    "route": "/admin/login",
+    "sw": 1024,
+    "over": [
+      "mn-login-orb mn-login-orb-2"
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/blog/bao-lau-nen-ve-sinh-may-lanh-mot-lan",
+    "sw": 1440,
+    "over": []
+  },
+  {
+    "width": 1440,
+    "route": "/blog/category/may-lanh",
+    "sw": 1440,
+    "over": []
+  },
+  {
+    "width": 1440,
+    "route": "/admin/login",
+    "sw": 1440,
+    "over": [
+      "mn-login-orb mn-login-orb-2"
+    ]
+  }
+]

@@ -18,6 +18,14 @@ npm run deploy:vercel
 
 The Vercel CLI must be logged in on this computer. For normal Git-based deployment, commit and push to `main`; Vercel then deploys the connected GitHub projects automatically. Feature branches create previews; preview API/database environment variables need separate configuration before those environments can run.
 
+Local build outputs are not deployment source. `.vercelignore` excludes both
+`.next/` and custom `.next-*/` folders (SEO builds, UI audits and review servers),
+including their webpack caches. The CLI uploads from the repository root for
+both projects, so frontend audit caches must be excluded even for API deploys.
+If the CLI reports `File size limit exceeded (100 MB)`, check for generated
+artifacts missing from `.vercelignore`; `.gitignore` alone is not a substitute.
+There is no need to delete the build cache or change production image assets.
+
 The API production build generates Prisma Client, compiles the API, then runs `prisma migrate deploy`. Commit migration SQL under `apps/api/prisma/migrations` whenever changing the Prisma schema. A schema edit alone does not create a migration. Migration failure blocks API deployment; preview builds skip migrations. Use backward-compatible migrations because the previous production API remains live during the build. Never run `migrate dev` or reset against production. The frontend build compiles the shared package first.
 
 ## Configuration

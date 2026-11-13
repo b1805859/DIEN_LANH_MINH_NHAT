@@ -1,0 +1,83 @@
+/* A contact shadow anchors the surface; a broader shadow separates it from its band. */
+:root {
+  --mn-shadow-card-light: 0 2px 5px #07345412, 0 10px 24px -6px #07345429;
+  --mn-shadow-hover-light: 0 4px 8px #07345418, 0 16px 32px -8px #0734543d;
+  --mn-shadow-panel-light: 0 3px 8px #07345414, 0 18px 40px -12px #07345433;
+  --mn-shadow-card-dark: inset 0 1px 0 #c4f1ff12, 0 2px 6px #000d2052, 0 12px 28px -8px #000d2073;
+  --mn-shadow-hover-dark:
+    inset 0 1px 0 #c4f1ff1f, 0 4px 10px #000d2066, 0 18px 36px -10px #000d2099;
+  --mn-shadow-panel-dark:
+    inset 0 1px 0 #c4f1ff14, 0 4px 10px #000d2059, 0 20px 44px -12px #000d208c;
+}
+
+.mn-site {
+  --mn-shadow-card: var(--mn-shadow-card-dark);
+  --mn-shadow-hover: var(--mn-shadow-hover-dark);
+}
+
+.mn-site
+  :is(
+    .mn-home-light,
+    .mn-tone-light,
+    .mn-about-facts,
+    .mn-booking-shell,
+    .mn-form-panel,
+    .mn-article,
+    .mn-editorial-layout > article
+  ) {
+  --mn-shadow-card: var(--mn-shadow-card-light);
+  --mn-shadow-hover: var(--mn-shadow-hover-light);
+}
+
+/* These surfaces are dark even when they sit inside a light section. */
+.mn-site :is(.mn-reasons, .mn-support, .mn-page-hero, .mn-quick-services) {
+  --mn-shadow-card: var(--mn-shadow-card-dark);
+  --mn-shadow-hover: var(--mn-shadow-hover-dark);
+}
+
+.mn-site[data-inner-page='true'] main .mn-panel:is(.mn-booking-shell, .mn-about-facts) {
+  box-shadow: var(--mn-shadow-panel-light);
+}
+
+.mn-site[data-inner-page='true'] main .mn-contact-map {
+  box-shadow: var(--mn-shadow-card);
+}
+
+.mn-site[data-inner-page='true'] main :is(.mn-page-hero, .mn-detail-booking.mn-panel),
+.mn-site main :is(.mn-quick-services, .mn-support) {
+  box-shadow: var(--mn-shadow-panel-dark);
+}
+
+/* Shadow only the outer form container to avoid stacking shadows inside it. */
+.mn-site[data-inner-page='true'] main .mn-form-panel:not(.mn-panel .mn-form-panel) {
+  box-shadow: var(--mn-shadow-card-light);
+}
+
+/* Utility cards keep Tailwind's separate focus ring when their shadow is strengthened. */
+.mn-site main .shadow-sm,
+.admin-content .shadow-sm {
+  --tw-shadow: var(--mn-shadow-card-light);
+  --tw-shadow-colored: var(--mn-shadow-card-light);
+}
+
+:is(.admin-content, .admin-login) {
+  --mn-shadow-card: var(--mn-shadow-card-light);
+}
+
+.admin-content :is(.admin-overview, main:not(.admin-dashboard)) {
+  box-shadow: var(--mn-shadow-panel-light);
+}
+
+.admin-content :is(.admin-metric, .admin-resource-card) {
+  box-shadow: var(--mn-shadow-card-light);
+}
+
+.admin-login .admin-login-panel {
+  box-shadow: var(--mn-shadow-panel-light);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .admin-content .admin-resource-card:hover {
+    box-shadow: var(--mn-shadow-hover-light);
+  }
+}

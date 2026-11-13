@@ -1,0 +1,222 @@
+[
+  {
+    "width": 320,
+    "route": "/blog/bao-lau-nen-ve-sinh-may-lanh-mot-lan",
+    "status": 200,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "width": 320,
+    "route": "/blog/category/may-lanh",
+    "status": 200,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "width": 320,
+    "route": "/services/thao-lap-may-lanh",
+    "status": 200,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "width": 320,
+    "route": "/services/ve-sinh-may-lanh",
+    "status": 200,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "width": 320,
+    "route": "/services/sua-may-lanh",
+    "status": 200,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "width": 320,
+    "route": "/services/nap-gas-may-lanh",
+    "status": 200,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "width": 320,
+    "route": "/services/sua-tu-lanh",
+    "status": 200,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "width": 320,
+    "route": "/services/sua-may-giat",
+    "status": 200,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "width": 320,
+    "route": "/services/ve-sinh-may-giat",
+    "status": 200,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "width": 320,
+    "route": "/services/sua-dien-nuoc",
+    "status": 200,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "width": 320,
+    "route": "/services/sua-lap-may-nuoc-uong-nong-lanh",
+    "status": 200,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "width": 320,
+    "route": "/services/sua-lap-may-nuoc-nong-lanh-tam",
+    "status": 200,
+    "scrollWidth": 320,
+    "clipped": []
+  },
+  {
+    "width": 375,
+    "route": "/blog/bao-lau-nen-ve-sinh-may-lanh-mot-lan",
+    "status": 200,
+    "scrollWidth": 375,
+    "clipped": []
+  },
+  {
+    "width": 375,
+    "route": "/blog/category/may-lanh",
+    "status": 200,
+    "scrollWidth": 375,
+    "clipped": []
+  },
+  {
+    "width": 390,
+    "route": "/blog/bao-lau-nen-ve-sinh-may-lanh-mot-lan",
+    "status": 200,
+    "scrollWidth": 390,
+    "clipped": []
+  },
+  {
+    "width": 390,
+    "route": "/blog/category/may-lanh",
+    "status": 200,
+    "scrollWidth": 390,
+    "clipped": []
+  },
+  {
+    "width": 430,
+    "route": "/blog/bao-lau-nen-ve-sinh-may-lanh-mot-lan",
+    "status": 200,
+    "scrollWidth": 430,
+    "clipped": []
+  },
+  {
+    "width": 430,
+    "route": "/blog/category/may-lanh",
+    "status": 200,
+    "scrollWidth": 430,
+    "clipped": []
+  },
+  {
+    "width": 768,
+    "route": "/blog/bao-lau-nen-ve-sinh-may-lanh-mot-lan",
+    "status": 200,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "width": 768,
+    "route": "/blog/category/may-lanh",
+    "status": 200,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "width": 768,
+    "route": "/services/thao-lap-may-lanh",
+    "status": 200,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "width": 768,
+    "route": "/services/ve-sinh-may-lanh",
+    "status": 200,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "width": 768,
+    "route": "/services/sua-may-lanh",
+    "status": 200,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "width": 768,
+    "route": "/services/nap-gas-may-lanh",
+    "status": 200,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "width": 768,
+    "route": "/services/sua-tu-lanh",
+    "status": 200,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "width": 768,
+    "route": "/services/sua-may-giat",
+    "status": 200,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "width": 768,
+    "route": "/services/ve-sinh-may-giat",
+    "status": 200,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "width": 768,
+    "route": "/services/sua-dien-nuoc",
+    "status": 200,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "width": 768,
+    "route": "/services/sua-lap-may-nuoc-uong-nong-lanh",
+    "status": 200,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "width": 768,
+    "route": "/services/sua-lap-may-nuoc-nong-lanh-tam",
+    "status": 200,
+    "scrollWidth": 768,
+    "clipped": []
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "landscape": true
+  },
+  {
+    "width": 900,
+    "height": 600,
+    "landscape": true
+  }
+]

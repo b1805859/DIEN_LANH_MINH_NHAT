@@ -1,7 +1,8 @@
-/* One navigation frame and sticky behavior for every public page. */
+/* Shared public header rules; home overrides are isolated below. */
 .header:global(.mn-header) {
   position: sticky;
-  top: 0;
+  /* Scroll the initial inset away before the navigation sticks to the top. */
+  top: calc(-1 * var(--mn-header-inset));
   width: calc(100% - var(--mn-content-gutter));
   max-width: var(--mn-content-max);
   margin-inline: auto;
@@ -34,27 +35,178 @@
 .header:global(.mn-header) :global(.mn-hotline small) { font-size: 9px; }
 .header:global(.mn-header) :global(.mn-hotline strong) { font-size: 13px; }
 .header:global(.mn-header) :global(.mn-nav-book) { min-height: 44px; padding: 9px 16px; font-size: 12px; }
-@media (min-width: 801px) and (max-width: 1100px) {
+@media (min-width: 901px) and (max-width: 1100px) {
   .header:global(.mn-header) :global(.mn-nav-shell) { grid-template-columns: auto 1fr auto; gap: 12px; padding-inline: 12px; }
   .header:global(.mn-header) :global(.mn-brand .brand-mark) { width: 50px; height: 34px; }
   .header:global(.mn-header) :global(.mn-brand strong) { font-size: 14px; }
   .header:global(.mn-header) :global(.mn-brand > span) { font-size: 9px; }
   .header:global(.mn-header) :global(.mn-header-actions) { gap: 8px; }
 }
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .header:global(.mn-header) :global(.mn-nav-shell) {
     display: flex;
     padding: 7px 10px;
     gap: 8px;
   }
-  .header:global(.mn-header) :global(.mn-brand) { gap: 7px; }
+  .header:global(.mn-header) :global(.mn-brand) { gap: 7px; min-width: 0; min-height: 44px; }
   .header:global(.mn-header) :global(.mn-brand .brand-mark) { width: 43px; height: 32px; }
   .header:global(.mn-header) :global(.mn-brand > span) { font-size: 8px; }
-  .header:global(.mn-header) :global(.mn-brand strong) { font-size: 11px; }
+  .header:global(.mn-header) :global(.mn-brand strong) { font-size: 12px; }
   .header:global(.mn-header) :global(.mn-header-actions) { gap: 4px; }
-  .header:global(.mn-header) :global(.mn-nav-book) { min-height: 44px; padding: 8px; font-size: 10px; }
+  .header:global(.mn-header) :global(.mn-nav-book) { min-height: 44px; padding: 8px 10px; font-size: 12px; }
 }
 @media (max-width: 360px) {
   .header:global(.mn-header) :global(.mn-brand .brand-mark) { width: 38px; }
-  .header:global(.mn-header) :global(.mn-nav-book) { font-size: 9px; }
+  .header:global(.mn-header) :global(.mn-nav-book) { font-size: 11px; padding-inline: 8px; }
+}
+
+@media (min-width: 1200px) {
+  :global(.mn-site) .header:global(.mn-header) :global(.mn-nav-shell) { padding-inline: 24px; border-radius: 16px; }
+  :global(.mn-site) .header:global(.mn-header) :global(.mn-brand .brand-mark) { width: clamp(56px, 8dvh, 80px); height: clamp(38px, 5.4dvh, 54px); }
+  :global(.mn-site) .header:global(.mn-header) :global(.mn-brand > span) { font-size: 12px; }
+  :global(.mn-site) .header:global(.mn-header) :global(.mn-brand strong) { font-size: 21px; }
+  :global(.mn-site) .header:global(.mn-header) :global(.mn-desktop-nav a) { font-size: clamp(12px, 1.05cqw, 16px); }
+  :global(.mn-site) .header:global(.mn-header) :global(.mn-hotline > span) { width: 42px; height: 42px; }
+  :global(.mn-site) .header:global(.mn-header) :global(.mn-hotline small) { font-size: 11px; }
+  :global(.mn-site) .header:global(.mn-header) :global(.mn-hotline strong) { font-size: 16px; }
+  :global(.mn-site) .header:global(.mn-header) :global(.mn-nav-book) { min-height: clamp(42px, 5.6dvh, 56px); padding-inline: 20px; font-size: 14px; }
+}
+
+/* Home adapts independently of the existing inner-page header. */
+:global(html .mn-site[data-home]) .iceHome {
+  width: 100%; max-width: 1600px; height: auto; min-height: 64px;
+  margin-inline: auto; padding: var(--mn-safe-top, 0px) 0 0; top: 0;
+  background: transparent;
+}
+:global(html .mn-site[data-home]) .iceHome[data-scrolled='true'] { background: #ffffffee; backdrop-filter: blur(10px); }
+:global(html .mn-site[data-home]) .iceHome :global(.mn-nav-shell) {
+  display: flex; align-items: center; justify-content: space-between;
+  width: calc(100% - clamp(2rem, 6.8vw, 7rem)); min-height: 64px;
+  margin-inline: auto; padding: 0; gap: .75rem; border: 0 !important;
+  border-radius: 0; background: transparent !important; box-shadow: none !important; backdrop-filter: none;
+}
+.homeLogo { display: block; width: 9.5rem; height: auto; max-width: 100%; mix-blend-mode: multiply; }
+:global(html .mn-site[data-home]) .iceHome :global(.mn-brand) { min-width: 0; flex-shrink: 1; }
+:global(html .mn-site[data-home]) .iceHome :global(.mn-header-actions) { display: flex; align-items: center; gap: .5rem; flex-shrink: 0; }
+:global(html .mn-site[data-home]) .iceHome :global(.mn-nav-book) { display: none; }
+:global(html .mn-site[data-home]) .iceHome :global(.mn-desktop-nav) { display: none; }
+:global(html .mn-site[data-home]) .iceHome :global(.mn-menu-button) { display: grid; place-items: center; width: 44px; height: 44px; flex-shrink: 0; }
+:global(html .mn-site[data-home]) .iceHome :global(.mn-hotline) {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  min-width: 44px; min-height: 44px; padding: .5rem; border-radius: 999px;
+  background: #007dc5; color: #fff !important; white-space: nowrap;
+}
+:global(html .mn-site[data-home]) .iceHome :global(.mn-hotline > div) { display: none; }
+:global(html .mn-site[data-home]) .iceHome :global(.mn-hotline small) { display: none; }
+:global(html .mn-site[data-home]) .iceHome :global(.mn-hotline strong) { color: #fff !important; font-size: 1rem; }
+:global(html .mn-site[data-home]) .iceHome :global(.mn-hotline > span) { width: 22px; height: 22px; border: 0; color: #fff !important; background: none !important; box-shadow: none !important; }
+:global(html .mn-site[data-home]) .iceHome :global(.mn-hotline > span svg) { width: 20px; height: 20px; fill: none; }
+@media (min-width: 390px) { .homeLogo { width: 11.875rem; } }
+@media (min-width: 601px) {
+  .homeLogo { width: 13.5rem; }
+  :global(html .mn-site[data-home]) .iceHome :global(.mn-hotline > div) { display: block; }
+  :global(html .mn-site[data-home]) .iceHome :global(.mn-hotline) { padding-inline: 1rem; }
+}
+@media (min-width: 1101px) {
+  .homeLogo { width: clamp(13.5rem, 21.5vw, 21.5rem); }
+  :global(html .mn-site[data-home]) .iceHome :global(.mn-nav-shell) { display: grid; grid-template-columns: minmax(0, 30%) minmax(0, 1fr) auto; gap: 1rem; min-height: clamp(64px, 5.7vw, 92px); }
+  :global(html .mn-site[data-home]) .iceHome :global(.mn-desktop-nav) { display: flex; gap: clamp(1rem, 2.2vw, 2rem); min-width: 0; }
+  :global(html .mn-site[data-home]) .iceHome :global(.mn-desktop-nav a) { font-size: clamp(.875rem, 1.2vw, 1.125rem); font-weight: 600; white-space: nowrap; }
+  :global(html .mn-site[data-home]) .iceHome :global(.mn-menu-button) { display: none; }
+}
+
+.accountMenu {
+  position: relative;
+  display: none;
+  flex: none;
+}
+
+.accountMenu > summary {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  list-style: none;
+  border: 1px solid #b7d8ef;
+  border-radius: 12px;
+  background: #eaf5ff;
+  color: #154973;
+  cursor: pointer;
+}
+
+.accountMenu > summary::-webkit-details-marker {
+  display: none;
+}
+
+.accountMenu[open] > summary,
+.accountMenu > summary:hover {
+  background: #d5eafd;
+}
+
+.accountDropdown {
+  position: absolute;
+  z-index: 1;
+  inset: calc(100% + 8px) 0 auto auto;
+  min-width: 164px;
+  padding: 5px;
+  border: 1px solid #b7d8ef;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 10px 24px #102a4326;
+}
+
+.mobileAccount {
+  display: grid;
+  gap: 4px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #b7d8ef;
+}
+
+.accountDropdown > :is(a, button),
+.mobileAccount > :is(a, button) {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  color: #153c60;
+  font-size: 14px;
+  font-weight: 650;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.mobileAccount > :is(a, button),
+.accountDropdown > :is(a, button):hover {
+  background: #eaf5ff;
+}
+
+.accountDropdown > button,
+.mobileAccount > button {
+  color: #952940;
+}
+
+:is(.accountMenu, .mobileAccount) :is(a, button, summary):focus-visible {
+  outline: 2px solid #176cc0;
+  outline-offset: 2px;
+}
+
+@media (min-width: 901px) {
+  .accountMenu {
+    display: block;
+  }
+
+  .header :global(.mn-nav-shell)[data-admin-session='true'] :global(.mn-nav-book) {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1279px) {
+  .header :global(.mn-nav-shell)[data-admin-session='true'] :global(.mn-hotline > div) {
+    display: none;
+  }
 }

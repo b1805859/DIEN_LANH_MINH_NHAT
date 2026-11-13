@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "route": "/",
+    "title": "Điện lạnh tận nơi tại Cần Thơ",
+    "group": "Trang chính",
+    "type": "home",
+    "file": "001-home.png",
+    "h1": "Sửa điện lạnhngay tại nhà",
+    "height": 4641,
+    "overflow": false,
+    "images": []
+  },
+  {
+    "id": 2,
+    "route": "/about",
+    "title": "Giới thiệu Điện Lạnh Minh Nhật | ĐIỆN LẠNH MINH NHẬT",
+    "group": "Trang chính",
+    "type": "about",
+    "file": "002-about.png",
+    "h1": "Thợ điện lạnh tại nhàở Cần Thơ",
+    "height": 2701,
+    "overflow": false,
+    "images": []
+  },
+  {
+    "id": 3,
+    "route": "/services",
+    "title": "Dịch vụ điện lạnh tại Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "group": "Trang chính",
+    "type": "services",
+    "file": "003-services.png",
+    "h1": "Dịch vụ điện lạnhtại Cần Thơ",
+    "height": 3124,
+    "overflow": false,
+    "images": []
+  },
+  {
+    "id": 4,
+    "route": "/projects",
+    "title": "Dự án & Tin tức điện lạnh Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "group": "Trang chính",
+    "type": "projects",
+    "file": "004-projects.png",
+    "h1": "Dự án minh họa& Bài viết",
+    "height": 1818,
+    "overflow": false,
+    "images": []
+  },
+  {
+    "id": 5,
+    "route": "/blog",
+    "title": "Tin tức & Kiến thức điện lạnh | ĐIỆN LẠNH MINH NHẬT",
+    "group": "Trang chính",
+    "type": "blog",
+    "file": "005-blog.png",
+    "h1": "Cách dùng, vệ sinhvà nhận biết lỗi máy",
+    "height": 1954,
+    "overflow": false,
+    "images": []
+  },
+  {
+    "id": 6,
+    "route": "/booking",
+    "title": "Đặt lịch dịch vụ điện lạnh Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "group": "Trang chính",
+    "type": "booking",
+    "file": "006-booking.png",
+    "h1": "Đặt lịch dịch vụđể thợ đến kiểm tra",
+    "height": 1706,
+    "overflow": false,
+    "images": []
+  },
+  {
+    "id": 7,
+    "route": "/contact",
+    "title": "Liên hệ Điện Lạnh Minh Nhật | ĐIỆN LẠNH MINH NHẬT",
+    "group": "Trang chính",
+    "type": "contact",
+    "file": "007-contact.png",
+    "h1": "Liên hệ Minh Nhậtgọi điện hoặc nhắn Zalo",
+    "height": 1706,
+    "overflow": false,
+    "images": []
+  },
+  {
+    "id": 8,
+    "route": "/faq",
+    "title": "Hỏi đáp dịch vụ điện lạnh Cần Thơ | ĐIỆN LẠNH MINH NHẬT",
+    "group": "Trang chính",
+    "type": "faq",
+    "file": "008-faq.png",
+    "h1": "Câu hỏi thường gặp",
+    "height": 1465,
+    "overflow": false,
+    "images": []
+  },
+  {
+    "id": 9,
+    "route": "/privacy-policy",
+    "title": "Chính sách bảo mật | ĐIỆN LẠNH MINH NHẬT",
+    "group": "Trang chính",
+    "type": "privacy",
+    "file": "009-privacy-policy.png",
+    "h1": "Chính sách bảo mật",
+    "height": 1173,
+    "overflow": false,
+    "images": []
+  },
+  {
+    "id": 10,
+    "route": "/terms-of-service",
+    "title": "Điều khoản dịch vụ | ĐIỆN LẠNH MINH NHẬT",
+    "group": "Trang chính",
+    "type": "terms",
+    "file": "010-terms-of-service.png",
+    "h1": "Điều khoản dịch vụ",
+    "height": 1201,
+    "overflow": false,
+    "images": []
+  }
+]

@@ -1,0 +1,2297 @@
+[
+  {
+    "width": 320,
+    "route": "/",
+    "status": 200,
+    "scrollWidth": 320,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 112,
+        "h": 32
+      },
+      {
+        "cls": "mn-button hero_booking__W03w6",
+        "label": "Đặt lịch ngay",
+        "w": 145,
+        "h": 36
+      }
+    ]
+  },
+  {
+    "width": 320,
+    "route": "/services",
+    "status": 200,
+    "scrollWidth": 320,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "",
+        "text": "Gọi 0939 370 109",
+        "w": 153,
+        "sw": 166
+      },
+      {
+        "cls": "",
+        "text": "0939 370 109",
+        "w": 153,
+        "sw": 166
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 112,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 320,
+    "route": "/services/sua-may-lanh",
+    "status": 200,
+    "scrollWidth": 320,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 112,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 320,
+    "route": "/about",
+    "status": 200,
+    "scrollWidth": 320,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": []
+  },
+  {
+    "width": 320,
+    "route": "/contact",
+    "status": 200,
+    "scrollWidth": 320,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": []
+  },
+  {
+    "width": 320,
+    "route": "/booking",
+    "status": 200,
+    "scrollWidth": 320,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": []
+  },
+  {
+    "width": 320,
+    "route": "/blog",
+    "status": 200,
+    "scrollWidth": 320,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 112,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 320,
+    "route": "/projects",
+    "status": 200,
+    "scrollWidth": 320,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 112,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 320,
+    "route": "/projects/lap-dat-may-lanh-ninh-kieu",
+    "status": 200,
+    "scrollWidth": 320,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 112,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 320,
+    "route": "/areas/ninh-kieu",
+    "status": 200,
+    "scrollWidth": 320,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 112,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 320,
+    "route": "/areas/ninh-kieu/sua-may-lanh",
+    "status": 200,
+    "scrollWidth": 320,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 112,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 320,
+    "route": "/faq",
+    "status": 200,
+    "scrollWidth": 320,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 112,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 320,
+    "route": "/privacy-policy",
+    "status": 200,
+    "scrollWidth": 320,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 112,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 320,
+    "route": "/terms-of-service",
+    "status": 200,
+    "scrollWidth": 320,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 112,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "route": "/",
+    "status": 200,
+    "scrollWidth": 375,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      },
+      {
+        "cls": "mn-button hero_booking__W03w6",
+        "label": "Đặt lịch ngay",
+        "w": 156,
+        "h": 40
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "route": "/services",
+    "status": 200,
+    "scrollWidth": 375,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "route": "/services/sua-may-lanh",
+    "status": 200,
+    "scrollWidth": 375,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "route": "/about",
+    "status": 200,
+    "scrollWidth": 375,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": []
+  },
+  {
+    "width": 375,
+    "route": "/contact",
+    "status": 200,
+    "scrollWidth": 375,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": []
+  },
+  {
+    "width": 375,
+    "route": "/booking",
+    "status": 200,
+    "scrollWidth": 375,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": []
+  },
+  {
+    "width": 375,
+    "route": "/blog",
+    "status": 200,
+    "scrollWidth": 375,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "route": "/projects",
+    "status": 200,
+    "scrollWidth": 375,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "route": "/projects/lap-dat-may-lanh-ninh-kieu",
+    "status": 200,
+    "scrollWidth": 375,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "route": "/areas/ninh-kieu",
+    "status": 200,
+    "scrollWidth": 375,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "route": "/areas/ninh-kieu/sua-may-lanh",
+    "status": 200,
+    "scrollWidth": 375,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "route": "/faq",
+    "status": 200,
+    "scrollWidth": 375,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "route": "/privacy-policy",
+    "status": 200,
+    "scrollWidth": 375,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 375,
+    "route": "/terms-of-service",
+    "status": 200,
+    "scrollWidth": 375,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "route": "/",
+    "status": 200,
+    "scrollWidth": 390,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      },
+      {
+        "cls": "mn-button hero_booking__W03w6",
+        "label": "Đặt lịch ngay",
+        "w": 156,
+        "h": 40
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "route": "/services",
+    "status": 200,
+    "scrollWidth": 390,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "route": "/services/sua-may-lanh",
+    "status": 200,
+    "scrollWidth": 390,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "route": "/about",
+    "status": 200,
+    "scrollWidth": 390,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": []
+  },
+  {
+    "width": 390,
+    "route": "/contact",
+    "status": 200,
+    "scrollWidth": 390,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": []
+  },
+  {
+    "width": 390,
+    "route": "/booking",
+    "status": 200,
+    "scrollWidth": 390,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": []
+  },
+  {
+    "width": 390,
+    "route": "/blog",
+    "status": 200,
+    "scrollWidth": 390,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "route": "/projects",
+    "status": 200,
+    "scrollWidth": 390,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "route": "/projects/lap-dat-may-lanh-ninh-kieu",
+    "status": 200,
+    "scrollWidth": 390,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "route": "/areas/ninh-kieu",
+    "status": 200,
+    "scrollWidth": 390,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "route": "/areas/ninh-kieu/sua-may-lanh",
+    "status": 200,
+    "scrollWidth": 390,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "route": "/faq",
+    "status": 200,
+    "scrollWidth": 390,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "route": "/privacy-policy",
+    "status": 200,
+    "scrollWidth": 390,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "route": "/terms-of-service",
+    "status": 200,
+    "scrollWidth": 390,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 430,
+    "route": "/",
+    "status": 200,
+    "scrollWidth": 430,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      },
+      {
+        "cls": "mn-button hero_booking__W03w6",
+        "label": "Đặt lịch ngay",
+        "w": 156,
+        "h": 40
+      }
+    ]
+  },
+  {
+    "width": 430,
+    "route": "/services",
+    "status": 200,
+    "scrollWidth": 430,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 430,
+    "route": "/services/sua-may-lanh",
+    "status": 200,
+    "scrollWidth": 430,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 430,
+    "route": "/about",
+    "status": 200,
+    "scrollWidth": 430,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": []
+  },
+  {
+    "width": 430,
+    "route": "/contact",
+    "status": 200,
+    "scrollWidth": 430,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": []
+  },
+  {
+    "width": 430,
+    "route": "/booking",
+    "status": 200,
+    "scrollWidth": 430,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": []
+  },
+  {
+    "width": 430,
+    "route": "/blog",
+    "status": 200,
+    "scrollWidth": 430,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 430,
+    "route": "/projects",
+    "status": 200,
+    "scrollWidth": 430,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 430,
+    "route": "/projects/lap-dat-may-lanh-ninh-kieu",
+    "status": 200,
+    "scrollWidth": 430,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 430,
+    "route": "/areas/ninh-kieu",
+    "status": 200,
+    "scrollWidth": 430,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 430,
+    "route": "/areas/ninh-kieu/sua-may-lanh",
+    "status": 200,
+    "scrollWidth": 430,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 430,
+    "route": "/faq",
+    "status": 200,
+    "scrollWidth": 430,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 430,
+    "route": "/privacy-policy",
+    "status": 200,
+    "scrollWidth": 430,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 430,
+    "route": "/terms-of-service",
+    "status": 200,
+    "scrollWidth": 430,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "route": "/",
+    "status": 200,
+    "scrollWidth": 768,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      },
+      {
+        "cls": "mn-button hero_booking__W03w6",
+        "label": "Đặt lịch ngay",
+        "w": 156,
+        "h": 40
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "route": "/services",
+    "status": 200,
+    "scrollWidth": 768,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "route": "/services/sua-may-lanh",
+    "status": 200,
+    "scrollWidth": 768,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "route": "/about",
+    "status": 200,
+    "scrollWidth": 768,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": []
+  },
+  {
+    "width": 768,
+    "route": "/contact",
+    "status": 200,
+    "scrollWidth": 768,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": []
+  },
+  {
+    "width": 768,
+    "route": "/booking",
+    "status": 200,
+    "scrollWidth": 768,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": []
+  },
+  {
+    "width": 768,
+    "route": "/blog",
+    "status": 200,
+    "scrollWidth": 768,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "route": "/projects",
+    "status": 200,
+    "scrollWidth": 768,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "route": "/projects/lap-dat-may-lanh-ninh-kieu",
+    "status": 200,
+    "scrollWidth": 768,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "route": "/areas/ninh-kieu",
+    "status": 200,
+    "scrollWidth": 768,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "route": "/areas/ninh-kieu/sua-may-lanh",
+    "status": 200,
+    "scrollWidth": 768,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "route": "/faq",
+    "status": 200,
+    "scrollWidth": 768,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "route": "/privacy-policy",
+    "status": 200,
+    "scrollWidth": 768,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "route": "/terms-of-service",
+    "status": 200,
+    "scrollWidth": 768,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 117,
+        "h": 32
+      }
+    ]
+  },
+  {
+    "width": 1024,
+    "route": "/",
+    "status": 200,
+    "scrollWidth": 1024,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 147,
+        "h": 37
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 37,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 38,
+        "h": 44
+      },
+      {
+        "cls": "mn-button hero_booking__W03w6",
+        "label": "Đặt lịch ngay",
+        "w": 149,
+        "h": 36
+      }
+    ]
+  },
+  {
+    "width": 1024,
+    "route": "/services",
+    "status": 200,
+    "scrollWidth": 1024,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 147,
+        "h": 37
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 37,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 38,
+        "h": 44
+      }
+    ]
+  },
+  {
+    "width": 1024,
+    "route": "/services/sua-may-lanh",
+    "status": 200,
+    "scrollWidth": 1024,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 147,
+        "h": 37
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 37,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 38,
+        "h": 44
+      }
+    ]
+  },
+  {
+    "width": 1024,
+    "route": "/about",
+    "status": 200,
+    "scrollWidth": 1024,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "10",
+        "w": 1,
+        "sw": 14
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 147,
+        "h": 37
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 37,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 38,
+        "h": 44
+      }
+    ]
+  },
+  {
+    "width": 1024,
+    "route": "/contact",
+    "status": 200,
+    "scrollWidth": 1024,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 147,
+        "h": 37
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 37,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 38,
+        "h": 44
+      }
+    ]
+  },
+  {
+    "width": 1024,
+    "route": "/booking",
+    "status": 200,
+    "scrollWidth": 1024,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 147,
+        "h": 37
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 37,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 38,
+        "h": 44
+      }
+    ]
+  },
+  {
+    "width": 1024,
+    "route": "/blog",
+    "status": 200,
+    "scrollWidth": 1024,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 147,
+        "h": 37
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 37,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 38,
+        "h": 44
+      }
+    ]
+  },
+  {
+    "width": 1024,
+    "route": "/projects",
+    "status": 200,
+    "scrollWidth": 1024,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 147,
+        "h": 37
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 37,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 38,
+        "h": 44
+      }
+    ]
+  },
+  {
+    "width": 1024,
+    "route": "/projects/lap-dat-may-lanh-ninh-kieu",
+    "status": 200,
+    "scrollWidth": 1024,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 147,
+        "h": 37
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 37,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 38,
+        "h": 44
+      }
+    ]
+  },
+  {
+    "width": 1024,
+    "route": "/areas/ninh-kieu",
+    "status": 200,
+    "scrollWidth": 1024,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 147,
+        "h": 37
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 37,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 38,
+        "h": 44
+      }
+    ]
+  },
+  {
+    "width": 1024,
+    "route": "/areas/ninh-kieu/sua-may-lanh",
+    "status": 200,
+    "scrollWidth": 1024,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 147,
+        "h": 37
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 37,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 38,
+        "h": 44
+      }
+    ]
+  },
+  {
+    "width": 1024,
+    "route": "/faq",
+    "status": 200,
+    "scrollWidth": 1024,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 147,
+        "h": 37
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 37,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 38,
+        "h": 44
+      }
+    ]
+  },
+  {
+    "width": 1024,
+    "route": "/privacy-policy",
+    "status": 200,
+    "scrollWidth": 1024,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 147,
+        "h": 37
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 37,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 38,
+        "h": 44
+      }
+    ]
+  },
+  {
+    "width": 1024,
+    "route": "/terms-of-service",
+    "status": 200,
+    "scrollWidth": 1024,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 147,
+        "h": 37
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 37,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 38,
+        "h": 44
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/",
+    "status": 200,
+    "scrollWidth": 1440,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 176,
+        "h": 43
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 43,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 42,
+        "h": 44
+      },
+      {
+        "cls": "mn-hotline",
+        "label": "Hotline tư vấn0939 370 109",
+        "w": 135,
+        "h": 34
+      },
+      {
+        "cls": "mn-button hero_booking__W03w6",
+        "label": "Đặt lịch ngay",
+        "w": 168,
+        "h": 37
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/services",
+    "status": 200,
+    "scrollWidth": 1440,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 176,
+        "h": 43
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 43,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 42,
+        "h": 44
+      },
+      {
+        "cls": "mn-hotline",
+        "label": "Hotline tư vấn0939 370 109",
+        "w": 135,
+        "h": 34
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/services/sua-may-lanh",
+    "status": 200,
+    "scrollWidth": 1440,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 176,
+        "h": 43
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 43,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 42,
+        "h": 44
+      },
+      {
+        "cls": "mn-hotline",
+        "label": "Hotline tư vấn0939 370 109",
+        "w": 135,
+        "h": 34
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/about",
+    "status": 200,
+    "scrollWidth": 1440,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "10",
+        "w": 1,
+        "sw": 14
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 176,
+        "h": 43
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 43,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 42,
+        "h": 44
+      },
+      {
+        "cls": "mn-hotline",
+        "label": "Hotline tư vấn0939 370 109",
+        "w": 135,
+        "h": 34
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/contact",
+    "status": 200,
+    "scrollWidth": 1440,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 176,
+        "h": 43
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 43,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 42,
+        "h": 44
+      },
+      {
+        "cls": "mn-hotline",
+        "label": "Hotline tư vấn0939 370 109",
+        "w": 135,
+        "h": 34
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/booking",
+    "status": 200,
+    "scrollWidth": 1440,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 176,
+        "h": 43
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 43,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 42,
+        "h": 44
+      },
+      {
+        "cls": "mn-hotline",
+        "label": "Hotline tư vấn0939 370 109",
+        "w": 135,
+        "h": 34
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/blog",
+    "status": 200,
+    "scrollWidth": 1440,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 176,
+        "h": 43
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 43,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 42,
+        "h": 44
+      },
+      {
+        "cls": "mn-hotline",
+        "label": "Hotline tư vấn0939 370 109",
+        "w": 135,
+        "h": 34
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/projects",
+    "status": 200,
+    "scrollWidth": 1440,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 176,
+        "h": 43
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 43,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 42,
+        "h": 44
+      },
+      {
+        "cls": "mn-hotline",
+        "label": "Hotline tư vấn0939 370 109",
+        "w": 135,
+        "h": 34
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/projects/lap-dat-may-lanh-ninh-kieu",
+    "status": 200,
+    "scrollWidth": 1440,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 176,
+        "h": 43
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 43,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 42,
+        "h": 44
+      },
+      {
+        "cls": "mn-hotline",
+        "label": "Hotline tư vấn0939 370 109",
+        "w": 135,
+        "h": 34
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/areas/ninh-kieu",
+    "status": 200,
+    "scrollWidth": 1440,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 176,
+        "h": 43
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 43,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 42,
+        "h": 44
+      },
+      {
+        "cls": "mn-hotline",
+        "label": "Hotline tư vấn0939 370 109",
+        "w": 135,
+        "h": 34
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/areas/ninh-kieu/sua-may-lanh",
+    "status": 200,
+    "scrollWidth": 1440,
+    "overflow": [],
+    "clipped": [
+      {
+        "cls": "sr-only",
+        "text": "Yêu cầu đặt lịch dịch vụ",
+        "w": 1,
+        "sw": 154
+      }
+    ],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 176,
+        "h": 43
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 43,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 42,
+        "h": 44
+      },
+      {
+        "cls": "mn-hotline",
+        "label": "Hotline tư vấn0939 370 109",
+        "w": 135,
+        "h": 34
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/faq",
+    "status": 200,
+    "scrollWidth": 1440,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 176,
+        "h": 43
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 43,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 42,
+        "h": 44
+      },
+      {
+        "cls": "mn-hotline",
+        "label": "Hotline tư vấn0939 370 109",
+        "w": 135,
+        "h": 34
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/privacy-policy",
+    "status": 200,
+    "scrollWidth": 1440,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 176,
+        "h": 43
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 43,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 42,
+        "h": 44
+      },
+      {
+        "cls": "mn-hotline",
+        "label": "Hotline tư vấn0939 370 109",
+        "w": 135,
+        "h": 34
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "route": "/terms-of-service",
+    "status": 200,
+    "scrollWidth": 1440,
+    "overflow": [],
+    "clipped": [],
+    "smallTargets": [
+      {
+        "cls": "mn-brand",
+        "label": "Điện Lạnh Minh Nhật – Trang chủ",
+        "w": 176,
+        "h": 43
+      },
+      {
+        "cls": "",
+        "label": "Dịch vụ",
+        "w": 43,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Tin tức",
+        "w": 40,
+        "h": 44
+      },
+      {
+        "cls": "",
+        "label": "Liên hệ",
+        "w": 42,
+        "h": 44
+      },
+      {
+        "cls": "mn-hotline",
+        "label": "Hotline tư vấn0939 370 109",
+        "w": 135,
+        "h": 34
+      }
+    ]
+  }
+]

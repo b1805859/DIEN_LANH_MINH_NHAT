@@ -1,0 +1,47 @@
+[
+  {
+    "categoryOverlap": false,
+    "contentFits": true,
+    "height": 710,
+    "heroBottom": 695.78125,
+    "heroFits": true,
+    "serviceOverlap": false,
+    "width": 1440
+  },
+  {
+    "categoryOverlap": false,
+    "contentFits": true,
+    "height": 768,
+    "heroBottom": 751.984375,
+    "heroFits": true,
+    "serviceOverlap": false,
+    "width": 1366
+  },
+  {
+    "categoryOverlap": false,
+    "contentFits": true,
+    "height": 600,
+    "heroBottom": 592.2578125,
+    "heroFits": true,
+    "serviceOverlap": false,
+    "width": 1440
+  },
+  {
+    "categoryOverlap": false,
+    "contentFits": true,
+    "height": 1005,
+    "heroBottom": 976,
+    "heroFits": true,
+    "serviceOverlap": false,
+    "width": 1565
+  },
+  {
+    "categoryOverlap": false,
+    "contentFits": true,
+    "height": 1080,
+    "heroBottom": 976,
+    "heroFits": true,
+    "serviceOverlap": false,
+    "width": 1920
+  }
+]

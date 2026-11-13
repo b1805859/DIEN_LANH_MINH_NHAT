@@ -1,0 +1,10 @@
+{
+  "image_url": "REPLACE_WITH_DATA_URI_FROM_REFERENCE_POSTER",
+  "ai_model": "meshy-7.1",
+  "model_type": "standard",
+  "enable_pbr": true,
+  "should_texture": true,
+  "should_remesh": true,
+  "target_polycount": 100000,
+  "target_formats": ["glb"]
+}

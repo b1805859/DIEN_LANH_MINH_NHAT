@@ -1,0 +1,20 @@
+MOCKUP ADMIN MOBILE — 31/10/2026
+
+3 ảnh concept, đánh số đúng thứ tự hiển thị trong chat. Xem manifest.json để ánh xạ số sang ảnh được chọn. Không chỉnh mã nguồn hoặc dữ liệu admin trong lượt này.
+
+Nguồn: ảnh admin Aurora đã lưu trong workspace được mở trực tiếp để làm tham khảo hình ảnh; admin-shell, dashboard, admin-bookings-page và admin-resource-page hiện tại được đọc để xác định đúng nội dung/nghiệp vụ. Không có phiên đăng nhập admin được sử dụng và không xem dữ liệu khách hàng thực tế. Đây là đề xuất từ ảnh tham khảo/mã nguồn, không phải audit live.
+
+Hướng xử lý chung:
+- Banner giới thiệu lớn đổi thành tiêu đề/header gọn; nội dung giải thích chuyển sang trợ giúp.
+- KPI dạng 2x2 hoặc một dải tổng hợp, không xếp dọc từng card lớn.
+- Lịch hẹn dùng danh sách ngày mặc định trên mobile; lịch tháng mở khi cần.
+- Mỗi dòng giữ khách, dịch vụ, khu vực và trạng thái; địa chỉ đầy đủ, ghi chú và đổi trạng thái mở trong panel chi tiết.
+- Các phân hệ quản trị dùng hàng gọn hoặc nhóm link thay các bento card lớn.
+- Thanh điều hướng 4 nhóm trên mobile, menu Thêm giữ các chức năng ít dùng; desktop giữ nguyên khi triển khai.
+- Mục tiêu chữ nội dung 14–16px, vùng chạm 44px; đây là mục tiêu concept, chưa được kiểm thử ở runtime.
+
+Số liệu, khách mẫu và số điện thoại đã che trong ảnh đều là minh họa. Không có doanh thu, giờ hẹn, phân công kỹ thuật viên hay nghiệp vụ mới được đề xuất vì code hiện tại không có các dữ liệu này.
+
+Mockup 1 có chi tiết chuông do Image Gen dựng thêm; không coi đó là yêu cầu tạo tính năng thông báo. Khi chọn để triển khai, dùng action lịch hẹn/làm mới hiện có thay cho chuông.
+
+Chưa đo chiều cao layout thực, chưa kiểm thử tương tác, accessibility hoặc các kích thước 320/375/430/768 trên ảnh concept. Những kiểm tra đó sẽ thực hiện sau khi chọn phương án và triển khai. Không triển khai hoặc deploy khi chưa chọn mockup.

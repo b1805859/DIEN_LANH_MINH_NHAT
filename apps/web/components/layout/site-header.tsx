@@ -2,11 +2,12 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useId, useRef, useState } from 'react';
-import { CalendarDays, ChevronDown, Menu, Phone, X } from 'lucide-react';
+import { Headset, ChevronDown, LayoutDashboard, LogOut, Menu, Phone, UserRound, X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { surfaceMotion } from '@/components/ui/motion-tokens';
 import { MinhNhatLogoMark } from '@/components/brand/minh-nhat-logo';
-import { serviceCards, siteContent } from '@/lib/content/site-content';
+import { siteContent } from '@/lib/content/site-content';
+import type { WebsiteService } from '@/lib/content/website-content';
 import {
   AUTH_TOKEN_CHANGE_EVENT,
   clearStoredAuthTokens,
@@ -21,7 +22,7 @@ const links = [
   ['Tin tức', '/blog'],
   ['Liên hệ', '/contact'],
 ];
-export function SiteHeader({ className = '' }: { className?: string }) {
+export function SiteHeader({ className = '', services }: { className?: string; services: WebsiteService[] }) {
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -29,9 +30,28 @@ export function SiteHeader({ className = '' }: { className?: string }) {
   const [admin, setAdmin] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const servicesMenu = useRef<HTMLDetailsElement>(null);
+  const accountMenu = useRef<HTMLDetailsElement>(null);
+  const closeDropdownTimer = useRef<number | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const menuId = useId();
+  const clearCloseTimer = () => {
+    if (closeDropdownTimer.current !== null) {
+      window.clearTimeout(closeDropdownTimer.current);
+      closeDropdownTimer.current = null;
+    }
+  };
+  const openServicesDropdown = () => {
+    clearCloseTimer();
+    if (servicesMenu.current) servicesMenu.current.open = true;
+    setServicesOpen(true);
+  };
+  const scheduleCloseServicesDropdown = () => {
+    clearCloseTimer();
+    closeDropdownTimer.current = window.setTimeout(() => {
+      setServicesOpen(false);
+    }, 150);
+  };
   useEffect(() => {
     const sync = () => setAdmin(Boolean(getStoredAccessToken()));
     sync();
@@ -47,18 +67,22 @@ export function SiteHeader({ className = '' }: { className?: string }) {
   useEffect(() => {
     setOpen(false);
     setServicesOpen(false);
+    if (accountMenu.current) accountMenu.current.open = false;
   }, [pathname]);
   useEffect(() => {
-    const desktop = window.matchMedia('(min-width: 801px)');
+    const desktop = window.matchMedia('(min-width: 901px)');
     const closeOnDesktop = () => { if (desktop.matches) setOpen(false); };
     desktop.addEventListener('change', closeOnDesktop);
     return () => desktop.removeEventListener('change', closeOnDesktop);
-  }, []);
+  }, [pathname]);
   useEffect(() => {
-    const syncScroll = () => setScrolled(window.scrollY > 180);
+    const syncScroll = () => setScrolled(window.scrollY > 32);
     const dismiss = (event: PointerEvent) => {
       if (servicesMenu.current && !servicesMenu.current.contains(event.target as Node)) {
         setServicesOpen(false);
+      }
+      if (accountMenu.current && !accountMenu.current.contains(event.target as Node)) {
+        accountMenu.current.open = false;
       }
     };
     syncScroll();
@@ -72,12 +96,16 @@ export function SiteHeader({ className = '' }: { className?: string }) {
   useEffect(() => {
     const element = dialog.current;
     if (open) {
-      element?.showModal();
+      if (!element?.open) element?.showModal();
       const old = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
       return () => {
         document.body.style.overflow = old;
       };
+    } else {
+      if (element?.open) {
+        element.close();
+      }
     }
   }, [open]);
   async function logout() {
@@ -103,9 +131,10 @@ export function SiteHeader({ className = '' }: { className?: string }) {
   const active = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
   return (
     <header
-      className={`mn-header ${styles.header} ${scrolled ? 'mn-header-scrolled' : ''} ${className}`}
+      data-scrolled={scrolled ? 'true' : undefined}
+      className={`mn-header ${styles.header} ${scrolled && pathname !== '/' ? 'mn-header-scrolled' : ''} ${className}`}
     >
-      <div className="mn-nav-shell">
+      <div className="mn-nav-shell" data-admin-session={admin || undefined}>
         <Link href="/" className="mn-brand" aria-label="Điện Lạnh Minh Nhật – Trang chủ">
           <MinhNhatLogoMark idPrefix="header" />
           <span>
@@ -116,15 +145,27 @@ export function SiteHeader({ className = '' }: { className?: string }) {
         <nav className="mn-desktop-nav" aria-label="Điều hướng chính">
           {links.map(([label, href]) =>
             href === '/services' ? (
-              <div className="mn-nav-services" key={href}>
+              <div
+                className="mn-nav-services"
+                key={href}
+                data-open={servicesOpen ? 'true' : undefined}
+                onPointerEnter={(event) => {
+                  if (event.pointerType === 'mouse') openServicesDropdown();
+                }}
+                onPointerLeave={(event) => {
+                  if (event.pointerType === 'mouse') scheduleCloseServicesDropdown();
+                }}
+              >
                 <Link href={href} aria-current={active(href) ? 'page' : undefined}>
                   {label}
                 </Link>
                 <details
                   ref={servicesMenu}
                   className="mn-services-menu"
+                  data-open={servicesOpen ? 'true' : undefined}
                   onKeyDown={(event) => {
                     if (event.key === 'Escape') {
+                      clearCloseTimer();
                       setServicesOpen(false);
                       event.currentTarget.querySelector('summary')?.focus();
                     }
@@ -135,6 +176,7 @@ export function SiteHeader({ className = '' }: { className?: string }) {
                     aria-expanded={servicesOpen}
                     onClick={(event) => {
                       event.preventDefault();
+                      clearCloseTimer();
                       if (!servicesOpen && servicesMenu.current) servicesMenu.current.open = true;
                       setServicesOpen(!servicesOpen);
                     }}
@@ -145,11 +187,18 @@ export function SiteHeader({ className = '' }: { className?: string }) {
                     if (!servicesOpen && servicesMenu.current) servicesMenu.current.open = false;
                   }}>
                   {servicesOpen && <motion.div {...surfaceMotion} className="mn-services-dropdown">
-                    {serviceCards.map((service) => (
-                      <Link key={service.slug} href={`/services/${service.slug}`}>
-                        {service.title}
-                      </Link>
-                    ))}
+                    {services.map((service) => {
+                      const serviceHref = `/services/${service.slug}`;
+                      return (
+                        <Link
+                          key={service.slug}
+                          href={serviceHref}
+                          aria-current={pathname === serviceHref ? 'page' : undefined}
+                        >
+                          {service.title}
+                        </Link>
+                      );
+                    })}
                   </motion.div>}
                   </AnimatePresence>
                 </details>
@@ -162,23 +211,33 @@ export function SiteHeader({ className = '' }: { className?: string }) {
           )}
         </nav>
         <div className="mn-header-actions">
-          <a className="mn-hotline" href={siteContent.phoneHref}>
+          <a className="mn-hotline" href={siteContent.phoneHref} aria-label={`Gọi tư vấn ${siteContent.phoneDisplay}`}>
             <span>
-              <Phone size={20} />
+              <Phone size={20} aria-hidden="true" />
             </span>
             <div>
               <small>Hotline tư vấn</small>
               <strong>{siteContent.phoneDisplay}</strong>
             </div>
           </a>
-          <Link className="mn-button mn-nav-book" href="/booking">
-            <CalendarDays size={17} />
-            Đặt lịch ngay
+          <Link className="mn-button mn-nav-book" href="/contact#tu-van">
+            <Headset size={17} />
+            Nhận tư vấn
           </Link>
           {admin && (
-            <Link href="/admin/dashboard" className="mn-admin-link">
-              Quản trị
-            </Link>
+            <details ref={accountMenu} className={styles.accountMenu} onKeyDown={(event) => {
+              if (event.key !== 'Escape' || !event.currentTarget.open) return;
+              event.currentTarget.open = false;
+              event.currentTarget.querySelector('summary')?.focus();
+            }}>
+              <summary aria-label="Tài khoản quản trị" title="Tài khoản quản trị">
+                <UserRound size={20} aria-hidden="true" />
+              </summary>
+              <div className={styles.accountDropdown}>
+                <Link href="/admin/dashboard"><LayoutDashboard size={18} aria-hidden="true" /> Quản trị</Link>
+                <button type="button" onClick={logout}><LogOut size={18} aria-hidden="true" /> Đăng xuất</button>
+              </div>
+            </details>
           )}
           <button
             ref={trigger}
@@ -230,23 +289,18 @@ export function SiteHeader({ className = '' }: { className?: string }) {
               </Link>
             ))}
           </nav>
-          <Link className="mn-button" href="/booking">
-            Đặt lịch dịch vụ <CalendarDays size={18} />
+          <Link className="mn-button" href="/contact#tu-van">
+            Nhận tư vấn <Headset size={18} />
           </Link>
           {admin && (
-            <>
-              <Link href="/admin/dashboard">Quản trị</Link>
-              <button onClick={logout}>Đăng xuất</button>
-            </>
+            <div className={styles.mobileAccount}>
+              <Link href="/admin/dashboard"><LayoutDashboard size={18} aria-hidden="true" /> Quản trị</Link>
+              <button type="button" onClick={logout}><LogOut size={18} aria-hidden="true" /> Đăng xuất</button>
+            </div>
           )}
         </motion.div>}
         </AnimatePresence>
       </dialog>
-      {admin && (
-        <button className="mn-session-logout" onClick={logout}>
-          Đăng xuất
-        </button>
-      )}
     </header>
   );
 }

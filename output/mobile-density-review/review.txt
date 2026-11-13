@@ -1,0 +1,35 @@
+REVIEW MẬT ĐỘ THÔNG TIN MOBILE — 31/10/2026
+
+Chỉ review và tạo mockup để duyệt. Không sửa mã nguồn website trong lượt này.
+Bằng chứng mới: chụp website local hiện tại qua Playwright ở 320/390/430px, cao 844px. Đã kiểm tra trực tiếp ảnh trang chủ, giới thiệu, card dịch vụ, footer và đầu trang blog. Không dùng ảnh cũ làm bằng chứng audit. Bộ ảnh đính kèm Image Gen là home-top.png, home-mn-home-services.png, home-mn-home-footer.png của lượt review hiện tại.
+
+1. Bước bắt đầu — Header/Hero/truy cập dịch vụ: cần ưu tiên lại nội dung.
+   390x844: Header khoảng 68px; Hero cao 668px. Phần card dịch vụ đầu tiên bắt đầu ở y=2943px, tương đương 3,5 chiều cao màn hình tính từ đầu trang. Hero đã có lối tắt nhưng khối dịch vụ chi tiết bị đẩy xuống sau giới thiệu và quy trình. Người dùng phải cuộn qua ảnh giới thiệu và nhiều nội dung trước khi so sánh dịch vụ.
+   Bằng chứng: home-top.png, home-mn-home-about.png, metrics.json.
+   Đề xuất: đưa khối dịch vụ ngay sau Hero trên mobile; Hero gọn khoảng 300–400px tính cả ảnh/copy, vẫn giữ khung ảnh và animation gió. Tránh lặp 8 lối tắt lớn rồi thêm 6 card lớn bên dưới.
+
+2. Bước xem danh mục dịch vụ/bài viết — dễ đọc nhưng mật độ thấp.
+   Card dịch vụ trên trang chủ cao 391–417px; toàn bộ khối dịch vụ dài 2906px. Trang /services dài khoảng 5297px (~6,3 màn hình). Trang /blog dài khoảng 4665px (~5,5 màn hình), bài viết đầu tiên bắt đầu ở y=582px sau Hero và bộ lọc.
+   Bằng chứng: home-mn-home-services.png, services-mn-service-grid.png, blog-top.png.
+   Đề xuất: ảnh nhỏ bên cạnh tên/mô tả; hoặc lưới hai cột với ảnh nông, tên dịch vụ và link chi tiết. Mô tả đầy đủ vẫn có ở trang chi tiết. Bài viết dùng thumbnail ngang và tiêu đề, giữ bộ lọc có vùng chạm đủ rộng. Chỉ dùng carousel như nội dung bổ trợ, không dùng làm cách duy nhất tìm dịch vụ.
+
+3. Bước xem thông tin phụ và Footer — cần thu gọn.
+   390x844: phần giới thiệu 1133px; quy trình 687px; dự án 1538px; Footer 1193px. Riêng Footer dài khoảng 1,4 màn hình và lặp nhiều đường dẫn người dùng đã thấy.
+   Bằng chứng: home-mn-home-about.png, home-mn-home-process-journey.png, home-mn-home-footer.png.
+   Đề xuất: giới thiệu bằng đoạn tóm tắt + link; quy trình dạng tóm tắt có thể mở đủ 5 bước; 2 dự án nổi bật + Xem tất cả; Footer giữ số điện thoại, địa chỉ và link pháp lý nhìn thấy, nhóm liên kết phụ thành các mục mở rộng. Khối khu vực có thể ưu tiên tên khu vực, bản đồ ở phần mở rộng. Đây là đề xuất nội dung hiển thị mobile, không tác động desktop.
+
+4. Khả năng đọc và thao tác — cần giữ khi tăng mật độ.
+   Không thu nhỏ toàn website hoặc dùng chữ 10–12px để nhét nội dung. Mục tiêu thân bài 15–16px; nhãn phụ 14px; vùng chạm 44px. Nội dung đầy đủ phải truy cập được qua trang chi tiết hoặc mục mở rộng có semantics/focus phù hợp. Ảnh tĩnh không chứng minh accessibility compliance hoặc animation; cần kiểm tra lại khi có prototype.
+
+TỔNG THỂ
+Trang chủ 390x844 cao khoảng 9046px (~10,7 màn hình). Mục tiêu thiết kế: giảm chiều dài hiển thị mặc định khoảng 40–50% và đưa dịch vụ vào 1–2 khung đầu. Đây là mục tiêu, chưa phải kết quả kiểm thử vì chưa triển khai.
+
+3 MOCKUP ĐÃ HIỂN THỊ TRONG CHAT, ĐÁNH SỐ THEO THỨ TỰ HIỂN THỊ
+1. Danh sách có ảnh nhỏ: giữ hình ảnh và thêm mô tả một dòng, giảm mạnh chiều cao card. Cân bằng thông tin và ảnh; phù hợp màn hình hẹp.
+2. Lưới dịch vụ hai cột: nhìn được nhiều nhóm dịch vụ, nhận diện nhanh bằng ảnh; gợi ý ưu tiên cho yêu cầu hiện tại. Khi triển khai cần thích nghi 320px, có thể dùng hàng ngang gọn để giữ tên dễ đọc; desktop giữ nguyên.
+3. Tổng quan gọn, mở rộng khi cần: danh mục dùng icon và tiêu đề, các phần phụ đóng mặc định; cuộn ít nhất nhưng ít ảnh minh họa trong danh mục hơn.
+
+Mockup do built-in Image Gen tạo, là concept tĩnh, không phải ảnh chụp code đã triển khai. Ảnh minh họa và chữ có thể được dựng lại; khi triển khai sẽ dùng ảnh/logo gốc, giữ animation HeroAirflow, bong bóng liên hệ kéo được và màu sắc hiện tại. Không dùng mockup để khẳng định kích thước CSS/vùng chạm đã đạt. Các file ảnh concept nằm trong mockup-manifest.json.
+
+GIỚI HẠN
+Review dựa trên giao diện local của trang chủ, danh mục dịch vụ và blog; không bao gồm hành vi thật trên thiết bị iOS/Safari, analytics, hành trình gửi yêu cầu hay dữ liệu conversion. /contact không trả nội dung có thể audit trong lần capture này nên không dùng làm căn cứ nhận định. Không chỉnh hoặc triển khai website.

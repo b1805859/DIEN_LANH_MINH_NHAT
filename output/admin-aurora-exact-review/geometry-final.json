@@ -1,0 +1,163 @@
+{
+  "documentWidth": 1585,
+  "elements": [
+    {
+      "bounds": {
+        "bottom": 936,
+        "height": 852,
+        "left": 16,
+        "right": 353,
+        "top": 84,
+        "width": 337,
+        "x": 16,
+        "y": 84
+      },
+      "selector": "admin-sidebar",
+      "shadow": "rgba(0, 142, 197, 0.125) 0px 0px 18px 0px inset"
+    },
+    {
+      "bounds": {
+        "bottom": 176,
+        "height": 88,
+        "left": 374,
+        "right": 1552,
+        "top": 88,
+        "width": 1178,
+        "x": 374,
+        "y": 88
+      },
+      "selector": "admin-topbar",
+      "shadow": "none"
+    },
+    {
+      "bounds": {
+        "bottom": 164,
+        "height": 58,
+        "left": 1295,
+        "right": 1525,
+        "top": 106,
+        "width": 230,
+        "x": 1295,
+        "y": 106
+      },
+      "selector": "admin-profile",
+      "shadow": "none"
+    },
+    {
+      "bounds": {
+        "bottom": 514,
+        "height": 307,
+        "left": 374,
+        "right": 1552,
+        "top": 207,
+        "width": 1178,
+        "x": 374,
+        "y": 207
+      },
+      "selector": "admin-hero",
+      "shadow": "none"
+    },
+    {
+      "bounds": {
+        "bottom": 845,
+        "height": 307,
+        "left": 374,
+        "right": 1552,
+        "top": 538,
+        "width": 1178,
+        "x": 374,
+        "y": 538
+      },
+      "selector": "admin-overview",
+      "shadow": "none"
+    },
+    {
+      "bounds": {
+        "bottom": 624,
+        "height": 52,
+        "left": 1255,
+        "right": 1523,
+        "top": 572,
+        "width": 268,
+        "x": 1255,
+        "y": 572
+      },
+      "selector": "admin-button admin-button-outline",
+      "shadow": "none"
+    },
+    {
+      "bounds": {
+        "bottom": 824,
+        "height": 152,
+        "left": 400,
+        "right": 664.2421875,
+        "top": 672,
+        "width": 264.2421875,
+        "x": 400,
+        "y": 672
+      },
+      "selector": "admin-metric admin-metric-cyan",
+      "shadow": "none"
+    },
+    {
+      "bounds": {
+        "bottom": 824,
+        "height": 152,
+        "left": 681.2421875,
+        "right": 945.484375,
+        "top": 672,
+        "width": 264.2421875,
+        "x": 681.2421875,
+        "y": 672
+      },
+      "selector": "admin-metric admin-metric-blue",
+      "shadow": "none"
+    },
+    {
+      "bounds": {
+        "bottom": 824,
+        "height": 152,
+        "left": 962.484375,
+        "right": 1230.734375,
+        "top": 672,
+        "width": 268.25,
+        "x": 962.484375,
+        "y": 672
+      },
+      "selector": "admin-metric admin-metric-amber",
+      "shadow": "none"
+    },
+    {
+      "bounds": {
+        "bottom": 824,
+        "height": 152,
+        "left": 1247.734375,
+        "right": 1526,
+        "top": 672,
+        "width": 278.265625,
+        "x": 1247.734375,
+        "y": 672
+      },
+      "selector": "admin-metric admin-metric-green",
+      "shadow": "none"
+    },
+    {
+      "bounds": {
+        "bottom": 910,
+        "height": 31,
+        "left": 376,
+        "right": 1550,
+        "top": 879,
+        "width": 1174,
+        "x": 376,
+        "y": 879
+      },
+      "selector": "admin-resource-heading",
+      "shadow": "none"
+    }
+  ],
+  "viewport": {
+    "height": 992,
+    "width": 1585
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "checks": [
+    {
+      "name": "desktop",
+      "differentPixelsAbove20": 0,
+      "percent": 0,
+      "meanDifference": 0,
+      "maxDifference": 0
+    },
+    {
+      "name": "desktop-full",
+      "differentPixelsAbove20": 0,
+      "percent": 0,
+      "meanDifference": 0,
+      "maxDifference": 0
+    },
+    {
+      "name": "mobile",
+      "differentPixelsAbove20": 0,
+      "percent": 0,
+      "meanDifference": 0,
+      "maxDifference": 0
+    },
+    {
+      "name": "mobile-full",
+      "differentPixelsAbove20": 0,
+      "percent": 0,
+      "meanDifference": 0,
+      "maxDifference": 0
+    },
+    {
+      "name": "tablet",
+      "differentPixelsAbove20": 0,
+      "percent": 0,
+      "meanDifference": 0,
+      "maxDifference": 0
+    }
+  ],
+  "menu": true,
+  "picker": "true",
+  "errors": [],
+  "widths": [
+    {
+      "width": 320,
+      "scrollWidth": 320
+    },
+    {
+      "width": 375,
+      "scrollWidth": 375
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768
+    },
+    {
+      "width": 1024,
+      "scrollWidth": 1024
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "width": 1920,
+      "scrollWidth": 1920
+    }
+  ]
+}

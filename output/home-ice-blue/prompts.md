@@ -1,0 +1,15 @@
+# Image generation prompt set
+
+Tool: built-in `image_gen.imagegen`. Reference for all three: approved Ice Blue mockup `exec-fde7bda2-0b2b-4635-bea8-7d4665f80dd2.png`. All requests used `transparent_background: false`.
+
+## house
+
+Create a standalone website hero illustration, NOT a website screenshot. Use the supplied homepage only as visual style reference: extract and recreate its lovely isometric 3D cutaway two-storey home occupying the image. Four open rooms with white wall AC in living room, front load washing machine in utility room, refrigerator in kitchen, electric shower water heater in bathroom. Four Vietnamese technicians in unbranded ocean blue uniforms doing plausible inspection work, safe stable stepladder where appropriate. All rooms fully visible, whole building centered with generous 6% margins, no cut off edges, camera at mild isometric angle. White satin walls, oak floors, plants, warm gentle interior lights, beautiful architectural visualization. Background solid extremely pale ice blue #F0FAFF with subtle contact shadow. NO letters, NO text, NO logos, NO UI, NO watermark. Near-square 1200x1200 composition. Highest craftsmanship, natural anatomy.
+
+## devices
+
+Create a precisely aligned 3 columns by 2 rows SPRITE SHEET of six separate premium 3D household equipment illustrations, identical cell dimensions, overall canvas 1536x1024, seamless solid white background, no borders, text, labels, or logos. Each object centered in its own equal cell with at least 15% clear padding, no overlap across cells, each fully visible. EXACT order: top left white wall split air conditioner; top middle white front-loading washing machine; top right silver two-door refrigerator; bottom left chrome household faucet with one blue water drop; bottom middle white hot/cold drinking water dispenser with blue water bottle; bottom right compact white wall-mounted electric shower heater with hose. Match attached reference website appliances: realistic premium 3D satin materials, cool ice blue shading, identical soft studio lighting, small subtle contact shadow. This is an asset sheet NOT a web design. Keep background pure white.
+
+## services
+
+Create precisely aligned three columns in ONE ROW of standalone premium 3D service illustrations SPRITE SHEET, overall aspect ratio 3:1. Each cell equal square, solid pale ice blue background #F0FAFF across all cells, NO borders NO text NO logo NO UI. All objects fully inside their cell with 12% padding; no overlaps across cells. Left cell: blue-uniform Vietnamese technician seen from side/rear inspecting opened wall air conditioner using a small tool, natural anatomy. Middle cell: clean white wall air conditioner with lifted filter and stylized translucent blue clean air swoosh and two subtle sparkles, no technician. Right cell: white AC outdoor condenser with organized toolbox and copper pipe coil, elegant composed product arrangement. Match supplied homepage soft 3D home style, white satin materials, cool blue shadows and gentle lighting. Professional realistic architectural miniature look.

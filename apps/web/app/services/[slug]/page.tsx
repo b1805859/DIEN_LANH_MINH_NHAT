@@ -1,39 +1,48 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { SERVICES, findService } from '@minhnhat/shared';
-import { BookingForm } from '@/components/forms/booking-form';
+import { PRIORITY_DISTRICTS } from '@minhnhat/shared';
 import { JsonLdScript } from '@/components/seo/json-ld-script';
 import { Actions, PageHero, Process, Reasons, SectionHeading } from '@/components/redesign/ui';
 import { serviceDetails } from '@/lib/content/service-details';
-import { serviceCards } from '@/lib/content/site-content';
+import { getWebsiteContent } from '@/lib/content/website-content';
 import { breadcrumbJsonLd, faqJsonLd, serviceJsonLd } from '@/lib/seo/json-ld';
 import { buildMetadata, localTitle } from '@/lib/seo/metadata';
-export function generateStaticParams() {
-  return SERVICES.map((service) => ({ slug: service.slug }));
-}
+import { ServiceExpectations } from '@/components/redesign/service-expectations';
+import { ServiceDetailPhoto } from '@/components/redesign/service-detail-photo';
+import { MobileDisclosure } from '@/components/redesign/mobile-disclosure';
+import { serviceSearchContent } from '@/lib/content/service-search-content';
+import { blogContent } from '@/lib/content/blog-content';
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const service = findService(slug);
-  if (!service) return {};
+  const { services } = await getWebsiteContent();
+  const card = services.find((item) => item.slug === slug);
+  if (!card) return {};
   return buildMetadata({
-    title: localTitle(service.name),
-    description: `${service.name} tại Cần Thơ, đặt lịch nhanh và báo giá rõ ràng.`,
+    title: localTitle(card.title),
+    description: `${card.title} tại Cần Thơ. ${card.description} Liên hệ Minh Nhật để xác nhận lịch và báo giá.`,
     path: `/services/${slug}`,
-    image: serviceCards.find((item) => item.slug === slug)?.image,
+    image: card.imagery.src,
+    imageAlt: card.imagery.alt,
   });
 }
 export default async function ServiceDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const service = serviceCards.find((s) => s.slug === slug);
+  const { services, posts } = await getWebsiteContent();
+  const service = services.find((s) => s.slug === slug);
   if (!service) notFound();
   const detail = serviceDetails[slug];
+  const searchContent = serviceSearchContent[slug];
+  const relatedPosts = posts.filter((post) => Object.entries(blogContent).some(([key, article]) => key === post.slug && article.services.includes(slug)));
   return (
-    <main>
+    <main className="mn-service-detail-page">
       <PageHero
         title={service.title}
         accent="tận nơi tại Cần Thơ"
         description={service.description}
-        image={service.image}
+        image={service.imagery.src}
+        imageAlt={service.imagery.alt}
+        imagePosition={service.imagery.heroPosition}
+        insetImage={service.imagery.heroInset}
       />
       <div className="mn-container">
         <div className="mn-detail-layout mn-tone-section mn-tone-light">
@@ -41,43 +50,71 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             <Link className="mn-text-link" href="/services">
               ← Tất cả dịch vụ
             </Link>
-            <SectionHeading title="Kiểm tra máy," accent="báo giá trước khi sửa" />
+            <SectionHeading title="Khảo sát nhu cầu," accent="báo giá trước khi làm" />
             <p className="mn-detail-description">
-              Bạn cho biết tình trạng máy, địa chỉ và giờ muốn hẹn. Minh Nhật sẽ liên hệ xác nhận
-              trước khi đến. Thợ kiểm tra và báo giá để bạn quyết định có sửa hay không.
+              {service.introduction ?? service.description}
             </p>
-            <h2 className="mn-faq-heading">Các tình trạng thường gặp</h2>
-            <ul className="mn-service-symptoms">
-              {detail.symptoms.map((symptom) => (
-                <li key={symptom}>{symptom}</li>
-              ))}
-            </ul>
-            <h2 className="mn-faq-heading">Quy trình kiểm tra</h2>
-            <p className="mn-detail-description">{detail.inspection}</p>
-            <Reasons />
-            <h2 className="mn-faq-heading">Câu hỏi thường gặp</h2>
-            <div className="mn-faq-list">
-              {detail.faqs.map((faq) => (
-                <details key={faq.question}>
-                  <summary>{faq.question}</summary>
-                  <p>{faq.answer}</p>
-                </details>
-              ))}
-            </div>
+            {detail && <MobileDisclosure title={detail.needsTitle || 'Các tình trạng thường gặp'}>
+              <h2 className="mn-faq-heading">{detail.needsTitle || 'Các tình trạng thường gặp'}</h2>
+              <ul className="mn-service-symptoms">
+                {detail.symptoms.map((symptom) => (
+                  <li key={symptom}>{symptom}</li>
+                ))}
+              </ul>
+              <h2 className="mn-faq-heading">{detail.procedureTitle || 'Quy trình kiểm tra'}</h2>
+              <p className="mn-detail-description">{detail.inspection}</p>
+              {service.imagery.detail && <ServiceDetailPhoto photo={service.imagery.detail} />}
+            </MobileDisclosure>}
+            {searchContent && <MobileDisclosure title="Cách tính chi phí">
+              <h2 className="mn-faq-heading">Chi phí {service.title.toLocaleLowerCase('vi')} được xác định thế nào?</h2>
+              <p className="mn-detail-description">{searchContent.costFactors}</p>
+            </MobileDisclosure>}
+            {searchContent && <MobileDisclosure title="Chuẩn bị trước khi hẹn">
+              <h2 className="mn-faq-heading">Chuẩn bị trước khi hẹn thợ</h2>
+              <p className="mn-detail-description">{searchContent.preparation}</p>
+            </MobileDisclosure>}
+            <MobileDisclosure title="Thông tin trước khi đặt lịch">
+              <Reasons />
+              <ServiceExpectations />
+            </MobileDisclosure>
+            {service.faqs.length > 0 && <MobileDisclosure title="Câu hỏi thường gặp">
+              <h2 className="mn-faq-heading">Câu hỏi thường gặp</h2>
+              <div className="mn-faq-list" data-reveal="">
+                {service.faqs.map((faq, index) => (
+                  <details key={faq.question} data-reveal="" style={{ '--d': `${(index % 4) * 0.08}s` } as React.CSSProperties}>
+                    <summary>{faq.question}</summary>
+                    <p>{faq.answer}</p>
+                  </details>
+                ))}
+              </div>
+            </MobileDisclosure>}
             <Actions />
+            <nav aria-label="Khu vực nhận yêu cầu" className="mt-8">
+              <h2 className="mn-faq-heading">Hẹn dịch vụ tại khu vực của bạn</h2>
+              <p className="mn-detail-description">Gửi địa chỉ cụ thể để Minh Nhật xác nhận phạm vi phục vụ và lịch đến; các liên kết dưới đây giúp bạn chọn khu vực.</p>
+              <ul className="mt-3 flex flex-wrap gap-4">
+                {PRIORITY_DISTRICTS.map(area => <li key={area.slug}><Link className="mn-text-link" href={`/areas/${area.slug}`}>{area.shortName}</Link></li>)}
+              </ul>
+            </nav>
+            <nav aria-label="Dịch vụ và hướng dẫn liên quan" className="mt-8 grid gap-3">
+              <h2 className="mn-faq-heading">Dịch vụ và hướng dẫn liên quan</h2>
+              {searchContent?.related.map(relatedSlug => {
+                const related = services.find(item => item.slug === relatedSlug);
+                return related ? <Link className="mn-text-link" key={relatedSlug} href={`/services/${relatedSlug}`}>{related.title} tại Cần Thơ →</Link> : null;
+              })}
+              {relatedPosts.map(post => <Link className="mn-text-link" key={post.slug} href={`/blog/${post.slug}`}>{post.title} →</Link>)}
+            </nav>
           </article>
-          <aside className="mn-detail-booking mn-panel">
-            <h2>Đặt lịch dịch vụ</h2>
-            <p>Gửi thông tin để Minh Nhật liên hệ xác nhận.</p>
-            <div className="mn-form-panel">
-              <BookingForm serviceSlug={slug} />
-            </div>
+          <aside className="mn-detail-booking mn-panel" data-reveal="" style={{ '--d': '0.12s' } as React.CSSProperties}>
+            <h2>Cần tư vấn?</h2>
+            <p>Để lại số điện thoại hoặc nhắn Zalo để Minh Nhật hỗ trợ.</p>
+            <Actions booking />
           </aside>
         </div>
         <Process />
       </div>
-      <JsonLdScript data={serviceJsonLd(service.title, `/services/${slug}`, service.image)} />
-      <JsonLdScript data={faqJsonLd(detail.faqs)} />
+      <JsonLdScript data={serviceJsonLd(service.title, `/services/${slug}`, service.imagery.src)} />
+      {service.faqs.length > 0 && <JsonLdScript data={faqJsonLd(service.faqs)} />}
       <JsonLdScript
         data={breadcrumbJsonLd([
           { name: 'Trang chủ', path: '/' },

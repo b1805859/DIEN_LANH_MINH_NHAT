@@ -31,7 +31,7 @@
   border-color: var(--mn-border);
   background: var(--mn-surface);
   color: var(--mn-text);
-  box-shadow: 0 8px 22px #000d1a18;
+  box-shadow: var(--mn-shadow-card);
 }
 
 /* Section backgrounds span the viewport; the content stays in its existing frame. */
@@ -115,20 +115,128 @@
 .mn-site[data-inner-page='true'] main .mn-support .mn-kicker { color: #70d7f5; }
 .mn-site[data-inner-page='true'] main .mn-support h2 { font-size: clamp(25px, 2.5vw, 34px); }
 
-/* Cards inherit their section palette, with a small surface lift for grouping. */
-.mn-site[data-inner-page='true'] main .mn-service-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+/* Cards inherit their section palette, with a sleek, compact, unified surface. */
+.mn-site[data-inner-page='true'] main .mn-service-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
 .mn-site[data-inner-page='true'] main .mn-service-card,
-.mn-site[data-inner-page='true'] main .mn-service-grid-preview .mn-service-card:nth-child(6) { grid-column: auto; display: flex; flex-direction: column; align-items: stretch; }
+.mn-site[data-inner-page='true'] main .mn-service-grid-preview .mn-service-card:nth-child(6) {
+  grid-column: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--mn-surface);
+  border: 1px solid var(--mn-border);
+  box-shadow: 0 2px 8px -2px rgba(0, 30, 60, 0.06);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+  position: relative;
+}
 .mn-site[data-inner-page='true'] main .mn-service-card::after { display: none; }
-.mn-site[data-inner-page='true'] main .mn-service-card .mn-card-photo { aspect-ratio: 1.7; }
-.mn-site[data-inner-page='true'] main .mn-card-photo { background: #e0f7ff; }
-.mn-site[data-inner-page='true'] main .mn-card-photo img { filter: none; object-position: center 38%; }
+
+.mn-site[data-inner-page='true'] main .mn-service-card .mn-card-photo {
+  position: relative;
+  height: 148px;
+  width: 100%;
+  aspect-ratio: auto;
+  background: #e0f7ff;
+  overflow: hidden;
+}
+.mn-site[data-inner-page='true'] main .mn-card-photo img {
+  filter: none;
+  object-fit: cover;
+  object-position: center 38%;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mn-site[data-inner-page='true'] main .mn-service-card:hover .mn-card-photo img {
+  transform: scale(1.05);
+}
+
+/* Floating icon badge overlaying photo - saves horizontal & vertical space */
+.mn-site[data-inner-page='true'] main .mn-card-icon-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 2;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5, 23, 44, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(56, 189, 248, 0.32);
+  color: #38bdf8;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+.mn-site[data-inner-page='true'] main .mn-card-icon-badge svg {
+  width: 16px;
+  height: 16px;
+}
+.mn-site[data-inner-page='true'] main .mn-service-card:hover .mn-card-icon-badge {
+  background: #007eaf;
+  color: #fff;
+  border-color: #38bdf8;
+  transform: scale(1.06);
+}
+
+/* Compact, unified copy area directly connected to photo */
 .mn-site[data-inner-page='true'] main .mn-service-card .mn-card-copy {
-  display: grid;
-  grid-template-columns: 48px minmax(0, 1fr) 28px;
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   flex: 1;
-  padding: 24px 18px;
+  padding: 12px 14px 13px;
+  gap: 8px;
+  background: var(--mn-surface);
+}
+.mn-site[data-inner-page='true'] main .mn-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.mn-site[data-inner-page='true'] main .mn-card-copy h3 {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--mn-text);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.mn-site[data-inner-page='true'] main .mn-card-copy p {
+  color: var(--mn-muted);
+  font-size: 12.5px;
+  line-height: 1.48;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Action cue row */
+.mn-site[data-inner-page='true'] main .mn-card-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 8px;
+  border-top: 1px solid var(--mn-border);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--mn-cyan);
+}
+.mn-site[data-inner-page='true'] main .mn-card-action .mn-card-arrow {
+  color: var(--mn-cyan);
+  transition: transform 0.2s ease;
+}
+.mn-site[data-inner-page='true'] main .mn-service-card:hover .mn-card-arrow {
+  transform: translateX(3px);
 }
 .mn-site[data-inner-page='true'] main .mn-icon-box {
   width: 48px;
@@ -138,13 +246,6 @@
   background: var(--mn-elevated);
   color: var(--mn-cyan);
 }
-.mn-site[data-inner-page='true'] main .mn-card-copy h3 { font-size: 18px; font-weight: 800; line-height: 1.35; }
-.mn-site[data-inner-page='true'] main :is(.mn-card-copy p, .mn-project-copy > p, .mn-process-grid p, .mn-reasons p) {
-  color: var(--mn-muted);
-  font-size: 14px;
-  line-height: 1.7;
-}
-.mn-site[data-inner-page='true'] main .mn-card-arrow { align-self: center; color: var(--mn-cyan); }
 .mn-site[data-inner-page='true'] main .mn-project-grid { gap: 24px; animation: none; }
 .mn-site[data-inner-page='true'] main .mn-project-copy { padding: 24px; }
 .mn-site[data-inner-page='true'] main .mn-project-copy h3 { font-size: 20px; line-height: 1.4; font-weight: 800; }
@@ -170,7 +271,7 @@
 .mn-site[data-inner-page='true'] main .mn-process-grid article { padding: 24px 18px; }
 .mn-site[data-inner-page='true'] main .mn-process-grid article > span { background: #e0f7ff; color: #00648e; border-color: #92ddf5; }
 .mn-site[data-inner-page='true'] main .mn-process-grid h3 { font-size: 16px; font-weight: 800; }
-.mn-site[data-inner-page='true'] main .mn-process-grid [data-step-state='current'] { border-color: #00aeef; box-shadow: inset 0 2px 0 #00aeef; }
+.mn-site[data-inner-page='true'] main .mn-process-grid [data-step-state='current'] { border-color: #00aeef; box-shadow: inset 0 2px 0 #00aeef, var(--mn-shadow-card-light); }
 .mn-site[data-inner-page='true'] main .mn-process-grid [data-step-state='current'] > span { color: #fff; background: #007eaf; }
 .mn-site[data-inner-page='true'] main .mn-process-grid [data-step-state='complete'] > span { background: #26c8ee; color: #002b46; border-color: #26c8ee; }
 .mn-site[data-inner-page='true'] main .mn-reasons { gap: 18px; border: 0; border-radius: 0; overflow: visible; }
@@ -231,8 +332,7 @@
 .mn-site[data-inner-page='true'] main :is(.mn-faq-heading, .mn-faq-card h2) { font-size: 22px; }
 .mn-site[data-inner-page='true'] main .mn-faq-card { border-radius: 13px; }
 .mn-site[data-inner-page='true'] main .mn-reading-content .mn-article { background: transparent; border: 0; box-shadow: none; padding-inline: 0; }
-.mn-site[data-inner-page='true'] main .mn-faq-cards .mn-faq-card { background: transparent; border: 0; border-bottom: 1px solid var(--mn-border); border-radius: 0; box-shadow: none; padding-inline: 0; }
-.mn-site[data-inner-page='true'] main .mn-faq-cards .mn-faq-card:last-child { border-bottom: 0; }
+.mn-site[data-inner-page='true'] main .mn-faq-cards .mn-faq-card { background: var(--mn-surface); border: 1px solid var(--mn-border); border-radius: 13px; box-shadow: var(--mn-shadow-card); }
 .mn-site[data-inner-page='true'] main .mn-faq-list details[open] { border-color: var(--mn-cyan); background: var(--mn-elevated); }
 .mn-site[data-inner-page='true'] main .mn-notice { background: #e0f7ff; border-color: #007eaf; }
 .mn-site[data-inner-page='true'] main .mn-editorial-hero { border-top: 3px solid #00aeef; }
@@ -249,7 +349,7 @@
 .mn-site[data-inner-page='true'] main .mn-editorial-toc a { color: var(--mn-muted); border-color: var(--mn-border); }
 .mn-site[data-inner-page='true'] main .mn-editorial-toc a:is(:hover, :focus-visible) { color: var(--mn-cyan); border-color: var(--mn-cyan); }
 
-/* Share Home's short scroll reveals and restrained hover. */
+/* Shared inner-page reveals and restrained hover. */
 .mn-site[data-inner-page='true'] [data-mn-reveal='pending'] { transition-property: border-color, background-color, box-shadow; }
 .mn-site[data-inner-page='true'] main :is(.mn-service-card, .mn-project-card, .mn-reasons article, .mn-process-grid article, .mn-contact-methods > a, .mn-faq-card) {
   transition: border-color 250ms ease-out, box-shadow 250ms ease-out, transform 250ms var(--mn-page-ease);
@@ -259,15 +359,16 @@
 .mn-site[data-inner-page='true'] :is(a, button):where([data-mn-hover-blocked], [data-mn-hover-blocked] *) *,
 .mn-site[data-inner-page='true'] :is(a, button):where([data-mn-hover-blocked], [data-mn-hover-blocked] *) { transition-duration: 0s; }
 .mn-site[data-inner-page='true'] .mn-button:where([data-mn-hover-blocked], [data-mn-hover-blocked] *)::before { animation: none; }
+
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .mn-site[data-inner-page='true'] main :is(.mn-service-card, .mn-project-card):hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)) {
     transform: translateY(-2px);
     border-color: #a2e2f7;
-    box-shadow: 0 10px 24px #006a9812;
+    box-shadow: var(--mn-shadow-hover-light);
   }
   .mn-site[data-inner-page='true'] main :is(.mn-service-card, .mn-project-card):is(:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)), :focus-visible) img { transform: scale(1.015); }
   .mn-site[data-inner-page='true'] main .mn-service-card:hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)) .mn-icon-box { transform: none; box-shadow: 0 6px 18px #0078b012; }
-  .mn-site[data-inner-page='true'] main :is(.mn-reasons article, .mn-process-grid article, .mn-contact-methods > a, .mn-faq-card):hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)) { border-color: #83d5ef; box-shadow: 0 8px 22px #0076a814; }
+  .mn-site[data-inner-page='true'] main :is(.mn-reasons article, .mn-process-grid article, .mn-contact-methods > a, .mn-faq-card):hover:where(:not([data-mn-hover-blocked], [data-mn-hover-blocked] *)) { border-color: #83d5ef; box-shadow: var(--mn-shadow-hover); }
 }
 @media (max-width: 1000px) {
   .mn-site[data-inner-page='true'] main .mn-service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -287,7 +388,7 @@
 }
 @media (max-width: 600px) {
   .mn-site[data-inner-page='true'] main :is(.mn-service-grid, .mn-project-grid) { grid-template-columns: 1fr; }
-  .mn-site[data-inner-page='true'] main .mn-card-copy h3 { font-size: 18px; }
+  .mn-site[data-inner-page='true'] main .mn-card-copy h3 { font-size: 16px; }
   .mn-site[data-inner-page='true'] main .mn-project-copy { padding: 20px; }
   .mn-site[data-inner-page='true'] main .mn-project-copy h3 { font-size: 18px; }
   .mn-site[data-inner-page='true'] main .mn-project-card .mn-card-photo { aspect-ratio: 1.8; }
@@ -302,7 +403,7 @@
   .mn-site[data-inner-page='true'] main :is(a, button, input, select, textarea, details, article, .mn-faq-card) {
     transition: color 150ms ease, background-color 150ms ease, border-color 150ms ease !important;
   }
-  .mn-site[data-inner-page='true'] main :is(.mn-service-card, .mn-project-card, .mn-card-photo img, .mn-icon-box, .mn-card-arrow, .mn-process-grid article > span):is(:hover, :focus-visible),
-  .mn-site[data-inner-page='true'] main :is(.mn-service-card, .mn-project-card):is(:hover, :focus-visible) :is(img, .mn-icon-box, .mn-card-arrow),
+  .mn-site[data-inner-page='true'] main :is(.mn-service-card, .mn-project-card, .mn-card-photo img, .mn-card-icon-badge, .mn-icon-box, .mn-card-arrow, .mn-process-grid article > span):is(:hover, :focus-visible),
+  .mn-site[data-inner-page='true'] main :is(.mn-service-card, .mn-project-card):is(:hover, :focus-visible) :is(img, .mn-card-icon-badge, .mn-icon-box, .mn-card-arrow),
   .mn-site[data-inner-page='true'] main .mn-process-grid article:hover > span { transform: none; }
 }

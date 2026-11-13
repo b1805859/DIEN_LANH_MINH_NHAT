@@ -1,5 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const { hash } = require('bcryptjs');
+const serviceImages = require('../../../packages/shared/service-images.json');
 
 const prisma = new PrismaClient();
 const isProduction = process.env.NODE_ENV === 'production';
@@ -11,10 +12,10 @@ if (isProduction && seedAdminPassword.length < 12) {
 }
 
 const services = [
-  ['Tháo Lắp Máy Lạnh', 'thao-lap-may-lanh'],
+  ['Tháo dỡ, di dời máy lạnh', 'thao-di-doi-may-lanh'],
+  ['Lắp đặt máy lạnh', 'lap-dat-may-lanh'],
   ['Vệ Sinh Máy Lạnh', 've-sinh-may-lanh'],
   ['Sửa Máy Lạnh', 'sua-may-lanh'],
-  ['Nạp Gas Máy Lạnh', 'nap-gas-may-lanh'],
   ['Sửa Tủ Lạnh', 'sua-tu-lanh'],
   ['Sửa Máy Giặt', 'sua-may-giat'],
   ['Vệ Sinh Máy Giặt', 've-sinh-may-giat'],
@@ -22,10 +23,6 @@ const services = [
   ['Sửa Lắp Máy Nước Uống Nóng Lạnh', 'sua-lap-may-nuoc-uong-nong-lanh'],
   ['Sửa Lắp Máy Nước Nóng Lạnh Tắm', 'sua-lap-may-nuoc-nong-lanh-tam'],
 ];
-
-function serviceImageUrl(slug) {
-  return `/images/services/${slug}.jpg`;
-}
 
 const locations = [
   ['Ninh Kiều', 'ninh-kieu'],
@@ -97,6 +94,7 @@ const blogPosts = [
 ];
 
 async function main() {
+  const websiteContent = await prisma.setting.findUnique({ where: { key: 'website-content-v1' } });
   const roles = await Promise.all(
     ['SUPER_ADMIN', 'ADMIN', 'EDITOR', 'STAFF'].map((name) =>
       prisma.role.upsert({
@@ -119,22 +117,21 @@ async function main() {
     },
   });
 
-  for (const [name, slug] of services) {
-    const imageUrl = serviceImageUrl(slug);
+  for (const [name, slug] of websiteContent ? [] : services) {
+    const image = serviceImages[slug];
 
     await prisma.service.upsert({
       where: { slug },
       update: {
-        imageUrl,
-        imageAlt: name,
+        name,
       },
       create: {
         name,
         slug,
         summary: `${name} tại Cần Thơ, hỗ trợ nhanh tại Ninh Kiều, Cái Răng, Bình Thủy và Ô Môn.`,
         description: `${name} chuyên nghiệp cho hộ gia đình và cửa hàng tại Cần Thơ.`,
-        imageUrl,
-        imageAlt: name,
+        imageUrl: image.src,
+        imageAlt: image.alt,
         displayOrder: services.findIndex((service) => service[1] === slug),
       },
     });
@@ -153,7 +150,7 @@ async function main() {
     });
   }
 
-  for (const [name, slug] of categories) {
+  for (const [name, slug] of websiteContent ? [] : categories) {
     await prisma.category.upsert({
       where: { slug },
       update: {},
@@ -161,7 +158,7 @@ async function main() {
     });
   }
 
-  for (const post of blogPosts) {
+  for (const post of websiteContent ? [] : blogPosts) {
     const category = await prisma.category.findUnique({ where: { slug: post.categorySlug } });
     const fileName = post.image.split('/').pop() || `${post.slug}.jpg`;
     const featuredImage = await prisma.mediaFile.upsert({
@@ -220,19 +217,21 @@ async function main() {
     },
   });
 
-  await prisma.fAQ.createMany({
-    data: [
-      {
-        question: 'Dịch vụ có hỗ trợ ngoài giờ không?',
-        answer: 'Có, đội kỹ thuật hỗ trợ tư vấn và đặt lịch nhanh trong ngày.',
-      },
-      {
-        question: 'Có báo giá trước khi sửa không?',
-        answer: 'Có, kỹ thuật viên kiểm tra tình trạng thiết bị và báo giá trước khi thực hiện.',
-      },
-    ],
-    skipDuplicates: true,
-  });
+  if (!websiteContent) {
+    await prisma.fAQ.createMany({
+      data: [
+        {
+          question: 'Dịch vụ có hỗ trợ ngoài giờ không?',
+          answer: 'Có, đội kỹ thuật hỗ trợ tư vấn và đặt lịch nhanh trong ngày.',
+        },
+        {
+          question: 'Có báo giá trước khi sửa không?',
+          answer: 'Có, kỹ thuật viên kiểm tra tình trạng thiết bị và báo giá trước khi thực hiện.',
+        },
+      ],
+      skipDuplicates: true,
+    });
+  }
 }
 
 main()

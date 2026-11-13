@@ -1,0 +1,12 @@
+/* Service content is immediately readable, without entrance, ambient or hover motion. */
+html .mn-site[data-service-page='true'] #mn-main-content main,
+html .mn-site[data-service-page='true'] #mn-main-content main *,
+html .mn-site[data-service-page='true'] #mn-main-content main *::before,
+html .mn-site[data-service-page='true'] #mn-main-content main *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+html .mn-site[data-service-page='true'] #mn-main-content main :is(.mn-service-card, .mn-project-card, .mn-card-photo img, .mn-icon-box, .mn-card-arrow, .mn-process-grid article, .mn-process-grid article > span, .mn-home-process-icon, .mn-button) {
+  transform: none !important;
+}

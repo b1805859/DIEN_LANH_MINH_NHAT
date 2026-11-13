@@ -1,0 +1,175 @@
+{
+  "tool": "Built-in image_gen.imagegen",
+  "uniform": "Navy cotton-twill work shirt with cyan shoulder yoke, Minh Nhật embroidery, rolled sleeves; shirt untucked except technician portrait.",
+  "status": "AI-generated illustrative assets; originals preserved.",
+  "assets": [
+    {
+      "original": "carousel-maintenance.webp",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-9a582910-56f4-459a-8a3e-5e66817011af.png",
+      "prompt": "Use case: identity-preserve / precise uniform edit. Image 1 is the EDIT TARGET; Image 2 is ONLY uniform design reference, never copy its person or scene. Replace ONLY technicians clothing in Image 1 with the SAME Minh Nhật protective workwear as Image 2: deep navy durable cotton-twill collared button-front work shirt, cyan shoulder yoke across shoulders and upper back, two flap chest pockets with cyan piping, cyan MN monogram and white exact embroidery \"ĐIỆN LẠNH\" / \"MINH NHẬT\" small on left chest and larger below upper back yoke if back visible. CRITICAL DIFFERENCES from reference: sleeves ROLLED neatly to just below elbows, realistic folded cuffs exposing forearms; shirt UNTUCKED with neat straight hem outside trousers, covering waistband and ending at upper hip. Dark charcoal practical work trousers. No belts over shirt, no polo shirts. Keep all faces, body poses, hands, tools, appliance details, background, lighting and composition of Image 1 exactly unchanged. Preserve original Image 1 aspect ratio. Photorealistic. Do not alter customers clothing. No new people or appliances.",
+      "tool": "Built-in image_gen.imagegen",
+      "path": "/images/redesign/carousel-maintenance-uniform-v1.webp"
+    },
+    {
+      "original": "contact-home-visit.webp",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-4b67fe61-e27a-4c71-8d3b-f3b7c49b4aa1.png",
+      "prompt": "Use case: identity-preserve / precise uniform edit. Image 1 is the EDIT TARGET; Image 2 is ONLY uniform design reference, never copy its person or scene. Replace ONLY technicians clothing in Image 1 with the SAME Minh Nhật protective workwear as Image 2: deep navy durable cotton-twill collared button-front work shirt, cyan shoulder yoke across shoulders and upper back, two flap chest pockets with cyan piping, cyan MN monogram and white exact embroidery \"ĐIỆN LẠNH\" / \"MINH NHẬT\" small on left chest and larger below upper back yoke if back visible. CRITICAL DIFFERENCES from reference: sleeves ROLLED neatly to just below elbows, realistic folded cuffs exposing forearms; shirt UNTUCKED with neat straight hem outside trousers, covering waistband and ending at upper hip. Dark charcoal practical work trousers. No belts over shirt, no polo shirts. Keep all faces, body poses, hands, tools, appliance details, background, lighting and composition of Image 1 exactly unchanged. Preserve original Image 1 aspect ratio. Photorealistic. Do not alter customers clothing. No new people or appliances.",
+      "tool": "Built-in image_gen.imagegen",
+      "path": "/images/redesign/contact-home-visit-uniform-v1.webp"
+    },
+    {
+      "original": "hero-family-natural-arms.webp",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-61a71d5e-9862-4022-9615-4670bb27515d.png",
+      "prompt": "Use case: identity-preserve / precise uniform edit. Image 1 is the EDIT TARGET; Image 2 is ONLY uniform design reference, never copy its person or scene. Replace ONLY technicians clothing in Image 1 with the SAME Minh Nhật protective workwear as Image 2: deep navy durable cotton-twill collared button-front work shirt, cyan shoulder yoke across shoulders and upper back, two flap chest pockets with cyan piping, cyan MN monogram and white exact embroidery \"ĐIỆN LẠNH\" / \"MINH NHẬT\" small on left chest and larger below upper back yoke if back visible. CRITICAL DIFFERENCES from reference: sleeves ROLLED neatly to just below elbows, realistic folded cuffs exposing forearms; shirt UNTUCKED with neat straight hem outside trousers, covering waistband and ending at upper hip. Dark charcoal practical work trousers. No belts over shirt, no polo shirts. Keep all faces, body poses, hands, tools, appliance details, background, lighting and composition of Image 1 exactly unchanged. Preserve original Image 1 aspect ratio. Photorealistic. Do not alter customers clothing. No new people or appliances.",
+      "tool": "Built-in image_gen.imagegen",
+      "path": "/images/redesign/hero-family-natural-arms-uniform-v1.webp"
+    },
+    {
+      "original": "home-carousel/support-condenser.webp",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-eff18a27-ade9-48c3-bce1-072b61a669a1.png",
+      "prompt": "Use case: precise-object-edit. Edit ONLY technicians clothing in Image 1; Image 2 is ONLY uniform design reference (do not copy face or body). Dress technician in deep NAVY durable cotton-twill BUTTON-FRONT work shirt with CYAN SHOULDER YOKE, two flap chest pockets with cyan piping, exact white embroidery \"ĐIỆN LẠNH\" / \"MINH NHẬT\" and small cyan MN monogram. Large same text below back yoke when back visible. BOTH SLEEVES MUST BE ROLLED UP TO ELBOWS with visible thick folded cuffs, bare forearms. SHIRT MUST BE UNTUCKED, hem outside trousers covering waistband, ending at upper hip, no belt over shirt. Dark charcoal work trousers. Keep original Image 1 face identity (NOT reference person), body pose, hands, tools, appliance details, customers, background, lighting, framing and aspect ratio exactly unchanged. Do not change tools or repair procedure. Photorealistic. No polo shirt. Preserve original hand contact points and all machinery.",
+      "tool": "Built-in image_gen.imagegen",
+      "status": "AI-generated illustration, not documentary staff photography",
+      "path": "/images/redesign/home-carousel/support-condenser-uniform-v1.webp"
+    },
+    {
+      "original": "home-carousel/support-plumbing.webp",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-0ad59013-f510-4a86-a110-b17c278f0d57.png",
+      "prompt": "Use case: precise-object-edit. Edit ONLY technicians clothing in Image 1; Image 2 is ONLY uniform design reference (do not copy face or body). Dress technician in deep NAVY durable cotton-twill BUTTON-FRONT work shirt with CYAN SHOULDER YOKE, two flap chest pockets with cyan piping, exact white embroidery \"ĐIỆN LẠNH\" / \"MINH NHẬT\" and small cyan MN monogram. Large same text below back yoke when back visible. BOTH SLEEVES MUST BE ROLLED UP TO ELBOWS with visible thick folded cuffs, bare forearms. SHIRT MUST BE UNTUCKED, hem outside trousers covering waistband, ending at upper hip, no belt over shirt. Dark charcoal work trousers. Keep original Image 1 face identity (NOT reference person), body pose, hands, tools, appliance details, customers, background, lighting, framing and aspect ratio exactly unchanged. Do not change tools or repair procedure. Photorealistic. No polo shirt. Preserve original hand contact points and all machinery.",
+      "tool": "Built-in image_gen.imagegen",
+      "status": "AI-generated illustration, not documentary staff photography",
+      "path": "/images/redesign/home-carousel/support-plumbing-uniform-v1.webp"
+    },
+    {
+      "original": "nap-gas-may-lanh.webp",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-6f315ee6-ed75-4fb3-a313-4f7fe5440e61.png",
+      "prompt": "Use case: precise-object-edit. Edit ONLY technicians clothing in Image 1; Image 2 is ONLY uniform design reference (do not copy face or body). Dress technician in deep NAVY durable cotton-twill BUTTON-FRONT work shirt with CYAN SHOULDER YOKE, two flap chest pockets with cyan piping, exact white embroidery \"ĐIỆN LẠNH\" / \"MINH NHẬT\" and small cyan MN monogram. Large same text below back yoke when back visible. BOTH SLEEVES MUST BE ROLLED UP TO ELBOWS with visible thick folded cuffs, bare forearms. SHIRT MUST BE UNTUCKED, hem outside trousers covering waistband, ending at upper hip, no belt over shirt. Dark charcoal work trousers. Keep original Image 1 face identity (NOT reference person), body pose, hands, tools, appliance details, customers, background, lighting, framing and aspect ratio exactly unchanged. Do not change tools or repair procedure. Photorealistic. No polo shirt. Preserve original hand contact points and all machinery.",
+      "tool": "Built-in image_gen.imagegen",
+      "status": "AI-generated illustration, not documentary staff photography",
+      "path": "/images/redesign/nap-gas-may-lanh-uniform-v1.webp"
+    },
+    {
+      "original": "../process/process-step-3.png",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-a5927b34-3c7b-4b30-8dfd-05ac7c2c8af1.png",
+      "prompt": "Precise clothing edit ONLY on the technician (blue cap) in this small cartoon website process card. Keep EXACT same cartoon illustration style, border, background, person pose, hands, tools, air conditioner and other customer clothing. Technician wears navy blue button-front protective work shirt with cyan shoulder yoke, two chest flap pockets, tiny cyan MN monogram on left chest, dark charcoal trousers. Both long sleeves rolled neatly to elbows with visible folded cuffs and exposed forearms. Shirt left UNTUCKED outside trousers, neat short straight hem over waistband, no belt over shirt. Keep all existing gloves and blue cap. No added text outside uniform, no watermark, preserve exact aspect ratio and existing white card. Do not turn into a photograph.",
+      "tool": "Built-in image_gen.imagegen",
+      "path": "/images/process/process-step-3-uniform-v1.webp"
+    },
+    {
+      "original": "../process/process-step-4.png",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-f7441a5b-d451-4083-99b2-a9730f3ee6a1.png",
+      "prompt": "Precise clothing edit ONLY on the technician (blue cap) in this small cartoon website process card. Keep EXACT same cartoon illustration style, border, background, person pose, hands, tools, air conditioner and other customer clothing. Technician wears navy blue button-front protective work shirt with cyan shoulder yoke, two chest flap pockets, tiny cyan MN monogram on left chest, dark charcoal trousers. Both long sleeves rolled neatly to elbows with visible folded cuffs and exposed forearms. Shirt left UNTUCKED outside trousers, neat short straight hem over waistband, no belt over shirt. Keep all existing gloves and blue cap. No added text outside uniform, no watermark, preserve exact aspect ratio and existing white card. Do not turn into a photograph.",
+      "tool": "Built-in image_gen.imagegen",
+      "path": "/images/process/process-step-4-uniform-v3.webp",
+      "sleeveCorrectionPrompt": "Use case: precise-object-edit. Recreate this SAME cartoon process card with same pose and scene, correcting the technician clothing. Navy blue button-front protective work shirt with cyan shoulder yoke, flap chest pockets, tiny cyan MN on left chest, hem outside charcoal trousers. MOST IMPORTANT: both sleeves are neatly ROLLED UP ABOVE THE ELBOWS. Draw SMALL FLAT TWO-FOLD CUFFS on the UPPER ARMS, just ABOVE each elbow. BOTH ELBOWS AND FOREARMS ARE BARE and each forms ONE smooth continuous anatomically correct skin region from upper-arm cuff through elbow bend to gray glove at wrist. Exactly TWO arms and TWO hands. Natural slender arms. No sleeves over elbows, no inflated elbow fabric, no giant diagonal cuff crossing forearm, no isolated skin patches, no extra elbow lumps. Keep gray gloves, orange screwdriver, face, blue cap, air conditioner, water cover, tool pouch, white border and the original cartoon style and portrait aspect ratio. The front arm bends naturally upward at elbow while hand operates screwdriver; the other hand steadies AC. Preserve original arm and hand placement. No extra text, no added limbs. High quality clean illustration.",
+      "revisionPrompt": "Use case: precise-object-edit. Correct a drawing mistake in this cartoon: the technician arm at the LEFT SIDE OF IMAGE (his right arm holding the orange screwdriver) has an EXTRA EXPOSED SKIN PATCH below the rolled navy sleeve cuff, near the elbow/upper arm. Repaint that entire extra lower peach-colored elbow patch as continuous NAVY SHIRT FABRIC connected naturally from shoulder to rolled cuff. The ONLY bare skin on this arm should be a SINGLE continuous forearm from the rolled cuff near elbow upward to the dark gray work glove at wrist. Exactly one natural elbow, one forearm and one hand per arm. Keep the existing right-side-of-image arm unchanged. Keep the same dark navy shirt, cyan shoulder panel, rolled sleeve design, chest pockets, tiny MN monogram, untucked shirt hem, charcoal trousers, blue cap, face, pose, gray gloves, screwdriver, air conditioner, background, white card border, original composition and same cartoon style. Change ONLY the faulty arm sleeve / extra skin patch. No other changes, no new text. Preserve original portrait aspect ratio."
+    },
+    {
+      "original": "../process/process-step-5.png",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-122160c9-2a78-4a80-92c9-cc23ea7e5540.png",
+      "prompt": "Precise clothing edit ONLY on the technician (blue cap) in this small cartoon website process card. Keep EXACT same cartoon illustration style, border, background, person pose, hands, tools, air conditioner and other customer clothing. Technician wears navy blue button-front protective work shirt with cyan shoulder yoke, two chest flap pockets, tiny cyan MN monogram on left chest, dark charcoal trousers. Both long sleeves rolled neatly to elbows with visible folded cuffs and exposed forearms. Shirt left UNTUCKED outside trousers, neat short straight hem over waistband, no belt over shirt. Keep all existing gloves and blue cap. No added text outside uniform, no watermark, preserve exact aspect ratio and existing white card. Do not turn into a photograph.",
+      "tool": "Built-in image_gen.imagegen",
+      "path": "/images/process/process-step-5-uniform-v1.webp"
+    },
+    {
+      "original": "services-banner.webp",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-8b617731-8485-48c8-93a2-86d2c05e1449.png",
+      "prompt": "Use case: identity-preserve / precise uniform edit. Image 1 is the EDIT TARGET; Image 2 is ONLY uniform design reference, never copy its person or scene. Replace ONLY technicians clothing in Image 1 with the SAME Minh Nhật protective workwear as Image 2: deep navy durable cotton-twill collared button-front work shirt, cyan shoulder yoke across shoulders and upper back, two flap chest pockets with cyan piping, cyan MN monogram and white exact embroidery \"ĐIỆN LẠNH\" / \"MINH NHẬT\" small on left chest and larger below upper back yoke if back visible. CRITICAL DIFFERENCES from reference: sleeves ROLLED neatly to just below elbows, realistic folded cuffs exposing forearms; shirt UNTUCKED with neat straight hem outside trousers, covering waistband and ending at upper hip. Dark charcoal practical work trousers. No belts over shirt, no polo shirts. Keep all faces, body poses, hands, tools, appliance details, background, lighting and composition of Image 1 exactly unchanged. Preserve original Image 1 aspect ratio. Photorealistic. Do not alter customers clothing. No new people or appliances.",
+      "tool": "Built-in image_gen.imagegen",
+      "path": "/images/redesign/services-banner-uniform-v1.webp"
+    },
+    {
+      "original": "sua-dien-nuoc.webp",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-e1ec058d-72e9-4631-81dc-2d2cdcf6b98b.png",
+      "prompt": "Use case: precise-object-edit. Edit ONLY technicians clothing in Image 1; Image 2 is ONLY uniform design reference (do not copy face or body). Dress technician in deep NAVY durable cotton-twill BUTTON-FRONT work shirt with CYAN SHOULDER YOKE, two flap chest pockets with cyan piping, exact white embroidery \"ĐIỆN LẠNH\" / \"MINH NHẬT\" and small cyan MN monogram. Large same text below back yoke when back visible. BOTH SLEEVES MUST BE ROLLED UP TO ELBOWS with visible thick folded cuffs, bare forearms. SHIRT MUST BE UNTUCKED, hem outside trousers covering waistband, ending at upper hip, no belt over shirt. Dark charcoal work trousers. Keep original Image 1 face identity (NOT reference person), body pose, hands, tools, appliance details, customers, background, lighting, framing and aspect ratio exactly unchanged. Do not change tools or repair procedure. Photorealistic. No polo shirt. Preserve original hand contact points and all machinery.",
+      "tool": "Built-in image_gen.imagegen",
+      "status": "AI-generated illustration, not documentary staff photography",
+      "path": "/images/redesign/sua-dien-nuoc-uniform-v1.webp"
+    },
+    {
+      "original": "sua-lap-may-nuoc-nong-lanh-tam.webp",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-601c72c9-4bd5-4054-a7c2-80ca4f9fef0f.png",
+      "prompt": "Use case: precise-object-edit. Edit ONLY technicians clothing in Image 1; Image 2 is ONLY uniform design reference (do not copy face or body). Dress technician in deep NAVY durable cotton-twill BUTTON-FRONT work shirt with CYAN SHOULDER YOKE, two flap chest pockets with cyan piping, exact white embroidery \"ĐIỆN LẠNH\" / \"MINH NHẬT\" and small cyan MN monogram. Large same text below back yoke when back visible. BOTH SLEEVES MUST BE ROLLED UP TO ELBOWS with visible thick folded cuffs, bare forearms. SHIRT MUST BE UNTUCKED, hem outside trousers covering waistband, ending at upper hip, no belt over shirt. Dark charcoal work trousers. Keep original Image 1 face identity (NOT reference person), body pose, hands, tools, appliance details, customers, background, lighting, framing and aspect ratio exactly unchanged. Do not change tools or repair procedure. Photorealistic. No polo shirt. Preserve original hand contact points and all machinery.",
+      "tool": "Built-in image_gen.imagegen",
+      "status": "AI-generated illustration, not documentary staff photography",
+      "path": "/images/redesign/sua-lap-may-nuoc-nong-lanh-tam-uniform-v1.webp"
+    },
+    {
+      "original": "sua-lap-may-nuoc-uong-nong-lanh.webp",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-6c9f98b8-20a8-4bbf-b7c0-6a6ea221a159.png",
+      "prompt": "Use case: precise-object-edit. Edit ONLY technicians clothing in Image 1; Image 2 is ONLY uniform design reference (do not copy face or body). Dress technician in deep NAVY durable cotton-twill BUTTON-FRONT work shirt with CYAN SHOULDER YOKE, two flap chest pockets with cyan piping, exact white embroidery \"ĐIỆN LẠNH\" / \"MINH NHẬT\" and small cyan MN monogram. Large same text below back yoke when back visible. BOTH SLEEVES MUST BE ROLLED UP TO ELBOWS with visible thick folded cuffs, bare forearms. SHIRT MUST BE UNTUCKED, hem outside trousers covering waistband, ending at upper hip, no belt over shirt. Dark charcoal work trousers. Keep original Image 1 face identity (NOT reference person), body pose, hands, tools, appliance details, customers, background, lighting, framing and aspect ratio exactly unchanged. Do not change tools or repair procedure. Photorealistic. No polo shirt. Preserve original hand contact points and all machinery.",
+      "tool": "Built-in image_gen.imagegen",
+      "status": "AI-generated illustration, not documentary staff photography",
+      "path": "/images/redesign/sua-lap-may-nuoc-uong-nong-lanh-uniform-v1.webp"
+    },
+    {
+      "original": "sua-may-giat-motor-repair.webp",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-0a83d366-1cef-487d-a4d7-dd1cbc2949b4.png",
+      "prompt": "Use case: precise-object-edit. Edit ONLY technicians clothing in Image 1; Image 2 is ONLY uniform design reference (do not copy face or body). Dress technician in deep NAVY durable cotton-twill BUTTON-FRONT work shirt with CYAN SHOULDER YOKE, two flap chest pockets with cyan piping, exact white embroidery \"ĐIỆN LẠNH\" / \"MINH NHẬT\" and small cyan MN monogram. Large same text below back yoke when back visible. BOTH SLEEVES MUST BE ROLLED UP TO ELBOWS with visible thick folded cuffs, bare forearms. SHIRT MUST BE UNTUCKED, hem outside trousers covering waistband, ending at upper hip, no belt over shirt. Dark charcoal work trousers. Keep original Image 1 face identity (NOT reference person), body pose, hands, tools, appliance details, customers, background, lighting, framing and aspect ratio exactly unchanged. Do not change tools or repair procedure. Photorealistic. No polo shirt. Preserve original hand contact points and all machinery.",
+      "tool": "Built-in image_gen.imagegen",
+      "status": "AI-generated illustration, not documentary staff photography",
+      "path": "/images/redesign/sua-may-giat-motor-repair-uniform-v1.webp"
+    },
+    {
+      "original": "sua-may-lanh-realism-v2.webp",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-25479431-ee43-414f-9e59-7cdc50716829.png",
+      "prompt": "Use case: precise-object-edit. Edit ONLY technicians clothing in Image 1; Image 2 is ONLY uniform design reference (do not copy face or body). Dress technician in deep NAVY durable cotton-twill BUTTON-FRONT work shirt with CYAN SHOULDER YOKE, two flap chest pockets with cyan piping, exact white embroidery \"ĐIỆN LẠNH\" / \"MINH NHẬT\" and small cyan MN monogram. Large same text below back yoke when back visible. BOTH SLEEVES MUST BE ROLLED UP TO ELBOWS with visible thick folded cuffs, bare forearms. SHIRT MUST BE UNTUCKED, hem outside trousers covering waistband, ending at upper hip, no belt over shirt. Dark charcoal work trousers. Keep original Image 1 face identity (NOT reference person), body pose, hands, tools, appliance details, customers, background, lighting, framing and aspect ratio exactly unchanged. Do not change tools or repair procedure. Photorealistic. No polo shirt. Preserve original hand contact points and all machinery.",
+      "tool": "Built-in image_gen.imagegen",
+      "status": "AI-generated illustration, not documentary staff photography",
+      "path": "/images/redesign/sua-may-lanh-realism-v2-uniform-v1.webp"
+    },
+    {
+      "original": "sua-tu-lanh-rear-repair-v2.webp",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-3619bc0c-90d2-4033-91cb-26f459fee647.png",
+      "prompt": "Use case: precise-object-edit. Edit ONLY technicians clothing in Image 1; Image 2 is ONLY uniform design reference (do not copy face or body). Dress technician in deep NAVY durable cotton-twill BUTTON-FRONT work shirt with CYAN SHOULDER YOKE, two flap chest pockets with cyan piping, exact white embroidery \"ĐIỆN LẠNH\" / \"MINH NHẬT\" and small cyan MN monogram. Large same text below back yoke when back visible. BOTH SLEEVES MUST BE ROLLED UP TO ELBOWS with visible thick folded cuffs, bare forearms. SHIRT MUST BE UNTUCKED, hem outside trousers covering waistband, ending at upper hip, no belt over shirt. Dark charcoal work trousers. Keep original Image 1 face identity (NOT reference person), body pose, hands, tools, appliance details, customers, background, lighting, framing and aspect ratio exactly unchanged. Do not change tools or repair procedure. Photorealistic. No polo shirt. Preserve original hand contact points and all machinery.",
+      "tool": "Built-in image_gen.imagegen",
+      "status": "AI-generated illustration, not documentary staff photography",
+      "path": "/images/redesign/sua-tu-lanh-rear-repair-v2-uniform-v1.webp"
+    },
+    {
+      "original": "support.webp",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-a0b7ba97-29ed-4215-857e-9ce6740e4088.png",
+      "prompt": "Use case: identity-preserve / precise uniform edit. Image 1 is the EDIT TARGET; Image 2 is ONLY uniform design reference, never copy its person or scene. Replace ONLY technicians clothing in Image 1 with the SAME Minh Nhật protective workwear as Image 2: deep navy durable cotton-twill collared button-front work shirt, cyan shoulder yoke across shoulders and upper back, two flap chest pockets with cyan piping, cyan MN monogram and white exact embroidery \"ĐIỆN LẠNH\" / \"MINH NHẬT\" small on left chest and larger below upper back yoke if back visible. CRITICAL DIFFERENCES from reference: sleeves ROLLED neatly to just below elbows, realistic folded cuffs exposing forearms; shirt UNTUCKED with neat straight hem outside trousers, covering waistband and ending at upper hip. Dark charcoal practical work trousers. No belts over shirt, no polo shirts. Keep all faces, body poses, hands, tools, appliance details, background, lighting and composition of Image 1 exactly unchanged. Preserve original Image 1 aspect ratio. Photorealistic. Do not alter customers clothing. No new people or appliances.",
+      "tool": "Built-in image_gen.imagegen",
+      "path": "/images/redesign/support-uniform-v1.webp"
+    },
+    {
+      "original": "team.webp",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-d58dcad0-f2b3-462c-ac4c-a45986f34a72.png",
+      "prompt": "Use case: identity-preserve / precise uniform edit. Image 1 is the EDIT TARGET; Image 2 is ONLY uniform design reference, never copy its person or scene. Replace ONLY technicians clothing in Image 1 with the SAME Minh Nhật protective workwear as Image 2: deep navy durable cotton-twill collared button-front work shirt, cyan shoulder yoke across shoulders and upper back, two flap chest pockets with cyan piping, cyan MN monogram and white exact embroidery \"ĐIỆN LẠNH\" / \"MINH NHẬT\" small on left chest and larger below upper back yoke if back visible. CRITICAL DIFFERENCES from reference: sleeves ROLLED neatly to just below elbows, realistic folded cuffs exposing forearms; shirt UNTUCKED with neat straight hem outside trousers, covering waistband and ending at upper hip. Dark charcoal practical work trousers. No belts over shirt, no polo shirts. Keep all faces, body poses, hands, tools, appliance details, background, lighting and composition of Image 1 exactly unchanged. Preserve original Image 1 aspect ratio. Photorealistic. Do not alter customers clothing. No new people or appliances. ALL FOUR technicians wear exactly the same uniform; all untucked.",
+      "tool": "Built-in image_gen.imagegen",
+      "path": "/images/redesign/team-uniform-v1.webp"
+    },
+    {
+      "original": "technician.webp",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-0f0c7cfb-1411-434f-87c9-a72b1c9df3ab.png",
+      "prompt": "Navy cotton-twill button-front work shirt, cyan shoulder yoke, flap chest pockets, embroidered Điện Lạnh Minh Nhật. Sleeves rolled to elbows. This portrait alone keeps shirt tucked. Preserve original composition.",
+      "tool": "Built-in image_gen.imagegen",
+      "path": "/images/redesign/technician-uniform-v1.webp"
+    },
+    {
+      "original": "thao-lap-may-lanh.webp",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-17160ed6-95c7-4aef-9a33-432f1d01ee7f.png",
+      "prompt": "Use case: precise-object-edit. Edit ONLY technicians clothing in Image 1; Image 2 is ONLY uniform design reference (do not copy face or body). Dress technician in deep NAVY durable cotton-twill BUTTON-FRONT work shirt with CYAN SHOULDER YOKE, two flap chest pockets with cyan piping, exact white embroidery \"ĐIỆN LẠNH\" / \"MINH NHẬT\" and small cyan MN monogram. Large same text below back yoke when back visible. BOTH SLEEVES MUST BE ROLLED UP TO ELBOWS with visible thick folded cuffs, bare forearms. SHIRT MUST BE UNTUCKED, hem outside trousers covering waistband, ending at upper hip, no belt over shirt. Dark charcoal work trousers. Keep original Image 1 face identity (NOT reference person), body pose, hands, tools, appliance details, customers, background, lighting, framing and aspect ratio exactly unchanged. Do not change tools or repair procedure. Photorealistic. No polo shirt. Preserve original hand contact points and all machinery.",
+      "tool": "Built-in image_gen.imagegen",
+      "status": "AI-generated illustration, not documentary staff photography",
+      "path": "/images/redesign/thao-lap-may-lanh-uniform-v1.webp"
+    },
+    {
+      "original": "ve-sinh-may-giat.webp",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-1911ba97-87f6-4fa3-82d7-9bd6cf1cfa55.png",
+      "prompt": "Use case: precise-object-edit. Edit ONLY technicians clothing in Image 1; Image 2 is ONLY uniform design reference (do not copy face or body). Dress technician in deep NAVY durable cotton-twill BUTTON-FRONT work shirt with CYAN SHOULDER YOKE, two flap chest pockets with cyan piping, exact white embroidery \"ĐIỆN LẠNH\" / \"MINH NHẬT\" and small cyan MN monogram. Large same text below back yoke when back visible. BOTH SLEEVES MUST BE ROLLED UP TO ELBOWS with visible thick folded cuffs, bare forearms. SHIRT MUST BE UNTUCKED, hem outside trousers covering waistband, ending at upper hip, no belt over shirt. Dark charcoal work trousers. Keep original Image 1 face identity (NOT reference person), body pose, hands, tools, appliance details, customers, background, lighting, framing and aspect ratio exactly unchanged. Do not change tools or repair procedure. Photorealistic. No polo shirt. Preserve original hand contact points and all machinery.",
+      "tool": "Built-in image_gen.imagegen",
+      "status": "AI-generated illustration, not documentary staff photography",
+      "path": "/images/redesign/ve-sinh-may-giat-uniform-v1.webp"
+    },
+    {
+      "original": "ve-sinh-may-lanh-hold-bag-v3.webp",
+      "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-71ba19d8-5c8a-4658-88e0-c5c3b47bd5d6.png",
+      "prompt": "Use case: precise-object-edit. Edit ONLY technicians clothing in Image 1; Image 2 is ONLY uniform design reference (do not copy face or body). Dress technician in deep NAVY durable cotton-twill BUTTON-FRONT work shirt with CYAN SHOULDER YOKE, two flap chest pockets with cyan piping, exact white embroidery \"ĐIỆN LẠNH\" / \"MINH NHẬT\" and small cyan MN monogram. Large same text below back yoke when back visible. BOTH SLEEVES MUST BE ROLLED UP TO ELBOWS with visible thick folded cuffs, bare forearms. SHIRT MUST BE UNTUCKED, hem outside trousers covering waistband, ending at upper hip, no belt over shirt. Dark charcoal work trousers. Keep original Image 1 face identity (NOT reference person), body pose, hands, tools, appliance details, customers, background, lighting, framing and aspect ratio exactly unchanged. Do not change tools or repair procedure. Photorealistic. No polo shirt. CRITICAL preserve original LEFT hand pulling washbag lip OUTWARD to catch runoff; RIGHT hand alone holds spray gun spraying coil. Preserve washbag drain hose and bucket.",
+      "tool": "Built-in image_gen.imagegen",
+      "status": "AI-generated illustration, not documentary staff photography",
+      "path": "/images/redesign/ve-sinh-may-lanh-hold-bag-v3-uniform-v1.webp"
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "part": "area",
+    "width": 390,
+    "before": [
+      390,
+      689
+    ],
+    "after": [
+      390,
+      689
+    ]
+  },
+  {
+    "part": "footer",
+    "width": 390,
+    "before": [
+      390,
+      728
+    ],
+    "after": [
+      390,
+      728
+    ]
+  },
+  {
+    "part": "area",
+    "width": 768,
+    "before": [
+      768,
+      454
+    ],
+    "after": [
+      768,
+      454
+    ]
+  },
+  {
+    "part": "footer",
+    "width": 768,
+    "before": [
+      768,
+      686
+    ],
+    "after": [
+      768,
+      685
+    ]
+  },
+  {
+    "part": "area",
+    "width": 1440,
+    "before": [
+      1440,
+      412
+    ],
+    "after": [
+      1440,
+      412
+    ]
+  },
+  {
+    "part": "footer",
+    "width": 1440,
+    "before": [
+      1440,
+      508
+    ],
+    "after": [
+      1440,
+      509
+    ]
+  },
+  {
+    "part": "area",
+    "width": 1920,
+    "before": [
+      1920,
+      512
+    ],
+    "after": [
+      1920,
+      512
+    ]
+  },
+  {
+    "part": "footer",
+    "width": 1920,
+    "before": [
+      1920,
+      509
+    ],
+    "after": [
+      1920,
+      509
+    ]
+  },
+  {
+    "part": "area",
+    "width": 2560,
+    "before": [
+      2560,
+      611
+    ],
+    "after": [
+      2560,
+      612
+    ]
+  },
+  {
+    "part": "footer",
+    "width": 2560,
+    "before": [
+      2560,
+      508
+    ],
+    "after": [
+      2560,
+      509
+    ]
+  }
+]

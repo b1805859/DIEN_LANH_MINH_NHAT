@@ -1,0 +1,50 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>
+  body { margin: 0; background: #000; }
+  .clip { position: absolute; width: 1660px; height: 947px; transform-origin: 0 0; }
+  canvas { position: absolute; }
+</style>
+<div class="clip" id="clip">
+  <canvas id="compose" width="1660" height="947"></canvas>
+  <svg id="gsvg" style="position:absolute" width="1660" height="947" viewBox="0 0 1660 947">
+    <g id="grid" stroke="rgba(0,220,255,0.4)" stroke-width="1"></g>
+    <g id="labels" fill="#00b4ff" font-size="12" font-weight="bold"></g>
+  </svg>
+</div>
+<script>
+  const ctx = document.getElementById('compose').getContext('2d');
+  const img = new Image();
+  img.src = 'v4.png';
+  const mask = new Image();
+  mask.src = '/apps/web/public/images/redesign/hero-service-finder-people-mask.svg?' + Math.random();
+  let loaded = 0;
+  const go = () => {
+    if (++loaded < 2) return;
+    // technician layer = photo pixels where the mask is white (erode+blur baked into the SVG itself)
+    ctx.drawImage(img, 0, 0);
+    ctx.globalCompositeOperation = 'destination-in';
+    ctx.drawImage(mask, 0, 0, 1660, 947);
+    // show the visible technician layer at 55% over the original room photo:
+    // bright original pixels outside the mask = where the airflow shows through
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.globalAlpha = 0.55;
+    ctx.drawImage(img, 0, 0);
+    ctx.globalAlpha = 1;
+    const q = new URLSearchParams(location.search);
+    const sx = +q.get('x') || 1330, sy = +q.get('y') || 290, sc = +q.get('s') || 3;
+    document.getElementById('clip').style.transform = `scale(${sc}) translate(${-sx}px, ${-sy}px)`;
+    const step = +q.get('step') || 25;
+    const g = document.getElementById('grid'), lb = document.getElementById('labels');
+    let s = '', t = '';
+    for (let x = Math.ceil((sx - 20) / step) * step; x <= sx + 900 / sc + 20; x += step) {
+      s += `<line x1="${x}" y1="0" x2="${x}" y2="947"/>`; t += `<text x="${x + 2}" y="${sy + 22}">${x}</text>`;
+    }
+    for (let y = Math.ceil((sy - 20) / step) * step; y <= sy + 700 / sc + 20; y += step) {
+      s += `<line x1="0" y1="${y}" x2="1660" y2="${y}"/>`; t += `<text x="${sx + 22}" y="${y + 4}">${y}</text>`;
+    }
+    g.innerHTML = s; lb.innerHTML = t;
+    document.title = 'composed';
+  };
+  img.onload = go; mask.onload = go;
+</script>

@@ -1,0 +1,114 @@
+[
+  {
+    "width": 360,
+    "route": "/services",
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 360,
+    "route": "/services/sua-may-lanh",
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 360,
+    "route": "/contact",
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 360,
+    "route": "/booking",
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 768,
+    "route": "/services",
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 768,
+    "route": "/services/sua-may-lanh",
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 768,
+    "route": "/contact",
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 768,
+    "route": "/booking",
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "route": "/services",
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "route": "/services/sua-may-lanh",
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "route": "/contact",
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "route": "/booking",
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1920,
+    "route": "/services",
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1920,
+    "route": "/services/sua-may-lanh",
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1920,
+    "route": "/contact",
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "width": 1920,
+    "route": "/booking",
+    "status": 200,
+    "overflow": false,
+    "errors": []
+  }
+]

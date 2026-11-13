@@ -1,4 +1,7 @@
 export type ServiceDetail = {
+  introduction?: string;
+  needsTitle?: string;
+  procedureTitle?: string;
   symptoms: string[];
   inspection: string;
   faqs: Array<{ question: string; answer: string }>;
@@ -51,10 +54,50 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       },
     ],
   },
-  'thao-lap-may-lanh': {
-    symptoms: ['Lắp máy mới', 'Di dời máy sang phòng khác', 'Tháo máy khi chuyển nhà'],
+  'thao-di-doi-may-lanh': {
+    introduction:
+      'Bạn cho biết model máy, địa chỉ tháo máy và nơi chuyển đến nếu cần di dời. Minh Nhật khảo sát điều kiện tiếp cận, thống nhất hạng mục tháo, vận chuyển và lắp lại nếu có, rồi báo giá trước khi thực hiện.',
+    needsTitle: 'Khi nào cần tháo dỡ, di dời máy lạnh?',
+    procedureTitle: 'Quy trình tháo dỡ và di dời',
+    symptoms: [
+      'Tháo máy khi chuyển nhà hoặc trả mặt bằng',
+      'Chuyển máy sang phòng khác hoặc địa chỉ mới',
+      'Di chuyển dàn nóng, dàn lạnh để sửa chữa nhà',
+      'Tháo máy để cất giữ hoặc thay thiết bị khác',
+    ],
     inspection:
-      'Khảo sát vị trí dàn nóng, dàn lạnh, đường ống và nguồn cấp. Thống nhất phương án thi công, kiểm tra độ kín và chạy thử trước bàn giao.',
+      'Kiểm tra hoạt động và tình trạng máy trước khi tháo; khảo sát vị trí, đường ống và nguồn điện. Kỹ thuật viên xử lý môi chất theo tình trạng thiết bị, ngắt nguồn, tháo các bộ phận và bảo vệ đầu ống, dây điện, thiết bị. Nếu có di dời, thống nhất cách vận chuyển; phần lắp lại và vật tư tại vị trí mới được khảo sát, báo giá riêng theo phạm vi công việc.',
+    faqs: [
+      {
+        question: 'Có nhận tháo máy mà chưa lắp lại ngay không?',
+        answer:
+          'Có. Bạn cho biết cần tháo để cất giữ hay chuyển đến nơi khác. Kỹ thuật viên kiểm tra, thống nhất cách bảo vệ thiết bị và bàn giao các bộ phận sau khi tháo.',
+      },
+      {
+        question: 'Di dời máy lạnh có bao gồm lắp lại không?',
+        answer:
+          'Phạm vi công việc được xác nhận trước khi làm. Bạn có thể yêu cầu tháo và di chuyển, hoặc thêm phần lắp lại tại nơi mới. Vật tư, đường ống và điều kiện tiếp cận tại nơi mới cần được khảo sát để báo giá.',
+      },
+      {
+        question: 'Cần cung cấp thông tin gì trước khi tháo máy?',
+        answer:
+          'Gửi ảnh dàn nóng, dàn lạnh, model máy, thông tin tầng lắp đặt và địa chỉ chuyển đến nếu có. Những thông tin này giúp chuẩn bị dụng cụ và phương án tiếp cận phù hợp.',
+      },
+    ],
+  },
+  'lap-dat-may-lanh': {
+    introduction:
+      'Bạn gửi model máy, công suất và ảnh vị trí dự kiến. Minh Nhật khảo sát nơi đặt dàn nóng, dàn lạnh, đường ống và nguồn điện; trao đổi vật tư, hạng mục thi công và chi phí trước khi lắp.',
+    needsTitle: 'Các nhu cầu lắp đặt máy lạnh',
+    procedureTitle: 'Quy trình lắp đặt và chạy thử',
+    symptoms: [
+      'Lắp máy lạnh mới cho nhà ở hoặc cửa hàng',
+      'Lắp lại máy đã sử dụng tại vị trí mới',
+      'Thay máy lạnh cũ bằng thiết bị khác',
+      'Khảo sát vị trí dàn nóng, dàn lạnh và đường ống',
+    ],
+    inspection:
+      'Khảo sát vị trí, khả năng chịu tải của giá đỡ, đường ống, thoát nước và nguồn cấp phù hợp với thiết bị. Thống nhất vật tư rồi lắp dàn nóng, dàn lạnh và các đấu nối; kiểm tra độ kín, hút chân không theo yêu cầu lắp đặt của máy, kiểm tra thoát nước và chạy thử. Hướng dẫn sử dụng, bàn giao sau khi kiểm tra vận hành.',
     faqs: [
       {
         question: 'Có thể dùng lại đường ống cũ không?',
@@ -65,6 +108,11 @@ export const serviceDetails: Record<string, ServiceDetail> = {
         question: 'Cần chuẩn bị gì trước khi lắp đặt?',
         answer:
           'Cung cấp model máy, ảnh vị trí dự kiến và thông tin tầng lắp đặt. Dọn lối tiếp cận để kỹ thuật viên khảo sát và bảo vệ khu vực thi công.',
+      },
+      {
+        question: 'Có lắp lại máy lạnh đã qua sử dụng không?',
+        answer:
+          'Có thể lắp lại sau khi kiểm tra tình trạng máy và điều kiện tại nơi lắp. Kỹ thuật viên trao đổi riêng các vấn đề cần xử lý và vật tư cần bổ sung trước khi thực hiện.',
       },
     ],
   },
@@ -134,32 +182,25 @@ export const serviceDetails: Record<string, ServiceDetail> = {
       },
     ],
   },
-  'nap-gas-may-lanh': {
-    symptoms: [
-      'Máy lạnh yếu sau khi được kiểm tra',
-      'Nghi ngờ rò rỉ môi chất',
-      'Cần kiểm tra sau khi tháo lắp',
-    ],
-    inspection:
-      'Xác định loại môi chất theo nhãn máy, đo kiểm vận hành và kiểm tra rò rỉ trước khi thống nhất việc bổ sung môi chất.',
-    faqs: [
-      {
-        question: 'Có nên nạp gas định kỳ dù máy vẫn lạnh tốt?',
-        answer:
-          'Không nên quyết định chỉ theo thời gian. Cần dựa trên tình trạng vận hành và kết quả kiểm tra của kỹ thuật viên.',
-      },
-      {
-        question: 'Nếu hệ thống rò rỉ thì chỉ nạp thêm gas có đủ không?',
-        answer:
-          'Cần xác định và xử lý nguyên nhân rò rỉ trước. Bổ sung môi chất đơn thuần không giải quyết được điểm rò.',
-      },
-    ],
-  },
   've-sinh-may-giat': {
-    symptoms: ['Lồng giặt có mùi', 'Cặn bám trên quần áo', 'Gioăng cửa hoặc lọc cặn cần vệ sinh'],
+    introduction:
+      'Bạn gửi model máy, loại cửa trên hoặc cửa trước và tình trạng cần vệ sinh. Minh Nhật kiểm tra máy, trao đổi phạm vi tháo lắp và báo giá trước khi làm sạch; chạy thử cấp, xả nước sau khi hoàn tất.',
+    needsTitle: 'Khi nào cần vệ sinh máy giặt?',
+    procedureTitle: 'Quy trình vệ sinh máy giặt',
+    symptoms: [
+      'Lồng giặt có mùi hoặc xuất hiện cặn bẩn',
+      'Quần áo bám cặn sau khi giặt',
+      'Gioăng cửa, khay nước giặt hoặc lọc cặn bị bẩn',
+      'Máy cần làm sạch định kỳ theo tình trạng sử dụng',
+    ],
     inspection:
-      'Kiểm tra tình trạng máy, thống nhất mức độ tháo lắp, làm sạch lồng giặt và bộ phận phù hợp rồi kiểm tra cấp/xả nước và chạy thử.',
+      'Kiểm tra hoạt động của máy và khu vực đặt máy, thống nhất mức độ tháo lắp phù hợp với model. Ngắt nguồn, che chắn khu vực làm việc, làm sạch lồng giặt cùng các bộ phận tiếp cận được như khay chứa, gioăng cửa và lọc cặn. Lắp lại, kiểm tra độ kín, cấp và xả nước, chạy thử rồi bàn giao.',
     faqs: [
+      {
+        question: 'Có vệ sinh máy giặt cửa trên và cửa trước không?',
+        answer:
+          'Minh Nhật nhận kiểm tra và vệ sinh cả hai loại. Bạn gửi model hoặc ảnh nhãn máy để xác nhận phạm vi hỗ trợ và cách tháo lắp phù hợp trước khi hẹn lịch.',
+      },
       {
         question: 'Có phải máy nào cũng cần tháo lồng giặt?',
         answer:

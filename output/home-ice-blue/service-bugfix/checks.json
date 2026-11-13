@@ -1,0 +1,266 @@
+[
+  {
+    "width": 360,
+    "items": [
+      {
+        "title": "Sửa chữa máy lạnh",
+        "gap": 35.125,
+        "headingGap": 8.359375,
+        "buttonBottom": 20.5,
+        "buttonHeight": 44,
+        "buttonY": 1689.859375,
+        "url": "/services/sua-may-lanh"
+      },
+      {
+        "title": "Vệ sinh máy lạnh",
+        "gap": 35.125,
+        "headingGap": 8.359375,
+        "buttonBottom": 20.5,
+        "buttonHeight": 44,
+        "buttonY": 1908.859375,
+        "url": "/services/ve-sinh-may-lanh"
+      },
+      {
+        "title": "Lắp đặt máy lạnh",
+        "gap": 35.125,
+        "headingGap": 8.359375,
+        "buttonBottom": 20.5,
+        "buttonHeight": 44,
+        "buttonY": 2127.859375,
+        "url": "/services/lap-dat-may-lanh"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 390,
+    "items": [
+      {
+        "title": "Sửa chữa máy lạnh",
+        "gap": 35.734375,
+        "headingGap": 7.421875,
+        "buttonBottom": 21.1875,
+        "buttonHeight": 44,
+        "buttonY": 1688.8125,
+        "url": "/services/sua-may-lanh"
+      },
+      {
+        "title": "Vệ sinh máy lạnh",
+        "gap": 35.734375,
+        "headingGap": 7.421875,
+        "buttonBottom": 21.1875,
+        "buttonHeight": 44,
+        "buttonY": 1914.78125,
+        "url": "/services/ve-sinh-may-lanh"
+      },
+      {
+        "title": "Lắp đặt máy lạnh",
+        "gap": 35.734375,
+        "headingGap": 7.421875,
+        "buttonBottom": 21.1875,
+        "buttonHeight": 44,
+        "buttonY": 2140.75,
+        "url": "/services/lap-dat-may-lanh"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 768,
+    "items": [
+      {
+        "title": "Sửa chữa máy lạnh",
+        "gap": 68.640625,
+        "headingGap": 10.515625,
+        "buttonBottom": 29.96875,
+        "buttonHeight": 44,
+        "buttonY": 1838.671875,
+        "url": "/services/sua-may-lanh"
+      },
+      {
+        "title": "Vệ sinh máy lạnh",
+        "gap": 68.640625,
+        "headingGap": 10.515625,
+        "buttonBottom": 29.96875,
+        "buttonHeight": 44,
+        "buttonY": 2152.375,
+        "url": "/services/ve-sinh-may-lanh"
+      },
+      {
+        "title": "Lắp đặt máy lạnh",
+        "gap": 68.640625,
+        "headingGap": 10.515625,
+        "buttonBottom": 29.96875,
+        "buttonHeight": 44,
+        "buttonY": 2466.078125,
+        "url": "/services/lap-dat-may-lanh"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 901,
+    "items": [
+      {
+        "title": "Sửa chữa máy lạnh",
+        "gap": 30.515625,
+        "headingGap": 5.625,
+        "buttonBottom": 16,
+        "buttonHeight": 34.9375,
+        "buttonY": 898.578125,
+        "url": "/services/sua-may-lanh"
+      },
+      {
+        "title": "Vệ sinh máy lạnh",
+        "gap": 30.53125,
+        "headingGap": 5.625,
+        "buttonBottom": 16,
+        "buttonHeight": 34.9375,
+        "buttonY": 898.59375,
+        "url": "/services/ve-sinh-may-lanh"
+      },
+      {
+        "title": "Lắp đặt máy lạnh",
+        "gap": 30.515625,
+        "headingGap": 5.625,
+        "buttonBottom": 16,
+        "buttonHeight": 34.9375,
+        "buttonY": 898.578125,
+        "url": "/services/lap-dat-may-lanh"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 1122,
+    "items": [
+      {
+        "title": "Sửa chữa máy lạnh",
+        "gap": 38.03125,
+        "headingGap": 7.015625,
+        "buttonBottom": 19.9375,
+        "buttonHeight": 43.515625,
+        "buttonY": 1102.375,
+        "url": "/services/sua-may-lanh"
+      },
+      {
+        "title": "Vệ sinh máy lạnh",
+        "gap": 38.03125,
+        "headingGap": 7.015625,
+        "buttonBottom": 19.9375,
+        "buttonHeight": 43.515625,
+        "buttonY": 1102.375,
+        "url": "/services/ve-sinh-may-lanh"
+      },
+      {
+        "title": "Lắp đặt máy lạnh",
+        "gap": 38.03125,
+        "headingGap": 7.015625,
+        "buttonBottom": 19.9375,
+        "buttonHeight": 43.515625,
+        "buttonY": 1102.375,
+        "url": "/services/lap-dat-may-lanh"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "items": [
+      {
+        "title": "Sửa chữa máy lạnh",
+        "gap": 48.75,
+        "headingGap": 8.984375,
+        "buttonBottom": 25.578125,
+        "buttonHeight": 55.875,
+        "buttonY": 1413.5625,
+        "url": "/services/sua-may-lanh"
+      },
+      {
+        "title": "Vệ sinh máy lạnh",
+        "gap": 48.75,
+        "headingGap": 8.984375,
+        "buttonBottom": 25.578125,
+        "buttonHeight": 55.875,
+        "buttonY": 1413.5625,
+        "url": "/services/ve-sinh-may-lanh"
+      },
+      {
+        "title": "Lắp đặt máy lạnh",
+        "gap": 48.75,
+        "headingGap": 8.984375,
+        "buttonBottom": 25.578125,
+        "buttonHeight": 55.875,
+        "buttonY": 1413.5625,
+        "url": "/services/lap-dat-may-lanh"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 1920,
+    "items": [
+      {
+        "title": "Sửa chữa máy lạnh",
+        "gap": 54.171875,
+        "headingGap": 9.984375,
+        "buttonBottom": 28.421875,
+        "buttonHeight": 62.078125,
+        "buttonY": 1571.078125,
+        "url": "/services/sua-may-lanh"
+      },
+      {
+        "title": "Vệ sinh máy lạnh",
+        "gap": 54.171875,
+        "headingGap": 9.984375,
+        "buttonBottom": 28.421875,
+        "buttonHeight": 62.078125,
+        "buttonY": 1571.078125,
+        "url": "/services/ve-sinh-may-lanh"
+      },
+      {
+        "title": "Lắp đặt máy lạnh",
+        "gap": 54.171875,
+        "headingGap": 9.984375,
+        "buttonBottom": 28.421875,
+        "buttonHeight": 62.078125,
+        "buttonY": 1571.078125,
+        "url": "/services/lap-dat-may-lanh"
+      }
+    ],
+    "errors": []
+  },
+  {
+    "width": 2560,
+    "items": [
+      {
+        "title": "Sửa chữa máy lạnh",
+        "gap": 54.171875,
+        "headingGap": 9.984375,
+        "buttonBottom": 28.421875,
+        "buttonHeight": 62.078125,
+        "buttonY": 1571.078125,
+        "url": "/services/sua-may-lanh"
+      },
+      {
+        "title": "Vệ sinh máy lạnh",
+        "gap": 54.171875,
+        "headingGap": 9.984375,
+        "buttonBottom": 28.421875,
+        "buttonHeight": 62.078125,
+        "buttonY": 1571.078125,
+        "url": "/services/ve-sinh-may-lanh"
+      },
+      {
+        "title": "Lắp đặt máy lạnh",
+        "gap": 54.171875,
+        "headingGap": 9.984375,
+        "buttonBottom": 28.421875,
+        "buttonHeight": 62.078125,
+        "buttonY": 1571.078125,
+        "url": "/services/lap-dat-may-lanh"
+      }
+    ],
+    "errors": []
+  }
+]

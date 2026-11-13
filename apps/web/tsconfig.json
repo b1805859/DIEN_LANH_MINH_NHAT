@@ -34,11 +34,13 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
+    ".next-admin-3100/types/**/*.ts",
+    ".next-aurora-review/types/**/*.ts",
     ".next-ui-audit/types/**/*.ts",
+    ".next-ui-build/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     ".next/types/**/*.ts",
-    "next-env.d.ts",
-    ".next-ui-build/types/**/*.ts"
+    "next-env.d.ts"
   ],
   "exclude": [
     "node_modules"

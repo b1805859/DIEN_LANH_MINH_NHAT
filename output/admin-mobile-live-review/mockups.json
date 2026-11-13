@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-31",
+  "type": "three complementary screens for one mobile admin design",
+  "basedOn": "authenticated UI review, current aggregate counts and existing service names",
+  "mockups": [
+    {
+      "displayOrder": 1,
+      "screen": "Tổng quan",
+      "image": "/Users/macbookprom1/.codex/generated_images/01a18ffe-5ef3-7560-a7e0-f7df7db4a2ba/exec-7c891000-163c-4a3d-a17e-296d98b0f5df.png"
+    },
+    {
+      "displayOrder": 2,
+      "screen": "Lịch hẹn",
+      "image": "/Users/macbookprom1/.codex/generated_images/01a18ffe-5ef3-7560-a7e0-f7df7db4a2ba/exec-997e0049-ac08-4b48-a868-275a3b82eb53.png"
+    },
+    {
+      "displayOrder": 3,
+      "screen": "Dịch vụ",
+      "image": "/Users/macbookprom1/.codex/generated_images/01a18ffe-5ef3-7560-a7e0-f7df7db4a2ba/exec-ef4108b6-51b0-4884-9a5c-6f580836450f.png"
+    }
+  ]
+}

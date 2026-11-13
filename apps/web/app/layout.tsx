@@ -1,10 +1,12 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
+import { getWebsiteContent } from '@/lib/content/website-content';
 import { Be_Vietnam_Pro } from 'next/font/google';
 import Script from 'next/script';
 import { SiteChrome } from '@/components/layout/site-chrome';
 import { JsonLdScript } from '@/components/seo/json-ld-script';
 import { ToastProvider } from '@/components/ui/toast';
 import { MotionProvider } from '@/components/ui/motion-provider';
+import { RevealRoot } from '@/components/ui/reveal-root';
 import { localBusinessJsonLd, websiteJsonLd } from '@/lib/seo/json-ld';
 import { absoluteUrl } from '@/lib/seo/metadata';
 import { integrationSettings } from '@/lib/integrations/settings';
@@ -16,6 +18,15 @@ import './inner-pages.css';
 import './home-refinement.css';
 import './home-approved.css';
 import './shared-home-components.css';
+import './mobile.css';
+import './palette-preview.css';
+import './service-static.css';
+import './elevation.css';
+import './mobile-density.css';
+import './desktop-wide.css';
+import './safe-area.css';
+import './home-menu-approved.css';
+import './home-harmony-approved.css';
 
 const beVietnamPro = Be_Vietnam_Pro({
   subsets: ['latin', 'vietnamese'],
@@ -23,6 +34,13 @@ const beVietnamPro = Be_Vietnam_Pro({
   variable: '--font-be-vietnam-pro',
   display: 'swap',
 });
+
+export const viewport: Viewport = {
+  themeColor: '#ecfafe',
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(absoluteUrl('/')),
@@ -33,22 +51,42 @@ export const metadata: Metadata = {
   description: 'Dịch vụ điện lạnh và sửa chữa tận nơi tại Cần Thơ.',
   applicationName: 'ĐIỆN LẠNH MINH NHẬT',
   category: 'Dịch vụ điện lạnh',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'Minh Nhật Admin',
+  },
+  icons: {
+    icon: { url: '/favicon.ico?v=mn-mark', type: 'image/svg+xml', sizes: 'any' },
+    apple: [
+      { url: '/icons/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
   verification: {
     google: integrationSettings.googleSearchConsoleVerification || undefined,
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { services } = await getWebsiteContent();
   return (
-    <html lang="vi">
+    <html lang="vi" data-scroll-behavior="smooth" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.classList.add('js');",
+          }}
+        />
+      </head>
       <body className={`${beVietnamPro.variable} flex min-h-dvh flex-col`}>
+        <RevealRoot />
         <MotionProvider>
           <ToastProvider>
-            <SiteChrome>{children}</SiteChrome>
+            <SiteChrome services={services}>{children}</SiteChrome>
           </ToastProvider>
         </MotionProvider>
         <JsonLdScript data={localBusinessJsonLd()} />

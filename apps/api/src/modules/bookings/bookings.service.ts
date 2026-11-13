@@ -24,7 +24,9 @@ export class BookingsService {
     this.validateBookingDate(dto.scheduledDate);
 
     const [service, location] = await Promise.all([
-      this.prisma.service.findFirst({ where: { OR: [{ id: dto.serviceId }, { slug: dto.serviceId }] } }),
+      this.prisma.service.findFirst({
+        where: { isActive: true, OR: [{ id: dto.serviceId }, { slug: dto.serviceId }] },
+      }),
       this.prisma.location.findFirst({
         where: { OR: [{ id: dto.locationId }, { slug: dto.locationId }] },
       }),

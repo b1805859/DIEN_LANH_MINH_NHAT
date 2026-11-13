@@ -1,0 +1,420 @@
+/* ==========================================================================
+   Modern VietNet-inspired High-End Footer Styles
+   ========================================================================== */
+
+.footerWrapper {
+  position: relative;
+  width: 100%;
+  margin-top: 0;
+  background: radial-gradient(ellipse 90% 50% at 50% -15%, rgba(0, 170, 230, 0.16), transparent 75%), #071728 !important;
+  color: #e2ecf5 !important;
+  overflow: clip !important;
+  border-top: 1px solid transparent !important;
+  padding: 0 !important;
+}
+
+.glowBorder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(38, 210, 237, 0.3) 25%, rgba(0, 198, 255, 0.8) 50%, rgba(38, 210, 237, 0.3) 75%, transparent 100%);
+  pointer-events: none;
+}
+
+.container {
+  max-width: var(--mn-content-max, 1280px);
+  margin-inline: auto;
+  padding: 56px 24px 32px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr 1.15fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* Column 1: Brand & Bio */
+.brandCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.brandLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #fff;
+  transition: opacity 0.2s ease;
+}
+
+.brandLink:hover {
+  opacity: 0.9;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.brandTitle {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #8edcfc;
+  text-transform: uppercase;
+}
+
+.brandName {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+
+.brandLoc {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: #55b7e6;
+}
+
+.brandDesc {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #a7c3db;
+  margin: 0;
+}
+
+.workHours {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: #b0cee6;
+}
+
+.workHours svg {
+  flex-shrink: 0;
+  color: #26d2ed;
+  margin-top: 2px;
+}
+
+.workHours strong {
+  display: block;
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.socialRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.socialBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #b0cee6;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.socialBtn:hover {
+  background: rgba(0, 198, 255, 0.15);
+  border-color: rgba(0, 198, 255, 0.5);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px -4px rgba(0, 198, 255, 0.3);
+}
+
+/* Columns General */
+.colHeading {
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0 0 18px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.headingUnderline {
+  display: block;
+  width: 24px;
+  height: 2px;
+  border-radius: 1px;
+  background: linear-gradient(90deg, #00c6ff, #0072ff);
+  margin-top: 6px;
+}
+
+.linkList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.navLink {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-size: 13.5px;
+  color: #9cbacf;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  line-height: 1.4;
+}
+
+.navLink svg {
+  flex-shrink: 0;
+  color: #23d4fa;
+  opacity: 0.6;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.navLink:hover {
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+.navLink:hover svg {
+  opacity: 1;
+  color: #38d9ff;
+  transform: translateX(1px);
+}
+
+/* Column 3: Trust Badges */
+.trustList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.trustItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: #8edcfc;
+}
+
+.trustItem svg {
+  flex-shrink: 0;
+  color: #28e0b9 !important;
+}
+
+.hotlineIcon svg {
+  color: #001628 !important;
+}
+
+.navLink svg {
+  flex-shrink: 0;
+  color: #23d4fa !important;
+  opacity: 0.6;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.workHours svg,
+.contactItem svg {
+  color: #23d4fa !important;
+}
+
+/* Column 4: Contact & Hotline Card */
+.contactCol {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.hotlineBox {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(0, 198, 255, 0.08) 0%, rgba(7, 89, 199, 0.15) 100%);
+  border: 1px solid rgba(0, 198, 255, 0.35);
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.3);
+}
+
+.hotlineBox:hover {
+  background: linear-gradient(135deg, rgba(0, 198, 255, 0.14) 0%, rgba(7, 89, 199, 0.22) 100%);
+  border-color: rgba(0, 198, 255, 0.65);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px -6px rgba(0, 198, 255, 0.25);
+}
+
+.hotlineIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: #00c6ff;
+  color: #001628;
+  flex-shrink: 0;
+  box-shadow: 0 0 16px rgba(0, 198, 255, 0.4);
+}
+
+.hotlineCopy {
+  display: flex;
+  flex-direction: column;
+}
+
+.hotlineLabel {
+  font-size: 11px;
+  font-weight: 500;
+  color: #8edcfc;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.hotlineNumber {
+  font-size: 19px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #9cbacf;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contactItem svg {
+  flex-shrink: 0;
+  color: #23d4fa;
+  margin-top: 3px;
+}
+
+.contactItem:hover {
+  color: #ffffff;
+}
+
+.zaloAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(0, 104, 255, 0.12);
+  border: 1px solid rgba(0, 104, 255, 0.3);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  width: fit-content;
+}
+
+.zaloAction:hover {
+  background: rgba(0, 104, 255, 0.24);
+  border-color: rgba(0, 104, 255, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -6px rgba(0, 104, 255, 0.35);
+}
+
+/* Footer Bottom Bar */
+.bottomBar {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  font-size: 12.5px;
+  color: #7d9cb3;
+  /* Extra right padding so floating Zalo & AI buttons do not overlap legal links */
+  padding-right: 180px;
+}
+
+.copyright {
+  margin: 0;
+}
+
+.legalLinks {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.legalLink {
+  color: #7d9cb3;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.legalLink:hover {
+  color: #38d9ff;
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px 28px;
+  }
+  .bottomBar {
+    padding-right: 140px;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 40px 16px 28px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .bottomBar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-right: 0;
+    /* On mobile, add bottom padding so floating action bar doesn't obscure text */
+    padding-bottom: 96px;
+    gap: 12px;
+  }
+  .legalLinks {
+    gap: 14px;
+  }
+}

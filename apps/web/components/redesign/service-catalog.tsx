@@ -11,10 +11,10 @@ const categories = [
 ];
 export function ServiceCatalog() {
   const [category, setCategory] = useState('all');
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
   return (
     <>
-      <div className="mn-filters mn-service-filters" role="group" aria-label="Lọc dịch vụ">
+      <div className="mn-filters mn-service-filters" role="group" aria-label="Lọc dịch vụ" data-reveal="">
         {categories.map(([value, label]) => (
           <button
             key={value}
@@ -33,11 +33,12 @@ export function ServiceCatalog() {
         <ServiceGrid
           key={expanded ? category : 'preview'}
           category={expanded ? category : 'all'}
-          limit={expanded ? undefined : 6}
+          limit={expanded ? undefined : 8}
         />
       </div>
       <button
         className="mn-catalog-toggle mn-button mn-button-secondary"
+        data-reveal=""
         aria-expanded={expanded}
         aria-controls="service-catalog"
         onClick={() => {

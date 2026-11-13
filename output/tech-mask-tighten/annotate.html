@@ -1,0 +1,118 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>v4 mask overlay debug</title>
+<style>
+  body { margin: 0; background: #222; font-family: monospace; color: #fff; }
+  .stage { position: relative; width: 1660px; height: 947px; overflow: hidden; background: #000; }
+  .stage img { position: absolute; inset: 0; width: 1660px; height: 947px; }
+  svg.overlay { position: absolute; inset: 0; }
+  .zoom { position: relative; width: 800px; height: 600px; overflow: hidden; background: #000; margin-top: 24px; }
+  .zoom .clip { position: absolute; width: 1660px; height: 947px; transform-origin: 0 0; }
+  .note { padding: 8px; }
+</style>
+
+<!-- The same path data as apps/web/public/images/redesign/hero-service-finder-people-mask.svg -->
+<div class="stage" id="stage">
+  <img src="v4.png">
+  <svg class="overlay" width="1660" height="947" viewBox="0 0 1660 947">
+    <g fill="none" stroke="rgba(255,0,0,0.9)" stroke-width="2">
+      <path transform="translate(1250 300) scale(0.6666667)" d="
+        M 180 151 Q 170 110 200 83 Q 220 48 270 39 Q 312 25 331 56
+        Q 365 62 391 81 Q 410 113 400 151 L 390 169
+        Q 404 164 404 184 Q 400 222 382 228 L 378 259 L 375 271
+        L 385 290 L 399 287 L 420 324 L 492 349
+        Q 539 359 550 392 Q 565 439 568 480
+        L 554 535 L 540 590 L 519 647 L 518 683 L 522 735
+        L 524 807 L 513 863 L 521 899 L 513 926 L 515 980
+        L 109 980 L 123 916 L 121 892 L 133 840 L 137 782 L 144 738
+        Q 91 738 58 721 Q 38 710 35 685 L 32 670 L 36 646
+        L 43 624 L 48 589 L 58 552 L 75 518 L 84 470 L 96 431
+        L 110 411 L 131 396 L 168 383 L 205 367 L 236 352
+        L 242 336 L 254 326 L 252 302 Q 219 290 208 265
+        L 195 233 Q 182 217 190 198 L 195 186 Z"/>
+    </g>
+    <!-- grid -->
+    <g stroke="rgba(0,255,255,0.35)" stroke-width="1">
+      <!-- generated below by script into groups? keep static: -->
+    </g>
+    <g id="grid" stroke="rgba(0,220,255,0.4)" stroke-width="1"></g>
+    <g id="gridLabels" fill="rgba(0,220,255,0.9)" font-size="12"></g>
+  </svg>
+</div>
+
+<div class="zoom" id="zoomHead"><div class="clip" id="clipHead">
+  <img src="v4.png">
+  <svg class="overlay" width="1660" height="947" viewBox="0 0 1660 947">
+    <g fill="none" stroke="rgba(255,0,0,0.95)" stroke-width="2">
+      <path transform="translate(1250 300) scale(0.6666667)" d="
+        M 180 151 Q 170 110 200 83 Q 220 48 270 39 Q 312 25 331 56
+        Q 365 62 391 81 Q 410 113 400 151 L 390 169
+        Q 404 164 404 184 Q 400 222 382 228 L 378 259 L 375 271
+        L 385 290 L 399 287 L 420 324 L 492 349
+        Q 539 359 550 392 Q 565 439 568 480
+        L 554 535 L 540 590 L 519 647 L 518 683 L 522 735
+        L 524 807 L 513 863 L 521 899 L 513 926 L 515 980
+        L 109 980 L 123 916 L 121 892 L 133 840 L 137 782 L 144 738
+        Q 91 738 58 721 Q 38 710 35 685 L 32 670 L 36 646
+        L 43 624 L 48 589 L 58 552 L 75 518 L 84 470 L 96 431
+        L 110 411 L 131 396 L 168 383 L 205 367 L 236 352
+        L 242 336 L 254 326 L 252 302 Q 219 290 208 265
+        L 195 233 Q 182 217 190 198 L 195 186 Z"/>
+    </g>
+    <g id="grid-head" stroke="rgba(0,220,255,0.45)" stroke-width="1"></g>
+    <g id="gridLabels-head" fill="rgba(0,220,255,0.95)" font-size="12"></g>
+  </svg>
+</div></div>
+<div class="note" id="noteHead">zoom: head (3x)</div>
+
+<div class="zoom" id="zoomShoulder"><div class="clip" id="clipShoulder">
+  <img src="v4.png">
+  <svg class="overlay" width="1660" height="947" viewBox="0 0 1660 947">
+    <g fill="none" stroke="rgba(255,0,0,0.95)" stroke-width="2">
+      <path transform="translate(1250 300) scale(0.6666667)" d="
+        M 180 151 Q 170 110 200 83 Q 220 48 270 39 Q 312 25 331 56
+        Q 365 62 391 81 Q 410 113 400 151 L 390 169
+        Q 404 164 404 184 Q 400 222 382 228 L 378 259 L 375 271
+        L 385 290 L 399 287 L 420 324 L 492 349
+        Q 539 359 550 392 Q 565 439 568 480
+        L 554 535 L 540 590 L 519 647 L 518 683 L 522 735
+        L 524 807 L 513 863 L 521 899 L 513 926 L 515 980
+        L 109 980 L 123 916 L 121 892 L 133 840 L 137 782 L 144 738
+        Q 91 738 58 721 Q 38 710 35 685 L 32 670 L 36 646
+        L 43 624 L 48 589 L 58 552 L 75 518 L 84 470 L 96 431
+        L 110 411 L 131 396 L 168 383 L 205 367 L 236 352
+        L 242 336 L 254 326 L 252 302 Q 219 290 208 265
+        L 195 233 Q 182 217 190 198 L 195 186 Z"/>
+    </g>
+    <g id="grid-shoulder" stroke="rgba(0,220,255,0.45)" stroke-width="1"></g>
+    <g id="gridLabels-shoulder" fill="rgba(0,220,255,0.95)" font-size="12"></g>
+  </svg>
+</div></div>
+<div class="note" id="noteShoulder">zoom: shoulders (3x)</div>
+
+<script>
+  const grid = (gId, labelId, from, to, step, dashedEvery) => {
+    const g = document.getElementById(gId), lb = document.getElementById(labelId);
+    let s = '', t = '';
+    for (let x = from; x <= to; x += step) {
+      s += `<line x1="${x}" y1="0" x2="${x}" y2="${947}" />`;
+      t += `<text x="${x + 3}" y="14">${x}</text><text x="${x + 3}" y="940">${x}</text>`;
+    }
+    for (let y = 0; y <= 947; y += step) {
+      s += `<line x1="0" y1="${y}" x2="1660" y2="${y}" />`;
+      t += `<text x="4" y="${y + 4}">${y}</text><text x="1600" y="${y + 4}">${y}</text>`;
+    }
+    g.innerHTML = s; lb.innerHTML = t;
+  };
+  grid('grid', 'gridLabels', 1250, 1660, 50);
+  grid('grid-head', 'gridLabels-head', 1300, 1660, 25);
+  grid('grid-shoulder', 'gridLabels-shoulder', 1250, 1660, 25);
+  const zoom = (clipId, sx, sy, scale, noteId, text) => {
+    const clip = document.getElementById(clipId);
+    clip.style.transform = `scale(${scale}) translate(${-sx}px, ${-sy}px)`;
+    document.getElementById(noteId).textContent =
+      `${text} — source rect x ${sx}..${sx + 800 / scale}, y ${sy}..${sy + 600 / scale} (3x)`;
+  };
+  zoom('clipHead', 1330, 300, 3, 'noteHead', 'head');
+  zoom('clipShoulder', 1330, 480, 3, 'noteShoulder', 'shoulders');
+</script>

@@ -12,9 +12,9 @@ export default function PrivacyPolicyPage() {
     <main className="mn-reference-page">
       <PageHero title="Chính sách bảo mật" showEyebrow={false} />
       <div className="mn-container mn-reading-content mn-tone-section mn-tone-light">
-        <article className="mn-article mn-panel">
+        <article className="mn-article mn-panel" data-reveal="">
           <p>
-            Thông tin khách hàng được sử dụng để tư vấn, đặt lịch, báo giá và chăm sóc dịch vụ.
+            Khi bạn gửi yêu cầu tư vấn, Minh Nhật dùng họ tên và số điện thoại để gọi lại và hỗ trợ. Thông tin từ biểu mẫu hẹn thợ được dùng để xác nhận lịch, báo giá và chăm sóc dịch vụ.
           </p>
         </article>
       </div>

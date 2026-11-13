@@ -1,0 +1,17 @@
+:global(.mn-site[data-inner-page]) main .listing {
+  padding-block-start: clamp(16px, 2vw, 24px);
+}
+
+@media (max-width: 680px) {
+  .hero > img {
+    object-position: right center;
+  }
+
+  :global(.mn-site[data-inner-page]) .hero :global(.mn-page-hero-shade) {
+    background: linear-gradient(90deg, #071b30f5 2%, #0a2136d6 45%, #10284038 78%, transparent) !important;
+  }
+
+  :global(.mn-site[data-inner-page]) .hero :global(.mn-container) p {
+    max-width: min(70%, 15rem);
+  }
+}

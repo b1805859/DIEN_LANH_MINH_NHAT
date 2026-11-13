@@ -1,0 +1,38 @@
+[
+  {
+    "width": 1024,
+    "route": "home",
+    "elements": 46,
+    "identical": true
+  },
+  {
+    "width": 1024,
+    "route": "services",
+    "elements": 40,
+    "identical": true
+  },
+  {
+    "width": 1024,
+    "route": "blog",
+    "elements": 39,
+    "identical": true
+  },
+  {
+    "width": 1440,
+    "route": "home",
+    "elements": 46,
+    "identical": true
+  },
+  {
+    "width": 1440,
+    "route": "services",
+    "elements": 40,
+    "identical": true
+  },
+  {
+    "width": 1440,
+    "route": "blog",
+    "elements": 39,
+    "identical": true
+  }
+]

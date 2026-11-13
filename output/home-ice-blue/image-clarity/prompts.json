@@ -1,0 +1,34 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "mode": "edit",
+  "transparent_background": false,
+  "discarded_master_prompt": "PRECISION SUPER-RESOLUTION / RESTORATION EDIT. Input image is the FINAL APPROVED design, not inspiration. Upscale and restore it at 3072 x 3840 portrait if supported, otherwise the highest native portrait resolution available in the same 1122:1402 aspect ratio. Strictly keep the ENTIRE composition and every landmark at exactly the same normalized pixel position: header, words, buttons, isometric house, four technicians, six equipment tiles, three service cards and four-step process. NO redesign, NO rearrangement, NO new object, NO color grading, NO crop, NO camera change. Restore sharp fine edges and credible high frequency texture already implied in the original image: AC fan grille, uniform cloth, leaves, appliance seams, building edges and shadows. Preserve the approved pale ice-blue/mint/blue-gray colors. All Vietnamese text, logos and phone number must remain verbatim and in the same positions; do not invent extra lettering. Primary goal is higher-resolution master artwork with sharper microdetails while matching the original shapes, silhouettes and layout. Avoid oversharpening halos, plastic noise, and changed faces. Do not enlarge UI elements relative to the image. Return the complete page, not an extracted asset.",
+  "jobs": [
+    {
+      "name": "house",
+      "reference": "/Users/macbookprom1/develop/DIEN_LANH_MINH_NHAT/output/home-ice-blue/image-clarity/source-house.png",
+      "prompt": "PRECISION RESTORATION EDIT, not a new composition. The input is approved and must keep its original colors and geometry. Repair low-resolution softness and recover crisp plausible microdetails while preserving all edges and relative coordinates. Use the highest native output resolution available for this aspect ratio. Avoid halos, ringing, oversharpening and invented branding. This is a CROP of the approved house. Preserve crop extent and EXACT relative positions of roof, four technicians and every appliance. Restore high-detail 3D architectural render surfaces, uniform seams, leaves and appliance edges. Keep any partial UI fragments at outermost edges exactly in place because downstream masks already hide them. Landscape aspect 692:574; use approximately 1376x1142 native output or higher. Do not add margins or move the house."
+    },
+    {
+      "name": "equipment",
+      "reference": "/Users/macbookprom1/develop/DIEN_LANH_MINH_NHAT/output/home-ice-blue/image-clarity/source-equipment.png",
+      "prompt": "PRECISION RESTORATION EDIT, not a new composition. The input is approved and must keep its original colors and geometry. Repair low-resolution softness and recover crisp plausible microdetails while preserving all edges and relative coordinates. Use the highest native output resolution available for this aspect ratio. Avoid halos, ringing, oversharpening and invented branding. Restore this exact wide six-appliance UI strip. Preserve all 6 objects at EXACT same relative positions, sizes and tile boundaries. Highest native resolution wide image at aspect 1046:212 (about 2782x564), not a square. Restore sharp washing drum, fridge seams, chrome faucet and appliance corners. Keep all Vietnamese text verbatim in exactly the same positions; downstream code uses only object regions. Do not simplify objects or reorder anything."
+    },
+    {
+      "name": "repair",
+      "reference": "/Users/macbookprom1/develop/DIEN_LANH_MINH_NHAT/output/home-ice-blue/service-bugfix/source-repair.png",
+      "prompt": "PRECISION RESTORATION EDIT, not a new composition. The input is approved and must keep its original colors and geometry. Repair low-resolution softness and recover crisp plausible microdetails while preserving all edges and relative coordinates. Use the highest native output resolution available for this aspect ratio. Avoid halos, ringing, oversharpening and invented branding. Restore this exact approved service card at highest native landscape resolution (about 1653x952; aspect 1041:600). Preserve the exact artwork silhouette, technician pose (if present), appliance size and position, pastel colors, shadows, plant and toolbox. Restore crisp fine detail in fan grille, cloth and appliance seams. All existing text and button must stay exactly at same normalized coordinates and wording, because code masks out that UI and overlays real HTML. No new element and no redesign. Do not move, enlarge or crop artwork."
+    },
+    {
+      "name": "clean",
+      "reference": "/Users/macbookprom1/develop/DIEN_LANH_MINH_NHAT/output/home-ice-blue/service-bugfix/source-clean.png",
+      "prompt": "PRECISION RESTORATION EDIT, not a new composition. The input is approved and must keep its original colors and geometry. Repair low-resolution softness and recover crisp plausible microdetails while preserving all edges and relative coordinates. Use the highest native output resolution available for this aspect ratio. Avoid halos, ringing, oversharpening and invented branding. Restore this exact approved service card at highest native landscape resolution (about 1653x952; aspect 1041:600). Preserve the exact artwork silhouette, technician pose (if present), appliance size and position, pastel colors, shadows, plant and toolbox. Restore crisp fine detail in fan grille, cloth and appliance seams. All existing text and button must stay exactly at same normalized coordinates and wording, because code masks out that UI and overlays real HTML. No new element and no redesign. Do not move, enlarge or crop artwork."
+    },
+    {
+      "name": "install",
+      "reference": "/Users/macbookprom1/develop/DIEN_LANH_MINH_NHAT/output/home-ice-blue/service-bugfix/source-install.png",
+      "prompt": "PRECISION RESTORATION EDIT, not a new composition. The input is approved and must keep its original colors and geometry. Repair low-resolution softness and recover crisp plausible microdetails while preserving all edges and relative coordinates. Use the highest native output resolution available for this aspect ratio. Avoid halos, ringing, oversharpening and invented branding. Restore this exact approved service card at highest native landscape resolution (about 1653x952; aspect 1041:600). Preserve the exact artwork silhouette, technician pose (if present), appliance size and position, pastel colors, shadows, plant and toolbox. Restore crisp fine detail in fan grille, cloth and appliance seams. All existing text and button must stay exactly at same normalized coordinates and wording, because code masks out that UI and overlays real HTML. No new element and no redesign. Do not move, enlarge or crop artwork."
+    }
+  ],
+  "install_correction": "Change ONLY small brand lettering on condenser casing to MINH NHẬT; preserve composition, all other text, blue house mark and high-resolution details."
+}

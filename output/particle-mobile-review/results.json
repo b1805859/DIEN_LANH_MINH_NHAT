@@ -1,0 +1,33 @@
+[
+  {
+    "width": 393,
+    "dpr": 1,
+    "cssArea": 72496,
+    "count": 92,
+    "errors": []
+  },
+  {
+    "width": 393,
+    "dpr": 3,
+    "cssArea": 72496,
+    "count": 92,
+    "errors": []
+  },
+  {
+    "width": 768,
+    "dpr": 2,
+    "cssArea": 289982,
+    "count": 367,
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "dpr": 2,
+    "cssArea": 976392,
+    "count": 1080,
+    "errors": []
+  },
+  {
+    "resizedToMobile": 92
+  }
+]

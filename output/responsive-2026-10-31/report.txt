@@ -1,0 +1,37 @@
+BÁO CÁO RESPONSIVE — 31/10/2026
+
+Phạm vi: giao diện website công khai. Đã đọc hai SKILL.md của responsive_design và ui-ux-pro-max, không đọc .md/.doc khác của dự án. Giữ nguyên các thay đổi đã có trong workspace.
+
+4 FILE CSS ĐÃ CHỈNH
+1. apps/web/components/layout/site-header.module.css
+   Trong breakpoint <=900px: tăng vùng chạm logo lên tối thiểu 44px, tăng cỡ chữ thương hiệu và nút đặt lịch; tinh chỉnh riêng <=360px để vừa màn hình 320px.
+2. apps/web/components/redesign/hero.module.css
+   Bố cục xếp dọc cho <=900px, ảnh 16:9 có đủ kỹ thuật viên trên tablet; chữ mô tả 16px, CTA cao 48px. Bỏ việc ép chữ/nút/ảnh nhỏ hơn trên điện thoại màn hình thấp. Desktop từ 901px giữ nguyên rule đang có.
+3. apps/web/app/mobile.css
+   Card dịch vụ sử dụng toàn bộ chiều rộng cho tiêu đề/mô tả, giữ icon/mũi tên trong lưới; mô tả 16px. Khối hỗ trợ ở <=600px đủ rộng để hotline hiển thị đầy đủ. Tăng vùng chạm mạng xã hội và liên kết cuối footer trong <=900px.
+4. apps/web/app/palette-preview.css
+   Trong rule <=680px hiện có: danh mục dịch vụ Hero cao tối thiểu 72px, chữ 12px, icon 28px. Không đổi giá trị màu sắc.
+
+Không sửa TSX, logic, animation hoặc shader. Không thêm overflow:hidden/clip để che lỗi. Các rule overflow đã có trước được giữ nguyên. HeroAirflow, HomeHero và use-home-motion được đối chiếu SHA-256 trước/sau: không thay đổi.
+
+KIỂM THỬ
+- Playwright Chromium: 98 tổ hợp 14 trang x 7 chiều rộng (320,375,390,430,768,1024,1440). HTTP 200 toàn bộ; không tràn ngang, không có chữ hiển thị bị cắt.
+- Bổ sung 32 lượt: 10 trang dịch vụ ở 320/768px, chi tiết bài viết và danh mục ở đủ 5 chiều rộng yêu cầu, landscape 844x390 và 900x600.
+- 5 chiều rộng 320/375/390/430/768px: menu mở/đóng, khóa/cuộn trở lại, nút slider trước/sau, tab bài viết, lọc tủ lạnh, kích thước và font của form trang chi tiết dịch vụ đều đạt. /booking hiện dùng ContactPageContent, vì vậy form được kiểm tra tại /services/sua-may-lanh.
+- Header và các nút/danh mục được đo trên trang chủ: không còn vùng chạm dưới 44x44px trong nhóm kiểm tra mobile/tablet.
+- Luồng gió: xác nhận drawArrays WebGL tiếp tục tăng trong 600ms tại 320/390/768/1440px khi không bật reduced motion.
+- Desktop: kiểm tra trang ở 1024/1440px và đối chiếu rule CSS có hiệu lực ở 901/1024/1280/1440/1920px cho cả reduce/no-preference. 40/40 phép đối chiếu trên 4 file cho kết quả giống hoàn toàn trước/sau. Snapshot computed style thô có khác biệt trạng thái animation/transition khi cuộn, nên không được dùng để tuyên bố ảnh pixel giống hệt.
+- npx tsc --project apps/web/tsconfig.json --noEmit --incremental false: đạt.
+- npx eslint app components lib: đạt, 0 lỗi.
+- npm run lint --workspace @minhnhat/web: không đạt do quét thư mục build .next-* có sẵn (418 errors, 4366 warnings); lint mã nguồn riêng đã đạt. Không thay cấu hình lint vì nằm ngoài phạm vi responsive.
+
+TỔNG: 130 lượt layout đạt, 5 bộ kiểm tra tương tác đạt, 4 kiểm tra luồng gió đạt, 40 phép đối chiếu CSS desktop đạt.
+Các nhãn sr-only cố ý có kích thước 1px được loại khỏi lỗi chữ hiển thị bị cắt.
+
+GIỚI HẠN
+Kiểm tra trên Chromium trong môi trường local, chưa kiểm tra Safari/iOS hoặc thiết bị thật. Các trang quản trị cần đăng nhập không được kiểm thử bằng phiên tài khoản; không sửa CSS quản trị.
+
+BẰNG CHỨNG
+before/ và after/: ảnh trang + metrics JSON.
+summary.json, interactions.json, supplemental.json, desktop-rules.json: kết quả chi tiết.
+responsive-changes.patch: diff riêng của lượt sửa này, so với workspace trước khi thực hiện.

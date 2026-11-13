@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, BookOpen, MapPin } from 'lucide-react';
-import { BLOG_CATEGORIES, BLOG_POSTS } from '@minhnhat/shared';
+import type { WebsiteCategory, WebsitePost } from '@/lib/content/website-content';
 import { projects } from '@/lib/content/site-content';
 import { sharedProjectCovers } from '@/lib/content/shared-project-covers';
 import { halfContentImageSizes } from '@/lib/image-sizes';
@@ -12,12 +12,18 @@ export function Showcase({
   initialCategory = 'all',
   compact = false,
   home = false,
+  showTabs = true,
   projectCovers = sharedProjectCovers,
+  posts = [],
+  categories = [],
 }: {
   initialTab?: 'projects' | 'news';
   initialCategory?: string;
   compact?: boolean;
   home?: boolean;
+  showTabs?: boolean;
+  posts?: WebsitePost[];
+  categories?: readonly WebsiteCategory[];
   projectCovers?: Record<string, { src: string; alt: string; position?: string }>;
 }) {
   const [tab, setTab] = useState(initialTab);
@@ -31,7 +37,7 @@ export function Showcase({
           meta: p.area,
           demo: true,
         }))
-      : BLOG_POSTS.map((p) => ({
+      : posts.map((p) => ({
           ...p,
           href: `/blog/${p.slug}`,
           meta: 'Kiến thức điện lạnh',
@@ -94,18 +100,18 @@ export function Showcase({
       {home ? (
         <div className="mn-home-showcase-heading">
           <h2>Dự án & <em>Bài viết</em></h2>
-          {tabs}
+          {showTabs && tabs}
           <Link href={tab === 'projects' ? '/projects' : '/blog'} className="mn-text-link">
             Xem tất cả <ArrowRight size={18} aria-hidden="true" />
           </Link>
         </div>
-      ) : tabs}
+      ) : showTabs && tabs}
       {!compact && tab === 'news' && (
         <div className="mn-filters" aria-label="Lọc danh mục">
           <button aria-pressed={category === 'all'} onClick={() => setCategory('all')}>
             Tất cả
           </button>
-          {BLOG_CATEGORIES.map((c) => (
+          {categories.map((c) => (
             <button
               key={c.slug}
               aria-pressed={category === c.slug}
@@ -116,12 +122,23 @@ export function Showcase({
           ))}
         </div>
       )}
-      <div role="tabpanel" id="showcase-panel" aria-labelledby={`tab-${tab}`} tabIndex={0}>
+      <div
+        role={showTabs ? 'tabpanel' : undefined}
+        id={showTabs ? 'showcase-panel' : undefined}
+        aria-labelledby={showTabs ? `tab-${tab}` : undefined}
+        tabIndex={showTabs ? 0 : undefined}
+      >
         <div className="mn-project-grid" key={`${tab}-${category}`}>
-          {filtered.map((item) => (
-            <Link href={item.href} key={item.slug} className="mn-project-card">
+          {filtered.map((item, index) => (
+            <Link
+              href={item.href}
+              key={item.slug}
+              className="mn-project-card"
+              data-reveal=""
+              style={{ '--d': `${(index % 4) * 0.08}s` } as React.CSSProperties}
+            >
               <div className="mn-card-photo">
-                <Image
+                <Image loading="lazy"
                   src={item.demo ? projectCovers[item.slug]?.src || item.image : item.image}
                   alt={
                     item.demo

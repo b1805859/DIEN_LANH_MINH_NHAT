@@ -1,0 +1,20 @@
+[
+  {
+    "page": "service",
+    "footer": "rgb(16, 42, 67)",
+    "missing": 0,
+    "overflow": false
+  },
+  {
+    "page": "about",
+    "footer": "rgb(16, 42, 67)",
+    "missing": 0,
+    "overflow": false
+  },
+  {
+    "page": "home",
+    "footer": "rgb(16, 42, 67)",
+    "missing": 0,
+    "overflow": false
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "original": "../process/process-step-4.png",
+  "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-25b5c924-f786-4f83-b976-75c63771cf87.png",
+  "prompt": "Use case: precise-object-edit. Correct a drawing mistake in this cartoon: the technician arm at the LEFT SIDE OF IMAGE (his right arm holding the orange screwdriver) has an EXTRA EXPOSED SKIN PATCH below the rolled navy sleeve cuff, near the elbow/upper arm. Repaint that entire extra lower peach-colored elbow patch as continuous NAVY SHIRT FABRIC connected naturally from shoulder to rolled cuff. The ONLY bare skin on this arm should be a SINGLE continuous forearm from the rolled cuff near elbow upward to the dark gray work glove at wrist. Exactly one natural elbow, one forearm and one hand per arm. Keep the existing right-side-of-image arm unchanged. Keep the same dark navy shirt, cyan shoulder panel, rolled sleeve design, chest pockets, tiny MN monogram, untucked shirt hem, charcoal trousers, blue cap, face, pose, gray gloves, screwdriver, air conditioner, background, white card border, original composition and same cartoon style. Change ONLY the faulty arm sleeve / extra skin patch. No other changes, no new text. Preserve original portrait aspect ratio.",
+  "tool": "Built-in image_gen.imagegen"
+}

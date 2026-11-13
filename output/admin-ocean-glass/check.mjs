@@ -1,0 +1,38 @@
+import { chromium } from 'playwright';
+import fs from 'node:fs/promises';
+const browser = await chromium.launch({headless:true});
+const page = await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:1});
+const errors=[];page.on('pageerror',e=>errors.push(e.message));
+await page.addInitScript(()=>localStorage.setItem('accessToken','visual-fixture'));
+const names=['Vệ sinh máy lạnh','Sửa máy lạnh','Sửa máy giặt','Sửa tủ lạnh','Tháo dời máy lạnh','Sửa điện nước'];
+const slugs=['ve-sinh-may-lanh','sua-may-lanh','sua-may-giat','sua-tu-lanh','thao-di-doi-may-lanh','sua-dien-nuoc'];
+const items=names.map((name,i)=>({id:String(i+1),name,slug:slugs[i],summary:'Kiểm tra, bảo dưỡng và sửa chữa tận nơi tại Cần Thơ.',isActive:i!==5,displayOrder:i+1,updatedAt:'2026-11-12T00:00:00Z'}));
+await page.route('**/api/**',route=>{ const url=route.request().url(); return route.fulfill({json:url.includes('/admin/dashboard')?{services:6,bookings:8,blog:12,categories:4,faqs:10,bookingOverview:{todayActive:3,upcoming7DaysActive:8,pendingActive:2,nextBookingDate:'2026-11-13',nextBookingCount:2}}:url.includes('analytics/trends')?{days:30,timeZone:'Asia/Ho_Chi_Minh',from:'2026-10-14',to:'2026-11-12',trackingStartedAt:'2026-11-01',points:Array.from({length:30},(_,i)=>({date:new Date(Date.UTC(2026,9,14+i)).toISOString().slice(0,10),bookings:i%5,pageViews:20+i*3}))}:{items,total:items.length}}); });
+await page.goto('http://localhost:3000/admin/services');
+await page.locator('.mn-admin-service-card').first().waitFor();
+await page.waitForTimeout(1000);
+await page.screenshot({path:'output/admin-ocean-glass/services-1440.png',fullPage:true});
+console.log('desktop cards',await page.locator('.mn-admin-service-card').count());
+await page.getByRole('button',{name:'Đang ẩn 1',exact:true}).click();
+if(await page.locator('.mn-admin-service-card').count()!==1) throw Error('visibility filter failed');
+await page.getByRole('button',{name:'Tất cả 6',exact:true}).click();
+await page.locator('.mn-admin-service-card').first().getByRole('button',{name:'Chỉnh sửa',exact:true}).click();
+await page.screenshot({path:'output/admin-ocean-glass/edit-1440.png',fullPage:true});
+console.log('edit fields', await page.locator('input').count());
+await page.goto('http://localhost:3000/admin/dashboard');
+await page.waitForTimeout(1200);
+await page.screenshot({path:'output/admin-ocean-glass/dashboard-1440.png',fullPage:true});
+await page.goto('http://localhost:3000/admin/services');
+for(const width of [390,768,1024,1920]) {
+ await page.setViewportSize({width,height:900});await page.waitForTimeout(300);
+ const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth);
+ if(overflow) throw Error('overflow '+width);
+ await page.screenshot({path:`output/admin-ocean-glass/services-${width}.png`,fullPage:true});
+}
+await page.setViewportSize({width:390,height:844});
+await page.getByRole('button',{name:'Mở menu quản trị',exact:true}).click();
+await page.locator('#admin-sidebar').getByRole('link',{name:'Tổng quan',exact:false}).last().click();
+await page.waitForURL('**/admin/dashboard');
+await page.screenshot({path:'output/admin-ocean-glass/dashboard-390.png',fullPage:true});
+console.log('errors',errors);await browser.close();
+if(errors.length)process.exitCode=1;

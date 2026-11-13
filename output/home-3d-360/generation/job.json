@@ -1,0 +1,17 @@
+{
+  "id": "01a1a240-d38b-7384-9a8e-5f25d5f2efa2",
+  "createdAt": "2026-11-03T16:32:01.161Z",
+  "source": "reference-poster.png",
+  "config": {
+    "image_url": "[local reference PNG]",
+    "ai_model": "meshy-7.1",
+    "model_type": "standard",
+    "enable_pbr": true,
+    "should_texture": true,
+    "should_remesh": true,
+    "target_polycount": 100000,
+    "target_formats": [
+      "glb"
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+[
+  {
+    "width": 320,
+    "dragAI": true,
+    "dragZalo": true,
+    "noAccidentalClick": true,
+    "chat": true,
+    "positionRestored": true,
+    "footerGap": 0,
+    "clamped": true,
+    "desktopReset": true
+  },
+  {
+    "width": 375,
+    "dragAI": true,
+    "dragZalo": true,
+    "noAccidentalClick": true,
+    "chat": true,
+    "positionRestored": true,
+    "footerGap": 0,
+    "clamped": true,
+    "desktopReset": true
+  },
+  {
+    "width": 390,
+    "dragAI": true,
+    "dragZalo": true,
+    "noAccidentalClick": true,
+    "chat": true,
+    "positionRestored": true,
+    "footerGap": 0,
+    "clamped": true,
+    "desktopReset": true
+  },
+  {
+    "width": 393,
+    "dragAI": true,
+    "dragZalo": true,
+    "noAccidentalClick": true,
+    "chat": true,
+    "positionRestored": true,
+    "footerGap": 0,
+    "clamped": true,
+    "desktopReset": true
+  },
+  {
+    "width": 430,
+    "dragAI": true,
+    "dragZalo": true,
+    "noAccidentalClick": true,
+    "chat": true,
+    "positionRestored": true,
+    "footerGap": 0,
+    "clamped": true,
+    "desktopReset": true
+  },
+  {
+    "width": 768,
+    "dragAI": true,
+    "dragZalo": true,
+    "noAccidentalClick": true,
+    "chat": true,
+    "positionRestored": true,
+    "footerGap": 0,
+    "clamped": true,
+    "desktopReset": true
+  }
+]

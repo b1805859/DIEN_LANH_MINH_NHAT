@@ -1,0 +1,115 @@
+<!doctype html>
+<meta charset="utf-8">
+<canvas id="c" width="420" height="647"></canvas>
+<script>
+  // Region of interest: x 1240..1659, y 300..946 of the source image
+  const RX = 1240, RY = 300, RW = 420, RH = 647;
+  const cv = document.getElementById('c');
+  cv.width = RW; cv.height = RH;
+  const ctx = cv.getContext('2d');
+  const img = new Image();
+  img.src = 'v4.png';
+  img.onload = () => {
+    const s = document.createElement('canvas');
+    s.width = RW; s.height = RH;
+    const sc = s.getContext('2d');
+    sc.drawImage(img, RX, RY, RW, RH, 0, 0, RW, RH);
+    const d = sc.getImageData(0, 0, RW, RH).data;
+    const lum = i => 0.299 * d[i] + 0.587 * d[i + 1] + 0.114 * d[i + 2];
+    const person = (x, y) => {
+      const i = (y * RW + x) * 4, r = d[i], g = d[i + 1], b = d[i + 2];
+      const blue = b - r > 40 && b > 90 && g < b + 20 && g > r - 15;
+      const skin = r - b > 42 && r > 135 && r - g < 95 && g - b < 62;
+      const hair = lum(i) < 88;
+      return blue || skin || hair;
+    };
+    const mask = new Uint8Array(RW * RH);
+    const seeds = [[1460 - RX, 660 - RY], [1440 - RX, 330 - RY], [1420 - RX, 520 - RY], [1540 - RX, 450 - RY]];
+    const q = seeds.filter(([x, y]) => x >= 0 && y >= 0 && person(x, y));
+    while (q.length) {
+      const [x, y] = q.pop();
+      if (x < 0 || y < 0 || x >= RW || y >= RH) continue;
+      const z = y * RW + x;
+      if (mask[z]) continue;
+      mask[z] = 1;
+      q.push([x + 1, y], [x - 1, y], [x, y + 1], [x, y - 1]);
+    }
+    // count
+    let area = 0; for (let i = 0; i < mask.length; i++) area += mask[i];
+    // Moore neighbor boundary trace
+    const at = (x, y) => (x < 0 || y < 0 || x >= RW || y >= RH) ? 0 : mask[y * RW + x];
+    let start = null;
+    for (let y = 0; y < RH && !start; y++) for (let x = 0; x < RW; x++) if (at(x, y)) { start = [x, y]; break; }
+    const dirs = [[1, 0], [1, 1], [0, 1], [-1, 1], [-1, 0], [-1, -1], [0, -1], [1, -1]]; // cw
+    let contour = [];
+    if (start) {
+      let cx = start[0], cy = start[1], dir = 6; // came from above-left
+      contour.push([cx, cy]);
+      for (let step = 0; step < 100000; step++) {
+        let found = false;
+        for (let k = 0; k < 8; k++) {
+          const nd = (dir + k) % 8;
+          const nx = cx + dirs[nd][0], ny = cy + dirs[nd][1];
+          if (at(nx, ny)) { cx = nx; cy = ny; dir = (nd + 6) % 8; contour.push([cx, cy]); found = true; break; }
+        }
+        if (!found) break;
+        if (cx === start[0] && cy === start[1] && contour.length > 10) break;
+      }
+    }
+    // morphological close (3x3) to smooth
+    const closed = new Uint8Array(mask.length);
+    for (let y = 0; y < RH; y++) for (let x = 0; x < RW; x++) {
+      let ones = 0;
+      for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) if (at(x + dx, y + dy)) ones++;
+      closed[y * RW + x] = ones >= 6 ? 1 : 0;
+    }
+    document.title = 'area ' + area + ' contour ' + contour.length;
+    window.__res = { area, contour, mask, closed, start };
+    {
+      // render closed mask over image
+      const vis = document.createElement('canvas');
+      vis.width = RW; vis.height = RH;
+      const vc = vis.getContext('2d');
+      vc.drawImage(img, RX, RY, RW, RH, 0, 0, RW, RH);
+      const id = vc.getImageData(0, 0, RW, RH);
+      for (let i = 0; i < RW * RH; i++) {
+        if (!closed[i]) { id.data[i * 4] = 0; id.data[i * 4 + 1] = 0; id.data[i * 4 + 2] = 0; id.data[i * 4 + 3] = 90; }
+        else { id.data[i * 4] = (id.data[i * 4] * 2) / 3 | 0; }
+      }
+      vc.putImageData(id, 0, 0);
+      document.body.appendChild(vis);
+      vis.style.width = '840px'; vis.style.imageRendering = 'pixelated';
+    }
+    // RDP simplify
+    function rdp(pts, eps) {
+      if (pts.length < 3) return pts;
+      let dmax = 0, idx = 0;
+      const [x1, y1] = pts[0], [x2, y2] = pts[pts.length - 1];
+      for (let i = 1; i < pts.length - 1; i++) {
+        const [px, py] = pts[i];
+        const dx = x2 - x1, dy = y2 - y1;
+        const L = Math.hypot(dx, dy) || 1;
+        const dist = Math.abs(dy * px - dx * py + x2 * y1 - y2 * x1) / L;
+        if (dist > dmax) { dmax = dist; idx = i; }
+      }
+      if (dmax > eps) {
+        const l = rdp(pts.slice(0, idx + 1), eps), r = rdp(pts.slice(idx), eps);
+        return l.slice(0, -1).concat(r);
+      }
+      return [pts[0], pts[pts.length - 1]];
+    }
+    const simp = rdp(contour, 2.2);
+    window.__simp = simp;
+    const sm = document.createElement('canvas');
+    sm.width = RW; sm.height = RH;
+    const mc = sm.getContext('2d');
+    mc.drawImage(img, RX, RY, RW, RH, 0, 0, RW, RH);
+    mc.strokeStyle = 'red'; mc.lineWidth = 1.5;
+    mc.beginPath();
+    mc.moveTo(simp[0][0] + .5, simp[0][1] + .5);
+    for (const [x, y] of simp.slice(1)) mc.lineTo(x + .5, y + .5);
+    mc.closePath(); mc.stroke();
+    sm.style.width = '840px'; sm.style.imageRendering = 'pixelated';
+    document.body.appendChild(sm);
+  };
+</script>

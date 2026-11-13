@@ -1,0 +1,642 @@
+[
+  {
+    "id": 1,
+    "route": "/",
+    "title": "Trang chủ",
+    "group": "Trang chính",
+    "type": "home",
+    "file": "001-home.png"
+  },
+  {
+    "id": 2,
+    "route": "/about",
+    "title": "Giới thiệu",
+    "group": "Trang chính",
+    "type": "about",
+    "file": "002-about.png"
+  },
+  {
+    "id": 3,
+    "route": "/services",
+    "title": "Dịch vụ",
+    "group": "Trang chính",
+    "type": "services",
+    "file": "003-services.png"
+  },
+  {
+    "id": 4,
+    "route": "/projects",
+    "title": "Dự án minh họa",
+    "group": "Trang chính",
+    "type": "projects",
+    "file": "004-projects.png"
+  },
+  {
+    "id": 5,
+    "route": "/blog",
+    "title": "Bài viết",
+    "group": "Trang chính",
+    "type": "blog",
+    "file": "005-blog.png"
+  },
+  {
+    "id": 6,
+    "route": "/booking",
+    "title": "Đặt lịch",
+    "group": "Trang chính",
+    "type": "booking",
+    "file": "006-booking.png"
+  },
+  {
+    "id": 7,
+    "route": "/contact",
+    "title": "Liên hệ",
+    "group": "Trang chính",
+    "type": "contact",
+    "file": "007-contact.png"
+  },
+  {
+    "id": 8,
+    "route": "/faq",
+    "title": "Câu hỏi thường gặp",
+    "group": "Trang chính",
+    "type": "faq",
+    "file": "008-faq.png"
+  },
+  {
+    "id": 9,
+    "route": "/privacy-policy",
+    "title": "Chính sách bảo mật",
+    "group": "Trang chính",
+    "type": "privacy",
+    "file": "009-privacy-policy.png"
+  },
+  {
+    "id": 10,
+    "route": "/terms-of-service",
+    "title": "Điều khoản dịch vụ",
+    "group": "Trang chính",
+    "type": "terms",
+    "file": "010-terms-of-service.png"
+  },
+  {
+    "id": 11,
+    "route": "/services/thao-lap-may-lanh",
+    "title": "Tháo Lắp Máy Lạnh",
+    "group": "Chi tiết dịch vụ",
+    "type": "service-detail",
+    "file": "011-services--thao-lap-may-lanh.png"
+  },
+  {
+    "id": 12,
+    "route": "/services/ve-sinh-may-lanh",
+    "title": "Vệ Sinh Máy Lạnh",
+    "group": "Chi tiết dịch vụ",
+    "type": "service-detail",
+    "file": "012-services--ve-sinh-may-lanh.png"
+  },
+  {
+    "id": 13,
+    "route": "/services/sua-may-lanh",
+    "title": "Sửa Máy Lạnh",
+    "group": "Chi tiết dịch vụ",
+    "type": "service-detail",
+    "file": "013-services--sua-may-lanh.png"
+  },
+  {
+    "id": 14,
+    "route": "/services/nap-gas-may-lanh",
+    "title": "Nạp Gas Máy Lạnh",
+    "group": "Chi tiết dịch vụ",
+    "type": "service-detail",
+    "file": "014-services--nap-gas-may-lanh.png"
+  },
+  {
+    "id": 15,
+    "route": "/services/sua-tu-lanh",
+    "title": "Sửa Tủ Lạnh",
+    "group": "Chi tiết dịch vụ",
+    "type": "service-detail",
+    "file": "015-services--sua-tu-lanh.png"
+  },
+  {
+    "id": 16,
+    "route": "/services/sua-may-giat",
+    "title": "Sửa Máy Giặt",
+    "group": "Chi tiết dịch vụ",
+    "type": "service-detail",
+    "file": "016-services--sua-may-giat.png"
+  },
+  {
+    "id": 17,
+    "route": "/services/ve-sinh-may-giat",
+    "title": "Vệ Sinh Máy Giặt",
+    "group": "Chi tiết dịch vụ",
+    "type": "service-detail",
+    "file": "017-services--ve-sinh-may-giat.png"
+  },
+  {
+    "id": 18,
+    "route": "/services/sua-dien-nuoc",
+    "title": "Sửa Chữa Điện Nước",
+    "group": "Chi tiết dịch vụ",
+    "type": "service-detail",
+    "file": "018-services--sua-dien-nuoc.png"
+  },
+  {
+    "id": 19,
+    "route": "/services/sua-lap-may-nuoc-uong-nong-lanh",
+    "title": "Sửa Lắp Máy Nước Uống Nóng Lạnh",
+    "group": "Chi tiết dịch vụ",
+    "type": "service-detail",
+    "file": "019-services--sua-lap-may-nuoc-uong-nong-lanh.png"
+  },
+  {
+    "id": 20,
+    "route": "/services/sua-lap-may-nuoc-nong-lanh-tam",
+    "title": "Sửa Lắp Máy Nước Nóng Lạnh Tắm",
+    "group": "Chi tiết dịch vụ",
+    "type": "service-detail",
+    "file": "020-services--sua-lap-may-nuoc-nong-lanh-tam.png"
+  },
+  {
+    "id": 21,
+    "route": "/projects/lap-dat-may-lanh-ninh-kieu",
+    "title": "Lắp đặt máy lạnh tại nhà phố – Ninh Kiều",
+    "group": "Chi tiết dự án",
+    "type": "project-detail",
+    "file": "021-projects--lap-dat-may-lanh-ninh-kieu.png"
+  },
+  {
+    "id": 22,
+    "route": "/projects/sua-tu-lanh-binh-thuy",
+    "title": "Kiểm tra và sửa chữa tủ lạnh – Bình Thủy",
+    "group": "Chi tiết dự án",
+    "type": "project-detail",
+    "file": "022-projects--sua-tu-lanh-binh-thuy.png"
+  },
+  {
+    "id": 23,
+    "route": "/projects/ve-sinh-may-giat-cai-rang",
+    "title": "Vệ sinh máy giặt cửa trước – Cái Răng",
+    "group": "Chi tiết dự án",
+    "type": "project-detail",
+    "file": "023-projects--ve-sinh-may-giat-cai-rang.png"
+  },
+  {
+    "id": 24,
+    "route": "/projects/dien-nuoc-nha-pho",
+    "title": "Thi công điện nước gia đình – Phong Điền",
+    "group": "Chi tiết dự án",
+    "type": "project-detail",
+    "file": "024-projects--dien-nuoc-nha-pho.png"
+  },
+  {
+    "id": 25,
+    "route": "/blog/category/may-lanh",
+    "title": "Bài viết Máy Lạnh",
+    "group": "Chuyên mục bài viết",
+    "type": "blog-category",
+    "file": "025-blog--category--may-lanh.png"
+  },
+  {
+    "id": 26,
+    "route": "/blog/category/may-giat",
+    "title": "Bài viết Máy Giặt",
+    "group": "Chuyên mục bài viết",
+    "type": "blog-category",
+    "file": "026-blog--category--may-giat.png"
+  },
+  {
+    "id": 27,
+    "route": "/blog/category/tu-lanh",
+    "title": "Bài viết Tủ Lạnh",
+    "group": "Chuyên mục bài viết",
+    "type": "blog-category",
+    "file": "027-blog--category--tu-lanh.png"
+  },
+  {
+    "id": 28,
+    "route": "/blog/category/dien-nuoc",
+    "title": "Bài viết Điện Nước",
+    "group": "Chuyên mục bài viết",
+    "type": "blog-category",
+    "file": "028-blog--category--dien-nuoc.png"
+  },
+  {
+    "id": 29,
+    "route": "/blog/category/tiet-kiem-dien",
+    "title": "Bài viết Tiết Kiệm Điện",
+    "group": "Chuyên mục bài viết",
+    "type": "blog-category",
+    "file": "029-blog--category--tiet-kiem-dien.png"
+  },
+  {
+    "id": 30,
+    "route": "/blog/bao-lau-nen-ve-sinh-may-lanh-mot-lan",
+    "title": "Bao lâu nên vệ sinh máy lạnh một lần?",
+    "group": "Chi tiết bài viết",
+    "type": "blog-detail",
+    "file": "030-blog--bao-lau-nen-ve-sinh-may-lanh-mot-lan.png"
+  },
+  {
+    "id": 31,
+    "route": "/blog/dau-hieu-may-lanh-can-nap-gas",
+    "title": "Dấu hiệu máy lạnh cần nạp gas",
+    "group": "Chi tiết bài viết",
+    "type": "blog-detail",
+    "file": "031-blog--dau-hieu-may-lanh-can-nap-gas.png"
+  },
+  {
+    "id": 32,
+    "route": "/blog/may-lanh-khong-lanh-nguyen-nhan-do-dau",
+    "title": "Máy lạnh không lạnh nguyên nhân do đâu?",
+    "group": "Chi tiết bài viết",
+    "type": "blog-detail",
+    "file": "032-blog--may-lanh-khong-lanh-nguyen-nhan-do-dau.png"
+  },
+  {
+    "id": 33,
+    "route": "/blog/may-lanh-chay-nuoc-phai-lam-sao",
+    "title": "Máy lạnh chảy nước phải làm sao?",
+    "group": "Chi tiết bài viết",
+    "type": "blog-detail",
+    "file": "033-blog--may-lanh-chay-nuoc-phai-lam-sao.png"
+  },
+  {
+    "id": 34,
+    "route": "/blog/cac-loi-thuong-gap-o-tu-lanh",
+    "title": "Các lỗi thường gặp ở tủ lạnh",
+    "group": "Chi tiết bài viết",
+    "type": "blog-detail",
+    "file": "034-blog--cac-loi-thuong-gap-o-tu-lanh.png"
+  },
+  {
+    "id": 35,
+    "route": "/blog/khi-nao-can-ve-sinh-may-giat",
+    "title": "Khi nào cần vệ sinh máy giặt?",
+    "group": "Chi tiết bài viết",
+    "type": "blog-detail",
+    "file": "035-blog--khi-nao-can-ve-sinh-may-giat.png"
+  },
+  {
+    "id": 36,
+    "route": "/blog/meo-tiet-kiem-dien-khi-su-dung-may-lanh",
+    "title": "Mẹo tiết kiệm điện khi sử dụng máy lạnh",
+    "group": "Chi tiết bài viết",
+    "type": "blog-detail",
+    "file": "036-blog--meo-tiet-kiem-dien-khi-su-dung-may-lanh.png"
+  },
+  {
+    "id": 37,
+    "route": "/areas/ninh-kieu",
+    "title": "Điện lạnh tại Ninh Kiều",
+    "group": "Khu vực phục vụ",
+    "type": "area",
+    "file": "037-areas--ninh-kieu.png"
+  },
+  {
+    "id": 38,
+    "route": "/areas/cai-rang",
+    "title": "Điện lạnh tại Cái Răng",
+    "group": "Khu vực phục vụ",
+    "type": "area",
+    "file": "038-areas--cai-rang.png"
+  },
+  {
+    "id": 39,
+    "route": "/areas/binh-thuy",
+    "title": "Điện lạnh tại Bình Thủy",
+    "group": "Khu vực phục vụ",
+    "type": "area",
+    "file": "039-areas--binh-thuy.png"
+  },
+  {
+    "id": 40,
+    "route": "/areas/o-mon",
+    "title": "Điện lạnh tại Ô Môn",
+    "group": "Khu vực phục vụ",
+    "type": "area",
+    "file": "040-areas--o-mon.png"
+  },
+  {
+    "id": 41,
+    "route": "/areas/ninh-kieu/thao-lap-may-lanh",
+    "title": "Tháo Lắp Máy Lạnh tại Ninh Kiều",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "041-areas--ninh-kieu--thao-lap-may-lanh.png"
+  },
+  {
+    "id": 42,
+    "route": "/areas/ninh-kieu/ve-sinh-may-lanh",
+    "title": "Vệ Sinh Máy Lạnh tại Ninh Kiều",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "042-areas--ninh-kieu--ve-sinh-may-lanh.png"
+  },
+  {
+    "id": 43,
+    "route": "/areas/ninh-kieu/sua-may-lanh",
+    "title": "Sửa Máy Lạnh tại Ninh Kiều",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "043-areas--ninh-kieu--sua-may-lanh.png"
+  },
+  {
+    "id": 44,
+    "route": "/areas/ninh-kieu/nap-gas-may-lanh",
+    "title": "Nạp Gas Máy Lạnh tại Ninh Kiều",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "044-areas--ninh-kieu--nap-gas-may-lanh.png"
+  },
+  {
+    "id": 45,
+    "route": "/areas/ninh-kieu/sua-tu-lanh",
+    "title": "Sửa Tủ Lạnh tại Ninh Kiều",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "045-areas--ninh-kieu--sua-tu-lanh.png"
+  },
+  {
+    "id": 46,
+    "route": "/areas/ninh-kieu/sua-may-giat",
+    "title": "Sửa Máy Giặt tại Ninh Kiều",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "046-areas--ninh-kieu--sua-may-giat.png"
+  },
+  {
+    "id": 47,
+    "route": "/areas/ninh-kieu/ve-sinh-may-giat",
+    "title": "Vệ Sinh Máy Giặt tại Ninh Kiều",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "047-areas--ninh-kieu--ve-sinh-may-giat.png"
+  },
+  {
+    "id": 48,
+    "route": "/areas/ninh-kieu/sua-dien-nuoc",
+    "title": "Sửa Chữa Điện Nước tại Ninh Kiều",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "048-areas--ninh-kieu--sua-dien-nuoc.png"
+  },
+  {
+    "id": 49,
+    "route": "/areas/ninh-kieu/sua-lap-may-nuoc-uong-nong-lanh",
+    "title": "Sửa Lắp Máy Nước Uống Nóng Lạnh tại Ninh Kiều",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "049-areas--ninh-kieu--sua-lap-may-nuoc-uong-nong-lanh.png"
+  },
+  {
+    "id": 50,
+    "route": "/areas/ninh-kieu/sua-lap-may-nuoc-nong-lanh-tam",
+    "title": "Sửa Lắp Máy Nước Nóng Lạnh Tắm tại Ninh Kiều",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "050-areas--ninh-kieu--sua-lap-may-nuoc-nong-lanh-tam.png"
+  },
+  {
+    "id": 51,
+    "route": "/areas/cai-rang/thao-lap-may-lanh",
+    "title": "Tháo Lắp Máy Lạnh tại Cái Răng",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "051-areas--cai-rang--thao-lap-may-lanh.png"
+  },
+  {
+    "id": 52,
+    "route": "/areas/cai-rang/ve-sinh-may-lanh",
+    "title": "Vệ Sinh Máy Lạnh tại Cái Răng",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "052-areas--cai-rang--ve-sinh-may-lanh.png"
+  },
+  {
+    "id": 53,
+    "route": "/areas/cai-rang/sua-may-lanh",
+    "title": "Sửa Máy Lạnh tại Cái Răng",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "053-areas--cai-rang--sua-may-lanh.png"
+  },
+  {
+    "id": 54,
+    "route": "/areas/cai-rang/nap-gas-may-lanh",
+    "title": "Nạp Gas Máy Lạnh tại Cái Răng",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "054-areas--cai-rang--nap-gas-may-lanh.png"
+  },
+  {
+    "id": 55,
+    "route": "/areas/cai-rang/sua-tu-lanh",
+    "title": "Sửa Tủ Lạnh tại Cái Răng",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "055-areas--cai-rang--sua-tu-lanh.png"
+  },
+  {
+    "id": 56,
+    "route": "/areas/cai-rang/sua-may-giat",
+    "title": "Sửa Máy Giặt tại Cái Răng",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "056-areas--cai-rang--sua-may-giat.png"
+  },
+  {
+    "id": 57,
+    "route": "/areas/cai-rang/ve-sinh-may-giat",
+    "title": "Vệ Sinh Máy Giặt tại Cái Răng",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "057-areas--cai-rang--ve-sinh-may-giat.png"
+  },
+  {
+    "id": 58,
+    "route": "/areas/cai-rang/sua-dien-nuoc",
+    "title": "Sửa Chữa Điện Nước tại Cái Răng",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "058-areas--cai-rang--sua-dien-nuoc.png"
+  },
+  {
+    "id": 59,
+    "route": "/areas/cai-rang/sua-lap-may-nuoc-uong-nong-lanh",
+    "title": "Sửa Lắp Máy Nước Uống Nóng Lạnh tại Cái Răng",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "059-areas--cai-rang--sua-lap-may-nuoc-uong-nong-lanh.png"
+  },
+  {
+    "id": 60,
+    "route": "/areas/cai-rang/sua-lap-may-nuoc-nong-lanh-tam",
+    "title": "Sửa Lắp Máy Nước Nóng Lạnh Tắm tại Cái Răng",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "060-areas--cai-rang--sua-lap-may-nuoc-nong-lanh-tam.png"
+  },
+  {
+    "id": 61,
+    "route": "/areas/binh-thuy/thao-lap-may-lanh",
+    "title": "Tháo Lắp Máy Lạnh tại Bình Thủy",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "061-areas--binh-thuy--thao-lap-may-lanh.png"
+  },
+  {
+    "id": 62,
+    "route": "/areas/binh-thuy/ve-sinh-may-lanh",
+    "title": "Vệ Sinh Máy Lạnh tại Bình Thủy",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "062-areas--binh-thuy--ve-sinh-may-lanh.png"
+  },
+  {
+    "id": 63,
+    "route": "/areas/binh-thuy/sua-may-lanh",
+    "title": "Sửa Máy Lạnh tại Bình Thủy",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "063-areas--binh-thuy--sua-may-lanh.png"
+  },
+  {
+    "id": 64,
+    "route": "/areas/binh-thuy/nap-gas-may-lanh",
+    "title": "Nạp Gas Máy Lạnh tại Bình Thủy",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "064-areas--binh-thuy--nap-gas-may-lanh.png"
+  },
+  {
+    "id": 65,
+    "route": "/areas/binh-thuy/sua-tu-lanh",
+    "title": "Sửa Tủ Lạnh tại Bình Thủy",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "065-areas--binh-thuy--sua-tu-lanh.png"
+  },
+  {
+    "id": 66,
+    "route": "/areas/binh-thuy/sua-may-giat",
+    "title": "Sửa Máy Giặt tại Bình Thủy",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "066-areas--binh-thuy--sua-may-giat.png"
+  },
+  {
+    "id": 67,
+    "route": "/areas/binh-thuy/ve-sinh-may-giat",
+    "title": "Vệ Sinh Máy Giặt tại Bình Thủy",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "067-areas--binh-thuy--ve-sinh-may-giat.png"
+  },
+  {
+    "id": 68,
+    "route": "/areas/binh-thuy/sua-dien-nuoc",
+    "title": "Sửa Chữa Điện Nước tại Bình Thủy",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "068-areas--binh-thuy--sua-dien-nuoc.png"
+  },
+  {
+    "id": 69,
+    "route": "/areas/binh-thuy/sua-lap-may-nuoc-uong-nong-lanh",
+    "title": "Sửa Lắp Máy Nước Uống Nóng Lạnh tại Bình Thủy",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "069-areas--binh-thuy--sua-lap-may-nuoc-uong-nong-lanh.png"
+  },
+  {
+    "id": 70,
+    "route": "/areas/binh-thuy/sua-lap-may-nuoc-nong-lanh-tam",
+    "title": "Sửa Lắp Máy Nước Nóng Lạnh Tắm tại Bình Thủy",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "070-areas--binh-thuy--sua-lap-may-nuoc-nong-lanh-tam.png"
+  },
+  {
+    "id": 71,
+    "route": "/areas/o-mon/thao-lap-may-lanh",
+    "title": "Tháo Lắp Máy Lạnh tại Ô Môn",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "071-areas--o-mon--thao-lap-may-lanh.png"
+  },
+  {
+    "id": 72,
+    "route": "/areas/o-mon/ve-sinh-may-lanh",
+    "title": "Vệ Sinh Máy Lạnh tại Ô Môn",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "072-areas--o-mon--ve-sinh-may-lanh.png"
+  },
+  {
+    "id": 73,
+    "route": "/areas/o-mon/sua-may-lanh",
+    "title": "Sửa Máy Lạnh tại Ô Môn",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "073-areas--o-mon--sua-may-lanh.png"
+  },
+  {
+    "id": 74,
+    "route": "/areas/o-mon/nap-gas-may-lanh",
+    "title": "Nạp Gas Máy Lạnh tại Ô Môn",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "074-areas--o-mon--nap-gas-may-lanh.png"
+  },
+  {
+    "id": 75,
+    "route": "/areas/o-mon/sua-tu-lanh",
+    "title": "Sửa Tủ Lạnh tại Ô Môn",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "075-areas--o-mon--sua-tu-lanh.png"
+  },
+  {
+    "id": 76,
+    "route": "/areas/o-mon/sua-may-giat",
+    "title": "Sửa Máy Giặt tại Ô Môn",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "076-areas--o-mon--sua-may-giat.png"
+  },
+  {
+    "id": 77,
+    "route": "/areas/o-mon/ve-sinh-may-giat",
+    "title": "Vệ Sinh Máy Giặt tại Ô Môn",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "077-areas--o-mon--ve-sinh-may-giat.png"
+  },
+  {
+    "id": 78,
+    "route": "/areas/o-mon/sua-dien-nuoc",
+    "title": "Sửa Chữa Điện Nước tại Ô Môn",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "078-areas--o-mon--sua-dien-nuoc.png"
+  },
+  {
+    "id": 79,
+    "route": "/areas/o-mon/sua-lap-may-nuoc-uong-nong-lanh",
+    "title": "Sửa Lắp Máy Nước Uống Nóng Lạnh tại Ô Môn",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "079-areas--o-mon--sua-lap-may-nuoc-uong-nong-lanh.png"
+  },
+  {
+    "id": 80,
+    "route": "/areas/o-mon/sua-lap-may-nuoc-nong-lanh-tam",
+    "title": "Sửa Lắp Máy Nước Nóng Lạnh Tắm tại Ô Môn",
+    "group": "Dịch vụ theo khu vực",
+    "type": "area-service",
+    "file": "080-areas--o-mon--sua-lap-may-nuoc-nong-lanh-tam.png"
+  }
+]

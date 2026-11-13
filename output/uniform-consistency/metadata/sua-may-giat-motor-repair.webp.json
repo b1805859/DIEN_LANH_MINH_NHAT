@@ -1,0 +1,7 @@
+{
+  "original": "sua-may-giat-motor-repair.webp",
+  "source": "/Users/macbookprom1/.codex/generated_images/01a1829f-fedb-74f0-8fe9-64854e8fd295/exec-0a83d366-1cef-487d-a4d7-dd1cbc2949b4.png",
+  "prompt": "Use case: precise-object-edit. Edit ONLY technicians clothing in Image 1; Image 2 is ONLY uniform design reference (do not copy face or body). Dress technician in deep NAVY durable cotton-twill BUTTON-FRONT work shirt with CYAN SHOULDER YOKE, two flap chest pockets with cyan piping, exact white embroidery \"ĐIỆN LẠNH\" / \"MINH NHẬT\" and small cyan MN monogram. Large same text below back yoke when back visible. BOTH SLEEVES MUST BE ROLLED UP TO ELBOWS with visible thick folded cuffs, bare forearms. SHIRT MUST BE UNTUCKED, hem outside trousers covering waistband, ending at upper hip, no belt over shirt. Dark charcoal work trousers. Keep original Image 1 face identity (NOT reference person), body pose, hands, tools, appliance details, customers, background, lighting, framing and aspect ratio exactly unchanged. Do not change tools or repair procedure. Photorealistic. No polo shirt. Preserve original hand contact points and all machinery.",
+  "tool": "Built-in image_gen.imagegen",
+  "status": "AI-generated illustration, not documentary staff photography"
+}

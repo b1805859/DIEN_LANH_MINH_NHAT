@@ -1,0 +1,38 @@
+{
+  "viewports": [
+    {
+      "width": 360,
+      "height": 800
+    },
+    {
+      "width": 390,
+      "height": 844
+    },
+    {
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "width": 1440,
+      "height": 1000
+    },
+    {
+      "width": 1920,
+      "height": 1080
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "renderCount": 2,
+    "auto": false,
+    "drawCalls": 1,
+    "triangles": 100352,
+    "memory": {
+      "geometries": 1,
+      "textures": 3
+    }
+  },
+  "drag": true,
+  "keyboard": true,
+  "autoAndIdle": true
+}
