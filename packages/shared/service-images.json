@@ -1,7 +1,7 @@
 {
   "thao-di-doi-may-lanh": {
     "src": "/images/redesign/thao-may-lanh-khoi-gia-uniform-v1.webp",
-    "alt": "Kỹ thuật viên nhấc dàn lạnh ra khỏi giá treo trên tường",
+    "alt": "Hai kỹ thuật viên phối hợp nhấc dàn lạnh ra khỏi giá treo tường",
     "heroPosition": "54% 43%",
     "heroInset": true,
     "cardPosition": "55% 45%",
@@ -11,76 +11,76 @@
     }
   },
   "lap-dat-may-lanh": {
-    "src": "/images/redesign/lap-may-lanh-len-gia-uniform-v2.webp",
-    "alt": "Kỹ thuật viên nâng dàn lạnh lên giá treo tại vị trí lắp mới",
-    "heroPosition": "57% 40%",
-    "cardPosition": "57% 43%",
+    "src": "/images/home-mockup/card-3-bracket-hands.webp",
+    "alt": "Cận cảnh đôi tay kỹ thuật viên đo thước thủy và bắt ke giá đỡ máy lạnh lên tường",
+    "heroPosition": "50% 50%",
+    "cardPosition": "50% 50%",
     "detail": {
       "src": "/images/redesign/chay-thu-may-lanh-uniform-v1.webp",
-      "caption": "Kiểm tra luồng gió sau khi lắp dàn lạnh."
+      "caption": "Đo tốc độ gió lạnh và kiểm tra độ êm máy sau khi lắp đặt."
     }
   },
   "sua-may-lanh": {
-    "src": "/images/redesign/sua-may-lanh-kiem-tra-bo-mach-uniform-v1.webp",
-    "alt": "Kỹ thuật viên dùng đồng hồ đo để kiểm tra bo mạch máy lạnh",
-    "heroPosition": "61% 56%",
-    "cardPosition": "58% 53%"
+    "src": "/images/diverse/ac-pcb-overhead.webp",
+    "alt": "Góc chụp từ trên xuống đo kiểm bo mạch inverter máy lạnh bằng đồng hồ vạn năng",
+    "heroPosition": "50% 50%",
+    "cardPosition": "50% 50%"
   },
   "ve-sinh-may-lanh": {
-    "src": "/images/redesign/ve-sinh-may-lanh-hold-bag-v3-uniform-v1.webp",
-    "alt": "Kỹ thuật viên rửa dàn lạnh có túi hứng nước",
-    "heroPosition": "48% 43%",
-    "cardPosition": "43% 43%"
+    "src": "/images/diverse/ac-wash-upward.webp",
+    "alt": "Góc nghiêng thấp xịt rửa lá tản nhiệt dàn lạnh có túi hứng nước bảo vệ tường",
+    "heroPosition": "50% 50%",
+    "cardPosition": "50% 50%"
   },
   "nap-gas-may-lanh": {
-    "src": "/images/redesign/nap-gas-may-lanh-uniform-v2.webp",
-    "alt": "Kỹ thuật viên kiểm tra bộ đồng hồ nạp gas cạnh dàn nóng",
-    "heroPosition": "52% 52%",
-    "cardPosition": "52% 50%"
+    "src": "/images/diverse/ac-gas-manifold-macro.webp",
+    "alt": "Cận cảnh dàn nóng máy lạnh kết nối đồng hồ đo áp suất và bình gas chuyên dụng",
+    "heroPosition": "50% 50%",
+    "cardPosition": "50% 50%"
   },
   "sua-may-giat": {
-    "src": "/images/redesign/sua-may-giat-motor-repair-uniform-v1.webp",
-    "alt": "Kỹ thuật viên kiểm tra cụm truyền động phía sau máy giặt",
-    "heroPosition": "47% 57%",
-    "cardPosition": "46% 57%"
+    "src": "/images/diverse/washer-pump-repair.webp",
+    "alt": "Cận cảnh khoang bơm xả đáy máy giặt khi xử lý tắc nghẽn và thay ống xả nước",
+    "heroPosition": "50% 50%",
+    "cardPosition": "50% 50%"
   },
   "ve-sinh-may-giat": {
-    "src": "/images/redesign/ve-sinh-may-giat-uniform-v1.webp",
-    "alt": "Kỹ thuật viên lau gioăng cửa máy giặt cửa trước",
-    "heroPosition": "47% 51%",
-    "cardPosition": "43% 52%"
+    "src": "/images/diverse/washer-drum-clean.webp",
+    "alt": "Cận cảnh bên trong lồng giặt inox và làm sạch gioăng cao su cửa trước",
+    "heroPosition": "50% 50%",
+    "cardPosition": "50% 50%"
   },
   "sua-tu-lanh": {
-    "src": "/images/redesign/sua-tu-lanh-rear-repair-v2-uniform-v1.webp",
-    "alt": "Kỹ thuật viên kiểm tra cụm máy ở phía sau tủ lạnh",
-    "heroPosition": "51% 63%",
-    "cardPosition": "52% 61%"
+    "src": "/images/diverse/fridge-compressor-low.webp",
+    "alt": "Góc chụp thấp cụm máy nén block và đường ống đồng phía sau tủ lạnh",
+    "heroPosition": "50% 50%",
+    "cardPosition": "50% 50%"
   },
   "sua-dien-nuoc": {
-    "src": "/images/redesign/sua-dien-nuoc-uniform-v1.webp",
-    "alt": "Kỹ thuật viên thao tác tại cụm đường ống nước trong nhà",
-    "heroPosition": "66% 53%",
-    "cardPosition": "66% 53%",
+    "src": "/images/diverse/undersink-plumbing-macro.webp",
+    "alt": "Cận cảnh thao tác siết khớp ống xả nước P-trap và van khóa dưới bồn rửa",
+    "heroPosition": "50% 50%",
+    "cardPosition": "50% 50%",
     "detail": {
       "src": "/images/redesign/kiem-tra-o-cam-dan-dung-uniform-v2.webp",
       "caption": "Cố định mặt ổ cắm sau khi ngắt nguồn điện."
     }
   },
   "sua-lap-may-nuoc-uong-nong-lanh": {
-    "src": "/images/redesign/sua-lap-may-nuoc-uong-nong-lanh-uniform-v1.webp",
-    "alt": "Kỹ thuật viên kiểm tra khoang kỹ thuật máy nước uống nóng lạnh",
-    "heroPosition": "52% 56%",
-    "cardPosition": "50% 55%",
+    "src": "/images/diverse/water-dispenser-filters-macro.webp",
+    "alt": "Cận cảnh kiểm tra và thay lõi lọc bên trong khoang máy nước uống nóng lạnh",
+    "heroPosition": "50% 50%",
+    "cardPosition": "50% 50%",
     "detail": {
       "src": "/images/redesign/lap-may-nuoc-uong-nong-lanh-uniform-v2.webp",
       "caption": "Đưa máy nước uống nóng lạnh vào vị trí lắp đặt."
     }
   },
   "sua-lap-may-nuoc-nong-lanh-tam": {
-    "src": "/images/redesign/sua-lap-may-nuoc-nong-lanh-tam-uniform-v1.webp",
-    "alt": "Kỹ thuật viên kiểm tra đầu nối nước của máy nước nóng dùng để tắm",
-    "heroPosition": "49% 46%",
-    "cardPosition": "46% 44%",
+    "src": "/images/diverse/bath-heater-plumbing-macro.webp",
+    "alt": "Cận cảnh máy nước nóng phòng tắm cùng dây cấp inox và kiểm tra đầu nối nước",
+    "heroPosition": "50% 50%",
+    "cardPosition": "50% 50%",
     "detail": {
       "src": "/images/redesign/lap-may-nuoc-nong-tam-uniform-v2.webp",
       "caption": "Gắn máy nước nóng dùng để tắm lên tường trước khi nối ống nước."

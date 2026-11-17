@@ -20,7 +20,6 @@ export function AboutFamilyHero() {
           alt="Gia đình và kỹ thuật viên Minh Nhật trong phòng khách – ảnh minh họa"
           fill
           priority
-          unoptimized
           fetchPriority="high"
           sizes="(max-width: 800px) calc(100vw - 32px), (max-width: 1440px) calc(100vw - 64px), 1360px"
         />
@@ -29,7 +28,7 @@ export function AboutFamilyHero() {
         <HeroAirflow composition="finder" budget={motionBudget} showToggle={false} compactFinder />
       </div>
       <div className={styles.technician} data-u216="backdrop" aria-hidden="true">
-        <Image src={familyImage} alt="" fill priority unoptimized sizes="100vw" />
+        <Image src={familyImage} alt="" fill priority sizes="100vw" />
       </div>
       <div className={styles.shade} aria-hidden="true" />
       <div className={styles.copy}>

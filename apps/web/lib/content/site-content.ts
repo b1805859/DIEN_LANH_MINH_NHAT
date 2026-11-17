@@ -20,7 +20,7 @@ export const siteContent = {
     panorama: '/images/redesign/can-tho-night-realism-v2.webp',
     services: '/images/redesign/services-banner-uniform-v1.webp',
     contact: '/images/redesign/contact-home-visit-uniform-v1.webp',
-    booking: '/images/redesign/carousel-maintenance-uniform-v1.webp',
+    booking: '/images/diverse/tools-flatlay.webp',
     editorial: '/images/redesign/editorial-night.webp',
     team: '/images/redesign/team-uniform-v1.webp',
     support: '/images/redesign/support-uniform-v1.webp',
@@ -137,7 +137,7 @@ export const projects = [
     title: 'Lắp đặt máy lạnh tại nhà phố',
     area: 'Ninh Kiều, Cần Thơ',
     category: 'may-lanh',
-    image: '/images/redesign/thao-lap-may-lanh-uniform-v1.webp',
+    image: '/images/diverse/proj-ninh-kieu-living-ac.webp',
     description:
       'Minh họa lắp máy lạnh tại nhà phố: chọn vị trí, đi đường ống và chạy thử máy.',
   },
@@ -146,7 +146,7 @@ export const projects = [
     title: 'Kiểm tra và sửa chữa tủ lạnh',
     area: 'Bình Thủy, Cần Thơ',
     category: 'tu-lanh',
-    image: '/images/redesign/sua-tu-lanh-rear-repair-v2-uniform-v1.webp',
+    image: '/images/diverse/proj-fridge-compressor-screwdriver.webp',
     description:
       'Minh họa quy trình kiểm tra khả năng làm lạnh, đường điện và linh kiện của tủ lạnh gia đình.',
   },
@@ -155,7 +155,7 @@ export const projects = [
     title: 'Vệ sinh máy giặt cửa trước',
     area: 'Cái Răng, Cần Thơ',
     category: 'may-giat',
-    image: '/images/redesign/ve-sinh-may-giat-uniform-v1.webp',
+    image: '/images/diverse/apartment-laundry-visit.webp',
     description:
       'Minh họa vệ sinh lồng giặt, làm sạch lọc cặn và chạy thử máy.',
   },
@@ -164,7 +164,7 @@ export const projects = [
     title: 'Thi công điện nước gia đình',
     area: 'Phong Điền, Cần Thơ',
     category: 'dien-nuoc',
-    image: '/images/redesign/sua-dien-nuoc-uniform-v1.webp',
+    image: '/images/diverse/tools-flatlay.webp',
     description:
       'Minh họa kiểm tra đường nước và sửa chỗ rò rỉ trong nhà.',
   },
@@ -178,13 +178,13 @@ export const processSteps = [
 ];
 
 export const blogPostCovers: Record<string, string> = {
-  'bao-lau-nen-ve-sinh-may-lanh-mot-lan': '/images/redesign/ve-sinh-may-lanh-hold-bag-v3-uniform-v1.webp',
-  'dau-hieu-may-lanh-can-nap-gas': '/images/redesign/nap-gas-may-lanh-uniform-v1.webp',
-  'may-lanh-khong-lanh-nguyen-nhan-do-dau': '/images/redesign/home-carousel/support-condenser-uniform-v1.webp',
-  'may-lanh-chay-nuoc-phai-lam-sao': '/images/redesign/ve-sinh-may-lanh-hold-bag-v3-uniform-v1.webp',
-  'cac-loi-thuong-gap-o-tu-lanh': '/images/redesign/sua-tu-lanh-rear-repair-v2-uniform-v1.webp',
-  'khi-nao-can-ve-sinh-may-giat': '/images/redesign/ve-sinh-may-giat-uniform-v1.webp',
-  'meo-tiet-kiem-dien-khi-su-dung-may-lanh': '/images/redesign/sua-may-lanh-realism-v2-uniform-v1.webp',
+  'bao-lau-nen-ve-sinh-may-lanh-mot-lan': '/images/diverse/blog-ac-pressure-wash-bag.webp',
+  'dau-hieu-may-lanh-can-nap-gas': '/images/diverse/ac-condenser-gauges-macro.webp',
+  'may-lanh-khong-lanh-nguyen-nhan-do-dau': '/images/redesign/chay-thu-may-lanh-uniform-v1.webp',
+  'may-lanh-chay-nuoc-phai-lam-sao': '/images/diverse/ac-drain-pan-macro.webp',
+  'cac-loi-thuong-gap-o-tu-lanh': '/images/diverse/blog-fridge-freezer-frost.webp',
+  'khi-nao-can-ve-sinh-may-giat': '/images/diverse/blog-washer-detergent-tray.webp',
+  'meo-tiet-kiem-dien-khi-su-dung-may-lanh': '/images/diverse/blog-ac-energy-curtain.webp',
 };
 
 export function getBlogPostImage(slug: string, fallback: string) {

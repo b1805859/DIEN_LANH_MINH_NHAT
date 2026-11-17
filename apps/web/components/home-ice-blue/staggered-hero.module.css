@@ -83,11 +83,11 @@
 
   .u216 [data-scroll-copy="pending"] + [data-scroll-description] {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(10px);
   }
 
   .u216 [data-scroll-copy="in"] + [data-scroll-description] {
-    transition: opacity .55s var(--ux-ease) 620ms, transform .7s var(--ux-ease) 620ms;
+    transition: opacity .36s var(--ux-ease) 140ms, transform .42s var(--ux-ease) 140ms;
   }
 
   .u216[data-u216-playing] [data-u216="backdrop"] {

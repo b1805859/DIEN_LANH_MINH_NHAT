@@ -103,8 +103,8 @@ function usePageScrollMotion(root: RefObject<HTMLDivElement | null>, pathname: s
       context.add(() => {
         for (const element of targets) {
           const isFooterItem = !!element.closest('.mn-home-footer');
-          const distance = isFooterItem ? 8 : budget === 'limited' ? 8 : 14;
-          const enterDuration = budget === 'limited' ? 0.3 : 0.42;
+          const distance = isFooterItem ? 6 : budget === 'limited' ? 8 : 12;
+          const enterDuration = isFooterItem ? 0.22 : budget === 'limited' ? 0.24 : 0.34;
 
           const setReady = (ready: boolean) => {
             const state = ready ? 'ready' : 'pending';
@@ -156,7 +156,7 @@ function usePageScrollMotion(root: RefObject<HTMLDivElement | null>, pathname: s
           };
 
           const rect = element.getBoundingClientRect();
-          if ((rect.top < window.innerHeight && rect.bottom > 0) || hasKeyboardFocus()) {
+          if (rect.top < window.innerHeight + 40 || hasKeyboardFocus()) {
             gsap.set(element, { opacity: 1, clearProps: 'transform' });
             setReady(true);
           } else {

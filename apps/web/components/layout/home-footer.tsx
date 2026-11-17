@@ -58,7 +58,7 @@ export function HomeFooter({ services }: { services: WebsiteService[] }) {
       <div className={styles.container}>
         <div className={styles.grid}>
           {/* Cột 1: Thương hiệu, giới thiệu & giờ làm việc */}
-          <div className={styles.brandCol} data-reveal="" style={{ '--d': '0ms' } as React.CSSProperties}>
+          <div className={styles.brandCol}>
             <Link href="/" className={styles.brandLink} aria-label="Điện Lạnh Minh Nhật – Trang chủ">
               <MinhNhatLogoMark idPrefix="home-footer-modern" />
               <span className={styles.brandText}>
@@ -116,7 +116,7 @@ export function HomeFooter({ services }: { services: WebsiteService[] }) {
           </div>
 
           {/* Cột 2: Danh mục dịch vụ chính */}
-          <div data-reveal="" style={{ '--d': '80ms' } as React.CSSProperties}>
+          <div>
             <h2 className={styles.colHeading}>
               Dịch vụ tận nơi
               <span className={styles.headingUnderline} aria-hidden="true" />
@@ -134,7 +134,7 @@ export function HomeFooter({ services }: { services: WebsiteService[] }) {
           </div>
 
           {/* Cột 3: Khu vực phục vụ & Cam kết chất lượng */}
-          <div data-reveal="" style={{ '--d': '160ms' } as React.CSSProperties}>
+          <div>
             <h2 className={styles.colHeading}>
               Khu vực & Cam kết
               <span className={styles.headingUnderline} aria-hidden="true" />
@@ -167,7 +167,7 @@ export function HomeFooter({ services }: { services: WebsiteService[] }) {
           </div>
 
           {/* Cột 4: Thông tin liên hệ & Hotline */}
-          <div className={styles.contactCol} data-reveal="" style={{ '--d': '240ms' } as React.CSSProperties}>
+          <div className={styles.contactCol}>
             <h2 className={styles.colHeading}>
               Thông tin liên hệ
               <span className={styles.headingUnderline} aria-hidden="true" />
@@ -218,7 +218,7 @@ export function HomeFooter({ services }: { services: WebsiteService[] }) {
         </div>
 
         {/* Thanh chân trang (Copyright & Legal) */}
-        <div className={styles.bottomBar} data-reveal="">
+        <div className={styles.bottomBar}>
           <p className={styles.copyright}>
             © {new Date().getFullYear()} Điện Lạnh Minh Nhật. Tất cả quyền được bảo lưu.
           </p>

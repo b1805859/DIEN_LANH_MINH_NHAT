@@ -36,9 +36,14 @@ export function VerifiedServiceArea({ revealIntro = false }: { revealIntro?: boo
   const [selected, setSelected] = useState<string | null>(null);
   const [hovered, setHovered] = useState<string | null>(null);
   const [focused, setFocused] = useState<string | null>(null);
+  const [loadedAreas, setLoadedAreas] = useState<string[]>([]);
   const sectionRef = useRef<HTMLElement>(null);
   const activeName = hovered ?? focused ?? selected;
   const activePhoto = areaPhotos.find((photo) => photo.area === activeName);
+  useEffect(() => {
+    if (!activeName) return;
+    setLoadedAreas((prev) => (prev.includes(activeName) ? prev : [...prev, activeName]));
+  }, [activeName]);
   useEffect(() => {
     const clearHover = () => setHovered(null);
     const reset = () => {
@@ -124,31 +129,33 @@ export function VerifiedServiceArea({ revealIntro = false }: { revealIntro?: boo
         alt="Cảnh cầu Cần Thơ về đêm – hình ảnh minh họa"
       />
       <div className="mn-area-photo-stack" aria-hidden="true">
-        {areaPhotos.map((photo) => (
-          <picture key={photo.area}>
-            <source
-              media="(max-width: 700px)"
-              srcSet={
-                getImageProps({
-                  src: `/images/areas/${photo.slug}-mobile.webp`,
-                  alt: '',
-                  fill: true,
-                  sizes: '100vw',
-                  quality: 92,
-                }).props.srcSet
-              }
-            />
-            <Image
-              src={photo.src}
-              alt=""
-              fill
-              quality={92}
-              sizes="100vw"
-              className="mn-area-photo"
-              data-active={activeName === photo.area}
-            />
-          </picture>
-        ))}
+        {areaPhotos
+          .filter((photo) => loadedAreas.includes(photo.area))
+          .map((photo) => (
+            <picture key={photo.area}>
+              <source
+                media="(max-width: 700px)"
+                srcSet={
+                  getImageProps({
+                    src: `/images/areas/${photo.slug}-mobile.webp`,
+                    alt: '',
+                    fill: true,
+                    sizes: '100vw',
+                    quality: 82,
+                  }).props.srcSet
+                }
+              />
+              <Image
+                src={photo.src}
+                alt=""
+                fill
+                quality={82}
+                sizes="100vw"
+                className="mn-area-photo"
+                data-active={activeName === photo.area}
+              />
+            </picture>
+          ))}
       </div>
       <div className="mn-area-shade" />
       <div className="mn-area-copy">
@@ -229,11 +236,11 @@ export function VerifiedServiceArea({ revealIntro = false }: { revealIntro?: boo
                 />
                 <rect
                   className="mn-map-label-hit"
-                  x={label.x - 4}
-                  y={label.y - 20}
-                  width={area.name.length * 10 + 12}
-                  height="28"
-                  rx="5"
+                  x={label.x - 10}
+                  y={label.y - 46}
+                  width={Math.max(120, area.name.length * 10 + 24)}
+                  height="76"
+                  rx="8"
                 />
                 {isActive && (
                   <circle

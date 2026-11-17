@@ -2,7 +2,9 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, BookOpen, MapPin } from 'lucide-react';
+import { TactileCard } from '@/components/ui/tactile-card';
 import type { WebsiteCategory, WebsitePost } from '@/lib/content/website-content';
 import { projects } from '@/lib/content/site-content';
 import { sharedProjectCovers } from '@/lib/content/shared-project-covers';
@@ -28,6 +30,7 @@ export function Showcase({
 }) {
   const [tab, setTab] = useState(initialTab);
   const [category, setCategory] = useState(initialCategory);
+  const prefersReducedMotion = useReducedMotion();
   const items =
     tab === 'projects'
       ? projects.map((p) => ({
@@ -108,17 +111,26 @@ export function Showcase({
       ) : showTabs && tabs}
       {!compact && tab === 'news' && (
         <div className="mn-filters" aria-label="Lọc danh mục">
-          <button aria-pressed={category === 'all'} onClick={() => setCategory('all')}>
+          <motion.button
+            type="button"
+            whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
+            aria-pressed={category === 'all'}
+            className="min-h-[44px]"
+            onClick={() => setCategory('all')}
+          >
             Tất cả
-          </button>
+          </motion.button>
           {categories.map((c) => (
-            <button
+            <motion.button
+              type="button"
+              whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
               key={c.slug}
               aria-pressed={category === c.slug}
+              className="min-h-[44px]"
               onClick={() => setCategory(c.slug)}
             >
               {c.name}
-            </button>
+            </motion.button>
           ))}
         </div>
       )}
@@ -128,56 +140,66 @@ export function Showcase({
         aria-labelledby={showTabs ? `tab-${tab}` : undefined}
         tabIndex={showTabs ? 0 : undefined}
       >
-        <div className="mn-project-grid" key={`${tab}-${category}`}>
-          {filtered.map((item, index) => (
-            <Link
-              href={item.href}
-              key={item.slug}
-              className="mn-project-card"
-              data-reveal=""
-              style={{ '--d': `${(index % 4) * 0.08}s` } as React.CSSProperties}
-            >
-              <div className="mn-card-photo">
-                <Image loading="lazy"
-                  src={item.demo ? projectCovers[item.slug]?.src || item.image : item.image}
-                  alt={
-                    item.demo
-                      ? projectCovers[item.slug]?.alt || `${item.title} – ảnh minh họa`
-                      : `${item.title} – ảnh minh họa`
-                  }
-                  style={
-                    item.demo && projectCovers[item.slug]?.position
-                      ? { objectPosition: projectCovers[item.slug].position }
-                      : undefined
-                  }
-                  fill
-                  sizes={
-                    compact
-                      ? home
-                        ? '(max-width: 600px) calc(100vw - 40px), (max-width: 1000px) 46vw, 310px'
-                        : '(max-width: 480px) 44vw, (max-width: 800px) 45vw, (max-width: 1380px) 22vw, 310px'
-                      : halfContentImageSizes
-                  }
-                />
-                {item.demo && !home && <span className="mn-demo-tag">Dự án minh họa</span>}
-              </div>
-              <div className="mn-project-copy">
-                <h3>{item.title}</h3>
-                {!compact && !item.demo && <p>{item.excerpt}</p>}
-                <div>
-                  <span>
-                    {item.demo ? (
-                      <MapPin size={14} aria-hidden="true" />
-                    ) : (
-                      <BookOpen size={14} aria-hidden="true" />
-                    )}
-                    {item.meta}
-                  </span>
-                  <ArrowRight size={19} />
-                </div>
-              </div>
-            </Link>
-          ))}
+        <div className="mn-project-grid">
+          <AnimatePresence mode="popLayout">
+            {filtered.map((item, index) => (
+              <motion.div
+                key={item.slug}
+                layout={!prefersReducedMotion}
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.96 }}
+                transition={{ duration: 0.22, delay: (index % 4) * 0.04, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <TactileCard className="h-full rounded-[14px]">
+                  <Link
+                    href={item.href}
+                    className="mn-project-card h-full"
+                  >
+                    <div className="mn-card-photo">
+                      <Image loading={index < 4 ? 'eager' : 'lazy'}
+                        src={item.demo ? projectCovers[item.slug]?.src || item.image : item.image}
+                        alt={
+                          item.demo
+                            ? projectCovers[item.slug]?.alt || `${item.title} – ảnh minh họa`
+                            : `${item.title} – ảnh minh họa`
+                        }
+                        style={
+                          item.demo && projectCovers[item.slug]?.position
+                            ? { objectPosition: projectCovers[item.slug].position }
+                            : undefined
+                        }
+                        fill
+                        sizes={
+                          compact
+                            ? home
+                              ? '(max-width: 600px) calc(100vw - 40px), (max-width: 1000px) 46vw, 310px'
+                              : '(max-width: 480px) 44vw, (max-width: 800px) 45vw, (max-width: 1380px) 22vw, 310px'
+                            : halfContentImageSizes
+                        }
+                      />
+                      {item.demo && !home && <span className="mn-demo-tag">Dự án minh họa</span>}
+                    </div>
+                    <div className="mn-project-copy">
+                      <h3>{item.title}</h3>
+                      {!compact && !item.demo && <p>{item.excerpt}</p>}
+                      <div>
+                        <span>
+                          {item.demo ? (
+                            <MapPin size={14} aria-hidden="true" />
+                          ) : (
+                            <BookOpen size={14} aria-hidden="true" />
+                          )}
+                          {item.meta}
+                        </span>
+                        <ArrowRight size={19} />
+                      </div>
+                    </div>
+                  </Link>
+                </TactileCard>
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
         {filtered.length === 0 && (
           <p className="mn-empty">

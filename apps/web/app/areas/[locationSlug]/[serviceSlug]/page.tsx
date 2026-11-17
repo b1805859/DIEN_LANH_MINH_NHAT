@@ -8,6 +8,7 @@ import { buildMetadata } from '@/lib/seo/metadata';
 import { getWebsiteContent } from '@/lib/content/website-content';
 import { serviceDetails } from '@/lib/content/service-details';
 import { ServiceDetailPhoto } from '@/components/redesign/service-detail-photo';
+import { ServiceSymptomChecker } from '@/components/services/service-symptom-checker';
 type Params = Promise<{ locationSlug: string; serviceSlug: string }>;
 export async function generateMetadata({ params }: { params: Params }) {
   const { locationSlug, serviceSlug } = await params;
@@ -45,10 +46,17 @@ export default async function ServiceWardPage({ params }: { params: Params }) {
       <div className="mn-container">
         <div className="mn-detail-layout mn-tone-section mn-tone-light">
           <article>
-            <Link href={`/areas/${ward.slug}`} className="mn-text-link">
+            <Link href={`/areas/${ward.slug}`} className="mn-text-link inline-flex min-h-[44px] items-center">
               ← Dịch vụ tại {ward.shortName}
             </Link>
             <SectionHeading title="Khảo sát nhu cầu," accent="báo giá trước khi làm" />
+            {detail && (
+              <ServiceSymptomChecker
+                serviceSlug={service.slug}
+                serviceTitle={`${service.name} (${ward.shortName})`}
+                symptoms={detail.symptoms}
+              />
+            )}
             {detail && service.imagery.detail && (
               <>
                 <h2 className="mn-faq-heading">{detail.procedureTitle || 'Công đoạn thực hiện'}</h2>

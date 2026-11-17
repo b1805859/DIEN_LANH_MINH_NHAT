@@ -81,13 +81,13 @@
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.14em;
-  color: #55b7e6;
+  color: #7fd8ff;
 }
 
 .brandDesc {
   font-size: 13.5px;
   line-height: 1.65;
-  color: #a7c3db;
+  color: #b8d3e8;
   margin: 0;
 }
 
@@ -128,14 +128,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #b0cee6;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #cbe3f7;
   text-decoration: none;
-  transition: all 0.25s ease;
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .socialBtn:hover {
@@ -174,17 +179,22 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 4px;
 }
 
 .navLink {
   display: inline-flex !important;
   align-items: center !important;
   gap: 8px !important;
+  min-height: 44px;
+  padding-block: 6px;
   font-size: 13.5px;
-  color: #9cbacf;
+  color: #b8d4ea;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition:
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.2s ease,
+    opacity 0.2s ease;
   line-height: 1.4;
 }
 
@@ -221,7 +231,7 @@
   align-items: center;
   gap: 8px;
   font-size: 12.5px;
-  color: #8edcfc;
+  color: #b8ddf5;
 }
 
 .trustItem svg {
@@ -261,7 +271,11 @@
   background: linear-gradient(135deg, rgba(0, 198, 255, 0.08) 0%, rgba(7, 89, 199, 0.15) 100%);
   border: 1px solid rgba(0, 198, 255, 0.35);
   text-decoration: none;
-  transition: all 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition:
+    transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
   box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.3);
 }
 
@@ -310,16 +324,18 @@
   display: flex;
   align-items: flex-start;
   gap: 10px;
+  min-height: 44px;
+  padding-block: 6px;
   font-size: 13px;
   line-height: 1.5;
-  color: #9cbacf;
+  color: #b8d4ea;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .contactItem svg {
   flex-shrink: 0;
-  color: #23d4fa;
+  color: #38d9ff;
   margin-top: 3px;
 }
 
@@ -331,15 +347,20 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 14px;
+  min-height: 44px;
+  padding: 10px 16px;
   border-radius: 8px;
-  background: rgba(0, 104, 255, 0.12);
-  border: 1px solid rgba(0, 104, 255, 0.3);
+  background: rgba(0, 104, 255, 0.14);
+  border: 1px solid rgba(0, 104, 255, 0.35);
   color: #ffffff;
   font-size: 13px;
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.25s ease;
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
   width: fit-content;
 }
 
@@ -354,13 +375,13 @@
 .bottomBar {
   margin-top: 48px;
   padding-top: 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 20px;
   font-size: 12.5px;
-  color: #7d9cb3;
+  color: #a6c5de;
   /* Extra right padding so floating Zalo & AI buttons do not overlap legal links */
   padding-right: 180px;
 }
@@ -377,7 +398,10 @@
 }
 
 .legalLink {
-  color: #7d9cb3;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #a6c5de;
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -400,21 +424,48 @@
 
 @media (max-width: 640px) {
   .container {
-    padding: 40px 16px 28px;
+    padding: 16px 16px 10px;
   }
   .grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 12px;
+  }
+  .brandCol,
+  .contactCol {
+    grid-column: 1 / -1;
+    gap: 6px;
+  }
+  .colHeading {
+    margin-bottom: 6px;
+    font-size: 13px;
+  }
+  .linkList {
+    gap: 0;
+  }
+  .navLink {
+    font-size: 13px;
+    line-height: 1.25;
+    padding-block: 1px;
+  }
+  .trustList {
+    margin-top: 6px;
+    padding-top: 6px;
+    gap: 4px;
+  }
+  .trustItem {
+    font-size: 11.5px;
   }
   .bottomBar {
     flex-direction: column;
     align-items: flex-start;
-    padding-right: 0;
-    /* On mobile, add bottom padding so floating action bar doesn't obscure text */
-    padding-bottom: 96px;
-    gap: 12px;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-right: 76px;
+    /* Keep compact total footer height well below sticky header height while clearing floating Zalo/AI controls on right */
+    padding-bottom: 10px;
+    gap: 6px;
   }
   .legalLinks {
-    gap: 14px;
+    gap: 2px 14px;
   }
 }

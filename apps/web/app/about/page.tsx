@@ -17,11 +17,11 @@ export default function AboutPage() {
       <AboutFamilyHero />
       <div className="mn-container">
         <div className="mn-tone-section mn-tone-light" aria-label="Điểm nổi bật của Minh Nhật">
-          <div className="mn-about-facts mn-panel" data-reveal="">
+          <div className="mn-about-facts mn-panel" data-reveal="in">
             {siteContent.aboutFacts.map(({ value, label }, index) => (
               <div
                 key={label}
-                data-reveal=""
+                data-reveal="in"
                 style={{ '--d': `${index * 0.08}s` } as React.CSSProperties}
               >
                 <span className="mn-fact-icon">

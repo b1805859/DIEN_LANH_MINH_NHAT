@@ -1,6 +1,5 @@
 import { getWebsiteContent } from '@/lib/content/website-content';
-import { IceBlueHome } from '@/components/home-ice-blue/home';
-import { Process } from '@/components/redesign/ui';
+import { HomeMockupTop, HomePreFooterCta } from '@/components/home-mockup/home-mockup';
 import { VerifiedServiceArea } from '@/components/redesign/verified-service-area';
 import { buildMetadata } from '@/lib/seo/metadata';
 
@@ -14,15 +13,13 @@ export default async function HomePage() {
   const { services } = await getWebsiteContent();
   return (
     <main className="mn-home">
-      <IceBlueHome services={services} />
+      <HomeMockupTop services={services} />
       <div className="mn-home-content">
-        <div className="mn-container">
-          <Process />
-        </div>
         <div className="mn-home-coverage-band">
           <VerifiedServiceArea revealIntro />
         </div>
       </div>
+      <HomePreFooterCta />
     </main>
   );
 }

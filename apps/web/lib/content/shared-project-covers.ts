@@ -1,15 +1,22 @@
 export const sharedProjectCovers: Record<string, { src: string; alt: string; position?: string }> = {
   'lap-dat-may-lanh-ninh-kieu': {
-    src: '/images/redesign/carousel-maintenance-uniform-v1.webp',
-    position: 'right center',
-    alt: 'Kỹ thuật viên kiểm tra dàn lạnh trong nhà – ảnh minh họa hạng mục máy lạnh',
+    src: '/images/diverse/proj-ninh-kieu-living-ac.webp',
+    alt: 'Phòng khách nhà phố Cần Thơ lắp máy lạnh treo tường đi ống nẹp gọn gàng',
+    position: '50% 50%',
   },
   'sua-tu-lanh-binh-thuy': {
-    src: '/images/redesign/sua-tu-lanh-rear-repair-v2-uniform-v1.webp',
-    alt: 'Kỹ thuật viên sửa cụm máy phía sau tủ lạnh – ảnh minh họa',
+    src: '/images/diverse/proj-fridge-compressor-screwdriver.webp',
+    alt: 'Mở khoang máy phía sau tủ lạnh kiểm tra lốc nén, ống đồng và cụm rơ le',
+    position: '50% 50%',
+  },
+  've-sinh-may-giat-cai-rang': {
+    src: '/images/diverse/apartment-laundry-visit.webp',
+    alt: 'Khách hàng tiếp nhận kiểm tra vệ sinh máy giặt cửa trước tại căn hộ',
+    position: '50% 40%',
   },
   'dien-nuoc-nha-pho': {
-    src: '/images/redesign/home-carousel/support-plumbing-uniform-v1.webp',
-    alt: 'Kỹ thuật viên kiểm tra ống nước dưới bồn rửa – ảnh minh họa',
+    src: '/images/diverse/tools-flatlay.webp',
+    alt: 'Bộ thiết bị chuyên dụng kiểm tra và bảo trì hệ thống điện nước dân dụng',
+    position: '50% 50%',
   },
 };

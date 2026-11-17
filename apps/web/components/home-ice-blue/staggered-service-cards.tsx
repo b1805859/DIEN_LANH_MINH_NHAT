@@ -22,24 +22,23 @@ export function StaggeredServiceCards({ className, labelledBy, children, animate
     const observer = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         const element = entry.target as HTMLElement;
-        if (entry.isIntersecting && entry.intersectionRatio >= .18) {
+        if (entry.isIntersecting || entry.boundingClientRect.top < window.innerHeight + 60) {
           element.dataset.u251State = 'in';
-        } else if (
-          entry.boundingClientRect.width === 0 ||
-          (!entry.isIntersecting && entry.rootBounds && entry.boundingClientRect.top >= entry.rootBounds.bottom - 1)
-        ) {
-          element.dataset.u251State = 'pending';
+          observer.unobserve(element);
         }
       }
-    }, { threshold: [0, .18] });
+    }, { rootMargin: '140px 0px 80px 0px', threshold: 0.01 });
 
     for (const element of targets) {
       // Keep already visible content stable unless this group requests an entrance on load.
-      element.dataset.u251State = !animateInitiallyVisible && element.getClientRects().length &&
-        element.getBoundingClientRect().top < window.innerHeight
-        ? 'in'
-        : 'pending';
-      observer.observe(element);
+      const isVisibleOnLoad =
+        !animateInitiallyVisible &&
+        element.getClientRects().length > 0 &&
+        element.getBoundingClientRect().top < window.innerHeight + 40;
+      element.dataset.u251State = isVisibleOnLoad ? 'in' : 'pending';
+      if (!isVisibleOnLoad) {
+        observer.observe(element);
+      }
     }
 
     const onFocus = (event: FocusEvent) => {
@@ -47,30 +46,9 @@ export function StaggeredServiceCards({ className, labelledBy, children, animate
       const card = event.target.closest<HTMLElement>('[data-u251-card]');
       if (card) card.dataset.u251State = 'in';
     };
-    let frame = 0;
-    let lastScroll = window.scrollY;
-    const resetOnScrollUp = () => {
-      const scroll = window.scrollY;
-      // A scrollbar or Home-key jump can skip all observer thresholds.
-      if (scroll < lastScroll && !frame) {
-        frame = requestAnimationFrame(() => {
-          frame = 0;
-          for (const element of targets) {
-            if (element.dataset.u251State === 'in' &&
-                element.getBoundingClientRect().top >= window.innerHeight) {
-              element.dataset.u251State = 'pending';
-            }
-          }
-        });
-      }
-      lastScroll = scroll;
-    };
-    window.addEventListener('scroll', resetOnScrollUp, { passive: true });
     root.addEventListener('focusin', onFocus);
     return () => {
       observer.disconnect();
-      window.removeEventListener('scroll', resetOnScrollUp);
-      cancelAnimationFrame(frame);
       root.removeEventListener('focusin', onFocus);
       for (const element of targets) delete element.dataset.u251State;
     };

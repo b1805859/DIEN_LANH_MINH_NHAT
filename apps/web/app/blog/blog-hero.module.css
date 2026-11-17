@@ -8,7 +8,26 @@
   }
 
   :global(.mn-site[data-inner-page]) .hero :global(.mn-page-hero-shade) {
-    background: linear-gradient(90deg, #071b30f5 2%, #0a2136d6 45%, #10284038 78%, transparent) !important;
+    background: linear-gradient(
+      90deg,
+      rgba(242, 249, 255, 0.99) 0%,
+      rgba(242, 249, 255, 0.96) 44%,
+      rgba(242, 249, 255, 0.86) 58%,
+      rgba(242, 249, 255, 0.44) 74%,
+      rgba(242, 249, 255, 0.04) 88%
+    ) !important;
+  }
+
+  @media (max-width: 720px) {
+    :global(.mn-site[data-inner-page]) .hero :global(.mn-page-hero-shade) {
+      background: linear-gradient(
+        90deg,
+        rgba(242, 249, 255, 0.99) 0%,
+        rgba(242, 249, 255, 0.96) 66%,
+        rgba(242, 249, 255, 0.84) 86%,
+        rgba(242, 249, 255, 0.58) 100%
+      ) !important;
+    }
   }
 
   :global(.mn-site[data-inner-page]) .hero :global(.mn-container) p {

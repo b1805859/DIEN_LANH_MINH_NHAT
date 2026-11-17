@@ -155,6 +155,20 @@ export function PageHero({
       />
       {showAtmosphere && <PageHeroAtmosphere image={image} heroClassName={className} />}
       <div className="mn-page-hero-shade" />
+      <svg className="mn-page-hero-wave" viewBox="0 0 640 160" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="mnInnerWaveLight" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#5cc5f6" stopOpacity="0.88" />
+            <stop offset="100%" stopColor="#0e84d6" stopOpacity="0.95" />
+          </linearGradient>
+          <linearGradient id="mnInnerWaveDeep" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#0979c6" stopOpacity="0.94" />
+            <stop offset="100%" stopColor="#0060ac" stopOpacity="0.98" />
+          </linearGradient>
+        </defs>
+        <path d="M120 160 C275 152, 435 110, 640 24 L640 160 Z" fill="url(#mnInnerWaveLight)" />
+        <path d="M210 160 C365 148, 505 112, 640 48 L640 160 Z" fill="url(#mnInnerWaveDeep)" />
+      </svg>
       <div className="mn-container">
         {showEyebrow && <Eyebrow entrance>{label}</Eyebrow>}
         <h1 aria-label={accent ? `${title} ${accent}` : title}>

@@ -1,3 +1,4 @@
+import { BlogTocScrollSpy } from '@/components/blog/blog-toc-scrollspy';
 import { HeroWords } from '@/components/home-ice-blue/hero-words';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -47,18 +48,18 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
         <div>
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-black text-primary"
+            className="inline-flex min-h-[44px] items-center gap-2 text-sm font-black text-primary"
           >
             <ArrowRight className="h-4 w-4 rotate-180" />
             Bài viết
           </Link>
-          <div className="mt-6 grid min-w-0 gap-6 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-center lg:gap-8">
+          <div className="mt-4 grid min-w-0 gap-6 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-center lg:gap-8">
             <div className="min-w-0">
               {category ? (
                 <Link
                   href={`/blog/category/${category.slug}`}
                   data-u216="badge"
-                  className="inline-flex items-center gap-2 rounded-md bg-cyan-50 px-3 py-2 text-xs font-black uppercase text-primary"
+                  className="inline-flex min-h-[44px] items-center gap-2 rounded-md bg-cyan-50 px-4 py-2 text-xs font-black uppercase text-primary"
                 >
                   <CalendarDays className="h-4 w-4" />
                   {category.name}
@@ -85,26 +86,27 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
       </section>
 
       <section className="mn-container mn-editorial-layout mn-tone-section mn-tone-light">
-        <aside className="mn-editorial-toc text-sm text-slate-600" data-reveal="">
-          <p className="font-black text-slate-950">Mục lục</p>
-          {sections.map(section => (
-            <a key={section.id} className="mt-3 block transition hover:text-primary" href={`#${section.id}`}>{section.title}</a>
-          ))}
-        </aside>
+        <BlogTocScrollSpy sections={sections} shareUrl={absoluteUrl(`/blog/${slug}`)} />
 
         <article className="min-w-0 rounded-md border border-slate-200 bg-white p-4 shadow-sm sm:p-5 md:p-8" data-reveal="" style={{ '--d': '0.08s' } as React.CSSProperties}>
-          <p className="text-sm text-slate-600">Thông tin từ <Link href="/about" className="underline">Điện Lạnh Minh Nhật</Link>. Hướng dẫn nhận biết ban đầu; kết luận sửa chữa cần kiểm tra thiết bị thực tế và đối chiếu tài liệu đúng model.</p>
+          <div className="flex flex-wrap items-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-3.5 py-2 text-sm text-slate-700">
+            <span>Thông tin từ</span>
+            <Link href="/about" className="inline-flex min-h-[44px] items-center font-bold text-primary underline">
+              Điện Lạnh Minh Nhật
+            </Link>
+            <span>— hướng dẫn nhận biết ban đầu; kết luận sửa chữa cần kiểm tra thiết bị thực tế và đối chiếu tài liệu đúng model.</span>
+          </div>
           {sections.map(section => (
             <section key={section.id}>
               <h2 id={section.id} className="mt-10 scroll-mt-36 text-2xl font-black">{section.title}</h2>
               {section.paragraphs.map(paragraph => <p key={paragraph} className="mt-3 leading-8 text-slate-700">{paragraph}</p>)}
             </section>
           ))}
-          <nav aria-label="Dịch vụ liên quan đến bài viết" className="mt-8 grid gap-3">
+          <nav aria-label="Dịch vụ liên quan đến bài viết" className="mt-8 grid gap-1.5">
             <h2 className="text-xl font-bold">Cần hỗ trợ tại Cần Thơ?</h2>
             {relatedServices.map(slug => {
               const service = services.find(item => item.slug === slug);
-              return service ? <Link key={slug} href={`/services/${slug}`} className="mn-text-link">{service.title} tại Cần Thơ →</Link> : null;
+              return service ? <Link key={slug} href={`/services/${slug}`} className="mn-text-link inline-flex min-h-[44px] items-center">{service.title} tại Cần Thơ →</Link> : null;
             })}
           </nav>
 

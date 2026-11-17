@@ -187,11 +187,31 @@ html .mn-site .mn-skip-link:not(:focus) { opacity:0!important; pointer-events:no
 
 /* Coverage (#khu-vuc): keep original design & interactions with morning bridge background */
 html .mn-site .mn-service-area.mn-verified-area { background-color:#00152a!important; color:#fff!important; border:0!important; }
-html .mn-site .mn-verified-area .mn-area-shade { background:#00152b42!important; }
-html .mn-site .mn-verified-area:has(.mn-area-photo[data-active='true']) .mn-area-shade { background:linear-gradient(90deg,#00152bc9,#00152b4d 55%,#00152b66)!important; }
+html .mn-site .mn-verified-area .mn-area-shade {
+  background:
+    linear-gradient(90deg, rgba(0, 19, 39, 0.9) 0%, rgba(0, 21, 43, 0.78) 44%, rgba(0, 21, 43, 0.46) 68%, rgba(0, 21, 43, 0.6) 100%),
+    linear-gradient(180deg, rgba(0, 19, 39, 0.46) 0%, rgba(0, 19, 39, 0.14) 45%, rgba(0, 19, 39, 0.66) 100%) !important;
+  -webkit-backdrop-filter: blur(2px) !important;
+  backdrop-filter: blur(2px) !important;
+}
+html .mn-site .mn-verified-area:has(.mn-area-photo[data-active='true']) .mn-area-shade {
+  background:
+    linear-gradient(90deg, rgba(0, 19, 39, 0.92) 0%, rgba(0, 21, 43, 0.8) 46%, rgba(0, 21, 43, 0.48) 70%, rgba(0, 21, 43, 0.64) 100%),
+    linear-gradient(180deg, rgba(0, 19, 39, 0.48) 0%, rgba(0, 19, 39, 0.16) 45%, rgba(0, 19, 39, 0.68) 100%) !important;
+}
+@media (prefers-reduced-transparency: reduce) {
+  html .mn-site .mn-verified-area .mn-area-shade,
+  html .mn-site .mn-verified-area:has(.mn-area-photo[data-active='true']) .mn-area-shade {
+    background:
+      linear-gradient(90deg, rgba(0, 19, 39, 0.94) 0%, rgba(0, 21, 43, 0.84) 48%, rgba(0, 21, 43, 0.56) 72%, rgba(0, 21, 43, 0.68) 100%),
+      linear-gradient(180deg, rgba(0, 19, 39, 0.52) 0%, rgba(0, 19, 39, 0.2) 45%, rgba(0, 19, 39, 0.72) 100%) !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+}
 html .mn-site .mn-verified-area :is(h2,h2 span) { color:#fff!important; }
-html .mn-site .mn-verified-area .mn-area-description { color:#e0edf7!important; }
-html .mn-site .mn-verified-area .mn-area-chips :is(button,a) { border:1px solid #0082b0!important; background:#00243cde!important; color:#e7f5ff!important; box-shadow:none!important; }
+html .mn-site .mn-verified-area .mn-area-description { color:#f2f8ff!important; text-shadow:0 1px 4px rgba(0,14,28,0.65)!important; }
+html .mn-site .mn-verified-area .mn-area-chips :is(button,a) { border:1px solid #0082b0!important; background:#00243ce8!important; color:#eef7ff!important; box-shadow:none!important; }
 html .mn-site .mn-verified-area .mn-area-chips svg { color:#38e4ff!important; }
 html .mn-site .mn-verified-area .mn-area-chips [data-area-active='true'] { border-color:#92ebff!important; background:#005476!important; color:#fff!important; }
 html .mn-site .mn-verified-area .mn-verified-map-wrap { background:transparent!important; border:0!important; box-shadow:none!important; }
@@ -200,7 +220,7 @@ html .mn-site .mn-verified-area .mn-map-boundaries [data-region-active='true'] {
 html .mn-site .mn-verified-area .mn-map-label-leader { stroke:#62bace!important; }
 html .mn-site .mn-verified-area .mn-verified-pin path { fill:#72e5ff!important; stroke:#b5f4ff!important; }
 html .mn-site .mn-verified-area .mn-verified-pin circle { fill:#00466a!important; }
-html .mn-site .mn-verified-area .mn-geographic-location text { fill:#dff7ff!important; stroke:#002943!important; stroke-width:2px!important; paint-order:stroke!important; }
+html .mn-site .mn-verified-area .mn-geographic-location text { fill:#f2faff!important; stroke:#001c33!important; stroke-width:3.5px!important; paint-order:stroke!important; }
 html .mn-site .mn-verified-area .mn-geographic-location:is([data-active='true'],:focus-visible) .mn-verified-pin path { fill:#efffff!important; }
 html .mn-site .mn-verified-area .mn-geographic-location:is([data-active='true'],:focus-visible) text { fill:#fff!important; }
 html .mn-site .mn-verified-area .mn-location-pulse { stroke:#a1eeff!important; }
@@ -494,7 +514,7 @@ html .mn-site[data-inner-page='true'] main .mn-team-section { --mn-section-bg:#f
     --mn-content-max:1200px!important;
   }
   html .mn-site .mn-floating {
-    --mn-fab-size:clamp(40px,2.9vw,45px)!important;
+    --mn-fab-size:clamp(44px,3vw,48px)!important;
     --mn-fab-gutter:max(calc(var(--mn-content-gutter) / 2),calc((100% - var(--mn-content-max)) / 2))!important;
     --mn-fab-edge:max(12px,calc((var(--mn-fab-gutter) - var(--mn-fab-size)) / 2))!important;
   }
@@ -535,12 +555,15 @@ html .mn-site .mn-services-menu {
   align-items:center!important;
 }
 html .mn-site .mn-services-menu summary {
-  width:24px!important;
-  min-width:24px!important;
-  height:24px!important;
-  min-height:24px!important;
+  width:44px!important;
+  min-width:44px!important;
+  height:44px!important;
+  min-height:44px!important;
   padding:0!important;
-  border-radius:6px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border-radius:10px!important;
   color:#102a43!important;
   background:transparent!important;
   transition:background-color 180ms ease, color 180ms ease!important;
@@ -620,7 +643,7 @@ html .mn-site .mn-header-scrolled :is(.mn-brand, .mn-hotline, .mn-hotline strong
   color:#ffffff!important;
 }
 html .mn-site .mn-header-scrolled .mn-brand small {
-  color:#18d5f5!important;
+  color:#72e8ff!important;
 }
 html .mn-site .mn-header-scrolled .mn-hotline small {
   color:#c0d7e9!important;
@@ -1136,7 +1159,7 @@ html .mn-site [data-mn-reveal='pending'] {
   color: #e0f7ff;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(125, 244, 255, 0.22);
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .mn-admin-sidebar-action:hover {
@@ -1222,7 +1245,7 @@ html .mn-site [data-mn-reveal='pending'] {
   color: #034078;
   background: linear-gradient(135deg, rgba(224, 247, 255, 0.9), rgba(186, 230, 253, 0.65));
   border: 1px solid rgba(56, 189, 248, 0.45);
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .mn-admin-quick-btn:hover {
@@ -1250,7 +1273,7 @@ html .mn-site [data-mn-reveal='pending'] {
   font-size: 11px;
   font-weight: 900;
   color: #ffffff;
-  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  background: linear-gradient(135deg, #0275bd, #05569c);
 }
 
 .mn-admin-mobile-logout {

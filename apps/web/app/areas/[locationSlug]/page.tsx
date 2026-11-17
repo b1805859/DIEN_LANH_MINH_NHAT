@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { getWebsiteContent } from '@/lib/content/website-content';
 import { notFound } from 'next/navigation';
 import { PRIORITY_DISTRICTS, findDistrict } from '@minhnhat/shared';
@@ -34,6 +35,32 @@ export default async function WardPage({ params }: { params: Promise<{ locationS
         label="Khu vực phục vụ Cần Thơ"
       />
       <div className="mn-container">
+        <nav
+          aria-label="Chuyển nhanh quận huyện Cần Thơ"
+          className="mt-6 flex flex-wrap items-center gap-2.5 rounded-2xl border border-[#cce4f7] bg-white p-3 shadow-sm"
+          data-reveal=""
+        >
+          <span className="px-2 text-xs font-extrabold uppercase tracking-wider text-[#05447c]">
+            Khu vực Cần Thơ:
+          </span>
+          {PRIORITY_DISTRICTS.map((area) => {
+            const active = area.slug === ward.slug;
+            return (
+              <Link
+                key={area.slug}
+                href={`/areas/${area.slug}`}
+                aria-current={active ? 'page' : undefined}
+                className={`inline-flex min-h-[44px] min-w-[60px] items-center justify-center rounded-full border px-4 py-2 text-[13.5px] font-bold transition-colors ${
+                  active
+                    ? 'border-[#0277bd] bg-[#0277bd] text-white shadow-sm'
+                    : 'border-[#c8e3f8] bg-[#f4faff] text-[#061c3d] hover:border-[#0284c7] hover:bg-[#e5f4ff]'
+                }`}
+              >
+                {area.shortName}
+              </Link>
+            );
+          })}
+        </nav>
         <section className="mn-section mn-tone-section mn-tone-light">
           <SectionHeading title="Chọn dịch vụ" accent="cần hỗ trợ" />
           <ServiceGrid areaSlug={ward.slug} services={services} />

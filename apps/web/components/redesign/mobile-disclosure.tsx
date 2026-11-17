@@ -18,14 +18,16 @@ export function MobileDisclosure({
   title,
   hint,
   className = '',
+  defaultOpen = false,
   children,
 }: {
   title: string;
   hint?: string;
   className?: string;
+  defaultOpen?: boolean;
   children: ReactNode;
 }) {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(defaultOpen);
   const contentId = useId();
   return (
     <div className={`mn-mobile-disclosure ${className}`} data-expanded={expanded}>

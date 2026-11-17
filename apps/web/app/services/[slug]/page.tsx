@@ -10,6 +10,8 @@ import { buildMetadata, localTitle } from '@/lib/seo/metadata';
 import { ServiceExpectations } from '@/components/redesign/service-expectations';
 import { ServiceDetailPhoto } from '@/components/redesign/service-detail-photo';
 import { MobileDisclosure } from '@/components/redesign/mobile-disclosure';
+import { ServiceSymptomChecker } from '@/components/services/service-symptom-checker';
+import { AnimatedFaqAccordion } from '@/components/ui/animated-faq-accordion';
 import { serviceSearchContent } from '@/lib/content/service-search-content';
 import { blogContent } from '@/lib/content/blog-content';
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
@@ -54,7 +56,14 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             <p className="mn-detail-description">
               {service.introduction ?? service.description}
             </p>
-            {detail && <MobileDisclosure title={detail.needsTitle || 'Các tình trạng thường gặp'}>
+            {detail && (
+              <ServiceSymptomChecker
+                serviceSlug={slug}
+                serviceTitle={service.title}
+                symptoms={detail.symptoms}
+              />
+            )}
+            {detail && <MobileDisclosure title={detail.needsTitle || 'Các tình trạng thường gặp'} defaultOpen>
               <h2 className="mn-faq-heading">{detail.needsTitle || 'Các tình trạng thường gặp'}</h2>
               <ul className="mn-service-symptoms">
                 {detail.symptoms.map((symptom) => (
@@ -79,30 +88,34 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </MobileDisclosure>
             {service.faqs.length > 0 && <MobileDisclosure title="Câu hỏi thường gặp">
               <h2 className="mn-faq-heading">Câu hỏi thường gặp</h2>
-              <div className="mn-faq-list" data-reveal="">
-                {service.faqs.map((faq, index) => (
-                  <details key={faq.question} data-reveal="" style={{ '--d': `${(index % 4) * 0.08}s` } as React.CSSProperties}>
-                    <summary>{faq.question}</summary>
-                    <p>{faq.answer}</p>
-                  </details>
-                ))}
+              <div className="mt-3" data-reveal="">
+                <AnimatedFaqAccordion items={service.faqs} defaultOpenIndex={0} />
               </div>
             </MobileDisclosure>}
             <Actions />
             <nav aria-label="Khu vực nhận yêu cầu" className="mt-8">
               <h2 className="mn-faq-heading">Hẹn dịch vụ tại khu vực của bạn</h2>
               <p className="mn-detail-description">Gửi địa chỉ cụ thể để Minh Nhật xác nhận phạm vi phục vụ và lịch đến; các liên kết dưới đây giúp bạn chọn khu vực.</p>
-              <ul className="mt-3 flex flex-wrap gap-4">
-                {PRIORITY_DISTRICTS.map(area => <li key={area.slug}><Link className="mn-text-link" href={`/areas/${area.slug}`}>{area.shortName}</Link></li>)}
+              <ul className="mt-3 flex flex-wrap gap-3">
+                {PRIORITY_DISTRICTS.map(area => (
+                  <li key={area.slug}>
+                    <Link
+                      className="inline-flex min-h-[44px] min-w-[60px] items-center justify-center rounded-full border border-[#c6e2f7] bg-white px-4 py-2 text-sm font-bold text-[#05447c] transition-colors hover:border-[#0284c7] hover:bg-[#edf7ff]"
+                      href={`/areas/${area.slug}`}
+                    >
+                      {area.shortName}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </nav>
-            <nav aria-label="Dịch vụ và hướng dẫn liên quan" className="mt-8 grid gap-3">
+            <nav aria-label="Dịch vụ và hướng dẫn liên quan" className="mt-8 grid gap-2">
               <h2 className="mn-faq-heading">Dịch vụ và hướng dẫn liên quan</h2>
               {searchContent?.related.map(relatedSlug => {
                 const related = services.find(item => item.slug === relatedSlug);
-                return related ? <Link className="mn-text-link" key={relatedSlug} href={`/services/${relatedSlug}`}>{related.title} tại Cần Thơ →</Link> : null;
+                return related ? <Link className="mn-text-link inline-flex min-h-[44px] items-center" key={relatedSlug} href={`/services/${relatedSlug}`}>{related.title} tại Cần Thơ →</Link> : null;
               })}
-              {relatedPosts.map(post => <Link className="mn-text-link" key={post.slug} href={`/blog/${post.slug}`}>{post.title} →</Link>)}
+              {relatedPosts.map(post => <Link className="mn-text-link inline-flex min-h-[44px] items-center" key={post.slug} href={`/blog/${post.slug}`}>{post.title} →</Link>)}
             </nav>
           </article>
           <aside className="mn-detail-booking mn-panel" data-reveal="" style={{ '--d': '0.12s' } as React.CSSProperties}>

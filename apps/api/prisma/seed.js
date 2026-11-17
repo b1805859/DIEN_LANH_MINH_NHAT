@@ -44,7 +44,7 @@ const blogPosts = [
     title: 'Bao lâu nên vệ sinh máy lạnh một lần?',
     slug: 'bao-lau-nen-ve-sinh-may-lanh-mot-lan',
     categorySlug: 'may-lanh',
-    image: '/images/services/ve-sinh-may-lanh.jpg',
+    image: '/images/diverse/blog-ac-pressure-wash-bag.webp',
     excerpt:
       'Mốc thời gian vệ sinh máy lạnh phù hợp cho gia đình, phòng trọ và cửa hàng sử dụng thường xuyên.',
   },
@@ -52,28 +52,28 @@ const blogPosts = [
     title: 'Dấu hiệu máy lạnh cần nạp gas',
     slug: 'dau-hieu-may-lanh-can-nap-gas',
     categorySlug: 'may-lanh',
-    image: '/images/services/nap-gas-may-lanh.jpg',
+    image: '/images/diverse/ac-condenser-gauges-macro.webp',
     excerpt: 'Các biểu hiện thiếu gas, cách kiểm tra ban đầu và thời điểm nên gọi kỹ thuật viên.',
   },
   {
     title: 'Máy lạnh không lạnh nguyên nhân do đâu?',
     slug: 'may-lanh-khong-lanh-nguyen-nhan-do-dau',
     categorySlug: 'may-lanh',
-    image: '/images/services/sua-may-lanh.jpg',
+    image: '/images/redesign/chay-thu-may-lanh-uniform-v1.webp',
     excerpt: 'Tổng hợp nguyên nhân khiến máy lạnh chạy nhưng không mát và hướng xử lý an toàn.',
   },
   {
     title: 'Máy lạnh chảy nước phải làm sao?',
     slug: 'may-lanh-chay-nuoc-phai-lam-sao',
     categorySlug: 'may-lanh',
-    image: '/images/services/ve-sinh-may-lanh.jpg',
+    image: '/images/diverse/ac-drain-pan-macro.webp',
     excerpt: 'Nhận biết nguyên nhân máy lạnh rò nước, nghẹt ống thoát và các bước xử lý ban đầu.',
   },
   {
     title: 'Các lỗi thường gặp ở tủ lạnh',
     slug: 'cac-loi-thuong-gap-o-tu-lanh',
     categorySlug: 'tu-lanh',
-    image: '/images/services/sua-tu-lanh.jpg',
+    image: '/images/diverse/blog-fridge-freezer-frost.webp',
     excerpt:
       'Những lỗi tủ lạnh thường gặp như yếu lạnh, đóng tuyết, rò nước và tiếng ồn bất thường.',
   },
@@ -81,14 +81,14 @@ const blogPosts = [
     title: 'Khi nào cần vệ sinh máy giặt?',
     slug: 'khi-nao-can-ve-sinh-may-giat',
     categorySlug: 'may-giat',
-    image: '/images/services/ve-sinh-may-giat.jpg',
+    image: '/images/diverse/blog-washer-detergent-tray.webp',
     excerpt: 'Dấu hiệu lồng giặt bám cặn, có mùi và lịch vệ sinh giúp quần áo sạch hơn.',
   },
   {
     title: 'Mẹo tiết kiệm điện khi sử dụng máy lạnh',
     slug: 'meo-tiet-kiem-dien-khi-su-dung-may-lanh',
     categorySlug: 'tiet-kiem-dien',
-    image: '/images/services/ve-sinh-may-lanh.jpg',
+    image: '/images/diverse/blog-ac-energy-curtain.webp',
     excerpt: 'Cách cài đặt nhiệt độ, vệ sinh định kỳ và dùng máy lạnh hợp lý để giảm hao điện.',
   },
 ];
@@ -166,7 +166,11 @@ async function main() {
       update: {
         fileName,
         originalName: fileName,
-        mimeType: post.image.endsWith('.png') ? 'image/png' : 'image/jpeg',
+        mimeType: post.image.endsWith('.png')
+          ? 'image/png'
+          : post.image.endsWith('.webp')
+            ? 'image/webp'
+            : 'image/jpeg',
         url: post.image,
         altText: post.title,
         visibility: 'PUBLIC',
@@ -175,7 +179,11 @@ async function main() {
         id: `seed-blog-image-${post.slug}`,
         fileName,
         originalName: fileName,
-        mimeType: post.image.endsWith('.png') ? 'image/png' : 'image/jpeg',
+        mimeType: post.image.endsWith('.png')
+          ? 'image/png'
+          : post.image.endsWith('.webp')
+            ? 'image/webp'
+            : 'image/jpeg',
         size: 0,
         url: post.image,
         altText: post.title,

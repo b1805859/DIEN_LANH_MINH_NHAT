@@ -27,6 +27,7 @@ import './desktop-wide.css';
 import './safe-area.css';
 import './home-menu-approved.css';
 import './home-harmony-approved.css';
+import './home-mockup.css';
 
 const beVietnamPro = Be_Vietnam_Pro({
   subsets: ['latin', 'vietnamese'],

@@ -39,8 +39,8 @@ export function RevealRoot() {
         }
       },
       {
-        rootMargin: '0px 0px -8% 0px',
-        threshold: 0.05,
+        rootMargin: '160px 0px 120px 0px',
+        threshold: 0.01,
       },
     );
 
@@ -48,11 +48,15 @@ export function RevealRoot() {
       const elements = document.querySelectorAll<HTMLElement>(
         '[data-reveal=""]:not([data-reveal="in"]), [data-reveal="up"]:not([data-reveal="in"]), [data-reveal="left"]:not([data-reveal="in"]), [data-reveal="right"]:not([data-reveal="in"]), [data-reveal="scale"]:not([data-reveal="in"])',
       );
+      const viewportEdge = window.innerHeight + 90;
+      const nearDocBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 240;
       elements.forEach((el) => {
-        // Elements already scrolled past above the screen stay revealed
+        // Reveal elements already inside/above the initial viewport or near document bottom immediately
         const rect = el.getBoundingClientRect();
-        if (rect.bottom < 0) {
+        if (rect.top < viewportEdge || rect.bottom < 0 || nearDocBottom) {
           el.dataset.reveal = 'in';
+          observer.unobserve(el);
         } else {
           observer.observe(el);
         }
@@ -61,6 +65,16 @@ export function RevealRoot() {
 
     // Initial observation
     observePending();
+
+    let scrollRaf = 0;
+    const onScrollCheck = () => {
+      if (scrollRaf) return;
+      scrollRaf = requestAnimationFrame(() => {
+        scrollRaf = 0;
+        observePending();
+      });
+    };
+    window.addEventListener('scroll', onScrollCheck, { passive: true });
 
     // Re-run after paint to catch late-hydrated elements
     const timer = setTimeout(observePending, 80);
@@ -72,6 +86,8 @@ export function RevealRoot() {
 
     return () => {
       clearTimeout(timer);
+      cancelAnimationFrame(scrollRaf);
+      window.removeEventListener('scroll', onScrollCheck);
       observer.disconnect();
       mutationObserver.disconnect();
     };

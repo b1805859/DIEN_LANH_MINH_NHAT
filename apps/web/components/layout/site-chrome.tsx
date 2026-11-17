@@ -4,6 +4,8 @@ import { ReactNode, useLayoutEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { FloatingActions } from '@/components/conversion/floating-actions';
 import { HomeFooter } from '@/components/layout/home-footer';
+import { HomePreFooterCta } from '@/components/home-mockup/home-mockup';
+import { ScrollProgressBar } from '@/components/ui/scroll-progress-bar';
 import { SiteHeader } from '@/components/layout/site-header';
 import type { WebsiteService } from '@/lib/content/website-content';
 import { useSiteMotion } from './use-site-motion';
@@ -43,9 +45,11 @@ export function SiteChrome({ children, services }: { children: ReactNode; servic
       ref={site}
     >
       <a className="mn-skip-link" href="#mn-main-content">Bỏ qua menu, đến nội dung</a>
+      <ScrollProgressBar />
       <PageViewTracker />
       <SiteHeader services={services} />
       <div className={pathname === '/' ? 'flex-1' : 'flex-1 mn-home-reuse'} id="mn-main-content" tabIndex={-1}>{children}</div>
+      {pathname !== '/' && pathname !== '/contact' && pathname !== '/booking' && <HomePreFooterCta />}
       <HomeFooter services={services} />
       <div className="mn-floating">
         <FloatingActions />

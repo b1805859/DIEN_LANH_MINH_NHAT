@@ -33,6 +33,7 @@ import styles from './hero.module.css';
 
 const LEGACY_IMAGE_ASPECT = 1661 / 947;
 const FINDER_IMAGE_ASPECT = 1660 / 947;
+const MOCKUP_IMAGE_ASPECT = 1620 / 540;
 
 // Match the outlet tangent before gradually turning into the room.
 // The shader and particles use the same upper boundary.
@@ -59,8 +60,22 @@ function finderLowerEdge(x: number) {
   );
 }
 
+// Home mockup louver fan coordinates (`hero-mockup-v4.jpg` 1620x540):
+// Indoor AC louver sits at top-right (x: 0.742..0.922, bottom-up y: 0.692..0.755).
+function mockupUpperEdge(x: number) {
+  const distance = Math.max(0, 0.745 - x);
+  return x >= 0.745
+    ? 0.708 + (Math.min(0.922, x) - 0.745) * 0.25
+    : 0.708 - 0.26 * Math.pow(distance, 0.9);
+}
+
+function mockupLowerEdge(x: number) {
+  const distance = Math.max(0, 0.922 - x);
+  return Math.max(0.06, 0.715 - 0.85 * distance - 0.42 * (1 - Math.exp(-4.6 * distance)));
+}
+
 // ---------------------------------------------------------------------------
-// 1. Divergence-Free 2D Curl Noise for Subtle Atmospheric Micro-Motes (`particle-system`)
+// 1. Divergence-Free 2D Curl Noise LUT (eliminates per-frame noise stalls)
 // ---------------------------------------------------------------------------
 function hash2D(ix: number, iy: number): number {
   const n = Math.sin(ix * 127.1 + iy * 311.7) * 43758.5453123;
@@ -81,11 +96,31 @@ function smoothNoise2D(x: number, y: number): number {
   return a + (b - a) * ux + (c - a) * uy + (a - b - c + d) * ux * uy;
 }
 
-function curlNoise2D(x: number, y: number): [number, number] {
+const CURL_LUT_SIZE = 64;
+const CURL_LUT_X = new Float32Array(CURL_LUT_SIZE * CURL_LUT_SIZE);
+const CURL_LUT_Y = new Float32Array(CURL_LUT_SIZE * CURL_LUT_SIZE);
+(() => {
   const eps = 0.04;
-  const dPsiDy = (smoothNoise2D(x, y + eps) - smoothNoise2D(x, y - eps)) / (2.0 * eps);
-  const dPsiDx = (smoothNoise2D(x + eps, y) - smoothNoise2D(x - eps, y)) / (2.0 * eps);
-  return [dPsiDy, -dPsiDx];
+  for (let iy = 0; iy < CURL_LUT_SIZE; iy++) {
+    for (let ix = 0; ix < CURL_LUT_SIZE; ix++) {
+      const gx = (ix / CURL_LUT_SIZE) * 8.0;
+      const gy = (iy / CURL_LUT_SIZE) * 8.0;
+      const dPsiDy = (smoothNoise2D(gx, gy + eps) - smoothNoise2D(gx, gy - eps)) / (2.0 * eps);
+      const dPsiDx = (smoothNoise2D(gx + eps, gy) - smoothNoise2D(gx - eps, gy)) / (2.0 * eps);
+      const idx = iy * CURL_LUT_SIZE + ix;
+      CURL_LUT_X[idx] = dPsiDy;
+      CURL_LUT_Y[idx] = -dPsiDx;
+    }
+  }
+})();
+
+function sampleCurlLUT(x: number, y: number): [number, number] {
+  const u = (((x * 8.0) % CURL_LUT_SIZE) + CURL_LUT_SIZE) % CURL_LUT_SIZE;
+  const v = (((y * 8.0) % CURL_LUT_SIZE) + CURL_LUT_SIZE) % CURL_LUT_SIZE;
+  const x0 = Math.floor(u) & (CURL_LUT_SIZE - 1);
+  const y0 = Math.floor(v) & (CURL_LUT_SIZE - 1);
+  const idx = y0 * CURL_LUT_SIZE + x0;
+  return [CURL_LUT_X[idx], CURL_LUT_Y[idx]];
 }
 
 // ---------------------------------------------------------------------------
@@ -148,6 +183,14 @@ float sdSegment(vec2 p, vec2 a, vec2 b) {
 // preserves coffee table details, and protects UI readability while allowing the cooling
 // volume to flow continuously behind the foreground technician (hero-technician-focus-mask.svg).
 float subjectMask(vec2 imgUv) {
+  // Home mockup uses a soft organic arc so cooling mist curls gently around the room without hard edges
+  if (uMockup > 0.5) {
+    float curveShift = 0.085 * smoothstep(0.16, 0.86, imgUv.y);
+    float leftFade = smoothstep(0.24 + curveShift, 0.54 + curveShift, imgUv.x);
+    float topFade = 1.0 - smoothstep(0.83, 0.96, imgUv.y);
+    float botFade = smoothstep(0.03, 0.15, imgUv.y);
+    return leftFade * topFade * botFade;
+  }
   // Finder subjects are protected by the source-aligned foreground contour.
   // Do not retain the legacy family's invisible holes or bottom service-bar fade.
   if (uFinder > 0.5) {
@@ -220,6 +263,8 @@ varying vec2 vUv;
 uniform float uTime;
 uniform float uStatic;
 uniform float uFinder;
+uniform float uMockup;
+uniform vec2 uPointer;
 uniform vec2 uCoverScale;
 uniform vec2 uCoverOffset;
 
@@ -236,12 +281,10 @@ void main() {
   }
 
   // AC louver slot segment in bottom-up UV:
-  // Top lip of black louver: A(0.8638, 0.7656) -> B(0.9494, 0.8543)
-  // Bottom lip of black louver: C(0.8735, 0.7381) -> D(0.9542, 0.8268)
-  vec2 topA = vec2(0.8638, 0.7656);
-  vec2 topB = vec2(0.9494, 0.8543);
-  vec2 botA = vec2(0.8735, 0.7381);
-  vec2 botB = vec2(0.9542, 0.8268);
+  vec2 topA = (uMockup > 0.5) ? vec2(0.745, 0.708) : vec2(0.8638, 0.7656);
+  vec2 topB = (uMockup > 0.5) ? vec2(0.922, 0.752) : vec2(0.9494, 0.8543);
+  vec2 botA = (uMockup > 0.5) ? vec2(0.752, 0.678) : vec2(0.8735, 0.7381);
+  vec2 botB = (uMockup > 0.5) ? vec2(0.925, 0.722) : vec2(0.9542, 0.8268);
   float louverSlope = (topB.y - topA.y) / (topB.x - topA.x);
 
   // Right boundary of the jet: emerges strictly from topB and angles down-left
@@ -250,30 +293,26 @@ void main() {
   float rightWallMask = 1.0 - smoothstep(rightEdgeX - 0.010, rightEdgeX + 0.012, imgUv.x);
 
   // Upper boundary of the jet:
-  // - Along the AC unit (imgUv.x >= topA.x): strictly adheres to top lip of louver
-  // - Across the room (imgUv.x < topA.x): smooth aerodynamic descent across curtain and window
   float dxFromA = max(0.0, topA.x - imgUv.x);
   float yHigh = (imgUv.x >= topA.x)
     ? (topA.y + (imgUv.x - topA.x) * louverSlope)
-    : (topA.y - 0.22 * pow(dxFromA, 0.88));
+    : (uMockup > 0.5
+        ? (topA.y - 0.26 * pow(dxFromA, 0.90))
+        : (topA.y - 0.22 * pow(dxFromA, 0.88)));
 
-  // Continue the vent lip with a matching tangent, then turn gradually.
-  // The old piecewise power curve made a visible elbow at the vent's left end.
-  if (uFinder > 0.5 && imgUv.x < topA.x) {
+  if (uFinder > 0.5 && uMockup < 0.5 && imgUv.x < topA.x) {
     yHigh = topA.y - ${FINDER_TURN.downstream} * dxFromA
       - (${FINDER_TURN.slope} - ${FINDER_TURN.downstream}) * ${FINDER_TURN.length}
       * (1.0 - exp(-dxFromA / ${FINDER_TURN.length}));
   }
 
   // Upper ceiling boundary feather
-  float ventCeilingMask = 1.0 - smoothstep(yHigh, yHigh + mix(0.015, 0.001, uFinder), imgUv.y);
+  float ventCeilingMask = 1.0 - smoothstep(yHigh, yHigh + mix(0.015, 0.008, uFinder), imgUv.y);
   if (ventCeilingMask * rightWallMask < 0.002) {
     discard;
   }
 
   // Lower boundary of the jet:
-  // - At the AC (imgUv.x >= topA.x): emerges from the bottom lip of the louver
-  // - Across the room: smoothly expands down towards floor and living room behind technician
   float tVent = clamp((imgUv.x - topA.x) / (topB.x - topA.x), 0.0, 1.0);
   float louverBotY = mix(botA.y, botB.y, tVent);
   float floorY = 0.05;
@@ -281,7 +320,10 @@ void main() {
     ? (louverBotY - (1.0 - tVent) * 0.40)
     : (floorY + (botA.y - 0.40 - floorY) * exp(-8.5 * dxFromA));
 
-  if (uFinder > 0.5) {
+  if (uMockup > 0.5) {
+    float distance = max(0.0, topB.x - imgUv.x);
+    yLow = max(0.06, botB.y - 0.85 * distance - 0.42 * (1.0 - exp(-4.6 * distance)));
+  } else if (uFinder > 0.5) {
     float distance = max(0.0, topB.x - imgUv.x);
     yLow = max(${FINDER_FAN.floor}, botB.y - ${FINDER_FAN.slope} * distance
       - ${FINDER_FAN.spread} * (1.0 - exp(-${FINDER_FAN.expansion.toFixed(1)} * distance)));
@@ -390,17 +432,20 @@ void main() {
   float layerDeep = 0.5 + 0.5 * fbmGas(deepUv + 0.28 * q);
 
   // Blend the 3 internal motion layers into ONE cohesive density field
+  float pointerBoost = (uPointer.x >= 0.0)
+    ? (1.0 - smoothstep(0.0, 0.28, length((vUv - uPointer) * vec2(1.4, 1.0)))) * 0.24
+    : 0.0;
   float currentWeight = (1.0 - smoothstep(0.15, 0.85, s)) * 0.16;
-  float internalDensity = 0.76 + 0.16 * layerMist + currentWeight * layerCurrents + 0.08 * layerDeep;
+  float internalDensity = 0.76 + 0.16 * layerMist + currentWeight * layerCurrents + 0.08 * layerDeep + pointerBoost;
 
   // Final volumetric alpha with family & UI occlusion mask
-  // Finder composition uses the pixel-accurate human foreground layer so the
-  // volumetric airflow stays continuous without axis-aligned rectangular cuts.
-  float furnitureClarity = mix(mix(0.025, 1.0, uFinder), 1.0, smoothstep(0.32, 0.60, imgUv.y));
-  float windowFocus = mix(mix(0.20, 1.0, uFinder), 1.0, smoothstep(0.30, 0.70, imgUv.x));
+  float finderOrMockup = max(uFinder, uMockup);
+  float furnitureClarity = mix(mix(0.025, 1.0, finderOrMockup), 1.0, smoothstep(0.32, 0.60, imgUv.y));
+  float windowFocus = mix(mix(0.20, 1.0, finderOrMockup), 1.0, smoothstep(0.30, 0.70, imgUv.x));
   float rawAlpha = unifiedEnvelope * internalDensity * ventCeilingMask * rightWallMask * subjectMask(imgUv)
                  * furnitureClarity * windowFocus;
-  float alpha = clamp(rawAlpha * mix(0.76, 0.72, uFinder), 0.0, mix(0.66, 0.50, uFinder));
+  float maxAlpha = (uMockup > 0.5) ? 0.62 : mix(0.66, 0.50, uFinder);
+  float alpha = clamp(rawAlpha * mix(0.76, 0.72, uFinder) * (1.0 + pointerBoost * 0.55), 0.0, maxAlpha);
 
   if (alpha < 0.002) {
     discard;
@@ -527,23 +572,47 @@ function distToSegment2D(
   return Math.hypot(pax - bax * h, pay - bay * h);
 }
 
-export function HeroAirflow({ composition = 'legacy', budget = 'reduced', showToggle = true, compactFinder = false }: {
-  composition?: 'legacy' | 'finder';
+export function HeroAirflow({
+  composition = 'legacy',
+  budget = 'reduced',
+  showToggle = true,
+  compactFinder = false,
+  externalPaused,
+}: {
+  composition?: 'legacy' | 'finder' | 'mockup';
   budget?: MotionBudget;
   showToggle?: boolean;
   compactFinder?: boolean;
+  externalPaused?: boolean;
 }) {
-  const [paused, setPaused] = useState(false);
+  const [internalPaused, setInternalPaused] = useState(false);
+  const paused = externalPaused ?? internalPaused;
   const [automaticStatic, setAutomaticStatic] = useState(false);
+  const [hasBox, setHasBox] = useState(false);
   const finder = composition === 'finder';
-  const canAnimate = budget === 'full' || (finder && compactFinder && budget === 'limited');
+  const mockup = composition === 'mockup';
+  const canAnimate = budget === 'full' || ((finder || mockup) && compactFinder && budget === 'limited');
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const container = containerRef.current;
+    if (!container) return;
+    const measure = () => {
+      const rect = container.getBoundingClientRect();
+      const visible = rect.width > 2 && rect.height > 2;
+      setHasBox((prev) => (prev === visible ? prev : visible));
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(container);
+    return () => ro.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const container = containerRef.current;
     const canvas = canvasRef.current;
-    if (!container || !canvas) return;
+    if (!container || !canvas || !hasBox) return;
 
     const params = new URLSearchParams(window.location.search);
     const modeParam = params.get('airflow');
@@ -584,7 +653,11 @@ export function HeroAirflow({ composition = 'legacy', budget = 'reduced', showTo
 
     const updateCoverMapping = (width: number, height: number) => {
       const viewAspect = width / Math.max(height, 1);
-      const imageAspect = finder ? FINDER_IMAGE_ASPECT : LEGACY_IMAGE_ASPECT;
+      const imageAspect = mockup
+        ? MOCKUP_IMAGE_ASPECT
+        : finder
+          ? FINDER_IMAGE_ASPECT
+          : LEGACY_IMAGE_ASPECT;
       if (viewAspect > imageAspect) {
         coverScale[0] = 1.0;
         coverScale[1] = imageAspect / viewAspect;
@@ -593,9 +666,13 @@ export function HeroAirflow({ composition = 'legacy', budget = 'reduced', showTo
       } else {
         coverScale[0] = viewAspect / imageAspect;
         coverScale[1] = 1.0;
-        const mobileFocus = compactFinder && compactViewport.matches
-          ? parseFloat(getComputedStyle(container).getPropertyValue('--finder-mobile-focus')) / 100
-          : 0.5;
+        const mobileFocus = mockup
+          ? compactViewport.matches
+            ? 0.86
+            : 0.78
+          : compactFinder && compactViewport.matches
+            ? parseFloat(getComputedStyle(container).getPropertyValue('--finder-mobile-focus')) / 100
+            : 0.5;
         coverOffset[0] = (1.0 - coverScale[0]) * (Number.isFinite(mobileFocus) ? mobileFocus : 0.5);
         coverOffset[1] = 0.0;
       }
@@ -607,8 +684,8 @@ export function HeroAirflow({ composition = 'legacy', budget = 'reduced', showTo
     gl.bindBuffer(gl.ARRAY_BUFFER, quadBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, quadData, gl.STATIC_DRAW);
 
-    // 2. Area-scaled cooling micro-motes
-    const MAX_PARTICLES = 620;
+    // 2. Area-scaled cooling micro-motes (balanced count + Curl LUT = 60fps zero Long Tasks)
+    const MAX_PARTICLES = 320;
     const REFERENCE_AREA = 1280 * 666;
     let particleCount = MAX_PARTICLES;
     let particleSizeScale = 1;
@@ -616,42 +693,49 @@ export function HeroAirflow({ composition = 'legacy', budget = 'reduced', showTo
     const particleData = new Float32Array(MAX_PARTICLES * 4);
     const particleBuffer = gl.createBuffer();
 
+    const targetPointer: [number, number] = [-1, -1];
+    const smoothPointer: [number, number] = [-1, -1];
+
     const particles = Array.from({ length: MAX_PARTICLES }, (_, i) => {
-      // Deterministic samples; independent finder bands/speeds avoid rows of dots.
       const h1 = (0.19 + i * 0.61803398875) % 1;
-      const h2 = finder ? hash2D(i, 53) : (0.43 + i * 0.75487766625) % 1;
-      const h3 = finder ? hash2D(i, 97) : (0.61 + i * 0.56984029099) % 1;
+      const h2 = (finder || mockup) ? hash2D(i, 53) : (0.43 + i * 0.75487766625) % 1;
+      const h3 = (finder || mockup) ? hash2D(i, 97) : (0.61 + i * 0.56984029099) % 1;
       const h4 = (0.29 + i * 0.43844718719) % 1;
       return {
         u0: h1,
-        vBand: 0.03 + h2 * 0.92, // Spans the entire unified cooling volume including behind technician
-        speed: 0.038 + h3 * 0.036, // Calm 13-26s drift
-        baseAlpha: finder ? 0.72 + h4 * 0.28 : 0.58 + h4 * 0.36,
-        size: finder ? 2.3 + h3 * 2.7 : 2.0 + h3 * 2.5, // CSS pixels
+        vBand: 0.03 + h2 * 0.92,
+        speed: 0.042 + h3 * 0.038,
+        baseAlpha: (finder || mockup) ? 0.72 + h4 * 0.28 : 0.58 + h4 * 0.36,
+        size: (finder || mockup) ? 2.2 + h3 * 2.5 : 2.0 + h3 * 2.5,
       };
     });
 
     const updateParticles = (elapsed: number) => {
       const t = Math.max(0, elapsed);
+      const topAx = mockup ? 0.745 : 0.8638;
+      const topAy = mockup ? 0.708 : 0.7656;
+      const topBx = mockup ? 0.922 : 0.9494;
+      const topBy = mockup ? 0.752 : 0.8543;
+      const botAy = mockup ? 0.678 : 0.7381;
+      const botBy = mockup ? 0.722 : 0.8268;
+      const louverSlope = (topBy - topAy) / (topBx - topAx);
+
       for (let i = 0; i < particleCount; i++) {
         const p = particles[i];
         const linearS = (((p.u0 + t * p.speed) % 1.0) + 1.0) % 1.0;
-        // Decelerate smoothly as air disperses across the room
         const s = Math.pow(linearS, 0.86);
 
-        // Map (s, vBand) into the unified cooling volume in image UV
-        // AC louver slot in bottom-up UV:
-        const topAx = 0.8638, topAy = 0.7656;
-        const topBx = 0.9494, topBy = 0.8543;
-        const botAy = 0.7381;
-        const botBy = 0.8268;
-        const louverSlope = (topBy - topAy) / (topBx - topAx);
-
-        const imgX = topBx - s * (finder ? 0.95 : 0.78);
+        const imgX = topBx - s * (mockup ? 0.68 : finder ? 0.95 : 0.78);
         let yHigh = topBy;
         let yLow = 0.05;
 
-        if (imgX >= topAx) {
+        if (mockup) {
+          yHigh = mockupUpperEdge(imgX);
+          yLow = mockupLowerEdge(imgX);
+        } else if (finder) {
+          yHigh = finderUpperEdge(imgX);
+          yLow = finderLowerEdge(imgX);
+        } else if (imgX >= topAx) {
           yHigh = topAy + (imgX - topAx) * louverSlope;
           const tVent = Math.min(1.0, Math.max(0.0, (imgX - topAx) / (topBx - topAx)));
           const louverBotY = botAy + tVent * (botBy - botAy);
@@ -661,25 +745,32 @@ export function HeroAirflow({ composition = 'legacy', budget = 'reduced', showTo
           yHigh = topAy - 0.22 * Math.pow(dxFromA, 0.88);
           yLow = 0.05 + (botAy - 0.40 - 0.05) * Math.exp(-8.5 * dxFromA);
         }
-        if (finder) {
-          yHigh = finderUpperEdge(imgX);
-          yLow = finderLowerEdge(imgX);
-        }
         const baseImgY = yLow + (yHigh - yLow) * p.vBand;
 
-        const [curlX, curlY] = curlNoise2D(imgX * 4.5 - t * 0.2, baseImgY * 4.5 + i * 0.37);
-        const eddy = (finder ? 0.004 : 0.014) * Math.min(1.0, s * 2.2);
-        const imgXFinal = imgX + curlX * eddy;
-        const imgYFinal = baseImgY + curlY * eddy;
+        const [curlX, curlY] = sampleCurlLUT(imgX * 4.5 - t * 0.2, baseImgY * 4.5 + i * 0.37);
+        const eddy = (finder ? 0.004 : mockup ? 0.008 : 0.014) * Math.min(1.0, s * 2.2);
+        let imgXFinal = imgX + curlX * eddy;
+        let imgYFinal = baseImgY + curlY * eddy;
+
+        if (smoothPointer[0] >= 0) {
+          const pImgX = smoothPointer[0] * coverScale[0] + coverOffset[0];
+          const pImgY = smoothPointer[1] * coverScale[1] + coverOffset[1];
+          const dx = imgXFinal - pImgX;
+          const dy = imgYFinal - pImgY;
+          const d2 = dx * dx + dy * dy;
+          if (d2 > 0.0001 && d2 < 0.045) {
+            const push = (1.0 - d2 / 0.045) * 0.018;
+            imgXFinal += (dx / Math.sqrt(d2)) * push;
+            imgYFinal += (dy / Math.sqrt(d2)) * push;
+          }
+        }
 
         const rightEdgeX = topBx - (topBy - Math.min(topBy, imgYFinal)) * 0.10;
         const outsideRight = imgXFinal > rightEdgeX + 0.005;
 
-        // Protect 100% of the family on the sofa (zero particles over any part of the family).
-        // Particles behind the technician are allowed so the foreground technician layer occludes them naturally!
         const ny = 1.0 - imgYFinal;
         const inFamily =
-          !finder &&
+          !finder && !mockup &&
           (Math.hypot((imgXFinal - 0.316) / 0.032, (ny - 0.554) / 0.052) < 1.0 ||
             Math.hypot((imgXFinal - 0.373) / 0.035, (ny - 0.576) / 0.05) < 1.0 ||
             Math.hypot((imgXFinal - 0.368) / 0.085, (ny - 0.665) / 0.09) < 1.0 ||
@@ -687,32 +778,30 @@ export function HeroAirflow({ composition = 'legacy', budget = 'reduced', showTo
             distToSegment2D(imgXFinal, ny, 0.393, 0.72, 0.478, 0.795) < 0.048 ||
             distToSegment2D(imgXFinal, ny, 0.44, 0.687, 0.512, 0.758) < 0.04);
 
-        // Subtle twinkle modulation so micro-motes feel suspended in cool air
+        const mockupLeftFade = mockup ? Math.min(1, Math.max(0, (imgXFinal - 0.28) / 0.18)) : 1;
         const pulse = 0.5 + 0.5 * Math.sin(t * (1.4 + (i % 7) * 0.12) + i * 1.73);
-        const twinkle = finder
+        const twinkle = (finder || mockup)
           ? 0.65 + 0.35 * Math.pow(pulse, 3)
           : 0.88 + 0.12 * Math.sin(t * 2.1 + i * 1.73);
 
         const clipX = ((imgXFinal - coverOffset[0]) / coverScale[0]) * 2.0 - 1.0;
         const clipY = ((imgYFinal - coverOffset[1]) / coverScale[1]) * 2.0 - 1.0;
-        // Start particle visibility immediately at the louver mouth (s >= 0.005)
         const entryFade = Math.min(1.0, s * 22.0);
-        const exitFade = finder
-          ? 1.0 - Math.min(1.0, Math.max(0.0, (s - 0.95) / 0.05))
+        const exitFade = (finder || mockup)
+          ? 1.0 - Math.min(1.0, Math.max(0.0, (s - 0.92) / 0.08))
           : 1.0 - Math.min(1.0, Math.max(0.0, (s - 0.65) / 0.32));
-        // Fade at both fan edges, so curl never leaves stray dots outside the mist.
         const band = (imgYFinal - yLow) / Math.max(0.042, yHigh - yLow);
-        const edgeFade = finder
+        const edgeFade = (finder || mockup)
           ? Math.max(0, Math.min(1, band / 0.16, (1 - band) / 0.16))
           : 1;
-        const dispersion = finder ? Math.exp(-0.20 * s) : 1;
+        const dispersion = (finder || mockup) ? Math.exp(-0.22 * s) : 1;
         const envelope = (inFamily || outsideRight) ? 0.0
-          : entryFade * exitFade * twinkle * edgeFade * dispersion;
+          : entryFade * exitFade * twinkle * edgeFade * dispersion * mockupLeftFade;
 
         const base = i * 4;
         particleData[base] = clipX;
         particleData[base + 1] = clipY;
-        particleData[base + 2] = Math.min(1, p.baseAlpha * envelope * (finder ? 2.05 : 1));
+        particleData[base + 2] = Math.min(1, p.baseAlpha * envelope * ((finder || mockup) ? 1.9 : 1));
         particleData[base + 3] =
           p.size * pixelRatio * particleSizeScale * (finder ? 1.05 : 1);
       }
@@ -750,6 +839,8 @@ export function HeroAirflow({ composition = 'legacy', budget = 'reduced', showTo
       uTime: gl.getUniformLocation(volumeProg, 'uTime'),
       uStatic: gl.getUniformLocation(volumeProg, 'uStatic'),
       uFinder: gl.getUniformLocation(volumeProg, 'uFinder'),
+      uMockup: gl.getUniformLocation(volumeProg, 'uMockup'),
+      uPointer: gl.getUniformLocation(volumeProg, 'uPointer'),
       uCoverScale: gl.getUniformLocation(volumeProg, 'uCoverScale'),
       uCoverOffset: gl.getUniformLocation(volumeProg, 'uCoverOffset'),
     };
@@ -763,6 +854,13 @@ export function HeroAirflow({ composition = 'legacy', budget = 'reduced', showTo
 
     const renderFrame = (rawElapsed: number) => {
       const elapsed = hasFixedTime ? fixedTimeValue : Math.max(0, rawElapsed);
+      if (smoothPointer[0] >= 0 && targetPointer[0] >= 0) {
+        smoothPointer[0] += (targetPointer[0] - smoothPointer[0]) * 0.14;
+        smoothPointer[1] += (targetPointer[1] - smoothPointer[1]) * 0.14;
+      } else {
+        smoothPointer[0] = targetPointer[0];
+        smoothPointer[1] = targetPointer[1];
+      }
       gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.enable(gl.BLEND);
@@ -778,7 +876,9 @@ export function HeroAirflow({ composition = 'legacy', budget = 'reduced', showTo
 
       gl.uniform1f(volumeLoc.uTime, elapsed);
       gl.uniform1f(volumeLoc.uFinder, finder ? 1 : 0);
+      gl.uniform1f(volumeLoc.uMockup, mockup ? 1 : 0);
       gl.uniform1f(volumeLoc.uStatic, modeParam === 'static' ? 1.0 : 0.0);
+      gl.uniform2f(volumeLoc.uPointer, smoothPointer[0], smoothPointer[1]);
       gl.uniform2f(volumeLoc.uCoverScale, coverScale[0], coverScale[1]);
       gl.uniform2f(volumeLoc.uCoverOffset, coverOffset[0], coverOffset[1]);
 
@@ -789,7 +889,7 @@ export function HeroAirflow({ composition = 'legacy', budget = 'reduced', showTo
       // Pass 2: Atmospheric micro-motes following the same fan bounds
       updateParticles(elapsed);
       gl.useProgram(particleProg);
-      gl.uniform1f(particleLoc.uFinder, finder ? 1 : 0);
+      gl.uniform1f(particleLoc.uFinder, finder || mockup ? 1 : 0);
       gl.bindBuffer(gl.ARRAY_BUFFER, particleBuffer);
       const pStride = 16;
       gl.enableVertexAttribArray(particleLoc.aPosition);
@@ -805,6 +905,24 @@ export function HeroAirflow({ composition = 'legacy', budget = 'reduced', showTo
       gl.disableVertexAttribArray(particleLoc.aSize);
     };
 
+    const pointerTargetEl = container.parentElement ?? container;
+    const onPointerMove = (event: PointerEvent) => {
+      const rect = container.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
+      targetPointer[0] = Math.min(1, Math.max(0, (event.clientX - rect.left) / rect.width));
+      targetPointer[1] = 1 - Math.min(1, Math.max(0, (event.clientY - rect.top) / rect.height));
+      if (smoothPointer[0] < 0) {
+        smoothPointer[0] = targetPointer[0];
+        smoothPointer[1] = targetPointer[1];
+      }
+    };
+    const onPointerLeave = () => {
+      targetPointer[0] = -1;
+      targetPointer[1] = -1;
+    };
+    pointerTargetEl.addEventListener('pointermove', onPointerMove, { passive: true });
+    pointerTargetEl.addEventListener('pointerleave', onPointerLeave, { passive: true });
+
     let rafId = 0;
     let isVisible = true;
     let elapsed = fixedTimeValue;
@@ -812,21 +930,24 @@ export function HeroAirflow({ composition = 'legacy', budget = 'reduced', showTo
     let lastRender = 0;
     let samples = 0;
     let slowFrames = 0;
+    const mountedAt = performance.now();
     const animate = (now: number) => {
       rafId = 0;
       if (!isVisible || document.hidden || reducedMotion) return;
       if (previous) {
         const delta = now - previous;
         elapsed += Math.min(delta, 50) * 0.001;
-        samples++;
-        if (delta > (limited ? 50 : 28)) slowFrames++;
-        if (samples >= 30) {
-          if (slowFrames > 8) {
-            setAutomaticStatic(true);
-            return;
+        if (now - mountedAt > 800) {
+          samples++;
+          if (delta > (limited ? 55 : 34)) slowFrames++;
+          if (samples >= 35) {
+            if (slowFrames > 14) {
+              setAutomaticStatic(true);
+              return;
+            }
+            samples = 0;
+            slowFrames = 0;
           }
-          samples = 0;
-          slowFrames = 0;
         }
       }
       previous = now;
@@ -855,11 +976,16 @@ export function HeroAirflow({ composition = 'legacy', budget = 'reduced', showTo
     }, { threshold: 0.02 });
     intersectionObserver.observe(container);
     document.addEventListener('visibilitychange', syncPlayback);
-    renderFrame(fixedTimeValue);
-    syncPlayback();
+    if (hasFixedTime || reducedMotion) {
+      renderFrame(fixedTimeValue);
+    } else {
+      rafId = window.requestAnimationFrame(animate);
+    }
 
     return () => {
       if (rafId) window.cancelAnimationFrame(rafId);
+      pointerTargetEl.removeEventListener('pointermove', onPointerMove);
+      pointerTargetEl.removeEventListener('pointerleave', onPointerLeave);
       resizeObserver.disconnect();
       if (compactFinder) compactViewport.removeEventListener('change', updateCrop);
       intersectionObserver.disconnect();
@@ -869,7 +995,7 @@ export function HeroAirflow({ composition = 'legacy', budget = 'reduced', showTo
       gl.deleteProgram(volumeProg);
       gl.deleteProgram(particleProg);
     };
-  }, [finder, budget, paused, automaticStatic, canAnimate, compactFinder]);
+  }, [finder, mockup, budget, paused, automaticStatic, canAnimate, compactFinder, hasBox]);
 
   return (
     <>
@@ -877,10 +1003,10 @@ export function HeroAirflow({ composition = 'legacy', budget = 'reduced', showTo
         data-quality={!canAnimate || paused || automaticStatic ? 'static' : 'animated'}>
         <canvas ref={canvasRef} style={{ width: '100%', height: '100%', display: 'block' }} />
       </div>
-      {showToggle && budget === 'full' && !automaticStatic && (
+      {showToggle && canAnimate && !automaticStatic && (
         <button type="button" className="mn-airflow-toggle" aria-pressed={paused}
-          onClick={() => setPaused(value => !value)}>
-          {paused ? 'Bật hiệu ứng' : 'Dừng hiệu ứng'}
+          onClick={() => setInternalPaused(value => !value)}>
+          {paused ? 'Bật luồng gió' : 'Dừng luồng gió'}
         </button>
       )}
     </>

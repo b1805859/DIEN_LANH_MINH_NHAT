@@ -3,6 +3,7 @@
 import { useState, useMemo, type CSSProperties } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import {
   LayoutGrid,
   Snowflake,
@@ -18,6 +19,7 @@ import {
   Settings,
 } from 'lucide-react';
 import { HeroWords } from '@/components/home-ice-blue/hero-words';
+import { TactileCard } from '@/components/ui/tactile-card';
 import type { WebsiteService } from '@/lib/content/website-content';
 import styles from './services-page.module.css';
 
@@ -41,6 +43,7 @@ const BENEFITS = [
 
 export function ServicesPageView({ services }: { services: WebsiteService[] }) {
   const [activeCategory, setActiveCategory] = useState<CategoryId>('all');
+  const prefersReducedMotion = useReducedMotion();
 
   const filteredServices = useMemo(() => {
     return services.filter((service) => {
@@ -58,29 +61,40 @@ export function ServicesPageView({ services }: { services: WebsiteService[] }) {
   const restServices = filteredServices.slice(4);
 
   const renderCard = (service: WebsiteService, index: number) => (
-    <Link
+    <motion.div
       key={service.slug}
-      href={`/services/${service.slug}`}
-      className={`mn-services-catalog-card ${styles.serviceCard}`}
-      data-reveal=""
+      layout={!prefersReducedMotion}
+      initial={prefersReducedMotion ? false : { opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.96 }}
+      transition={{ duration: 0.24, delay: (index % 4) * 0.04, ease: [0.22, 1, 0.36, 1] }}
       style={{ '--d': `${(index % 4) * 80}ms` } as CSSProperties}
     >
-      <Image
-        src={service.imagery.src}
-        alt={service.imagery.alt}
-        style={{ objectPosition: service.imagery.cardPosition }}
-        fill
-        sizes="(max-width: 680px) calc((100vw - 44px) / 2), (max-width: 1023px) 50vw, (max-width: 2400px) 25vw, 480px"
-        className={styles.cardImg}
-        priority={index < 4}
-      />
-      <div className={styles.cardCaption}>
-        <h2 className={styles.cardTitle}>{service.title}</h2>
-        <span className={styles.cardArrow} aria-hidden="true">
-          <ArrowRight size={18} strokeWidth={2.2} />
-        </span>
-      </div>
-    </Link>
+      <TactileCard className={styles.serviceCardWrap}>
+        <Link
+          href={`/services/${service.slug}`}
+          className={`mn-services-catalog-card ${styles.serviceCard}`}
+        >
+          <div className={styles.cardMedia}>
+            <Image
+              src={service.imagery.src}
+              alt={service.imagery.alt}
+              style={{ objectPosition: service.imagery.cardPosition }}
+              fill
+              sizes="(max-width: 680px) calc((100vw - 44px) / 2), (max-width: 1023px) 50vw, (max-width: 2400px) 25vw, 480px"
+              className={styles.cardImg}
+              priority={index < 4}
+            />
+          </div>
+          <div className={styles.cardCaption}>
+            <h2 className={styles.cardTitle}>{service.title}</h2>
+            <span className={styles.cardArrow} aria-hidden="true">
+              <ArrowRight size={18} strokeWidth={2.2} />
+            </span>
+          </div>
+        </Link>
+      </TactileCard>
+    </motion.div>
   );
 
   return (
@@ -93,7 +107,7 @@ export function ServicesPageView({ services }: { services: WebsiteService[] }) {
               <span>Dịch vụ của chúng tôi</span>
             </div>
             <h1 className={styles.heroTitle} aria-label="Dịch vụ điện lạnh chuyên nghiệp">
-              <HeroWords text="Dịch vụ điện lạnh" />
+              <HeroWords text="Dịch vụ điện lạnh" />{' '}
               <span className={styles.cyanHighlight}><HeroWords text="chuyên nghiệp" start={4} /></span>
             </h1>
           </div>
@@ -102,7 +116,7 @@ export function ServicesPageView({ services }: { services: WebsiteService[] }) {
               src="/images/redesign/services-hero-ice-blue.webp"
               alt=""
               fill
-              unoptimized
+              sizes="(max-width: 680px) 100vw, 480px"
               className={styles.heroImg}
               data-u216="backdrop"
               priority
@@ -120,18 +134,27 @@ export function ServicesPageView({ services }: { services: WebsiteService[] }) {
               const IconComp = category.icon;
               const isActive = activeCategory === category.id;
               return (
-                <button
+                <motion.button
                   key={category.id}
                   type="button"
                   role="tab"
                   aria-selected={isActive}
                   aria-controls="services-grid"
+                  whileTap={prefersReducedMotion ? undefined : { scale: 0.96 }}
                   onClick={() => setActiveCategory(category.id)}
                   className={`${styles.filterPill} ${isActive ? styles.filterPillActive : ''}`}
                 >
+                  {isActive && !prefersReducedMotion && (
+                    <motion.span
+                      layoutId="services-filter-active-bg"
+                      className={styles.filterPillBg}
+                      transition={{ type: 'spring', stiffness: 440, damping: 32 }}
+                      aria-hidden="true"
+                    />
+                  )}
                   <IconComp size={18} strokeWidth={2.2} className={styles.pillIcon} aria-hidden="true" />
-                  <span>{category.label}</span>
-                </button>
+                  <span className={styles.pillLabel}>{category.label}</span>
+                </motion.button>
               );
             })}
           </div>
@@ -142,8 +165,10 @@ export function ServicesPageView({ services }: { services: WebsiteService[] }) {
           aria-label="Danh sách dịch vụ"
           aria-live="polite"
         >
-          <div className={styles.cardsGrid} key={activeCategory}>
-            {firstRow.map((service, idx) => renderCard(service, idx))}
+          <div className={styles.cardsGrid}>
+            <AnimatePresence mode="popLayout">
+              {firstRow.map((service, idx) => renderCard(service, idx))}
+            </AnimatePresence>
           </div>
         </section>
 
@@ -166,8 +191,10 @@ export function ServicesPageView({ services }: { services: WebsiteService[] }) {
             className={styles.gridWrapperMore}
             aria-label="Danh sách dịch vụ khác"
           >
-            <div className={styles.cardsGrid} key={activeCategory}>
-              {restServices.map((service, idx) => renderCard(service, idx + 4))}
+            <div className={styles.cardsGrid}>
+              <AnimatePresence mode="popLayout">
+                {restServices.map((service, idx) => renderCard(service, idx + 4))}
+              </AnimatePresence>
             </div>
           </section>
         )}
